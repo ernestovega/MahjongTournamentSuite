@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MahjongTournamentSuite", "MahjongTournamentSuite\MahjongTournamentSuite.csproj", "{EB221EF2-4AC2-4AE7-876D-7E1B44FCA8B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MahjongTournamentTimer", "..\..\MahjongTournamentTimer\Mahjong Tornamet Timer\MahjongTournamentTimer.csproj", "{6898DB2E-A09D-4F94-A8B2-1E14F19C2ED3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MahjongTournamentTimer", "MahjongTournamentTimer\MahjongTournamentTimer.csproj", "{6898DB2E-A09D-4F94-A8B2-1E14F19C2ED3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

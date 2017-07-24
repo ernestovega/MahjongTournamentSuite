@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
-using MahjongTournamentTimer;
 using System.Diagnostics;
 using System.Collections.Generic;
+using MahjongTournamentTimer;
 
 namespace MahjongTournamentSuite.Home
 {
@@ -39,7 +39,7 @@ namespace MahjongTournamentSuite.Home
         public void TimerClicked()
         {
             var mahjongTournamentTimer = new MahjongTournamentTimer.Program();
-            Process.Start(mahjongTournamentTimer.returnPath());
+            Process.Start(mahjongTournamentTimer.returnExecutablePath());
         }
 
         public void NewClicked()
