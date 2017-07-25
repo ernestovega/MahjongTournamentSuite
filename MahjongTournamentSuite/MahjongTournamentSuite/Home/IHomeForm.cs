@@ -5,6 +5,6 @@ namespace MahjongTournamentSuite.Home
 {
     internal interface IHomeForm
     {
-        void LoadList(List<ListViewItem> tournamentItems);
+
     }
 }

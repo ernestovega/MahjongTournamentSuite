@@ -454,7 +454,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.imgMMLogo)).EndInit();
             this.ResumeLayout(false);

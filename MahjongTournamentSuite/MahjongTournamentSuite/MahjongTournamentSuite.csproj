@@ -57,10 +57,34 @@
     <Compile Include="Home\IHomePresenter.cs" />
     <Compile Include="Home\OldTournamentsAdapter.cs" />
     <Compile Include="Model\Tournament.cs" />
+    <Compile Include="NewTournament\INewTournamentForm.cs" />
+    <Compile Include="NewTournament\INewTournamentPresenter.cs" />
+    <Compile Include="NewTournament\NewTournamentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewTournament\NewTournamentForm.Designer.cs">
+      <DependentUpon>NewTournamentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewTournament\NewTournamentPresenter.cs" />
+    <Compile Include="OldTournaments\IOldTournamentsForm.cs" />
+    <Compile Include="OldTournaments\IOldTournamentsPresenter.cs" />
+    <Compile Include="OldTournaments\OldTournamentsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OldTournaments\OldTournamentsForm.Designer.cs">
+      <DependentUpon>OldTournamentsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OldTournaments\OldTournamentsPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Home\HomeForm.resx">
       <DependentUpon>HomeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewTournament\NewTournamentForm.resx">
+      <DependentUpon>NewTournamentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OldTournaments\OldTournamentsForm.resx">
+      <DependentUpon>OldTournamentsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -88,6 +112,7 @@
   <ItemGroup>
     <Content Include="Resources\icon_exit.png" />
     <Content Include="Resources\icon_minimize.png" />
+    <Content Include="Resources\icon_return.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MahjongTournamentTimer\MahjongTournamentTimer.csproj">
@@ -95,6 +120,7 @@
       <Name>MahjongTournamentTimer</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
