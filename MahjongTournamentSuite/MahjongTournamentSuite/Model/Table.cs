@@ -4,7 +4,7 @@ namespace MahjongTournamentSuite.Model
 {
     class Table
     {
-        public int RoundId { get; set; }
+        public int TournamentId { get; set; }
 
         public int TableId { get; set; }
 
@@ -12,9 +12,9 @@ namespace MahjongTournamentSuite.Model
 
         public Table() { }
 
-        public Table(int roundId, int tableId, List<Player> players)
+        public Table(int tournamentId, int tableId, List<Player> players)
         {
-            RoundId = roundId;
+            TournamentId = tournamentId;
             TableId = tableId;
             Players = players;
         }

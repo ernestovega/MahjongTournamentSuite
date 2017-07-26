@@ -1,8 +1,13 @@
-﻿namespace MahjongTournamentSuite.Model
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace MahjongTournamentSuite.Model
 {
     class Player
     {
+        [Key]
         public int Id { get; set; }
+
+        public int TournamentId { get; set; }
 
         public string Name { get; set; }
 
@@ -12,9 +17,10 @@
 
         public Player() { }
 
-        public Player(int id, string name, string team, string country)
+        public Player(int id, int tournamentId, string name, string team, string country)
         {
             Id = id;
+            TournamentId = tournamentId;
             Name = name;
             Team = team;
             Country = country;

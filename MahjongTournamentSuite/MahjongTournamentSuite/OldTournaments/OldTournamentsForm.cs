@@ -1,5 +1,5 @@
-﻿using MahjongTournamentSuite.Model;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Forms;
 
@@ -19,12 +19,36 @@ namespace MahjongTournamentSuite.OldTournaments
         {
             InitializeComponent();
             _presenter = new OldTournamentsPresenter(this);
-            _presenter.loadTournaments();
         }
 
         #endregion
 
         #region Events
+
+        private void OldTournamentsForm_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the '_MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet.Tournaments' table. You can move, or remove it, as needed.
+            this.tournamentsTableAdapter.Fill(this._MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet.Tournaments);
+
+        }
+
+        private void dataGridTournaments_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow row = dataGridTournaments.Rows[e.RowIndex];
+            int tournamentId = (int)row.Cells[0].Value;
+            string tournamentName = (string)row.Cells[e.ColumnIndex].Value;
+            _presenter.UpdateName(tournamentId, tournamentName);
+        }
+
+        private void dataGridTournaments_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+
+        }
+
+        private void btnReturn_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
 
         private void imgLogoMM_Click(object sender, EventArgs e)
         {
@@ -37,20 +61,10 @@ namespace MahjongTournamentSuite.OldTournaments
             ProcessStartInfo sInfo = new ProcessStartInfo("http://mahjong-europe.org/portal/");
             Process.Start(sInfo);
         }
-        
-        private void btnReturn_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
 
         #endregion
 
         #region IOldTournamentsForm implementation
-
-        public void BindDataGrid()
-        {
-            //Table table = new Table(1, 1, 1, 2, 3, 4, "a", "b", "c", "d", "a", "b", "c", "d", "a", "b", "c", "d");
-        }
 
         #endregion
     }

@@ -1,5 +1,5 @@
-﻿using System.Data.Entity;
-using MahjongTournamentSuite.Model;
+﻿using MahjongTournamentSuite.Model;
+using System.Data.Entity;
 
 namespace MahjongTournamentSuite.Data
 {

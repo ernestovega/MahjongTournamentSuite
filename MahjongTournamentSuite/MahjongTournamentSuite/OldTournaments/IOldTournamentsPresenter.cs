@@ -2,6 +2,6 @@
 {
     internal interface IOldTournamentsPresenter
     {
-        void loadTournaments();
+        void UpdateName(int tournamentId, string newName);
     }
 }
