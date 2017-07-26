@@ -29,12 +29,14 @@ namespace MahjongTournamentSuite.Home
 
         private void imgLogoMM_Click(object sender, EventArgs e)
         {
-
+            ProcessStartInfo sInfo = new ProcessStartInfo("http://www.mahjongmadrid.com/");
+            Process.Start(sInfo);
         }
 
         private void imgLogoEMA_Click(object sender, EventArgs e)
         {
-
+            ProcessStartInfo sInfo = new ProcessStartInfo("http://mahjong-europe.org/portal/");
+            Process.Start(sInfo);
         }
 
         public void btnTimer_Click(object sender, EventArgs e)

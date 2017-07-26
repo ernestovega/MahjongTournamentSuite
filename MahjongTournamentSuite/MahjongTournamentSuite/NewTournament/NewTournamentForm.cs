@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace MahjongTournamentSuite.NewTournament
@@ -25,12 +26,14 @@ namespace MahjongTournamentSuite.NewTournament
 
         private void imgLogoMM_Click(object sender, EventArgs e)
         {
-
+            ProcessStartInfo sInfo = new ProcessStartInfo("http://www.mahjongmadrid.com/");
+            Process.Start(sInfo);
         }
 
         private void imgLogoEMA_Click(object sender, EventArgs e)
         {
-
+            ProcessStartInfo sInfo = new ProcessStartInfo("http://mahjong-europe.org/portal/");
+            Process.Start(sInfo);
         }
 
         private void btnReturn_Click(object sender, EventArgs e)

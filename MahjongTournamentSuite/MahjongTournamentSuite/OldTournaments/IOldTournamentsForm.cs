@@ -2,5 +2,6 @@
 {
     internal interface IOldTournamentsForm
     {
+        void BindDataGrid();
     }
 }

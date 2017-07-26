@@ -4,49 +4,24 @@ namespace MahjongTournamentSuite.Model
 {
     class Tournament
     {
-        public int Id
-        {
-            get
-            {
-                return Id;
-            }
+        public int Id { get; set; }
 
-            set
-            {
-                Id = value;
-            }
-        }
+        public string Name { get; set; }
 
-        public string Name
-        {
-            get
-            {
-                return Name;
-            }
+        public int NumPlayers { get; set; }
 
-            set
-            {
-                Name = value;
-            }
-        }
+        public int NumRounds  { get; set; }
 
-        public DateTime CreationDate
-        {
-            get
-            {
-                return CreationDate;
-            }
+        public DateTime CreationDate { get; set; }
 
-            set
-            {
-                CreationDate = value;
-            }
-        }
+        public Tournament() {}
 
-        public Tournament(int id, string name, DateTime creationDate)
+        public Tournament(int id, int numPlayers, int numRounds, string name, DateTime creationDate)
         {
             Id = id;
             Name = name;
+            NumPlayers = numPlayers;
+            NumRounds = numRounds;
             CreationDate = creationDate;
         }
     }
