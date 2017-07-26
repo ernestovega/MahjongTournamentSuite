@@ -27,9 +27,7 @@ namespace MahjongTournamentSuite.OldTournaments
 
         private void OldTournamentsForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the '_MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet.Tournaments' table. You can move, or remove it, as needed.
-            this.tournamentsTableAdapter.Fill(this._MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet.Tournaments);
-
+            tournamentsTableAdapter.Fill(this._MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet.Tournaments);
         }
 
         private void dataGridTournaments_CellEndEdit(object sender, DataGridViewCellEventArgs e)
