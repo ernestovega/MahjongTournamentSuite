@@ -53,6 +53,8 @@ namespace MahjongTournamentSuite.OldTournaments
             {
                 List<Table> tables = db.Tables.ToList().FindAll(x => x.TournamentId == tournamentId);
                 db.Tables.RemoveRange(tables);
+                Tournament tournament = db.Tournaments.First(x => x.Id == tournamentId);
+                db.Tournaments.Remove(tournament);
                 db.SaveChanges();
             }
         }
