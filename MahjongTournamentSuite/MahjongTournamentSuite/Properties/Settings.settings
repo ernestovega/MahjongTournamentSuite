@@ -2,7 +2,10 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="MahjongTournamentSuite.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="TournamentSuiteDB_ConnectionString" Type="(Connection string)" Scope="Application">
+    <Setting Name="Setting" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="TournamentSuiteDBConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
   &lt;ConnectionString&gt;Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=MahjongTournamentSuite.Data.DBContext+TournamentSuiteDB;Integrated Security=True&lt;/ConnectionString&gt;

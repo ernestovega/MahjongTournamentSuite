@@ -10,7 +10,7 @@ namespace MahjongTournamentSuite.Model
 
         public List<Player> Players { get; set; }
 
-        public Table() { }
+        public Table() {}
 
         public Table(int tournamentId, int tableId, List<Player> players)
         {

@@ -5,10 +5,10 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MahjongTournamentSuite")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Mahjong Tournament Suite")]
+[assembly: AssemblyDescription("Tool for managing a tournament, from raffle to real-time rankings.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Etologic")]
 [assembly: AssemblyProduct("MahjongTournamentSuite")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]

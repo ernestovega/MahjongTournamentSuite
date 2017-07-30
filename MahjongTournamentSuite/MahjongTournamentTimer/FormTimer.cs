@@ -63,11 +63,6 @@ namespace MahjongTournamentTimer
             Close();
         }
 
-        private void labelTime_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void btnPlay_Click(object sender, EventArgs e)
         {
             timer.Start();

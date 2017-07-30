@@ -12,6 +12,21 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,6 +47,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>MahjongTournamentSuite.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -41,6 +59,7 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -56,6 +75,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\DBContext.cs" />
+    <Compile Include="Data\IDBManager.cs" />
+    <Compile Include="Data\DBManager.cs" />
     <Compile Include="Home\HomeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -65,11 +86,9 @@
     <Compile Include="Home\HomePresenter.cs" />
     <Compile Include="Home\IHomeForm.cs" />
     <Compile Include="Home\IHomePresenter.cs" />
-    <Compile Include="Home\OldTournamentsAdapter.cs" />
+    <Compile Include="Inyector.cs" />
     <Compile Include="Model\Player.cs" />
-    <Compile Include="Model\Rivals.cs" />
     <Compile Include="Model\Table.cs" />
-    <Compile Include="Model\TablePlayer.cs" />
     <Compile Include="Model\Tournament.cs" />
     <Compile Include="NewTournament\INewTournamentForm.cs" />
     <Compile Include="NewTournament\INewTournamentPresenter.cs" />
@@ -80,15 +99,6 @@
       <DependentUpon>NewTournamentForm.cs</DependentUpon>
     </Compile>
     <Compile Include="NewTournament\NewTournamentPresenter.cs" />
-    <Compile Include="OldTournaments\IOldTournamentsForm.cs" />
-    <Compile Include="OldTournaments\IOldTournamentsPresenter.cs" />
-    <Compile Include="OldTournaments\OldTournamentsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="OldTournaments\OldTournamentsForm.Designer.cs">
-      <DependentUpon>OldTournamentsForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="OldTournaments\OldTournamentsPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="_MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet.Designer.cs">
@@ -101,9 +111,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NewTournament\NewTournamentForm.resx">
       <DependentUpon>NewTournamentForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="OldTournaments\OldTournamentsForm.resx">
-      <DependentUpon>OldTournamentsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -153,7 +160,29 @@
       <Name>MahjongTournamentTimer</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>5</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
