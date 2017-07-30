@@ -74,6 +74,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomViews\CustomProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Data\DBContext.cs" />
     <Compile Include="Data\IDBManager.cs" />
     <Compile Include="Data\DBManager.cs" />
@@ -87,9 +90,13 @@
     <Compile Include="Home\IHomeForm.cs" />
     <Compile Include="Home\IHomePresenter.cs" />
     <Compile Include="Inyector.cs" />
+    <Compile Include="Model\DBPlayer.cs" />
     <Compile Include="Model\Player.cs" />
-    <Compile Include="Model\Table.cs" />
-    <Compile Include="Model\Tournament.cs" />
+    <Compile Include="Model\Rivals.cs" />
+    <Compile Include="Model\DBTable.cs" />
+    <Compile Include="Model\TableWithAll.cs" />
+    <Compile Include="Model\TablePlayer.cs" />
+    <Compile Include="Model\DBTournament.cs" />
     <Compile Include="NewTournament\INewTournamentForm.cs" />
     <Compile Include="NewTournament\INewTournamentPresenter.cs" />
     <Compile Include="NewTournament\NewTournamentForm.cs">

@@ -19,7 +19,7 @@ namespace MahjongTournamentSuite.Home
         public HomePresenter(IHomeForm homeForm)
         {
             _form = homeForm;
-            _dbManager = Injector.provideTournamentsDBManager();
+            _dbManager = Injector.provideDBManager();
         }
 
         #endregion

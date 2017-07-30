@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using static MahjongTournamentSuite.Data.DBContext;
+using System;
 
 namespace MahjongTournamentSuite.Data
 {
@@ -15,13 +16,28 @@ namespace MahjongTournamentSuite.Data
 
         #region Constructor
 
-        public DBManager() {}
+        public DBManager()
+        {
+            
+        }
 
         #endregion
 
         #region Tournament
 
-        public void AddTournament(Tournament tournament)
+        public int GetExistingMaxTournamentId()
+        {
+            if (_db.Tournaments.Count() == 0)
+            {
+                return 0;
+            }
+            else
+            {
+                return _db.Tournaments.Max(x => x.Id);
+            }
+        }
+
+        public void AddTournament(DBTournament tournament)
         {
             _db.Tournaments.Add(tournament);
             _db.SaveChanges();
@@ -56,15 +72,23 @@ namespace MahjongTournamentSuite.Data
 
         #endregion
 
+        #region Player
 
-
-        #region Table
+        public void AddPlayers(List<DBPlayer> players)
+        {
+            _db.Players.AddRange(players);
+            _db.SaveChanges();
+        }
 
         #endregion
 
-        #region Player
+        #region Table
 
-
+        public void AddTables(List<DBTable> tables)
+        {
+            _db.Tables.AddRange(tables);
+            _db.SaveChanges();
+        }
 
         #endregion
     }

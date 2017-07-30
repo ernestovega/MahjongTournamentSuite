@@ -38,6 +38,8 @@ namespace MahjongTournamentSuite.Home
 
         private void HomeForm_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the '_MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet.DBTournaments' table. You can move, or remove it, as needed.
+            this.dBTournamentsTableAdapter.Fill(this._MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet.DBTournaments);
             ReloadDataGridTournaments();
         }
 
@@ -90,7 +92,7 @@ namespace MahjongTournamentSuite.Home
 
         public void ReloadDataGridTournaments()
         {
-            tournamentsTableAdapter.Fill(_MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet.Tournaments);
+            //tournamentsTableAdapter.Fill(_MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet.Tournaments);
         }
 
         public string GetCurrentTournamentName()

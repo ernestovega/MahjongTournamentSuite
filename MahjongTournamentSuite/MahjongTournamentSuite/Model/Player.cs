@@ -1,29 +1,26 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace MahjongTournamentSuite.Model
+﻿namespace MahjongTournamentSuite.Model
 {
-    class Player
+    public class Player
     {
-        [Key]
-        public int Id { get; set; }
+        public int Id;
+        public string Name;
+        public string Team;
 
-        public int TournamentId { get; set; }
-
-        public string Name { get; set; }
-
-        public string Team { get; set; }
-
-        public string Country { get; set; }
-
-        public Player() { }
-
-        public Player(int id, int tournamentId, string name, string team, string country)
+        public Player(string id, string name, string team)
         {
-            Id = id;
-            TournamentId = tournamentId;
+            Id = int.Parse(string.IsNullOrEmpty(id) ? "0" : id);
             Name = name;
             Team = team;
-            Country = country;
+        }
+
+        public Player()
+        {
+
+        }
+
+        internal Player Clone()
+        {
+            return new Player(Id.ToString(), Name, Team);
         }
     }
 }

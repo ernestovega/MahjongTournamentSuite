@@ -24,7 +24,7 @@ namespace MahjongTournamentSuite {
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     public partial class _MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet : global::System.Data.DataSet {
         
-        private TournamentsDataTable tableTournaments;
+        private DBTournamentsDataTable tableDBTournaments;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -54,8 +54,8 @@ namespace MahjongTournamentSuite {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["Tournaments"] != null)) {
-                    base.Tables.Add(new TournamentsDataTable(ds.Tables["Tournaments"]));
+                if ((ds.Tables["DBTournaments"] != null)) {
+                    base.Tables.Add(new DBTournamentsDataTable(ds.Tables["DBTournaments"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -79,9 +79,9 @@ namespace MahjongTournamentSuite {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public TournamentsDataTable Tournaments {
+        public DBTournamentsDataTable DBTournaments {
             get {
-                return this.tableTournaments;
+                return this.tableDBTournaments;
             }
         }
         
@@ -152,8 +152,8 @@ namespace MahjongTournamentSuite {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["Tournaments"] != null)) {
-                    base.Tables.Add(new TournamentsDataTable(ds.Tables["Tournaments"]));
+                if ((ds.Tables["DBTournaments"] != null)) {
+                    base.Tables.Add(new DBTournamentsDataTable(ds.Tables["DBTournaments"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -188,10 +188,10 @@ namespace MahjongTournamentSuite {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableTournaments = ((TournamentsDataTable)(base.Tables["Tournaments"]));
+            this.tableDBTournaments = ((DBTournamentsDataTable)(base.Tables["DBTournaments"]));
             if ((initTable == true)) {
-                if ((this.tableTournaments != null)) {
-                    this.tableTournaments.InitVars();
+                if ((this.tableDBTournaments != null)) {
+                    this.tableDBTournaments.InitVars();
                 }
             }
         }
@@ -205,13 +205,13 @@ namespace MahjongTournamentSuite {
                 "t.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableTournaments = new TournamentsDataTable();
-            base.Tables.Add(this.tableTournaments);
+            this.tableDBTournaments = new DBTournamentsDataTable();
+            base.Tables.Add(this.tableDBTournaments);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeTournaments() {
+        private bool ShouldSerializeDBTournaments() {
             return false;
         }
         
@@ -271,14 +271,14 @@ namespace MahjongTournamentSuite {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void TournamentsRowChangeEventHandler(object sender, TournamentsRowChangeEvent e);
+        public delegate void DBTournamentsRowChangeEventHandler(object sender, DBTournamentsRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class TournamentsDataTable : global::System.Data.TypedTableBase<TournamentsRow> {
+        public partial class DBTournamentsDataTable : global::System.Data.TypedTableBase<DBTournamentsRow> {
             
             private global::System.Data.DataColumn columnId;
             
@@ -292,8 +292,8 @@ namespace MahjongTournamentSuite {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TournamentsDataTable() {
-                this.TableName = "Tournaments";
+            public DBTournamentsDataTable() {
+                this.TableName = "DBTournaments";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -301,7 +301,7 @@ namespace MahjongTournamentSuite {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal TournamentsDataTable(global::System.Data.DataTable table) {
+            internal DBTournamentsDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -318,7 +318,7 @@ namespace MahjongTournamentSuite {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected TournamentsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected DBTournamentsDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -374,56 +374,56 @@ namespace MahjongTournamentSuite {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TournamentsRow this[int index] {
+            public DBTournamentsRow this[int index] {
                 get {
-                    return ((TournamentsRow)(this.Rows[index]));
+                    return ((DBTournamentsRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event TournamentsRowChangeEventHandler TournamentsRowChanging;
+            public event DBTournamentsRowChangeEventHandler DBTournamentsRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event TournamentsRowChangeEventHandler TournamentsRowChanged;
+            public event DBTournamentsRowChangeEventHandler DBTournamentsRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event TournamentsRowChangeEventHandler TournamentsRowDeleting;
+            public event DBTournamentsRowChangeEventHandler DBTournamentsRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event TournamentsRowChangeEventHandler TournamentsRowDeleted;
+            public event DBTournamentsRowChangeEventHandler DBTournamentsRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddTournamentsRow(TournamentsRow row) {
+            public void AddDBTournamentsRow(DBTournamentsRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TournamentsRow AddTournamentsRow(string Name, int NumPlayers, int NumRounds, System.DateTime CreationDate) {
-                TournamentsRow rowTournamentsRow = ((TournamentsRow)(this.NewRow()));
+            public DBTournamentsRow AddDBTournamentsRow(string Name, int NumPlayers, int NumRounds, System.DateTime CreationDate) {
+                DBTournamentsRow rowDBTournamentsRow = ((DBTournamentsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         Name,
                         NumPlayers,
                         NumRounds,
                         CreationDate};
-                rowTournamentsRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowTournamentsRow);
-                return rowTournamentsRow;
+                rowDBTournamentsRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowDBTournamentsRow);
+                return rowDBTournamentsRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TournamentsRow FindById(int Id) {
-                return ((TournamentsRow)(this.Rows.Find(new object[] {
+            public DBTournamentsRow FindById(int Id) {
+                return ((DBTournamentsRow)(this.Rows.Find(new object[] {
                             Id})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                TournamentsDataTable cln = ((TournamentsDataTable)(base.Clone()));
+                DBTournamentsDataTable cln = ((DBTournamentsDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -431,7 +431,7 @@ namespace MahjongTournamentSuite {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new TournamentsDataTable();
+                return new DBTournamentsDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -473,28 +473,28 @@ namespace MahjongTournamentSuite {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TournamentsRow NewTournamentsRow() {
-                return ((TournamentsRow)(this.NewRow()));
+            public DBTournamentsRow NewDBTournamentsRow() {
+                return ((DBTournamentsRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new TournamentsRow(builder);
+                return new DBTournamentsRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(TournamentsRow);
+                return typeof(DBTournamentsRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.TournamentsRowChanged != null)) {
-                    this.TournamentsRowChanged(this, new TournamentsRowChangeEvent(((TournamentsRow)(e.Row)), e.Action));
+                if ((this.DBTournamentsRowChanged != null)) {
+                    this.DBTournamentsRowChanged(this, new DBTournamentsRowChangeEvent(((DBTournamentsRow)(e.Row)), e.Action));
                 }
             }
             
@@ -502,8 +502,8 @@ namespace MahjongTournamentSuite {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.TournamentsRowChanging != null)) {
-                    this.TournamentsRowChanging(this, new TournamentsRowChangeEvent(((TournamentsRow)(e.Row)), e.Action));
+                if ((this.DBTournamentsRowChanging != null)) {
+                    this.DBTournamentsRowChanging(this, new DBTournamentsRowChangeEvent(((DBTournamentsRow)(e.Row)), e.Action));
                 }
             }
             
@@ -511,8 +511,8 @@ namespace MahjongTournamentSuite {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.TournamentsRowDeleted != null)) {
-                    this.TournamentsRowDeleted(this, new TournamentsRowChangeEvent(((TournamentsRow)(e.Row)), e.Action));
+                if ((this.DBTournamentsRowDeleted != null)) {
+                    this.DBTournamentsRowDeleted(this, new DBTournamentsRowChangeEvent(((DBTournamentsRow)(e.Row)), e.Action));
                 }
             }
             
@@ -520,14 +520,14 @@ namespace MahjongTournamentSuite {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.TournamentsRowDeleting != null)) {
-                    this.TournamentsRowDeleting(this, new TournamentsRowChangeEvent(((TournamentsRow)(e.Row)), e.Action));
+                if ((this.DBTournamentsRowDeleting != null)) {
+                    this.DBTournamentsRowDeleting(this, new DBTournamentsRowChangeEvent(((DBTournamentsRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveTournamentsRow(TournamentsRow row) {
+            public void RemoveDBTournamentsRow(DBTournamentsRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -554,7 +554,7 @@ namespace MahjongTournamentSuite {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "TournamentsDataTable";
+                attribute2.FixedValue = "DBTournamentsDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -598,25 +598,25 @@ namespace MahjongTournamentSuite {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class TournamentsRow : global::System.Data.DataRow {
+        public partial class DBTournamentsRow : global::System.Data.DataRow {
             
-            private TournamentsDataTable tableTournaments;
+            private DBTournamentsDataTable tableDBTournaments;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal TournamentsRow(global::System.Data.DataRowBuilder rb) : 
+            internal DBTournamentsRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableTournaments = ((TournamentsDataTable)(this.Table));
+                this.tableDBTournaments = ((DBTournamentsDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int Id {
                 get {
-                    return ((int)(this[this.tableTournaments.IdColumn]));
+                    return ((int)(this[this.tableDBTournaments.IdColumn]));
                 }
                 set {
-                    this[this.tableTournaments.IdColumn] = value;
+                    this[this.tableDBTournaments.IdColumn] = value;
                 }
             }
             
@@ -625,14 +625,14 @@ namespace MahjongTournamentSuite {
             public string Name {
                 get {
                     try {
-                        return ((string)(this[this.tableTournaments.NameColumn]));
+                        return ((string)(this[this.tableDBTournaments.NameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Name\' in table \'Tournaments\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Name\' in table \'DBTournaments\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableTournaments.NameColumn] = value;
+                    this[this.tableDBTournaments.NameColumn] = value;
                 }
             }
             
@@ -640,10 +640,10 @@ namespace MahjongTournamentSuite {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int NumPlayers {
                 get {
-                    return ((int)(this[this.tableTournaments.NumPlayersColumn]));
+                    return ((int)(this[this.tableDBTournaments.NumPlayersColumn]));
                 }
                 set {
-                    this[this.tableTournaments.NumPlayersColumn] = value;
+                    this[this.tableDBTournaments.NumPlayersColumn] = value;
                 }
             }
             
@@ -651,10 +651,10 @@ namespace MahjongTournamentSuite {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int NumRounds {
                 get {
-                    return ((int)(this[this.tableTournaments.NumRoundsColumn]));
+                    return ((int)(this[this.tableDBTournaments.NumRoundsColumn]));
                 }
                 set {
-                    this[this.tableTournaments.NumRoundsColumn] = value;
+                    this[this.tableDBTournaments.NumRoundsColumn] = value;
                 }
             }
             
@@ -662,23 +662,23 @@ namespace MahjongTournamentSuite {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public System.DateTime CreationDate {
                 get {
-                    return ((global::System.DateTime)(this[this.tableTournaments.CreationDateColumn]));
+                    return ((global::System.DateTime)(this[this.tableDBTournaments.CreationDateColumn]));
                 }
                 set {
-                    this[this.tableTournaments.CreationDateColumn] = value;
+                    this[this.tableDBTournaments.CreationDateColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsNameNull() {
-                return this.IsNull(this.tableTournaments.NameColumn);
+                return this.IsNull(this.tableDBTournaments.NameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetNameNull() {
-                this[this.tableTournaments.NameColumn] = global::System.Convert.DBNull;
+                this[this.tableDBTournaments.NameColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -686,22 +686,22 @@ namespace MahjongTournamentSuite {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class TournamentsRowChangeEvent : global::System.EventArgs {
+        public class DBTournamentsRowChangeEvent : global::System.EventArgs {
             
-            private TournamentsRow eventRow;
+            private DBTournamentsRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TournamentsRowChangeEvent(TournamentsRow row, global::System.Data.DataRowAction action) {
+            public DBTournamentsRowChangeEvent(DBTournamentsRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public TournamentsRow Row {
+            public DBTournamentsRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -729,7 +729,7 @@ namespace MahjongTournamentSuite._MahjongTournamentSuite_Data_DBContext_Tourname
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class TournamentsTableAdapter : global::System.ComponentModel.Component {
+    public partial class DBTournamentsTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -743,7 +743,7 @@ namespace MahjongTournamentSuite._MahjongTournamentSuite_Data_DBContext_Tourname
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public TournamentsTableAdapter() {
+        public DBTournamentsTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -840,7 +840,7 @@ namespace MahjongTournamentSuite._MahjongTournamentSuite_Data_DBContext_Tourname
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "Tournaments";
+            tableMapping.DataSetTable = "DBTournaments";
             tableMapping.ColumnMappings.Add("Id", "Id");
             tableMapping.ColumnMappings.Add("Name", "Name");
             tableMapping.ColumnMappings.Add("NumPlayers", "NumPlayers");
@@ -849,9 +849,9 @@ namespace MahjongTournamentSuite._MahjongTournamentSuite_Data_DBContext_Tourname
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Tournaments] WHERE (([Id] = @Original_Id) AND ([NumPlayers] = " +
-                "@Original_NumPlayers) AND ([NumRounds] = @Original_NumRounds) AND ([CreationDate" +
-                "] = @Original_CreationDate))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[DBTournaments] WHERE (([Id] = @Original_Id) AND ([NumPlayers] " +
+                "= @Original_NumPlayers) AND ([NumRounds] = @Original_NumRounds) AND ([CreationDa" +
+                "te] = @Original_CreationDate))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_NumPlayers", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NumPlayers", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -859,9 +859,10 @@ namespace MahjongTournamentSuite._MahjongTournamentSuite_Data_DBContext_Tourname
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CreationDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreationDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Tournaments] ([Name], [NumPlayers], [NumRounds], [CreationDate" +
-                "]) VALUES (@Name, @NumPlayers, @NumRounds, @CreationDate);\r\nSELECT Id, Name, Num" +
-                "Players, NumRounds, CreationDate FROM Tournaments WHERE (Id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[DBTournaments] ([Name], [NumPlayers], [NumRounds], [CreationDa" +
+                "te]) VALUES (@Name, @NumPlayers, @NumRounds, @CreationDate);\r\nSELECT Id, Name, N" +
+                "umPlayers, NumRounds, CreationDate FROM DBTournaments WHERE (Id = SCOPE_IDENTITY" +
+                "())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NumPlayers", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NumPlayers", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -869,8 +870,8 @@ namespace MahjongTournamentSuite._MahjongTournamentSuite_Data_DBContext_Tourname
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreationDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreationDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Tournaments] SET [Name] = @Name, [NumPlayers] = @NumPlayers, [NumRounds] = @NumRounds, [CreationDate] = @CreationDate WHERE (([Id] = @Original_Id) AND ([NumPlayers] = @Original_NumPlayers) AND ([NumRounds] = @Original_NumRounds) AND ([CreationDate] = @Original_CreationDate));
-SELECT Id, Name, NumPlayers, NumRounds, CreationDate FROM Tournaments WHERE (Id = @Id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[DBTournaments] SET [Name] = @Name, [NumPlayers] = @NumPlayers, [NumRounds] = @NumRounds, [CreationDate] = @CreationDate WHERE (([Id] = @Original_Id) AND ([NumPlayers] = @Original_NumPlayers) AND ([NumRounds] = @Original_NumRounds) AND ([CreationDate] = @Original_CreationDate));
+SELECT Id, Name, NumPlayers, NumRounds, CreationDate FROM DBTournaments WHERE (Id = @Id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NumPlayers", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "NumPlayers", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -896,7 +897,7 @@ SELECT Id, Name, NumPlayers, NumRounds, CreationDate FROM Tournaments WHERE (Id 
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT Id, Name, NumPlayers, NumRounds, CreationDate FROM dbo.Tournaments";
+            this._commandCollection[0].CommandText = "SELECT Id, Name, NumPlayers, NumRounds, CreationDate FROM dbo.DBTournaments";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -904,7 +905,7 @@ SELECT Id, Name, NumPlayers, NumRounds, CreationDate FROM Tournaments WHERE (Id 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(_MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet.TournamentsDataTable dataTable) {
+        public virtual int Fill(_MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet.DBTournamentsDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -917,9 +918,9 @@ SELECT Id, Name, NumPlayers, NumRounds, CreationDate FROM Tournaments WHERE (Id 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual _MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet.TournamentsDataTable GetData() {
+        public virtual _MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet.DBTournamentsDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            _MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet.TournamentsDataTable dataTable = new _MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet.TournamentsDataTable();
+            _MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet.DBTournamentsDataTable dataTable = new _MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet.DBTournamentsDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -927,7 +928,7 @@ SELECT Id, Name, NumPlayers, NumRounds, CreationDate FROM Tournaments WHERE (Id 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet.TournamentsDataTable dataTable) {
+        public virtual int Update(_MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet.DBTournamentsDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
@@ -935,7 +936,7 @@ SELECT Id, Name, NumPlayers, NumRounds, CreationDate FROM Tournaments WHERE (Id 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual int Update(_MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet dataSet) {
-            return this.Adapter.Update(dataSet, "Tournaments");
+            return this.Adapter.Update(dataSet, "DBTournaments");
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1064,7 +1065,7 @@ SELECT Id, Name, NumPlayers, NumRounds, CreationDate FROM Tournaments WHERE (Id 
         
         private UpdateOrderOption _updateOrder;
         
-        private TournamentsTableAdapter _tournamentsTableAdapter;
+        private DBTournamentsTableAdapter _dBTournamentsTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
         
@@ -1086,12 +1087,12 @@ SELECT Id, Name, NumPlayers, NumRounds, CreationDate FROM Tournaments WHERE (Id 
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
             "a", "System.Drawing.Design.UITypeEditor")]
-        public TournamentsTableAdapter TournamentsTableAdapter {
+        public DBTournamentsTableAdapter DBTournamentsTableAdapter {
             get {
-                return this._tournamentsTableAdapter;
+                return this._dBTournamentsTableAdapter;
             }
             set {
-                this._tournamentsTableAdapter = value;
+                this._dBTournamentsTableAdapter = value;
             }
         }
         
@@ -1114,9 +1115,9 @@ SELECT Id, Name, NumPlayers, NumRounds, CreationDate FROM Tournaments WHERE (Id 
                 if ((this._connection != null)) {
                     return this._connection;
                 }
-                if (((this._tournamentsTableAdapter != null) 
-                            && (this._tournamentsTableAdapter.Connection != null))) {
-                    return this._tournamentsTableAdapter.Connection;
+                if (((this._dBTournamentsTableAdapter != null) 
+                            && (this._dBTournamentsTableAdapter.Connection != null))) {
+                    return this._dBTournamentsTableAdapter.Connection;
                 }
                 return null;
             }
@@ -1131,7 +1132,7 @@ SELECT Id, Name, NumPlayers, NumRounds, CreationDate FROM Tournaments WHERE (Id 
         public int TableAdapterInstanceCount {
             get {
                 int count = 0;
-                if ((this._tournamentsTableAdapter != null)) {
+                if ((this._dBTournamentsTableAdapter != null)) {
                     count = (count + 1);
                 }
                 return count;
@@ -1145,12 +1146,12 @@ SELECT Id, Name, NumPlayers, NumRounds, CreationDate FROM Tournaments WHERE (Id 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateUpdatedRows(_MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._tournamentsTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Tournaments.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._dBTournamentsTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.DBTournaments.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._tournamentsTableAdapter.Update(updatedRows));
+                    result = (result + this._dBTournamentsTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -1164,11 +1165,11 @@ SELECT Id, Name, NumPlayers, NumRounds, CreationDate FROM Tournaments WHERE (Id 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateInsertedRows(_MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._tournamentsTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Tournaments.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._dBTournamentsTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.DBTournaments.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._tournamentsTableAdapter.Update(addedRows));
+                    result = (result + this._dBTournamentsTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -1182,11 +1183,11 @@ SELECT Id, Name, NumPlayers, NumRounds, CreationDate FROM Tournaments WHERE (Id 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateDeletedRows(_MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._tournamentsTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Tournaments.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._dBTournamentsTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.DBTournaments.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._tournamentsTableAdapter.Update(deletedRows));
+                    result = (result + this._dBTournamentsTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -1229,8 +1230,8 @@ SELECT Id, Name, NumPlayers, NumRounds, CreationDate FROM Tournaments WHERE (Id 
             if ((dataSet.HasChanges() == false)) {
                 return 0;
             }
-            if (((this._tournamentsTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._tournamentsTableAdapter.Connection) == false))) {
+            if (((this._dBTournamentsTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._dBTournamentsTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
@@ -1266,13 +1267,13 @@ SELECT Id, Name, NumPlayers, NumRounds, CreationDate FROM Tournaments WHERE (Id 
             try {
                 // ---- Prepare for update -----------
                 //
-                if ((this._tournamentsTableAdapter != null)) {
-                    revertConnections.Add(this._tournamentsTableAdapter, this._tournamentsTableAdapter.Connection);
-                    this._tournamentsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._tournamentsTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._tournamentsTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._tournamentsTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._tournamentsTableAdapter.Adapter);
+                if ((this._dBTournamentsTableAdapter != null)) {
+                    revertConnections.Add(this._dBTournamentsTableAdapter, this._dBTournamentsTableAdapter.Connection);
+                    this._dBTournamentsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._dBTournamentsTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._dBTournamentsTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._dBTournamentsTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._dBTournamentsTableAdapter.Adapter);
                     }
                 }
                 // 
@@ -1333,9 +1334,9 @@ SELECT Id, Name, NumPlayers, NumRounds, CreationDate FROM Tournaments WHERE (Id 
                 if (workConnOpened) {
                     workConnection.Close();
                 }
-                if ((this._tournamentsTableAdapter != null)) {
-                    this._tournamentsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tournamentsTableAdapter]));
-                    this._tournamentsTableAdapter.Transaction = null;
+                if ((this._dBTournamentsTableAdapter != null)) {
+                    this._dBTournamentsTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._dBTournamentsTableAdapter]));
+                    this._dBTournamentsTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];
