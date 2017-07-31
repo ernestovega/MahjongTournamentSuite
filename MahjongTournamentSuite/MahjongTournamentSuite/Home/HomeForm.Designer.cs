@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeForm));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnNew = new System.Windows.Forms.Button();
             this.btnTimer = new System.Windows.Forms.Button();
             this.btnResume = new System.Windows.Forms.Button();
@@ -174,7 +176,7 @@
             // 
             this.dataGridTournaments.AllowUserToAddRows = false;
             this.dataGridTournaments.AllowUserToDeleteRows = false;
-            this.dataGridTournaments.AllowUserToResizeRows = false;
+            this.dataGridTournaments.AllowUserToOrderColumns = true;
             this.dataGridTournaments.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -182,7 +184,15 @@
             this.dataGridTournaments.BackgroundColor = System.Drawing.Color.White;
             this.dataGridTournaments.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridTournaments.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.dataGridTournaments.ColumnHeadersHeight = 30;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Gang of Three", 14F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridTournaments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridTournaments.ColumnHeadersHeight = 40;
             this.dataGridTournaments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridTournaments.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
@@ -192,13 +202,25 @@
             this.numRoundsDataGridViewTextBoxColumn});
             this.dataGridTournaments.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dataGridTournaments.DataSource = this.dBTournamentsBindingSource;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("MS Reference Sans Serif", 14F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridTournaments.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridTournaments.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dataGridTournaments.GridColor = System.Drawing.Color.White;
             this.dataGridTournaments.Location = new System.Drawing.Point(13, 180);
             this.dataGridTournaments.MultiSelect = false;
             this.dataGridTournaments.Name = "dataGridTournaments";
+            this.dataGridTournaments.ReadOnly = true;
             this.dataGridTournaments.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dataGridTournaments.RowHeadersVisible = false;
             this.dataGridTournaments.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dataGridTournaments.RowTemplate.Height = 40;
+            this.dataGridTournaments.RowTemplate.ReadOnly = true;
             this.dataGridTournaments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridTournaments.ShowCellErrors = false;
             this.dataGridTournaments.ShowEditingIcon = false;
@@ -272,6 +294,7 @@
             this.idDataGridViewTextBoxColumn.HeaderText = "Id";
             this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
             this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn.Visible = false;
             // 
             // creationDateDataGridViewTextBoxColumn
             // 
@@ -280,7 +303,7 @@
             this.creationDateDataGridViewTextBoxColumn.HeaderText = "Date";
             this.creationDateDataGridViewTextBoxColumn.Name = "creationDateDataGridViewTextBoxColumn";
             this.creationDateDataGridViewTextBoxColumn.ReadOnly = true;
-            this.creationDateDataGridViewTextBoxColumn.Width = 55;
+            this.creationDateDataGridViewTextBoxColumn.Width = 78;
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -288,6 +311,7 @@
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
             this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // numPlayersDataGridViewTextBoxColumn
             // 
@@ -295,7 +319,8 @@
             this.numPlayersDataGridViewTextBoxColumn.DataPropertyName = "NumPlayers";
             this.numPlayersDataGridViewTextBoxColumn.HeaderText = "Players";
             this.numPlayersDataGridViewTextBoxColumn.Name = "numPlayersDataGridViewTextBoxColumn";
-            this.numPlayersDataGridViewTextBoxColumn.Width = 66;
+            this.numPlayersDataGridViewTextBoxColumn.ReadOnly = true;
+            this.numPlayersDataGridViewTextBoxColumn.Width = 110;
             // 
             // numRoundsDataGridViewTextBoxColumn
             // 
@@ -303,7 +328,8 @@
             this.numRoundsDataGridViewTextBoxColumn.DataPropertyName = "NumRounds";
             this.numRoundsDataGridViewTextBoxColumn.HeaderText = "Rounds";
             this.numRoundsDataGridViewTextBoxColumn.Name = "numRoundsDataGridViewTextBoxColumn";
-            this.numRoundsDataGridViewTextBoxColumn.Width = 69;
+            this.numRoundsDataGridViewTextBoxColumn.ReadOnly = true;
+            this.numRoundsDataGridViewTextBoxColumn.Width = 102;
             // 
             // HomeForm
             // 

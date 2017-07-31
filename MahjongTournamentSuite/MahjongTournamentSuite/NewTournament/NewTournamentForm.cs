@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MahjongTournamentSuite.Home;
+using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
@@ -37,6 +38,7 @@ namespace MahjongTournamentSuite.NewTournament
 
         private void btnReturn_Click(object sender, EventArgs e)
         {
+            new HomeForm().Show();
             Close();
         }
 

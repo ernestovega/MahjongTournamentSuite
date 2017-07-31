@@ -419,7 +419,7 @@ namespace MahjongTournamentSuite.NewTournament
             List<DBTable> dbTables = new List<DBTable>();
             foreach (TableWithAll table in tablesWithAll)
             {
-                dbTables.Add(new DBTable(dbTournament.Id, table.roundId, table.tableId,
+                dbTables.Add(new DBTable(table.tableId, dbTournament.Id, table.roundId,
                     table.player1Id, table.player2Id, table.player3Id, table.player4Id));
             }
             _db.AddTables(dbTables);
