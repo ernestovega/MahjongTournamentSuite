@@ -204,9 +204,9 @@ namespace MahjongTournamentSuite.NewTournament
                             }
 
                             /*Si el elegido ya ha jugado contra alguno de los de la mesa actual
-                              o es del mismo equipo que alguno de los de la mesa actual
+                              o es del mismo equipo que alguno de los de la mesa actual(si el cálculo de equipos está seleccionado),
                               hay que buscar un nuevo candidato para esta mesa*/
-                            if (anyoneHavePlayed || currentTablePlayers.Select(x => x.Team).Contains(choosenOne.Team))
+                            if (anyoneHavePlayed || (isTeamsChecked && currentTablePlayers.Select(x => x.Team).Contains(choosenOne.Team)))
                                 playerFounded = false;
                             else
                             {/*Si no ha jugado contra ninguno ni son de su mismo equipo, lo añadimos a la mesa
