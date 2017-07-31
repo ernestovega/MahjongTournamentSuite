@@ -52,8 +52,15 @@ namespace MahjongTournamentSuite.NewTournament
             }
             else
             {
-                InitializeCalculation();
-                _form.RunBackgroundWorker();
+                if (_form.getTournamentName().Length > 0)
+                {
+                    InitializeCalculation();
+                    _form.RunBackgroundWorker();
+                }
+                else
+                {
+                    _form.showEnterTournamentNameMessage();
+                }
             }
         }
 
@@ -127,7 +134,7 @@ namespace MahjongTournamentSuite.NewTournament
             isTeamsChecked = _form.IsTeamsChecked();
             tournamentName = _form.getTournamentName();
             numTriesMax = _form.getNumTries();
-            _form.ResetProgressBar(numTriesMax);
+            _form.SetTriesCounterLabel(0);
             _form.DisableViews();
         }
         

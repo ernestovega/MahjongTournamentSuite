@@ -66,7 +66,7 @@ namespace MahjongTournamentSuite.NewTournament
 
         private void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            progressBar.Value = e.ProgressPercentage;
+            lblCurrentNumTries.Text = e.ProgressPercentage.ToString();
         }
 
         private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -120,38 +120,22 @@ namespace MahjongTournamentSuite.NewTournament
 
         public void EnableViews()
         {
-            progressBar.Hide();
-            progressBar.Visible = false;
-            numUpDownPlayers.Enabled = true;
-            numUpDownRounds.Enabled = true;
-            numUpDownTriesMax.Enabled = true;
-            cbTeams.Enabled = true;
-            tbTournamentName.Enabled = true;
             btnStart.BackColor = greenEnabled;
             btnStart.FlatAppearance.MouseOverBackColor = greenEnabledHover;
             btnStart.Text = "Start";
+            panelLoading.Visible = false;
+            panelOptions.Visible = true;
             Cursor.Current = Cursors.Default;
         }
 
         public void DisableViews()
         {
-            numUpDownPlayers.Enabled = false;
-            numUpDownRounds.Enabled = false;
-            numUpDownTriesMax.Enabled = false;
-            cbTeams.Enabled = false;
-            tbTournamentName.Enabled = false;
             btnStart.Text = "Stop";
             btnStart.BackColor = grayDisabled;
             btnStart.FlatAppearance.MouseOverBackColor = redDisabledHover;
+            panelOptions.Visible = false;
+            panelLoading.Visible = true;
             Cursor.Current = Cursors.WaitCursor;
-            progressBar.Visible = true;
-            progressBar.Show();
-        }
-
-        public void ResetProgressBar(int numTriesMax)
-        {
-            progressBar.Maximum = numTriesMax;
-            progressBar.Value = 0;
         }
 
         public void ShowReachedTriesMessage(int numTriesMax)
@@ -159,9 +143,19 @@ namespace MahjongTournamentSuite.NewTournament
             MessageBox.Show(this, string.Format("Can't calculate tournament after {0} tries.\nIf you want to try again, select more tries.", numTriesMax));
         }
 
+        public void showEnterTournamentNameMessage()
+        {
+            MessageBox.Show(this, "Please enter a name for the tournament.");
+        }
+
         public void ApplicationDoEvents()
         {
             Application.DoEvents();
+        }
+
+        public void SetTriesCounterLabel(int tries)
+        {
+            lblCurrentNumTries.Text = tries.ToString();
         }
 
         #endregion

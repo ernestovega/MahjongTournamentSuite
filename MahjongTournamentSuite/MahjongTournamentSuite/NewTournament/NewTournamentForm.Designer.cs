@@ -42,14 +42,22 @@
             this.lblTitle2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tbTournamentName = new System.Windows.Forms.TextBox();
+            this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.panelOptions = new System.Windows.Forms.Panel();
+            this.panelLoading = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblCurrentNumTries = new System.Windows.Forms.Label();
+            this.lblCurrentTries = new System.Windows.Forms.Label();
             this.imgLogoEMA = new System.Windows.Forms.PictureBox();
             this.imgLogoMM = new System.Windows.Forms.PictureBox();
             this.btnReturn = new System.Windows.Forms.Button();
-            this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
-            this.progressBar = new MahjongTournamentCalculator.CustomViews.CustomProgressBar();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownPlayers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownRounds)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownTriesMax)).BeginInit();
+            this.panelOptions.SuspendLayout();
+            this.panelLoading.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoEMA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).BeginInit();
             this.SuspendLayout();
@@ -62,7 +70,7 @@
             this.labelPlayers.Font = new System.Drawing.Font("Arial Black", 14F);
             this.labelPlayers.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.labelPlayers.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.labelPlayers.Location = new System.Drawing.Point(276, 170);
+            this.labelPlayers.Location = new System.Drawing.Point(33, 32);
             this.labelPlayers.Margin = new System.Windows.Forms.Padding(50, 50, 50, 10);
             this.labelPlayers.Name = "labelPlayers";
             this.labelPlayers.Size = new System.Drawing.Size(90, 27);
@@ -82,7 +90,7 @@
             0,
             0,
             0});
-            this.numUpDownPlayers.Location = new System.Drawing.Point(441, 171);
+            this.numUpDownPlayers.Location = new System.Drawing.Point(221, 31);
             this.numUpDownPlayers.Margin = new System.Windows.Forms.Padding(50, 10, 50, 10);
             this.numUpDownPlayers.Maximum = new decimal(new int[] {
             1000,
@@ -112,7 +120,7 @@
             this.numUpDownRounds.Cursor = System.Windows.Forms.Cursors.Hand;
             this.numUpDownRounds.Font = new System.Drawing.Font("Arial Black", 14F);
             this.numUpDownRounds.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.numUpDownRounds.Location = new System.Drawing.Point(441, 221);
+            this.numUpDownRounds.Location = new System.Drawing.Point(221, 81);
             this.numUpDownRounds.Margin = new System.Windows.Forms.Padding(50, 10, 50, 10);
             this.numUpDownRounds.Maximum = new decimal(new int[] {
             20,
@@ -142,7 +150,7 @@
             this.lblRounds.Font = new System.Drawing.Font("Arial Black", 14F);
             this.lblRounds.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblRounds.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblRounds.Location = new System.Drawing.Point(275, 220);
+            this.lblRounds.Location = new System.Drawing.Point(32, 82);
             this.lblRounds.Margin = new System.Windows.Forms.Padding(50, 10, 50, 10);
             this.lblRounds.Name = "lblRounds";
             this.lblRounds.Size = new System.Drawing.Size(91, 27);
@@ -157,7 +165,7 @@
             this.lblTeams.Font = new System.Drawing.Font("Arial Black", 14F);
             this.lblTeams.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTeams.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblTeams.Location = new System.Drawing.Point(274, 267);
+            this.lblTeams.Location = new System.Drawing.Point(31, 129);
             this.lblTeams.Margin = new System.Windows.Forms.Padding(50, 10, 50, 10);
             this.lblTeams.Name = "lblTeams";
             this.lblTeams.Size = new System.Drawing.Size(94, 27);
@@ -173,7 +181,7 @@
             this.cbTeams.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cbTeams.Font = new System.Drawing.Font("Arial Black", 14F);
             this.cbTeams.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.cbTeams.Location = new System.Drawing.Point(498, 274);
+            this.cbTeams.Location = new System.Drawing.Point(278, 134);
             this.cbTeams.Name = "cbTeams";
             this.cbTeams.Size = new System.Drawing.Size(15, 14);
             this.cbTeams.TabIndex = 69;
@@ -188,7 +196,7 @@
             this.lblTriesMax.Font = new System.Drawing.Font("Arial Black", 12F);
             this.lblTriesMax.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTriesMax.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblTriesMax.Location = new System.Drawing.Point(314, 359);
+            this.lblTriesMax.Location = new System.Drawing.Point(71, 221);
             this.lblTriesMax.Margin = new System.Windows.Forms.Padding(50, 10, 50, 10);
             this.lblTriesMax.Name = "lblTriesMax";
             this.lblTriesMax.Size = new System.Drawing.Size(54, 23);
@@ -209,7 +217,7 @@
             0,
             0,
             0});
-            this.numUpDownTriesMax.Location = new System.Drawing.Point(412, 359);
+            this.numUpDownTriesMax.Location = new System.Drawing.Point(192, 222);
             this.numUpDownTriesMax.Margin = new System.Windows.Forms.Padding(50, 10, 50, 10);
             this.numUpDownTriesMax.Maximum = new decimal(new int[] {
             100000000,
@@ -248,10 +256,10 @@
             this.btnStart.Font = new System.Drawing.Font("Gang of Three", 28F, System.Drawing.FontStyle.Bold);
             this.btnStart.ForeColor = System.Drawing.Color.White;
             this.btnStart.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnStart.Location = new System.Drawing.Point(206, 423);
+            this.btnStart.Location = new System.Drawing.Point(217, 442);
             this.btnStart.Margin = new System.Windows.Forms.Padding(50, 10, 50, 10);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(384, 70);
+            this.btnStart.Size = new System.Drawing.Size(363, 84);
             this.btnStart.TabIndex = 72;
             this.btnStart.Text = "START";
             this.btnStart.UseVisualStyleBackColor = false;
@@ -295,7 +303,7 @@
             this.label1.Font = new System.Drawing.Font("Arial Black", 14F);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.label1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label1.Location = new System.Drawing.Point(293, 310);
+            this.label1.Location = new System.Drawing.Point(50, 172);
             this.label1.Margin = new System.Windows.Forms.Padding(50, 10, 50, 10);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(73, 27);
@@ -305,13 +313,84 @@
             // tbTournamentName
             // 
             this.tbTournamentName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbTournamentName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbTournamentName.Font = new System.Drawing.Font("Arial Black", 12F);
             this.tbTournamentName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tbTournamentName.Location = new System.Drawing.Point(419, 309);
+            this.tbTournamentName.Location = new System.Drawing.Point(201, 169);
             this.tbTournamentName.Name = "tbTournamentName";
-            this.tbTournamentName.Size = new System.Drawing.Size(303, 30);
+            this.tbTournamentName.Size = new System.Drawing.Size(303, 23);
             this.tbTournamentName.TabIndex = 76;
             this.tbTournamentName.Text = "Tournament name";
+            // 
+            // backgroundWorker
+            // 
+            this.backgroundWorker.WorkerReportsProgress = true;
+            this.backgroundWorker.WorkerSupportsCancellation = true;
+            this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
+            this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
+            this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
+            // 
+            // panelOptions
+            // 
+            this.panelOptions.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.panelOptions.Controls.Add(this.panel1);
+            this.panelOptions.Controls.Add(this.labelPlayers);
+            this.panelOptions.Controls.Add(this.numUpDownPlayers);
+            this.panelOptions.Controls.Add(this.numUpDownRounds);
+            this.panelOptions.Controls.Add(this.lblRounds);
+            this.panelOptions.Controls.Add(this.lblTeams);
+            this.panelOptions.Controls.Add(this.cbTeams);
+            this.panelOptions.Controls.Add(this.lblTriesMax);
+            this.panelOptions.Controls.Add(this.numUpDownTriesMax);
+            this.panelOptions.Controls.Add(this.tbTournamentName);
+            this.panelOptions.Controls.Add(this.label1);
+            this.panelOptions.Location = new System.Drawing.Point(247, 147);
+            this.panelOptions.Name = "panelOptions";
+            this.panelOptions.Size = new System.Drawing.Size(536, 273);
+            this.panelOptions.TabIndex = 78;
+            // 
+            // panelLoading
+            // 
+            this.panelLoading.Controls.Add(this.pictureBox1);
+            this.panelLoading.Controls.Add(this.lblCurrentNumTries);
+            this.panelLoading.Controls.Add(this.lblCurrentTries);
+            this.panelLoading.Location = new System.Drawing.Point(247, 135);
+            this.panelLoading.Name = "panelLoading";
+            this.panelLoading.Size = new System.Drawing.Size(306, 294);
+            this.panelLoading.TabIndex = 77;
+            this.panelLoading.Visible = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::MahjongTournamentSuite.Properties.Resources.MMLoading160;
+            this.pictureBox1.Location = new System.Drawing.Point(75, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(160, 240);
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
+            // 
+            // lblCurrentNumTries
+            // 
+            this.lblCurrentNumTries.AutoSize = true;
+            this.lblCurrentNumTries.Font = new System.Drawing.Font("Arial Black", 12F);
+            this.lblCurrentNumTries.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblCurrentNumTries.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblCurrentNumTries.Location = new System.Drawing.Point(157, 257);
+            this.lblCurrentNumTries.Name = "lblCurrentNumTries";
+            this.lblCurrentNumTries.Size = new System.Drawing.Size(21, 23);
+            this.lblCurrentNumTries.TabIndex = 5;
+            this.lblCurrentNumTries.Text = "0";
+            // 
+            // lblCurrentTries
+            // 
+            this.lblCurrentTries.AutoSize = true;
+            this.lblCurrentTries.Font = new System.Drawing.Font("Arial Black", 12F);
+            this.lblCurrentTries.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblCurrentTries.Location = new System.Drawing.Point(100, 257);
+            this.lblCurrentTries.Name = "lblCurrentTries";
+            this.lblCurrentTries.Size = new System.Drawing.Size(59, 23);
+            this.lblCurrentTries.TabIndex = 4;
+            this.lblCurrentTries.Text = "Tries:";
             // 
             // imgLogoEMA
             // 
@@ -346,13 +425,13 @@
             // 
             // btnReturn
             // 
-            this.btnReturn.BackgroundImage = global::MahjongTournamentSuite.Properties.Resources.icon_return;
             this.btnReturn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnReturn.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnReturn.FlatAppearance.BorderSize = 0;
             this.btnReturn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnReturn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btnReturn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReturn.Image = global::MahjongTournamentSuite.Properties.Resources.icon_return;
             this.btnReturn.Location = new System.Drawing.Point(9, 9);
             this.btnReturn.Margin = new System.Windows.Forms.Padding(0);
             this.btnReturn.Name = "btnReturn";
@@ -361,30 +440,13 @@
             this.btnReturn.UseVisualStyleBackColor = true;
             this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
             // 
-            // backgroundWorker
+            // panel1
             // 
-            this.backgroundWorker.WorkerReportsProgress = true;
-            this.backgroundWorker.WorkerSupportsCancellation = true;
-            this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
-            this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
-            this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
-            // 
-            // progressBar
-            // 
-            this.progressBar.Cursor = System.Windows.Forms.Cursors.AppStarting;
-            this.progressBar.CustomText = null;
-            this.progressBar.DisplayStyle = MahjongTournamentCalculator.CustomViews.ProgressBarDisplayText.Percentage;
-            this.progressBar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.progressBar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
-            this.progressBar.Location = new System.Drawing.Point(0, 521);
-            this.progressBar.MarqueeAnimationSpeed = 10;
-            this.progressBar.Maximum = 10000;
-            this.progressBar.MinimumSize = new System.Drawing.Size(784, 40);
-            this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(784, 40);
-            this.progressBar.Step = 1;
-            this.progressBar.TabIndex = 77;
-            this.progressBar.Visible = false;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Location = new System.Drawing.Point(202, 193);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(300, 1);
+            this.panel1.TabIndex = 77;
             // 
             // NewTournamentForm
             // 
@@ -395,23 +457,14 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(784, 561);
-            this.Controls.Add(this.progressBar);
-            this.Controls.Add(this.tbTournamentName);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.panelLoading);
+            this.Controls.Add(this.imgLogoEMA);
             this.Controls.Add(this.lblTitle2);
             this.Controls.Add(this.lblTitle1);
             this.Controls.Add(this.btnStart);
-            this.Controls.Add(this.numUpDownTriesMax);
-            this.Controls.Add(this.lblTriesMax);
-            this.Controls.Add(this.cbTeams);
-            this.Controls.Add(this.lblTeams);
-            this.Controls.Add(this.lblRounds);
-            this.Controls.Add(this.numUpDownRounds);
-            this.Controls.Add(this.numUpDownPlayers);
-            this.Controls.Add(this.labelPlayers);
-            this.Controls.Add(this.imgLogoEMA);
             this.Controls.Add(this.imgLogoMM);
             this.Controls.Add(this.btnReturn);
+            this.Controls.Add(this.panelOptions);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.Font = new System.Drawing.Font("Verdana", 10F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -425,6 +478,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownPlayers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownRounds)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownTriesMax)).EndInit();
+            this.panelOptions.ResumeLayout(false);
+            this.panelOptions.PerformLayout();
+            this.panelLoading.ResumeLayout(false);
+            this.panelLoading.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoEMA)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).EndInit();
             this.ResumeLayout(false);
@@ -450,6 +508,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbTournamentName;
         private System.ComponentModel.BackgroundWorker backgroundWorker;
-        private MahjongTournamentCalculator.CustomViews.CustomProgressBar progressBar;
+        private System.Windows.Forms.Panel panelOptions;
+        private System.Windows.Forms.Panel panelLoading;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label lblCurrentNumTries;
+        private System.Windows.Forms.Label lblCurrentTries;
+        private System.Windows.Forms.Panel panel1;
     }
 }

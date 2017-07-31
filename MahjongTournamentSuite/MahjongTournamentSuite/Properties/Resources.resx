@@ -127,4 +127,7 @@
   <data name="icon_return" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\icon_return.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="MMLoading160" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\mmloading160.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

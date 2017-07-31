@@ -24,7 +24,9 @@ namespace MahjongTournamentSuite.NewTournament
 
         void DisableViews();
 
-        void ResetProgressBar(int numTriesMax);
+        void SetTriesCounterLabel(int tries);
+
+        void showEnterTournamentNameMessage();
 
         void ShowReachedTriesMessage(int numTriesMax);
 
