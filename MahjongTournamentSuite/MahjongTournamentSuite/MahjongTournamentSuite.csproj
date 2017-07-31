@@ -89,7 +89,7 @@
     <Compile Include="Home\HomePresenter.cs" />
     <Compile Include="Home\IHomeForm.cs" />
     <Compile Include="Home\IHomePresenter.cs" />
-    <Compile Include="Inyector.cs" />
+    <Compile Include="Injector.cs" />
     <Compile Include="Model\DBPlayer.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\Rivals.cs" />
@@ -113,6 +113,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="TournamentManager\ITournamentManagerForm.cs" />
+    <Compile Include="TournamentManager\ITournamentManagerPresenter.cs" />
+    <Compile Include="TournamentManager\TournamentManagerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TournamentManager\TournamentManagerForm.Designer.cs">
+      <DependentUpon>TournamentManagerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TournamentManager\TournamentManagerPresenter.cs" />
     <Compile Include="_MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -128,6 +137,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TournamentManager\TournamentManagerForm.resx">
+      <DependentUpon>TournamentManagerForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
