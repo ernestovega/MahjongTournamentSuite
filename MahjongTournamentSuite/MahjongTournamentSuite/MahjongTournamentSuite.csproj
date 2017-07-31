@@ -169,6 +169,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\favicon.ico" />
     <Content Include="Resources\icon_exit.png" />
     <Content Include="Resources\icon_minimize.png" />
     <Content Include="Resources\icon_return.png" />

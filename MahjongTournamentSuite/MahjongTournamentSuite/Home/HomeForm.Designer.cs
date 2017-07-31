@@ -29,31 +29,31 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnNew = new System.Windows.Forms.Button();
             this.btnTimer = new System.Windows.Forms.Button();
             this.btnResume = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.imgLogoEMA = new System.Windows.Forms.PictureBox();
-            this.imgLogoMM = new System.Windows.Forms.PictureBox();
             this.dataGridTournaments = new System.Windows.Forms.DataGridView();
-            this.btnEditName = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this._MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet = new MahjongTournamentSuite._MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet();
-            this.dBTournamentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dBTournamentsTableAdapter = new MahjongTournamentSuite._MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSetTableAdapters.DBTournamentsTableAdapter();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.creationDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.numPlayersDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.numRoundsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dBTournamentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this._MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet = new MahjongTournamentSuite._MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet();
+            this.btnEditName = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.dBTournamentsTableAdapter = new MahjongTournamentSuite._MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSetTableAdapters.DBTournamentsTableAdapter();
+            this.imgLogoEMA = new System.Windows.Forms.PictureBox();
+            this.imgLogoMM = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridTournaments)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dBTournamentsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this._MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoEMA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridTournaments)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this._MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dBTournamentsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // btnNew
@@ -141,37 +141,6 @@
             this.lblTitle.TabIndex = 75;
             this.lblTitle.Text = "MAHJONG TOURNAMENT SUITE";
             // 
-            // imgLogoEMA
-            // 
-            this.imgLogoEMA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.imgLogoEMA.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.imgLogoEMA.ErrorImage = ((System.Drawing.Image)(resources.GetObject("imgLogoEMA.ErrorImage")));
-            this.imgLogoEMA.Image = ((System.Drawing.Image)(resources.GetObject("imgLogoEMA.Image")));
-            this.imgLogoEMA.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.imgLogoEMA.Location = new System.Drawing.Point(846, 12);
-            this.imgLogoEMA.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
-            this.imgLogoEMA.Name = "imgLogoEMA";
-            this.imgLogoEMA.Size = new System.Drawing.Size(150, 150);
-            this.imgLogoEMA.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.imgLogoEMA.TabIndex = 64;
-            this.imgLogoEMA.TabStop = false;
-            this.imgLogoEMA.Click += new System.EventHandler(this.imgLogoEMA_Click);
-            // 
-            // imgLogoMM
-            // 
-            this.imgLogoMM.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.imgLogoMM.ErrorImage = ((System.Drawing.Image)(resources.GetObject("imgLogoMM.ErrorImage")));
-            this.imgLogoMM.Image = ((System.Drawing.Image)(resources.GetObject("imgLogoMM.Image")));
-            this.imgLogoMM.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.imgLogoMM.Location = new System.Drawing.Point(12, 12);
-            this.imgLogoMM.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
-            this.imgLogoMM.Name = "imgLogoMM";
-            this.imgLogoMM.Size = new System.Drawing.Size(150, 150);
-            this.imgLogoMM.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.imgLogoMM.TabIndex = 50;
-            this.imgLogoMM.TabStop = false;
-            this.imgLogoMM.Click += new System.EventHandler(this.imgLogoMM_Click);
-            // 
             // dataGridTournaments
             // 
             this.dataGridTournaments.AllowUserToAddRows = false;
@@ -184,14 +153,14 @@
             this.dataGridTournaments.BackgroundColor = System.Drawing.Color.White;
             this.dataGridTournaments.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridTournaments.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Gang of Three", 14F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridTournaments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Gang of Three", 14F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridTournaments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridTournaments.ColumnHeadersHeight = 40;
             this.dataGridTournaments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridTournaments.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -202,14 +171,14 @@
             this.numRoundsDataGridViewTextBoxColumn});
             this.dataGridTournaments.Cursor = System.Windows.Forms.Cursors.Hand;
             this.dataGridTournaments.DataSource = this.dBTournamentsBindingSource;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("MS Reference Sans Serif", 14F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridTournaments.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("MS Reference Sans Serif", 14F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridTournaments.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridTournaments.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridTournaments.GridColor = System.Drawing.Color.White;
             this.dataGridTournaments.Location = new System.Drawing.Point(13, 180);
@@ -227,6 +196,59 @@
             this.dataGridTournaments.ShowRowErrors = false;
             this.dataGridTournaments.Size = new System.Drawing.Size(773, 537);
             this.dataGridTournaments.TabIndex = 76;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // creationDateDataGridViewTextBoxColumn
+            // 
+            this.creationDateDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.creationDateDataGridViewTextBoxColumn.DataPropertyName = "CreationDate";
+            this.creationDateDataGridViewTextBoxColumn.HeaderText = "Date";
+            this.creationDateDataGridViewTextBoxColumn.Name = "creationDateDataGridViewTextBoxColumn";
+            this.creationDateDataGridViewTextBoxColumn.ReadOnly = true;
+            this.creationDateDataGridViewTextBoxColumn.Width = 78;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // numPlayersDataGridViewTextBoxColumn
+            // 
+            this.numPlayersDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.numPlayersDataGridViewTextBoxColumn.DataPropertyName = "NumPlayers";
+            this.numPlayersDataGridViewTextBoxColumn.HeaderText = "Players";
+            this.numPlayersDataGridViewTextBoxColumn.Name = "numPlayersDataGridViewTextBoxColumn";
+            this.numPlayersDataGridViewTextBoxColumn.ReadOnly = true;
+            this.numPlayersDataGridViewTextBoxColumn.Width = 110;
+            // 
+            // numRoundsDataGridViewTextBoxColumn
+            // 
+            this.numRoundsDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.numRoundsDataGridViewTextBoxColumn.DataPropertyName = "NumRounds";
+            this.numRoundsDataGridViewTextBoxColumn.HeaderText = "Rounds";
+            this.numRoundsDataGridViewTextBoxColumn.Name = "numRoundsDataGridViewTextBoxColumn";
+            this.numRoundsDataGridViewTextBoxColumn.ReadOnly = true;
+            this.numRoundsDataGridViewTextBoxColumn.Width = 102;
+            // 
+            // dBTournamentsBindingSource
+            // 
+            this.dBTournamentsBindingSource.DataMember = "DBTournaments";
+            this.dBTournamentsBindingSource.DataSource = this._MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet;
+            // 
+            // _MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet
+            // 
+            this._MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet.DataSetName = "_MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet";
+            this._MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // btnEditName
             // 
@@ -274,69 +296,46 @@
             this.btnDelete.UseVisualStyleBackColor = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // _MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet
-            // 
-            this._MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet.DataSetName = "_MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet";
-            this._MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // dBTournamentsBindingSource
-            // 
-            this.dBTournamentsBindingSource.DataMember = "DBTournaments";
-            this.dBTournamentsBindingSource.DataSource = this._MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet;
-            // 
             // dBTournamentsTableAdapter
             // 
             this.dBTournamentsTableAdapter.ClearBeforeFill = true;
             // 
-            // idDataGridViewTextBoxColumn
+            // imgLogoEMA
             // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idDataGridViewTextBoxColumn.Visible = false;
+            this.imgLogoEMA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.imgLogoEMA.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.imgLogoEMA.ErrorImage = ((System.Drawing.Image)(resources.GetObject("imgLogoEMA.ErrorImage")));
+            this.imgLogoEMA.Image = ((System.Drawing.Image)(resources.GetObject("imgLogoEMA.Image")));
+            this.imgLogoEMA.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.imgLogoEMA.Location = new System.Drawing.Point(846, 12);
+            this.imgLogoEMA.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
+            this.imgLogoEMA.Name = "imgLogoEMA";
+            this.imgLogoEMA.Size = new System.Drawing.Size(150, 150);
+            this.imgLogoEMA.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgLogoEMA.TabIndex = 64;
+            this.imgLogoEMA.TabStop = false;
+            this.imgLogoEMA.Click += new System.EventHandler(this.imgLogoEMA_Click);
             // 
-            // creationDateDataGridViewTextBoxColumn
+            // imgLogoMM
             // 
-            this.creationDateDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.creationDateDataGridViewTextBoxColumn.DataPropertyName = "CreationDate";
-            this.creationDateDataGridViewTextBoxColumn.HeaderText = "Date";
-            this.creationDateDataGridViewTextBoxColumn.Name = "creationDateDataGridViewTextBoxColumn";
-            this.creationDateDataGridViewTextBoxColumn.ReadOnly = true;
-            this.creationDateDataGridViewTextBoxColumn.Width = 78;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // numPlayersDataGridViewTextBoxColumn
-            // 
-            this.numPlayersDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.numPlayersDataGridViewTextBoxColumn.DataPropertyName = "NumPlayers";
-            this.numPlayersDataGridViewTextBoxColumn.HeaderText = "Players";
-            this.numPlayersDataGridViewTextBoxColumn.Name = "numPlayersDataGridViewTextBoxColumn";
-            this.numPlayersDataGridViewTextBoxColumn.ReadOnly = true;
-            this.numPlayersDataGridViewTextBoxColumn.Width = 110;
-            // 
-            // numRoundsDataGridViewTextBoxColumn
-            // 
-            this.numRoundsDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.numRoundsDataGridViewTextBoxColumn.DataPropertyName = "NumRounds";
-            this.numRoundsDataGridViewTextBoxColumn.HeaderText = "Rounds";
-            this.numRoundsDataGridViewTextBoxColumn.Name = "numRoundsDataGridViewTextBoxColumn";
-            this.numRoundsDataGridViewTextBoxColumn.ReadOnly = true;
-            this.numRoundsDataGridViewTextBoxColumn.Width = 102;
+            this.imgLogoMM.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.imgLogoMM.ErrorImage = ((System.Drawing.Image)(resources.GetObject("imgLogoMM.ErrorImage")));
+            this.imgLogoMM.Image = ((System.Drawing.Image)(resources.GetObject("imgLogoMM.Image")));
+            this.imgLogoMM.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.imgLogoMM.Location = new System.Drawing.Point(12, 12);
+            this.imgLogoMM.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
+            this.imgLogoMM.Name = "imgLogoMM";
+            this.imgLogoMM.Size = new System.Drawing.Size(150, 150);
+            this.imgLogoMM.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgLogoMM.TabIndex = 50;
+            this.imgLogoMM.TabStop = false;
+            this.imgLogoMM.Click += new System.EventHandler(this.imgLogoMM_Click);
             // 
             // HomeForm
             // 
-            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1008, 729);
@@ -350,15 +349,17 @@
             this.Controls.Add(this.btnTimer);
             this.Controls.Add(this.btnNew);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1024, 768);
             this.Name = "HomeForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Mahjong Tournament Suite - Home";
             this.Load += new System.EventHandler(this.HomeForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridTournaments)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dBTournamentsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this._MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoEMA)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridTournaments)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this._MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dBTournamentsBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

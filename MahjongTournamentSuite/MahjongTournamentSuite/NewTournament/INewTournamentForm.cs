@@ -24,10 +24,14 @@
 
         void SetTriesCounterLabel(int tries);
 
-        void showEnterTournamentNameMessage();
+        void ShowEnterTournamentNameMessage();
 
         void ShowReachedTriesMessage(int numTriesMax);
 
+        void ShowSomethingWentWrongMessage();
+
         void ApplicationDoEvents();
+
+        void OpenTournamentManagerForm(int tournamentId);
     }
 }

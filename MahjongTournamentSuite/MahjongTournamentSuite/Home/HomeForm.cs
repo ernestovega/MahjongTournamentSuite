@@ -1,4 +1,5 @@
 ﻿using MahjongTournamentSuite.NewTournament;
+using MahjongTournamentSuite.TournamentManager;
 using Microsoft.VisualBasic;
 using System;
 using System.Diagnostics;
@@ -65,7 +66,12 @@ namespace MahjongTournamentSuite.Home
 
         public void btnResume_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            int tournamentId = GetCurrentTournamentId();
+            if (tournamentId >= 0)
+            {
+                new TournamentManagerForm(tournamentId).Show();
+                Close();
+            }
         }
 
         private void btnEditName_Click(object sender, EventArgs e)

@@ -44,14 +44,14 @@
             this.tbTournamentName = new System.Windows.Forms.TextBox();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.panelOptions = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.panelLoading = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblCurrentNumTries = new System.Windows.Forms.Label();
             this.lblCurrentTries = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.imgLogoEMA = new System.Windows.Forms.PictureBox();
             this.imgLogoMM = new System.Windows.Forms.PictureBox();
             this.btnReturn = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownPlayers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownRounds)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownTriesMax)).BeginInit();
@@ -349,6 +349,14 @@
             this.panelOptions.Size = new System.Drawing.Size(536, 273);
             this.panelOptions.TabIndex = 78;
             // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Location = new System.Drawing.Point(202, 193);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(300, 1);
+            this.panel1.TabIndex = 77;
+            // 
             // panelLoading
             // 
             this.panelLoading.Controls.Add(this.pictureBox1);
@@ -359,15 +367,6 @@
             this.panelLoading.Size = new System.Drawing.Size(306, 294);
             this.panelLoading.TabIndex = 77;
             this.panelLoading.Visible = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::MahjongTournamentSuite.Properties.Resources.MMLoading160;
-            this.pictureBox1.Location = new System.Drawing.Point(75, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(160, 240);
-            this.pictureBox1.TabIndex = 6;
-            this.pictureBox1.TabStop = false;
             // 
             // lblCurrentNumTries
             // 
@@ -391,6 +390,15 @@
             this.lblCurrentTries.Size = new System.Drawing.Size(59, 23);
             this.lblCurrentTries.TabIndex = 4;
             this.lblCurrentTries.Text = "Tries:";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::MahjongTournamentSuite.Properties.Resources.MMLoading160;
+            this.pictureBox1.Location = new System.Drawing.Point(75, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(160, 240);
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
             // 
             // imgLogoEMA
             // 
@@ -440,14 +448,6 @@
             this.btnReturn.UseVisualStyleBackColor = true;
             this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
             // 
-            // panel1
-            // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Location = new System.Drawing.Point(202, 193);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(300, 1);
-            this.panel1.TabIndex = 77;
-            // 
             // NewTournamentForm
             // 
             this.AllowDrop = true;
@@ -468,13 +468,14 @@
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.Font = new System.Drawing.Font("Verdana", 10F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(800, 600);
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "NewTournamentForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "New tournament";
+            this.Text = "Mahjong Tournament Suite - New Tournament";
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownPlayers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownRounds)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownTriesMax)).EndInit();

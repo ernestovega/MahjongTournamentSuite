@@ -28,6 +28,7 @@ namespace MahjongTournamentSuite.NewTournament
         private Random random = new Random();
         private string tournamentName = string.Empty;
         private Boolean isTeamsChecked;
+        private int tournamentId;
 
         #endregion
 
@@ -59,7 +60,7 @@ namespace MahjongTournamentSuite.NewTournament
                 }
                 else
                 {
-                    _form.showEnterTournamentNameMessage();
+                    _form.ShowEnterTournamentNameMessage();
                 }
             }
         }
@@ -114,13 +115,15 @@ namespace MahjongTournamentSuite.NewTournament
 
         public void RunWorkerCompleted()
         {
-            /*Si no se ha podido calcular en los intentos indicados, se notifica,
-              se muestra la lista de jugadores y se termina*/
-            if (countTries == numTriesMax)
-            {
-                _form.ShowReachedTriesMessage(numTriesMax);
-            }
             _form.EnableViews();
+            /*Si no se ha podido calcular en los intentos indicados, se notifica,
+              se muestra la lista de jugadores y se termina. Si todo fue ok, vamos al manager.*/
+            if (countTries >= numTriesMax)
+                _form.ShowReachedTriesMessage(numTriesMax);
+            else if (tournamentId > 0)
+                _form.OpenTournamentManagerForm(tournamentId);
+            else
+                _form.ShowSomethingWentWrongMessage();
         }
 
         #endregion
@@ -406,8 +409,8 @@ namespace MahjongTournamentSuite.NewTournament
 
         private void SaveTournament()
         {
-            int id = _db.GetExistingMaxTournamentId() + 1;
-            dbTournament = new DBTournament(id, players.Count, numRounds, tournamentName, DateTime.Now);
+            tournamentId = _db.GetExistingMaxTournamentId() + 1;
+            dbTournament = new DBTournament(tournamentId, players.Count, numRounds, tournamentName, DateTime.Now);
             _db.AddTournament(dbTournament);
         }
 

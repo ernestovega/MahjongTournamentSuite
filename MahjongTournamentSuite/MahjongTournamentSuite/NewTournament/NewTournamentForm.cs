@@ -1,4 +1,5 @@
 ﻿using MahjongTournamentSuite.Home;
+using MahjongTournamentSuite.TournamentManager;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -143,9 +144,14 @@ namespace MahjongTournamentSuite.NewTournament
             MessageBox.Show(this, string.Format("Can't calculate tournament after {0} tries.\nIf you want to try again, select more tries.", numTriesMax));
         }
 
-        public void showEnterTournamentNameMessage()
+        public void ShowEnterTournamentNameMessage()
         {
             MessageBox.Show(this, "Please enter a name for the tournament.");
+        }
+
+        public void ShowSomethingWentWrongMessage()
+        {
+            MessageBox.Show(this, "Ups! Something went wrong. Please try again.");
         }
 
         public void ApplicationDoEvents()
@@ -156,6 +162,12 @@ namespace MahjongTournamentSuite.NewTournament
         public void SetTriesCounterLabel(int tries)
         {
             lblCurrentNumTries.Text = tries.ToString();
+        }
+
+        public void OpenTournamentManagerForm(int tournamentId)
+        {
+            new TournamentManagerForm(tournamentId).Show();
+            Close();
         }
 
         #endregion

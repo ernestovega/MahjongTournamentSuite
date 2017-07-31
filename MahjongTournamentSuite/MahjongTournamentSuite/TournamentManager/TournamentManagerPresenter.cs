@@ -1,4 +1,5 @@
-﻿using MahjongTournamentSuite.Data;
+﻿using System;
+using MahjongTournamentSuite.Data;
 
 namespace MahjongTournamentSuite.TournamentManager
 {
@@ -22,6 +23,11 @@ namespace MahjongTournamentSuite.TournamentManager
         #endregion
 
         #region ITournamentManagerPresenter
+
+        public void loadTournament(int _tournamentId)
+        {
+            //throw new NotImplementedException();
+        }
 
         #endregion
 
