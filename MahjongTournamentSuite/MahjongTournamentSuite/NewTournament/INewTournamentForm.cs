@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace MahjongTournamentSuite.NewTournament
+﻿namespace MahjongTournamentSuite.NewTournament
 {
     interface INewTournamentForm
     {

@@ -1,7 +1,4 @@
-﻿using System;
-using MahjongTournamentSuite.Data;
-using System.Windows.Forms;
-using System.Diagnostics;
+﻿using MahjongTournamentSuite.Data;
 
 namespace MahjongTournamentSuite.Home
 {
