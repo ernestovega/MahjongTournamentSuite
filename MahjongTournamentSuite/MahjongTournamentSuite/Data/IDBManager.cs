@@ -5,6 +5,8 @@ namespace MahjongTournamentSuite.Data
 {
     internal interface IDBManager
     {
+        #region NewTournament
+
         int GetExistingMaxTournamentId();
 
         void AddTournament(DBTournament tournament);
@@ -16,5 +18,13 @@ namespace MahjongTournamentSuite.Data
         void AddPlayers(List<DBPlayer> players);
 
         void AddTables(List<DBTable> tables);
+
+        #endregion
+
+        #region Tournament Manager
+
+        DBTournament GetTournament(int tournamentId);
+
+        #endregion
     }
 }

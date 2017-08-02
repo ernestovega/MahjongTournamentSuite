@@ -2,6 +2,6 @@
 {
     interface ITournamentManagerPresenter
     {
-        void loadTournament(int _tournamentId);
+        void LoadTournament(int tournamentId);
     }
 }

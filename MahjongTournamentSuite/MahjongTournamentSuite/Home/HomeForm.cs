@@ -96,7 +96,7 @@ namespace MahjongTournamentSuite.Home
 
         public void ReloadDataGridTournaments()
         {
-            this.dBTournamentsTableAdapter.Fill(this._MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet.DBTournaments);
+            dBTournamentsTableAdapter.Fill(_MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet.DBTournaments);
         }
 
         public string GetCurrentTournamentName()

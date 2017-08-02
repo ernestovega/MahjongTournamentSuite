@@ -46,9 +46,9 @@
             this.panelOptions = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panelLoading = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblCurrentNumTries = new System.Windows.Forms.Label();
             this.lblCurrentTries = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.imgLogoEMA = new System.Windows.Forms.PictureBox();
             this.imgLogoMM = new System.Windows.Forms.PictureBox();
             this.btnReturn = new System.Windows.Forms.Button();
@@ -107,7 +107,7 @@
             this.numUpDownPlayers.TabIndex = 65;
             this.numUpDownPlayers.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numUpDownPlayers.Value = new decimal(new int[] {
-            80,
+            16,
             0,
             0,
             0});
@@ -137,7 +137,7 @@
             this.numUpDownRounds.TabIndex = 66;
             this.numUpDownRounds.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.numUpDownRounds.Value = new decimal(new int[] {
-            6,
+            4,
             0,
             0,
             0});
@@ -168,7 +168,7 @@
             this.lblTeams.Location = new System.Drawing.Point(31, 129);
             this.lblTeams.Margin = new System.Windows.Forms.Padding(50, 10, 50, 10);
             this.lblTeams.Name = "lblTeams";
-            this.lblTeams.Size = new System.Drawing.Size(94, 27);
+            this.lblTeams.Size = new System.Drawing.Size(95, 27);
             this.lblTeams.TabIndex = 68;
             this.lblTeams.Text = "Teams?";
             // 
@@ -199,7 +199,7 @@
             this.lblTriesMax.Location = new System.Drawing.Point(71, 221);
             this.lblTriesMax.Margin = new System.Windows.Forms.Padding(50, 10, 50, 10);
             this.lblTriesMax.Name = "lblTriesMax";
-            this.lblTriesMax.Size = new System.Drawing.Size(54, 23);
+            this.lblTriesMax.Size = new System.Drawing.Size(55, 23);
             this.lblTriesMax.TabIndex = 70;
             this.lblTriesMax.Text = "Tries";
             // 
@@ -253,7 +253,7 @@
             this.btnStart.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
             this.btnStart.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(127)))), ((int)(((byte)(56)))));
             this.btnStart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStart.Font = new System.Drawing.Font("Gang of Three", 28F, System.Drawing.FontStyle.Bold);
+            this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F, System.Drawing.FontStyle.Bold);
             this.btnStart.ForeColor = System.Drawing.Color.White;
             this.btnStart.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnStart.Location = new System.Drawing.Point(217, 442);
@@ -270,13 +270,13 @@
             this.lblTitle1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lblTitle1.AutoSize = true;
             this.lblTitle1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.lblTitle1.Font = new System.Drawing.Font("Gang of Three", 32F, System.Drawing.FontStyle.Bold);
+            this.lblTitle1.Font = new System.Drawing.Font("Arial Black", 32F, System.Drawing.FontStyle.Bold);
             this.lblTitle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTitle1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblTitle1.Location = new System.Drawing.Point(343, 26);
+            this.lblTitle1.Location = new System.Drawing.Point(330, 26);
             this.lblTitle1.Margin = new System.Windows.Forms.Padding(50, 50, 50, 10);
             this.lblTitle1.Name = "lblTitle1";
-            this.lblTitle1.Size = new System.Drawing.Size(101, 48);
+            this.lblTitle1.Size = new System.Drawing.Size(135, 60);
             this.lblTitle1.TabIndex = 73;
             this.lblTitle1.Text = "NEW";
             // 
@@ -285,13 +285,13 @@
             this.lblTitle2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.lblTitle2.AutoSize = true;
             this.lblTitle2.Cursor = System.Windows.Forms.Cursors.Default;
-            this.lblTitle2.Font = new System.Drawing.Font("Gang of Three", 32F, System.Drawing.FontStyle.Bold);
+            this.lblTitle2.Font = new System.Drawing.Font("Arial Black", 32F, System.Drawing.FontStyle.Bold);
             this.lblTitle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTitle2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblTitle2.Location = new System.Drawing.Point(261, 74);
+            this.lblTitle2.Location = new System.Drawing.Point(214, 74);
             this.lblTitle2.Margin = new System.Windows.Forms.Padding(50, 50, 50, 10);
             this.lblTitle2.Name = "lblTitle2";
-            this.lblTitle2.Size = new System.Drawing.Size(278, 48);
+            this.lblTitle2.Size = new System.Drawing.Size(369, 60);
             this.lblTitle2.TabIndex = 74;
             this.lblTitle2.Text = "TOURNAMENT";
             // 
@@ -362,11 +362,20 @@
             this.panelLoading.Controls.Add(this.pictureBox1);
             this.panelLoading.Controls.Add(this.lblCurrentNumTries);
             this.panelLoading.Controls.Add(this.lblCurrentTries);
-            this.panelLoading.Location = new System.Drawing.Point(247, 135);
+            this.panelLoading.Location = new System.Drawing.Point(247, 136);
             this.panelLoading.Name = "panelLoading";
             this.panelLoading.Size = new System.Drawing.Size(306, 294);
             this.panelLoading.TabIndex = 77;
             this.panelLoading.Visible = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::MahjongTournamentSuite.Properties.Resources.MMLoading160;
+            this.pictureBox1.Location = new System.Drawing.Point(75, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(160, 240);
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
             // 
             // lblCurrentNumTries
             // 
@@ -387,18 +396,9 @@
             this.lblCurrentTries.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblCurrentTries.Location = new System.Drawing.Point(100, 257);
             this.lblCurrentTries.Name = "lblCurrentTries";
-            this.lblCurrentTries.Size = new System.Drawing.Size(59, 23);
+            this.lblCurrentTries.Size = new System.Drawing.Size(60, 23);
             this.lblCurrentTries.TabIndex = 4;
             this.lblCurrentTries.Text = "Tries:";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::MahjongTournamentSuite.Properties.Resources.MMLoading160;
-            this.pictureBox1.Location = new System.Drawing.Point(75, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(160, 240);
-            this.pictureBox1.TabIndex = 6;
-            this.pictureBox1.TabStop = false;
             // 
             // imgLogoEMA
             // 
@@ -407,7 +407,7 @@
             this.imgLogoEMA.ErrorImage = ((System.Drawing.Image)(resources.GetObject("imgLogoEMA.ErrorImage")));
             this.imgLogoEMA.Image = ((System.Drawing.Image)(resources.GetObject("imgLogoEMA.Image")));
             this.imgLogoEMA.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.imgLogoEMA.Location = new System.Drawing.Point(578, 74);
+            this.imgLogoEMA.Location = new System.Drawing.Point(583, 74);
             this.imgLogoEMA.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
             this.imgLogoEMA.Name = "imgLogoEMA";
             this.imgLogoEMA.Size = new System.Drawing.Size(150, 150);
@@ -422,7 +422,7 @@
             this.imgLogoMM.ErrorImage = ((System.Drawing.Image)(resources.GetObject("imgLogoMM.ErrorImage")));
             this.imgLogoMM.Image = ((System.Drawing.Image)(resources.GetObject("imgLogoMM.Image")));
             this.imgLogoMM.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.imgLogoMM.Location = new System.Drawing.Point(69, 74);
+            this.imgLogoMM.Location = new System.Drawing.Point(63, 74);
             this.imgLogoMM.Margin = new System.Windows.Forms.Padding(3, 50, 3, 3);
             this.imgLogoMM.Name = "imgLogoMM";
             this.imgLogoMM.Size = new System.Drawing.Size(150, 150);
@@ -456,7 +456,7 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.ClientSize = new System.Drawing.Size(784, 562);
             this.Controls.Add(this.panelLoading);
             this.Controls.Add(this.imgLogoEMA);
             this.Controls.Add(this.lblTitle2);

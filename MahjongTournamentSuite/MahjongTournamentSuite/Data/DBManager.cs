@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using static MahjongTournamentSuite.Data.DBContext;
+using System;
 
 namespace MahjongTournamentSuite.Data
 {
@@ -22,7 +23,7 @@ namespace MahjongTournamentSuite.Data
 
         #endregion
 
-        #region Tournament
+        #region Tournaments
 
         public int GetExistingMaxTournamentId()
         {
@@ -36,6 +37,11 @@ namespace MahjongTournamentSuite.Data
             }
         }
 
+        public DBTournament GetTournament(int tournamentId)
+        {
+            return _db.Tournaments.First(x => x.Id == tournamentId);
+        }
+
         public void AddTournament(DBTournament tournament)
         {
             _db.Tournaments.Add(tournament);
@@ -44,7 +50,7 @@ namespace MahjongTournamentSuite.Data
 
         public void UpdateTournamentName(int tournamentId, string newName)
         {
-            _db.Tournaments.ToList().First(x => x.Id == tournamentId).Name = newName;
+            _db.Tournaments.First(x => x.Id == tournamentId).Name = newName;
             _db.SaveChanges();
         }
 

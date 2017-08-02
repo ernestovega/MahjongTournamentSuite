@@ -1,5 +1,6 @@
-﻿using System;
-using MahjongTournamentSuite.Data;
+﻿using MahjongTournamentSuite.Data;
+using System.Collections.Generic;
+using MahjongTournamentSuite.Model;
 
 namespace MahjongTournamentSuite.TournamentManager
 {
@@ -9,6 +10,7 @@ namespace MahjongTournamentSuite.TournamentManager
 
         private ITournamentManagerForm _form;
         private IDBManager _db;
+        private DBTournament _tournament;
 
         #endregion
 
@@ -24,9 +26,11 @@ namespace MahjongTournamentSuite.TournamentManager
 
         #region ITournamentManagerPresenter
 
-        public void loadTournament(int _tournamentId)
+        public void LoadTournament(int tournamentId)
         {
-            //throw new NotImplementedException();
+            _tournament = _db.GetTournament(tournamentId);
+            _form.FillComboRounds(_tournament.NumRounds);
+            _form.GenerateRoundTablesButtons(_tournament.NumPlayers / 4);
         }
 
         #endregion

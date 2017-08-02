@@ -2,6 +2,8 @@
 {
     interface ITournamentManagerForm
     {
+        void FillComboRounds(int numRounds);
 
+        void GenerateRoundTablesButtons(int numTables);
     }
 }

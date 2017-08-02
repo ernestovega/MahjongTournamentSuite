@@ -31,13 +31,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TournamentManagerForm));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnTimer = new System.Windows.Forms.Button();
-            this.btnRanking = new System.Windows.Forms.Button();
+            this.btnRankingShower = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.comboRounds = new System.Windows.Forms.ComboBox();
+            this.panelTables = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,7 +74,7 @@
             this.btnTimer.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
             this.btnTimer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(127)))), ((int)(((byte)(56)))));
             this.btnTimer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTimer.Font = new System.Drawing.Font("Gang of Three", 24F, System.Drawing.FontStyle.Bold);
+            this.btnTimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
             this.btnTimer.ForeColor = System.Drawing.Color.White;
             this.btnTimer.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnTimer.Location = new System.Drawing.Point(787, 641);
@@ -85,29 +86,29 @@
             this.btnTimer.UseVisualStyleBackColor = false;
             this.btnTimer.Click += new System.EventHandler(this.btnTimer_Click);
             // 
-            // btnRanking
+            // btnRankingShower
             // 
-            this.btnRanking.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnRanking.AutoSize = true;
-            this.btnRanking.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
-            this.btnRanking.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRanking.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnRanking.FlatAppearance.BorderSize = 0;
-            this.btnRanking.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.btnRanking.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
-            this.btnRanking.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(127)))), ((int)(((byte)(56)))));
-            this.btnRanking.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRanking.Font = new System.Drawing.Font("Gang of Three", 24F, System.Drawing.FontStyle.Bold);
-            this.btnRanking.ForeColor = System.Drawing.Color.White;
-            this.btnRanking.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnRanking.Location = new System.Drawing.Point(787, 552);
-            this.btnRanking.Margin = new System.Windows.Forms.Padding(50, 10, 50, 10);
-            this.btnRanking.Name = "btnRanking";
-            this.btnRanking.Size = new System.Drawing.Size(200, 69);
-            this.btnRanking.TabIndex = 16;
-            this.btnRanking.Text = "RANKING";
-            this.btnRanking.UseVisualStyleBackColor = false;
-            this.btnRanking.Click += new System.EventHandler(this.btnRanking_Click);
+            this.btnRankingShower.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnRankingShower.AutoSize = true;
+            this.btnRankingShower.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            this.btnRankingShower.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRankingShower.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnRankingShower.FlatAppearance.BorderSize = 0;
+            this.btnRankingShower.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnRankingShower.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.btnRankingShower.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(127)))), ((int)(((byte)(56)))));
+            this.btnRankingShower.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRankingShower.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold);
+            this.btnRankingShower.ForeColor = System.Drawing.Color.White;
+            this.btnRankingShower.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnRankingShower.Location = new System.Drawing.Point(787, 552);
+            this.btnRankingShower.Margin = new System.Windows.Forms.Padding(50, 10, 50, 10);
+            this.btnRankingShower.Name = "btnRankingShower";
+            this.btnRankingShower.Size = new System.Drawing.Size(200, 69);
+            this.btnRankingShower.TabIndex = 16;
+            this.btnRankingShower.Text = "SHOW RANKING";
+            this.btnRankingShower.UseVisualStyleBackColor = false;
+            this.btnRankingShower.Click += new System.EventHandler(this.btnRankingShower_Click);
             // 
             // button2
             // 
@@ -121,7 +122,7 @@
             this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
             this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(127)))), ((int)(((byte)(56)))));
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Gang of Three", 24F, System.Drawing.FontStyle.Bold);
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
             this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.button2.Location = new System.Drawing.Point(787, 412);
@@ -144,7 +145,7 @@
             this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
             this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(127)))), ((int)(((byte)(56)))));
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Gang of Three", 24F, System.Drawing.FontStyle.Bold);
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
             this.button3.ForeColor = System.Drawing.Color.White;
             this.button3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.button3.Location = new System.Drawing.Point(787, 323);
@@ -167,7 +168,7 @@
             this.button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
             this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(127)))), ((int)(((byte)(56)))));
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Gang of Three", 24F, System.Drawing.FontStyle.Bold);
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
             this.button4.ForeColor = System.Drawing.Color.White;
             this.button4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.button4.Location = new System.Drawing.Point(787, 234);
@@ -190,7 +191,7 @@
             this.button5.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
             this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(127)))), ((int)(((byte)(56)))));
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Gang of Three", 24F, System.Drawing.FontStyle.Bold);
+            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
             this.button5.ForeColor = System.Drawing.Color.White;
             this.button5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.button5.Location = new System.Drawing.Point(787, 145);
@@ -213,7 +214,7 @@
             this.button6.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
             this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(127)))), ((int)(((byte)(56)))));
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Font = new System.Drawing.Font("Gang of Three", 24F, System.Drawing.FontStyle.Bold);
+            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
             this.button6.ForeColor = System.Drawing.Color.White;
             this.button6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.button6.Location = new System.Drawing.Point(787, 56);
@@ -227,7 +228,9 @@
             // comboRounds
             // 
             this.comboRounds.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboRounds.BackColor = System.Drawing.Color.White;
             this.comboRounds.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.comboRounds.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboRounds.Font = new System.Drawing.Font("Arial Black", 12F);
             this.comboRounds.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.comboRounds.FormattingEnabled = true;
@@ -237,6 +240,19 @@
             this.comboRounds.Size = new System.Drawing.Size(200, 31);
             this.comboRounds.TabIndex = 22;
             // 
+            // panelTables
+            // 
+            this.panelTables.ColumnCount = 2;
+            this.panelTables.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.panelTables.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.panelTables.Location = new System.Drawing.Point(12, 12);
+            this.panelTables.Name = "panelTables";
+            this.panelTables.RowCount = 2;
+            this.panelTables.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.panelTables.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.panelTables.Size = new System.Drawing.Size(753, 705);
+            this.panelTables.TabIndex = 23;
+            // 
             // TournamentManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -244,19 +260,20 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.Controls.Add(this.panelTables);
             this.Controls.Add(this.comboRounds);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.btnRanking);
+            this.Controls.Add(this.btnRankingShower);
             this.Controls.Add(this.btnTimer);
             this.Controls.Add(this.dataGridView1);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(1024, 768);
+            this.MinimumSize = new System.Drawing.Size(1024, 726);
             this.Name = "TournamentManagerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mahjong Tournament Suite - Tournament Manager";
@@ -271,12 +288,13 @@
 
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnTimer;
-        private System.Windows.Forms.Button btnRanking;
+        private System.Windows.Forms.Button btnRankingShower;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.ComboBox comboRounds;
+        private System.Windows.Forms.TableLayoutPanel panelTables;
     }
 }

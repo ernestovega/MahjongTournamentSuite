@@ -90,6 +90,7 @@
     <Compile Include="Home\IHomeForm.cs" />
     <Compile Include="Home\IHomePresenter.cs" />
     <Compile Include="Injector.cs" />
+    <Compile Include="Model\ComboRoundsItem.cs" />
     <Compile Include="Model\DBPlayer.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\Rivals.cs" />
