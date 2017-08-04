@@ -4,15 +4,22 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using MahjongTournamentSuite.Model;
 using System.Drawing;
+using MahjongTournamentSuite.Home;
+using MahjongTournamentSuite.TableManager;
 
 namespace MahjongTournamentSuite.TournamentManager
 {
     public partial class TournamentManagerForm : Form, ITournamentManagerForm
     {
+        #region Constants
+
+
+
+        #endregion
+
         #region Fields
 
         private ITournamentManagerPresenter _presenter;
-        private bool isLoaded = false;
         private int _tournamentId;
 
         #endregion
@@ -31,9 +38,20 @@ namespace MahjongTournamentSuite.TournamentManager
 
         #region Lifecycle
 
+        private void TournamentManagerForm_Resize(object sender, EventArgs e)
+        {
+            _presenter.OnFormResized();
+        }
+
         #endregion
 
         #region Events
+
+        private void btnReturn_Click(object sender, EventArgs e)
+        {
+            new HomeForm().Show();
+            Close();
+        }
 
         private void btnTimer_Click(object sender, System.EventArgs e)
         {
@@ -53,103 +71,72 @@ namespace MahjongTournamentSuite.TournamentManager
 
         public void FillComboRounds(int numRounds)
         {
-            List<ComboRoundsItem> comboRoundItems = new List<ComboRoundsItem>(numRounds);
+            List<ComboItem> comboRoundItems = new List<ComboItem>(numRounds);
             for (int round = 1; round <= numRounds; round++)
             {
-                comboRoundItems.Add(new ComboRoundsItem(string.Format("Round {0}", round), round.ToString()));
+                comboRoundItems.Add(new ComboItem(string.Format("Round {0}", round), round.ToString()));
             }
             comboRounds.DataSource = comboRoundItems;
             comboRounds.DisplayMember = "Text";
             comboRounds.ValueMember = "Value";
         }
 
-        #endregion
-
-        #region Private
-
         public void GenerateRoundTablesButtons(int numTables)
         {
             //Obtenemos el número de botones por lado.
-            int numTablesHorizontal = 2;
-            int numTablesVertical = 2;
-            while(numTablesHorizontal * numTablesVertical < numTables)
+            int numButtonsHorizontal = 2;
+            int numButtonsVertical = 2;
+            while(numButtonsHorizontal * numButtonsVertical < numTables)
             {
-                if (numTablesHorizontal == numTablesVertical)
-                    numTablesHorizontal++;
+                if (numButtonsHorizontal == numButtonsVertical)
+                    numButtonsHorizontal++;
                 else
-                    numTablesVertical++;
+                    numButtonsVertical++;
             }
 
-            InitTableLayoutPanel(panelTables, numTablesHorizontal, numTablesVertical);
+            //Calculamos los márgenes
+            int marginHorizontal = panelTables.Width / (numButtonsHorizontal * 10);
+            int marginVertical = panelTables.Height / (numButtonsVertical * 10);
 
-            int buttonSideHorizontal = 20;
-            int buttonSideVertical = 20;
+            int horizontalMarginsSum = marginHorizontal * (numButtonsHorizontal - 1);
+            int verticalMarginsSum = marginVertical * (numButtonsVertical - 1);
 
+            //Obtenemos el tamaño de los lados de los botones teniendo en cuenta los márgenes entre cada uno.
+            int buttonSideHorizontal = (panelTables.Width - horizontalMarginsSum) / numButtonsHorizontal;
+            int buttonSideVertical = (panelTables.Height - verticalMarginsSum) / numButtonsVertical;
+            
+            //Generamos los botones
             string roundId = (string)comboRounds.SelectedValue;
             int count = 1;
-            for (int i = 0; i < numTablesVertical; i++)
+            Point buttonStartPoint = new Point(0, 0);
+            for (int i = 0; i < numButtonsVertical; i++)
             {
-                for (int j = 0; j < numTablesHorizontal; j++)
+                for (int j = 0; j < numButtonsHorizontal; j++)
                 {
                     var button = new Button();
                     button.Size = new Size(buttonSideHorizontal, buttonSideVertical);
                     button.Name = string.Format("btnRound{0}Table{1}", count, roundId);
                     button.Text = string.Format("TABLE {0}", count);
-                    panelTables.Controls.Add(button, i, j);
+                    button.Location = buttonStartPoint;
+                    button.Click += delegate
+                    {
+                        new TableManagerForm(_tournamentId, int.Parse((string)comboRounds.SelectedValue), count).Show();
+                    };
+
+                    panelTables.Controls.Add(button);
+
+                    if (count == numTables) return;
                     count++;
+                    buttonStartPoint.X += buttonSideHorizontal + marginHorizontal;
                 }
-            }
-
-
-
-            //Obtenemos los lados de los botones en base al tamaño del contenedor
-            //int panelWidth = panelTables.Size.Width;
-            //int panelHeight = panelTables.Size.Height;
-            //int buttonSideHorizontal = panelWidth / numTablesHorizontal;
-            //int buttonSideVertical = panelHeight / numTablesVertical;
-
-            //int initialOffset = 0;
-            //int offsetHorizontal = initialOffset;
-            //int offsetVertical = initialOffset;
-
-            //string roundId = (string)comboRounds.SelectedValue;
-
-            //for (int i = 1; i <= numTables; i++)
-            //{
-            //    if ((offsetHorizontal + buttonSideHorizontal) >= panelWidth)
-            //    {
-            //        offsetHorizontal = initialOffset;
-            //        offsetVertical = offsetVertical + buttonSideVertical;
-            //    }
-            //    var button = new Button();
-            //    button.Size = new Size(buttonSideHorizontal, buttonSideVertical);
-            //    button.Name = string.Format("btnRound{0}Table{1}", i, roundId);
-            //    button.Text = string.Format("TABLE {0}", i);
-            //    button.Location = new Point(offsetHorizontal, offsetVertical);
-            //    button.Click += delegate
-            //    {
-            //        MessageBox.Show(string.Format("TABLE {0}", i));
-            //    };
-            //    panelTables.Controls.Add(button);
-            //    offsetHorizontal = offsetHorizontal + buttonSideHorizontal;
-            //}
-        }
-
-        private void InitTableLayoutPanel(TableLayoutPanel TLP, int rows, int cols)
-        {
-            TLP.RowCount = rows;
-            TLP.RowStyles.Clear();
-            for (int i = 1; i <= rows; i++)
-            {
-                TLP.RowStyles.Add(new RowStyle(SizeType.Percent, 1));
-            }
-            TLP.ColumnCount = cols;
-            TLP.ColumnStyles.Clear();
-            for (int i = 1; i <= cols; i++)
-            {
-                TLP.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 1));
+                buttonStartPoint.X = 0;
+                buttonStartPoint.Y += marginVertical + buttonSideVertical;
             }
         }
+
+        #endregion
+
+        #region Private
 
         #endregion
     }

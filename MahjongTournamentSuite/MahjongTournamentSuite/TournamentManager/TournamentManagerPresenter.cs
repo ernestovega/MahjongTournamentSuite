@@ -1,5 +1,4 @@
 ﻿using MahjongTournamentSuite.Data;
-using System.Collections.Generic;
 using MahjongTournamentSuite.Model;
 
 namespace MahjongTournamentSuite.TournamentManager
@@ -30,6 +29,10 @@ namespace MahjongTournamentSuite.TournamentManager
         {
             _tournament = _db.GetTournament(tournamentId);
             _form.FillComboRounds(_tournament.NumRounds);
+        }
+
+        public void OnFormResized()
+        {
             _form.GenerateRoundTablesButtons(_tournament.NumPlayers / 4);
         }
 

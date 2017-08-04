@@ -19,10 +19,10 @@ namespace MahjongTournamentSuite.Model
 
         public DBPlayer() { }
 
-        public DBPlayer(int id, int tournamentId, string name, string team, string country)
+        public DBPlayer(int tournamentId, int id, string name, string team, string country)
         {
-            Id = id;
             TournamentId = tournamentId;
+            Id = id;
             Name = name;
             Team = team;
             Country = country;

@@ -16,6 +16,8 @@ namespace MahjongTournamentSuite.Data
             public DbSet<DBTable> Tables { get; set; }
 
             public DbSet<DBTournament> Tournaments { get; set; }
+
+            public DbSet<DBHand> Hands { get; set; }
         }
     }
 }

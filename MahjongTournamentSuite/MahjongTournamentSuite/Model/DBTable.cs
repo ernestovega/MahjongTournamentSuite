@@ -1,10 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MahjongTournamentSuite.Model
 {
-    class DBTable
-    {
+    class DBTable {
+
         [Key, Column(Order = 0)]
         public int TournamentId { get; set; }
 
@@ -14,25 +15,26 @@ namespace MahjongTournamentSuite.Model
         [Key, Column(Order = 2)]
         public int Id { get; set; }
 
-        public int Player1Id { get; set; }
+        public int PlayerEastId { get; set; }
 
-        public int Player2Id { get; set; }
+        public int PlayerSouthId { get; set; }
 
-        public int Player3Id { get; set; }
+        public int PlayerWestId { get; set; }
 
-        public int Player4Id { get; set; }
+        public int PlayerNorthId { get; set; }
 
         public DBTable() {}
 
-        public DBTable(int id, int tournamentId, int roundId, int player1Id, int player2Id, int player3Id, int player4Id)
+        public DBTable(int tournamentId, int roundId, int id,
+            int playerEastId, int playerSouthId, int playerWestId, int playerNorthId)
         {
-            Id = id;
             TournamentId = tournamentId;
             RoundId = roundId;
-            Player1Id = player1Id;
-            Player2Id = player2Id;
-            Player3Id = player3Id;
-            Player4Id = player4Id;
+            Id = id;
+            PlayerEastId = playerEastId;
+            PlayerSouthId = playerSouthId;
+            PlayerWestId = playerWestId;
+            PlayerNorthId = playerNorthId;
         }
     }
 }

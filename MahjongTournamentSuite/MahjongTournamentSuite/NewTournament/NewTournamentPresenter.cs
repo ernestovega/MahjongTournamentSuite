@@ -9,6 +9,12 @@ namespace MahjongTournamentSuite.NewTournament
 {
     class NewTournamentPresenter : INewTournamentPresenter
     {
+        #region Constants
+        
+        private readonly int NUM_TABLE_HANDS = 16;
+
+        #endregion
+
         #region Fields
 
         private INewTournamentForm _form;
@@ -27,7 +33,7 @@ namespace MahjongTournamentSuite.NewTournament
         private int numTriesMax, result, numPlayers, numRounds, countTries;
         private Random random = new Random();
         private string tournamentName = string.Empty;
-        private Boolean isTeamsChecked;
+        private bool isTeamsChecked;
         private int tournamentId;
 
         #endregion
@@ -419,7 +425,7 @@ namespace MahjongTournamentSuite.NewTournament
             List<DBPlayer> dbPlayers = new List<DBPlayer>();
             foreach (Player player in players)
             {
-                dbPlayers.Add(new DBPlayer(player.Id, dbTournament.Id, player.Name, player.Team, ""));
+                dbPlayers.Add(new DBPlayer(dbTournament.Id, player.Id, player.Name, player.Team, ""));
             }
             _db.AddPlayers(dbPlayers);
         }
@@ -429,10 +435,21 @@ namespace MahjongTournamentSuite.NewTournament
             List<DBTable> dbTables = new List<DBTable>();
             foreach (TableWithAll table in tablesWithAll)
             {
-                dbTables.Add(new DBTable(table.tableId, dbTournament.Id, table.roundId,
+                dbTables.Add(new DBTable(dbTournament.Id, table.roundId, table.tableId,
                     table.player1Id, table.player2Id, table.player3Id, table.player4Id));
+                CreateAndSaveHands(tournamentId, table.roundId, table.tableId);
             }
             _db.AddTables(dbTables);
+        }
+
+        private void CreateAndSaveHands(int tournamentId, int roundId, int tableId)
+        {
+            List<DBHand> dbHands = new List<DBHand>();
+            for (int i = 1; i <= NUM_TABLE_HANDS; i++)
+            {
+                dbHands.Add(new DBHand(tournamentId, roundId, tableId, i));
+            }
+            _db.AddHands(dbHands);
         }
 
         #endregion

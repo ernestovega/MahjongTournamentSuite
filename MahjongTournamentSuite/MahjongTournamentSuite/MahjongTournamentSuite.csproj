@@ -90,7 +90,8 @@
     <Compile Include="Home\IHomeForm.cs" />
     <Compile Include="Home\IHomePresenter.cs" />
     <Compile Include="Injector.cs" />
-    <Compile Include="Model\ComboRoundsItem.cs" />
+    <Compile Include="Model\ComboItem.cs" />
+    <Compile Include="Model\DBHand.cs" />
     <Compile Include="Model\DBPlayer.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\Rivals.cs" />
@@ -114,6 +115,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="TableManager\ITableManagerForm.cs" />
+    <Compile Include="TableManager\ITableManagerPresenter.cs" />
+    <Compile Include="TableManager\TableManagerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TableManager\TableManagerForm.Designer.cs">
+      <DependentUpon>TableManagerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TableManager\TableManagerPresenter.cs" />
     <Compile Include="TournamentManager\ITournamentManagerForm.cs" />
     <Compile Include="TournamentManager\ITournamentManagerPresenter.cs" />
     <Compile Include="TournamentManager\TournamentManagerForm.cs">
@@ -123,11 +133,6 @@
       <DependentUpon>TournamentManagerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="TournamentManager\TournamentManagerPresenter.cs" />
-    <Compile Include="_MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>_MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet.xsd</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Home\HomeForm.resx">
       <DependentUpon>HomeForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -138,6 +143,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TableManager\TableManagerForm.resx">
+      <DependentUpon>TableManagerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TournamentManager\TournamentManagerForm.resx">
       <DependentUpon>TournamentManagerForm.cs</DependentUpon>
@@ -152,17 +160,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="_MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet.xsc">
-      <DependentUpon>_MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="_MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>_MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="_MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet.xss">
-      <DependentUpon>_MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

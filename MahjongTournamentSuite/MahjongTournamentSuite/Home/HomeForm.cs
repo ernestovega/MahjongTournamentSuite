@@ -2,6 +2,7 @@
 using MahjongTournamentSuite.TournamentManager;
 using Microsoft.VisualBasic;
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows.Forms;
 
@@ -9,10 +10,10 @@ namespace MahjongTournamentSuite.Home
 {
     public partial class HomeForm : Form, IHomeForm
     {
-        #region CONSTANTS
+        #region Constants
         
         public static readonly string COLUMN_ID = "idDataGridViewTextBoxColumn";
-        //public static readonly string COLUMN_DATE = "creationDateDataGridViewTextBoxColumn";
+        public static readonly string COLUMN_DATE = "creationDateDataGridViewTextBoxColumn";
         public static readonly string COLUMN_NAME = "nameDataGridViewTextBoxColumn";
         //public static readonly string COLUMN_PLAYERS = "numPlayersDataGridViewTextBoxColumn";
         //public static readonly string COLUMN_ROUNDS = "numRoundsDataGridViewTextBoxColumn";
@@ -96,7 +97,7 @@ namespace MahjongTournamentSuite.Home
 
         public void ReloadDataGridTournaments()
         {
-            dBTournamentsTableAdapter.Fill(_MahjongTournamentSuite_Data_DBContext_TournamentSuiteDBDataSet.DBTournaments);
+            //dataGridTournaments.Sort(dataGridTournaments.Columns[COLUMN_DATE], ListSortDirection.Descending);
         }
 
         public string GetCurrentTournamentName()

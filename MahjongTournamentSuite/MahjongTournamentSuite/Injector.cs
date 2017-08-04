@@ -1,6 +1,7 @@
 ﻿using MahjongTournamentSuite.Data;
 using MahjongTournamentSuite.Home;
 using MahjongTournamentSuite.NewTournament;
+using MahjongTournamentSuite.TableManager;
 using MahjongTournamentSuite.TournamentManager;
 
 namespace MahjongTournamentSuite
@@ -26,5 +27,10 @@ namespace MahjongTournamentSuite
         {
             return new TournamentManagerPresenter(tournamentManagerForm);
         }
+
+        internal static ITableManagerPresenter provideTableManagerPresenter(TableManagerForm tableManagerForm)
+        {
+            return new TableManagerPresenter(tableManagerForm);
+        }        
     }
 }

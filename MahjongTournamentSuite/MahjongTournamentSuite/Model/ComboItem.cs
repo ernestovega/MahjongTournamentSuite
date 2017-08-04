@@ -1,11 +1,11 @@
 ﻿namespace MahjongTournamentSuite.Model
 {
-    class ComboRoundsItem
+    class ComboItem
     {
         public string Text { get; set; }
         public string Value { get; set; }
 
-        public ComboRoundsItem(string text, string value)
+        public ComboItem(string text, string value)
         {
             Text = text;
             Value = value;
