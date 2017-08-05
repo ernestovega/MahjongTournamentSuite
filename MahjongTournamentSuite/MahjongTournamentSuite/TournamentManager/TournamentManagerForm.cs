@@ -13,7 +13,11 @@ namespace MahjongTournamentSuite.TournamentManager
     {
         #region Constants
 
-
+        private readonly Color GREEN_MM = Color.FromArgb(0 , 177, 106);
+        private readonly Color GREEN_DARK_MM = Color.FromArgb(64, 64, 64);
+        private readonly Color GRAY_MM = Color.FromArgb(64, 64, 64);
+        private readonly Color GRAY_DARK_MM = Color.FromArgb(64, 64, 64);
+        private readonly Color RED_MM = Color.FromArgb(64, 64, 64);
 
         #endregion
 
@@ -83,6 +87,13 @@ namespace MahjongTournamentSuite.TournamentManager
 
         public void GenerateRoundTablesButtons(int numTables)
         {
+            //Borramos el panel que haya
+            var controls = Controls.Find("panelButtons", true);
+            if (controls != null && controls.Length > 0)
+            {
+                Controls.Remove(controls[0]);
+            }
+
             //Obtenemos el número de botones por lado.
             int numButtonsHorizontal = 2;
             int numButtonsVertical = 2;
@@ -95,16 +106,24 @@ namespace MahjongTournamentSuite.TournamentManager
             }
 
             //Calculamos los márgenes
-            int marginHorizontal = panelTables.Width / (numButtonsHorizontal * 10);
-            int marginVertical = panelTables.Height / (numButtonsVertical * 10);
+            int marginVertical = panelTables.Height / (numButtonsVertical * 10); //Un 10% del lado del botón
+            int marginHorizontal = marginVertical;
 
             int horizontalMarginsSum = marginHorizontal * (numButtonsHorizontal - 1);
             int verticalMarginsSum = marginVertical * (numButtonsVertical - 1);
 
             //Obtenemos el tamaño de los lados de los botones teniendo en cuenta los márgenes entre cada uno.
-            int buttonSideHorizontal = (panelTables.Width - horizontalMarginsSum) / numButtonsHorizontal;
             int buttonSideVertical = (panelTables.Height - verticalMarginsSum) / numButtonsVertical;
-            
+            int buttonSideHorizontal = buttonSideVertical;
+
+            //Creamos un panel nuevo
+            Panel panelButtons = new Panel();
+            panelButtons.Name = "panelButtons";
+            panelButtons.Width = (buttonSideHorizontal * numButtonsHorizontal) + (marginHorizontal * numButtonsHorizontal);
+            panelButtons.Height = panelTables.Height;
+            panelButtons.AutoSize = false;
+            panelButtons.Location = new Point((panelTables.Width - panelButtons.Width) / 2, 0);
+
             //Generamos los botones
             string roundId = (string)comboRounds.SelectedValue;
             int count = 1;
@@ -113,24 +132,42 @@ namespace MahjongTournamentSuite.TournamentManager
             {
                 for (int j = 0; j < numButtonsHorizontal; j++)
                 {
-                    var button = new Button();
+                    Button button = new Button();
                     button.Size = new Size(buttonSideHorizontal, buttonSideVertical);
                     button.Name = string.Format("btnRound{0}Table{1}", count, roundId);
                     button.Text = string.Format("TABLE {0}", count);
                     button.Location = buttonStartPoint;
+                    button.BackColor = GREEN_MM;
+                    button.ForeColor = Color.White;
+                    button.Font = new Font("Arial Black", 12);
+                    //button.Cursor = ;
+                    button.FlatStyle = FlatStyle.Flat;
+                    button.FlatAppearance.BorderColor = Color.White;
+                    button.FlatAppearance.BorderSize = 0;
+                    //button.FlatAppearance.CheckedBackColor =;
+                    button.FlatAppearance.MouseDownBackColor = GREEN_DARK_MM;
+                    //button.FlatAppearance.MouseOverBackColor = ;
                     button.Click += delegate
                     {
                         new TableManagerForm(_tournamentId, int.Parse((string)comboRounds.SelectedValue), count).Show();
                     };
 
-                    panelTables.Controls.Add(button);
+                    panelButtons.Controls.Add(button);
 
-                    if (count == numTables) return;
-                    count++;
-                    buttonStartPoint.X += buttonSideHorizontal + marginHorizontal;
+                    if (count < numTables)
+                    {
+                        count++;
+                        buttonStartPoint.X += buttonSideHorizontal + marginHorizontal;
+                    }
+                    else
+                    {
+                        panelTables.Controls.Add(panelButtons);
+                        return;
+                    }
                 }
                 buttonStartPoint.X = 0;
                 buttonStartPoint.Y += marginVertical + buttonSideVertical;
+                panelTables.Controls.Add(panelButtons);
             }
         }
 
