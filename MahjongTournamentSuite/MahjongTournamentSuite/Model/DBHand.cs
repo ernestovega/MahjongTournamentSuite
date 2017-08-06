@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MahjongTournamentSuite.Model
 {
-    class DBHand
+    public class DBHand
     {
         [Key, Column(Order = 0)]
         public int TournamentId { get; set; }
@@ -16,6 +16,10 @@ namespace MahjongTournamentSuite.Model
 
         [Key, Column(Order = 3)]
         public int Id { get; set; }
+        
+        public int PlayerWinnerId { get; set; }
+
+        public int PlayerLooserId { get; set; }
 
         public int Points { get; set; }
 
@@ -37,23 +41,6 @@ namespace MahjongTournamentSuite.Model
             RoundId = roundId;
             TableId = tableId;
             Id = id;
-        }
-
-        public DBHand(int id, int tournamentId, int roundId, int tableId, int points, bool isChickenHand,
-            int playerEastPoints, int playerSouthPoints, int playerWestPoints, int playerNorthPoints)
-        {
-            Id = id;
-            TournamentId = tournamentId;
-            RoundId = roundId;
-            TableId = tableId;
-            Points = points;
-            IsChickenHand = isChickenHand;
-            RoundId = roundId;
-            RoundId = roundId;
-            PlayerEastPoints = playerEastPoints;
-            PlayerSouthPoints = playerSouthPoints;
-            PlayerWestPoints = playerWestPoints;
-            PlayerNorthPoints = playerNorthPoints;
         }
     }
 }

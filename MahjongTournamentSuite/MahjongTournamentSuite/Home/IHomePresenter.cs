@@ -2,7 +2,7 @@
 {
     interface IHomePresenter
     {
-        void EditNameClicked();
+        void LoadTournaments();
 
         void DeleteClicked();
     }

@@ -1,4 +1,7 @@
-﻿using MahjongTournamentSuite.Data;
+﻿using System;
+using MahjongTournamentSuite.Data;
+using MahjongTournamentSuite.Model;
+using System.Collections.Generic;
 
 namespace MahjongTournamentSuite.Home
 {
@@ -7,7 +10,8 @@ namespace MahjongTournamentSuite.Home
         #region Fields
 
         private IHomeForm _form;
-        private IDBManager _dbManager; 
+        private IDBManager _dbManager;
+        private List<DBTournament> _tournaments;
 
         #endregion
 
@@ -23,39 +27,29 @@ namespace MahjongTournamentSuite.Home
 
         #region IHomePresenter implementation
 
-        public void EditNameClicked()
+        public void LoadTournaments()
         {
-            string currentTournamentName = _form.GetCurrentTournamentName();
-            if(currentTournamentName.Length > 0)
-            {
-                string newTournamentName = _form.RequestNewTournamentName();
-                if (newTournamentName.Length > 0 && !newTournamentName.Equals(currentTournamentName))
-                {
-                    int tournamentId = _form.GetCurrentTournamentId();
-                    UpdateName(tournamentId, newTournamentName);
-                    _form.ReloadDataGridTournaments();
-                }
-            }
+            _form.showLoading();
+            _tournaments = _dbManager.GetTournaments();
+            _form.FillDataGridTournaments(_tournaments);
+            _form.hideLoading();
         }
 
         public void DeleteClicked()
         {
+            _form.showLoading();
             int tournamentId = _form.GetCurrentTournamentId();
             if (tournamentId > -1 && _form.RequestDeleteTournamentConfirmation())
             {
                 DeleteTournament(tournamentId);
-                _form.ReloadDataGridTournaments();
+                _form.FillDataGridTournaments(_tournaments);
             }
+            _form.hideLoading();
         }
 
         #endregion
 
         #region Private
-
-        private void UpdateName(int tournamentId, string newName)
-        {
-            _dbManager.UpdateTournamentName(tournamentId, newName);
-        }
 
         private void DeleteTournament(int tournamentId)
         {

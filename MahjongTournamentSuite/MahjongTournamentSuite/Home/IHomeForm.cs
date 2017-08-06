@@ -1,8 +1,11 @@
-﻿namespace MahjongTournamentSuite.Home
+﻿using MahjongTournamentSuite.Model;
+using System.Collections.Generic;
+
+namespace MahjongTournamentSuite.Home
 {
     internal interface IHomeForm
     {
-        void ReloadDataGridTournaments();
+        void FillDataGridTournaments(List<DBTournament> tournaments);
 
         string GetCurrentTournamentName();
 
@@ -11,5 +14,9 @@
         string RequestNewTournamentName();
 
         bool RequestDeleteTournamentConfirmation();
+
+        void showLoading();
+
+        void hideLoading();
     }
 }

@@ -67,7 +67,7 @@ namespace MahjongTournamentSuite.NewTournament
 
         private void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            lblCurrentNumTries.Text = e.ProgressPercentage.ToString();
+            SetTriesCounterLabel(e.ProgressPercentage);
         }
 
         private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -161,7 +161,10 @@ namespace MahjongTournamentSuite.NewTournament
 
         public void SetTriesCounterLabel(int tries)
         {
-            lblCurrentNumTries.Text = tries.ToString();
+            if (tries == 0)
+                lblLoadingMessage.Text = "Saving data...";
+            else
+                lblLoadingMessage.Text = string.Format("Tries: {0}", tries);
         }
 
         public void OpenTournamentManagerForm(int tournamentId)
@@ -169,10 +172,6 @@ namespace MahjongTournamentSuite.NewTournament
             new TournamentManagerForm(tournamentId).Show();
             Close();
         }
-
-        #endregion
-
-        #region Private
 
         #endregion
     }

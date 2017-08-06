@@ -114,6 +114,8 @@ namespace MahjongTournamentSuite.NewTournament
             //GenerateTablesByPlayer();
             //GenerateRivalsByPlayer();
 
+            worker.ReportProgress(0, null);
+
             SaveTournament();
             SavePlayers();
             SaveTables();
@@ -143,7 +145,7 @@ namespace MahjongTournamentSuite.NewTournament
             isTeamsChecked = _form.IsTeamsChecked();
             tournamentName = _form.getTournamentName();
             numTriesMax = _form.getNumTries();
-            _form.SetTriesCounterLabel(0);
+            _form.SetTriesCounterLabel(1);
             _form.DisableViews();
         }
         

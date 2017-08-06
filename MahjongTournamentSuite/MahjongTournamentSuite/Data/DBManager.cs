@@ -43,6 +43,11 @@ namespace MahjongTournamentSuite.Data
             return _db.Tournaments.First(x => x.Id == tournamentId);
         }
 
+        public List<DBTournament> GetTournaments()
+        {
+            return _db.Tournaments.ToList();
+        }
+
         public void AddTournament(DBTournament tournament)
         {
             _db.Tournaments.Add(tournament);
@@ -68,9 +73,15 @@ namespace MahjongTournamentSuite.Data
 
         #region Player
 
-        public List<DBPlayer> GetTournamentPlayers(int tournamentId)
+        public List<DBPlayer> GetTablePlayers(int tournamentId, int roundId, int tableId)
         {
-            return _db.Players.ToList().FindAll(x => x.TournamentId == tournamentId);
+            DBTable table = _db.Tables.First(x => x.TournamentId == tournamentId && x.RoundId == roundId && x.Id == tableId);
+            List<DBPlayer> tablePlayers = new List<DBPlayer>(4);
+            tablePlayers.Add(_db.Players.First(x => x.TournamentId == tournamentId && x.Id == table.PlayerEastId));
+            tablePlayers.Add(_db.Players.First(x => x.TournamentId == tournamentId && x.Id == table.PlayerSouthId));
+            tablePlayers.Add(_db.Players.First(x => x.TournamentId == tournamentId && x.Id == table.PlayerWestId));
+            tablePlayers.Add(_db.Players.First(x => x.TournamentId == tournamentId && x.Id == table.PlayerNorthId));
+            return tablePlayers;
         }
 
         public void AddPlayers(List<DBPlayer> players)

@@ -27,6 +27,8 @@ namespace MahjongTournamentSuite.Data
 
         DBTournament GetTournament(int tournamentId);
 
+        List<DBTournament> GetTournaments();
+
         #endregion
 
         #region Table Manager
@@ -37,7 +39,7 @@ namespace MahjongTournamentSuite.Data
 
         List<DBHand> GetTableHands(int tournamentId, int roundId, int tableId);
 
-        List<DBPlayer> GetTournamentPlayers(int tournamentId);
+        List<DBPlayer> GetTablePlayers(int tournamentId, int roundId, int tableId);
 
         #endregion
     }

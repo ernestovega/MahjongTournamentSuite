@@ -128,14 +128,15 @@ namespace MahjongTournamentSuite.TournamentManager
             string roundId = (string)comboRounds.SelectedValue;
             int count = 1;
             Point buttonStartPoint = new Point(0, 0);
-            for (int i = 0; i < numButtonsVertical; i++)
+            for (int i = 1; i <= numButtonsVertical; i++)
             {
-                for (int j = 0; j < numButtonsHorizontal; j++)
+                for (int j = 1; j <= numButtonsHorizontal; j++)
                 {
                     Button button = new Button();
                     button.Size = new Size(buttonSideHorizontal, buttonSideVertical);
-                    button.Name = string.Format("btnRound{0}Table{1}", count, roundId);
+                    button.Name = string.Format("btnRound{1}Table{0}", roundId, count);
                     button.Text = string.Format("TABLE {0}", count);
+                    button.Tag = count;
                     button.Location = buttonStartPoint;
                     button.BackColor = GREEN_MM;
                     button.ForeColor = Color.White;
@@ -149,7 +150,7 @@ namespace MahjongTournamentSuite.TournamentManager
                     //button.FlatAppearance.MouseOverBackColor = ;
                     button.Click += delegate
                     {
-                        new TableManagerForm(_tournamentId, int.Parse((string)comboRounds.SelectedValue), count).Show();
+                        new TableManagerForm(_tournamentId, int.Parse((string)comboRounds.SelectedValue), (int)button.Tag).Show();
                     };
 
                     panelButtons.Controls.Add(button);

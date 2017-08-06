@@ -9,8 +9,19 @@ namespace MahjongTournamentSuite.TableManager
     partial class TableManagerForm : Form, ITableManagerForm
     {
         #region Constants
-
-
+        
+        private const string COLUMN_TOURNAMENT_ID = "TournamentId";
+        private const string COLUMN_ROUND_ID = "RoundId";
+        private const string COLUMN_TABLE_ID = "TableId";
+        private const string COLUMN_ID = "Id";
+        private const string COLUMN_PLAYER_WINNER_ID = "PlayerWinnerId";
+        private const string COLUMN_PLAYER_LOOSER_ID = "PlayerLooserId";
+        private const string COLUMN_POINTS = "Points";
+        private const string COLUMN_IS_CHICKEN_HAND = "IsChickenHand";
+        private const string COLUMN_PLAYER_EAST_POINTS = "PlayerEastPoints";
+        private const string COLUMN_PLAYER_SOUTH_POINTS = "PlayerSouthPoints";
+        private const string COLUMN_PLAYER_WEST_POINTS = "PlayerWestPoints";
+        private const string COLUMN_PLAYER_NORTH_POINTS = "PlayerNorthPoints";
 
         #endregion
 
@@ -46,6 +57,26 @@ namespace MahjongTournamentSuite.TableManager
             Close();
         }
 
+        private void comboEastPlayer_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            _presenter.NameEastPlayerChanged(((ComboItem)comboEastPlayer.SelectedItem).Text);
+        }
+
+        private void comboSouthPlayer_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            _presenter.NameSouthPlayerChanged(((ComboItem)comboSouthPlayer.SelectedItem).Text);
+        }
+
+        private void comboWestPlayer_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            _presenter.NameWestPlayerChanged(((ComboItem)comboWestPlayer.SelectedItem).Text);
+        }
+
+        private void comboNorthPlayer_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            _presenter.NameNorthPlayerChanged(((ComboItem)comboNorthPlayer.SelectedItem).Text);
+        }
+
         #endregion
 
         #region ITableManagerForm implementation
@@ -57,26 +88,26 @@ namespace MahjongTournamentSuite.TableManager
 
         public void SetRoundId(int roundId)
         {
-            lblTournamentName.Text = roundId.ToString();
+            lblRoundId.Text = roundId.ToString();
         }
 
         public void SetTableId(int tableId)
         {
-            lblTournamentName.Text = tableId.ToString();
+            lblTableId.Text = tableId.ToString();
         }
 
-        public void FillCombosPlayers(List<ComboItem> comboPlayers)
+        public void FillCombosPlayers(List<ComboItem> playersList)
         {
-            comboEastPlayer.DataSource = comboPlayers;
+            comboEastPlayer.DataSource = playersList;
             comboEastPlayer.DisplayMember = "Text";
             comboEastPlayer.ValueMember = "Value";
-            comboSouthPlayer.DataSource = comboPlayers;
+            comboSouthPlayer.DataSource = new List<ComboItem>(playersList);
             comboSouthPlayer.DisplayMember = "Text";
             comboSouthPlayer.ValueMember = "Value";
-            comboWestPlayer.DataSource = comboPlayers;
+            comboWestPlayer.DataSource = new List<ComboItem>(playersList);
             comboWestPlayer.DisplayMember = "Text";
             comboWestPlayer.ValueMember = "Value";
-            comboNorthPlayer.DataSource = comboPlayers;
+            comboNorthPlayer.DataSource = new List<ComboItem>(playersList);
             comboNorthPlayer.DisplayMember = "Text";
             comboNorthPlayer.ValueMember = "Value";
         }
@@ -86,7 +117,38 @@ namespace MahjongTournamentSuite.TableManager
             dataGridHands.DataSource = hands;
             dataGridHands.AllowUserToDeleteRows = false;
             dataGridHands.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridHands.Columns["TournamentId"].ReadOnly = true;
+            dataGridHands.Columns[COLUMN_TOURNAMENT_ID].Visible = false;
+            dataGridHands.Columns[COLUMN_ROUND_ID].Visible = false;
+            dataGridHands.Columns[COLUMN_TABLE_ID].Visible = false;
+            dataGridHands.Columns[COLUMN_ID].HeaderText = "Hand";
+            dataGridHands.Columns[COLUMN_PLAYER_WINNER_ID].HeaderText = "Winner Id";
+            dataGridHands.Columns[COLUMN_PLAYER_LOOSER_ID].HeaderText = "Looser Id";
+            dataGridHands.Columns[COLUMN_POINTS].HeaderText = "Hand points";
+            dataGridHands.Columns[COLUMN_IS_CHICKEN_HAND].HeaderText = "Chicken hand";
+            dataGridHands.Columns[COLUMN_PLAYER_EAST_POINTS].HeaderText = "Player east";
+            dataGridHands.Columns[COLUMN_PLAYER_SOUTH_POINTS].HeaderText = "Player south";
+            dataGridHands.Columns[COLUMN_PLAYER_WEST_POINTS].HeaderText = "Player west";
+            dataGridHands.Columns[COLUMN_PLAYER_NORTH_POINTS].HeaderText = "Player north";
+        }
+
+        public void SetDataGridHeaderEastPlayerText(string selectedText)
+        {
+            dataGridHands.Columns[COLUMN_PLAYER_EAST_POINTS].HeaderText = selectedText;
+        }
+
+        public void SetDataGridHeaderSouthPlayerText(string selectedText)
+        {
+            dataGridHands.Columns[COLUMN_PLAYER_SOUTH_POINTS].HeaderText = selectedText;
+        }
+
+        public void SetDataGridHeaderWestPlayerText(string selectedText)
+        {
+            dataGridHands.Columns[COLUMN_PLAYER_WEST_POINTS].HeaderText = selectedText;
+        }
+
+        public void SetDataGridHeaderNorthPlayerText(string selectedText)
+        {
+            dataGridHands.Columns[COLUMN_PLAYER_NORTH_POINTS].HeaderText = selectedText;
         }
 
         #endregion

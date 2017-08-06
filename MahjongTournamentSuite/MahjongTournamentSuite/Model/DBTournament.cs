@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MahjongTournamentSuite.Model
 {
-    class DBTournament
+    public class DBTournament
     {
         [Key]
         public int Id { get; set; }

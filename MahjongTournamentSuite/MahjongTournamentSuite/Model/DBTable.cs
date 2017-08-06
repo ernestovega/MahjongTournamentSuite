@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MahjongTournamentSuite.Model
 {
-    class DBTable {
+    public class DBTable {
 
         [Key, Column(Order = 0)]
         public int TournamentId { get; set; }

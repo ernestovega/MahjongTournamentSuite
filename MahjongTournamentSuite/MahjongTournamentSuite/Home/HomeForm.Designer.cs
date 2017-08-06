@@ -41,9 +41,14 @@
             this.imgLogoMM = new System.Windows.Forms.PictureBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblLoadingMessage = new System.Windows.Forms.Label();
+            this.panelLoading = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridTournaments)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoEMA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panelLoading.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnNew
@@ -185,7 +190,6 @@
             this.btnEditName.TabIndex = 77;
             this.btnEditName.Text = "EDIT NAME";
             this.btnEditName.UseVisualStyleBackColor = false;
-            this.btnEditName.Click += new System.EventHandler(this.btnEditName_Click);
             // 
             // btnDelete
             // 
@@ -273,6 +277,41 @@
             this.label1.TabIndex = 79;
             this.label1.Text = "SUITE";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.Image = global::MahjongTournamentSuite.Properties.Resources.MMLoading160;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 86);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(983, 240);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
+            // 
+            // lblLoadingMessage
+            // 
+            this.lblLoadingMessage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblLoadingMessage.Font = new System.Drawing.Font("Arial Black", 12F);
+            this.lblLoadingMessage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblLoadingMessage.Location = new System.Drawing.Point(3, 352);
+            this.lblLoadingMessage.Name = "lblLoadingMessage";
+            this.lblLoadingMessage.Size = new System.Drawing.Size(977, 23);
+            this.lblLoadingMessage.TabIndex = 4;
+            this.lblLoadingMessage.Text = "Message";
+            this.lblLoadingMessage.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            // 
+            // panelLoading
+            // 
+            this.panelLoading.Controls.Add(this.pictureBox1);
+            this.panelLoading.Controls.Add(this.lblLoadingMessage);
+            this.panelLoading.Location = new System.Drawing.Point(13, 180);
+            this.panelLoading.Name = "panelLoading";
+            this.panelLoading.Size = new System.Drawing.Size(983, 537);
+            this.panelLoading.TabIndex = 80;
+            this.panelLoading.Visible = false;
+            // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -281,6 +320,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.Controls.Add(this.panelLoading);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnEditName);
@@ -297,10 +337,11 @@
             this.Name = "HomeForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mahjong Tournament Suite - Home";
-            this.Load += new System.EventHandler(this.HomeForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridTournaments)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoEMA)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panelLoading.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -317,5 +358,8 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label lblLoadingMessage;
+        private System.Windows.Forms.Panel panelLoading;
     }
 }
