@@ -22,18 +22,15 @@ namespace MahjongTournamentSuite.TableManager
         private const string COLUMN_PLAYER_SOUTH_POINTS = "PlayerSouthPoints";
         private const string COLUMN_PLAYER_WEST_POINTS = "PlayerWestPoints";
         private const string COLUMN_PLAYER_NORTH_POINTS = "PlayerNorthPoints";
-        private const int COLUMN_TOURNAMENT_ID_ORDER = 0;
-        private const int COLUMN_ROUND_ID_ORDER = 1;
-        private const int COLUMN_TABLE_ID_ORDER = 2;
-        private const int COLUMN_ID_ORDER = 3;
-        private const int COLUMN_PLAYER_WINNER_ID_ORDER = 4;
-        private const int COLUMN_PLAYER_LOOSER_ID_ORDER = 5;
-        private const int COLUMN_POINTS_ORDER = 6;
-        private const int COLUMN_IS_CHICKEN_HAND_ORDER = 7;
-        private const int COLUMN_PLAYER_EAST_POINTS_ORDER = 8;
-        private const int COLUMN_PLAYER_SOUTH_POINTS_ORDER = 9;
-        private const int COLUMN_PLAYER_WEST_POINTS_ORDER = 10;
-        private const int COLUMN_PLAYER_NORTH_POINTS_ORDER = 11;
+        private const int COLUMN_ID_ORDER = 0;
+        private const int COLUMN_PLAYER_WINNER_ID_ORDER = 1;
+        private const int COLUMN_PLAYER_LOOSER_ID_ORDER = 2;
+        private const int COLUMN_POINTS_ORDER = 3;
+        private const int COLUMN_IS_CHICKEN_HAND_ORDER = 4;
+        private const int COLUMN_PLAYER_EAST_POINTS_ORDER = 5;
+        private const int COLUMN_PLAYER_SOUTH_POINTS_ORDER = 6;
+        private const int COLUMN_PLAYER_WEST_POINTS_ORDER = 7;
+        private const int COLUMN_PLAYER_NORTH_POINTS_ORDER = 8;
 
         #endregion
 
@@ -64,6 +61,12 @@ namespace MahjongTournamentSuite.TableManager
 
         #region Events
 
+        private void TableManagerForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            dataGridHands_CellEndEdit(null, new DataGridViewCellEventArgs(
+                dataGridHands.CurrentCell.RowIndex, dataGridHands.CurrentCell.ColumnIndex));
+        }
+
         private void btnReturn_Click(object sender, EventArgs e)
         {
             Close();
@@ -91,28 +94,52 @@ namespace MahjongTournamentSuite.TableManager
         }
         #endregion
 
-        //private void dataGridHands_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
-        //{
-        //    if (dataGridHands.CurrentCell == null)
-        //        return;
-        //    else if (dataGridHands.CurrentCell.ColumnIndex == COLUMN_PLAYER_WINNER_ID_ORDER
-        //        || dataGridHands.CurrentCell.ColumnIndex == COLUMN_PLAYER_LOOSER_ID_ORDER
-        //        || dataGridHands.CurrentCell.ColumnIndex == COLUMN_POINTS_ORDER
-        //        || dataGridHands.CurrentCell.ColumnIndex == COLUMN_PLAYER_EAST_POINTS_ORDER
-        //        || dataGridHands.CurrentCell.ColumnIndex == COLUMN_PLAYER_SOUTH_POINTS_ORDER
-        //        || dataGridHands.CurrentCell.ColumnIndex == COLUMN_PLAYER_WEST_POINTS_ORDER
-        //        || dataGridHands.CurrentCell.ColumnIndex == COLUMN_PLAYER_NORTH_POINTS_ORDER)
-        //        dataGridHands.Cursor = Cursors.IBeam;
-        //    else if (dataGridHands.CurrentCell.ColumnIndex == COLUMN_IS_CHICKEN_HAND_ORDER)
-        //        dataGridHands.Cursor = Cursors.Hand;
-        //    else
-        //        dataGridHands.Cursor = Cursors.Default;
-        //}
+        #region Cells
+        private void dataGridHands_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1 && e.ColumnIndex != COLUMN_IS_CHICKEN_HAND_ORDER)
+                dataGridHands.BeginEdit(true);
+        }
 
-        //private void dataGridHands_MouseLeave(object sender, EventArgs e)
-        //{
-        //    dataGridHands.Cursor = Cursors.Default;
-        //}
+        private void dataGridHands_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1 && e.ColumnIndex == COLUMN_IS_CHICKEN_HAND_ORDER)
+            {
+                DataGridViewCheckBoxCell checkCell = dataGridHands.CurrentCell as DataGridViewCheckBoxCell;
+                checkCell.Value = checkCell.Value == null || !((bool)checkCell.Value);
+                dataGridHands.RefreshEdit();
+                dataGridHands.NotifyCurrentCellDirty(true);
+            }
+        }
+
+        private void dataGridHands_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                DataGridViewRow row = dataGridHands.Rows[e.RowIndex];
+                object cellValue = row.Cells[e.ColumnIndex].Value;
+                switch (e.ColumnIndex)
+                {
+                    case COLUMN_PLAYER_WINNER_ID_ORDER:
+                        //if (cellValue == null || ((string)cellValue).Length == 0) cellValue = 0;
+                        //_presenter.playerWinnerIdChanged((int)row.Cells[COLUMN_ID_ORDER].Value, (int)cellValue);
+                        break;
+                    case COLUMN_PLAYER_LOOSER_ID_ORDER:
+                        //if (cellValue == null || ((string)cellValue).Length == 0) cellValue = 0;
+                        //_presenter.playerLooserIdChanged((int)row.Cells[COLUMN_ID_ORDER].Value, (int)cellValue);
+                        break;
+                    case COLUMN_POINTS_ORDER:
+                        //if (cellValue == null || ((string)cellValue).Length == 0) cellValue = 0;
+                        //_presenter.PointsChanged((int)row.Cells[COLUMN_ID_ORDER].Value, (int)cellValue);
+                        break;
+                    case COLUMN_IS_CHICKEN_HAND_ORDER:
+                        //if (cellValue == null) cellValue = true;
+                        //_presenter.IsChickenHandChanged((int)row.Cells[COLUMN_ID_ORDER].Value, (bool)cellValue);
+                        break;
+                }
+            }
+        }
+        #endregion
 
         #endregion
 
@@ -164,6 +191,10 @@ namespace MahjongTournamentSuite.TableManager
             dataGridHands.Columns[COLUMN_TABLE_ID].Visible = false;
             //Column ReadOnly
             dataGridHands.Columns[COLUMN_ID].ReadOnly = true;
+            dataGridHands.Columns[COLUMN_PLAYER_EAST_POINTS].ReadOnly = true;
+            dataGridHands.Columns[COLUMN_PLAYER_SOUTH_POINTS].ReadOnly = true;
+            dataGridHands.Columns[COLUMN_PLAYER_WEST_POINTS].ReadOnly = true;
+            dataGridHands.Columns[COLUMN_PLAYER_NORTH_POINTS].ReadOnly = true;
             //Column Header text
             dataGridHands.Columns[COLUMN_ID].HeaderText = "Hand";
             dataGridHands.Columns[COLUMN_PLAYER_WINNER_ID].HeaderText = "Winner Id";
@@ -184,23 +215,6 @@ namespace MahjongTournamentSuite.TableManager
         public void SetDataGridHeaderSouthPlayerText(string selectedText)
         {
             dataGridHands.Columns[COLUMN_PLAYER_SOUTH_POINTS].HeaderText = selectedText;
-        }
-        
-        private void dataGridHands_CellEnter(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex > -1 && dataGridHands.CurrentCell.ColumnIndex != COLUMN_IS_CHICKEN_HAND_ORDER)
-                dataGridHands.BeginEdit(true);
-        }
-
-        private void dataGridHands_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex > -1 && dataGridHands.CurrentCell.ColumnIndex == COLUMN_IS_CHICKEN_HAND_ORDER)
-            {
-                DataGridViewCheckBoxCell checkCell = dataGridHands.CurrentCell as DataGridViewCheckBoxCell;
-                checkCell.Value = checkCell.Value == null || !((bool)checkCell.Value);
-                dataGridHands.RefreshEdit();
-                dataGridHands.NotifyCurrentCellDirty(true);
-            }
         }
 
         public void SetDataGridHeaderWestPlayerText(string selectedText)

@@ -240,6 +240,7 @@
             this.dataGridHands.Size = new System.Drawing.Size(984, 505);
             this.dataGridHands.TabIndex = 26;
             this.dataGridHands.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridHands_CellClick);
+            this.dataGridHands.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridHands_CellEndEdit);
             this.dataGridHands.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridHands_CellEnter);
             // 
             // label6
@@ -320,6 +321,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mahjong Tournament Suite - Table Manager";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TableManagerForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridHands)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -68,6 +68,26 @@ namespace MahjongTournamentSuite.TableManager
             _form.SetDataGridHeaderNorthPlayerText(selectedValue);
         }
 
+        public void playerWinnerIdChanged(int handId, int newPlayerWinnerId)
+        {
+            
+        }
+
+        public void playerLooserIdChanged(int handId, int cellValue)
+        {
+
+        }
+
+        public void PointsChanged(int handId, int cellValue)
+        {
+
+        }
+
+        public void IsChickenHandChanged(int handId, bool cellValue)
+        {
+
+        }
+
         #endregion
 
         #region Private
