@@ -71,9 +71,9 @@
             this.lblTournamentName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTournamentName.Font = new System.Drawing.Font("Arial Black", 24F);
-            this.lblTournamentName.Location = new System.Drawing.Point(379, 16);
+            this.lblTournamentName.Location = new System.Drawing.Point(348, 16);
             this.lblTournamentName.Name = "lblTournamentName";
-            this.lblTournamentName.Size = new System.Drawing.Size(236, 43);
+            this.lblTournamentName.Size = new System.Drawing.Size(336, 43);
             this.lblTournamentName.TabIndex = 27;
             this.lblTournamentName.Text = "Tournament name";
             this.lblTournamentName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -198,15 +198,19 @@
             // 
             this.dataGridHands.AllowUserToAddRows = false;
             this.dataGridHands.AllowUserToDeleteRows = false;
+            this.dataGridHands.AllowUserToResizeColumns = false;
+            this.dataGridHands.AllowUserToResizeRows = false;
             this.dataGridHands.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridHands.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.dataGridHands.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.dataGridHands.BackgroundColor = System.Drawing.Color.White;
             this.dataGridHands.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridHands.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial Black", 12F);
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
@@ -214,25 +218,29 @@
             this.dataGridHands.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridHands.ColumnHeadersHeight = 32;
             this.dataGridHands.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dataGridHands.Cursor = System.Windows.Forms.Cursors.Default;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial Black", 12F);
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridHands.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridHands.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dataGridHands.Location = new System.Drawing.Point(12, 230);
             this.dataGridHands.MultiSelect = false;
             this.dataGridHands.Name = "dataGridHands";
             this.dataGridHands.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dataGridHands.RowHeadersVisible = false;
             this.dataGridHands.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dataGridHands.RowTemplate.Height = 32;
-            this.dataGridHands.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridHands.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dataGridHands.RowTemplate.Height = 48;
+            this.dataGridHands.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridHands.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridHands.Size = new System.Drawing.Size(984, 505);
             this.dataGridHands.TabIndex = 26;
+            this.dataGridHands.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridHands_CellClick);
+            this.dataGridHands.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridHands_CellEnter);
             // 
             // label6
             // 
