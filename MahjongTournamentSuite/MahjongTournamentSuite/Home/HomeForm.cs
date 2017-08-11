@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace MahjongTournamentSuite.Home
@@ -19,6 +20,10 @@ namespace MahjongTournamentSuite.Home
         public static readonly string COLUMN_NAME = "Name";
         public static readonly string COLUMN_PLAYERS = "NumPlayers";
         public static readonly string COLUMN_ROUNDS = "NumRounds";
+
+        private static readonly Color greenEnabled = Color.FromArgb(0, 177, 106);
+        private static readonly Color greenEnabledHover = Color.FromArgb(0, 127, 56);
+        private static readonly Color grayDisabled = Color.FromArgb(65, 65, 65);
 
         #endregion
 
@@ -67,8 +72,10 @@ namespace MahjongTournamentSuite.Home
             if (tournamentId > -1)
             {
                 new TournamentManagerForm(tournamentId).Show();
-            Close();
+                Close();
             }
+            else
+                hideLoading();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -89,11 +96,15 @@ namespace MahjongTournamentSuite.Home
         public void FillDataGridTournaments(List<DBTournament> tournaments)
         {
             dataGridTournaments.DataSource = tournaments;
+            //Sort
             //dataGridTournaments.Sort(dataGridTournaments.Columns[COLUMN_DATE], ListSortDirection.Descending);
+            //Visible
             dataGridTournaments.Columns[COLUMN_ID].Visible = false;
+            //ReadOnly
             dataGridTournaments.Columns[COLUMN_DATE].ReadOnly = true;
             dataGridTournaments.Columns[COLUMN_PLAYERS].ReadOnly = true;
             dataGridTournaments.Columns[COLUMN_ROUNDS].ReadOnly = true;
+            //AutoSizeMode
             dataGridTournaments.Columns[COLUMN_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridTournaments.Columns[COLUMN_DATE].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridTournaments.Columns[COLUMN_PLAYERS].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -138,6 +149,20 @@ namespace MahjongTournamentSuite.Home
         public void hideLoading()
         {
             panelLoading.Visible = false;
+        }
+
+        public void EnableResumeButton()
+        {
+            btnResume.Enabled = true;
+            btnResume.BackColor = greenEnabled;
+            btnResume.FlatAppearance.MouseOverBackColor = greenEnabledHover;
+        }
+
+        public void DisableResumeButton()
+        {
+            btnResume.Enabled = false;
+            btnResume.BackColor = grayDisabled;
+            btnResume.FlatAppearance.MouseOverBackColor = grayDisabled;
         }
 
         #endregion

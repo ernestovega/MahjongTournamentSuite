@@ -1,5 +1,4 @@
-﻿using System;
-using MahjongTournamentSuite.Data;
+﻿using MahjongTournamentSuite.Data;
 using MahjongTournamentSuite.Model;
 using System.Collections.Generic;
 
@@ -31,6 +30,7 @@ namespace MahjongTournamentSuite.Home
         {
             _form.showLoading();
             _tournaments = _dbManager.GetTournaments();
+            ResumeButtonEnabling();
             _form.FillDataGridTournaments(_tournaments);
             _form.hideLoading();
         }
@@ -50,6 +50,14 @@ namespace MahjongTournamentSuite.Home
         #endregion
 
         #region Private
+
+        private void ResumeButtonEnabling()
+        {
+            if (_tournaments.Count > 0)
+                _form.EnableResumeButton();
+            else
+                _form.DisableResumeButton();
+        }
 
         private void DeleteTournament(int tournamentId)
         {

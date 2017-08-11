@@ -22,15 +22,11 @@ namespace MahjongTournamentSuite.TableManager
         private const string COLUMN_PLAYER_SOUTH_POINTS = "PlayerSouthPoints";
         private const string COLUMN_PLAYER_WEST_POINTS = "PlayerWestPoints";
         private const string COLUMN_PLAYER_NORTH_POINTS = "PlayerNorthPoints";
-        private const int COLUMN_ID_ORDER = 0;
-        private const int COLUMN_PLAYER_WINNER_ID_ORDER = 1;
-        private const int COLUMN_PLAYER_LOOSER_ID_ORDER = 2;
-        private const int COLUMN_POINTS_ORDER = 3;
-        private const int COLUMN_IS_CHICKEN_HAND_ORDER = 4;
-        private const int COLUMN_PLAYER_EAST_POINTS_ORDER = 5;
-        private const int COLUMN_PLAYER_SOUTH_POINTS_ORDER = 6;
-        private const int COLUMN_PLAYER_WEST_POINTS_ORDER = 7;
-        private const int COLUMN_PLAYER_NORTH_POINTS_ORDER = 8;
+        private const int COLUMN_ID_INDEX = 3;
+        private const int COLUMN_PLAYER_WINNER_ID_INDEX = 4;
+        private const int COLUMN_PLAYER_LOOSER_ID_INDEX = 5;
+        private const int COLUMN_POINTS_INDEX = 6;
+        private const int COLUMN_IS_CHICKEN_HAND_INDEX = 7;
 
         #endregion
 
@@ -60,12 +56,6 @@ namespace MahjongTournamentSuite.TableManager
         #endregion
 
         #region Events
-
-        private void TableManagerForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            dataGridHands_CellEndEdit(null, new DataGridViewCellEventArgs(
-                dataGridHands.CurrentCell.RowIndex, dataGridHands.CurrentCell.ColumnIndex));
-        }
 
         private void btnReturn_Click(object sender, EventArgs e)
         {
@@ -97,13 +87,13 @@ namespace MahjongTournamentSuite.TableManager
         #region Cells
         private void dataGridHands_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex > -1 && e.ColumnIndex != COLUMN_IS_CHICKEN_HAND_ORDER)
+            if (e.RowIndex > -1 && e.ColumnIndex != COLUMN_IS_CHICKEN_HAND_INDEX)
                 dataGridHands.BeginEdit(true);
         }
 
         private void dataGridHands_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex > -1 && e.ColumnIndex == COLUMN_IS_CHICKEN_HAND_ORDER)
+            if (e.RowIndex > -1 && e.ColumnIndex == COLUMN_IS_CHICKEN_HAND_INDEX)
             {
                 DataGridViewCheckBoxCell checkCell = dataGridHands.CurrentCell as DataGridViewCheckBoxCell;
                 checkCell.Value = checkCell.Value == null || !((bool)checkCell.Value);
@@ -120,21 +110,21 @@ namespace MahjongTournamentSuite.TableManager
                 object cellValue = row.Cells[e.ColumnIndex].Value;
                 switch (e.ColumnIndex)
                 {
-                    case COLUMN_PLAYER_WINNER_ID_ORDER:
+                    case COLUMN_PLAYER_WINNER_ID_INDEX:
                         //if (cellValue == null || ((string)cellValue).Length == 0) cellValue = 0;
-                        //_presenter.playerWinnerIdChanged((int)row.Cells[COLUMN_ID_ORDER].Value, (int)cellValue);
+                        //_presenter.playerWinnerIdChanged((int)row.Cells[COLUMN_ID_INDEX].Value, (int)cellValue);
                         break;
-                    case COLUMN_PLAYER_LOOSER_ID_ORDER:
+                    case COLUMN_PLAYER_LOOSER_ID_INDEX:
                         //if (cellValue == null || ((string)cellValue).Length == 0) cellValue = 0;
-                        //_presenter.playerLooserIdChanged((int)row.Cells[COLUMN_ID_ORDER].Value, (int)cellValue);
+                        //_presenter.playerLooserIdChanged((int)row.Cells[COLUMN_ID_INDEX].Value, (int)cellValue);
                         break;
-                    case COLUMN_POINTS_ORDER:
+                    case COLUMN_POINTS_INDEX:
                         //if (cellValue == null || ((string)cellValue).Length == 0) cellValue = 0;
-                        //_presenter.PointsChanged((int)row.Cells[COLUMN_ID_ORDER].Value, (int)cellValue);
+                        //_presenter.PointsChanged((int)row.Cells[COLUMN_ID_INDEX].Value, (int)cellValue);
                         break;
-                    case COLUMN_IS_CHICKEN_HAND_ORDER:
+                    case COLUMN_IS_CHICKEN_HAND_INDEX:
                         //if (cellValue == null) cellValue = true;
-                        //_presenter.IsChickenHandChanged((int)row.Cells[COLUMN_ID_ORDER].Value, (bool)cellValue);
+                        //_presenter.IsChickenHandChanged((int)row.Cells[COLUMN_ID_INDEX].Value, (bool)cellValue);
                         break;
                 }
             }

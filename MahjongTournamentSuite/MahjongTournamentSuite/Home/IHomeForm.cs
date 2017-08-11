@@ -18,5 +18,9 @@ namespace MahjongTournamentSuite.Home
         void showLoading();
 
         void hideLoading();
+
+        void EnableResumeButton();
+
+        void DisableResumeButton();
     }
 }

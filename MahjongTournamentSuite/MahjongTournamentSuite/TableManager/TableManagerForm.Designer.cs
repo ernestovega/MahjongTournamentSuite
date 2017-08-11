@@ -321,7 +321,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mahjong Tournament Suite - Table Manager";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TableManagerForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridHands)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
