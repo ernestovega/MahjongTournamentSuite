@@ -99,6 +99,7 @@ namespace MahjongTournamentSuite.TableManager
                 checkCell.Value = checkCell.Value == null || !((bool)checkCell.Value);
                 dataGridHands.RefreshEdit();
                 dataGridHands.NotifyCurrentCellDirty(true);
+                _presenter.IsChickenHandChanged(GetSelectedHandId(e.RowIndex), (bool)checkCell.Value);
             }
         }
 
@@ -106,25 +107,21 @@ namespace MahjongTournamentSuite.TableManager
         {
             if (e.RowIndex > -1)
             {
-                DataGridViewRow row = dataGridHands.Rows[e.RowIndex];
-                object cellValue = row.Cells[e.ColumnIndex].Value;
+                int handId = GetSelectedHandId(e.RowIndex);
+                int iCellValue = 0;
+                object oCellValue = dataGridHands.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                if (oCellValue != null && ((string)oCellValue).Length > 0) iCellValue = (int)oCellValue;
+                   
                 switch (e.ColumnIndex)
                 {
                     case COLUMN_PLAYER_WINNER_ID_INDEX:
-                        //if (cellValue == null || ((string)cellValue).Length == 0) cellValue = 0;
-                        //_presenter.playerWinnerIdChanged((int)row.Cells[COLUMN_ID_INDEX].Value, (int)cellValue);
+                        //_presenter.playerWinnerIdChanged(handId, iCellValue);
                         break;
                     case COLUMN_PLAYER_LOOSER_ID_INDEX:
-                        //if (cellValue == null || ((string)cellValue).Length == 0) cellValue = 0;
-                        //_presenter.playerLooserIdChanged((int)row.Cells[COLUMN_ID_INDEX].Value, (int)cellValue);
+                        //_presenter.playerLooserIdChanged(handId, iCellValue);
                         break;
                     case COLUMN_POINTS_INDEX:
-                        //if (cellValue == null || ((string)cellValue).Length == 0) cellValue = 0;
-                        //_presenter.PointsChanged((int)row.Cells[COLUMN_ID_INDEX].Value, (int)cellValue);
-                        break;
-                    case COLUMN_IS_CHICKEN_HAND_INDEX:
-                        //if (cellValue == null) cellValue = true;
-                        //_presenter.IsChickenHandChanged((int)row.Cells[COLUMN_ID_INDEX].Value, (bool)cellValue);
+                        //_presenter.PointsChanged(handId, iCellValue);
                         break;
                 }
             }
@@ -220,6 +217,11 @@ namespace MahjongTournamentSuite.TableManager
         #endregion
 
         #region Private
+
+        private int GetSelectedHandId(int rowIndex)
+        {
+            return dataGridHands.Rows[e.RowIndex].Cells[COLUMN_ID_INDEX].Value;
+        }
 
         #endregion
 
