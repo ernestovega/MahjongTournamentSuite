@@ -15,6 +15,14 @@ namespace MahjongTournamentSuite.Model
         [Key, Column(Order = 2)]
         public int Id { get; set; }
 
+        public int Player1Id { get; set; }
+
+        public int Player2Id { get; set; }
+
+        public int Player3Id { get; set; }
+
+        public int Player4Id { get; set; }
+
         public int PlayerEastId { get; set; }
 
         public int PlayerSouthId { get; set; }
@@ -26,15 +34,19 @@ namespace MahjongTournamentSuite.Model
         public DBTable() {}
 
         public DBTable(int tournamentId, int roundId, int id,
-            int playerEastId, int playerSouthId, int playerWestId, int playerNorthId)
+            int player1Id, int player2Id, int player3Id, int player4Id)
         {
             TournamentId = tournamentId;
             RoundId = roundId;
             Id = id;
-            PlayerEastId = playerEastId;
-            PlayerSouthId = playerSouthId;
-            PlayerWestId = playerWestId;
-            PlayerNorthId = playerNorthId;
+            Player1Id = player1Id;
+            Player2Id = player2Id;
+            Player3Id = player3Id;
+            Player4Id = player4Id;
+            PlayerEastId = 0;
+            PlayerSouthId = 0;
+            PlayerWestId = 0;
+            PlayerNorthId = 0;
         }
     }
 }

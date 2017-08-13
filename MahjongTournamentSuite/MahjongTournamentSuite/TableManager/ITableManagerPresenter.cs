@@ -1,16 +1,18 @@
-﻿namespace MahjongTournamentSuite.TableManager
+﻿using MahjongTournamentSuite.Model;
+
+namespace MahjongTournamentSuite.TableManager
 {
     interface ITableManagerPresenter
     {
-        void LoadTable(int tournamentId, int roundId, int tableId);
+        void LoadForm(int tournamentId, int roundId, int tableId);
 
-        void NameEastPlayerChanged(string selectedValue);
+        void NameEastPlayerChanged(int selectedPlayerId);
 
-        void NameSouthPlayerChanged(string selectedValue);
+        void NameSouthPlayerChanged(int selectedPlayerId);
 
-        void NameWestPlayerChanged(string selectedValue);
+        void NameWestPlayerChanged(int selectedPlayerId);
 
-        void NameNorthPlayerChanged(string selectedValue);
+        void NameNorthPlayerChanged(int selectedPlayerId);
 
         void playerWinnerIdChanged(int handId, int newPlayerWinnerId);
 

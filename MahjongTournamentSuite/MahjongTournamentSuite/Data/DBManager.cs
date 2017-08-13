@@ -35,12 +35,12 @@ namespace MahjongTournamentSuite.Data
 
         public string GetTournamentName(int tournamentId)
         {
-            return _db.Tournaments.First(x => x.Id == tournamentId).Name;
+            return _db.Tournaments.ToList().FirstOrDefault(x => x.Id == tournamentId).Name;
         }
 
         public DBTournament GetTournament(int tournamentId)
         {
-            return _db.Tournaments.First(x => x.Id == tournamentId);
+            return _db.Tournaments.ToList().FirstOrDefault(x => x.Id == tournamentId);
         }
 
         public List<DBTournament> GetTournaments()
@@ -56,7 +56,7 @@ namespace MahjongTournamentSuite.Data
 
         public void UpdateTournamentName(int tournamentId, string newName)
         {
-            _db.Tournaments.First(x => x.Id == tournamentId).Name = newName;
+            _db.Tournaments.ToList().FirstOrDefault(x => x.Id == tournamentId).Name = newName;
             _db.SaveChanges();
         }
 
@@ -65,7 +65,7 @@ namespace MahjongTournamentSuite.Data
             DeleteTournamentHands(tournamentId);
             DeleteTournamentTables(tournamentId);
             DeleteTournamentPlayers(tournamentId);
-            _db.Tournaments.Remove(_db.Tournaments.First(x => x.Id == tournamentId));
+            _db.Tournaments.Remove(_db.Tournaments.ToList().FirstOrDefault(x => x.Id == tournamentId));
             _db.SaveChanges();
         }
         
@@ -75,12 +75,12 @@ namespace MahjongTournamentSuite.Data
 
         public List<DBPlayer> GetTablePlayers(int tournamentId, int roundId, int tableId)
         {
-            DBTable table = _db.Tables.First(x => x.TournamentId == tournamentId && x.RoundId == roundId && x.Id == tableId);
+            DBTable table = _db.Tables.ToList().FirstOrDefault(x => x.TournamentId == tournamentId && x.RoundId == roundId && x.Id == tableId);
             List<DBPlayer> tablePlayers = new List<DBPlayer>(4);
-            tablePlayers.Add(_db.Players.First(x => x.TournamentId == tournamentId && x.Id == table.PlayerEastId));
-            tablePlayers.Add(_db.Players.First(x => x.TournamentId == tournamentId && x.Id == table.PlayerSouthId));
-            tablePlayers.Add(_db.Players.First(x => x.TournamentId == tournamentId && x.Id == table.PlayerWestId));
-            tablePlayers.Add(_db.Players.First(x => x.TournamentId == tournamentId && x.Id == table.PlayerNorthId));
+            tablePlayers.Add(_db.Players.ToList().FirstOrDefault(x => x.TournamentId == tournamentId && x.Id == table.Player1Id));
+            tablePlayers.Add(_db.Players.ToList().FirstOrDefault(x => x.TournamentId == tournamentId && x.Id == table.Player2Id));
+            tablePlayers.Add(_db.Players.ToList().FirstOrDefault(x => x.TournamentId == tournamentId && x.Id == table.Player3Id));
+            tablePlayers.Add(_db.Players.ToList().FirstOrDefault(x => x.TournamentId == tournamentId && x.Id == table.Player4Id));
             return tablePlayers;
         }
 
@@ -108,7 +108,16 @@ namespace MahjongTournamentSuite.Data
 
         public DBTable GetTable(int tournamentId, int roundId, int tableId)
         {
-            return _db.Tables.First(x => x.TournamentId == tournamentId && x.RoundId == roundId && x.Id == tableId);
+            return _db.Tables.ToList().FirstOrDefault(x => x.TournamentId == tournamentId && x.RoundId == roundId && x.Id == tableId);
+        }
+
+        public void UpdateTablePlayersPositions(DBTable table)
+        {
+            DBTable dbTable = _db.Tables.ToList().FirstOrDefault(x => x.TournamentId == table.TournamentId && x.Id == table.Id);
+            dbTable.PlayerEastId = table.PlayerEastId;
+            dbTable.PlayerSouthId = table.PlayerSouthId;
+            dbTable.PlayerWestId = table.PlayerWestId;
+            dbTable.PlayerNorthId = table.PlayerNorthId;
         }
 
         public void DeleteTournamentTables(int tournamentId)
@@ -129,6 +138,17 @@ namespace MahjongTournamentSuite.Data
         public void AddHands(List<DBHand> hands)
         {
             _db.Hands.AddRange(hands);
+            _db.SaveChanges();
+        }
+
+        public void UpdateHand(DBHand hand)
+        {
+            DBHand dbHand = _db.Hands.ToList().FirstOrDefault(x => x.TournamentId == hand.TournamentId
+            && x.TableId == hand.TableId && x.RoundId == hand.RoundId && x.Id == hand.Id);
+            dbHand.PlayerWinnerId = hand.PlayerWinnerId;
+            dbHand.PlayerLooserId = hand.PlayerLooserId;
+            dbHand.Score = hand.Score;
+            dbHand.IsChickenHand = hand.IsChickenHand;
             _db.SaveChanges();
         }
 

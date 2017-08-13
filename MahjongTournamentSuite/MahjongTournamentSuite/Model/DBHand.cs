@@ -21,19 +21,11 @@ namespace MahjongTournamentSuite.Model
 
         public int PlayerLooserId { get; set; }
 
-        public int Points { get; set; }
+        public int Score { get; set; }
 
         public bool IsChickenHand { get; set; }
 
-        public int PlayerEastPoints { get; set; }
-
-        public int PlayerSouthPoints { get; set; }
-
-        public int PlayerWestPoints { get; set; }
-
-        public int PlayerNorthPoints { get; set; }
-
-        public DBHand() { }
+        public DBHand() {}
 
         public DBHand(int tournamentId, int roundId, int tableId, int id)
         {

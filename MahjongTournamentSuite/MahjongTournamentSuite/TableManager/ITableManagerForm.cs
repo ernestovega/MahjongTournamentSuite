@@ -13,14 +13,23 @@ namespace MahjongTournamentSuite.TableManager
 
         void FillCombosPlayers(List<ComboItem> comboPlayers);
 
-        void FillDataGridHands(List<DBHand> hands);
+        void FillDataGridHands(List<DataGridHand> dataGridHands);
 
-        void SetDataGridHeaderEastPlayerText(string selectedValue);
+        void RefreshDataGridHands(List<DBHand> _hands);
 
-        void SetDataGridHeaderSouthPlayerText(string selectedValue);
+        void FillPlayersHandScores(int id, int eastPlayerScore, 
+            int southPlayerScore, int westPlayerScore, int northPlayerScore);
 
-        void SetDataGridHeaderWestPlayerText(string selectedValue);
+        void SetEastPlayerHeader(string selectedValue);
 
-        void SetDataGridHeaderNorthPlayerText(string selectedValue);
+        void SetSouthPlayerHeader(string selectedValue);
+
+        void SetWestPlayerHeader(string selectedValue);
+
+        void SetNorthPlayerHeader(string selectedValue);
+
+        void ShowDataGridHands();
+
+        void HideDataGridHands();
     }
 }
