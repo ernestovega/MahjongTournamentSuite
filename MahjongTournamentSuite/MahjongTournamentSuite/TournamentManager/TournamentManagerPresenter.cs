@@ -29,6 +29,7 @@ namespace MahjongTournamentSuite.TournamentManager
         {
             _tournament = _db.GetTournament(tournamentId);
             _form.FillComboRounds(_tournament.NumRounds);
+            _form.GenerateRoundTablesButtons(_tournament.NumPlayers / 4);
         }
 
         public void OnFormResized()

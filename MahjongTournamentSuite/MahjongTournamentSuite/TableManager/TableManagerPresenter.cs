@@ -52,25 +52,37 @@ namespace MahjongTournamentSuite.TableManager
         public void NameEastPlayerChanged(int selectedPlayerId)
         {
             _table.PlayerEastId = selectedPlayerId;
-            IfFillHeadersThenSavePlayersPositionsAndShowDataGridHands();
+            if (FillPlayerHeaders())
+                _form.ShowDataGridHands();
+            else
+                _form.HideDataGridHands();
         }
 
         public void NameSouthPlayerChanged(int selectedPlayerId)
         {
             _table.PlayerSouthId = selectedPlayerId;
-            IfFillHeadersThenSavePlayersPositionsAndShowDataGridHands();
+            if (FillPlayerHeaders())
+                _form.ShowDataGridHands();
+            else
+                _form.HideDataGridHands();
         }
 
         public void NameWestPlayerChanged(int selectedPlayerId)
         {
             _table.PlayerWestId = selectedPlayerId;
-            IfFillHeadersThenSavePlayersPositionsAndShowDataGridHands();
+            if (FillPlayerHeaders())
+                _form.ShowDataGridHands();
+            else
+                _form.HideDataGridHands();
         }
 
         public void NameNorthPlayerChanged(int selectedPlayerId)
         {
             _table.PlayerNorthId = selectedPlayerId;
-            IfFillHeadersThenSavePlayersPositionsAndShowDataGridHands();
+            if (FillPlayerHeaders())
+                _form.ShowDataGridHands();
+            else
+                _form.HideDataGridHands();
         }
 
         public void playerWinnerIdChanged(int handId, int newPlayerWinnerId)
@@ -132,15 +144,32 @@ namespace MahjongTournamentSuite.TableManager
 
         private bool FillPlayerHeaders()
         {
-            if (_table.PlayerEastId > 0 && _table.PlayerSouthId > 0 && _table.PlayerWestId > 0 && _table.PlayerNorthId > 0)
+            if (IsAllPlayersIdsSelected() && !IsPlayerIdRepeated())
             {
+                _db.UpdateTablePlayersPositions(_table);
                 _form.SetEastPlayerHeader(_tablePlayers.Find(x => x.Id == _table.PlayerEastId).Name);
                 _form.SetSouthPlayerHeader(_tablePlayers.Find(x => x.Id == _table.PlayerSouthId).Name);
                 _form.SetWestPlayerHeader(_tablePlayers.Find(x => x.Id == _table.PlayerWestId).Name);
-                _form.SetNorthPlayerHeader(_tablePlayers.Find(x => x.Id == _table.PlayerSouthId).Name);
+                _form.SetNorthPlayerHeader(_tablePlayers.Find(x => x.Id == _table.PlayerNorthId).Name);
                 return true;
             }
             return false;
+        }
+
+        private bool IsAllPlayersIdsSelected()
+        {
+            return _table.PlayerEastId > 0 && _table.PlayerSouthId > 0
+                && _table.PlayerWestId > 0 && _table.PlayerNorthId > 0;
+        }
+
+        private bool IsPlayerIdRepeated()
+        {
+            return _table.PlayerEastId == _table.PlayerSouthId ||
+                _table.PlayerEastId == _table.PlayerWestId ||
+                _table.PlayerEastId == _table.PlayerNorthId ||
+                _table.PlayerSouthId == _table.PlayerWestId ||
+                _table.PlayerSouthId == _table.PlayerNorthId ||
+                _table.PlayerWestId == _table.PlayerNorthId;
         }
 
         private void FillCombosPlayers()
@@ -153,16 +182,7 @@ namespace MahjongTournamentSuite.TableManager
             }
             _form.FillCombosPlayers(comboPlayers);
         }
-
-        private void IfFillHeadersThenSavePlayersPositionsAndShowDataGridHands()
-        {
-            if (FillPlayerHeaders())
-            {
-                _db.UpdateTablePlayersPositions(_table);
-                _form.ShowDataGridHands();
-            }
-        }
-
+        
         private void CalculateAndFillAllScores()
         {
             foreach (DBHand hand in _hands)

@@ -108,7 +108,7 @@
             this.panelTables.Location = new System.Drawing.Point(14, 99);
             this.panelTables.Margin = new System.Windows.Forms.Padding(5);
             this.panelTables.Name = "panelTables";
-            this.panelTables.Size = new System.Drawing.Size(980, 634);
+            this.panelTables.Size = new System.Drawing.Size(980, 629);
             this.panelTables.TabIndex = 23;
             // 
             // btnReturn
@@ -134,7 +134,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1008, 747);
+            this.ClientSize = new System.Drawing.Size(1008, 742);
             this.Controls.Add(this.btnReturn);
             this.Controls.Add(this.btnTimer);
             this.Controls.Add(this.panelTables);
@@ -143,11 +143,10 @@
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(1024, 786);
+            this.MinimumSize = new System.Drawing.Size(1024, 726);
             this.Name = "TournamentManagerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mahjong Tournament Suite - Tournament Manager";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Resize += new System.EventHandler(this.TournamentManagerForm_Resize);
             this.ResumeLayout(false);
             this.PerformLayout();
