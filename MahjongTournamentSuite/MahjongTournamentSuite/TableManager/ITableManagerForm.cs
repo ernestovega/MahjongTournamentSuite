@@ -13,9 +13,9 @@ namespace MahjongTournamentSuite.TableManager
 
         void FillCombosPlayers(List<ComboItem> comboPlayers);
 
-        void FillDataGridHands(List<DataGridHand> dataGridHands);
+        void SelectPlayersInCombos(int playerEastId, int playerSouthId, int playerWestId, int playerNorthId);
 
-        void RefreshDataGridHands(List<DBHand> _hands);
+        void FillDataGridHands(List<DataGridHand> dataGridHands);
 
         void FillPlayersHandScores(int id, int eastPlayerScore, 
             int southPlayerScore, int westPlayerScore, int northPlayerScore);

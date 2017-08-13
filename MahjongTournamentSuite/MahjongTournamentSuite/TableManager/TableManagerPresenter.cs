@@ -37,22 +37,19 @@ namespace MahjongTournamentSuite.TableManager
             _form.SetTournamentName(_db.GetTournamentName(tournamentId));
             _form.SetRoundId(roundId);
             _form.SetTableId(tableId);
+            FillCombosPlayers();
             FillDataGridHands();
-            if(FillPlayerHeaders())
+            if(FillPlayerHeaders(false))
             {
                 _form.ShowDataGridHands();
                 CalculateAndFillAllScores();
-            }
-            else
-            {
-                FillCombosPlayers();
             }
         }
 
         public void NameEastPlayerChanged(int selectedPlayerId)
         {
             _table.PlayerEastId = selectedPlayerId;
-            if (FillPlayerHeaders())
+            if (FillPlayerHeaders(true))
                 _form.ShowDataGridHands();
             else
                 _form.HideDataGridHands();
@@ -61,7 +58,7 @@ namespace MahjongTournamentSuite.TableManager
         public void NameSouthPlayerChanged(int selectedPlayerId)
         {
             _table.PlayerSouthId = selectedPlayerId;
-            if (FillPlayerHeaders())
+            if (FillPlayerHeaders(true))
                 _form.ShowDataGridHands();
             else
                 _form.HideDataGridHands();
@@ -70,7 +67,7 @@ namespace MahjongTournamentSuite.TableManager
         public void NameWestPlayerChanged(int selectedPlayerId)
         {
             _table.PlayerWestId = selectedPlayerId;
-            if (FillPlayerHeaders())
+            if (FillPlayerHeaders(true))
                 _form.ShowDataGridHands();
             else
                 _form.HideDataGridHands();
@@ -79,7 +76,7 @@ namespace MahjongTournamentSuite.TableManager
         public void NameNorthPlayerChanged(int selectedPlayerId)
         {
             _table.PlayerNorthId = selectedPlayerId;
-            if (FillPlayerHeaders())
+            if (FillPlayerHeaders(true))
                 _form.ShowDataGridHands();
             else
                 _form.HideDataGridHands();
@@ -94,7 +91,7 @@ namespace MahjongTournamentSuite.TableManager
                 CalculateAndFillAllScores();
             }
             _db.UpdateHand(hand);
-            _form.RefreshDataGridHands(_hands);
+            FillDataGridHands();
         }
 
         public void playerLooserIdChanged(int handId, int newPlayerLooserId)
@@ -106,7 +103,7 @@ namespace MahjongTournamentSuite.TableManager
                 CalculateAndFillAllScores();
             }
             _db.UpdateHand(hand);
-            _form.RefreshDataGridHands(_hands);
+            FillDataGridHands();
         }
 
         public void PointsChanged(int handId, int newPoints)
@@ -116,7 +113,7 @@ namespace MahjongTournamentSuite.TableManager
             if (hand.PlayerWinnerId > 0 && hand.PlayerLooserId > 0)
             {
                 CalculateAndFillAllScores();
-                _form.RefreshDataGridHands(_hands);
+                FillDataGridHands();
             }
             _db.UpdateHand(hand);
         }
@@ -142,11 +139,14 @@ namespace MahjongTournamentSuite.TableManager
             _form.FillDataGridHands(dataGridHands);
         }
 
-        private bool FillPlayerHeaders()
+        private bool FillPlayerHeaders(bool shouldSave)
         {
             if (IsAllPlayersIdsSelected() && !IsPlayerIdRepeated())
             {
-                _db.UpdateTablePlayersPositions(_table);
+                if (shouldSave)
+                {
+                    _db.UpdateTablePlayersPositions(_table);
+                }
                 _form.SetEastPlayerHeader(_tablePlayers.Find(x => x.Id == _table.PlayerEastId).Name);
                 _form.SetSouthPlayerHeader(_tablePlayers.Find(x => x.Id == _table.PlayerSouthId).Name);
                 _form.SetWestPlayerHeader(_tablePlayers.Find(x => x.Id == _table.PlayerWestId).Name);
@@ -181,8 +181,60 @@ namespace MahjongTournamentSuite.TableManager
                 comboPlayers.Add(new ComboItem(string.Format("{0} - {1}", player.Id, player.Name), player.Id.ToString()));
             }
             _form.FillCombosPlayers(comboPlayers);
+            if(IsAllPlayersIdsSelected())
+            {
+                _form.SelectPlayersInCombos(GetPlayerEastIndex(), GetPlayerSouthIndex(), GetPlayerWestIndex(), GetPlayerNorthIndex());
+            }
         }
-        
+
+        private int GetPlayerEastIndex()
+        {
+            if (_table.PlayerEastId == _table.Player1Id)
+                return 1;
+            else if (_table.PlayerEastId == _table.Player2Id)
+                return 2;
+            else if (_table.PlayerEastId == _table.Player3Id)
+                return 3;
+            else
+                return 4;
+        }
+
+        private int GetPlayerSouthIndex()
+        {
+            if (_table.PlayerSouthId == _table.Player1Id)
+                return 1;
+            else if (_table.PlayerSouthId == _table.Player2Id)
+                return 2;
+            else if (_table.PlayerSouthId == _table.Player3Id)
+                return 3;
+            else
+                return 4;
+        }
+
+        private int GetPlayerWestIndex()
+        {
+            if (_table.PlayerWestId == _table.Player1Id)
+                return 1;
+            else if (_table.PlayerWestId == _table.Player2Id)
+                return 2;
+            else if (_table.PlayerWestId == _table.Player3Id)
+                return 3;
+            else
+                return 4;
+        }
+
+        private int GetPlayerNorthIndex()
+        {
+            if (_table.PlayerNorthId == _table.Player1Id)
+                return 1;
+            else if (_table.PlayerNorthId == _table.Player2Id)
+                return 2;
+            else if (_table.PlayerNorthId == _table.Player3Id)
+                return 3;
+            else
+                return 4;
+        }
+
         private void CalculateAndFillAllScores()
         {
             foreach (DBHand hand in _hands)

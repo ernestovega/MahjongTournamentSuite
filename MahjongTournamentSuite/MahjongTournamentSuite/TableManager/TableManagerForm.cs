@@ -22,11 +22,11 @@ namespace MahjongTournamentSuite.TableManager
         private const string COLUMN_PLAYER_SOUTH_SCORE = "PlayerSouthScore";
         private const string COLUMN_PLAYER_WEST_SCORE = "PlayerWestScore";
         private const string COLUMN_PLAYER_NORTH_SCORE = "PlayerNorthScore";
-        private const int COLUMN_ID_INDEX = 3;
-        private const int COLUMN_PLAYER_WINNER_ID_INDEX = 4;
-        private const int COLUMN_PLAYER_LOOSER_ID_INDEX = 5;
-        private const int COLUMN_POINTS_INDEX = 6;
-        private const int COLUMN_IS_CHICKEN_HAND_INDEX = 7;
+        private const int COLUMN_ID_INDEX = 7;
+        private const int COLUMN_PLAYER_WINNER_ID_INDEX = 8;
+        private const int COLUMN_PLAYER_LOOSER_ID_INDEX = 9;
+        private const int COLUMN_POINTS_INDEX = 10;
+        private const int COLUMN_IS_CHICKEN_HAND_INDEX = 11;
 
         #endregion
 
@@ -179,10 +179,27 @@ namespace MahjongTournamentSuite.TableManager
             comboNorthPlayer.ValueMember = "Value";
         }
 
+        public void SelectPlayersInCombos(int playerEastIndex, int playerSouthIndex, int playerWestIndex, int playerNorthIndex)
+        {
+            comboEastPlayer.SelectedIndex = playerEastIndex;
+            comboSouthPlayer.SelectedIndex = playerSouthIndex;
+            comboWestPlayer.SelectedIndex = playerWestIndex;
+            comboNorthPlayer.SelectedIndex = playerNorthIndex;
+        }
+
         public void FillDataGridHands(List<DataGridHand> dataGridHands)
         {
             dataGridView.DataSource = dataGridHands;
-
+            //DisplayIndex
+            dataGridView.Columns[COLUMN_ID].DisplayIndex = 0;
+            dataGridView.Columns[COLUMN_PLAYER_WINNER_ID].DisplayIndex = 1;
+            dataGridView.Columns[COLUMN_PLAYER_LOOSER_ID].DisplayIndex = 2;
+            dataGridView.Columns[COLUMN_SCORE].DisplayIndex = 3;
+            dataGridView.Columns[COLUMN_IS_CHICKEN_HAND].DisplayIndex = 4;
+            dataGridView.Columns[COLUMN_PLAYER_EAST_SCORE].DisplayIndex = 5;
+            dataGridView.Columns[COLUMN_PLAYER_SOUTH_SCORE].DisplayIndex = 6;
+            dataGridView.Columns[COLUMN_PLAYER_WEST_SCORE].DisplayIndex = 7;
+            dataGridView.Columns[COLUMN_PLAYER_NORTH_SCORE].DisplayIndex = 8;
             //AutosizeMode
             dataGridView.Columns[COLUMN_PLAYER_EAST_SCORE].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView.Columns[COLUMN_PLAYER_SOUTH_SCORE].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -204,11 +221,6 @@ namespace MahjongTournamentSuite.TableManager
             dataGridView.Columns[COLUMN_PLAYER_LOOSER_ID].HeaderText = "Looser Id";
             dataGridView.Columns[COLUMN_SCORE].HeaderText = "Hand points";
             dataGridView.Columns[COLUMN_IS_CHICKEN_HAND].HeaderText = "Chicken hand";
-        }
-
-        public void RefreshDataGridHands(List<DBHand> hands)
-        {
-            dataGridView.DataSource = hands;
         }
         
         public void FillPlayersHandScores(int handId, int eastPlayerScore, int southPlayerScore, 
@@ -242,22 +254,22 @@ namespace MahjongTournamentSuite.TableManager
 
         public void SetEastPlayerPoints(int handId, int value)
         {
-            dataGridView.Rows[handId].Cells[COLUMN_PLAYER_EAST_SCORE].Value = value;
+            dataGridView.Rows[handId - 1].Cells[COLUMN_PLAYER_EAST_SCORE].Value = value;
         }
 
         public void SetSouthPlayerPoints(int handId, int value)
         {
-            dataGridView.Rows[handId].Cells[COLUMN_PLAYER_SOUTH_SCORE].Value = value;
+            dataGridView.Rows[handId - 1].Cells[COLUMN_PLAYER_SOUTH_SCORE].Value = value;
         }
 
         public void SetWestPlayerPoints(int handId, int value)
         {
-            dataGridView.Rows[handId].Cells[COLUMN_PLAYER_WEST_SCORE].Value = value;
+            dataGridView.Rows[handId - 1].Cells[COLUMN_PLAYER_WEST_SCORE].Value = value;
         }
 
         public void SetNorthPlayerPoints(int handId, int value)
         {
-            dataGridView.Rows[handId].Cells[COLUMN_PLAYER_NORTH_SCORE].Value = value;
+            dataGridView.Rows[handId - 1].Cells[COLUMN_PLAYER_NORTH_SCORE].Value = value;
         }
 
         public void ShowDataGridHands()

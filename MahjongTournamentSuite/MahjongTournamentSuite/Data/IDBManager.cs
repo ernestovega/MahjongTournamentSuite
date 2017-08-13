@@ -42,6 +42,7 @@ namespace MahjongTournamentSuite.Data
         List<DBPlayer> GetTablePlayers(int tournamentId, int roundId, int tableId);
 
         void UpdateHand(DBHand hand);
+
         void UpdateTablePlayersPositions(DBTable _table);
 
         #endregion

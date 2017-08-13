@@ -118,6 +118,7 @@ namespace MahjongTournamentSuite.Data
             dbTable.PlayerSouthId = table.PlayerSouthId;
             dbTable.PlayerWestId = table.PlayerWestId;
             dbTable.PlayerNorthId = table.PlayerNorthId;
+            _db.SaveChanges();
         }
 
         public void DeleteTournamentTables(int tournamentId)
