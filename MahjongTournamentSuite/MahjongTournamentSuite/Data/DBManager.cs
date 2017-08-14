@@ -45,7 +45,7 @@ namespace MahjongTournamentSuite.Data
 
         public List<DBTournament> GetTournaments()
         {
-            return _db.Tournaments.ToList();
+            return _db.Tournaments.OrderByDescending(x => x.CreationDate).ToList();
         }
 
         public void AddTournament(DBTournament tournament)

@@ -60,22 +60,24 @@ namespace MahjongTournamentSuite.Home
 
         public void btnNew_Click(object sender, EventArgs e)
         {
-            showLoading();
-            new NewTournamentForm().Show();
-            Close();
+            NewTournamentForm newTournamentForm = new NewTournamentForm();
+            newTournamentForm.FormClosed += new FormClosedEventHandler(NewTournamentForm_FormClosed);
+            newTournamentForm.ShowDialog();
+        }
+
+        void NewTournamentForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _presenter.LoadTournaments();
         }
 
         public void btnResume_Click(object sender, EventArgs e)
         {
-            showLoading();
             int tournamentId = GetCurrentTournamentId();
             if (tournamentId > -1)
             {
                 new TournamentManagerForm(tournamentId).Show();
                 Close();
             }
-            else
-                hideLoading();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -96,8 +98,12 @@ namespace MahjongTournamentSuite.Home
         public void FillDataGridTournaments(List<DBTournament> tournaments)
         {
             dataGridTournaments.DataSource = tournaments;
-            //Sort
-            //dataGridTournaments.Sort(dataGridTournaments.Columns[COLUMN_DATE], ListSortDirection.Descending);
+
+            //DisplayIndex
+            dataGridTournaments.Columns[COLUMN_DATE].DisplayIndex = 0;
+            dataGridTournaments.Columns[COLUMN_NAME].DisplayIndex = 1;
+            dataGridTournaments.Columns[COLUMN_PLAYERS].DisplayIndex = 2;
+            dataGridTournaments.Columns[COLUMN_ROUNDS].DisplayIndex = 3;
             //Visible
             dataGridTournaments.Columns[COLUMN_ID].Visible = false;
             //ReadOnly
@@ -105,10 +111,15 @@ namespace MahjongTournamentSuite.Home
             dataGridTournaments.Columns[COLUMN_PLAYERS].ReadOnly = true;
             dataGridTournaments.Columns[COLUMN_ROUNDS].ReadOnly = true;
             //AutoSizeMode
-            dataGridTournaments.Columns[COLUMN_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridTournaments.Columns[COLUMN_DATE].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridTournaments.Columns[COLUMN_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridTournaments.Columns[COLUMN_PLAYERS].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridTournaments.Columns[COLUMN_ROUNDS].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            //HeaderText
+            dataGridTournaments.Columns[COLUMN_DATE].HeaderText = "Creation date";
+            dataGridTournaments.Columns[COLUMN_NAME].HeaderText = "Tournament name";
+            dataGridTournaments.Columns[COLUMN_PLAYERS].HeaderText = "Players";
+            dataGridTournaments.Columns[COLUMN_ROUNDS].HeaderText = "Rounds";
         }
 
         public int GetCurrentTournamentId()
@@ -154,15 +165,11 @@ namespace MahjongTournamentSuite.Home
         public void EnableResumeButton()
         {
             btnResume.Enabled = true;
-            btnResume.BackColor = greenEnabled;
-            btnResume.FlatAppearance.MouseOverBackColor = greenEnabledHover;
         }
 
         public void DisableResumeButton()
         {
             btnResume.Enabled = false;
-            btnResume.BackColor = grayDisabled;
-            btnResume.FlatAppearance.MouseOverBackColor = grayDisabled;
         }
 
         #endregion

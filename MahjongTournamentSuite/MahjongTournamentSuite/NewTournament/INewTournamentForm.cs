@@ -33,5 +33,7 @@
         void ApplicationDoEvents();
 
         void OpenTournamentManagerForm(int tournamentId);
+
+        void CloseForm();
     }
 }

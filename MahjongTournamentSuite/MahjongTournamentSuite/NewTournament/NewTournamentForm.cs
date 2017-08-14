@@ -173,6 +173,11 @@ namespace MahjongTournamentSuite.NewTournament
             Close();
         }
 
+        public void CloseForm()
+        {
+            Close();
+        }
+
         #endregion
     }
 }

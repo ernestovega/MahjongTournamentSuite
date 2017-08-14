@@ -34,32 +34,33 @@
             this.btnNew = new System.Windows.Forms.Button();
             this.btnTimer = new System.Windows.Forms.Button();
             this.btnResume = new System.Windows.Forms.Button();
-            this.dataGridTournaments = new System.Windows.Forms.DataGridView();
             this.btnDelete = new System.Windows.Forms.Button();
             this.imgLogoEMA = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblLoadingMessage = new System.Windows.Forms.Label();
             this.panelLoading = new System.Windows.Forms.Panel();
             this.imgLogoMM = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridTournaments)).BeginInit();
+            this.dataGridTournaments = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoEMA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelLoading.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridTournaments)).BeginInit();
             this.SuspendLayout();
             // 
             // btnNew
             // 
             this.btnNew.BackColor = System.Drawing.Color.Transparent;
+            this.btnNew.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnNew.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnNew.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnNew.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.btnNew.FlatAppearance.BorderSize = 0;
-            this.btnNew.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
-            this.btnNew.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
-            this.btnNew.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnNew.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
+            this.btnNew.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
+            this.btnNew.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gainsboro;
             this.btnNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnNew.ForeColor = System.Drawing.Color.Black;
+            this.btnNew.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnNew.Image = ((System.Drawing.Image)(resources.GetObject("btnNew.Image")));
             this.btnNew.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnNew.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -78,15 +79,16 @@
             // 
             this.btnTimer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnTimer.BackColor = System.Drawing.Color.Transparent;
+            this.btnTimer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnTimer.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTimer.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnTimer.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.btnTimer.FlatAppearance.BorderSize = 0;
-            this.btnTimer.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
-            this.btnTimer.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
-            this.btnTimer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnTimer.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
+            this.btnTimer.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
+            this.btnTimer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gainsboro;
             this.btnTimer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnTimer.ForeColor = System.Drawing.Color.Black;
+            this.btnTimer.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnTimer.Image = ((System.Drawing.Image)(resources.GetObject("btnTimer.Image")));
             this.btnTimer.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnTimer.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -104,15 +106,16 @@
             // btnResume
             // 
             this.btnResume.BackColor = System.Drawing.Color.Transparent;
+            this.btnResume.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnResume.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnResume.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnResume.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.btnResume.FlatAppearance.BorderSize = 0;
-            this.btnResume.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
-            this.btnResume.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
-            this.btnResume.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnResume.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
+            this.btnResume.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
+            this.btnResume.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gainsboro;
             this.btnResume.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResume.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnResume.ForeColor = System.Drawing.Color.Black;
+            this.btnResume.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnResume.Image = ((System.Drawing.Image)(resources.GetObject("btnResume.Image")));
             this.btnResume.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnResume.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -127,66 +130,19 @@
             this.btnResume.UseVisualStyleBackColor = false;
             this.btnResume.Click += new System.EventHandler(this.btnResume_Click);
             // 
-            // dataGridTournaments
-            // 
-            this.dataGridTournaments.AllowUserToAddRows = false;
-            this.dataGridTournaments.AllowUserToDeleteRows = false;
-            this.dataGridTournaments.AllowUserToOrderColumns = true;
-            this.dataGridTournaments.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridTournaments.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dataGridTournaments.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridTournaments.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.dataGridTournaments.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridTournaments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridTournaments.ColumnHeadersHeight = 32;
-            this.dataGridTournaments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dataGridTournaments.Cursor = System.Windows.Forms.Cursors.Default;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridTournaments.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridTournaments.GridColor = System.Drawing.Color.White;
-            this.dataGridTournaments.Location = new System.Drawing.Point(14, 93);
-            this.dataGridTournaments.Margin = new System.Windows.Forms.Padding(5, 10, 5, 5);
-            this.dataGridTournaments.MultiSelect = false;
-            this.dataGridTournaments.Name = "dataGridTournaments";
-            this.dataGridTournaments.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dataGridTournaments.RowHeadersVisible = false;
-            this.dataGridTournaments.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dataGridTournaments.RowTemplate.Height = 40;
-            this.dataGridTournaments.RowTemplate.ReadOnly = true;
-            this.dataGridTournaments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridTournaments.ShowCellErrors = false;
-            this.dataGridTournaments.ShowEditingIcon = false;
-            this.dataGridTournaments.ShowRowErrors = false;
-            this.dataGridTournaments.Size = new System.Drawing.Size(980, 622);
-            this.dataGridTournaments.TabIndex = 76;
-            // 
             // btnDelete
             // 
             this.btnDelete.BackColor = System.Drawing.Color.Transparent;
+            this.btnDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDelete.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnDelete.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.btnDelete.FlatAppearance.BorderSize = 0;
-            this.btnDelete.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
-            this.btnDelete.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Silver;
-            this.btnDelete.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnDelete.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
+            this.btnDelete.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
+            this.btnDelete.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gainsboro;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnDelete.ForeColor = System.Drawing.Color.Black;
+            this.btnDelete.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
             this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnDelete.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -269,6 +225,47 @@
             this.imgLogoMM.TabStop = false;
             this.imgLogoMM.Click += new System.EventHandler(this.imgLogoMM_Click);
             // 
+            // dataGridTournaments
+            // 
+            this.dataGridTournaments.AllowUserToAddRows = false;
+            this.dataGridTournaments.AllowUserToDeleteRows = false;
+            this.dataGridTournaments.AllowUserToOrderColumns = true;
+            this.dataGridTournaments.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridTournaments.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.dataGridTournaments.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridTournaments.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ButtonFace;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridTournaments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridTournaments.ColumnHeadersHeight = 32;
+            this.dataGridTournaments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridTournaments.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridTournaments.GridColor = System.Drawing.SystemColors.Control;
+            this.dataGridTournaments.Location = new System.Drawing.Point(14, 93);
+            this.dataGridTournaments.Margin = new System.Windows.Forms.Padding(5, 10, 5, 5);
+            this.dataGridTournaments.MultiSelect = false;
+            this.dataGridTournaments.Name = "dataGridTournaments";
+            this.dataGridTournaments.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dataGridTournaments.RowHeadersVisible = false;
+            this.dataGridTournaments.RowTemplate.Height = 32;
+            this.dataGridTournaments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridTournaments.Size = new System.Drawing.Size(980, 622);
+            this.dataGridTournaments.TabIndex = 7;
+            // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -277,13 +274,13 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.Controls.Add(this.dataGridTournaments);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.imgLogoEMA);
             this.Controls.Add(this.imgLogoMM);
             this.Controls.Add(this.btnResume);
             this.Controls.Add(this.btnTimer);
             this.Controls.Add(this.btnNew);
-            this.Controls.Add(this.dataGridTournaments);
             this.Controls.Add(this.panelLoading);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -291,11 +288,11 @@
             this.Name = "HomeForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mahjong Tournament Suite - Home";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridTournaments)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoEMA)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelLoading.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridTournaments)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -305,11 +302,11 @@
         private System.Windows.Forms.Button btnTimer;
         private System.Windows.Forms.Button btnResume;
         private System.Windows.Forms.PictureBox imgLogoEMA;
-        private System.Windows.Forms.DataGridView dataGridTournaments;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblLoadingMessage;
         private System.Windows.Forms.Panel panelLoading;
         private System.Windows.Forms.PictureBox imgLogoMM;
+        private System.Windows.Forms.DataGridView dataGridTournaments;
     }
 }
