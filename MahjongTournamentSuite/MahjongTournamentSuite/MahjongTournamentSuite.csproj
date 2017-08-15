@@ -141,7 +141,7 @@
       <DependentUpon>NewTournamentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -169,10 +169,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\favicon.ico" />
-    <Content Include="Resources\icon_exit.png" />
-    <Content Include="Resources\icon_minimize.png" />
-    <Content Include="Resources\icon_return.png" />
     <Content Include="Resources\MMLoading160.gif" />
+    <None Include="Resources\table32.png" />
+    <None Include="Resources\timer.png" />
+    <None Include="Resources\table64.png" />
+    <None Include="Resources\remove.png" />
+    <None Include="Resources\play.png" />
+    <None Include="Resources\ranking.png" />
+    <None Include="Resources\add.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MahjongTournamentTimer\MahjongTournamentTimer.csproj">

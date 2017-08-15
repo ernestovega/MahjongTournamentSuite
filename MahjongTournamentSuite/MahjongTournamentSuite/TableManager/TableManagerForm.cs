@@ -141,7 +141,6 @@ namespace MahjongTournamentSuite.TableManager
                 }
             }
         }
-
         #endregion
 
         #endregion
@@ -179,7 +178,8 @@ namespace MahjongTournamentSuite.TableManager
             comboNorthPlayer.ValueMember = "Value";
         }
 
-        public void SelectPlayersInCombos(int playerEastIndex, int playerSouthIndex, int playerWestIndex, int playerNorthIndex)
+        public void SelectPlayersInCombos(int playerEastIndex, int playerSouthIndex, 
+            int playerWestIndex, int playerNorthIndex)
         {
             comboEastPlayer.SelectedIndex = playerEastIndex;
             comboSouthPlayer.SelectedIndex = playerSouthIndex;

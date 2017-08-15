@@ -20,10 +20,8 @@ namespace MahjongTournamentSuite.Home
         public static readonly string COLUMN_NAME = "Name";
         public static readonly string COLUMN_PLAYERS = "NumPlayers";
         public static readonly string COLUMN_ROUNDS = "NumRounds";
-
-        private static readonly Color greenEnabled = Color.FromArgb(0, 177, 106);
-        private static readonly Color greenEnabledHover = Color.FromArgb(0, 127, 56);
-        private static readonly Color grayDisabled = Color.FromArgb(65, 65, 65);
+        public static readonly string COLUMN_IS_TEAMS = "IsTeams";
+        private readonly int COLUMN_NAME_INDEX = 1;
 
         #endregion
 
@@ -90,6 +88,26 @@ namespace MahjongTournamentSuite.Home
             var mahjongTournamentTimer = new MahjongTournamentTimer.Program();
             Process.Start(mahjongTournamentTimer.returnExecutablePath());
         }
+        
+        private void dataGridView_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1 && e.ColumnIndex == COLUMN_NAME_INDEX)
+                dataGridView.BeginEdit(true);
+        }
+        
+        private void dataGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (e.RowIndex > -1 && e.ColumnIndex == COLUMN_NAME_INDEX)
+            {
+                int tournamentId = GetSelectedTournamentId(e.RowIndex);
+                string previousValue = (string)dataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                string newValue = ((string)e.FormattedValue).Trim();
+                if (newValue.Length > 0 && !newValue.Equals(previousValue))
+                    _presenter.NameChanged(tournamentId, newValue);
+                else
+                    dataGridView.CancelEdit();
+            }
+        }
 
         #endregion
 
@@ -97,29 +115,33 @@ namespace MahjongTournamentSuite.Home
 
         public void FillDataGridTournaments(List<DBTournament> tournaments)
         {
-            dataGridTournaments.DataSource = tournaments;
+            dataGridView.DataSource = tournaments;
 
             //DisplayIndex
-            dataGridTournaments.Columns[COLUMN_DATE].DisplayIndex = 0;
-            dataGridTournaments.Columns[COLUMN_NAME].DisplayIndex = 1;
-            dataGridTournaments.Columns[COLUMN_PLAYERS].DisplayIndex = 2;
-            dataGridTournaments.Columns[COLUMN_ROUNDS].DisplayIndex = 3;
+            dataGridView.Columns[COLUMN_DATE].DisplayIndex = 0;
+            dataGridView.Columns[COLUMN_NAME].DisplayIndex = 1;
+            dataGridView.Columns[COLUMN_PLAYERS].DisplayIndex = 2;
+            dataGridView.Columns[COLUMN_ROUNDS].DisplayIndex = 3;
+            dataGridView.Columns[COLUMN_IS_TEAMS].DisplayIndex = 4;
             //Visible
-            dataGridTournaments.Columns[COLUMN_ID].Visible = false;
+            dataGridView.Columns[COLUMN_ID].Visible = false;
             //ReadOnly
-            dataGridTournaments.Columns[COLUMN_DATE].ReadOnly = true;
-            dataGridTournaments.Columns[COLUMN_PLAYERS].ReadOnly = true;
-            dataGridTournaments.Columns[COLUMN_ROUNDS].ReadOnly = true;
+            dataGridView.Columns[COLUMN_DATE].ReadOnly = true;
+            dataGridView.Columns[COLUMN_PLAYERS].ReadOnly = true;
+            dataGridView.Columns[COLUMN_ROUNDS].ReadOnly = true;
+            dataGridView.Columns[COLUMN_IS_TEAMS].ReadOnly = true;
             //AutoSizeMode
-            dataGridTournaments.Columns[COLUMN_DATE].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridTournaments.Columns[COLUMN_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridTournaments.Columns[COLUMN_PLAYERS].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridTournaments.Columns[COLUMN_ROUNDS].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView.Columns[COLUMN_DATE].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView.Columns[COLUMN_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridView.Columns[COLUMN_PLAYERS].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView.Columns[COLUMN_ROUNDS].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView.Columns[COLUMN_IS_TEAMS].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             //HeaderText
-            dataGridTournaments.Columns[COLUMN_DATE].HeaderText = "Creation date";
-            dataGridTournaments.Columns[COLUMN_NAME].HeaderText = "Tournament name";
-            dataGridTournaments.Columns[COLUMN_PLAYERS].HeaderText = "Players";
-            dataGridTournaments.Columns[COLUMN_ROUNDS].HeaderText = "Rounds";
+            dataGridView.Columns[COLUMN_DATE].HeaderText = "Creation date";
+            dataGridView.Columns[COLUMN_NAME].HeaderText = "Tournament name";
+            dataGridView.Columns[COLUMN_PLAYERS].HeaderText = "Players";
+            dataGridView.Columns[COLUMN_ROUNDS].HeaderText = "Rounds";
+            dataGridView.Columns[COLUMN_IS_TEAMS].HeaderText = "Teams";
         }
 
         public int GetCurrentTournamentId()
@@ -162,14 +184,16 @@ namespace MahjongTournamentSuite.Home
             panelLoading.Visible = false;
         }
 
-        public void EnableResumeButton()
+        public void EnableResumeAndDeleteButton()
         {
             btnResume.Enabled = true;
+            btnDelete.Enabled = true;
         }
 
-        public void DisableResumeButton()
+        public void DisableResumeAndDeleteButton()
         {
             btnResume.Enabled = false;
+            btnDelete.Enabled = false;
         }
 
         #endregion
@@ -178,12 +202,17 @@ namespace MahjongTournamentSuite.Home
 
         private DataGridViewRow GetCurrentSelectedRow()
         {
-            DataGridViewSelectedRowCollection selectedRows = dataGridTournaments.SelectedRows;
+            DataGridViewSelectedRowCollection selectedRows = dataGridView.SelectedRows;
             if (selectedRows != null && selectedRows.Count > 0)
             {
-                return dataGridTournaments.SelectedRows[0];
+                return dataGridView.SelectedRows[0];
             }
             return null;
+        }
+
+        private int GetSelectedTournamentId(int rowIndex)
+        {
+            return (int)dataGridView.Rows[rowIndex].Cells[COLUMN_ID].Value;
         }
 
         #endregion

@@ -30,10 +30,10 @@ namespace MahjongTournamentSuite.NewTournament
         private List<TableWithAll> tablesByPlayer = new List<TableWithAll>();
         private List<Rivals> rivalsByPlayer = new List<Rivals>();
         private int currentRound, currentTable, currentTablePlayer;
-        private int numTriesMax, result, numPlayers, numRounds, countTries;
+        private int _numTriesMax, result, _numPlayers, _numRounds, countTries;
         private Random random = new Random();
-        private string tournamentName = string.Empty;
-        private bool isTeamsChecked;
+        private string _tournamentName = string.Empty;
+        private bool _isTeamsChecked;
         private int tournamentId;
 
         #endregion
@@ -52,17 +52,19 @@ namespace MahjongTournamentSuite.NewTournament
 
         public void StartClicked()
         {
-            if (_form.isBackgroundWorkerBusy())
+            if (_form.IsBackgroundWorkerBusy())
             {
                 _form.CancelBackgroundWorker();
                 _form.EnableViews();
             }
             else
             {
-                if (_form.getTournamentName().Length > 0)
+                string tournamentName = _form.GetTournamentName();
+                if (tournamentName.Length > 0 && 
+                    !tournamentName.Equals(NewTournamentForm.TOURNAMENT_NAME_TEMPLATE_TEXT))
                 {
-                    InitializeCalculation();
-                    _form.RunBackgroundWorker();
+                    if(InitializeCalculation())
+                        _form.RunBackgroundWorker();
                 }
                 else
                 {
@@ -87,7 +89,7 @@ namespace MahjongTournamentSuite.NewTournament
             //Cada vez que un cálculo es imposible se reintenta desde cero, tantas veces como se hayan indicado.
             result = -1;
             countTries = 0;
-            while (result < 0 && countTries < numTriesMax)
+            while (result < 0 && countTries < _numTriesMax)
             {
                 if (worker.CancellationPending)
                 {
@@ -96,11 +98,11 @@ namespace MahjongTournamentSuite.NewTournament
                 }
                 countTries++;
                 worker.ReportProgress(countTries, null);
-                result = GenerateTournament(numRounds);
+                result = GenerateTournament(_numRounds);
                 _form.ApplicationDoEvents();
             }
 
-            if (countTries >= numTriesMax)
+            if (countTries >= _numTriesMax)
             {
                 return;
             }
@@ -108,7 +110,7 @@ namespace MahjongTournamentSuite.NewTournament
             worker.ReportProgress(countTries, null);
 
             //Generamos todas las vistas y mostramos las mesas
-            GenerateTablesWhitAll(numRounds);
+            GenerateTablesWhitAll(_numRounds);
             //GenerateSTablesWithNames();
             //GenerateSTablesWithIds();
             //GenerateTablesByPlayer();
@@ -126,8 +128,8 @@ namespace MahjongTournamentSuite.NewTournament
             _form.EnableViews();
             /*Si no se ha podido calcular en los intentos indicados, se notifica,
               se muestra la lista de jugadores y se termina. Si todo fue ok, vamos al manager.*/
-            if (countTries >= numTriesMax)
-                _form.ShowReachedTriesMessage(numTriesMax);
+            if (countTries >= _numTriesMax)
+                _form.ShowReachedTriesMessage(_numTriesMax);
             else if (tournamentId > 0)
                 _form.CloseForm();
             else
@@ -138,21 +140,32 @@ namespace MahjongTournamentSuite.NewTournament
 
         #region Private
 
-        public void InitializeCalculation()
+        public bool InitializeCalculation()
         {
-            numPlayers = _form.getNumPlayers();
-            numRounds = _form.getNumRounds();
-            isTeamsChecked = _form.IsTeamsChecked();
-            tournamentName = _form.getTournamentName();
-            numTriesMax = _form.getNumTries();
+            _numPlayers = _form.GetNumPlayers();
+            if ((_numPlayers / 4) * 4 < _numPlayers)
+            {
+                if (_form.ShowWrongPlayersNumberMessage(_numPlayers, (_numPlayers / 4) * 4))
+                {
+                    _form.SetNumUpDownPlayers((_numPlayers / 4) * 4);
+                    _numPlayers = _form.GetNumPlayers();
+                }
+                else
+                    return false;
+            }
+            _numRounds = _form.GetNumRounds();
+            _isTeamsChecked = _form.IsTeamsChecked();
+            _tournamentName = _form.GetTournamentName();
+            _numTriesMax = _form.GetNumTries();
             _form.SetTriesCounterLabel(1);
             _form.DisableViews();
+            return true;
         }
         
         private void GeneratePlayers()
         {
             players.Clear();
-            for (int i = 1; i <= numPlayers / 4; i++)//Recorremos cada equipo
+            for (int i = 1; i <= _numPlayers / 4; i++)//Recorremos cada equipo
             {
                 int teamId = (4 * i) / 4;//Generamos el id del equipo
                 for (int j = 1; j <= 4; j++)//Recorremos cada jugador del equipo
@@ -224,7 +237,7 @@ namespace MahjongTournamentSuite.NewTournament
                             /*Si el elegido ya ha jugado contra alguno de los de la mesa actual
                               o es del mismo equipo que alguno de los de la mesa actual(si el cálculo de equipos está seleccionado),
                               hay que buscar un nuevo candidato para esta mesa*/
-                            if (anyoneHavePlayed || (isTeamsChecked && currentTablePlayers.Select(x => x.Team).Contains(choosenOne.Team)))
+                            if (anyoneHavePlayed || (_isTeamsChecked && currentTablePlayers.Select(x => x.Team).Contains(choosenOne.Team)))
                                 playerFounded = false;
                             else
                             {/*Si no ha jugado contra ninguno ni son de su mismo equipo, lo añadimos a la mesa
@@ -418,7 +431,7 @@ namespace MahjongTournamentSuite.NewTournament
         private void SaveTournament()
         {
             tournamentId = _db.GetExistingMaxTournamentId() + 1;
-            dbTournament = new DBTournament(tournamentId, players.Count, numRounds, tournamentName, DateTime.Now);
+            dbTournament = new DBTournament(tournamentId, players.Count, _numRounds, _isTeamsChecked, _tournamentName, DateTime.Now);
             _db.AddTournament(dbTournament);
         }
 

@@ -19,8 +19,8 @@ namespace MahjongTournamentSuite.Home
 
         void hideLoading();
 
-        void EnableResumeButton();
+        void EnableResumeAndDeleteButton();
 
-        void DisableResumeButton();
+        void DisableResumeAndDeleteButton();
     }
 }

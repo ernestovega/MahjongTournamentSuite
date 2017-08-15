@@ -51,10 +51,16 @@ namespace MahjongTournamentSuite.TournamentManager
 
         #region Events
 
-        private void btnReturn_Click(object sender, EventArgs e)
+        private void imgLogoMM_Click(object sender, EventArgs e)
         {
-            new HomeForm().Show();
-            Close();
+            ProcessStartInfo sInfo = new ProcessStartInfo("http://www.mahjongmadrid.com/");
+            Process.Start(sInfo);
+        }
+
+        private void imgLogoEMA_Click(object sender, EventArgs e)
+        {
+            ProcessStartInfo sInfo = new ProcessStartInfo("http://mahjong-europe.org/portal/");
+            Process.Start(sInfo);
         }
 
         private void btnTimer_Click(object sender, System.EventArgs e)
@@ -63,7 +69,7 @@ namespace MahjongTournamentSuite.TournamentManager
             Process.Start(mahjongTournamentTimer.returnExecutablePath());
         }
 
-        private void btnRankingShower_Click(object sender, System.EventArgs e)
+        private void btnRanking_Click(object sender, System.EventArgs e)
         {
             //var mahjongTournamentRankingShower = new MahjongTournamentRankingShower.Program();
             //Process.Start(mahjongTournamentRankingShower.returnExecutablePath());
@@ -150,7 +156,7 @@ namespace MahjongTournamentSuite.TournamentManager
                     //button.FlatAppearance.MouseOverBackColor = ;
                     button.Click += delegate
                     {
-                        new TableManagerForm(_tournamentId, int.Parse((string)comboRounds.SelectedValue), (int)button.Tag).Show();
+                        new TableManagerForm(_tournamentId, int.Parse((string)comboRounds.SelectedValue), (int)button.Tag).ShowDialog();
                     };
 
                     panelButtons.Controls.Add(button);
@@ -177,5 +183,10 @@ namespace MahjongTournamentSuite.TournamentManager
         #region Private
 
         #endregion
+
+        private void TournamentManagerForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            new HomeForm().Show();
+        }
     }
 }

@@ -12,6 +12,8 @@ namespace MahjongTournamentSuite.NewTournament
     {
         #region Constants
 
+        internal static readonly string TOURNAMENT_NAME_TEMPLATE_TEXT = "Enter here Tournament name";
+
         private static readonly Color greenEnabled = Color.FromArgb(0, 177, 106);
         private static readonly Color greenEnabledHover = Color.FromArgb(0, 127, 56);
         private static readonly Color grayDisabled = Color.FromArgb(65, 65, 65);
@@ -30,6 +32,7 @@ namespace MahjongTournamentSuite.NewTournament
         public NewTournamentForm()
         {
             InitializeComponent();
+            tbTournamentName.Text = TOURNAMENT_NAME_TEMPLATE_TEXT;
             _presenter = Injector.provideNewTournamentPresenter(this);
         }
 
@@ -79,7 +82,7 @@ namespace MahjongTournamentSuite.NewTournament
 
         #region INewTournamentForm implementation
 
-        public bool isBackgroundWorkerBusy()
+        public bool IsBackgroundWorkerBusy()
         {
             return backgroundWorker.IsBusy;
         }
@@ -94,12 +97,17 @@ namespace MahjongTournamentSuite.NewTournament
             backgroundWorker.CancelAsync();
         }
 
-        public int getNumPlayers()
+        public int GetNumPlayers()
         {
             return decimal.ToInt32(numUpDownPlayers.Value);
         }
 
-        public int getNumRounds()
+        public void SetNumUpDownPlayers(int numPlayers)
+        {
+            numUpDownPlayers.Value = numPlayers;
+        }
+
+        public int GetNumRounds()
         {
             return decimal.ToInt32(numUpDownRounds.Value);
         }
@@ -109,12 +117,12 @@ namespace MahjongTournamentSuite.NewTournament
             return cbTeams.Checked;
         }
 
-        public string getTournamentName()
+        public string GetTournamentName()
         {
             return tbTournamentName.Text;
         }
 
-        public int getNumTries()
+        public int GetNumTries()
         {
             return decimal.ToInt32(numUpDownTriesMax.Value);
         }
@@ -149,6 +157,14 @@ namespace MahjongTournamentSuite.NewTournament
             MessageBox.Show(this, "Please enter a name for the tournament.");
         }
 
+        public bool ShowWrongPlayersNumberMessage(int wrongNumPlayers, int goodNumPlayers)
+        {
+            DialogResult dialogResult = MessageBox.Show(this, 
+                string.Format("{0} is not multiple of 4.\nDo you want to change it to {1}?", wrongNumPlayers, goodNumPlayers),
+                "Wrong number of players", MessageBoxButtons.OKCancel);
+            return dialogResult == DialogResult.OK;
+        }
+
         public void ShowSomethingWentWrongMessage()
         {
             MessageBox.Show(this, "Ups! Something went wrong. Please try again.");
@@ -165,12 +181,6 @@ namespace MahjongTournamentSuite.NewTournament
                 lblLoadingMessage.Text = "Saving data...";
             else
                 lblLoadingMessage.Text = string.Format("Tries: {0}", tries);
-        }
-
-        public void OpenTournamentManagerForm(int tournamentId)
-        {
-            new TournamentManagerForm(tournamentId).Show();
-            Close();
         }
 
         public void CloseForm()

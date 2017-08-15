@@ -93,7 +93,7 @@
             // 
             this.panelLoading.Controls.Add(this.lblLoadingMessage);
             this.panelLoading.Controls.Add(this.pictureBox1);
-            this.panelLoading.Location = new System.Drawing.Point(0, 0);
+            this.panelLoading.Location = new System.Drawing.Point(14, 88);
             this.panelLoading.Margin = new System.Windows.Forms.Padding(5);
             this.panelLoading.Name = "panelLoading";
             this.panelLoading.Size = new System.Drawing.Size(376, 269);
@@ -128,6 +128,7 @@
             // imgLogoEMA
             // 
             this.imgLogoEMA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.imgLogoEMA.BackColor = System.Drawing.Color.Transparent;
             this.imgLogoEMA.Cursor = System.Windows.Forms.Cursors.Hand;
             this.imgLogoEMA.ErrorImage = ((System.Drawing.Image)(resources.GetObject("imgLogoEMA.ErrorImage")));
             this.imgLogoEMA.Image = ((System.Drawing.Image)(resources.GetObject("imgLogoEMA.Image")));
@@ -144,6 +145,7 @@
             // imgLogoMM
             // 
             this.imgLogoMM.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.imgLogoMM.BackColor = System.Drawing.Color.Transparent;
             this.imgLogoMM.Cursor = System.Windows.Forms.Cursors.Hand;
             this.imgLogoMM.ErrorImage = ((System.Drawing.Image)(resources.GetObject("imgLogoMM.ErrorImage")));
             this.imgLogoMM.Image = ((System.Drawing.Image)(resources.GetObject("imgLogoMM.Image")));
@@ -241,7 +243,6 @@
             this.tbTournamentName.Name = "tbTournamentName";
             this.tbTournamentName.Size = new System.Drawing.Size(342, 46);
             this.tbTournamentName.TabIndex = 76;
-            this.tbTournamentName.Text = "Enter here Tournament name";
             this.tbTournamentName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblTeams
@@ -358,7 +359,6 @@
             // panelOptions
             // 
             this.panelOptions.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.panelOptions.Controls.Add(this.panelLoading);
             this.panelOptions.Controls.Add(this.labelPlayers);
             this.panelOptions.Controls.Add(this.numUpDownPlayers);
             this.panelOptions.Controls.Add(this.numUpDownRounds);
@@ -383,6 +383,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(404, 461);
+            this.Controls.Add(this.panelLoading);
             this.Controls.Add(this.panelOptions);
             this.Controls.Add(this.imgLogoEMA);
             this.Controls.Add(this.btnStart);

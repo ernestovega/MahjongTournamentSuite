@@ -57,7 +57,6 @@
             this.btnReturn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnReturn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btnReturn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReturn.Image = global::MahjongTournamentSuite.Properties.Resources.icon_return;
             this.btnReturn.Location = new System.Drawing.Point(9, 9);
             this.btnReturn.Margin = new System.Windows.Forms.Padding(0);
             this.btnReturn.Name = "btnReturn";

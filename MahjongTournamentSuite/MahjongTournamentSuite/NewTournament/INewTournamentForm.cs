@@ -2,21 +2,23 @@
 {
     interface INewTournamentForm
     {
-        bool isBackgroundWorkerBusy();
+        bool IsBackgroundWorkerBusy();
 
         void RunBackgroundWorker();
 
         void CancelBackgroundWorker();
 
-        int getNumPlayers();
+        int GetNumPlayers();
 
-        int getNumRounds();
+        void SetNumUpDownPlayers(int numPlayers);
+
+        int GetNumRounds();
 
         bool IsTeamsChecked();
 
-        string getTournamentName();
+        string GetTournamentName();
 
-        int getNumTries();
+        int GetNumTries();
 
         void EnableViews();
 
@@ -26,13 +28,13 @@
 
         void ShowEnterTournamentNameMessage();
 
+        bool ShowWrongPlayersNumberMessage(int wrongNumPlayers, int goodNumPlayers);
+
         void ShowReachedTriesMessage(int numTriesMax);
 
         void ShowSomethingWentWrongMessage();
 
         void ApplicationDoEvents();
-
-        void OpenTournamentManagerForm(int tournamentId);
 
         void CloseForm();
     }
