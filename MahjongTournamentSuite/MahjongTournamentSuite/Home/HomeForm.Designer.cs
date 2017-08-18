@@ -40,12 +40,12 @@
             this.lblLoadingMessage = new System.Windows.Forms.Label();
             this.panelLoading = new System.Windows.Forms.Panel();
             this.imgLogoMM = new System.Windows.Forms.PictureBox();
-            this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.dgvTournaments = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoEMA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelLoading.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTournaments)).BeginInit();
             this.SuspendLayout();
             // 
             // btnNew
@@ -232,30 +232,30 @@
             this.imgLogoMM.TabStop = false;
             this.imgLogoMM.Click += new System.EventHandler(this.imgLogoMM_Click);
             // 
-            // dataGridView
+            // dgvTournaments
             // 
-            this.dataGridView.AllowUserToAddRows = false;
-            this.dataGridView.AllowUserToDeleteRows = false;
-            this.dataGridView.AllowUserToOrderColumns = true;
-            this.dataGridView.AllowUserToResizeColumns = false;
-            this.dataGridView.AllowUserToResizeRows = false;
-            this.dataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dgvTournaments.AllowUserToAddRows = false;
+            this.dgvTournaments.AllowUserToDeleteRows = false;
+            this.dgvTournaments.AllowUserToOrderColumns = true;
+            this.dgvTournaments.AllowUserToResizeColumns = false;
+            this.dgvTournaments.AllowUserToResizeRows = false;
+            this.dgvTournaments.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dataGridView.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvTournaments.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvTournaments.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgvTournaments.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvTournaments.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ButtonFace;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView.ColumnHeadersHeight = 40;
-            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgvTournaments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvTournaments.ColumnHeadersHeight = 40;
+            this.dgvTournaments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
@@ -263,21 +263,21 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView.GridColor = System.Drawing.SystemColors.Control;
-            this.dataGridView.Location = new System.Drawing.Point(14, 89);
-            this.dataGridView.Margin = new System.Windows.Forms.Padding(5, 10, 5, 5);
-            this.dataGridView.MultiSelect = false;
-            this.dataGridView.Name = "dataGridView";
-            this.dataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dataGridView.RowHeadersVisible = false;
-            this.dataGridView.RowTemplate.Height = 32;
-            this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView.Size = new System.Drawing.Size(980, 626);
-            this.dataGridView.TabIndex = 7;
-            this.dataGridView.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellEnter);
-            this.dataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView_CellFormatting);
-            this.dataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView_CellValidating);
+            this.dgvTournaments.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvTournaments.GridColor = System.Drawing.SystemColors.Control;
+            this.dgvTournaments.Location = new System.Drawing.Point(14, 89);
+            this.dgvTournaments.Margin = new System.Windows.Forms.Padding(5, 10, 5, 5);
+            this.dgvTournaments.MultiSelect = false;
+            this.dgvTournaments.Name = "dgvTournaments";
+            this.dgvTournaments.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvTournaments.RowHeadersVisible = false;
+            this.dgvTournaments.RowTemplate.Height = 32;
+            this.dgvTournaments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvTournaments.Size = new System.Drawing.Size(980, 626);
+            this.dgvTournaments.TabIndex = 7;
+            this.dgvTournaments.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTournaments_CellEnter);
+            this.dgvTournaments.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvTournaments_CellFormatting);
+            this.dgvTournaments.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvTournaments_CellValidating);
             // 
             // HomeForm
             // 
@@ -293,7 +293,7 @@
             this.Controls.Add(this.btnTimer);
             this.Controls.Add(this.imgLogoMM);
             this.Controls.Add(this.imgLogoEMA);
-            this.Controls.Add(this.dataGridView);
+            this.Controls.Add(this.dgvTournaments);
             this.Controls.Add(this.panelLoading);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -305,7 +305,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelLoading.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTournaments)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -320,6 +320,6 @@
         private System.Windows.Forms.Label lblLoadingMessage;
         private System.Windows.Forms.Panel panelLoading;
         private System.Windows.Forms.PictureBox imgLogoMM;
-        private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.DataGridView dgvTournaments;
     }
 }

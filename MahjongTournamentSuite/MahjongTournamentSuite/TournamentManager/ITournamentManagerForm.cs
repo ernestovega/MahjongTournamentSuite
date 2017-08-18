@@ -1,9 +1,25 @@
-﻿namespace MahjongTournamentSuite.TournamentManager
+﻿using System.Collections.Generic;
+using MahjongTournamentSuite.Model;
+
+namespace MahjongTournamentSuite.TournamentManager
 {
     interface ITournamentManagerForm
     {
-        void FillComboRounds(int numRounds);
+        void ShowDGV();
 
-        void GenerateRoundTablesButtons(int numTables);
+        void HideDGV();
+
+        void AddButtonTeams();
+
+        void AddPlayersButton();
+
+        void AddRoundsButtons(int numRounds);
+
+        void FillDGVWithTeams(List<DBTeam> teams);
+
+        void FillDGVWithPlayers(List<DBPlayer> players);
+
+        void FillPanelTournamentWithRoundButtons(int roundId, int numTables);
+        void EmptyPanelTournament();
     }
 }

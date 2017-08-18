@@ -121,6 +121,8 @@ namespace MahjongTournamentSuite.NewTournament
             SaveTournament();
             SavePlayers();
             SaveTables();
+            if(_isTeamsChecked)
+                SaveTeams();
         }
 
         public void RunWorkerCompleted()
@@ -465,6 +467,16 @@ namespace MahjongTournamentSuite.NewTournament
                 dbHands.Add(new DBHand(tournamentId, roundId, tableId, i));
             }
             _db.AddHands(dbHands);
+        }
+
+        private void SaveTeams()
+        {
+            List<DBTeam> dbTeams = new List<DBTeam>();
+            for (int i = 1; i <= players.Count / 4; i++)
+            {
+                dbTeams.Add(new DBTeam(dbTournament.Id, i, i.ToString()));
+            }
+            _db.AddTeams(dbTeams);
         }
 
         #endregion

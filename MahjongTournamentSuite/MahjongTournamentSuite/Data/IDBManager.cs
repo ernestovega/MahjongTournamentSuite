@@ -19,7 +19,9 @@ namespace MahjongTournamentSuite.Data
 
         void AddTables(List<DBTable> tables);
 
-        void AddHands(List<DBHand> dbHands);
+        void AddHands(List<DBHand> hands);
+
+        void AddTeams(List<DBTeam> teams);
 
         #endregion
 
@@ -28,6 +30,10 @@ namespace MahjongTournamentSuite.Data
         DBTournament GetTournament(int tournamentId);
 
         List<DBTournament> GetTournaments();
+
+        List<DBTeam> GetTournamentTeams(int tournamentId);
+
+        List<DBPlayer> GetTournamentPlayers(int tournamentId);
 
         #endregion
 
@@ -43,7 +49,7 @@ namespace MahjongTournamentSuite.Data
 
         void UpdateHand(DBHand hand);
 
-        void UpdateTablePlayersPositions(DBTable _table);
+        void UpdateTablePlayersPositions(DBTable table);
 
         #endregion
     }

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MahjongTournamentSuite.Model
 {
-    public class DBPlayer
+    public class DBTeam
     {
         [Key, Column(Order = 0)]
         public int TournamentId { get; set; }
@@ -13,19 +13,13 @@ namespace MahjongTournamentSuite.Model
 
         public string Name { get; set; }
 
-        public string TeamId { get; set; }
+        public DBTeam() { }
 
-        public string CountryId { get; set; }
-
-        public DBPlayer() { }
-
-        public DBPlayer(int tournamentId, int id, string name, string teamId, string countryId)
+        public DBTeam(int tournamentId, int id, string name)
         {
             TournamentId = tournamentId;
             Id = id;
             Name = name;
-            TeamId = teamId;
-            CountryId = countryId;
         }
     }
 }

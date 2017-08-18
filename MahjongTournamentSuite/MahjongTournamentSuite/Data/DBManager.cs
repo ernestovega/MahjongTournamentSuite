@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using static MahjongTournamentSuite.Data.DBContext;
+using System;
 
 namespace MahjongTournamentSuite.Data
 {
@@ -65,12 +66,19 @@ namespace MahjongTournamentSuite.Data
             DeleteTournamentTables(tournamentId);
             DeleteTournamentPlayers(tournamentId);
             _db.Tournaments.Remove(_db.Tournaments.ToList().FirstOrDefault(x => x.Id == tournamentId));
+            if(_db.Tournaments.ToList().Find(x => x.Id == tournamentId).IsTeams)
+                DeleteTournamentTeams(tournamentId);
             _db.SaveChanges();
         }
-        
+
         #endregion
 
         #region Player
+
+        public List<DBPlayer> GetTournamentPlayers(int tournamentId)
+        {
+            return _db.Players.ToList().FindAll(x => x.TournamentId == tournamentId);
+        }
 
         public List<DBPlayer> GetTablePlayers(int tournamentId, int roundId, int tableId)
         {
@@ -155,6 +163,27 @@ namespace MahjongTournamentSuite.Data
         public void DeleteTournamentHands(int tournamentId)
         {
             _db.Hands.RemoveRange(_db.Hands.ToList().FindAll(x => x.TournamentId == tournamentId));
+            _db.SaveChanges();
+        }
+
+        #endregion
+
+        #region Teams
+
+        public List<DBTeam> GetTournamentTeams(int tournamentId)
+        {
+            return _db.Teams.ToList().FindAll(x => x.TournamentId == tournamentId);
+        }
+
+        public void AddTeams(List<DBTeam> teams)
+        {
+            _db.Teams.AddRange(teams);
+            _db.SaveChanges();
+        }
+
+        public void DeleteTournamentTeams(int tournamentId)
+        {
+            _db.Teams.RemoveRange(_db.Teams.ToList().FindAll(x => x.TournamentId == tournamentId));
             _db.SaveChanges();
         }
 

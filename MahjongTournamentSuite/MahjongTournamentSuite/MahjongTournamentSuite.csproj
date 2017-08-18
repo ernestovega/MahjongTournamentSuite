@@ -93,6 +93,7 @@
     <Compile Include="Model\ComboItem.cs" />
     <Compile Include="Model\DBHand.cs" />
     <Compile Include="Model\DBPlayer.cs" />
+    <Compile Include="Model\DBTeam.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Model\PropertyComparer.cs" />
     <Compile Include="Model\Rivals.cs" />

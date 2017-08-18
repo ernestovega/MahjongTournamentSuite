@@ -11,11 +11,13 @@ namespace MahjongTournamentSuite.Data
 
         public class TournamentSuiteDB : DbContext
         {
+            public DbSet<DBTournament> Tournaments { get; set; }
+
+            public DbSet<DBTeam> Teams { get; set; }
+
             public DbSet<DBPlayer> Players { get; set; }
 
             public DbSet<DBTable> Tables { get; set; }
-
-            public DbSet<DBTournament> Tournaments { get; set; }
 
             public DbSet<DBHand> Hands { get; set; }
         }

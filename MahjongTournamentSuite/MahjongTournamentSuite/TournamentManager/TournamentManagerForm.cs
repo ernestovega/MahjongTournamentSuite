@@ -13,11 +13,19 @@ namespace MahjongTournamentSuite.TournamentManager
     {
         #region Constants
 
-        private readonly Color GREEN_MM = Color.FromArgb(0 , 177, 106);
-        private readonly Color GREEN_DARK_MM = Color.FromArgb(64, 64, 64);
-        private readonly Color GRAY_MM = Color.FromArgb(64, 64, 64);
-        private readonly Color GRAY_DARK_MM = Color.FromArgb(64, 64, 64);
-        private readonly Color RED_MM = Color.FromArgb(64, 64, 64);
+        private static readonly string COLUMN_TEAMS_TOURNAMENT_ID = "TournamentId";
+        private static readonly string COLUMN_TEAMS_ID = "Id";
+        private static readonly string COLUMN_TEAMS_NAME = "Name";
+        private static readonly int COLUMN_TEAMS_NAME_INDEX = 2;
+
+        private static readonly string COLUMN_PLAYERS_TOURNAMENT_ID = "TournamentId";
+        private static readonly string COLUMN_PLAYERS_ID = "Id";
+        private static readonly string COLUMN_PLAYERS_NAME = "Name";
+        private static readonly string COLUMN_PLAYERS_TEAM = "TeamId";
+        private static readonly string COLUMN_PLAYERS_COUNTRY = "CountryId";
+        private static readonly int COLUMN_PLAYERS_NAME_INDEX = 2;
+        private static readonly int COLUMN_PLAYERS_TEAM_INDEX = 3;
+        private static readonly int COLUMN_PLAYERS_COUNTRY_INDEX = 4;
 
         #endregion
 
@@ -45,6 +53,11 @@ namespace MahjongTournamentSuite.TournamentManager
         private void TournamentManagerForm_Resize(object sender, EventArgs e)
         {
             _presenter.OnFormResized();
+        }
+
+        private void TournamentManagerForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            new HomeForm().Show();
         }
 
         #endregion
@@ -79,31 +92,101 @@ namespace MahjongTournamentSuite.TournamentManager
 
         #region ITournamentManagerForm
 
-        public void FillComboRounds(int numRounds)
+        public void ShowDGV()
         {
-            List<ComboItem> comboRoundItems = new List<ComboItem>(numRounds);
-            for (int round = 1; round <= numRounds; round++)
-            {
-                comboRoundItems.Add(new ComboItem(string.Format("Round {0}", round), round.ToString()));
-            }
-            comboRounds.DataSource = comboRoundItems;
-            comboRounds.DisplayMember = "Text";
-            comboRounds.ValueMember = "Value";
+            dgv.Visible = true;
         }
 
-        public void GenerateRoundTablesButtons(int numTables)
+        public void HideDGV()
         {
-            //Borramos el panel que haya
-            var controls = Controls.Find("panelButtons", true);
-            if (controls != null && controls.Length > 0)
-            {
-                Controls.Remove(controls[0]);
-            }
+            dgv.Visible = false;
+        }
 
+        public void AddButtonTeams()
+        {
+            Button btnTeams = new Button();
+            btnTeams.Name = "Teams";
+            btnTeams.Text = "Teams";
+            btnTeams.AutoSize = true;
+            btnTeams.Click += delegate
+            {
+                _presenter.ButtonTeamsClicked();
+            };
+            flowPanelButtons.Controls.Add(btnTeams);
+        }
+
+        public void AddPlayersButton()
+        {
+            Button btnPlayers = new Button();
+            btnPlayers.Name = "Players";
+            btnPlayers.Text = "Players";
+            btnPlayers.AutoSize = true;
+            btnPlayers.Click += delegate
+            {
+                _presenter.ButtonPlayersClicked();
+            };
+            flowPanelButtons.Controls.Add(btnPlayers);
+        }
+
+        public void AddRoundsButtons(int numRounds)
+        {
+            for (int i = 1; i <= numRounds; i++)
+            {
+                Button btnRound = new Button();
+                btnRound.Name = string.Format("Round {0}", i);
+                btnRound.Text = string.Format("Round {0}", i);
+                btnRound.AutoSize = true;
+                btnRound.Tag = i;
+                btnRound.Click += delegate
+                {
+                    _presenter.ButtonRoundClicked((int)btnRound.Tag);
+                };
+                flowPanelButtons.Controls.Add(btnRound);
+            }
+        }
+
+        public void FillDGVWithTeams(List<DBTeam> teams)
+        {
+            SortableBindingList<DBTeam> sortableTeams =
+                new SortableBindingList<DBTeam>(teams);
+            dgv.DataSource = sortableTeams;
+
+            //Visible
+            dgv.Columns[COLUMN_TEAMS_TOURNAMENT_ID].Visible = false;
+            //ReadOnly
+            dgv.Columns[COLUMN_TEAMS_ID].ReadOnly = true;
+            //HeaderText
+            dgv.Columns[COLUMN_TEAMS_ID].HeaderText = "Id";
+            dgv.Columns[COLUMN_TEAMS_NAME].HeaderText = "Name";
+            //AutoSizeMode
+            dgv.Columns[COLUMN_TEAMS_ID].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+        }
+
+        public void FillDGVWithPlayers(List<DBPlayer> players)
+        {
+            SortableBindingList<DBPlayer> sortablePlayers =
+                new SortableBindingList<DBPlayer>(players);
+            dgv.DataSource = sortablePlayers;
+
+            //Visible
+            dgv.Columns[COLUMN_PLAYERS_TOURNAMENT_ID].Visible = false;
+            //ReadOnly
+            dgv.Columns[COLUMN_PLAYERS_ID].ReadOnly = true;
+            //HeaderText
+            dgv.Columns[COLUMN_PLAYERS_ID].HeaderText = "Id";
+            dgv.Columns[COLUMN_PLAYERS_NAME].HeaderText = "Name";
+            dgv.Columns[COLUMN_PLAYERS_TEAM].HeaderText = "Team";
+            dgv.Columns[COLUMN_PLAYERS_COUNTRY].HeaderText = "Country";
+            //AutoSizeMode
+            dgv.Columns[COLUMN_PLAYERS_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+        }
+
+        public void FillPanelTournamentWithRoundButtons(int roundId, int numTables)
+        {
             //Obtenemos el número de botones por lado.
             int numButtonsHorizontal = 2;
             int numButtonsVertical = 2;
-            while(numButtonsHorizontal * numButtonsVertical < numTables)
+            while (numButtonsHorizontal * numButtonsVertical < numTables)
             {
                 if (numButtonsHorizontal == numButtonsVertical)
                     numButtonsHorizontal++;
@@ -112,27 +195,26 @@ namespace MahjongTournamentSuite.TournamentManager
             }
 
             //Calculamos los márgenes
-            int marginVertical = panelTables.Height / (numButtonsVertical * 10); //Un 10% del lado del botón
+            int marginVertical = panelTournament.Height / (numButtonsVertical * 10); //Un 10% del lado del botón
             int marginHorizontal = marginVertical;
 
             int horizontalMarginsSum = marginHorizontal * (numButtonsHorizontal - 1);
             int verticalMarginsSum = marginVertical * (numButtonsVertical - 1);
 
-            //Obtenemos el tamaño de los lados de los botones teniendo en cuenta los márgenes entre cada uno.
-            int buttonSideVertical = (panelTables.Height - verticalMarginsSum) / numButtonsVertical;
+            //Obtenemos el tamaño de los panelTournament de los botones teniendo en cuenta los márgenes entre cada uno.
+            int buttonSideVertical = (panelTournament.Height - verticalMarginsSum) / numButtonsVertical;
             int buttonSideHorizontal = buttonSideVertical;
 
             //Creamos un panel nuevo
             Panel panelButtons = new Panel();
             panelButtons.Name = "panelButtons";
             panelButtons.Width = (buttonSideHorizontal * numButtonsHorizontal) + (marginHorizontal * numButtonsHorizontal);
-            panelButtons.Height = panelTables.Height;
+            panelButtons.Height = panelTournament.Height;
             panelButtons.AutoSize = false;
-            panelButtons.Location = new Point((panelTables.Width - panelButtons.Width) / 2, 0);
+            panelButtons.Location = new Point((panelTournament.Width - panelButtons.Width) / 2, 0);
 
             //Generamos los botones
-            string roundId = (string)comboRounds.SelectedValue;
-            int count = 1;
+            int tableId = 1;
             Point buttonStartPoint = new Point(0, 0);
             for (int i = 1; i <= numButtonsVertical; i++)
             {
@@ -140,11 +222,11 @@ namespace MahjongTournamentSuite.TournamentManager
                 {
                     Button button = new Button();
                     button.Size = new Size(buttonSideHorizontal, buttonSideVertical);
-                    button.Name = string.Format("btnRound{1}Table{0}", roundId, count);
-                    button.Text = string.Format("TABLE {0}", count);
-                    button.Tag = count;
+                    button.Name = string.Format("btnRound{1}Table{0}", roundId, tableId);
+                    button.Text = string.Format("TABLE {0}", tableId);
+                    button.Tag = tableId;
                     button.Location = buttonStartPoint;
-                    button.BackColor = GREEN_MM;
+                    button.BackColor = Color.Green;
                     button.ForeColor = Color.White;
                     button.Font = new Font("Arial Black", 12);
                     //button.Cursor = ;
@@ -152,41 +234,42 @@ namespace MahjongTournamentSuite.TournamentManager
                     button.FlatAppearance.BorderColor = Color.White;
                     button.FlatAppearance.BorderSize = 0;
                     //button.FlatAppearance.CheckedBackColor =;
-                    button.FlatAppearance.MouseDownBackColor = GREEN_DARK_MM;
+                    button.FlatAppearance.MouseDownBackColor = Color.ForestGreen;
                     //button.FlatAppearance.MouseOverBackColor = ;
                     button.Click += delegate
                     {
-                        new TableManagerForm(_tournamentId, int.Parse((string)comboRounds.SelectedValue), (int)button.Tag).ShowDialog();
+                        new TableManagerForm(_tournamentId, roundId, (int)button.Tag).ShowDialog();
                     };
 
                     panelButtons.Controls.Add(button);
 
-                    if (count < numTables)
+                    if (tableId < numTables)
                     {
-                        count++;
+                        tableId++;
                         buttonStartPoint.X += buttonSideHorizontal + marginHorizontal;
                     }
                     else
                     {
-                        panelTables.Controls.Add(panelButtons);
+                        panelTournament.Controls.Add(panelButtons);
                         return;
                     }
                 }
                 buttonStartPoint.X = 0;
                 buttonStartPoint.Y += marginVertical + buttonSideVertical;
-                panelTables.Controls.Add(panelButtons);
+                panelTournament.Controls.Add(panelButtons);
+            }
+        }
+
+        public void EmptyPanelTournament()
+        {
+            List<Control> panelTournamentControls = new List<Control>();
+            foreach (Control control in panelTournament.Controls)
+            {
+                if (control.GetType() != typeof(DataGridView))
+                    panelTournament.Controls.Remove(control);
             }
         }
 
         #endregion
-
-        #region Private
-
-        #endregion
-
-        private void TournamentManagerForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            new HomeForm().Show();
-        }
     }
 }

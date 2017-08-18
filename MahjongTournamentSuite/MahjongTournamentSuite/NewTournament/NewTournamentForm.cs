@@ -1,5 +1,4 @@
 ﻿using MahjongTournamentSuite.Home;
-using MahjongTournamentSuite.TournamentManager;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;

@@ -29,44 +29,20 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TournamentManagerForm));
-            this.comboRounds = new System.Windows.Forms.ComboBox();
-            this.panelTables = new System.Windows.Forms.Panel();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnRanking = new System.Windows.Forms.Button();
             this.btnTimer = new System.Windows.Forms.Button();
             this.imgLogoMM = new System.Windows.Forms.PictureBox();
             this.imgLogoEMA = new System.Windows.Forms.PictureBox();
+            this.dgv = new System.Windows.Forms.DataGridView();
+            this.panelTournament = new System.Windows.Forms.Panel();
+            this.flowPanelButtons = new System.Windows.Forms.FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoEMA)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
+            this.panelTournament.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // comboRounds
-            // 
-            this.comboRounds.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboRounds.BackColor = System.Drawing.Color.White;
-            this.comboRounds.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.comboRounds.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboRounds.Font = new System.Drawing.Font("Arial Black", 12F);
-            this.comboRounds.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.comboRounds.FormattingEnabled = true;
-            this.comboRounds.Location = new System.Drawing.Point(372, 34);
-            this.comboRounds.Margin = new System.Windows.Forms.Padding(5);
-            this.comboRounds.MaxDropDownItems = 100;
-            this.comboRounds.Name = "comboRounds";
-            this.comboRounds.Size = new System.Drawing.Size(240, 31);
-            this.comboRounds.TabIndex = 22;
-            // 
-            // panelTables
-            // 
-            this.panelTables.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelTables.BackColor = System.Drawing.SystemColors.Control;
-            this.panelTables.Location = new System.Drawing.Point(14, 88);
-            this.panelTables.Margin = new System.Windows.Forms.Padding(5);
-            this.panelTables.Name = "panelTables";
-            this.panelTables.Size = new System.Drawing.Size(980, 640);
-            this.panelTables.TabIndex = 23;
             // 
             // btnRanking
             // 
@@ -161,6 +137,70 @@
             this.imgLogoEMA.TabStop = false;
             this.imgLogoEMA.Click += new System.EventHandler(this.imgLogoEMA_Click);
             // 
+            // dgv
+            // 
+            this.dgv.AllowUserToAddRows = false;
+            this.dgv.AllowUserToDeleteRows = false;
+            this.dgv.AllowUserToOrderColumns = true;
+            this.dgv.AllowUserToResizeColumns = false;
+            this.dgv.AllowUserToResizeRows = false;
+            this.dgv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgv.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgv.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.ButtonFace;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgv.ColumnHeadersHeight = 40;
+            this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dgv.GridColor = System.Drawing.SystemColors.Control;
+            this.dgv.Location = new System.Drawing.Point(5, 5);
+            this.dgv.Margin = new System.Windows.Forms.Padding(5);
+            this.dgv.MultiSelect = false;
+            this.dgv.Name = "dgv";
+            this.dgv.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgv.RowHeadersVisible = false;
+            this.dgv.RowTemplate.Height = 32;
+            this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv.Size = new System.Drawing.Size(970, 630);
+            this.dgv.TabIndex = 66;
+            // 
+            // panelTournament
+            // 
+            this.panelTournament.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelTournament.Controls.Add(this.dgv);
+            this.panelTournament.Location = new System.Drawing.Point(14, 88);
+            this.panelTournament.Margin = new System.Windows.Forms.Padding(5);
+            this.panelTournament.Name = "panelTournament";
+            this.panelTournament.Size = new System.Drawing.Size(980, 640);
+            this.panelTournament.TabIndex = 67;
+            // 
+            // flowPanelButtons
+            // 
+            this.flowPanelButtons.Location = new System.Drawing.Point(107, 14);
+            this.flowPanelButtons.Margin = new System.Windows.Forms.Padding(24, 5, 24, 5);
+            this.flowPanelButtons.Name = "flowPanelButtons";
+            this.flowPanelButtons.Size = new System.Drawing.Size(636, 64);
+            this.flowPanelButtons.TabIndex = 68;
+            // 
             // TournamentManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -168,13 +208,13 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1008, 742);
+            this.Controls.Add(this.flowPanelButtons);
+            this.Controls.Add(this.panelTournament);
             this.Controls.Add(this.imgLogoEMA);
             this.Controls.Add(this.imgLogoMM);
             this.Controls.Add(this.btnTimer);
             this.Controls.Add(this.btnRanking);
-            this.Controls.Add(this.panelTables);
-            this.Controls.Add(this.comboRounds);
-            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1024, 726);
@@ -185,16 +225,19 @@
             this.Resize += new System.EventHandler(this.TournamentManagerForm_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoEMA)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
+            this.panelTournament.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.ComboBox comboRounds;
-        private System.Windows.Forms.Panel panelTables;
         private System.Windows.Forms.Button btnRanking;
         private System.Windows.Forms.Button btnTimer;
         private System.Windows.Forms.PictureBox imgLogoMM;
         private System.Windows.Forms.PictureBox imgLogoEMA;
+        private System.Windows.Forms.DataGridView dgv;
+        private System.Windows.Forms.Panel panelTournament;
+        private System.Windows.Forms.FlowLayoutPanel flowPanelButtons;
     }
 }
