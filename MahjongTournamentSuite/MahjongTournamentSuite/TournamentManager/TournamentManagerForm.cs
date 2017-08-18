@@ -92,16 +92,6 @@ namespace MahjongTournamentSuite.TournamentManager
 
         #region ITournamentManagerForm
 
-        public void ShowDGV()
-        {
-            dgv.Visible = true;
-        }
-
-        public void HideDGV()
-        {
-            dgv.Visible = false;
-        }
-
         public void AddButtonTeams()
         {
             Button btnTeams = new Button();
@@ -112,7 +102,7 @@ namespace MahjongTournamentSuite.TournamentManager
             {
                 _presenter.ButtonTeamsClicked();
             };
-            flowPanelButtons.Controls.Add(btnTeams);
+            flowPanelRoundsButtons.Controls.Add(btnTeams);
         }
 
         public void AddPlayersButton()
@@ -125,7 +115,7 @@ namespace MahjongTournamentSuite.TournamentManager
             {
                 _presenter.ButtonPlayersClicked();
             };
-            flowPanelButtons.Controls.Add(btnPlayers);
+            flowPanelRoundsButtons.Controls.Add(btnPlayers);
         }
 
         public void AddRoundsButtons(int numRounds)
@@ -135,13 +125,16 @@ namespace MahjongTournamentSuite.TournamentManager
                 Button btnRound = new Button();
                 btnRound.Name = string.Format("Round {0}", i);
                 btnRound.Text = string.Format("Round {0}", i);
-                btnRound.AutoSize = true;
+                btnRound.AutoSize = false;
+                btnRound.Width = flowPanelRoundsButtons.Height;
+                btnRound.Height = flowPanelRoundsButtons.Height;
                 btnRound.Tag = i;
+                btnRound.Anchor = AnchorStyles.None;
                 btnRound.Click += delegate
                 {
                     _presenter.ButtonRoundClicked((int)btnRound.Tag);
                 };
-                flowPanelButtons.Controls.Add(btnRound);
+                flowPanelRoundsButtons.Controls.Add(btnRound);
             }
         }
 
@@ -195,23 +188,23 @@ namespace MahjongTournamentSuite.TournamentManager
             }
 
             //Calculamos los márgenes
-            int marginVertical = panelTournament.Height / (numButtonsVertical * 10); //Un 10% del lado del botón
+            int marginVertical = panelRoundButtons.Height / (numButtonsVertical * 10); //Un 10% del lado del botón
             int marginHorizontal = marginVertical;
 
             int horizontalMarginsSum = marginHorizontal * (numButtonsHorizontal - 1);
             int verticalMarginsSum = marginVertical * (numButtonsVertical - 1);
 
             //Obtenemos el tamaño de los panelTournament de los botones teniendo en cuenta los márgenes entre cada uno.
-            int buttonSideVertical = (panelTournament.Height - verticalMarginsSum) / numButtonsVertical;
+            int buttonSideVertical = (panelRoundButtons.Height - verticalMarginsSum) / numButtonsVertical;
             int buttonSideHorizontal = buttonSideVertical;
 
             //Creamos un panel nuevo
             Panel panelButtons = new Panel();
             panelButtons.Name = "panelButtons";
             panelButtons.Width = (buttonSideHorizontal * numButtonsHorizontal) + (marginHorizontal * numButtonsHorizontal);
-            panelButtons.Height = panelTournament.Height;
+            panelButtons.Height = panelRoundButtons.Height;
             panelButtons.AutoSize = false;
-            panelButtons.Location = new Point((panelTournament.Width - panelButtons.Width) / 2, 0);
+            panelButtons.Location = new Point((panelRoundButtons.Width - panelButtons.Width) / 2, 0);
 
             //Generamos los botones
             int tableId = 1;
@@ -250,24 +243,46 @@ namespace MahjongTournamentSuite.TournamentManager
                     }
                     else
                     {
-                        panelTournament.Controls.Add(panelButtons);
+                        panelRoundButtons.Controls.Add(panelButtons);
                         return;
                     }
                 }
                 buttonStartPoint.X = 0;
                 buttonStartPoint.Y += marginVertical + buttonSideVertical;
-                panelTournament.Controls.Add(panelButtons);
+                panelRoundButtons.Controls.Add(panelButtons);
             }
         }
 
-        public void EmptyPanelTournament()
+        public void ShowDGV()
+        {
+            dgv.Visible = true;
+        }
+
+        public void HideDGV()
+        {
+            dgv.Visible = false;
+        }
+
+        public void EmptyPanelRoundButtons()
         {
             List<Control> panelTournamentControls = new List<Control>();
-            foreach (Control control in panelTournament.Controls)
+            foreach (Control control in panelRoundButtons.Controls)
             {
                 if (control.GetType() != typeof(DataGridView))
-                    panelTournament.Controls.Remove(control);
+                    panelRoundButtons.Controls.Remove(control);
             }
+        }
+
+        public void ShowRoundsButtonsAndPanel()
+        {
+            flowPanelRoundsButtons.Visible = true;
+            panelRoundButtons.Visible = true;
+        }
+
+        public void HideRoundsButtonsAndPanel()
+        {
+            flowPanelRoundsButtons.Visible = false;
+            panelRoundButtons.Visible = false;
         }
 
         #endregion

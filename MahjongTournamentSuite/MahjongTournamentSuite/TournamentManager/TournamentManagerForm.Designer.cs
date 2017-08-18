@@ -29,19 +29,21 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TournamentManagerForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnRanking = new System.Windows.Forms.Button();
             this.btnTimer = new System.Windows.Forms.Button();
             this.imgLogoMM = new System.Windows.Forms.PictureBox();
             this.imgLogoEMA = new System.Windows.Forms.PictureBox();
             this.dgv = new System.Windows.Forms.DataGridView();
-            this.panelTournament = new System.Windows.Forms.Panel();
-            this.flowPanelButtons = new System.Windows.Forms.FlowLayoutPanel();
+            this.panelRoundButtons = new System.Windows.Forms.Panel();
+            this.flowPanelRoundsButtons = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnRounds = new System.Windows.Forms.Button();
+            this.btnPlayers = new System.Windows.Forms.Button();
+            this.btnTeams = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoEMA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
-            this.panelTournament.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnRanking
@@ -151,26 +153,26 @@
             this.dgv.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgv.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.ButtonFace;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ButtonFace;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv.ColumnHeadersHeight = 40;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv.GridColor = System.Drawing.SystemColors.Control;
-            this.dgv.Location = new System.Drawing.Point(5, 5);
+            this.dgv.Location = new System.Drawing.Point(14, 88);
             this.dgv.Margin = new System.Windows.Forms.Padding(5);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
@@ -178,28 +180,112 @@
             this.dgv.RowHeadersVisible = false;
             this.dgv.RowTemplate.Height = 32;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(970, 630);
+            this.dgv.Size = new System.Drawing.Size(980, 640);
             this.dgv.TabIndex = 66;
             // 
-            // panelTournament
+            // panelRoundButtons
             // 
-            this.panelTournament.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.panelRoundButtons.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelTournament.Controls.Add(this.dgv);
-            this.panelTournament.Location = new System.Drawing.Point(14, 88);
-            this.panelTournament.Margin = new System.Windows.Forms.Padding(5);
-            this.panelTournament.Name = "panelTournament";
-            this.panelTournament.Size = new System.Drawing.Size(980, 640);
-            this.panelTournament.TabIndex = 67;
+            this.panelRoundButtons.Location = new System.Drawing.Point(14, 162);
+            this.panelRoundButtons.Margin = new System.Windows.Forms.Padding(5);
+            this.panelRoundButtons.Name = "panelRoundButtons";
+            this.panelRoundButtons.Size = new System.Drawing.Size(980, 566);
+            this.panelRoundButtons.TabIndex = 67;
+            this.panelRoundButtons.Visible = false;
             // 
-            // flowPanelButtons
+            // flowPanelRoundsButtons
             // 
-            this.flowPanelButtons.Location = new System.Drawing.Point(107, 14);
-            this.flowPanelButtons.Margin = new System.Windows.Forms.Padding(24, 5, 24, 5);
-            this.flowPanelButtons.Name = "flowPanelButtons";
-            this.flowPanelButtons.Size = new System.Drawing.Size(636, 64);
-            this.flowPanelButtons.TabIndex = 68;
+            this.flowPanelRoundsButtons.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.flowPanelRoundsButtons.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.flowPanelRoundsButtons.Location = new System.Drawing.Point(14, 88);
+            this.flowPanelRoundsButtons.Margin = new System.Windows.Forms.Padding(5);
+            this.flowPanelRoundsButtons.Name = "flowPanelRoundsButtons";
+            this.flowPanelRoundsButtons.Size = new System.Drawing.Size(980, 64);
+            this.flowPanelRoundsButtons.TabIndex = 68;
+            this.flowPanelRoundsButtons.Visible = false;
+            // 
+            // btnRounds
+            // 
+            this.btnRounds.BackColor = System.Drawing.Color.Transparent;
+            this.btnRounds.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnRounds.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRounds.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.btnRounds.FlatAppearance.BorderSize = 0;
+            this.btnRounds.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
+            this.btnRounds.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
+            this.btnRounds.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gainsboro;
+            this.btnRounds.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRounds.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnRounds.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnRounds.Image = ((System.Drawing.Image)(resources.GetObject("btnRounds.Image")));
+            this.btnRounds.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnRounds.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnRounds.Location = new System.Drawing.Point(251, 14);
+            this.btnRounds.Margin = new System.Windows.Forms.Padding(5);
+            this.btnRounds.Name = "btnRounds";
+            this.btnRounds.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.btnRounds.Size = new System.Drawing.Size(64, 64);
+            this.btnRounds.TabIndex = 69;
+            this.btnRounds.Text = "Rounds";
+            this.btnRounds.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnRounds.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnRounds.UseVisualStyleBackColor = false;
+            // 
+            // btnPlayers
+            // 
+            this.btnPlayers.BackColor = System.Drawing.Color.Transparent;
+            this.btnPlayers.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnPlayers.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPlayers.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.btnPlayers.FlatAppearance.BorderSize = 0;
+            this.btnPlayers.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
+            this.btnPlayers.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
+            this.btnPlayers.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gainsboro;
+            this.btnPlayers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPlayers.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnPlayers.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnPlayers.Image = ((System.Drawing.Image)(resources.GetObject("btnPlayers.Image")));
+            this.btnPlayers.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnPlayers.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnPlayers.Location = new System.Drawing.Point(177, 14);
+            this.btnPlayers.Margin = new System.Windows.Forms.Padding(5);
+            this.btnPlayers.Name = "btnPlayers";
+            this.btnPlayers.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.btnPlayers.Size = new System.Drawing.Size(64, 64);
+            this.btnPlayers.TabIndex = 70;
+            this.btnPlayers.Text = "Players";
+            this.btnPlayers.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnPlayers.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnPlayers.UseVisualStyleBackColor = false;
+            // 
+            // btnTeams
+            // 
+            this.btnTeams.BackColor = System.Drawing.Color.Transparent;
+            this.btnTeams.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnTeams.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTeams.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.btnTeams.FlatAppearance.BorderSize = 0;
+            this.btnTeams.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
+            this.btnTeams.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
+            this.btnTeams.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gainsboro;
+            this.btnTeams.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTeams.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnTeams.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnTeams.Image = ((System.Drawing.Image)(resources.GetObject("btnTeams.Image")));
+            this.btnTeams.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnTeams.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnTeams.Location = new System.Drawing.Point(103, 14);
+            this.btnTeams.Margin = new System.Windows.Forms.Padding(5);
+            this.btnTeams.Name = "btnTeams";
+            this.btnTeams.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.btnTeams.Size = new System.Drawing.Size(64, 64);
+            this.btnTeams.TabIndex = 71;
+            this.btnTeams.Text = "Teams";
+            this.btnTeams.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnTeams.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnTeams.UseVisualStyleBackColor = false;
             // 
             // TournamentManagerForm
             // 
@@ -208,12 +294,16 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1008, 742);
-            this.Controls.Add(this.flowPanelButtons);
-            this.Controls.Add(this.panelTournament);
+            this.Controls.Add(this.btnTeams);
+            this.Controls.Add(this.btnPlayers);
+            this.Controls.Add(this.btnRounds);
+            this.Controls.Add(this.flowPanelRoundsButtons);
+            this.Controls.Add(this.panelRoundButtons);
             this.Controls.Add(this.imgLogoEMA);
             this.Controls.Add(this.imgLogoMM);
             this.Controls.Add(this.btnTimer);
             this.Controls.Add(this.btnRanking);
+            this.Controls.Add(this.dgv);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -226,7 +316,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoEMA)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
-            this.panelTournament.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -237,7 +326,10 @@
         private System.Windows.Forms.PictureBox imgLogoMM;
         private System.Windows.Forms.PictureBox imgLogoEMA;
         private System.Windows.Forms.DataGridView dgv;
-        private System.Windows.Forms.Panel panelTournament;
-        private System.Windows.Forms.FlowLayoutPanel flowPanelButtons;
+        private System.Windows.Forms.Panel panelRoundButtons;
+        private System.Windows.Forms.FlowLayoutPanel flowPanelRoundsButtons;
+        private System.Windows.Forms.Button btnRounds;
+        private System.Windows.Forms.Button btnPlayers;
+        private System.Windows.Forms.Button btnTeams;
     }
 }

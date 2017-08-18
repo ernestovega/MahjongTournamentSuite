@@ -1,7 +1,6 @@
 ﻿using MahjongTournamentSuite.Data;
 using MahjongTournamentSuite.Model;
 using System.Collections.Generic;
-using System;
 
 namespace MahjongTournamentSuite.TournamentManager
 {
@@ -55,21 +54,22 @@ namespace MahjongTournamentSuite.TournamentManager
 
         public void ButtonTeamsClicked()
         {
-            _form.EmptyPanelTournament();
+            _form.HideRoundsButtonsAndPanel();
             _form.ShowDGV();
             _form.FillDGVWithTeams(_teams);
         }
 
         public void ButtonPlayersClicked()
         {
-            _form.EmptyPanelTournament();
+            _form.HideRoundsButtonsAndPanel();
             _form.ShowDGV();
             _form.FillDGVWithPlayers(_players);
         }
 
         public void ButtonRoundClicked(int tag)
         {
-            _form.EmptyPanelTournament();
+            _form.ShowRoundsButtonsAndPanel();
+            _form.EmptyPanelRoundButtons();
             _form.HideDGV();
             _form.FillPanelTournamentWithRoundButtons(tag, _tournament.NumPlayers / 4);
         }

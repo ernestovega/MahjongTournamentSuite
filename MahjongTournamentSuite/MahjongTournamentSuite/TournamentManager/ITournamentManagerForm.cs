@@ -5,10 +5,6 @@ namespace MahjongTournamentSuite.TournamentManager
 {
     interface ITournamentManagerForm
     {
-        void ShowDGV();
-
-        void HideDGV();
-
         void AddButtonTeams();
 
         void AddPlayersButton();
@@ -20,6 +16,15 @@ namespace MahjongTournamentSuite.TournamentManager
         void FillDGVWithPlayers(List<DBPlayer> players);
 
         void FillPanelTournamentWithRoundButtons(int roundId, int numTables);
-        void EmptyPanelTournament();
+
+        void ShowDGV();
+
+        void HideDGV();
+
+        void EmptyPanelRoundButtons();
+
+        void ShowRoundsButtonsAndPanel();
+
+        void HideRoundsButtonsAndPanel();
     }
 }
