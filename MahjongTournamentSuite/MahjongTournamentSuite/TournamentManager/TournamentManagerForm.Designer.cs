@@ -61,11 +61,11 @@
             this.panelTables.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelTables.BackColor = System.Drawing.Color.White;
-            this.panelTables.Location = new System.Drawing.Point(14, 99);
+            this.panelTables.BackColor = System.Drawing.SystemColors.Control;
+            this.panelTables.Location = new System.Drawing.Point(14, 88);
             this.panelTables.Margin = new System.Windows.Forms.Padding(5);
             this.panelTables.Name = "panelTables";
-            this.panelTables.Size = new System.Drawing.Size(980, 629);
+            this.panelTables.Size = new System.Drawing.Size(980, 640);
             this.panelTables.TabIndex = 23;
             // 
             // btnRanking
@@ -82,7 +82,7 @@
             this.btnRanking.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRanking.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.btnRanking.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnRanking.Image = global::MahjongTournamentSuite.Properties.Resources.ranking;
+            this.btnRanking.Image = ((System.Drawing.Image)(resources.GetObject("btnRanking.Image")));
             this.btnRanking.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnRanking.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnRanking.Location = new System.Drawing.Point(772, 14);
@@ -133,6 +133,7 @@
             this.imgLogoMM.ErrorImage = ((System.Drawing.Image)(resources.GetObject("imgLogoMM.ErrorImage")));
             this.imgLogoMM.Image = ((System.Drawing.Image)(resources.GetObject("imgLogoMM.Image")));
             this.imgLogoMM.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.imgLogoMM.InitialImage = ((System.Drawing.Image)(resources.GetObject("imgLogoMM.InitialImage")));
             this.imgLogoMM.Location = new System.Drawing.Point(14, 14);
             this.imgLogoMM.Margin = new System.Windows.Forms.Padding(5);
             this.imgLogoMM.Name = "imgLogoMM";
@@ -147,9 +148,10 @@
             this.imgLogoEMA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.imgLogoEMA.BackColor = System.Drawing.Color.Transparent;
             this.imgLogoEMA.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.imgLogoEMA.ErrorImage = ((System.Drawing.Image)(resources.GetObject("imgLogoEMA.ErrorImage")));
-            this.imgLogoEMA.Image = ((System.Drawing.Image)(resources.GetObject("imgLogoEMA.Image")));
+            this.imgLogoEMA.ErrorImage = global::MahjongTournamentSuite.Properties.Resources.EMALogo;
+            this.imgLogoEMA.Image = global::MahjongTournamentSuite.Properties.Resources.EMALogo;
             this.imgLogoEMA.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.imgLogoEMA.InitialImage = global::MahjongTournamentSuite.Properties.Resources.EMALogo;
             this.imgLogoEMA.Location = new System.Drawing.Point(930, 14);
             this.imgLogoEMA.Margin = new System.Windows.Forms.Padding(5);
             this.imgLogoEMA.Name = "imgLogoEMA";

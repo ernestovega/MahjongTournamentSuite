@@ -94,8 +94,10 @@
     <Compile Include="Model\DBHand.cs" />
     <Compile Include="Model\DBPlayer.cs" />
     <Compile Include="Model\Player.cs" />
+    <Compile Include="Model\PropertyComparer.cs" />
     <Compile Include="Model\Rivals.cs" />
     <Compile Include="Model\DBTable.cs" />
+    <Compile Include="Model\SortableBindingList.cs" />
     <Compile Include="Model\TableWithAll.cs" />
     <Compile Include="Model\TablePlayer.cs" />
     <Compile Include="Model\DBTournament.cs" />
@@ -110,12 +112,12 @@
     <Compile Include="NewTournament\NewTournamentPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Model\DataGridHand.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Model\DataGridHand.cs" />
     <Compile Include="TableManager\ITableManagerForm.cs" />
     <Compile Include="TableManager\ITableManagerPresenter.cs" />
     <Compile Include="TableManager\TableManagerForm.cs">
@@ -168,8 +170,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\EMALogo.png" />
     <Content Include="Resources\favicon.ico" />
-    <Content Include="Resources\MMLoading160.gif" />
+    <Content Include="Resources\MMLoading.gif" />
+    <Content Include="Resources\MMLogo.png" />
+    <Content Include="Resources\no.png" />
+    <Content Include="Resources\yes.png" />
     <None Include="Resources\table32.png" />
     <None Include="Resources\timer.png" />
     <None Include="Resources\table64.png" />

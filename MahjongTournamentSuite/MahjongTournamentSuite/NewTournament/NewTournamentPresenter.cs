@@ -431,7 +431,7 @@ namespace MahjongTournamentSuite.NewTournament
         private void SaveTournament()
         {
             tournamentId = _db.GetExistingMaxTournamentId() + 1;
-            dbTournament = new DBTournament(tournamentId, players.Count, _numRounds, _isTeamsChecked, _tournamentName, DateTime.Now);
+            dbTournament = new DBTournament(tournamentId, DateTime.Now, players.Count, _numRounds, _isTeamsChecked, _tournamentName);
             _db.AddTournament(dbTournament);
         }
 

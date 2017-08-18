@@ -15,13 +15,14 @@ namespace MahjongTournamentSuite.Home
     {
         #region Constants
         
-        public static readonly string COLUMN_ID = "Id";
-        public static readonly string COLUMN_DATE = "CreationDate";
-        public static readonly string COLUMN_NAME = "Name";
-        public static readonly string COLUMN_PLAYERS = "NumPlayers";
-        public static readonly string COLUMN_ROUNDS = "NumRounds";
-        public static readonly string COLUMN_IS_TEAMS = "IsTeams";
-        private readonly int COLUMN_NAME_INDEX = 1;
+        private static readonly string COLUMN_ID = "Id";
+        private static readonly string COLUMN_DATE = "CreationDate";
+        private static readonly string COLUMN_NAME = "Name";
+        private static readonly string COLUMN_PLAYERS = "NumPlayers";
+        private static readonly string COLUMN_ROUNDS = "NumRounds";
+        private static readonly string COLUMN_IS_TEAMS = "IsTeams";
+        private static readonly string COLUMN_IS_TEAMS_IMAGES = "Teams";
+        private static readonly int COLUMN_NAME_INDEX = 1;
 
         #endregion
 
@@ -88,7 +89,18 @@ namespace MahjongTournamentSuite.Home
             var mahjongTournamentTimer = new MahjongTournamentTimer.Program();
             Process.Start(mahjongTournamentTimer.returnExecutablePath());
         }
-        
+
+        private void dataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dataGridView.Columns[e.ColumnIndex].Name.Equals(COLUMN_IS_TEAMS_IMAGES))
+            {
+                if ((bool)((DataGridViewCheckBoxCell)dataGridView.Rows[e.RowIndex].Cells[COLUMN_IS_TEAMS]).Value)
+                    e.Value = Properties.Resources.yes;
+                else
+                    e.Value = Properties.Resources.no;
+            }
+        }
+
         private void dataGridView_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex > -1 && e.ColumnIndex == COLUMN_NAME_INDEX)
@@ -115,33 +127,36 @@ namespace MahjongTournamentSuite.Home
 
         public void FillDataGridTournaments(List<DBTournament> tournaments)
         {
-            dataGridView.DataSource = tournaments;
+            SortableBindingList<DBTournament> sortableTournaments = 
+                new SortableBindingList<DBTournament>(tournaments);
+            dataGridView.DataSource = sortableTournaments;
 
-            //DisplayIndex
-            dataGridView.Columns[COLUMN_DATE].DisplayIndex = 0;
-            dataGridView.Columns[COLUMN_NAME].DisplayIndex = 1;
-            dataGridView.Columns[COLUMN_PLAYERS].DisplayIndex = 2;
-            dataGridView.Columns[COLUMN_ROUNDS].DisplayIndex = 3;
-            dataGridView.Columns[COLUMN_IS_TEAMS].DisplayIndex = 4;
+            //IsTeams images column creation
+            if (!dataGridView.Columns.Contains(COLUMN_IS_TEAMS_IMAGES))
+            {
+                DataGridViewImageColumn imgColumn = new DataGridViewImageColumn();
+                imgColumn.Name = COLUMN_IS_TEAMS_IMAGES;
+                dataGridView.Columns.Add(imgColumn);
+            }
             //Visible
             dataGridView.Columns[COLUMN_ID].Visible = false;
+            dataGridView.Columns[COLUMN_IS_TEAMS].Visible = false;
             //ReadOnly
             dataGridView.Columns[COLUMN_DATE].ReadOnly = true;
             dataGridView.Columns[COLUMN_PLAYERS].ReadOnly = true;
             dataGridView.Columns[COLUMN_ROUNDS].ReadOnly = true;
-            dataGridView.Columns[COLUMN_IS_TEAMS].ReadOnly = true;
-            //AutoSizeMode
-            dataGridView.Columns[COLUMN_DATE].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridView.Columns[COLUMN_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView.Columns[COLUMN_PLAYERS].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridView.Columns[COLUMN_ROUNDS].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridView.Columns[COLUMN_IS_TEAMS].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView.Columns[COLUMN_IS_TEAMS_IMAGES].ReadOnly = true;
             //HeaderText
             dataGridView.Columns[COLUMN_DATE].HeaderText = "Creation date";
             dataGridView.Columns[COLUMN_NAME].HeaderText = "Tournament name";
             dataGridView.Columns[COLUMN_PLAYERS].HeaderText = "Players";
             dataGridView.Columns[COLUMN_ROUNDS].HeaderText = "Rounds";
-            dataGridView.Columns[COLUMN_IS_TEAMS].HeaderText = "Teams";
+            dataGridView.Columns[COLUMN_IS_TEAMS_IMAGES].HeaderText = "Teams";
+            //AutoSizeMode
+            dataGridView.Columns[COLUMN_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            //SortMode
+            foreach (DataGridViewColumn column in dataGridView.Columns)
+                column.SortMode = DataGridViewColumnSortMode.Automatic;
         }
 
         public int GetCurrentTournamentId()

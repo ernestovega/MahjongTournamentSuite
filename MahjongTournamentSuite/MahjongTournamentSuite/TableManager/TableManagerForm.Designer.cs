@@ -31,7 +31,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TableManagerForm));
-            this.btnReturn = new System.Windows.Forms.Button();
             this.lblTournamentName = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -46,24 +45,12 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.imgLogoMM = new System.Windows.Forms.PictureBox();
+            this.imgLogoEMA = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgLogoEMA)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnReturn
-            // 
-            this.btnReturn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReturn.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btnReturn.FlatAppearance.BorderSize = 0;
-            this.btnReturn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.btnReturn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.btnReturn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReturn.Location = new System.Drawing.Point(9, 9);
-            this.btnReturn.Margin = new System.Windows.Forms.Padding(0);
-            this.btnReturn.Name = "btnReturn";
-            this.btnReturn.Size = new System.Drawing.Size(50, 50);
-            this.btnReturn.TabIndex = 25;
-            this.btnReturn.UseVisualStyleBackColor = true;
-            this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
             // 
             // lblTournamentName
             // 
@@ -84,7 +71,7 @@
             this.label1.Font = new System.Drawing.Font("Arial Black", 18F);
             this.label1.Location = new System.Drawing.Point(302, 71);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(97, 33);
+            this.label1.Size = new System.Drawing.Size(98, 33);
             this.label1.TabIndex = 28;
             this.label1.Text = "Round";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -96,7 +83,7 @@
             this.label2.Font = new System.Drawing.Font("Arial Black", 18F);
             this.label2.Location = new System.Drawing.Point(566, 71);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(87, 33);
+            this.label2.Size = new System.Drawing.Size(88, 33);
             this.label2.TabIndex = 29;
             this.label2.Text = "Table";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -193,7 +180,7 @@
             this.comboEastPlayer.TabIndex = 39;
             this.comboEastPlayer.SelectionChangeCommitted += new System.EventHandler(this.comboEastPlayer_SelectionChangeCommitted);
             // 
-            // dataGridHands
+            // dataGridView
             // 
             this.dataGridView.AllowUserToAddRows = false;
             this.dataGridView.AllowUserToDeleteRows = false;
@@ -229,7 +216,7 @@
             this.dataGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dataGridView.Location = new System.Drawing.Point(12, 230);
             this.dataGridView.MultiSelect = false;
-            this.dataGridView.Name = "dataGridHands";
+            this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dataGridView.RowHeadersVisible = false;
             this.dataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
@@ -253,7 +240,7 @@
             this.label6.Font = new System.Drawing.Font("Arial Black", 12F);
             this.label6.Location = new System.Drawing.Point(755, 129);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(120, 23);
+            this.label6.Size = new System.Drawing.Size(119, 23);
             this.label6.TabIndex = 35;
             this.label6.Text = "North player";
             this.label6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -294,13 +281,50 @@
             this.label4.Text = "East player";
             this.label4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // imgLogoMM
+            // 
+            this.imgLogoMM.BackColor = System.Drawing.Color.Transparent;
+            this.imgLogoMM.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.imgLogoMM.ErrorImage = ((System.Drawing.Image)(resources.GetObject("imgLogoMM.ErrorImage")));
+            this.imgLogoMM.Image = ((System.Drawing.Image)(resources.GetObject("imgLogoMM.Image")));
+            this.imgLogoMM.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.imgLogoMM.InitialImage = ((System.Drawing.Image)(resources.GetObject("imgLogoMM.InitialImage")));
+            this.imgLogoMM.Location = new System.Drawing.Point(14, 14);
+            this.imgLogoMM.Margin = new System.Windows.Forms.Padding(5);
+            this.imgLogoMM.Name = "imgLogoMM";
+            this.imgLogoMM.Size = new System.Drawing.Size(64, 64);
+            this.imgLogoMM.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgLogoMM.TabIndex = 52;
+            this.imgLogoMM.TabStop = false;
+            this.imgLogoMM.Click += new System.EventHandler(this.imgLogoMM_Click);
+            // 
+            // imgLogoEMA
+            // 
+            this.imgLogoEMA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.imgLogoEMA.BackColor = System.Drawing.Color.Transparent;
+            this.imgLogoEMA.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.imgLogoEMA.ErrorImage = global::MahjongTournamentSuite.Properties.Resources.EMALogo;
+            this.imgLogoEMA.Image = global::MahjongTournamentSuite.Properties.Resources.EMALogo;
+            this.imgLogoEMA.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.imgLogoEMA.InitialImage = global::MahjongTournamentSuite.Properties.Resources.EMALogo;
+            this.imgLogoEMA.Location = new System.Drawing.Point(930, 14);
+            this.imgLogoEMA.Margin = new System.Windows.Forms.Padding(5);
+            this.imgLogoEMA.Name = "imgLogoEMA";
+            this.imgLogoEMA.Size = new System.Drawing.Size(64, 64);
+            this.imgLogoEMA.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgLogoEMA.TabIndex = 66;
+            this.imgLogoEMA.TabStop = false;
+            this.imgLogoEMA.Click += new System.EventHandler(this.imgLogoEMA_Click);
+            // 
             // TableManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1008, 747);
+            this.ClientSize = new System.Drawing.Size(1008, 748);
+            this.Controls.Add(this.imgLogoEMA);
+            this.Controls.Add(this.imgLogoMM);
             this.Controls.Add(this.comboEastPlayer);
             this.Controls.Add(this.comboSouthPlayer);
             this.Controls.Add(this.comboNorthPlayer);
@@ -315,7 +339,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblTournamentName);
             this.Controls.Add(this.dataGridView);
-            this.Controls.Add(this.btnReturn);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -325,14 +348,14 @@
             this.Text = "Mahjong Tournament Suite - Table Manager";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgLogoEMA)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnReturn;
         private System.Windows.Forms.Label lblTournamentName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -347,5 +370,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.PictureBox imgLogoMM;
+        private System.Windows.Forms.PictureBox imgLogoEMA;
     }
 }

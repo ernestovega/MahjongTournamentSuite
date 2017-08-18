@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace MahjongTournamentSuite.TableManager
@@ -57,9 +58,16 @@ namespace MahjongTournamentSuite.TableManager
 
         #region Events
 
-        private void btnReturn_Click(object sender, EventArgs e)
+        private void imgLogoMM_Click(object sender, EventArgs e)
         {
-            Close();
+            ProcessStartInfo sInfo = new ProcessStartInfo("http://www.mahjongmadrid.com/");
+            Process.Start(sInfo);
+        }
+
+        private void imgLogoEMA_Click(object sender, EventArgs e)
+        {
+            ProcessStartInfo sInfo = new ProcessStartInfo("http://mahjong-europe.org/portal/");
+            Process.Start(sInfo);
         }
 
         #region Combos

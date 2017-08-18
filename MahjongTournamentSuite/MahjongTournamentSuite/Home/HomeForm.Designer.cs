@@ -64,7 +64,7 @@
             this.btnNew.Image = ((System.Drawing.Image)(resources.GetObject("btnNew.Image")));
             this.btnNew.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnNew.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnNew.Location = new System.Drawing.Point(108, 16);
+            this.btnNew.Location = new System.Drawing.Point(114, 16);
             this.btnNew.Margin = new System.Windows.Forms.Padding(5);
             this.btnNew.Name = "btnNew";
             this.btnNew.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
@@ -121,7 +121,7 @@
             this.btnResume.Image = ((System.Drawing.Image)(resources.GetObject("btnResume.Image")));
             this.btnResume.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnResume.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResume.Location = new System.Drawing.Point(202, 16);
+            this.btnResume.Location = new System.Drawing.Point(208, 16);
             this.btnResume.Margin = new System.Windows.Forms.Padding(5);
             this.btnResume.Name = "btnResume";
             this.btnResume.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
@@ -149,7 +149,7 @@
             this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
             this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnDelete.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDelete.Location = new System.Drawing.Point(276, 16);
+            this.btnDelete.Location = new System.Drawing.Point(282, 16);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(5);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
@@ -166,9 +166,10 @@
             this.imgLogoEMA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.imgLogoEMA.BackColor = System.Drawing.Color.Transparent;
             this.imgLogoEMA.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.imgLogoEMA.ErrorImage = ((System.Drawing.Image)(resources.GetObject("imgLogoEMA.ErrorImage")));
-            this.imgLogoEMA.Image = ((System.Drawing.Image)(resources.GetObject("imgLogoEMA.Image")));
+            this.imgLogoEMA.ErrorImage = global::MahjongTournamentSuite.Properties.Resources.EMALogo;
+            this.imgLogoEMA.Image = global::MahjongTournamentSuite.Properties.Resources.EMALogo;
             this.imgLogoEMA.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.imgLogoEMA.InitialImage = global::MahjongTournamentSuite.Properties.Resources.EMALogo;
             this.imgLogoEMA.Location = new System.Drawing.Point(930, 14);
             this.imgLogoEMA.Margin = new System.Windows.Forms.Padding(5);
             this.imgLogoEMA.Name = "imgLogoEMA";
@@ -182,7 +183,7 @@
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Image = global::MahjongTournamentSuite.Properties.Resources.MMLoading160;
+            this.pictureBox1.Image = global::MahjongTournamentSuite.Properties.Resources.MMLoading;
             this.pictureBox1.Location = new System.Drawing.Point(0, 167);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(980, 240);
@@ -218,9 +219,10 @@
             // 
             this.imgLogoMM.BackColor = System.Drawing.Color.Transparent;
             this.imgLogoMM.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.imgLogoMM.ErrorImage = ((System.Drawing.Image)(resources.GetObject("imgLogoMM.ErrorImage")));
-            this.imgLogoMM.Image = ((System.Drawing.Image)(resources.GetObject("imgLogoMM.Image")));
+            this.imgLogoMM.ErrorImage = global::MahjongTournamentSuite.Properties.Resources.MMLogo;
+            this.imgLogoMM.Image = global::MahjongTournamentSuite.Properties.Resources.MMLogo;
             this.imgLogoMM.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.imgLogoMM.InitialImage = global::MahjongTournamentSuite.Properties.Resources.MMLogo;
             this.imgLogoMM.Location = new System.Drawing.Point(14, 14);
             this.imgLogoMM.Margin = new System.Windows.Forms.Padding(5);
             this.imgLogoMM.Name = "imgLogoMM";
@@ -235,23 +237,26 @@
             this.dataGridView.AllowUserToAddRows = false;
             this.dataGridView.AllowUserToDeleteRows = false;
             this.dataGridView.AllowUserToOrderColumns = true;
+            this.dataGridView.AllowUserToResizeColumns = false;
+            this.dataGridView.AllowUserToResizeRows = false;
             this.dataGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.dataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ButtonFace;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView.ColumnHeadersHeight = 32;
+            this.dataGridView.ColumnHeadersHeight = 40;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -271,6 +276,7 @@
             this.dataGridView.Size = new System.Drawing.Size(980, 626);
             this.dataGridView.TabIndex = 7;
             this.dataGridView.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellEnter);
+            this.dataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView_CellFormatting);
             this.dataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dataGridView_CellValidating);
             // 
             // HomeForm
