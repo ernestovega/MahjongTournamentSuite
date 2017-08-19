@@ -10,6 +10,8 @@
 
         void ButtonPlayersClicked();
 
-        void ButtonRoundClicked(int tag);
+        void ButtonRoundsClicked();
+
+        void ButtonRoundClicked(int roundId);
     }
 }

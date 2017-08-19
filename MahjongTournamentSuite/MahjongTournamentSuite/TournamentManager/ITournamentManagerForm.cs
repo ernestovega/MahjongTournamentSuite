@@ -5,26 +5,27 @@ namespace MahjongTournamentSuite.TournamentManager
 {
     interface ITournamentManagerForm
     {
-        void AddButtonTeams();
-
-        void AddPlayersButton();
-
-        void AddRoundsButtons(int numRounds);
+        void AddRoundsSubButtons(int numRounds);
 
         void FillDGVWithTeams(List<DBTeam> teams);
 
-        void FillDGVWithPlayers(List<DBPlayer> players);
+        void FillDGVWithPlayers(List<DBPlayer> players, bool isTeams);
 
-        void FillPanelTournamentWithRoundButtons(int roundId, int numTables);
+        void AddRoundTablesButtons(int roundId, int numTables);
+
+        void ShowButtonTeams();
+
+        void HideButtonTeams();
 
         void ShowDGV();
 
         void HideDGV();
 
-        void EmptyPanelRoundButtons();
+        void EmptyPanelRoundTablesButtons();
 
-        void ShowRoundsButtonsAndPanel();
+        void ShowRoundsButtonsAndTablesPanel();
 
-        void HideRoundsButtonsAndPanel();
+        void HideRoundsButtonsAndTablesPanel();
+        void EmptyPanelRoundsButtons();
     }
 }

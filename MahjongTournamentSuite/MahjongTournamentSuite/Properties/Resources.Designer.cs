@@ -93,6 +93,26 @@ namespace MahjongTournamentSuite.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap gong {
+            get {
+                object obj = ResourceManager.GetObject("gong", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap gong_big {
+            get {
+                object obj = ResourceManager.GetObject("gong_big", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap MMLoading {
             get {
                 object obj = ResourceManager.GetObject("MMLoading", resourceCulture);
@@ -133,6 +153,16 @@ namespace MahjongTournamentSuite.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap players {
+            get {
+                object obj = ResourceManager.GetObject("players", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap ranking {
             get {
                 object obj = ResourceManager.GetObject("ranking", resourceCulture);
@@ -166,6 +196,16 @@ namespace MahjongTournamentSuite.Properties {
         public static System.Drawing.Bitmap table64 {
             get {
                 object obj = ResourceManager.GetObject("table64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap teams {
+            get {
+                object obj = ResourceManager.GetObject("teams", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

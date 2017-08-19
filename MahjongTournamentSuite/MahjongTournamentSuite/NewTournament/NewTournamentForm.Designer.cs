@@ -93,7 +93,7 @@
             // 
             this.panelLoading.Controls.Add(this.lblLoadingMessage);
             this.panelLoading.Controls.Add(this.pictureBox1);
-            this.panelLoading.Location = new System.Drawing.Point(0, 0);
+            this.panelLoading.Location = new System.Drawing.Point(14, 86);
             this.panelLoading.Margin = new System.Windows.Forms.Padding(5);
             this.panelLoading.Name = "panelLoading";
             this.panelLoading.Size = new System.Drawing.Size(376, 269);
@@ -361,7 +361,6 @@
             // panelOptions
             // 
             this.panelOptions.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.panelOptions.Controls.Add(this.panelLoading);
             this.panelOptions.Controls.Add(this.labelPlayers);
             this.panelOptions.Controls.Add(this.numUpDownPlayers);
             this.panelOptions.Controls.Add(this.numUpDownRounds);
@@ -386,6 +385,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(404, 461);
+            this.Controls.Add(this.panelLoading);
             this.Controls.Add(this.panelOptions);
             this.Controls.Add(this.imgLogoEMA);
             this.Controls.Add(this.btnStart);

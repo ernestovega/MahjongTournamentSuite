@@ -29,11 +29,9 @@ namespace MahjongTournamentSuite.Home
 
         public void LoadTournaments()
         {
-            _form.showLoading();
             _tournaments = _dbManager.GetTournaments();
             ResumeAndDeleteButtonsEnabling();
             _form.FillDataGridTournaments(_tournaments);
-            _form.hideLoading();
         }
 
         public void DeleteClicked()
@@ -41,12 +39,10 @@ namespace MahjongTournamentSuite.Home
             int tournamentId = _form.GetCurrentTournamentId();
             if (tournamentId > -1 && _form.RequestDeleteTournamentConfirmation())
             {
-                _form.showLoading();
                 DeleteTournament(tournamentId);
                 _tournaments = _dbManager.GetTournaments();
                 ResumeAndDeleteButtonsEnabling();
                 _form.FillDataGridTournaments(_tournaments);
-                _form.hideLoading();
             }
         }
 

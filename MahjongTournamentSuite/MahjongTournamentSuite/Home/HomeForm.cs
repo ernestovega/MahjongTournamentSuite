@@ -187,16 +187,6 @@ namespace MahjongTournamentSuite.Home
                             == DialogResult.Yes;
         }
 
-        public void showLoading()
-        {
-            panelLoading.Visible = true;
-        }
-
-        public void hideLoading()
-        {
-            panelLoading.Visible = false;
-        }
-
         public void EnableResumeAndDeleteButton()
         {
             btnResume.Enabled = true;

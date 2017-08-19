@@ -1,6 +1,7 @@
 ﻿using MahjongTournamentSuite.Data;
 using MahjongTournamentSuite.Model;
 using System.Collections.Generic;
+using System;
 
 namespace MahjongTournamentSuite.TournamentManager
 {
@@ -13,6 +14,11 @@ namespace MahjongTournamentSuite.TournamentManager
         private DBTournament _tournament;
         private List<DBTeam> _teams;
         private List<DBPlayer> _players;
+        private bool isTeamsSelected = false;
+        private bool isPlayersSelected = false;
+        private bool isRoundsSelected = false;
+        private int roundSelected = 0;
+        private int tableSelected = 0;
 
         #endregion
 
@@ -32,19 +38,16 @@ namespace MahjongTournamentSuite.TournamentManager
         {
             _tournament = _db.GetTournament(tournamentId);
             _players = _db.GetTournamentPlayers(tournamentId);
-            _form.ShowDGV();
             if(_tournament.IsTeams)
             {
                 _teams = _db.GetTournamentTeams(tournamentId);
-                _form.AddButtonTeams();
+                _form.ShowButtonTeams();
                 _form.FillDGVWithTeams(_teams);
             }
             else
             {
-                _form.FillDGVWithPlayers(_players);
+                _form.FillDGVWithPlayers(_players, _tournament.IsTeams);
             }
-            _form.AddPlayersButton();
-            _form.AddRoundsButtons(_tournament.NumRounds);
         }
 
         public void OnFormResized()
@@ -54,24 +57,34 @@ namespace MahjongTournamentSuite.TournamentManager
 
         public void ButtonTeamsClicked()
         {
-            _form.HideRoundsButtonsAndPanel();
+            _form.HideRoundsButtonsAndTablesPanel();
             _form.ShowDGV();
             _form.FillDGVWithTeams(_teams);
         }
 
         public void ButtonPlayersClicked()
         {
-            _form.HideRoundsButtonsAndPanel();
+            _form.HideRoundsButtonsAndTablesPanel();
             _form.ShowDGV();
-            _form.FillDGVWithPlayers(_players);
+            _form.FillDGVWithPlayers(_players, _tournament.IsTeams);
+        }
+
+        public void ButtonRoundsClicked()
+        {
+            _form.HideDGV();
+            _form.ShowRoundsButtonsAndTablesPanel();
+            _form.EmptyPanelRoundsButtons();
+            _form.AddRoundsSubButtons(_tournament.NumRounds);
+            _form.EmptyPanelRoundTablesButtons();
+            _form.AddRoundTablesButtons(1, _tournament.NumPlayers / 4);
+            _form.FillDGVWithPlayers(_players, _tournament.IsTeams);
         }
 
         public void ButtonRoundClicked(int tag)
         {
-            _form.ShowRoundsButtonsAndPanel();
-            _form.EmptyPanelRoundButtons();
+            _form.EmptyPanelRoundTablesButtons();
             _form.HideDGV();
-            _form.FillPanelTournamentWithRoundButtons(tag, _tournament.NumPlayers / 4);
+            _form.AddRoundTablesButtons(tag, _tournament.NumPlayers / 4);
         }
 
         #endregion

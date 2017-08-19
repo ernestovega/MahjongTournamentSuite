@@ -13,19 +13,24 @@ namespace MahjongTournamentSuite.TournamentManager
     {
         #region Constants
 
-        private static readonly string COLUMN_TEAMS_TOURNAMENT_ID = "TournamentId";
-        private static readonly string COLUMN_TEAMS_ID = "Id";
-        private static readonly string COLUMN_TEAMS_NAME = "Name";
-        private static readonly int COLUMN_TEAMS_NAME_INDEX = 2;
+        private const int BUTTON_SIDE = 64;
+        private const int MARGIN_SIZE = 5;
+        private const int TABLE_BUTTON_SIDE = 96;
+        private const int TABLE_MARGIN_SIZE = 10;
 
-        private static readonly string COLUMN_PLAYERS_TOURNAMENT_ID = "TournamentId";
-        private static readonly string COLUMN_PLAYERS_ID = "Id";
-        private static readonly string COLUMN_PLAYERS_NAME = "Name";
-        private static readonly string COLUMN_PLAYERS_TEAM = "TeamId";
-        private static readonly string COLUMN_PLAYERS_COUNTRY = "CountryId";
-        private static readonly int COLUMN_PLAYERS_NAME_INDEX = 2;
-        private static readonly int COLUMN_PLAYERS_TEAM_INDEX = 3;
-        private static readonly int COLUMN_PLAYERS_COUNTRY_INDEX = 4;
+        private const string COLUMN_TEAMS_TOURNAMENT_ID = "TournamentId";
+        private const string COLUMN_TEAMS_ID = "Id";
+        private const string COLUMN_TEAMS_NAME = "Name";
+        private const int COLUMN_TEAMS_NAME_INDEX = 2;
+
+        private const string COLUMN_PLAYERS_TOURNAMENT_ID = "TournamentId";
+        private const string COLUMN_PLAYERS_ID = "Id";
+        private const string COLUMN_PLAYERS_NAME = "Name";
+        private const string COLUMN_PLAYERS_TEAM = "TeamId";
+        private const string COLUMN_PLAYERS_COUNTRY = "CountryId";
+        private const int COLUMN_PLAYERS_NAME_INDEX = 2;
+        private const int COLUMN_PLAYERS_TEAM_INDEX = 3;
+        private const int COLUMN_PLAYERS_COUNTRY_INDEX = 4;
 
         #endregion
 
@@ -76,6 +81,21 @@ namespace MahjongTournamentSuite.TournamentManager
             Process.Start(sInfo);
         }
 
+        private void btnTeams_Click(object sender, EventArgs e)
+        {
+            _presenter.ButtonTeamsClicked();
+        }
+
+        private void btnPlayers_Click(object sender, EventArgs e)
+        {
+            _presenter.ButtonPlayersClicked();
+        }
+
+        private void btnRounds_Click(object sender, EventArgs e)
+        {
+            _presenter.ButtonRoundsClicked();
+        }
+
         private void btnTimer_Click(object sender, System.EventArgs e)
         {
             var mahjongTournamentTimer = new MahjongTournamentTimer.Program();
@@ -92,52 +112,6 @@ namespace MahjongTournamentSuite.TournamentManager
 
         #region ITournamentManagerForm
 
-        public void AddButtonTeams()
-        {
-            Button btnTeams = new Button();
-            btnTeams.Name = "Teams";
-            btnTeams.Text = "Teams";
-            btnTeams.AutoSize = true;
-            btnTeams.Click += delegate
-            {
-                _presenter.ButtonTeamsClicked();
-            };
-            flowPanelRoundsButtons.Controls.Add(btnTeams);
-        }
-
-        public void AddPlayersButton()
-        {
-            Button btnPlayers = new Button();
-            btnPlayers.Name = "Players";
-            btnPlayers.Text = "Players";
-            btnPlayers.AutoSize = true;
-            btnPlayers.Click += delegate
-            {
-                _presenter.ButtonPlayersClicked();
-            };
-            flowPanelRoundsButtons.Controls.Add(btnPlayers);
-        }
-
-        public void AddRoundsButtons(int numRounds)
-        {
-            for (int i = 1; i <= numRounds; i++)
-            {
-                Button btnRound = new Button();
-                btnRound.Name = string.Format("Round {0}", i);
-                btnRound.Text = string.Format("Round {0}", i);
-                btnRound.AutoSize = false;
-                btnRound.Width = flowPanelRoundsButtons.Height;
-                btnRound.Height = flowPanelRoundsButtons.Height;
-                btnRound.Tag = i;
-                btnRound.Anchor = AnchorStyles.None;
-                btnRound.Click += delegate
-                {
-                    _presenter.ButtonRoundClicked((int)btnRound.Tag);
-                };
-                flowPanelRoundsButtons.Controls.Add(btnRound);
-            }
-        }
-
         public void FillDGVWithTeams(List<DBTeam> teams)
         {
             SortableBindingList<DBTeam> sortableTeams =
@@ -153,9 +127,10 @@ namespace MahjongTournamentSuite.TournamentManager
             dgv.Columns[COLUMN_TEAMS_NAME].HeaderText = "Name";
             //AutoSizeMode
             dgv.Columns[COLUMN_TEAMS_ID].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgv.Columns[COLUMN_TEAMS_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
-        public void FillDGVWithPlayers(List<DBPlayer> players)
+        public void FillDGVWithPlayers(List<DBPlayer> players, bool isTeams)
         {
             SortableBindingList<DBPlayer> sortablePlayers =
                 new SortableBindingList<DBPlayer>(players);
@@ -168,89 +143,108 @@ namespace MahjongTournamentSuite.TournamentManager
             //HeaderText
             dgv.Columns[COLUMN_PLAYERS_ID].HeaderText = "Id";
             dgv.Columns[COLUMN_PLAYERS_NAME].HeaderText = "Name";
-            dgv.Columns[COLUMN_PLAYERS_TEAM].HeaderText = "Team";
             dgv.Columns[COLUMN_PLAYERS_COUNTRY].HeaderText = "Country";
             //AutoSizeMode
-            dgv.Columns[COLUMN_PLAYERS_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgv.Columns[COLUMN_PLAYERS_ID].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgv.Columns[COLUMN_PLAYERS_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgv.Columns[COLUMN_PLAYERS_COUNTRY].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            if (isTeams)
+            {                
+                dgv.Columns[COLUMN_PLAYERS_TEAM].HeaderText = "Team";
+                dgv.Columns[COLUMN_PLAYERS_TEAM].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+            else
+                dgv.Columns[COLUMN_PLAYERS_TEAM].Visible = false;
         }
 
-        public void FillPanelTournamentWithRoundButtons(int roundId, int numTables)
+        public void AddRoundsSubButtons(int numRounds)
         {
-            //Obtenemos el número de botones por lado.
-            int numButtonsHorizontal = 2;
-            int numButtonsVertical = 2;
-            while (numButtonsHorizontal * numButtonsVertical < numTables)
+            //Número de botones en horizontal
+            int numButtonsHorizontal = (splitContainer1.Width - (MARGIN_SIZE * 3)) / (BUTTON_SIDE + MARGIN_SIZE);
+
+            Point buttonStartPoint = new Point(MARGIN_SIZE, MARGIN_SIZE);
+            if (numButtonsHorizontal >= numRounds)
             {
-                if (numButtonsHorizontal == numButtonsVertical)
-                    numButtonsHorizontal++;
-                else
-                    numButtonsVertical++;
+                int neededWidth = ((numRounds * BUTTON_SIDE) + ((numRounds + 1) * MARGIN_SIZE));
+                buttonStartPoint.X = (splitContainer1.Width - neededWidth) / 2;
             }
+            int rowsCount = 0;
+            for (int i = 1; i <= numRounds; i++)
+            {
+                Button btnRound = GetNewButton();
+                btnRound.Tag = i;
+                btnRound.Text = string.Format("Round {0}", i);
+                btnRound.Image = Properties.Resources.gong;
+                btnRound.Location = buttonStartPoint;
+                btnRound.Click += delegate
+                {
+                    _presenter.ButtonRoundClicked((int)btnRound.Tag);
+                };
 
-            //Calculamos los márgenes
-            int marginVertical = panelRoundButtons.Height / (numButtonsVertical * 10); //Un 10% del lado del botón
-            int marginHorizontal = marginVertical;
+                splitContainer1.Panel1.Controls.Add(btnRound);
 
-            int horizontalMarginsSum = marginHorizontal * (numButtonsHorizontal - 1);
-            int verticalMarginsSum = marginVertical * (numButtonsVertical - 1);
+                int numButtonsInActualRow = i - (rowsCount * numButtonsHorizontal);
+                if (numButtonsInActualRow == numButtonsHorizontal)
+                {
+                    buttonStartPoint.Y += BUTTON_SIDE + MARGIN_SIZE;
+                    buttonStartPoint.X = MARGIN_SIZE;
+                    rowsCount++;
+                }
+                else
+                    buttonStartPoint.X += BUTTON_SIDE + MARGIN_SIZE;
+            }
+            splitContainer1.SplitterDistance = ((rowsCount + 1) * BUTTON_SIDE) + ((rowsCount + 2) * MARGIN_SIZE) + 2;
+        }
 
-            //Obtenemos el tamaño de los panelTournament de los botones teniendo en cuenta los márgenes entre cada uno.
-            int buttonSideVertical = (panelRoundButtons.Height - verticalMarginsSum) / numButtonsVertical;
-            int buttonSideHorizontal = buttonSideVertical;
-
-            //Creamos un panel nuevo
-            Panel panelButtons = new Panel();
-            panelButtons.Name = "panelButtons";
-            panelButtons.Width = (buttonSideHorizontal * numButtonsHorizontal) + (marginHorizontal * numButtonsHorizontal);
-            panelButtons.Height = panelRoundButtons.Height;
-            panelButtons.AutoSize = false;
-            panelButtons.Location = new Point((panelRoundButtons.Width - panelButtons.Width) / 2, 0);
+        public void AddRoundTablesButtons(int roundId, int numTables)
+        {
+            //Número de botones en horizontal
+            int numButtonsHorizontal = splitContainer1.Width / (TABLE_BUTTON_SIDE + TABLE_MARGIN_SIZE);
 
             //Generamos los botones
-            int tableId = 1;
-            Point buttonStartPoint = new Point(0, 0);
-            for (int i = 1; i <= numButtonsVertical; i++)
+            int rowsCount = 0;
+            Point buttonStartPoint = new Point(TABLE_MARGIN_SIZE, TABLE_MARGIN_SIZE);
+            for (int i = 1; i <= numTables; i++)
             {
-                for (int j = 1; j <= numButtonsHorizontal; j++)
+                Button button = GetNewButton();
+                button.Tag = i;
+                button.Text = string.Format("\nTable {0}", i);
+                button.Image = Properties.Resources.table32;
+                button.Width = TABLE_BUTTON_SIDE;
+                button.Height = TABLE_BUTTON_SIDE;
+                button.Location = buttonStartPoint;
+                button.Click += delegate
                 {
-                    Button button = new Button();
-                    button.Size = new Size(buttonSideHorizontal, buttonSideVertical);
-                    button.Name = string.Format("btnRound{1}Table{0}", roundId, tableId);
-                    button.Text = string.Format("TABLE {0}", tableId);
-                    button.Tag = tableId;
-                    button.Location = buttonStartPoint;
-                    button.BackColor = Color.Green;
-                    button.ForeColor = Color.White;
-                    button.Font = new Font("Arial Black", 12);
-                    //button.Cursor = ;
-                    button.FlatStyle = FlatStyle.Flat;
-                    button.FlatAppearance.BorderColor = Color.White;
-                    button.FlatAppearance.BorderSize = 0;
-                    //button.FlatAppearance.CheckedBackColor =;
-                    button.FlatAppearance.MouseDownBackColor = Color.ForestGreen;
-                    //button.FlatAppearance.MouseOverBackColor = ;
-                    button.Click += delegate
-                    {
-                        new TableManagerForm(_tournamentId, roundId, (int)button.Tag).ShowDialog();
-                    };
+                    new TableManagerForm(_tournamentId, roundId, (int)button.Tag).ShowDialog();
+                };
 
-                    panelButtons.Controls.Add(button);
+                splitContainer1.Panel2.Controls.Add(button);
 
-                    if (tableId < numTables)
+                if (i < numTables)
+                {
+                    int numButtonsInActualRow = i - (rowsCount * numButtonsHorizontal);
+                    if (numButtonsInActualRow == numButtonsHorizontal)
                     {
-                        tableId++;
-                        buttonStartPoint.X += buttonSideHorizontal + marginHorizontal;
+                        buttonStartPoint.Y += TABLE_BUTTON_SIDE + TABLE_MARGIN_SIZE;
+                        buttonStartPoint.X = TABLE_MARGIN_SIZE;
+                        rowsCount++;
                     }
                     else
-                    {
-                        panelRoundButtons.Controls.Add(panelButtons);
-                        return;
-                    }
+                        buttonStartPoint.X += TABLE_BUTTON_SIDE + TABLE_MARGIN_SIZE;
                 }
-                buttonStartPoint.X = 0;
-                buttonStartPoint.Y += marginVertical + buttonSideVertical;
-                panelRoundButtons.Controls.Add(panelButtons);
+                else
+                    return;
             }
+        }
+
+        public void ShowButtonTeams()
+        {
+            btnTeams.Visible = true;
+        }
+
+        public void HideButtonTeams()
+        {
+            btnTeams.Visible = false;
         }
 
         public void ShowDGV()
@@ -263,26 +257,62 @@ namespace MahjongTournamentSuite.TournamentManager
             dgv.Visible = false;
         }
 
-        public void EmptyPanelRoundButtons()
+        public void EmptyPanelRoundsButtons()
         {
             List<Control> panelTournamentControls = new List<Control>();
-            foreach (Control control in panelRoundButtons.Controls)
+            foreach (Control control in splitContainer1.Panel1.Controls)
             {
-                if (control.GetType() != typeof(DataGridView))
-                    panelRoundButtons.Controls.Remove(control);
+                if(control.GetType() == typeof(Button))
+                    panelTournamentControls.Add(control);
             }
+            foreach (Control control in panelTournamentControls)
+                splitContainer1.Panel1.Controls.Remove(control);
         }
 
-        public void ShowRoundsButtonsAndPanel()
+        public void EmptyPanelRoundTablesButtons()
         {
-            flowPanelRoundsButtons.Visible = true;
-            panelRoundButtons.Visible = true;
+            List<Control> panelTournamentControls = new List<Control>();
+            foreach (Control control in splitContainer1.Panel2.Controls)
+                panelTournamentControls.Add(control);
+            foreach (Control control in panelTournamentControls)
+                splitContainer1.Panel2.Controls.Remove(control);
         }
 
-        public void HideRoundsButtonsAndPanel()
+        public void ShowRoundsButtonsAndTablesPanel()
         {
-            flowPanelRoundsButtons.Visible = false;
-            panelRoundButtons.Visible = false;
+            splitContainer1.Visible = true;
+        }
+
+        public void HideRoundsButtonsAndTablesPanel()
+        {
+            splitContainer1.Visible = false;
+        }
+
+        #endregion
+
+        #region Private
+
+        private static Button GetNewButton()
+        {
+            Button newButton = new Button();
+            newButton.AutoSize = false;
+            newButton.Width = BUTTON_SIDE;
+            newButton.Height = BUTTON_SIDE;
+            newButton.FlatStyle = FlatStyle.Flat;
+            newButton.FlatAppearance.BorderSize = 0;
+            newButton.FlatAppearance.BorderColor = SystemColors.Control;
+            newButton.FlatAppearance.MouseDownBackColor = Color.LightGray;
+            newButton.FlatAppearance.MouseOverBackColor = Color.Gainsboro;
+            newButton.BackColor = Color.Transparent;
+            newButton.BackgroundImageLayout = ImageLayout.None;
+            newButton.Cursor = Cursors.Hand;
+            newButton.ForeColor = SystemColors.ControlText;
+            newButton.Margin = new Padding(5, 0, 5, 0);
+            newButton.Padding = new Padding(0, 3, 0, 0);
+            newButton.ImageAlign = ContentAlignment.TopCenter;
+            newButton.TextImageRelation = TextImageRelation.ImageAboveText;
+            newButton.UseVisualStyleBackColor = false;
+            return newButton;
         }
 
         #endregion

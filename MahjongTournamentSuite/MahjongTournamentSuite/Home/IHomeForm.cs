@@ -15,10 +15,6 @@ namespace MahjongTournamentSuite.Home
 
         bool RequestDeleteTournamentConfirmation();
 
-        void showLoading();
-
-        void hideLoading();
-
         void EnableResumeAndDeleteButton();
 
         void DisableResumeAndDeleteButton();

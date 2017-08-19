@@ -29,21 +29,27 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TournamentManagerForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnRanking = new System.Windows.Forms.Button();
             this.btnTimer = new System.Windows.Forms.Button();
             this.imgLogoMM = new System.Windows.Forms.PictureBox();
             this.imgLogoEMA = new System.Windows.Forms.PictureBox();
             this.dgv = new System.Windows.Forms.DataGridView();
-            this.panelRoundButtons = new System.Windows.Forms.Panel();
-            this.flowPanelRoundsButtons = new System.Windows.Forms.FlowLayoutPanel();
             this.btnRounds = new System.Windows.Forms.Button();
             this.btnPlayers = new System.Windows.Forms.Button();
             this.btnTeams = new System.Windows.Forms.Button();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoEMA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
+            this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnRanking
@@ -153,26 +159,26 @@
             this.dgv.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgv.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ButtonFace;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.ButtonFace;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgv.ColumnHeadersHeight = 40;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgv.GridColor = System.Drawing.SystemColors.Control;
-            this.dgv.Location = new System.Drawing.Point(14, 88);
+            this.dgv.Location = new System.Drawing.Point(14, 120);
             this.dgv.Margin = new System.Windows.Forms.Padding(5);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
@@ -180,31 +186,8 @@
             this.dgv.RowHeadersVisible = false;
             this.dgv.RowTemplate.Height = 32;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(980, 640);
+            this.dgv.Size = new System.Drawing.Size(980, 608);
             this.dgv.TabIndex = 66;
-            // 
-            // panelRoundButtons
-            // 
-            this.panelRoundButtons.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelRoundButtons.Location = new System.Drawing.Point(14, 162);
-            this.panelRoundButtons.Margin = new System.Windows.Forms.Padding(5);
-            this.panelRoundButtons.Name = "panelRoundButtons";
-            this.panelRoundButtons.Size = new System.Drawing.Size(980, 566);
-            this.panelRoundButtons.TabIndex = 67;
-            this.panelRoundButtons.Visible = false;
-            // 
-            // flowPanelRoundsButtons
-            // 
-            this.flowPanelRoundsButtons.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.flowPanelRoundsButtons.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.flowPanelRoundsButtons.Location = new System.Drawing.Point(14, 88);
-            this.flowPanelRoundsButtons.Margin = new System.Windows.Forms.Padding(5);
-            this.flowPanelRoundsButtons.Name = "flowPanelRoundsButtons";
-            this.flowPanelRoundsButtons.Size = new System.Drawing.Size(980, 64);
-            this.flowPanelRoundsButtons.TabIndex = 68;
-            this.flowPanelRoundsButtons.Visible = false;
             // 
             // btnRounds
             // 
@@ -219,11 +202,11 @@
             this.btnRounds.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRounds.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.btnRounds.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnRounds.Image = ((System.Drawing.Image)(resources.GetObject("btnRounds.Image")));
+            this.btnRounds.Image = global::MahjongTournamentSuite.Properties.Resources.gong_big;
             this.btnRounds.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnRounds.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnRounds.Location = new System.Drawing.Point(251, 14);
-            this.btnRounds.Margin = new System.Windows.Forms.Padding(5);
+            this.btnRounds.Location = new System.Drawing.Point(153, 0);
+            this.btnRounds.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnRounds.Name = "btnRounds";
             this.btnRounds.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.btnRounds.Size = new System.Drawing.Size(64, 64);
@@ -232,6 +215,7 @@
             this.btnRounds.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnRounds.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRounds.UseVisualStyleBackColor = false;
+            this.btnRounds.Click += new System.EventHandler(this.btnRounds_Click);
             // 
             // btnPlayers
             // 
@@ -246,11 +230,11 @@
             this.btnPlayers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPlayers.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.btnPlayers.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnPlayers.Image = ((System.Drawing.Image)(resources.GetObject("btnPlayers.Image")));
+            this.btnPlayers.Image = global::MahjongTournamentSuite.Properties.Resources.players;
             this.btnPlayers.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnPlayers.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnPlayers.Location = new System.Drawing.Point(177, 14);
-            this.btnPlayers.Margin = new System.Windows.Forms.Padding(5);
+            this.btnPlayers.Location = new System.Drawing.Point(79, 0);
+            this.btnPlayers.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnPlayers.Name = "btnPlayers";
             this.btnPlayers.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.btnPlayers.Size = new System.Drawing.Size(64, 64);
@@ -259,9 +243,11 @@
             this.btnPlayers.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnPlayers.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPlayers.UseVisualStyleBackColor = false;
+            this.btnPlayers.Click += new System.EventHandler(this.btnPlayers_Click);
             // 
             // btnTeams
             // 
+            this.btnTeams.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnTeams.BackColor = System.Drawing.Color.Transparent;
             this.btnTeams.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnTeams.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -273,11 +259,11 @@
             this.btnTeams.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTeams.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.btnTeams.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnTeams.Image = ((System.Drawing.Image)(resources.GetObject("btnTeams.Image")));
+            this.btnTeams.Image = global::MahjongTournamentSuite.Properties.Resources.teams;
             this.btnTeams.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnTeams.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnTeams.Location = new System.Drawing.Point(103, 14);
-            this.btnTeams.Margin = new System.Windows.Forms.Padding(5);
+            this.btnTeams.Location = new System.Drawing.Point(5, 0);
+            this.btnTeams.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnTeams.Name = "btnTeams";
             this.btnTeams.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.btnTeams.Size = new System.Drawing.Size(64, 64);
@@ -286,6 +272,78 @@
             this.btnTeams.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnTeams.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnTeams.UseVisualStyleBackColor = false;
+            this.btnTeams.Visible = false;
+            this.btnTeams.Click += new System.EventHandler(this.btnTeams_Click);
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.flowLayoutPanel1.AutoSize = true;
+            this.flowLayoutPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.flowLayoutPanel1.Controls.Add(this.btnTeams);
+            this.flowLayoutPanel1.Controls.Add(this.btnPlayers);
+            this.flowLayoutPanel1.Controls.Add(this.btnRounds);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(107, 14);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(24, 5, 5, 5);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(225, 64);
+            this.flowLayoutPanel1.TabIndex = 69;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.IsSplitterFixed = true;
+            this.splitContainer1.Location = new System.Drawing.Point(14, 111);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(5);
+            this.splitContainer1.MinimumSize = new System.Drawing.Size(980, 282);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.AutoScroll = true;
+            this.splitContainer1.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.splitContainer1.Panel1.Controls.Add(this.label2);
+            this.splitContainer1.Panel1.Margin = new System.Windows.Forms.Padding(0, 5, 0, 5);
+            this.splitContainer1.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.splitContainer1.Panel1MinSize = 81;
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.AutoScroll = true;
+            this.splitContainer1.Panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.splitContainer1.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.splitContainer1.Panel2MinSize = 200;
+            this.splitContainer1.Size = new System.Drawing.Size(980, 617);
+            this.splitContainer1.SplitterDistance = 82;
+            this.splitContainer1.SplitterWidth = 1;
+            this.splitContainer1.TabIndex = 70;
+            this.splitContainer1.Visible = false;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label2.Location = new System.Drawing.Point(0, 80);
+            this.label2.Margin = new System.Windows.Forms.Padding(0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(980, 2);
+            this.label2.TabIndex = 72;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label1.Location = new System.Drawing.Point(14, 98);
+            this.label1.Margin = new System.Windows.Forms.Padding(5, 15, 5, 15);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(980, 2);
+            this.label1.TabIndex = 71;
             // 
             // TournamentManagerForm
             // 
@@ -294,11 +352,9 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1008, 742);
-            this.Controls.Add(this.btnTeams);
-            this.Controls.Add(this.btnPlayers);
-            this.Controls.Add(this.btnRounds);
-            this.Controls.Add(this.flowPanelRoundsButtons);
-            this.Controls.Add(this.panelRoundButtons);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.imgLogoEMA);
             this.Controls.Add(this.imgLogoMM);
             this.Controls.Add(this.btnTimer);
@@ -316,7 +372,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoEMA)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -326,10 +387,12 @@
         private System.Windows.Forms.PictureBox imgLogoMM;
         private System.Windows.Forms.PictureBox imgLogoEMA;
         private System.Windows.Forms.DataGridView dgv;
-        private System.Windows.Forms.Panel panelRoundButtons;
-        private System.Windows.Forms.FlowLayoutPanel flowPanelRoundsButtons;
         private System.Windows.Forms.Button btnRounds;
         private System.Windows.Forms.Button btnPlayers;
         private System.Windows.Forms.Button btnTeams;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

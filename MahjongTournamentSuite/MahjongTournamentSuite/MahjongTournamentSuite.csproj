@@ -173,9 +173,13 @@
   <ItemGroup>
     <Content Include="Resources\EMALogo.png" />
     <Content Include="Resources\favicon.ico" />
+    <Content Include="Resources\gong.png" />
+    <Content Include="Resources\gong_big.png" />
     <Content Include="Resources\MMLoading.gif" />
     <Content Include="Resources\MMLogo.png" />
     <Content Include="Resources\no.png" />
+    <Content Include="Resources\players.png" />
+    <Content Include="Resources\teams.png" />
     <Content Include="Resources\yes.png" />
     <None Include="Resources\table32.png" />
     <None Include="Resources\timer.png" />

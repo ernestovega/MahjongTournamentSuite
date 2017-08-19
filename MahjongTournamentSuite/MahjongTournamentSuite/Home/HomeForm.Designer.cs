@@ -36,14 +36,10 @@
             this.btnResume = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.imgLogoEMA = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lblLoadingMessage = new System.Windows.Forms.Label();
-            this.panelLoading = new System.Windows.Forms.Panel();
             this.imgLogoMM = new System.Windows.Forms.PictureBox();
             this.dgvTournaments = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoEMA)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panelLoading.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTournaments)).BeginInit();
             this.SuspendLayout();
@@ -179,42 +175,6 @@
             this.imgLogoEMA.TabStop = false;
             this.imgLogoEMA.Click += new System.EventHandler(this.imgLogoEMA_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Image = global::MahjongTournamentSuite.Properties.Resources.MMLoading;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 167);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(980, 240);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 6;
-            this.pictureBox1.TabStop = false;
-            // 
-            // lblLoadingMessage
-            // 
-            this.lblLoadingMessage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblLoadingMessage.Font = new System.Drawing.Font("Arial Black", 12F);
-            this.lblLoadingMessage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.lblLoadingMessage.Location = new System.Drawing.Point(3, 516);
-            this.lblLoadingMessage.Name = "lblLoadingMessage";
-            this.lblLoadingMessage.Size = new System.Drawing.Size(974, 23);
-            this.lblLoadingMessage.TabIndex = 4;
-            this.lblLoadingMessage.Text = "Message";
-            this.lblLoadingMessage.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            // 
-            // panelLoading
-            // 
-            this.panelLoading.Controls.Add(this.lblLoadingMessage);
-            this.panelLoading.Controls.Add(this.pictureBox1);
-            this.panelLoading.Location = new System.Drawing.Point(14, 14);
-            this.panelLoading.Margin = new System.Windows.Forms.Padding(5);
-            this.panelLoading.Name = "panelLoading";
-            this.panelLoading.Size = new System.Drawing.Size(980, 701);
-            this.panelLoading.TabIndex = 80;
-            this.panelLoading.Visible = false;
-            // 
             // imgLogoMM
             // 
             this.imgLogoMM.BackColor = System.Drawing.Color.Transparent;
@@ -265,19 +225,30 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvTournaments.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvTournaments.GridColor = System.Drawing.SystemColors.Control;
-            this.dgvTournaments.Location = new System.Drawing.Point(14, 89);
-            this.dgvTournaments.Margin = new System.Windows.Forms.Padding(5, 10, 5, 5);
+            this.dgvTournaments.Location = new System.Drawing.Point(14, 122);
+            this.dgvTournaments.Margin = new System.Windows.Forms.Padding(5);
             this.dgvTournaments.MultiSelect = false;
             this.dgvTournaments.Name = "dgvTournaments";
             this.dgvTournaments.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgvTournaments.RowHeadersVisible = false;
             this.dgvTournaments.RowTemplate.Height = 32;
             this.dgvTournaments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTournaments.Size = new System.Drawing.Size(980, 626);
+            this.dgvTournaments.Size = new System.Drawing.Size(980, 593);
             this.dgvTournaments.TabIndex = 7;
             this.dgvTournaments.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTournaments_CellEnter);
             this.dgvTournaments.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvTournaments_CellFormatting);
             this.dgvTournaments.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvTournaments_CellValidating);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label1.Location = new System.Drawing.Point(14, 100);
+            this.label1.Margin = new System.Windows.Forms.Padding(5, 15, 5, 15);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(980, 2);
+            this.label1.TabIndex = 79;
             // 
             // HomeForm
             // 
@@ -287,14 +258,14 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnResume);
+            this.Controls.Add(this.dgvTournaments);
             this.Controls.Add(this.btnNew);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnTimer);
             this.Controls.Add(this.imgLogoMM);
             this.Controls.Add(this.imgLogoEMA);
-            this.Controls.Add(this.dgvTournaments);
-            this.Controls.Add(this.panelLoading);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1024, 726);
@@ -302,8 +273,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mahjong Tournament Suite - Home";
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoEMA)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panelLoading.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTournaments)).EndInit();
             this.ResumeLayout(false);
@@ -316,10 +285,8 @@
         private System.Windows.Forms.Button btnResume;
         private System.Windows.Forms.PictureBox imgLogoEMA;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label lblLoadingMessage;
-        private System.Windows.Forms.Panel panelLoading;
         private System.Windows.Forms.PictureBox imgLogoMM;
         private System.Windows.Forms.DataGridView dgvTournaments;
+        private System.Windows.Forms.Label label1;
     }
 }
