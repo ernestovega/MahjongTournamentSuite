@@ -17,6 +17,7 @@ namespace MahjongTournamentSuite.TournamentManager
         private const int MARGIN_SIZE = 5;
         private const int TABLE_BUTTON_SIDE = 96;
         private const int TABLE_MARGIN_SIZE = 10;
+        private static readonly Color GREEN_MM = Color.FromArgb(0, 177, 106);
 
         private const string COLUMN_TEAMS_TOURNAMENT_ID = "TournamentId";
         private const string COLUMN_TEAMS_ID = "Id";
@@ -173,7 +174,7 @@ namespace MahjongTournamentSuite.TournamentManager
             {
                 Button btnRound = GetNewButton();
                 btnRound.Tag = i;
-                btnRound.Text = string.Format("Round {0}", i);
+                btnRound.Text = string.Format("\n{0}", i);
                 btnRound.Image = Properties.Resources.gong;
                 btnRound.Location = buttonStartPoint;
                 btnRound.Click += delegate
@@ -208,14 +209,14 @@ namespace MahjongTournamentSuite.TournamentManager
             {
                 Button button = GetNewButton();
                 button.Tag = i;
-                button.Text = string.Format("\nTable {0}", i);
+                button.Text = string.Format("\n{0}", i);
                 button.Image = Properties.Resources.table32;
                 button.Width = TABLE_BUTTON_SIDE;
                 button.Height = TABLE_BUTTON_SIDE;
                 button.Location = buttonStartPoint;
                 button.Click += delegate
                 {
-                    new TableManagerForm(_tournamentId, roundId, (int)button.Tag).ShowDialog();
+                    _presenter.ButtonRoundTableClicked((int)button.Tag);
                 };
 
                 splitContainer1.Panel2.Controls.Add(button);
@@ -234,6 +235,95 @@ namespace MahjongTournamentSuite.TournamentManager
                 }
                 else
                     return;
+            }
+        }
+
+        public void GoToTableManager(int tournamentId, int roundId, int tableId)
+        {
+            new TableManagerForm(tournamentId, roundId, tableId).ShowDialog();
+        }
+
+        public void SelectTeamsButton()
+        {
+            btnTeams.BackColor = GREEN_MM;
+            btnTeams.FlatAppearance.BorderSize = 1;
+        }
+
+        public void UnselectTeamsButton()
+        {
+            btnTeams.FlatAppearance.BorderSize = 0;
+            btnTeams.BackColor = SystemColors.Control;
+        }
+
+        public void SelectPlayersButton()
+        {
+            btnPlayers.BackColor = GREEN_MM;
+            btnPlayers.FlatAppearance.BorderSize = 1;
+        }
+
+        public void UnselectPlayersButton()
+        {
+            btnPlayers.FlatAppearance.BorderSize = 0;
+            btnPlayers.BackColor = SystemColors.Control;
+        }
+
+        public void SelectRoundsButton()
+        {
+            btnRounds.BackColor = GREEN_MM;
+            btnRounds.FlatAppearance.BorderSize = 1;
+        }
+
+        public void UnselectRoundsButton()
+        {
+            btnRounds.FlatAppearance.BorderSize = 0;
+            btnRounds.BackColor = SystemColors.Control;
+        }
+
+        public void SelectRoundButton(int roundId)
+        {
+            foreach (Control control in splitContainer1.Panel1.Controls)
+            {
+                if (control.Tag != null && (int)control.Tag == roundId)
+                {
+                    control.BackColor = GREEN_MM;
+                    ((Button)control).FlatAppearance.BorderSize = 1;
+                }
+            }
+        }
+
+        public void UnselectRoundButton(int roundId)
+        {
+            foreach (Control control in splitContainer1.Panel1.Controls)
+            {
+                if (control.Tag != null && (int)control.Tag == roundId)
+                {
+                    ((Button)control).FlatAppearance.BorderSize = 0;
+                    control.BackColor = SystemColors.Control;
+                }
+            }
+        }
+
+        public void SelectRoundTableButton(int tableId)
+        {
+            foreach (Control control in splitContainer1.Panel2.Controls)
+            {
+                if (control.Tag != null && (int)control.Tag == tableId)
+                {
+                    control.BackColor = GREEN_MM;
+                    ((Button)control).FlatAppearance.BorderSize = 1;
+                }
+            }
+        }
+
+        public void UnselectTableButton(int tableId)
+        {
+            foreach (Control control in splitContainer1.Panel2.Controls)
+            {
+                if (control.Tag != null && (int)control.Tag == tableId)
+                {
+                    ((Button)control).FlatAppearance.BorderSize = 0;
+                    control.BackColor = SystemColors.Control;
+                }
             }
         }
 
@@ -300,7 +390,7 @@ namespace MahjongTournamentSuite.TournamentManager
             newButton.Height = BUTTON_SIDE;
             newButton.FlatStyle = FlatStyle.Flat;
             newButton.FlatAppearance.BorderSize = 0;
-            newButton.FlatAppearance.BorderColor = SystemColors.Control;
+            newButton.FlatAppearance.BorderColor = SystemColors.ControlText;
             newButton.FlatAppearance.MouseDownBackColor = Color.LightGray;
             newButton.FlatAppearance.MouseOverBackColor = Color.Gainsboro;
             newButton.BackColor = Color.Transparent;

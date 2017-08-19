@@ -42,21 +42,40 @@ namespace MahjongTournamentSuite.TournamentManager
             {
                 _teams = _db.GetTournamentTeams(tournamentId);
                 _form.ShowButtonTeams();
+                isTeamsSelected = true;
+                _form.SelectTeamsButton();
                 _form.FillDGVWithTeams(_teams);
             }
             else
             {
+                isPlayersSelected = true;
+                _form.SelectPlayersButton();
                 _form.FillDGVWithPlayers(_players, _tournament.IsTeams);
             }
         }
 
         public void OnFormResized()
         {
-
+            if(isRoundsSelected)
+            {
+                _form.EmptyPanelRoundsButtons();
+                _form.AddRoundsSubButtons(_tournament.NumRounds);
+                _form.EmptyPanelRoundTablesButtons();
+                _form.AddRoundTablesButtons(roundSelected, _tournament.NumPlayers / 4);
+                _form.SelectRoundButton(roundSelected);
+                if(tableSelected > 0)
+                    _form.SelectRoundTableButton(tableSelected);
+            }
         }
 
         public void ButtonTeamsClicked()
         {
+            UnselectTable(tableSelected);
+            UnselectRound(roundSelected);
+            UnselectRounds();
+            UnselectPlayers();
+            isTeamsSelected = true;
+            _form.SelectTeamsButton();
             _form.HideRoundsButtonsAndTablesPanel();
             _form.ShowDGV();
             _form.FillDGVWithTeams(_teams);
@@ -64,6 +83,12 @@ namespace MahjongTournamentSuite.TournamentManager
 
         public void ButtonPlayersClicked()
         {
+            UnselectTable(tableSelected);
+            UnselectRound(roundSelected);
+            UnselectRounds();
+            UnselectTeams();
+            isPlayersSelected = true;
+            _form.SelectPlayersButton();
             _form.HideRoundsButtonsAndTablesPanel();
             _form.ShowDGV();
             _form.FillDGVWithPlayers(_players, _tournament.IsTeams);
@@ -71,20 +96,78 @@ namespace MahjongTournamentSuite.TournamentManager
 
         public void ButtonRoundsClicked()
         {
+            UnselectTable(tableSelected);
+            UnselectRound(roundSelected);
+            UnselectPlayers();
+            UnselectTeams();
+            isRoundsSelected = true;
+            _form.SelectRoundsButton();
             _form.HideDGV();
             _form.ShowRoundsButtonsAndTablesPanel();
             _form.EmptyPanelRoundsButtons();
             _form.AddRoundsSubButtons(_tournament.NumRounds);
             _form.EmptyPanelRoundTablesButtons();
-            _form.AddRoundTablesButtons(1, _tournament.NumPlayers / 4);
-            _form.FillDGVWithPlayers(_players, _tournament.IsTeams);
+            roundSelected = 1;
+            _form.AddRoundTablesButtons(roundSelected, _tournament.NumPlayers / 4);
+            _form.SelectRoundButton(roundSelected);
         }
 
-        public void ButtonRoundClicked(int tag)
+        public void ButtonRoundClicked(int roundId)
         {
+            UnselectTable(tableSelected);
+            UnselectRound(roundSelected);
+            roundSelected = roundId;
+            _form.SelectRoundButton(roundId);
             _form.EmptyPanelRoundTablesButtons();
-            _form.HideDGV();
-            _form.AddRoundTablesButtons(tag, _tournament.NumPlayers / 4);
+            _form.AddRoundTablesButtons(roundId, _tournament.NumPlayers / 4);
+        }
+
+        public void ButtonRoundTableClicked(int tableId)
+        {
+            UnselectTable(tableSelected);
+            tableSelected = tableId;
+            _form.SelectRoundTableButton(tableId);
+            _form.GoToTableManager(_tournament.Id, roundSelected, tableId);
+        }
+
+        #endregion
+
+        #region Private
+
+        private void UnselectTeams()
+        {
+            _form.UnselectTeamsButton();
+            isTeamsSelected = false;
+        }
+
+        private void UnselectPlayers()
+        {
+            _form.UnselectPlayersButton();
+            isPlayersSelected = false;
+        }
+
+        private void UnselectRounds()
+        {
+            _form.UnselectRoundsButton();
+            isRoundsSelected = false;
+        }
+
+        private void UnselectRound(int roundId)
+        {
+            if (roundId > 0)
+            {
+                _form.UnselectRoundButton(roundId);
+                roundSelected = 0;
+            }
+        }
+
+        private void UnselectTable(int tableId)
+        {
+            if (tableId > 0)
+            {
+                _form.UnselectTableButton(tableId);
+                tableSelected = 0;
+            }
         }
 
         #endregion

@@ -13,6 +13,28 @@ namespace MahjongTournamentSuite.TournamentManager
 
         void AddRoundTablesButtons(int roundId, int numTables);
 
+        void GoToTableManager(int tournamentId, int roundId, int tableId);
+
+        void SelectTeamsButton();
+
+        void UnselectTeamsButton();
+
+        void SelectPlayersButton();
+
+        void UnselectPlayersButton();
+
+        void SelectRoundsButton();
+
+        void UnselectRoundsButton();
+
+        void SelectRoundButton(int roundId);
+
+        void UnselectRoundButton(int roundId);
+
+        void SelectRoundTableButton(int TableId);
+
+        void UnselectTableButton(int TableId);
+
         void ShowButtonTeams();
 
         void HideButtonTeams();
@@ -21,11 +43,12 @@ namespace MahjongTournamentSuite.TournamentManager
 
         void HideDGV();
 
+        void EmptyPanelRoundsButtons();
+
         void EmptyPanelRoundTablesButtons();
 
         void ShowRoundsButtonsAndTablesPanel();
 
         void HideRoundsButtonsAndTablesPanel();
-        void EmptyPanelRoundsButtons();
     }
 }

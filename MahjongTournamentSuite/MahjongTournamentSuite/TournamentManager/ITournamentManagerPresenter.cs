@@ -13,5 +13,7 @@
         void ButtonRoundsClicked();
 
         void ButtonRoundClicked(int roundId);
+
+        void ButtonRoundTableClicked(int tableId);
     }
 }

@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TournamentManagerForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnRanking = new System.Windows.Forms.Button();
             this.btnTimer = new System.Windows.Forms.Button();
             this.imgLogoMM = new System.Windows.Forms.PictureBox();
@@ -159,24 +159,24 @@
             this.dgv.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgv.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.ButtonFace;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ButtonFace;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv.ColumnHeadersHeight = 40;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv.GridColor = System.Drawing.SystemColors.Control;
             this.dgv.Location = new System.Drawing.Point(14, 120);
             this.dgv.Margin = new System.Windows.Forms.Padding(5);
@@ -194,7 +194,7 @@
             this.btnRounds.BackColor = System.Drawing.Color.Transparent;
             this.btnRounds.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnRounds.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRounds.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.btnRounds.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlText;
             this.btnRounds.FlatAppearance.BorderSize = 0;
             this.btnRounds.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
             this.btnRounds.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
@@ -222,7 +222,7 @@
             this.btnPlayers.BackColor = System.Drawing.Color.Transparent;
             this.btnPlayers.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnPlayers.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPlayers.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.btnPlayers.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlText;
             this.btnPlayers.FlatAppearance.BorderSize = 0;
             this.btnPlayers.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
             this.btnPlayers.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
@@ -251,7 +251,7 @@
             this.btnTeams.BackColor = System.Drawing.Color.Transparent;
             this.btnTeams.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnTeams.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTeams.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.btnTeams.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlText;
             this.btnTeams.FlatAppearance.BorderSize = 0;
             this.btnTeams.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
             this.btnTeams.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
@@ -287,7 +287,7 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(107, 14);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(24, 5, 5, 5);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(225, 64);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(225, 66);
             this.flowLayoutPanel1.TabIndex = 69;
             // 
             // splitContainer1
