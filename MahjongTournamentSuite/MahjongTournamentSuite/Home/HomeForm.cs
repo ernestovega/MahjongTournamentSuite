@@ -20,7 +20,6 @@ namespace MahjongTournamentSuite.Home
         private static readonly string COLUMN_ROUNDS = "NumRounds";
         private static readonly string COLUMN_IS_TEAMS = "IsTeams";
         private static readonly string COLUMN_IS_TEAMS_IMAGES = "Teams";
-        private static readonly int COLUMN_NAME_INDEX = 1;
 
         #endregion
 
@@ -69,17 +68,21 @@ namespace MahjongTournamentSuite.Home
 
         public void btnResume_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             int tournamentId = GetCurrentTournamentId();
             if (tournamentId > -1)
             {
                 new TournamentManagerForm(tournamentId).Show();
                 Close();
             }
+            Cursor = Cursors.Default;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             _presenter.DeleteClicked();
+            Cursor = Cursors.Default;
         }
 
         private void btnTimer_Click(object sender, EventArgs e)
@@ -90,32 +93,54 @@ namespace MahjongTournamentSuite.Home
 
         private void dgvTournaments_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (dgvTournaments.Columns[e.ColumnIndex].Name.Equals(COLUMN_IS_TEAMS_IMAGES))
+            if (dgvTournaments.Columns.Count == 7 &&  dgvTournaments.Columns[e.ColumnIndex].Name.Equals(COLUMN_IS_TEAMS_IMAGES))
             {
-                if ((bool)((DataGridViewCheckBoxCell)dgvTournaments.Rows[e.RowIndex].Cells[COLUMN_IS_TEAMS]).Value)
-                    e.Value = Properties.Resources.yes;
-                else
-                    e.Value = Properties.Resources.no;
+                DataGridViewCheckBoxCell isTeamsCell = (DataGridViewCheckBoxCell)dgvTournaments.Rows[e.RowIndex].Cells[COLUMN_IS_TEAMS];
+                if (isTeamsCell.Value != null)
+                {
+                    if ((bool)isTeamsCell.Value)
+                    {
+                        if (dgvTournaments.CurrentCell != null && dgvTournaments.CurrentCell.RowIndex == e.RowIndex)
+                            e.Value = Properties.Resources.yes_white;
+                        else
+                            e.Value = Properties.Resources.yes;
+                    }
+                    else
+                    {
+                        if (dgvTournaments.CurrentCell != null && dgvTournaments.CurrentCell.RowIndex == e.RowIndex)
+                            e.Value = Properties.Resources.no_white;
+                        else
+                            e.Value = Properties.Resources.no;
+                    }
+
+                    dgvTournaments.NotifyCurrentCellDirty(true);
+                }
             }
         }
 
         private void dgvTournaments_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex > -1 && e.ColumnIndex == COLUMN_NAME_INDEX)
-                dgvTournaments.BeginEdit(true);
+            if (dgvTournaments.Columns.Count == 7)
+            {
+                if (e.RowIndex > -1 && dgvTournaments.Columns[e.ColumnIndex].Name.Equals(COLUMN_NAME))
+                    dgvTournaments.BeginEdit(true);
+            }
         }
         
         private void dgvTournaments_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if (e.RowIndex > -1 && e.ColumnIndex == COLUMN_NAME_INDEX)
+            if (dgvTournaments.Columns.Count == 7)
             {
-                int tournamentId = GetSelectedTournamentId(e.RowIndex);
-                string previousValue = (string)dgvTournaments.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-                string newValue = ((string)e.FormattedValue).Trim();
-                if (newValue.Length > 0 && !newValue.Equals(previousValue))
-                    _presenter.NameChanged(tournamentId, newValue);
-                else
-                    dgvTournaments.CancelEdit();
+                if (e.RowIndex > -1 && dgvTournaments.Columns[e.ColumnIndex].Name.Equals(COLUMN_NAME))
+                {
+                    int tournamentId = GetSelectedTournamentId(e.RowIndex);
+                    string previousValue = (string)dgvTournaments.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                    string newValue = ((string)e.FormattedValue).Trim();
+                    if (newValue.Length > 0 && !newValue.Equals(previousValue))
+                        _presenter.NameChanged(tournamentId, newValue);
+                    else
+                        dgvTournaments.CancelEdit();
+                }
             }
         }
 

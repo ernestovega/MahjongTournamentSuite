@@ -69,7 +69,7 @@
             this.btnRanking.Image = ((System.Drawing.Image)(resources.GetObject("btnRanking.Image")));
             this.btnRanking.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnRanking.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnRanking.Location = new System.Drawing.Point(774, 14);
+            this.btnRanking.Location = new System.Drawing.Point(754, 14);
             this.btnRanking.Margin = new System.Windows.Forms.Padding(5);
             this.btnRanking.Name = "btnRanking";
             this.btnRanking.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
@@ -98,8 +98,8 @@
             this.btnTimer.Image = ((System.Drawing.Image)(resources.GetObject("btnTimer.Image")));
             this.btnTimer.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnTimer.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnTimer.Location = new System.Drawing.Point(852, 14);
-            this.btnTimer.Margin = new System.Windows.Forms.Padding(5);
+            this.btnTimer.Location = new System.Drawing.Point(832, 14);
+            this.btnTimer.Margin = new System.Windows.Forms.Padding(5, 5, 25, 5);
             this.btnTimer.Name = "btnTimer";
             this.btnTimer.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.btnTimer.Size = new System.Drawing.Size(68, 64);
@@ -205,11 +205,11 @@
             this.btnRounds.Image = global::MahjongTournamentSuite.Properties.Resources.gong_big;
             this.btnRounds.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnRounds.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnRounds.Location = new System.Drawing.Point(153, 0);
+            this.btnRounds.Location = new System.Drawing.Point(156, 0);
             this.btnRounds.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnRounds.Name = "btnRounds";
             this.btnRounds.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.btnRounds.Size = new System.Drawing.Size(64, 64);
+            this.btnRounds.Size = new System.Drawing.Size(68, 64);
             this.btnRounds.TabIndex = 69;
             this.btnRounds.Text = "Rounds";
             this.btnRounds.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -233,11 +233,11 @@
             this.btnPlayers.Image = global::MahjongTournamentSuite.Properties.Resources.players;
             this.btnPlayers.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnPlayers.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnPlayers.Location = new System.Drawing.Point(79, 0);
+            this.btnPlayers.Location = new System.Drawing.Point(78, 0);
             this.btnPlayers.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnPlayers.Name = "btnPlayers";
             this.btnPlayers.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.btnPlayers.Size = new System.Drawing.Size(64, 64);
+            this.btnPlayers.Size = new System.Drawing.Size(68, 64);
             this.btnPlayers.TabIndex = 70;
             this.btnPlayers.Text = "Players";
             this.btnPlayers.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -262,11 +262,11 @@
             this.btnTeams.Image = global::MahjongTournamentSuite.Properties.Resources.teams;
             this.btnTeams.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnTeams.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnTeams.Location = new System.Drawing.Point(5, 0);
-            this.btnTeams.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.btnTeams.Location = new System.Drawing.Point(0, 0);
+            this.btnTeams.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
             this.btnTeams.Name = "btnTeams";
             this.btnTeams.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.btnTeams.Size = new System.Drawing.Size(64, 64);
+            this.btnTeams.Size = new System.Drawing.Size(68, 64);
             this.btnTeams.TabIndex = 71;
             this.btnTeams.Text = "Teams";
             this.btnTeams.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -284,10 +284,10 @@
             this.flowLayoutPanel1.Controls.Add(this.btnTeams);
             this.flowLayoutPanel1.Controls.Add(this.btnPlayers);
             this.flowLayoutPanel1.Controls.Add(this.btnRounds);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(107, 14);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(24, 5, 5, 5);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(108, 14);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(25, 5, 5, 5);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(225, 66);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(278, 64);
             this.flowLayoutPanel1.TabIndex = 69;
             // 
             // splitContainer1

@@ -172,9 +172,6 @@
   <data name="gong_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\gong_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="no_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\no_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="players_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\players_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -183,6 +180,9 @@
   </data>
   <data name="teams_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\teams_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="no_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\no_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="yes_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\yes_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

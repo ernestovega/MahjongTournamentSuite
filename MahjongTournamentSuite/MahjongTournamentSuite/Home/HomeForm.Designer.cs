@@ -32,13 +32,13 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnNew = new System.Windows.Forms.Button();
-            this.btnTimer = new System.Windows.Forms.Button();
             this.btnResume = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.imgLogoEMA = new System.Windows.Forms.PictureBox();
             this.imgLogoMM = new System.Windows.Forms.PictureBox();
             this.dgvTournaments = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnTimer = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoEMA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTournaments)).BeginInit();
@@ -52,54 +52,25 @@
             this.btnNew.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.btnNew.FlatAppearance.BorderSize = 0;
             this.btnNew.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
-            this.btnNew.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
-            this.btnNew.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gainsboro;
+            this.btnNew.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(76)))));
+            this.btnNew.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
             this.btnNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
             this.btnNew.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnNew.Image = ((System.Drawing.Image)(resources.GetObject("btnNew.Image")));
             this.btnNew.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnNew.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnNew.Location = new System.Drawing.Point(114, 16);
-            this.btnNew.Margin = new System.Windows.Forms.Padding(5);
+            this.btnNew.Location = new System.Drawing.Point(108, 14);
+            this.btnNew.Margin = new System.Windows.Forms.Padding(25, 5, 5, 5);
             this.btnNew.Name = "btnNew";
             this.btnNew.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.btnNew.Size = new System.Drawing.Size(64, 64);
+            this.btnNew.Size = new System.Drawing.Size(68, 64);
             this.btnNew.TabIndex = 12;
             this.btnNew.Text = "New";
             this.btnNew.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnNew.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnNew.UseVisualStyleBackColor = false;
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
-            // 
-            // btnTimer
-            // 
-            this.btnTimer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTimer.BackColor = System.Drawing.Color.Transparent;
-            this.btnTimer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnTimer.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTimer.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
-            this.btnTimer.FlatAppearance.BorderSize = 0;
-            this.btnTimer.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
-            this.btnTimer.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
-            this.btnTimer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gainsboro;
-            this.btnTimer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btnTimer.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnTimer.Image = ((System.Drawing.Image)(resources.GetObject("btnTimer.Image")));
-            this.btnTimer.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnTimer.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnTimer.Location = new System.Drawing.Point(836, 16);
-            this.btnTimer.Margin = new System.Windows.Forms.Padding(5);
-            this.btnTimer.Name = "btnTimer";
-            this.btnTimer.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.btnTimer.Size = new System.Drawing.Size(64, 64);
-            this.btnTimer.TabIndex = 13;
-            this.btnTimer.Text = "Timer";
-            this.btnTimer.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnTimer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnTimer.UseVisualStyleBackColor = false;
-            this.btnTimer.Click += new System.EventHandler(this.btnTimer_Click);
             // 
             // btnResume
             // 
@@ -109,19 +80,19 @@
             this.btnResume.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.btnResume.FlatAppearance.BorderSize = 0;
             this.btnResume.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
-            this.btnResume.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
-            this.btnResume.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gainsboro;
+            this.btnResume.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(76)))));
+            this.btnResume.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
             this.btnResume.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnResume.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnResume.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
             this.btnResume.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnResume.Image = ((System.Drawing.Image)(resources.GetObject("btnResume.Image")));
             this.btnResume.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnResume.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResume.Location = new System.Drawing.Point(208, 16);
+            this.btnResume.Location = new System.Drawing.Point(186, 14);
             this.btnResume.Margin = new System.Windows.Forms.Padding(5);
             this.btnResume.Name = "btnResume";
             this.btnResume.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.btnResume.Size = new System.Drawing.Size(64, 64);
+            this.btnResume.Size = new System.Drawing.Size(68, 64);
             this.btnResume.TabIndex = 16;
             this.btnResume.Text = "Resume";
             this.btnResume.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -137,19 +108,19 @@
             this.btnDelete.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.btnDelete.FlatAppearance.BorderSize = 0;
             this.btnDelete.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
-            this.btnDelete.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
-            this.btnDelete.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gainsboro;
+            this.btnDelete.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(76)))));
+            this.btnDelete.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
             this.btnDelete.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
             this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnDelete.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDelete.Location = new System.Drawing.Point(282, 16);
+            this.btnDelete.Location = new System.Drawing.Point(264, 14);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(5);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.btnDelete.Size = new System.Drawing.Size(64, 64);
+            this.btnDelete.Size = new System.Drawing.Size(68, 64);
             this.btnDelete.TabIndex = 78;
             this.btnDelete.Text = "Delete";
             this.btnDelete.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -250,6 +221,35 @@
             this.label1.Size = new System.Drawing.Size(980, 2);
             this.label1.TabIndex = 79;
             // 
+            // btnTimer
+            // 
+            this.btnTimer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTimer.BackColor = System.Drawing.Color.Transparent;
+            this.btnTimer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnTimer.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnTimer.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.btnTimer.FlatAppearance.BorderSize = 0;
+            this.btnTimer.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
+            this.btnTimer.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(76)))));
+            this.btnTimer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            this.btnTimer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.btnTimer.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnTimer.Image = ((System.Drawing.Image)(resources.GetObject("btnTimer.Image")));
+            this.btnTimer.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnTimer.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnTimer.Location = new System.Drawing.Point(832, 14);
+            this.btnTimer.Margin = new System.Windows.Forms.Padding(5, 5, 25, 5);
+            this.btnTimer.Name = "btnTimer";
+            this.btnTimer.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.btnTimer.Size = new System.Drawing.Size(68, 64);
+            this.btnTimer.TabIndex = 80;
+            this.btnTimer.Text = "Timer";
+            this.btnTimer.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnTimer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnTimer.UseVisualStyleBackColor = false;
+            this.btnTimer.Click += new System.EventHandler(this.btnTimer_Click);
+            // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -258,12 +258,12 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.Controls.Add(this.btnTimer);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnResume);
             this.Controls.Add(this.dgvTournaments);
             this.Controls.Add(this.btnNew);
             this.Controls.Add(this.btnDelete);
-            this.Controls.Add(this.btnTimer);
             this.Controls.Add(this.imgLogoMM);
             this.Controls.Add(this.imgLogoEMA);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -281,12 +281,12 @@
 
         #endregion
         private System.Windows.Forms.Button btnNew;
-        private System.Windows.Forms.Button btnTimer;
         private System.Windows.Forms.Button btnResume;
         private System.Windows.Forms.PictureBox imgLogoEMA;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.PictureBox imgLogoMM;
         private System.Windows.Forms.DataGridView dgvTournaments;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnTimer;
     }
 }
