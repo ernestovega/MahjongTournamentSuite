@@ -113,6 +113,26 @@ namespace MahjongTournamentSuite.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap gong_big_white {
+            get {
+                object obj = ResourceManager.GetObject("gong_big_white", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap gong_white {
+            get {
+                object obj = ResourceManager.GetObject("gong_white", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap MMLoading {
             get {
                 object obj = ResourceManager.GetObject("MMLoading", resourceCulture);
@@ -143,6 +163,16 @@ namespace MahjongTournamentSuite.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap no_white {
+            get {
+                object obj = ResourceManager.GetObject("no_white", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap play {
             get {
                 object obj = ResourceManager.GetObject("play", resourceCulture);
@@ -156,6 +186,16 @@ namespace MahjongTournamentSuite.Properties {
         public static System.Drawing.Bitmap players {
             get {
                 object obj = ResourceManager.GetObject("players", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap players_white {
+            get {
+                object obj = ResourceManager.GetObject("players_white", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -183,9 +223,9 @@ namespace MahjongTournamentSuite.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap table32 {
+        public static System.Drawing.Bitmap table {
             get {
-                object obj = ResourceManager.GetObject("table32", resourceCulture);
+                object obj = ResourceManager.GetObject("table", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -193,9 +233,9 @@ namespace MahjongTournamentSuite.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap table64 {
+        public static System.Drawing.Bitmap table_white {
             get {
-                object obj = ResourceManager.GetObject("table64", resourceCulture);
+                object obj = ResourceManager.GetObject("table_white", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -206,6 +246,16 @@ namespace MahjongTournamentSuite.Properties {
         public static System.Drawing.Bitmap teams {
             get {
                 object obj = ResourceManager.GetObject("teams", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap teams_white {
+            get {
+                object obj = ResourceManager.GetObject("teams_white", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -226,6 +276,16 @@ namespace MahjongTournamentSuite.Properties {
         public static System.Drawing.Bitmap yes {
             get {
                 object obj = ResourceManager.GetObject("yes", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap yes_white {
+            get {
+                object obj = ResourceManager.GetObject("yes_white", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -15,9 +15,12 @@ namespace MahjongTournamentSuite.TournamentManager
 
         private const int BUTTON_SIDE = 64;
         private const int MARGIN_SIZE = 5;
-        private const int TABLE_BUTTON_SIDE = 96;
-        private const int TABLE_MARGIN_SIZE = 10;
+        private const int TABLES_MARGIN_SIZE = 10;
+        private const int NUM_TABLES_BUTTONS_HORIZONTAL = 10;
+        private const int SEPARATOR_EXTRA_MARGIN_BOTTOM = 12;
+
         private static readonly Color GREEN_MM = Color.FromArgb(0, 177, 106);
+        private static readonly Color GREEN_MM_DARK = Color.FromArgb(0, 147, 76);
 
         private const string COLUMN_TEAMS_TOURNAMENT_ID = "TournamentId";
         private const string COLUMN_TEAMS_ID = "Id";
@@ -160,7 +163,6 @@ namespace MahjongTournamentSuite.TournamentManager
 
         public void AddRoundsSubButtons(int numRounds)
         {
-            //Número de botones en horizontal
             int numButtonsHorizontal = (splitContainer1.Width - (MARGIN_SIZE * 3)) / (BUTTON_SIDE + MARGIN_SIZE);
 
             Point buttonStartPoint = new Point(MARGIN_SIZE, MARGIN_SIZE);
@@ -194,25 +196,26 @@ namespace MahjongTournamentSuite.TournamentManager
                 else
                     buttonStartPoint.X += BUTTON_SIDE + MARGIN_SIZE;
             }
-            splitContainer1.SplitterDistance = ((rowsCount + 1) * BUTTON_SIDE) + ((rowsCount + 2) * MARGIN_SIZE) + 2;
+            //Fijamos el tamaño vertical del contenedor para evitar el scroll
+            splitContainer1.SplitterDistance = ((rowsCount + 1) * BUTTON_SIDE) + ((rowsCount + 2) * MARGIN_SIZE) + SEPARATOR_EXTRA_MARGIN_BOTTOM;
         }
 
         public void AddRoundTablesButtons(int roundId, int numTables)
         {
-            //Número de botones en horizontal
-            int numButtonsHorizontal = splitContainer1.Width / (TABLE_BUTTON_SIDE + TABLE_MARGIN_SIZE);
+            //Calculamos el punto de comienzo para centrar los botones
+            int neededWidth = ((NUM_TABLES_BUTTONS_HORIZONTAL * BUTTON_SIDE) + ((NUM_TABLES_BUTTONS_HORIZONTAL + 1) * TABLES_MARGIN_SIZE));
+            int initPoint = (splitContainer1.Width - neededWidth) / 2;
+            Point buttonStartPoint = new Point(initPoint, TABLES_MARGIN_SIZE);
 
-            //Generamos los botones
             int rowsCount = 0;
-            Point buttonStartPoint = new Point(TABLE_MARGIN_SIZE, TABLE_MARGIN_SIZE);
             for (int i = 1; i <= numTables; i++)
             {
                 Button button = GetNewButton();
                 button.Tag = i;
                 button.Text = string.Format("\n{0}", i);
-                button.Image = Properties.Resources.table32;
-                button.Width = TABLE_BUTTON_SIDE;
-                button.Height = TABLE_BUTTON_SIDE;
+                button.Image = Properties.Resources.table;
+                button.Width = BUTTON_SIDE;
+                button.Height = BUTTON_SIDE;
                 button.Location = buttonStartPoint;
                 button.Click += delegate
                 {
@@ -221,17 +224,18 @@ namespace MahjongTournamentSuite.TournamentManager
 
                 splitContainer1.Panel2.Controls.Add(button);
 
+
                 if (i < numTables)
                 {
-                    int numButtonsInActualRow = i - (rowsCount * numButtonsHorizontal);
-                    if (numButtonsInActualRow == numButtonsHorizontal)
+                    int numButtonsInActualRow = i - (rowsCount * NUM_TABLES_BUTTONS_HORIZONTAL);
+                    if (numButtonsInActualRow == NUM_TABLES_BUTTONS_HORIZONTAL)
                     {
-                        buttonStartPoint.Y += TABLE_BUTTON_SIDE + TABLE_MARGIN_SIZE;
-                        buttonStartPoint.X = TABLE_MARGIN_SIZE;
+                        buttonStartPoint.Y += BUTTON_SIDE + TABLES_MARGIN_SIZE;
+                        buttonStartPoint.X = initPoint;
                         rowsCount++;
                     }
                     else
-                        buttonStartPoint.X += TABLE_BUTTON_SIDE + TABLE_MARGIN_SIZE;
+                        buttonStartPoint.X += BUTTON_SIDE + TABLES_MARGIN_SIZE;
                 }
                 else
                     return;
@@ -245,38 +249,32 @@ namespace MahjongTournamentSuite.TournamentManager
 
         public void SelectTeamsButton()
         {
-            btnTeams.BackColor = GREEN_MM;
-            btnTeams.FlatAppearance.BorderSize = 1;
+            MakeButtonSelected(btnTeams, Properties.Resources.teams_white);
         }
 
         public void UnselectTeamsButton()
         {
-            btnTeams.FlatAppearance.BorderSize = 0;
-            btnTeams.BackColor = SystemColors.Control;
+            MakeButtonUnselected(btnTeams, Properties.Resources.teams);
         }
 
         public void SelectPlayersButton()
         {
-            btnPlayers.BackColor = GREEN_MM;
-            btnPlayers.FlatAppearance.BorderSize = 1;
+            MakeButtonSelected(btnPlayers, Properties.Resources.players_white);
         }
 
         public void UnselectPlayersButton()
         {
-            btnPlayers.FlatAppearance.BorderSize = 0;
-            btnPlayers.BackColor = SystemColors.Control;
+            MakeButtonUnselected(btnPlayers, Properties.Resources.players);
         }
 
         public void SelectRoundsButton()
         {
-            btnRounds.BackColor = GREEN_MM;
-            btnRounds.FlatAppearance.BorderSize = 1;
+            MakeButtonSelected(btnRounds, Properties.Resources.gong_big_white);
         }
 
         public void UnselectRoundsButton()
         {
-            btnRounds.FlatAppearance.BorderSize = 0;
-            btnRounds.BackColor = SystemColors.Control;
+            MakeButtonUnselected(btnRounds, Properties.Resources.gong_big);
         }
 
         public void SelectRoundButton(int roundId)
@@ -284,10 +282,7 @@ namespace MahjongTournamentSuite.TournamentManager
             foreach (Control control in splitContainer1.Panel1.Controls)
             {
                 if (control.Tag != null && (int)control.Tag == roundId)
-                {
-                    control.BackColor = GREEN_MM;
-                    ((Button)control).FlatAppearance.BorderSize = 1;
-                }
+                    MakeButtonSelected((Button)control, Properties.Resources.gong_white);
             }
         }
 
@@ -296,10 +291,7 @@ namespace MahjongTournamentSuite.TournamentManager
             foreach (Control control in splitContainer1.Panel1.Controls)
             {
                 if (control.Tag != null && (int)control.Tag == roundId)
-                {
-                    ((Button)control).FlatAppearance.BorderSize = 0;
-                    control.BackColor = SystemColors.Control;
-                }
+                    MakeButtonUnselected((Button)control, Properties.Resources.gong);
             }
         }
 
@@ -308,10 +300,7 @@ namespace MahjongTournamentSuite.TournamentManager
             foreach (Control control in splitContainer1.Panel2.Controls)
             {
                 if (control.Tag != null && (int)control.Tag == tableId)
-                {
-                    control.BackColor = GREEN_MM;
-                    ((Button)control).FlatAppearance.BorderSize = 1;
-                }
+                    MakeButtonSelected((Button)control, Properties.Resources.table_white);
             }
         }
 
@@ -320,10 +309,7 @@ namespace MahjongTournamentSuite.TournamentManager
             foreach (Control control in splitContainer1.Panel2.Controls)
             {
                 if (control.Tag != null && (int)control.Tag == tableId)
-                {
-                    ((Button)control).FlatAppearance.BorderSize = 0;
-                    control.BackColor = SystemColors.Control;
-                }
+                    MakeButtonUnselected((Button)control, Properties.Resources.table);
             }
         }
 
@@ -390,19 +376,35 @@ namespace MahjongTournamentSuite.TournamentManager
             newButton.Height = BUTTON_SIDE;
             newButton.FlatStyle = FlatStyle.Flat;
             newButton.FlatAppearance.BorderSize = 0;
-            newButton.FlatAppearance.BorderColor = SystemColors.ControlText;
-            newButton.FlatAppearance.MouseDownBackColor = Color.LightGray;
-            newButton.FlatAppearance.MouseOverBackColor = Color.Gainsboro;
-            newButton.BackColor = Color.Transparent;
+            newButton.FlatAppearance.MouseDownBackColor = GREEN_MM_DARK;
+            newButton.FlatAppearance.MouseOverBackColor = GREEN_MM;
             newButton.BackgroundImageLayout = ImageLayout.None;
             newButton.Cursor = Cursors.Hand;
-            newButton.ForeColor = SystemColors.ControlText;
+            newButton.Font = new Font(newButton.Font.Name, newButton.Font.Size, FontStyle.Bold);
             newButton.Margin = new Padding(5, 0, 5, 0);
             newButton.Padding = new Padding(0, 3, 0, 0);
             newButton.ImageAlign = ContentAlignment.TopCenter;
             newButton.TextImageRelation = TextImageRelation.ImageAboveText;
             newButton.UseVisualStyleBackColor = false;
             return newButton;
+        }
+
+        #endregion
+
+        #region Private
+
+        private static void MakeButtonSelected(Button button, Image image)
+        {
+            button.BackColor = GREEN_MM;
+            button.ForeColor = Color.White;
+            button.Image = image;
+        }
+
+        private static void MakeButtonUnselected(Button button, Image image)
+        {
+            button.BackColor = SystemColors.Control;
+            button.ForeColor = SystemColors.ControlText;
+            button.Image = image;
         }
 
         #endregion

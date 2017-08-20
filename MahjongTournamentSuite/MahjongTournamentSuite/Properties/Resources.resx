@@ -133,11 +133,8 @@
   <data name="remove" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\remove.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="table32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="table" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\table32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="table64" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\table64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="timer" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\timer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -168,5 +165,26 @@
   </data>
   <data name="gong_big" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\gong_big.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gong_big_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\gong_big_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="gong_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\gong_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="no_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\no_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="players_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\players_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="table_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\table_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="teams_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\teams_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="yes_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\yes_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

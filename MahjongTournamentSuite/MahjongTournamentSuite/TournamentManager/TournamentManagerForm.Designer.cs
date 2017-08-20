@@ -41,7 +41,7 @@
             this.btnTeams = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblSeparator = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoEMA)).BeginInit();
@@ -61,19 +61,19 @@
             this.btnRanking.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.btnRanking.FlatAppearance.BorderSize = 0;
             this.btnRanking.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
-            this.btnRanking.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
-            this.btnRanking.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gainsboro;
+            this.btnRanking.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(76)))));
+            this.btnRanking.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
             this.btnRanking.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRanking.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnRanking.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
             this.btnRanking.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnRanking.Image = ((System.Drawing.Image)(resources.GetObject("btnRanking.Image")));
             this.btnRanking.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnRanking.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnRanking.Location = new System.Drawing.Point(772, 14);
+            this.btnRanking.Location = new System.Drawing.Point(774, 14);
             this.btnRanking.Margin = new System.Windows.Forms.Padding(5);
             this.btnRanking.Name = "btnRanking";
             this.btnRanking.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.btnRanking.Size = new System.Drawing.Size(64, 64);
+            this.btnRanking.Size = new System.Drawing.Size(68, 64);
             this.btnRanking.TabIndex = 14;
             this.btnRanking.Text = "Ranking";
             this.btnRanking.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -90,19 +90,19 @@
             this.btnTimer.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.btnTimer.FlatAppearance.BorderSize = 0;
             this.btnTimer.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
-            this.btnTimer.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
-            this.btnTimer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gainsboro;
+            this.btnTimer.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(76)))));
+            this.btnTimer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
             this.btnTimer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnTimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
             this.btnTimer.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnTimer.Image = ((System.Drawing.Image)(resources.GetObject("btnTimer.Image")));
             this.btnTimer.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnTimer.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnTimer.Location = new System.Drawing.Point(846, 14);
+            this.btnTimer.Location = new System.Drawing.Point(852, 14);
             this.btnTimer.Margin = new System.Windows.Forms.Padding(5);
             this.btnTimer.Name = "btnTimer";
             this.btnTimer.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.btnTimer.Size = new System.Drawing.Size(64, 64);
+            this.btnTimer.Size = new System.Drawing.Size(68, 64);
             this.btnTimer.TabIndex = 25;
             this.btnTimer.Text = "Timer";
             this.btnTimer.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -197,10 +197,10 @@
             this.btnRounds.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlText;
             this.btnRounds.FlatAppearance.BorderSize = 0;
             this.btnRounds.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
-            this.btnRounds.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
-            this.btnRounds.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gainsboro;
+            this.btnRounds.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(76)))));
+            this.btnRounds.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
             this.btnRounds.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRounds.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnRounds.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
             this.btnRounds.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnRounds.Image = global::MahjongTournamentSuite.Properties.Resources.gong_big;
             this.btnRounds.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -225,10 +225,10 @@
             this.btnPlayers.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlText;
             this.btnPlayers.FlatAppearance.BorderSize = 0;
             this.btnPlayers.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
-            this.btnPlayers.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
-            this.btnPlayers.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gainsboro;
+            this.btnPlayers.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(76)))));
+            this.btnPlayers.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
             this.btnPlayers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPlayers.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnPlayers.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
             this.btnPlayers.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnPlayers.Image = global::MahjongTournamentSuite.Properties.Resources.players;
             this.btnPlayers.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -254,10 +254,10 @@
             this.btnTeams.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlText;
             this.btnTeams.FlatAppearance.BorderSize = 0;
             this.btnTeams.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
-            this.btnTeams.FlatAppearance.MouseDownBackColor = System.Drawing.Color.LightGray;
-            this.btnTeams.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Gainsboro;
+            this.btnTeams.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(76)))));
+            this.btnTeams.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
             this.btnTeams.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnTeams.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btnTeams.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
             this.btnTeams.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnTeams.Image = global::MahjongTournamentSuite.Properties.Resources.teams;
             this.btnTeams.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -306,7 +306,7 @@
             // 
             this.splitContainer1.Panel1.AutoScroll = true;
             this.splitContainer1.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.splitContainer1.Panel1.Controls.Add(this.label2);
+            this.splitContainer1.Panel1.Controls.Add(this.lblSeparator);
             this.splitContainer1.Panel1.Margin = new System.Windows.Forms.Padding(0, 5, 0, 5);
             this.splitContainer1.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.splitContainer1.Panel1MinSize = 81;
@@ -323,16 +323,16 @@
             this.splitContainer1.TabIndex = 70;
             this.splitContainer1.Visible = false;
             // 
-            // label2
+            // lblSeparator
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.lblSeparator.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label2.Location = new System.Drawing.Point(0, 80);
-            this.label2.Margin = new System.Windows.Forms.Padding(0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(980, 2);
-            this.label2.TabIndex = 72;
+            this.lblSeparator.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblSeparator.Location = new System.Drawing.Point(0, 80);
+            this.lblSeparator.Margin = new System.Windows.Forms.Padding(0);
+            this.lblSeparator.Name = "lblSeparator";
+            this.lblSeparator.Size = new System.Drawing.Size(980, 2);
+            this.lblSeparator.TabIndex = 72;
             // 
             // label1
             // 
@@ -393,6 +393,6 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblSeparator;
     }
 }
