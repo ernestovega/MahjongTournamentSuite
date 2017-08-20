@@ -79,6 +79,7 @@
             this.btnRanking.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnRanking.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRanking.UseVisualStyleBackColor = false;
+            this.btnRanking.Visible = false;
             this.btnRanking.Click += new System.EventHandler(this.btnRanking_Click);
             // 
             // btnTimer
@@ -215,6 +216,7 @@
             this.btnRounds.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnRounds.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRounds.UseVisualStyleBackColor = false;
+            this.btnRounds.Visible = false;
             this.btnRounds.Click += new System.EventHandler(this.btnRounds_Click);
             // 
             // btnPlayers
@@ -243,6 +245,7 @@
             this.btnPlayers.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnPlayers.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPlayers.UseVisualStyleBackColor = false;
+            this.btnPlayers.Visible = false;
             this.btnPlayers.Click += new System.EventHandler(this.btnPlayers_Click);
             // 
             // btnTeams
@@ -351,7 +354,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1008, 742);
+            this.ClientSize = new System.Drawing.Size(1008, 748);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.flowLayoutPanel1);
@@ -363,7 +366,7 @@
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(1024, 726);
+            this.MinimumSize = new System.Drawing.Size(1024, 786);
             this.Name = "TournamentManagerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mahjong Tournament Suite - Tournament Manager";

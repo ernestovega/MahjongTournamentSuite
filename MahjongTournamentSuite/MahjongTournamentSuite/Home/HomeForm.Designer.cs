@@ -204,7 +204,7 @@
             this.dgvTournaments.RowHeadersVisible = false;
             this.dgvTournaments.RowTemplate.Height = 32;
             this.dgvTournaments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTournaments.Size = new System.Drawing.Size(980, 593);
+            this.dgvTournaments.Size = new System.Drawing.Size(980, 612);
             this.dgvTournaments.TabIndex = 7;
             this.dgvTournaments.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTournaments_CellEnter);
             this.dgvTournaments.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvTournaments_CellFormatting);
@@ -257,7 +257,7 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.ClientSize = new System.Drawing.Size(1008, 748);
             this.Controls.Add(this.btnTimer);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnResume);
@@ -268,7 +268,7 @@
             this.Controls.Add(this.imgLogoEMA);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(1024, 726);
+            this.MinimumSize = new System.Drawing.Size(1024, 786);
             this.Name = "HomeForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mahjong Tournament Suite - Home";

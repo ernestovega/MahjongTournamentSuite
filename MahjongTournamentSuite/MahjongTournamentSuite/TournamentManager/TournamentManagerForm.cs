@@ -323,6 +323,26 @@ namespace MahjongTournamentSuite.TournamentManager
             btnTeams.Visible = false;
         }
 
+        public void ShowButtonPlayers()
+        {
+            btnPlayers.Visible = true;
+        }
+
+        public void HideButtonPlayers()
+        {
+            btnPlayers.Visible = false;
+        }
+
+        public void ShowButtonRounds()
+        {
+            btnRounds.Visible = true;
+        }
+
+        public void HideButtonRounds()
+        {
+            btnRounds.Visible = false;
+        }
+
         public void ShowDGV()
         {
             dgv.Visible = true;
@@ -388,10 +408,6 @@ namespace MahjongTournamentSuite.TournamentManager
             newButton.UseVisualStyleBackColor = false;
             return newButton;
         }
-
-        #endregion
-
-        #region Private
 
         private static void MakeButtonSelected(Button button, Image image)
         {

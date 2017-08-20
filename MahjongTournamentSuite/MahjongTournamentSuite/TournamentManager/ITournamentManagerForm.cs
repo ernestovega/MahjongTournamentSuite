@@ -39,6 +39,14 @@ namespace MahjongTournamentSuite.TournamentManager
 
         void HideButtonTeams();
 
+        void ShowButtonPlayers();
+
+        void HideButtonPlayers();
+
+        void ShowButtonRounds();
+
+        void HideButtonRounds();
+
         void ShowDGV();
 
         void HideDGV();

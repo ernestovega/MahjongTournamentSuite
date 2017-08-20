@@ -42,15 +42,30 @@ namespace MahjongTournamentSuite.TournamentManager
             {
                 _teams = _db.GetTournamentTeams(tournamentId);
                 _form.ShowButtonTeams();
-                isTeamsSelected = true;
-                _form.SelectTeamsButton();
-                _form.FillDGVWithTeams(_teams);
+                if (IsTeamsFilledByUser())
+                {
+                    _form.ShowButtonPlayers();
+                    if (IsPlayersFilledByUser())
+                    {
+                        _form.ShowButtonRounds();
+                        ButtonRoundsClicked();
+                    }
+                    else
+                        ButtonPlayersClicked();
+                }
+                else
+                    ButtonTeamsClicked();
             }
             else
             {
-                isPlayersSelected = true;
-                _form.SelectPlayersButton();
-                _form.FillDGVWithPlayers(_players, _tournament.IsTeams);
+                _form.ShowButtonPlayers();
+                if (IsPlayersFilledByUser())
+                {
+                    _form.ShowButtonRounds();
+                    ButtonRoundsClicked();
+                }
+                else
+                    ButtonPlayersClicked();
             }
         }
 
@@ -133,6 +148,36 @@ namespace MahjongTournamentSuite.TournamentManager
         #endregion
 
         #region Private
+
+        /// <summary>
+        /// Si los nombres de los equipos no son números enteros, es que están rellenos.
+        /// </summary>
+        /// <returns></returns>
+        private bool IsTeamsFilledByUser()
+        {
+            foreach (DBTeam team in _teams)
+            {
+                int parseResult;
+                if (int.TryParse(team.Name, out parseResult))
+                    return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Si los nombres de los jugadores no son números enteros, es que están rellenos.
+        /// </summary>
+        /// <returns></returns>
+        private bool IsPlayersFilledByUser()
+        {
+            foreach (DBPlayer player in _players)
+            {
+                int parseResult;
+                if (int.TryParse(player.Name, out parseResult))
+                    return false;
+            }
+            return true;
+        }
 
         private void UnselectTeams()
         {
