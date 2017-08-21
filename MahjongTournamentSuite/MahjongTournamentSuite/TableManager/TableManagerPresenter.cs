@@ -32,7 +32,7 @@ namespace MahjongTournamentSuite.TableManager
         public void LoadForm(int tournamentId, int roundId, int tableId)
         {
             _table = _db.GetTable(tournamentId, roundId, tableId);
-            _tablePlayers = _db.GetTablePlayers(_table.TournamentId, _table.RoundId, _table.Id);
+            _tablePlayers = _db.GetTablePlayers(_table.TableTournamentId, _table.TableRoundId, _table.TableId);
             _hands = _db.GetTableHands(tournamentId, roundId, tableId);
             _form.SetTournamentName(_db.GetTournamentName(tournamentId));
             _form.SetRoundId(roundId);
@@ -84,9 +84,9 @@ namespace MahjongTournamentSuite.TableManager
 
         public void playerWinnerIdChanged(int handId, int newPlayerWinnerId)
         {
-            DBHand hand = _hands.Find(x => x.Id == handId);
+            DBHand hand = _hands.Find(x => x.HandId == handId);
             hand.PlayerWinnerId = newPlayerWinnerId;
-            if (hand.PlayerLooserId > 0 && hand.Score > -1)
+            if (hand.PlayerLooserId > 0 && hand.HandScore > -1)
             {
                 CalculateAndFillAllScores();
             }
@@ -96,9 +96,9 @@ namespace MahjongTournamentSuite.TableManager
 
         public void playerLooserIdChanged(int handId, int newPlayerLooserId)
         {
-            DBHand hand = _hands.Find(x => x.Id == handId);
+            DBHand hand = _hands.Find(x => x.HandId == handId);
             hand.PlayerLooserId = newPlayerLooserId;
-            if (hand.PlayerWinnerId > 0 && hand.Score > -1)
+            if (hand.PlayerWinnerId > 0 && hand.HandScore > -1)
             {
                 CalculateAndFillAllScores();
             }
@@ -108,8 +108,8 @@ namespace MahjongTournamentSuite.TableManager
 
         public void PointsChanged(int handId, int newPoints)
         {
-            DBHand hand = _hands.Find(x => x.Id == handId);
-            hand.Score = newPoints;
+            DBHand hand = _hands.Find(x => x.HandId == handId);
+            hand.HandScore = newPoints;
             if (hand.PlayerWinnerId > 0 && hand.PlayerLooserId > 0)
             {
                 CalculateAndFillAllScores();
@@ -120,7 +120,7 @@ namespace MahjongTournamentSuite.TableManager
 
         public void IsChickenHandChanged(int handId, bool cellValue)
         {
-            DBHand hand = _hands.Find(x => x.Id == handId);
+            DBHand hand = _hands.Find(x => x.HandId == handId);
             hand.IsChickenHand = cellValue;
             _db.UpdateHand(hand);
         }
@@ -131,10 +131,10 @@ namespace MahjongTournamentSuite.TableManager
 
         private void FillDataGridHands()
         {
-            List<DataGridHand> dataGridHands = new List<DataGridHand>();
+            List<DGVHand> dataGridHands = new List<DGVHand>();
             foreach(DBHand hand in _hands)
             {
-                dataGridHands.Add(new DataGridHand(hand, 0, 0, 0, 0));
+                dataGridHands.Add(new DGVHand(hand, 0, 0, 0, 0));
             }
             _form.FillDataGridHands(dataGridHands);
         }
@@ -147,10 +147,10 @@ namespace MahjongTournamentSuite.TableManager
                 {
                     _db.UpdateTablePlayersPositions(_table);
                 }
-                _form.SetEastPlayerHeader(_tablePlayers.Find(x => x.Id == _table.PlayerEastId).Name);
-                _form.SetSouthPlayerHeader(_tablePlayers.Find(x => x.Id == _table.PlayerSouthId).Name);
-                _form.SetWestPlayerHeader(_tablePlayers.Find(x => x.Id == _table.PlayerWestId).Name);
-                _form.SetNorthPlayerHeader(_tablePlayers.Find(x => x.Id == _table.PlayerNorthId).Name);
+                _form.SetEastPlayerHeader(_tablePlayers.Find(x => x.PlayerId == _table.PlayerEastId).PlayerName);
+                _form.SetSouthPlayerHeader(_tablePlayers.Find(x => x.PlayerId == _table.PlayerSouthId).PlayerName);
+                _form.SetWestPlayerHeader(_tablePlayers.Find(x => x.PlayerId == _table.PlayerWestId).PlayerName);
+                _form.SetNorthPlayerHeader(_tablePlayers.Find(x => x.PlayerId == _table.PlayerNorthId).PlayerName);
                 return true;
             }
             return false;
@@ -178,7 +178,7 @@ namespace MahjongTournamentSuite.TableManager
             comboPlayers.Add(new ComboItem("Select player", "-1"));
             foreach (DBPlayer player in _tablePlayers)
             {
-                comboPlayers.Add(new ComboItem(string.Format("{0} - {1}", player.Id, player.Name), player.Id.ToString()));
+                comboPlayers.Add(new ComboItem(string.Format("{0} - {1}", player.PlayerId, player.PlayerName), player.PlayerId.ToString()));
             }
             _form.FillCombosPlayers(comboPlayers);
             if(IsAllPlayersIdsSelected())
@@ -239,13 +239,13 @@ namespace MahjongTournamentSuite.TableManager
         {
             foreach (DBHand hand in _hands)
             {
-                if(hand.Score < 0)
+                if(hand.HandScore < 0)
                 {
                     return;
                 }
-                else if (hand.Score == 0)//Washout
+                else if (hand.HandScore == 0)//Washout
                 {
-                    _form.FillPlayersHandScores(hand.Id, 0, 0, 0, 0);
+                    _form.FillPlayersHandScores(hand.HandId, 0, 0, 0, 0);
                 }
                 else
                 {

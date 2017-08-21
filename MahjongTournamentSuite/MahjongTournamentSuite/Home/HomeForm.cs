@@ -13,9 +13,9 @@ namespace MahjongTournamentSuite.Home
     {
         #region Constants
         
-        private static readonly string COLUMN_ID = "Id";
+        private static readonly string COLUMN_ID = "TournamentId";
         private static readonly string COLUMN_DATE = "CreationDate";
-        private static readonly string COLUMN_NAME = "Name";
+        private static readonly string COLUMN_NAME = "TournamentName";
         private static readonly string COLUMN_PLAYERS = "NumPlayers";
         private static readonly string COLUMN_ROUNDS = "NumRounds";
         private static readonly string COLUMN_IS_TEAMS = "IsTeams";
@@ -33,9 +33,11 @@ namespace MahjongTournamentSuite.Home
 
         public HomeForm()
         {
+            Cursor = Cursors.WaitCursor;
             InitializeComponent();
             _presenter = Injector.provideHomePresenter(this);
             _presenter.LoadTournaments();
+            Cursor = Cursors.Default;
         }
 
         #endregion

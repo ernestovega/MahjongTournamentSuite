@@ -120,7 +120,7 @@ namespace MahjongTournamentSuite.NewTournament
 
             SaveTournament();
             SavePlayers();
-            SaveTables();
+            SaveTablesAndHands();
             if(_isTeamsChecked)
                 SaveTeams();
         }
@@ -442,31 +442,23 @@ namespace MahjongTournamentSuite.NewTournament
             List<DBPlayer> dbPlayers = new List<DBPlayer>();
             foreach (Player player in players)
             {
-                dbPlayers.Add(new DBPlayer(dbTournament.Id, player.Id, player.Name, player.Team, ""));
+                dbPlayers.Add(new DBPlayer(dbTournament.TournamentId, player.Id, player.Name, int.Parse(player.Team), 0));
             }
             _db.AddPlayers(dbPlayers);
         }
 
-        private void SaveTables()
+        private void SaveTablesAndHands()
         {
             List<DBTable> dbTables = new List<DBTable>();
+            List<DBHand> dbHands = new List<DBHand>();
             foreach (TableWithAll table in tablesWithAll)
             {
-                dbTables.Add(new DBTable(dbTournament.Id, table.roundId, table.tableId,
+                dbTables.Add(new DBTable(dbTournament.TournamentId, table.roundId, table.tableId,
                     table.player1Id, table.player2Id, table.player3Id, table.player4Id));
-                CreateAndSaveHands(tournamentId, table.roundId, table.tableId);
+                for (int i = 1; i <= NUM_TABLE_HANDS; i++)
+                    dbHands.Add(new DBHand(tournamentId, table.roundId, table.tableId, i));
             }
-            _db.AddTables(dbTables);
-        }
-
-        private void CreateAndSaveHands(int tournamentId, int roundId, int tableId)
-        {
-            List<DBHand> dbHands = new List<DBHand>();
-            for (int i = 1; i <= NUM_TABLE_HANDS; i++)
-            {
-                dbHands.Add(new DBHand(tournamentId, roundId, tableId, i));
-            }
-            _db.AddHands(dbHands);
+            _db.AddTables(dbTables, dbHands);
         }
 
         private void SaveTeams()
@@ -474,7 +466,7 @@ namespace MahjongTournamentSuite.NewTournament
             List<DBTeam> dbTeams = new List<DBTeam>();
             for (int i = 1; i <= players.Count / 4; i++)
             {
-                dbTeams.Add(new DBTeam(dbTournament.Id, i, i.ToString()));
+                dbTeams.Add(new DBTeam(dbTournament.TournamentId, i, i.ToString()));
             }
             _db.AddTeams(dbTeams);
         }

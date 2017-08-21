@@ -17,9 +17,7 @@ namespace MahjongTournamentSuite.Data
 
         void AddPlayers(List<DBPlayer> players);
 
-        void AddTables(List<DBTable> tables);
-
-        void AddHands(List<DBHand> hands);
+        void AddTables(List<DBTable> tables, List<DBHand> hands);
 
         void AddTeams(List<DBTeam> teams);
 
@@ -31,7 +29,13 @@ namespace MahjongTournamentSuite.Data
 
         List<DBTournament> GetTournaments();
 
+        List<DBCountry> GetCountries();
+
+        List<string> GetCountriesNamesSortedList();
+
         List<DBTeam> GetTournamentTeams(int tournamentId);
+
+        List<string> GetTeamsNamesSortedList(int tournamentId);
 
         List<DBPlayer> GetTournamentPlayers(int tournamentId);
 

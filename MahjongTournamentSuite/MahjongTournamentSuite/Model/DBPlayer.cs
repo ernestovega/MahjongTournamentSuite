@@ -6,26 +6,26 @@ namespace MahjongTournamentSuite.Model
     public class DBPlayer
     {
         [Key, Column(Order = 0)]
-        public int TournamentId { get; set; }
+        public int PlayerTournamentId { get; set; }
 
         [Key, Column(Order = 1)]
-        public int Id { get; set; }
+        public int PlayerId { get; set; }
 
-        public string Name { get; set; }
+        public string PlayerName { get; set; }
 
-        public string TeamId { get; set; }
+        public int PlayerTeamId { get; set; }
 
-        public string CountryId { get; set; }
+        public int PlayerCountryId { get; set; }
 
         public DBPlayer() { }
 
-        public DBPlayer(int tournamentId, int id, string name, string teamId, string countryId)
+        public DBPlayer(int tournamentId, int id, string name, int teamId, int countryId)
         {
-            TournamentId = tournamentId;
-            Id = id;
-            Name = name;
-            TeamId = teamId;
-            CountryId = countryId;
+            PlayerTournamentId = tournamentId;
+            PlayerId = id;
+            PlayerName = name;
+            PlayerTeamId = teamId;
+            PlayerCountryId = countryId;
         }
     }
 }

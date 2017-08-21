@@ -14,6 +14,7 @@ namespace MahjongTournamentSuite.TournamentManager
         private DBTournament _tournament;
         private List<DBTeam> _teams;
         private List<DBPlayer> _players;
+        private List<DBCountry> _countries;
         private bool isTeamsSelected = false;
         private bool isPlayersSelected = false;
         private bool isRoundsSelected = false;
@@ -38,35 +39,20 @@ namespace MahjongTournamentSuite.TournamentManager
         {
             _tournament = _db.GetTournament(tournamentId);
             _players = _db.GetTournamentPlayers(tournamentId);
+            _countries = _db.GetCountries();
             if(_tournament.IsTeams)
             {
                 _teams = _db.GetTournamentTeams(tournamentId);
                 _form.ShowButtonTeams();
-                if (IsTeamsFilledByUser())
-                {
-                    _form.ShowButtonPlayers();
-                    if (IsPlayersFilledByUser())
-                    {
-                        _form.ShowButtonRounds();
-                        ButtonRoundsClicked();
-                    }
-                    else
-                        ButtonPlayersClicked();
-                }
-                else
-                    ButtonTeamsClicked();
             }
-            else
-            {
-                _form.ShowButtonPlayers();
-                if (IsPlayersFilledByUser())
-                {
-                    _form.ShowButtonRounds();
-                    ButtonRoundsClicked();
-                }
-                else
-                    ButtonPlayersClicked();
-            }
+            _form.ShowButtonPlayers();
+            //if (IsPlayersFilledByUser())
+            //{
+                _form.ShowButtonRounds();
+                ButtonRoundsClicked();
+            //}
+            //else
+            //    ButtonPlayersClicked();
         }
 
         public void OnFormResized()
@@ -105,8 +91,8 @@ namespace MahjongTournamentSuite.TournamentManager
             isPlayersSelected = true;
             _form.SelectPlayersButton();
             _form.HideRoundsButtonsAndTablesPanel();
-            _form.ShowDGV();
-            _form.FillDGVWithPlayers(_players, _tournament.IsTeams);
+            _form.ShowDGV();            
+            _form.FillDGVWithPlayers(GetDataGridPlayers(), _tournament.IsTeams);
         }
 
         public void ButtonRoundsClicked()
@@ -142,7 +128,7 @@ namespace MahjongTournamentSuite.TournamentManager
             UnselectTable(tableSelected);
             tableSelected = tableId;
             _form.SelectRoundTableButton(tableId);
-            _form.GoToTableManager(_tournament.Id, roundSelected, tableId);
+            _form.GoToTableManager(_tournament.TournamentId, roundSelected, tableId);
         }
 
         public void TeamNameChanged(int tournamentId, int teamId, string newName)
@@ -154,9 +140,7 @@ namespace MahjongTournamentSuite.TournamentManager
                 _form.ShowMessageTeamNameInUse(newName, ownerTeamId);
                 return;
             }
-            _db.UpdateTeamName(tournamentId, teamId, newName);//Comprobar que _teams ha cambiado
-            if(IsTeamsFilledByUser())
-                _form.ShowButtonPlayers();
+            _db.UpdateTeamName(tournamentId, teamId, newName);
         }
 
         public void PlayerNameChanged(int tournamentId, int playerId, string newName)
@@ -168,7 +152,7 @@ namespace MahjongTournamentSuite.TournamentManager
                 _form.ShowMessagePlayerNameInUse(newName, ownerPlayerId);
                 return;
             }
-            _db.UpdatePlayerName(tournamentId, playerId, newName);//Comprobar que _teams ha cambiado
+            _db.UpdatePlayerName(tournamentId, playerId, newName);
             if (IsPlayersFilledByUser())
                 _form.ShowButtonRounds();
         }
@@ -176,22 +160,7 @@ namespace MahjongTournamentSuite.TournamentManager
         #endregion
 
         #region Private
-
-        /// <summary>
-        /// Si los nombres de los equipos no son números enteros, es que están rellenos.
-        /// </summary>
-        /// <returns></returns>
-        private bool IsTeamsFilledByUser()
-        {
-            foreach (DBTeam team in _teams)
-            {
-                int parseResult;
-                if (int.TryParse(team.Name, out parseResult))
-                    return false;
-            }
-            return true;
-        }
-
+        
         /// <summary>
         /// Si los nombres de los jugadores no son números enteros, es que están rellenos.
         /// </summary>
@@ -201,10 +170,67 @@ namespace MahjongTournamentSuite.TournamentManager
             foreach (DBPlayer player in _players)
             {
                 int parseResult;
-                if (int.TryParse(player.Name, out parseResult))
+                if (int.TryParse(player.PlayerName, out parseResult))
                     return false;
             }
             return true;
+        }
+        
+        /// <summary>
+        /// Look for a team that were using the same name. 
+        /// </summary>
+        /// <param name="newName">Name to search</param>
+        /// <returns>0 if doesn´t find it, the TeamId if yes.</returns>
+        private int GetOwnerTeamNameId(string newName)
+        {
+            DBTeam ownerTeam = _teams.Find(x => x.TeamName.Equals(newName, 
+                StringComparison.InvariantCultureIgnoreCase));
+            if (ownerTeam == null)
+                return 0;
+            else
+                return ownerTeam.TeamId;
+        }
+
+        /// <summary>
+        /// Look for a player that were using the same name. 
+        /// </summary>
+        /// <param name="newName">Name to search</param>
+        /// <returns>0 if doesn´t find it, the PlayerId if yes.</returns>
+        private int GetOwnerPlayerNameId(string newName)
+        {
+            DBPlayer ownerPlayer = _players.Find(x => x.PlayerName.Equals(newName, 
+                StringComparison.InvariantCultureIgnoreCase));
+            if (ownerPlayer == null)
+                return 0;
+            else
+                return ownerPlayer.PlayerId;
+        }
+
+        private List<DGVPlayer> GetDataGridPlayers()
+        {
+            List<DGVPlayer> dgPlayers = new List<DGVPlayer>(_players.Count);
+            foreach (DBPlayer player in _players)
+            {
+                dgPlayers.Add(new DGVPlayer(player, 
+                    getPlayerTeamName(player.PlayerTeamId), getPlayerCountryName(player.PlayerCountryId)));
+            }
+            return dgPlayers;
+        }
+
+        private string getPlayerTeamName(int teamId)
+        {
+            if (teamId > 0)
+                return _teams.Find(x => x.TeamId == teamId).TeamName;
+            else
+                return "";
+        }
+
+        private string getPlayerCountryName(int countryId)
+        {
+            if (countryId > 0)
+                return _countries.Find(x => x.CountryID == countryId).CountryName;
+            else
+                return "";
         }
 
         private void UnselectTeams()
@@ -241,36 +267,6 @@ namespace MahjongTournamentSuite.TournamentManager
                 _form.UnselectTableButton(tableId);
                 tableSelected = 0;
             }
-        }
-        
-        /// <summary>
-        /// Look for a team that were using the same name. 
-        /// </summary>
-        /// <param name="newName">Name to search</param>
-        /// <returns>0 if doesn´t find it, the TeamId if yes.</returns>
-        private int GetOwnerTeamNameId(string newName)
-        {
-            DBTeam ownerTeam = _teams.Find(x => x.Name.Equals(newName, 
-                StringComparison.InvariantCultureIgnoreCase));
-            if (ownerTeam == null)
-                return 0;
-            else
-                return ownerTeam.Id;
-        }
-
-        /// <summary>
-        /// Look for a player that were using the same name. 
-        /// </summary>
-        /// <param name="newName">Name to search</param>
-        /// <returns>0 if doesn´t find it, the PlayerId if yes.</returns>
-        private int GetOwnerPlayerNameId(string newName)
-        {
-            DBPlayer ownerPlayer = _players.Find(x => x.Name.Equals(newName, 
-                StringComparison.InvariantCultureIgnoreCase));
-            if (ownerPlayer == null)
-                return 0;
-            else
-                return ownerPlayer.Id;
         }
 
         #endregion

@@ -6,13 +6,13 @@ namespace MahjongTournamentSuite.Model
     public class DBTable {
 
         [Key, Column(Order = 0)]
-        public int TournamentId { get; set; }
+        public int TableTournamentId { get; set; }
 
         [Key, Column(Order = 1)]
-        public int RoundId { get; set; }
+        public int TableRoundId { get; set; }
 
         [Key, Column(Order = 2)]
-        public int Id { get; set; }
+        public int TableId { get; set; }
 
         public int Player1Id { get; set; }
 
@@ -35,9 +35,9 @@ namespace MahjongTournamentSuite.Model
         public DBTable(int tournamentId, int roundId, int id,
             int player1Id, int player2Id, int player3Id, int player4Id)
         {
-            TournamentId = tournamentId;
-            RoundId = roundId;
-            Id = id;
+            TableTournamentId = tournamentId;
+            TableRoundId = roundId;
+            TableId = id;
             Player1Id = player1Id;
             Player2Id = player2Id;
             Player3Id = player3Id;

@@ -11,13 +11,13 @@ namespace MahjongTournamentSuite.TableManager
     {
         #region Constants
         
-        private const string COLUMN_TOURNAMENT_ID = "TournamentId";
-        private const string COLUMN_ROUND_ID = "RoundId";
-        private const string COLUMN_TABLE_ID = "TableId";
-        private const string COLUMN_ID = "Id";
+        private const string COLUMN_TOURNAMENT_ID = "HandTournamentId";
+        private const string COLUMN_ROUND_ID = "HandRoundId";
+        private const string COLUMN_TABLE_ID = "HandTableId";
+        private const string COLUMN_ID = "HandId";
         private const string COLUMN_PLAYER_WINNER_ID = "PlayerWinnerId";
         private const string COLUMN_PLAYER_LOOSER_ID = "PlayerLooserId";
-        private const string COLUMN_SCORE = "Score";
+        private const string COLUMN_SCORE = "HandScore";
         private const string COLUMN_IS_CHICKEN_HAND = "IsChickenHand";
         private const string COLUMN_PLAYER_EAST_SCORE = "PlayerEastScore";
         private const string COLUMN_PLAYER_SOUTH_SCORE = "PlayerSouthScore";
@@ -195,7 +195,7 @@ namespace MahjongTournamentSuite.TableManager
             comboNorthPlayer.SelectedIndex = playerNorthIndex;
         }
 
-        public void FillDataGridHands(List<DataGridHand> dataGridHands)
+        public void FillDataGridHands(List<DGVHand> dataGridHands)
         {
             dataGridView.DataSource = dataGridHands;
             //DisplayIndex

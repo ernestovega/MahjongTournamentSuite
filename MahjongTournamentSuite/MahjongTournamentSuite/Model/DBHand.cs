@@ -6,22 +6,22 @@ namespace MahjongTournamentSuite.Model
     public class DBHand
     {
         [Key, Column(Order = 0)]
-        public int TournamentId { get; set; }
+        public int HandTournamentId { get; set; }
 
         [Key, Column(Order = 1)]
-        public int RoundId { get; set; }
+        public int HandRoundId { get; set; }
 
         [Key, Column(Order = 2)]
-        public int TableId { get; set; }
+        public int HandTableId { get; set; }
 
         [Key, Column(Order = 3)]
-        public int Id { get; set; }
+        public int HandId { get; set; }
         
         public int PlayerWinnerId { get; set; }
 
         public int PlayerLooserId { get; set; }
 
-        public int Score { get; set; }
+        public int HandScore { get; set; }
 
         public bool IsChickenHand { get; set; }
 
@@ -29,10 +29,10 @@ namespace MahjongTournamentSuite.Model
 
         public DBHand(int tournamentId, int roundId, int tableId, int id)
         {
-            TournamentId = tournamentId;
-            RoundId = roundId;
-            TableId = tableId;
-            Id = id;
+            HandTournamentId = tournamentId;
+            HandRoundId = roundId;
+            HandTableId = tableId;
+            HandId = id;
         }
     }
 }

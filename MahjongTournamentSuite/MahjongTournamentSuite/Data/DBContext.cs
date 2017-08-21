@@ -15,6 +15,8 @@ namespace MahjongTournamentSuite.Data
 
             public DbSet<DBTeam> Teams { get; set; }
 
+            public DbSet<DBCountry> Countries { get; set; }
+
             public DbSet<DBPlayer> Players { get; set; }
 
             public DbSet<DBTable> Tables { get; set; }

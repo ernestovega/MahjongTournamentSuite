@@ -91,6 +91,8 @@
     <Compile Include="Home\IHomePresenter.cs" />
     <Compile Include="Injector.cs" />
     <Compile Include="Model\ComboItem.cs" />
+    <Compile Include="Model\DGVPlayer.cs" />
+    <Compile Include="Model\DBCountry.cs" />
     <Compile Include="Model\DBHand.cs" />
     <Compile Include="Model\DBPlayer.cs" />
     <Compile Include="Model\DBTeam.cs" />
@@ -113,7 +115,7 @@
     <Compile Include="NewTournament\NewTournamentPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Model\DataGridHand.cs" />
+    <Compile Include="Model\DGVHand.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -9,7 +9,7 @@ namespace MahjongTournamentSuite.TournamentManager
 
         void FillDGVWithTeams(List<DBTeam> teams);
 
-        void FillDGVWithPlayers(List<DBPlayer> players, bool isTeams);
+        void FillDGVWithPlayers(List<DGVPlayer> players, bool isTeams);
 
         void AddRoundTablesButtons(int roundId, int numTables);
 

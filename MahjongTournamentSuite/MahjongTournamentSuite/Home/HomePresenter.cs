@@ -53,7 +53,7 @@ namespace MahjongTournamentSuite.Home
 
         public string GetTournamentName(int tournamentId)
         {
-            return _tournaments.Find(x => x.Id == tournamentId).Name;
+            return _tournaments.Find(x => x.TournamentId == tournamentId).TournamentName;
         }
 
         #endregion

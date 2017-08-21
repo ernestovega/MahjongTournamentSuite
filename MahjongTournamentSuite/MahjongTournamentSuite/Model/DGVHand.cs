@@ -2,7 +2,7 @@
 
 namespace MahjongTournamentSuite.TableManager
 {
-    internal class DataGridHand : DBHand
+    internal class DGVHand : DBHand
     {
         public int PlayerEastScore { get; set; }
 
@@ -12,11 +12,11 @@ namespace MahjongTournamentSuite.TableManager
 
         public int PlayerNorthScore { get; set; }
 
-        public DataGridHand() {}
+        public DGVHand() {}
 
-        public DataGridHand(DBHand dbHand, int playerEastScore, 
+        public DGVHand(DBHand dbHand, int playerEastScore, 
             int playerSouthScore, int playerWestScore, int playerNorthScore) 
-            : base(dbHand.TournamentId, dbHand.RoundId, dbHand.TableId, dbHand.Id)
+            : base(dbHand.HandTournamentId, dbHand.HandRoundId, dbHand.HandTableId, dbHand.HandId)
         {
             PlayerEastScore = playerEastScore;
             PlayerSouthScore = playerSouthScore;

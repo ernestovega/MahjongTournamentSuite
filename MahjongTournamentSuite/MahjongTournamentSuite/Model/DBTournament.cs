@@ -6,11 +6,11 @@ namespace MahjongTournamentSuite.Model
     public class DBTournament
     {
         [Key]
-        public int Id { get; set; }
+        public int TournamentId { get; set; }
 
         public DateTime CreationDate { get; set; }
 
-        public string Name { get; set; }
+        public string TournamentName { get; set; }
 
         public int NumPlayers { get; set; }
 
@@ -22,9 +22,9 @@ namespace MahjongTournamentSuite.Model
 
         public DBTournament(int id, DateTime creationDate, int numPlayers, int numRounds, bool isTeams, string name)
         {
-            Id = id;
+            TournamentId = id;
             CreationDate = creationDate;
-            Name = name;
+            TournamentName = name;
             NumPlayers = numPlayers;
             NumRounds = numRounds;
             IsTeams = isTeams;
