@@ -97,6 +97,12 @@ namespace MahjongTournamentSuite.Data
             _db.SaveChanges();
         }
 
+        public void UpdatePlayerName(int tournamentId, int playerId, string newName)
+        {
+            _db.Players.ToList().Find(x => x.TournamentId == tournamentId && x.Id == playerId).Name = newName;
+            _db.SaveChanges();
+        }
+
         public void DeleteTournamentPlayers(int tournamentId)
         {
             _db.Players.RemoveRange(_db.Players.ToList().FindAll(x => x.TournamentId == tournamentId));
@@ -178,6 +184,12 @@ namespace MahjongTournamentSuite.Data
         public void AddTeams(List<DBTeam> teams)
         {
             _db.Teams.AddRange(teams);
+            _db.SaveChanges();
+        }
+
+        public void UpdateTeamName(int tournamentId, int teamId, string newName)
+        {
+            _db.Teams.ToList().Find(x => x.TournamentId == tournamentId && x.Id == teamId).Name = newName;
             _db.SaveChanges();
         }
 

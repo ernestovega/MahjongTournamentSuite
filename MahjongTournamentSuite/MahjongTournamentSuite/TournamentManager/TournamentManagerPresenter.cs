@@ -145,6 +145,34 @@ namespace MahjongTournamentSuite.TournamentManager
             _form.GoToTableManager(_tournament.Id, roundSelected, tableId);
         }
 
+        public void TeamNameChanged(int tournamentId, int teamId, string newName)
+        {
+            int ownerTeamId = GetOwnerTeamNameId(newName);
+            if (ownerTeamId > 0)
+            {
+                _form.DGVCancelEdit();
+                _form.ShowMessageTeamNameInUse(newName, ownerTeamId);
+                return;
+            }
+            _db.UpdateTeamName(tournamentId, teamId, newName);//Comprobar que _teams ha cambiado
+            if(IsTeamsFilledByUser())
+                _form.ShowButtonPlayers();
+        }
+
+        public void PlayerNameChanged(int tournamentId, int playerId, string newName)
+        {
+            int ownerPlayerId = GetOwnerPlayerNameId(newName);
+            if (ownerPlayerId > 0)
+            {
+                _form.DGVCancelEdit();
+                _form.ShowMessagePlayerNameInUse(newName, ownerPlayerId);
+                return;
+            }
+            _db.UpdatePlayerName(tournamentId, playerId, newName);//Comprobar que _teams ha cambiado
+            if (IsPlayersFilledByUser())
+                _form.ShowButtonRounds();
+        }
+
         #endregion
 
         #region Private
@@ -213,6 +241,36 @@ namespace MahjongTournamentSuite.TournamentManager
                 _form.UnselectTableButton(tableId);
                 tableSelected = 0;
             }
+        }
+        
+        /// <summary>
+        /// Look for a team that were using the same name. 
+        /// </summary>
+        /// <param name="newName">Name to search</param>
+        /// <returns>0 if doesn´t find it, the TeamId if yes.</returns>
+        private int GetOwnerTeamNameId(string newName)
+        {
+            DBTeam ownerTeam = _teams.Find(x => x.Name.Equals(newName, 
+                StringComparison.InvariantCultureIgnoreCase));
+            if (ownerTeam == null)
+                return 0;
+            else
+                return ownerTeam.Id;
+        }
+
+        /// <summary>
+        /// Look for a player that were using the same name. 
+        /// </summary>
+        /// <param name="newName">Name to search</param>
+        /// <returns>0 if doesn´t find it, the PlayerId if yes.</returns>
+        private int GetOwnerPlayerNameId(string newName)
+        {
+            DBPlayer ownerPlayer = _players.Find(x => x.Name.Equals(newName, 
+                StringComparison.InvariantCultureIgnoreCase));
+            if (ownerPlayer == null)
+                return 0;
+            else
+                return ownerPlayer.Id;
         }
 
         #endregion

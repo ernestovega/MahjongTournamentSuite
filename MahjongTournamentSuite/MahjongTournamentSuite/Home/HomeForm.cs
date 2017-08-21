@@ -208,7 +208,7 @@ namespace MahjongTournamentSuite.Home
 
         public bool RequestDeleteTournamentConfirmation()
         {
-            return MessageBox.Show(string.Format("{0} {1}", GetCurrentTournamentName(), "will be removed permanently"), "Delete Tournament", MessageBoxButtons.YesNo)
+            return MessageBox.Show(string.Format("\"{0}\" {1}", GetCurrentTournamentName(), "will be removed permanently"), "Delete Tournament", MessageBoxButtons.YesNo)
                             == DialogResult.Yes;
         }
 

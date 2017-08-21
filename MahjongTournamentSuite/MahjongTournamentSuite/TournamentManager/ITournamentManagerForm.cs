@@ -58,5 +58,11 @@ namespace MahjongTournamentSuite.TournamentManager
         void ShowRoundsButtonsAndTablesPanel();
 
         void HideRoundsButtonsAndTablesPanel();
+
+        void DGVCancelEdit();
+
+        void ShowMessageTeamNameInUse(string usedName, int ownerTeamId);
+
+        void ShowMessagePlayerNameInUse(string newName, int ownerPlayerId);
     }
 }

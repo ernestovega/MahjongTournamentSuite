@@ -35,6 +35,10 @@ namespace MahjongTournamentSuite.Data
 
         List<DBPlayer> GetTournamentPlayers(int tournamentId);
 
+        void UpdateTeamName(int tournamentId, int teamId, string newName);
+
+        void UpdatePlayerName(int tournamentId, int playerId, string newName);
+
         #endregion
 
         #region Table Manager

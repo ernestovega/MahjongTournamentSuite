@@ -32,9 +32,6 @@ namespace MahjongTournamentSuite.TournamentManager
         private const string COLUMN_PLAYERS_NAME = "Name";
         private const string COLUMN_PLAYERS_TEAM = "TeamId";
         private const string COLUMN_PLAYERS_COUNTRY = "CountryId";
-        private const int COLUMN_PLAYERS_NAME_INDEX = 2;
-        private const int COLUMN_PLAYERS_TEAM_INDEX = 3;
-        private const int COLUMN_PLAYERS_COUNTRY_INDEX = 4;
 
         #endregion
 
@@ -110,6 +107,46 @@ namespace MahjongTournamentSuite.TournamentManager
         {
             //var mahjongTournamentRankingShower = new MahjongTournamentRankingShower.Program();
             //Process.Start(mahjongTournamentRankingShower.returnExecutablePath());
+        }
+
+        private void dgv_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1 && (dgv.Columns[e.ColumnIndex].Name.Equals(COLUMN_TEAMS_NAME)
+                || dgv.Columns[e.ColumnIndex].Name.Equals(COLUMN_PLAYERS_NAME)))
+                dgv.BeginEdit(true);
+        }
+
+        private void dgv_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (e.RowIndex > -1)
+            {
+                if (dgv.Columns[e.ColumnIndex].Name.Equals(COLUMN_TEAMS_NAME))
+                {
+                    int tournamentId = (int)dgv.Rows[e.RowIndex].Cells[COLUMN_TEAMS_TOURNAMENT_ID].Value;
+                    string previousValue = (string)dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                    string newValue = ((string)e.FormattedValue).Trim();
+                    if (newValue.Length > 0 && !newValue.Equals(previousValue))
+                    {
+                        int teamId = (int)dgv.Rows[e.RowIndex].Cells[COLUMN_TEAMS_ID].Value;
+                        _presenter.TeamNameChanged(tournamentId, teamId, newValue);
+                    }
+                    else
+                        DGVCancelEdit();
+                }
+                else if(dgv.Columns[e.ColumnIndex].Name.Equals(COLUMN_PLAYERS_NAME))
+                {
+                    int tournamentId = (int)dgv.Rows[e.RowIndex].Cells[COLUMN_PLAYERS_TOURNAMENT_ID].Value;
+                    string previousValue = (string)dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                    string newValue = ((string)e.FormattedValue).Trim();
+                    if (newValue.Length > 0 && !newValue.Equals(previousValue))
+                    {
+                        int playerId = (int)dgv.Rows[e.RowIndex].Cells[COLUMN_PLAYERS_ID].Value;
+                        _presenter.PlayerNameChanged(tournamentId, playerId, newValue);
+                    }
+                    else
+                        DGVCancelEdit();
+                }
+            }
         }
 
         #endregion
@@ -382,6 +419,21 @@ namespace MahjongTournamentSuite.TournamentManager
         public void HideRoundsButtonsAndTablesPanel()
         {
             splitContainer1.Visible = false;
+        }
+
+        public void DGVCancelEdit()
+        {
+            dgv.CancelEdit();
+        }
+
+        public void ShowMessageTeamNameInUse(string usedName, int ownerTeamId)
+        {
+            MessageBox.Show(string.Format("\"{0}\" is in use by the team {1}", usedName, ownerTeamId), "Name in use");
+        }
+
+        public void ShowMessagePlayerNameInUse(string usedName, int ownerPlayerId)
+        {
+            MessageBox.Show(string.Format("\"{0}\" is in use by the player {1}", usedName, ownerPlayerId), "Name in use");
         }
 
         #endregion
