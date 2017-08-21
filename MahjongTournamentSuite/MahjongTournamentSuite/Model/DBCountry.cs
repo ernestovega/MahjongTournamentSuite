@@ -1,19 +1,20 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MahjongTournamentSuite.Model
 {
     public class DBCountry
     {
         [Key]
-        public int CountryID { get; set; }
+        public int CountryId { get; set; }
 
         public string CountryName { get; set; }
 
         public DBCountry() { }
 
-        public DBCountry(int id, string name)
+        public DBCountry(int countryId, string name)
         {
-            CountryID = id;
+            CountryId = countryId;
             CountryName = name;
         }
     }

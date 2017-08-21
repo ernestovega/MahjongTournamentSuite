@@ -100,13 +100,13 @@ namespace MahjongTournamentSuite.TournamentManager
             _presenter.ButtonRoundsClicked();
         }
 
-        private void btnTimer_Click(object sender, System.EventArgs e)
+        private void btnTimer_Click(object sender, EventArgs e)
         {
             var mahjongTournamentTimer = new MahjongTournamentTimer.Program();
             Process.Start(mahjongTournamentTimer.returnExecutablePath());
         }
 
-        private void btnRanking_Click(object sender, System.EventArgs e)
+        private void btnRanking_Click(object sender, EventArgs e)
         {
             //var mahjongTournamentRankingShower = new MahjongTournamentRankingShower.Program();
             //Process.Start(mahjongTournamentRankingShower.returnExecutablePath());
@@ -167,8 +167,8 @@ namespace MahjongTournamentSuite.TournamentManager
             //ReadOnly
             dgv.Columns[COLUMN_TEAMS_ID].ReadOnly = true;
             //HeaderText
-            dgv.Columns[COLUMN_TEAMS_ID].HeaderText = "Id";
-            dgv.Columns[COLUMN_TEAMS_NAME].HeaderText = "Name";
+            dgv.Columns[COLUMN_TEAMS_ID].HeaderText = "Team Id";
+            dgv.Columns[COLUMN_TEAMS_NAME].HeaderText = "Team Name";
             //AutoSizeMode
             dgv.Columns[COLUMN_TEAMS_ID].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dgv.Columns[COLUMN_TEAMS_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -187,9 +187,9 @@ namespace MahjongTournamentSuite.TournamentManager
             //ReadOnly
             dgv.Columns[COLUMN_PLAYERS_ID].ReadOnly = true;
             //HeaderText
-            dgv.Columns[COLUMN_PLAYERS_ID].HeaderText = "Id";
-            dgv.Columns[COLUMN_PLAYERS_NAME].HeaderText = "Name";
-            dgv.Columns[COLUMN_PLAYERS_COUNTRY_NAME].HeaderText = "Country";
+            dgv.Columns[COLUMN_PLAYERS_ID].HeaderText = "Player Id";
+            dgv.Columns[COLUMN_PLAYERS_NAME].HeaderText = "Player Name";
+            dgv.Columns[COLUMN_PLAYERS_COUNTRY_NAME].HeaderText = "Player Country";
             //AutoSizeMode
             dgv.Columns[COLUMN_PLAYERS_ID].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dgv.Columns[COLUMN_PLAYERS_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -199,7 +199,7 @@ namespace MahjongTournamentSuite.TournamentManager
             dgv.Columns[COLUMN_PLAYERS_NAME].DisplayIndex = 1;
             if (isTeams)
             {
-                dgv.Columns[COLUMN_PLAYERS_TEAM_NAME].HeaderText = "Team";
+                dgv.Columns[COLUMN_PLAYERS_TEAM_NAME].HeaderText = "Player Team";
                 dgv.Columns[COLUMN_PLAYERS_TEAM_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 dgv.Columns[COLUMN_PLAYERS_TEAM_NAME].DisplayIndex = 2;
                 dgv.Columns[COLUMN_PLAYERS_COUNTRY_NAME].DisplayIndex = 3;
@@ -254,7 +254,12 @@ namespace MahjongTournamentSuite.TournamentManager
         public void AddRoundTablesButtons(int roundId, int numTables)
         {
             //Calculamos el punto de comienzo para centrar los botones
-            int neededWidth = ((NUM_TABLES_BUTTONS_HORIZONTAL * BUTTON_SIDE) + ((NUM_TABLES_BUTTONS_HORIZONTAL + 1) * TABLES_MARGIN_SIZE));
+            int neededWidth;
+            if(numTables < NUM_TABLES_BUTTONS_HORIZONTAL)
+                neededWidth = ((numTables * BUTTON_SIDE) + ((numTables + 1) * TABLES_MARGIN_SIZE));
+            else
+                neededWidth = ((NUM_TABLES_BUTTONS_HORIZONTAL * BUTTON_SIDE) + ((NUM_TABLES_BUTTONS_HORIZONTAL + 1) * TABLES_MARGIN_SIZE));
+
             int initPoint = (splitContainer1.Width - neededWidth) / 2;
             Point buttonStartPoint = new Point(initPoint, TITLE_TABLES_HEIGHT + TABLES_MARGIN_SIZE);
 

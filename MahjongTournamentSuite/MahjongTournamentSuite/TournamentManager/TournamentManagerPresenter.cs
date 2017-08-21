@@ -45,14 +45,7 @@ namespace MahjongTournamentSuite.TournamentManager
                 _teams = _db.GetTournamentTeams(tournamentId);
                 _form.ShowButtonTeams();
             }
-            _form.ShowButtonPlayers();
-            //if (IsPlayersFilledByUser())
-            //{
-                _form.ShowButtonRounds();
-                ButtonRoundsClicked();
-            //}
-            //else
-            //    ButtonPlayersClicked();
+            ButtonRoundsClicked();
         }
 
         public void OnFormResized()
@@ -219,7 +212,7 @@ namespace MahjongTournamentSuite.TournamentManager
 
         private string getPlayerTeamName(int teamId)
         {
-            if (teamId > 0)
+            if (_tournament.IsTeams && teamId > 0)
                 return _teams.Find(x => x.TeamId == teamId).TeamName;
             else
                 return "";
@@ -228,7 +221,7 @@ namespace MahjongTournamentSuite.TournamentManager
         private string getPlayerCountryName(int countryId)
         {
             if (countryId > 0)
-                return _countries.Find(x => x.CountryID == countryId).CountryName;
+                return _countries.Find(x => x.CountryId == countryId).CountryName;
             else
                 return "";
         }
