@@ -18,8 +18,10 @@
 
         void TeamNameChanged(int teamId, string newValue);
 
-        void PlayerNameChanged(int playerId, string newValue);
+        void PlayerNameChanged(int playerId, string newPlayerName);
 
-        string PlayerCountryChanged(int playerId, string returnValue);
+        string PlayerTeamChanged(int playerId, string newTeamName);
+
+        string PlayerCountryChanged(int playerId, string newCountryName);
     }
 }

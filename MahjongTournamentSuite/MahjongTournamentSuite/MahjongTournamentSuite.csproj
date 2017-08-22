@@ -139,6 +139,15 @@
       <DependentUpon>TableManagerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="TableManager\TableManagerPresenter.cs" />
+    <Compile Include="TeamSelector\ITeamSelectorForm.cs" />
+    <Compile Include="TeamSelector\ITeamSelectorPresenter.cs" />
+    <Compile Include="TeamSelector\TeamSelectorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TeamSelector\TeamSelectorForm.Designer.cs">
+      <DependentUpon>TeamSelectorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TeamSelector\TeamSelectorPresenter.cs" />
     <Compile Include="TournamentManager\ITournamentManagerForm.cs" />
     <Compile Include="TournamentManager\ITournamentManagerPresenter.cs" />
     <Compile Include="TournamentManager\TournamentManagerForm.cs">
@@ -164,6 +173,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TableManager\TableManagerForm.resx">
       <DependentUpon>TableManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TeamSelector\TeamSelectorForm.resx">
+      <DependentUpon>TeamSelectorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TournamentManager\TournamentManagerForm.resx">
       <DependentUpon>TournamentManagerForm.cs</DependentUpon>

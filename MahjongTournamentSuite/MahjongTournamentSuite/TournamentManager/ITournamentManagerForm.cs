@@ -13,7 +13,7 @@ namespace MahjongTournamentSuite.TournamentManager
 
         void AddRoundTablesButtons(int roundId, int numTables);
 
-        void GoToTableManager(int tournamentId, int roundId, int tableId);
+        void GoToTableManager(int roundId, int tableId);
 
         void SelectTeamsButton();
 
@@ -66,5 +66,7 @@ namespace MahjongTournamentSuite.TournamentManager
         void ShowMessagePlayerNameInUse(string newName, int ownerPlayerId);
 
         void ShowMessageCountryError();
+
+        void ShowMessageTeamError();
     }
 }

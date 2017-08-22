@@ -1,6 +1,6 @@
-﻿namespace MahjongTournamentSuite.CountrySelector
+﻿namespace MahjongTournamentSuite.TeamSelector
 {
-    partial class CountrySelectorForm
+    partial class TeamSelectorForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,29 +28,40 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CountrySelectorForm));
-            this.lbCountries = new System.Windows.Forms.ListBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TeamSelectorForm));
+            this.label1 = new System.Windows.Forms.Label();
+            this.lbTeams = new System.Windows.Forms.ListBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // lbCountries
+            // label1
             // 
-            this.lbCountries.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(14, 14);
+            this.label1.Margin = new System.Windows.Forms.Padding(5);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(93, 16);
+            this.label1.TabIndex = 76;
+            this.label1.Text = "Select a team:";
+            // 
+            // lbTeams
+            // 
+            this.lbTeams.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbCountries.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCountries.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lbCountries.ItemHeight = 16;
-            this.lbCountries.Location = new System.Drawing.Point(14, 40);
-            this.lbCountries.Margin = new System.Windows.Forms.Padding(5);
-            this.lbCountries.Name = "lbCountries";
-            this.lbCountries.Size = new System.Drawing.Size(256, 452);
-            this.lbCountries.Sorted = true;
-            this.lbCountries.TabIndex = 0;
-            this.lbCountries.UseTabStops = false;
-            this.lbCountries.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbCountries_MouseDoubleClick);
+            this.lbTeams.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTeams.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lbTeams.ItemHeight = 16;
+            this.lbTeams.Location = new System.Drawing.Point(14, 40);
+            this.lbTeams.Margin = new System.Windows.Forms.Padding(5);
+            this.lbTeams.Name = "lbTeams";
+            this.lbTeams.Size = new System.Drawing.Size(256, 452);
+            this.lbTeams.Sorted = true;
+            this.lbTeams.TabIndex = 77;
+            this.lbTeams.UseTabStops = false;
+            this.lbTeams.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbTeams_MouseDoubleClick);
             // 
             // btnCancel
             // 
@@ -71,7 +82,7 @@
             this.btnCancel.Margin = new System.Windows.Forms.Padding(5);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(78, 35);
-            this.btnCancel.TabIndex = 73;
+            this.btnCancel.TabIndex = 78;
             this.btnCancel.Text = "CANCEL";
             this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCancel.UseVisualStyleBackColor = false;
@@ -96,41 +107,30 @@
             this.btnOk.Margin = new System.Windows.Forms.Padding(5);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(168, 35);
-            this.btnOk.TabIndex = 74;
+            this.btnOk.TabIndex = 79;
             this.btnOk.Text = "OK";
             this.btnOk.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnOk.UseVisualStyleBackColor = false;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(14, 14);
-            this.label1.Margin = new System.Windows.Forms.Padding(5);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(106, 16);
-            this.label1.TabIndex = 75;
-            this.label1.Text = "Select a country:";
-            // 
-            // CountrySelectorForm
+            // TeamSelectorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(284, 562);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.lbCountries);
+            this.Controls.Add(this.lbTeams);
+            this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "CountrySelectorForm";
+            this.Name = "TeamSelectorForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Mahjong Tournament Suite - Country Selector";
+            this.Text = "Mahjong Tournament Suite - Team Selector";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -138,9 +138,9 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox lbCountries;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ListBox lbTeams;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOk;
-        private System.Windows.Forms.Label label1;
     }
 }

@@ -1,8 +1,10 @@
-﻿using MahjongTournamentSuite.CountrySelector;
+﻿using System;
+using MahjongTournamentSuite.CountrySelector;
 using MahjongTournamentSuite.Data;
 using MahjongTournamentSuite.Home;
 using MahjongTournamentSuite.NewTournament;
 using MahjongTournamentSuite.TableManager;
+using MahjongTournamentSuite.TeamSelector;
 using MahjongTournamentSuite.TournamentManager;
 
 namespace MahjongTournamentSuite
@@ -30,6 +32,12 @@ namespace MahjongTournamentSuite
             TournamentManagerForm tournamentManagerForm)
         {
             return new TournamentManagerPresenter(tournamentManagerForm);
+        }
+
+        internal static ITeamSelectorPresenter provideTeamSelectorPresenter(
+            TeamSelectorForm teamSelectorForm)
+        {
+            return new TeamSelectorPresenter(teamSelectorForm);
         }
 
         internal static ICountrySelectorPresenter provideCountrySelectorPresenter(

@@ -2,24 +2,24 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace MahjongTournamentSuite.CountrySelector
+namespace MahjongTournamentSuite.TeamSelector
 {
-    public partial class CountrySelectorForm : Form, ICountrySelectorForm
+    public partial class TeamSelectorForm : Form, ITeamSelectorForm
     {
         #region Fields
 
-        private ICountrySelectorPresenter _presenter;
+        private ITeamSelectorPresenter _presenter;
         public string ReturnValue { get; set; }
 
         #endregion
 
         #region Constructor
 
-        public CountrySelectorForm()
+        public TeamSelectorForm(int tournamentId)
         {
             InitializeComponent();
-            _presenter = Injector.provideCountrySelectorPresenter(this);
-            _presenter.LoadCountries();
+            _presenter = Injector.provideTeamSelectorPresenter(this);
+            _presenter.LoadTeams(tournamentId);
             CancelButton = btnCancel;
             AcceptButton = btnOk;
         }
@@ -28,14 +28,14 @@ namespace MahjongTournamentSuite.CountrySelector
 
         #region Events
 
-        private void lbCountries_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void lbTeams_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             CloseReturningValue();
         }
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            if (lbCountries.SelectedIndex > 0)
+            if (lbTeams.SelectedIndex > 0)
                 CloseReturningValue();
         }
 
@@ -47,20 +47,20 @@ namespace MahjongTournamentSuite.CountrySelector
 
         #endregion
 
-        #region ICountrySelectorForm implementation
+        #region ITeamSelectorForm implementation
 
-        public void FillLbCountries(List<string> countries)
+        public void FillLbTeams(List<string> teams)
         {
-            lbCountries.DataSource = countries;
+            lbTeams.DataSource = teams;
         }
 
         #endregion
 
         #region Private
 
-        public void CloseReturningValue()
+        private void CloseReturningValue()
         {
-            ReturnValue = (string)lbCountries.SelectedItem;
+            ReturnValue = (string)lbTeams.SelectedItem;
             DialogResult = DialogResult.OK;
             Close();
         }

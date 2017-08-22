@@ -119,7 +119,7 @@ namespace MahjongTournamentSuite.TournamentManager
             UnselectTable(tableSelected);
             tableSelected = tableId;
             _form.SelectRoundTableButton(tableId);
-            _form.GoToTableManager(_tournament.TournamentId, roundSelected, tableId);
+            _form.GoToTableManager(roundSelected, tableId);
         }
 
         public void TeamNameChanged(int teamId, string newName)
@@ -144,6 +144,21 @@ namespace MahjongTournamentSuite.TournamentManager
                 _form.DGVCancelEdit();
                 _form.ShowMessagePlayerNameInUse(newName, ownerPlayerId);
                 return;
+            }
+        }
+
+        public string PlayerTeamChanged(int playerId, string newTeamName)
+        {
+            int newTeamId = _db.GetTeamId(_tournament.TournamentId, newTeamName);
+            if (newTeamId > 0)
+            {
+                _db.UpdatePlayerTeam(_tournament.TournamentId, playerId, newTeamId);
+                return newTeamName;
+            }
+            else
+            {
+                _form.ShowMessageTeamError();
+                return "";
             }
         }
 

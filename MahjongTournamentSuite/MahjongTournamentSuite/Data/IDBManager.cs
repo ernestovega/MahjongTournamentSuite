@@ -33,9 +33,13 @@ namespace MahjongTournamentSuite.Data
 
         List<DBTeam> GetTournamentTeams(int tournamentId);
 
-        List<string> GetTeamsNamesSortedList(int tournamentId);
+        List<string> GetTeamsNames(int tournamentId);
 
         List<DBPlayer> GetTournamentPlayers(int tournamentId);
+
+        string GetTeamName(int tournamentId, int teamId);
+
+        int GetTeamId(int tournamentId, string teamName);
 
         string GetCountryName(int countryId);
 
@@ -44,6 +48,8 @@ namespace MahjongTournamentSuite.Data
         void UpdateTeamName(int tournamentId, int teamId, string newName);
 
         void UpdatePlayerName(int tournamentId, int playerId, string newName);
+
+        void UpdatePlayerTeam(int tournamentId, int playerId, int countryId);
 
         void UpdatePlayerCountry(int tournamentId, int playerId, int countryId);
 

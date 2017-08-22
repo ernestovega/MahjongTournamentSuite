@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using MahjongTournamentSuite.Model;
 
 namespace MahjongTournamentSuite.CountrySelector
 {

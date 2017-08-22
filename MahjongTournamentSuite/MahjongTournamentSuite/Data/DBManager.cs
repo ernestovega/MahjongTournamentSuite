@@ -122,6 +122,14 @@ namespace MahjongTournamentSuite.Data
             _db.SaveChanges();
         }
 
+        public void UpdatePlayerTeam(int tournamentId, int playerId, int newTeamId)
+        {
+            _db.Players.ToList()
+                .Find(x => x.PlayerTournamentId == tournamentId && x.PlayerId == playerId)
+                .PlayerTeamId = newTeamId;
+            _db.SaveChanges();
+        }
+
         public void UpdatePlayerCountry(int tournamentId, int playerId, int countryId)
         {
             _db.Players.ToList()
@@ -185,14 +193,30 @@ namespace MahjongTournamentSuite.Data
             return _db.Teams.ToList().FindAll(x => x.TeamTournamentId == tournamentId);
         }
 
-        public List<string> GetTeamsNamesSortedList(int tournamentId)
+        public List<string> GetTeamsNames(int tournamentId)
         {
-            List<string> teamNames = _db.Teams.ToList().FindAll(x => x.TeamTournamentId == tournamentId)
+            return _db.Teams.ToList().FindAll(x => x.TeamTournamentId == tournamentId)
                 .Select(x => x.TeamName).ToList();
-            teamNames.Sort();
-            return teamNames;
         }
 
+        public string GetTeamName(int tournamentId, int teamId)
+        {
+            DBTeam team = _db.Teams.ToList().Find(x => x.TeamTournamentId == tournamentId && x.TeamId == teamId);
+            if (team == null)
+                return "";
+            else
+                return team.TeamName;
+        }
+
+        public int GetTeamId(int tournamentId, string teamName)
+        {
+            DBTeam team = _db.Teams.ToList().Find(x => x.TeamTournamentId == tournamentId && x.TeamName == teamName);
+            if (team == null)
+                return 0;
+            else
+                return team.TeamId;
+        }
+        
         public void AddTeams(List<DBTeam> teams)
         {
             _db.Teams.AddRange(teams);
@@ -498,6 +522,6 @@ namespace MahjongTournamentSuite.Data
             }
         }
 
-        #endregion
+        #endregion        
     }
 }
