@@ -16,8 +16,10 @@
 
         void ButtonRoundTableClicked(int tableId);
 
-        void TeamNameChanged(int tournamentId, int teamId, string newValue);
+        void TeamNameChanged(int teamId, string newValue);
 
-        void PlayerNameChanged(int tournamentId, int playerId, string newValue);
+        void PlayerNameChanged(int playerId, string newValue);
+
+        string PlayerCountryChanged(int playerId, string returnValue);
     }
 }

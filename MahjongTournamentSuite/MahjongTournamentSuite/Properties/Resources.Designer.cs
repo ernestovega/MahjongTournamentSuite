@@ -73,16 +73,6 @@ namespace MahjongTournamentSuite.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap add_white {
-            get {
-                object obj = ResourceManager.GetObject("add_white", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
         public static System.Drawing.Bitmap EMALogo {
             get {
                 object obj = ResourceManager.GetObject("EMALogo", resourceCulture);

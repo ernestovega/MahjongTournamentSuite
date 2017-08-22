@@ -392,8 +392,8 @@
             this.Controls.Add(this.imgLogoMM);
             this.Controls.Add(this.btnTimer);
             this.Controls.Add(this.btnRanking);
-            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.dgv);
+            this.Controls.Add(this.splitContainer1);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

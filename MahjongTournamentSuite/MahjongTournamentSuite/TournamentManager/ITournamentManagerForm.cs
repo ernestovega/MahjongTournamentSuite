@@ -64,5 +64,7 @@ namespace MahjongTournamentSuite.TournamentManager
         void ShowMessageTeamNameInUse(string usedName, int ownerTeamId);
 
         void ShowMessagePlayerNameInUse(string newName, int ownerPlayerId);
+
+        void ShowMessageCountryError();
     }
 }

@@ -14,7 +14,6 @@ namespace MahjongTournamentSuite.TournamentManager
         private DBTournament _tournament;
         private List<DBTeam> _teams;
         private List<DBPlayer> _players;
-        private List<DBCountry> _countries;
         private bool isTeamsSelected = false;
         private bool isPlayersSelected = false;
         private bool isRoundsSelected = false;
@@ -39,7 +38,6 @@ namespace MahjongTournamentSuite.TournamentManager
         {
             _tournament = _db.GetTournament(tournamentId);
             _players = _db.GetTournamentPlayers(tournamentId);
-            _countries = _db.GetCountries();
             if(_tournament.IsTeams)
             {
                 _teams = _db.GetTournamentTeams(tournamentId);
@@ -124,7 +122,7 @@ namespace MahjongTournamentSuite.TournamentManager
             _form.GoToTableManager(_tournament.TournamentId, roundSelected, tableId);
         }
 
-        public void TeamNameChanged(int tournamentId, int teamId, string newName)
+        public void TeamNameChanged(int teamId, string newName)
         {
             int ownerTeamId = GetOwnerTeamNameId(newName);
             if (ownerTeamId > 0)
@@ -133,27 +131,41 @@ namespace MahjongTournamentSuite.TournamentManager
                 _form.ShowMessageTeamNameInUse(newName, ownerTeamId);
                 return;
             }
-            _db.UpdateTeamName(tournamentId, teamId, newName);
+            _db.UpdateTeamName(_tournament.TournamentId, teamId, newName);
         }
 
-        public void PlayerNameChanged(int tournamentId, int playerId, string newName)
+        public void PlayerNameChanged(int playerId, string newName)
         {
             int ownerPlayerId = GetOwnerPlayerNameId(newName);
-            if (ownerPlayerId > 0)
+            if (ownerPlayerId == 0)
+                _db.UpdatePlayerName(_tournament.TournamentId, playerId, newName);
+            else
             {
                 _form.DGVCancelEdit();
                 _form.ShowMessagePlayerNameInUse(newName, ownerPlayerId);
                 return;
             }
-            _db.UpdatePlayerName(tournamentId, playerId, newName);
-            if (IsPlayersFilledByUser())
-                _form.ShowButtonRounds();
+        }
+
+        public string PlayerCountryChanged(int playerId, string newCountryName)
+        {
+            int newCountryId = _db.GetCountryId(newCountryName);
+            if (newCountryId > 0)
+            {
+                _db.UpdatePlayerCountry(_tournament.TournamentId, playerId, newCountryId);
+                return newCountryName;
+            }
+            else
+            {
+                _form.ShowMessageCountryError();
+                return "";
+            }
         }
 
         #endregion
 
         #region Private
-        
+
         /// <summary>
         /// Si los nombres de los jugadores no son números enteros, es que están rellenos.
         /// </summary>
@@ -220,10 +232,7 @@ namespace MahjongTournamentSuite.TournamentManager
 
         private string getPlayerCountryName(int countryId)
         {
-            if (countryId > 0)
-                return _countries.Find(x => x.CountryId == countryId).CountryName;
-            else
-                return "";
+            return _db.GetCountryName(countryId);
         }
 
         private void UnselectTeams()

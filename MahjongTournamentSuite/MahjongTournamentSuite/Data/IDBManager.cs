@@ -7,6 +7,8 @@ namespace MahjongTournamentSuite.Data
     {
         #region NewTournament
 
+        bool ExistTournament(string tournamentName);
+
         int GetExistingMaxTournamentId();
 
         void AddTournament(DBTournament tournament);
@@ -29,17 +31,27 @@ namespace MahjongTournamentSuite.Data
 
         List<DBTournament> GetTournaments();
 
-        List<DBCountry> GetCountries();
-
         List<DBTeam> GetTournamentTeams(int tournamentId);
 
         List<string> GetTeamsNamesSortedList(int tournamentId);
 
         List<DBPlayer> GetTournamentPlayers(int tournamentId);
 
+        string GetCountryName(int countryId);
+
+        int GetCountryId(string countryName);
+
         void UpdateTeamName(int tournamentId, int teamId, string newName);
 
         void UpdatePlayerName(int tournamentId, int playerId, string newName);
+
+        void UpdatePlayerCountry(int tournamentId, int playerId, int countryId);
+
+        #endregion
+
+        #region Countries Selector
+
+        List<string> GetCountriesNames();
 
         #endregion
 
@@ -56,7 +68,6 @@ namespace MahjongTournamentSuite.Data
         void UpdateHand(DBHand hand);
 
         void UpdateTablePlayersPositions(DBTable table);
-        bool ExistTournament(string tournamentName);
 
         #endregion
     }

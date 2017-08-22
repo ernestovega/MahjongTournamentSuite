@@ -148,6 +148,9 @@
       <DependentUpon>TournamentManagerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="TournamentManager\TournamentManagerPresenter.cs" />
+    <EmbeddedResource Include="CountrySelector\CountrySelectorForm.resx">
+      <DependentUpon>CountrySelectorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Home\HomeForm.resx">
       <DependentUpon>HomeForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -182,7 +185,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\add_white.png" />
     <Content Include="Resources\EMALogo.png" />
     <Content Include="Resources\favicon.ico" />
     <Content Include="Resources\gong.png" />

@@ -6,6 +6,7 @@ using MahjongTournamentSuite.Model;
 using System.Drawing;
 using MahjongTournamentSuite.Home;
 using MahjongTournamentSuite.TableManager;
+using MahjongTournamentSuite.CountrySelector;
 
 namespace MahjongTournamentSuite.TournamentManager
 {
@@ -114,9 +115,24 @@ namespace MahjongTournamentSuite.TournamentManager
 
         private void dgv_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex > -1 && (dgv.Columns[e.ColumnIndex].Name.Equals(COLUMN_TEAMS_NAME)
-                || dgv.Columns[e.ColumnIndex].Name.Equals(COLUMN_PLAYERS_NAME)))
-                dgv.BeginEdit(true);
+            if (e.RowIndex > -1)
+            {
+                if (dgv.Columns[e.ColumnIndex].Name.Equals(COLUMN_TEAMS_NAME)
+                || dgv.Columns[e.ColumnIndex].Name.Equals(COLUMN_PLAYERS_NAME))
+                    dgv.BeginEdit(true);
+                else if (dgv.Columns[e.ColumnIndex].Name.Equals(COLUMN_PLAYERS_COUNTRY_NAME))
+                {
+                    using (var countrySelectorForm = new CountrySelectorForm())
+                    {
+                        if (countrySelectorForm.ShowDialog() == DialogResult.OK)
+                        {
+                            int playerId = (int)dgv.Rows[e.RowIndex].Cells[COLUMN_PLAYERS_ID].Value;
+                            dgv.Rows[e.RowIndex].Cells[COLUMN_PLAYERS_COUNTRY_NAME].Value = 
+                                _presenter.PlayerCountryChanged(playerId, countrySelectorForm.ReturnValue);
+                        }
+                    }
+                }
+            }
         }
 
         private void dgv_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
@@ -125,26 +141,24 @@ namespace MahjongTournamentSuite.TournamentManager
             {
                 if (dgv.Columns[e.ColumnIndex].Name.Equals(COLUMN_TEAMS_NAME))
                 {
-                    int tournamentId = (int)dgv.Rows[e.RowIndex].Cells[COLUMN_TEAMS_TOURNAMENT_ID].Value;
                     string previousValue = (string)dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
                     string newValue = ((string)e.FormattedValue).Trim();
                     if (newValue.Length > 0 && !newValue.Equals(previousValue))
                     {
                         int teamId = (int)dgv.Rows[e.RowIndex].Cells[COLUMN_TEAMS_ID].Value;
-                        _presenter.TeamNameChanged(tournamentId, teamId, newValue);
+                        _presenter.TeamNameChanged(teamId, newValue);
                     }
                     else
                         DGVCancelEdit();
                 }
                 else if(dgv.Columns[e.ColumnIndex].Name.Equals(COLUMN_PLAYERS_NAME))
                 {
-                    int tournamentId = (int)dgv.Rows[e.RowIndex].Cells[COLUMN_PLAYERS_TOURNAMENT_ID].Value;
                     string previousValue = (string)dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
                     string newValue = ((string)e.FormattedValue).Trim();
                     if (newValue.Length > 0 && !newValue.Equals(previousValue))
                     {
                         int playerId = (int)dgv.Rows[e.RowIndex].Cells[COLUMN_PLAYERS_ID].Value;
-                        _presenter.PlayerNameChanged(tournamentId, playerId, newValue);
+                        _presenter.PlayerNameChanged(playerId, newValue);
                     }
                     else
                         DGVCancelEdit();
@@ -160,6 +174,7 @@ namespace MahjongTournamentSuite.TournamentManager
         {
             SortableBindingList<DBTeam> sortableTeams =
                 new SortableBindingList<DBTeam>(teams);
+            dgv.DataSource = null;
             dgv.DataSource = sortableTeams;
 
             //Visible
@@ -178,6 +193,7 @@ namespace MahjongTournamentSuite.TournamentManager
         {
             SortableBindingList<DGVPlayer> sortablePlayers =
                 new SortableBindingList<DGVPlayer>(players);
+            dgv.DataSource = null;
             dgv.DataSource = sortablePlayers;
 
             //Visible
@@ -456,6 +472,11 @@ namespace MahjongTournamentSuite.TournamentManager
         public void ShowMessagePlayerNameInUse(string usedName, int ownerPlayerId)
         {
             MessageBox.Show(string.Format("\"{0}\" is in use by the player {1}", usedName, ownerPlayerId), "Name in use");
+        }
+
+        public void ShowMessageCountryError()
+        {
+            MessageBox.Show("Something went wrong with the country selection.", "Ups!");
         }
 
         #endregion
