@@ -40,13 +40,14 @@
             this.lbCountries.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbCountries.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbCountries.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbCountries.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lbCountries.ItemHeight = 16;
             this.lbCountries.Location = new System.Drawing.Point(14, 40);
             this.lbCountries.Margin = new System.Windows.Forms.Padding(5);
             this.lbCountries.Name = "lbCountries";
-            this.lbCountries.Size = new System.Drawing.Size(256, 452);
+            this.lbCountries.Size = new System.Drawing.Size(256, 450);
             this.lbCountries.Sorted = true;
             this.lbCountries.TabIndex = 0;
             this.lbCountries.UseTabStops = false;
@@ -54,7 +55,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
             this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -79,7 +80,7 @@
             // 
             // btnOk
             // 
-            this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOk.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
             this.btnOk.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnOk.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -124,10 +125,10 @@
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lbCountries);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(300, 306);
             this.Name = "CountrySelectorForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mahjong Tournament Suite - Country Selector";

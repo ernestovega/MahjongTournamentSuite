@@ -52,6 +52,12 @@ namespace MahjongTournamentSuite.TeamSelector
         public void FillLbTeams(List<string> teams)
         {
             lbTeams.DataSource = teams;
+
+            int heightIncrement = (teams.Count * lbTeams.ItemHeight) - lbTeams.Height;
+            if (Height + heightIncrement > 600)
+                Height = 600;
+            else
+                Height += heightIncrement;
         }
 
         #endregion

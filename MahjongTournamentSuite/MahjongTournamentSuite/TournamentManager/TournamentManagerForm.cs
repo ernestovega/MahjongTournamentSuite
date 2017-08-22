@@ -148,11 +148,6 @@ namespace MahjongTournamentSuite.TournamentManager
             }
         }
 
-        private void dgv_CellEnter(object sender, DataGridViewCellEventArgs e)
-        {
-            
-        }
-
         private void dgv_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
             if (e.RowIndex > -1)
