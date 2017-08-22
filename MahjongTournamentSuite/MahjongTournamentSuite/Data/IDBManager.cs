@@ -31,8 +31,6 @@ namespace MahjongTournamentSuite.Data
 
         List<DBCountry> GetCountries();
 
-        List<string> GetCountriesNamesSortedList();
-
         List<DBTeam> GetTournamentTeams(int tournamentId);
 
         List<string> GetTeamsNamesSortedList(int tournamentId);
