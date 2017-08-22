@@ -16,14 +16,23 @@ namespace MahjongTournamentSuite.Data
 
         #region Constructor
 
-        public DBManager()
-        {
-            
-        }
+        public DBManager() { }
 
         #endregion
 
         #region Tournaments
+
+        public List<DBTournament> GetTournaments()
+        {
+            return _db.Tournaments.OrderByDescending(
+                x => x.CreationDate).ToList();
+        }
+
+        public DBTournament GetTournament(int tournamentId)
+        {
+            return _db.Tournaments.ToList().Find(
+                x => x.TournamentId == tournamentId);
+        }
 
         public int GetExistingMaxTournamentId()
         {
@@ -35,17 +44,15 @@ namespace MahjongTournamentSuite.Data
 
         public string GetTournamentName(int tournamentId)
         {
-            return _db.Tournaments.ToList().FirstOrDefault(x => x.TournamentId == tournamentId).TournamentName;
+            return _db.Tournaments.ToList().Find(
+                x => x.TournamentId == tournamentId).TournamentName;
         }
 
-        public DBTournament GetTournament(int tournamentId)
+        public bool ExistTournament(string tournamentName)
         {
-            return _db.Tournaments.ToList().FirstOrDefault(x => x.TournamentId == tournamentId);
-        }
-
-        public List<DBTournament> GetTournaments()
-        {
-            return _db.Tournaments.OrderByDescending(x => x.CreationDate).ToList();
+            return _db.Tournaments.ToList().Find(
+                x => x.TournamentName.Equals(tournamentName, 
+                StringComparison.Ordinal)) != null;
         }
 
         public void AddTournament(DBTournament tournament)
@@ -56,18 +63,19 @@ namespace MahjongTournamentSuite.Data
 
         public void UpdateTournamentName(int tournamentId, string newName)
         {
-            _db.Tournaments.ToList().FirstOrDefault(x => x.TournamentId == tournamentId).TournamentName = newName;
+            _db.Tournaments.ToList().Find(
+                x => x.TournamentId == tournamentId).TournamentName = newName;
             _db.SaveChanges();
         }
 
         public void DeleteTournament(int tournamentId)
         {
-            _db.Hands.RemoveRange(_db.Hands.ToList().FindAll(x => x.HandTournamentId == tournamentId));
-            _db.Tables.RemoveRange(_db.Tables.ToList().FindAll(x => x.TableTournamentId == tournamentId));
-            _db.Players.RemoveRange(_db.Players.ToList().FindAll(x => x.PlayerTournamentId == tournamentId));
-            DBTournament tournament = _db.Tournaments.ToList().FirstOrDefault(x => x.TournamentId == tournamentId);
+            _db.Hands.RemoveRange(_db.Hands.ToList().FindAll( x => x.HandTournamentId == tournamentId));
+            _db.Tables.RemoveRange(_db.Tables.ToList().FindAll( x => x.TableTournamentId == tournamentId));
+            _db.Players.RemoveRange(_db.Players.ToList().FindAll( x => x.PlayerTournamentId == tournamentId));
+            DBTournament tournament = _db.Tournaments.ToList().Find( x => x.TournamentId == tournamentId);
             if (tournament.IsTeams)
-                _db.Teams.RemoveRange(_db.Teams.ToList().FindAll(x => x.TeamTournamentId == tournamentId));
+                _db.Teams.RemoveRange(_db.Teams.ToList().FindAll( x => x.TeamTournamentId == tournamentId));
             _db.Tournaments.Remove(tournament);
             _db.SaveChanges();
         }
@@ -83,12 +91,22 @@ namespace MahjongTournamentSuite.Data
 
         public List<DBPlayer> GetTablePlayers(int tournamentId, int roundId, int tableId)
         {
-            DBTable table = _db.Tables.ToList().FirstOrDefault(x => x.TableTournamentId == tournamentId && x.TableRoundId == roundId && x.TableId == tableId);
+            DBTable table = _db.Tables.ToList().Find(
+                x => x.TableTournamentId == tournamentId && 
+                x.TableRoundId == roundId && x.TableId == tableId);
             List<DBPlayer> tablePlayers = new List<DBPlayer>(4);
-            tablePlayers.Add(_db.Players.ToList().FirstOrDefault(x => x.PlayerTournamentId == tournamentId && x.PlayerId == table.Player1Id));
-            tablePlayers.Add(_db.Players.ToList().FirstOrDefault(x => x.PlayerTournamentId == tournamentId && x.PlayerId == table.Player2Id));
-            tablePlayers.Add(_db.Players.ToList().FirstOrDefault(x => x.PlayerTournamentId == tournamentId && x.PlayerId == table.Player3Id));
-            tablePlayers.Add(_db.Players.ToList().FirstOrDefault(x => x.PlayerTournamentId == tournamentId && x.PlayerId == table.Player4Id));
+            tablePlayers.Add(_db.Players.ToList().Find(
+                x => x.PlayerTournamentId == tournamentId && 
+                x.PlayerId == table.Player1Id));
+            tablePlayers.Add(_db.Players.ToList().Find(
+                x => x.PlayerTournamentId == tournamentId && 
+                x.PlayerId == table.Player2Id));
+            tablePlayers.Add(_db.Players.ToList().Find(
+                x => x.PlayerTournamentId == tournamentId && 
+                x.PlayerId == table.Player3Id));
+            tablePlayers.Add(_db.Players.ToList().Find(
+                x => x.PlayerTournamentId == tournamentId && 
+                x.PlayerId == table.Player4Id));
             return tablePlayers;
         }
 
@@ -117,12 +135,12 @@ namespace MahjongTournamentSuite.Data
 
         public DBTable GetTable(int tournamentId, int roundId, int tableId)
         {
-            return _db.Tables.ToList().FirstOrDefault(x => x.TableTournamentId == tournamentId && x.TableRoundId == roundId && x.TableId == tableId);
+            return _db.Tables.ToList().Find(x => x.TableTournamentId == tournamentId && x.TableRoundId == roundId && x.TableId == tableId);
         }
 
         public void UpdateTablePlayersPositions(DBTable table)
         {
-            DBTable dbTable = _db.Tables.ToList().FirstOrDefault(x => x.TableTournamentId == table.TableTournamentId && x.TableId == table.TableId);
+            DBTable dbTable = _db.Tables.ToList().Find(x => x.TableTournamentId == table.TableTournamentId && x.TableId == table.TableId);
             dbTable.PlayerEastId = table.PlayerEastId;
             dbTable.PlayerSouthId = table.PlayerSouthId;
             dbTable.PlayerWestId = table.PlayerWestId;
@@ -141,7 +159,7 @@ namespace MahjongTournamentSuite.Data
         
         public void UpdateHand(DBHand hand)
         {
-            DBHand dbHand = _db.Hands.ToList().FirstOrDefault(x => x.HandTournamentId == hand.HandTournamentId
+            DBHand dbHand = _db.Hands.ToList().Find(x => x.HandTournamentId == hand.HandTournamentId
             && x.HandTableId == hand.HandTableId && x.HandRoundId == hand.HandRoundId && x.HandId == hand.HandId);
             dbHand.PlayerWinnerId = hand.PlayerWinnerId;
             dbHand.PlayerLooserId = hand.PlayerLooserId;

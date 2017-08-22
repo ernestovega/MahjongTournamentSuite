@@ -16,8 +16,6 @@
 
         bool IsTeamsChecked();
 
-        string GetTournamentName();
-
         int GetNumTries();
 
         void EnableViews();
@@ -27,6 +25,8 @@
         void SetTriesCounterLabel(int tries);
 
         void ShowEnterTournamentNameMessage();
+
+        void ShowMessageExistingTournamentName();
 
         bool ShowWrongPlayersNumberMessage(int wrongNumPlayers, int goodNumPlayers);
 

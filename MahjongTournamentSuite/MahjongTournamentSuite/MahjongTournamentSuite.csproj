@@ -74,6 +74,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CountrySelector\CountrySelectorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CountrySelector\CountrySelectorForm.Designer.cs">
+      <DependentUpon>CountrySelectorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CountrySelector\CountrySelectorPresenter.cs" />
+    <Compile Include="CountrySelector\ICountrySelectorForm.cs" />
+    <Compile Include="CountrySelector\ICountrySelectorPresenter.cs" />
     <Compile Include="CustomViews\CustomProgressBar.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -173,6 +182,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\add_white.png" />
     <Content Include="Resources\EMALogo.png" />
     <Content Include="Resources\favicon.ico" />
     <Content Include="Resources\gong.png" />

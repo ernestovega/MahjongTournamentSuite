@@ -177,7 +177,7 @@ namespace MahjongTournamentSuite.TournamentManager
         private int GetOwnerTeamNameId(string newName)
         {
             DBTeam ownerTeam = _teams.Find(x => x.TeamName.Equals(newName, 
-                StringComparison.InvariantCultureIgnoreCase));
+                StringComparison.InvariantCulture));
             if (ownerTeam == null)
                 return 0;
             else
@@ -192,7 +192,7 @@ namespace MahjongTournamentSuite.TournamentManager
         private int GetOwnerPlayerNameId(string newName)
         {
             DBPlayer ownerPlayer = _players.Find(x => x.PlayerName.Equals(newName, 
-                StringComparison.InvariantCultureIgnoreCase));
+                StringComparison.InvariantCulture));
             if (ownerPlayer == null)
                 return 0;
             else

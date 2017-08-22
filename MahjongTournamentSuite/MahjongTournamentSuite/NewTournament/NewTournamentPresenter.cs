@@ -50,7 +50,7 @@ namespace MahjongTournamentSuite.NewTournament
 
         #region INewTournamentPresenter implementation
 
-        public void StartClicked()
+        public void StartClicked(string tournamentName)
         {
             if (_form.IsBackgroundWorkerBusy())
             {
@@ -59,17 +59,19 @@ namespace MahjongTournamentSuite.NewTournament
             }
             else
             {
-                string tournamentName = _form.GetTournamentName();
-                if (tournamentName.Length > 0 && 
-                    !tournamentName.Equals(NewTournamentForm.TOURNAMENT_NAME_TEMPLATE_TEXT))
+                if (tournamentName.Length > 0)
                 {
-                    if(InitializeCalculation())
+                    if(_db.ExistTournament(tournamentName))
+                    {
+                        _form.ShowMessageExistingTournamentName();
+                        return;
+                    }
+                    _tournamentName = tournamentName;
+                    if (InitializeCalculation())
                         _form.RunBackgroundWorker();
                 }
                 else
-                {
                     _form.ShowEnterTournamentNameMessage();
-                }
             }
         }
 
@@ -125,17 +127,23 @@ namespace MahjongTournamentSuite.NewTournament
                 SaveTeams();
         }
 
-        public void RunWorkerCompleted()
+        public void RunWorkerCompleted(bool isCancelled)
         {
             _form.EnableViews();
-            /*Si no se ha podido calcular en los intentos indicados, se notifica,
-              se muestra la lista de jugadores y se termina. Si todo fue ok, vamos al manager.*/
-            if (countTries >= _numTriesMax)
-                _form.ShowReachedTriesMessage(_numTriesMax);
-            else if (tournamentId > 0)
-                _form.CloseForm();
+
+            if (isCancelled)
+                return;
             else
-                _form.ShowSomethingWentWrongMessage();
+            {
+                /*Si no se ha podido calcular en los intentos indicados, 
+                 se notifica,*/
+                if (countTries >= _numTriesMax)
+                    _form.ShowReachedTriesMessage(_numTriesMax);
+                else if (tournamentId > 0)
+                    _form.CloseForm();
+                else
+                    _form.ShowSomethingWentWrongMessage();
+            }            
         }
 
         #endregion
@@ -157,7 +165,6 @@ namespace MahjongTournamentSuite.NewTournament
             }
             _numRounds = _form.GetNumRounds();
             _isTeamsChecked = _form.IsTeamsChecked();
-            _tournamentName = _form.GetTournamentName();
             _numTriesMax = _form.GetNumTries();
             _form.SetTriesCounterLabel(1);
             _form.DisableViews();

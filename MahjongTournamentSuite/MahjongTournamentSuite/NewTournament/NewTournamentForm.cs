@@ -11,7 +11,7 @@ namespace MahjongTournamentSuite.NewTournament
     {
         #region Constants
 
-        internal static readonly string TOURNAMENT_NAME_TEMPLATE_TEXT = "Enter here Tournament name";
+        internal static readonly string TOURNAMENT_NAME_TEMPLATE_TEXT = "Tournament name";
 
         private static readonly Color greenEnabled = Color.FromArgb(0, 177, 106);
         private static readonly Color greenEnabledHover = Color.FromArgb(0, 127, 56);
@@ -33,33 +33,17 @@ namespace MahjongTournamentSuite.NewTournament
             InitializeComponent();
             tbTournamentName.Text = TOURNAMENT_NAME_TEMPLATE_TEXT;
             _presenter = Injector.provideNewTournamentPresenter(this);
+            ActiveControl = tbTournamentName;
+            tbTournamentName.SelectAll();
         }
 
         #endregion
 
         #region Events
 
-        private void btnReturn_Click(object sender, EventArgs e)
-        {
-            new HomeForm().Show();
-            Close();
-        }
-
-        private void imgLogoMM_Click(object sender, EventArgs e)
-        {
-            ProcessStartInfo sInfo = new ProcessStartInfo("http://www.mahjongmadrid.com/");
-            Process.Start(sInfo);
-        }
-
-        private void imgLogoEMA_Click(object sender, EventArgs e)
-        {
-            ProcessStartInfo sInfo = new ProcessStartInfo("http://mahjong-europe.org/portal/");
-            Process.Start(sInfo);
-        }
-
         private void btnStart_Click(object sender, EventArgs e)
         {
-            _presenter.StartClicked();
+            _presenter.StartClicked(tbTournamentName.Text);
         }
 
         private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -74,7 +58,7 @@ namespace MahjongTournamentSuite.NewTournament
 
         private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            _presenter.RunWorkerCompleted();
+            _presenter.RunWorkerCompleted(e.Cancelled);
         }
 
         #endregion
@@ -116,11 +100,6 @@ namespace MahjongTournamentSuite.NewTournament
             return cbTeams.Checked;
         }
 
-        public string GetTournamentName()
-        {
-            return tbTournamentName.Text;
-        }
-
         public int GetNumTries()
         {
             return decimal.ToInt32(numUpDownTriesMax.Value);
@@ -133,6 +112,7 @@ namespace MahjongTournamentSuite.NewTournament
             btnStart.Text = "Start";
             panelLoading.Visible = false;
             panelOptions.Visible = true;
+            btnStart.Visible = false;
             Cursor.Current = Cursors.Default;
         }
 
@@ -146,22 +126,28 @@ namespace MahjongTournamentSuite.NewTournament
             Cursor.Current = Cursors.WaitCursor;
         }
 
-        public void ShowReachedTriesMessage(int numTriesMax)
-        {
-            MessageBox.Show(this, string.Format("Can't calculate tournament after {0} tries.\nIf you want to try again, select more tries.", numTriesMax));
-        }
-
         public void ShowEnterTournamentNameMessage()
         {
             MessageBox.Show(this, "Please enter a name for the tournament.");
         }
 
-        public bool ShowWrongPlayersNumberMessage(int wrongNumPlayers, int goodNumPlayers)
+        public void ShowMessageExistingTournamentName()
+        {
+            MessageBox.Show(this, "There is another Tournament with the same name yet.");
+        }
+
+        public bool ShowWrongPlayersNumberMessage(int wrongNumPlayers, 
+            int goodNumPlayers)
         {
             DialogResult dialogResult = MessageBox.Show(this, 
                 string.Format("{0} is not multiple of 4.\nDo you want to change it to {1}?", wrongNumPlayers, goodNumPlayers),
                 "Wrong number of players", MessageBoxButtons.OKCancel);
             return dialogResult == DialogResult.OK;
+        }
+
+        public void ShowReachedTriesMessage(int numTriesMax)
+        {
+            MessageBox.Show(this, string.Format("Can't calculate tournament after {0} tries.\nIf you want to try again, select more tries.", numTriesMax));
         }
 
         public void ShowSomethingWentWrongMessage()
@@ -177,7 +163,10 @@ namespace MahjongTournamentSuite.NewTournament
         public void SetTriesCounterLabel(int tries)
         {
             if (tries == 0)
+            {
+                btnStart.Visible = false;
                 lblLoadingMessage.Text = "Saving data...";
+            }
             else
                 lblLoadingMessage.Text = string.Format("Tries: {0}", tries);
         }

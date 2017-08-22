@@ -56,6 +56,7 @@ namespace MahjongTournamentSuite.Data
         void UpdateHand(DBHand hand);
 
         void UpdateTablePlayersPositions(DBTable table);
+        bool ExistTournament(string tournamentName);
 
         #endregion
     }
