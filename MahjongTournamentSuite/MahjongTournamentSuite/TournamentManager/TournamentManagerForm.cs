@@ -128,8 +128,12 @@ namespace MahjongTournamentSuite.TournamentManager
                         if (teamSelectorForm.ShowDialog() == DialogResult.OK)
                         {
                             int playerId = (int)dgv.Rows[e.RowIndex].Cells[COLUMN_PLAYERS_ID].Value;
-                            dgv.Rows[e.RowIndex].Cells[COLUMN_PLAYERS_TEAM_NAME].Value =
-                                _presenter.PlayerTeamChanged(playerId, teamSelectorForm.ReturnValue);
+                            int teamId = _presenter.SaveNewPlayerTeam(playerId, teamSelectorForm.ReturnValue);
+                            if (teamId > 0)
+                            {
+                                dgv.Rows[e.RowIndex].Cells[COLUMN_PLAYERS_TEAM].Value = teamId;
+                                dgv.Rows[e.RowIndex].Cells[COLUMN_PLAYERS_TEAM_NAME].Value = teamSelectorForm.ReturnValue;
+                            }
                         }
                     }
                 }
@@ -140,8 +144,12 @@ namespace MahjongTournamentSuite.TournamentManager
                         if (countrySelectorForm.ShowDialog() == DialogResult.OK)
                         {
                             int playerId = (int)dgv.Rows[e.RowIndex].Cells[COLUMN_PLAYERS_ID].Value;
-                            dgv.Rows[e.RowIndex].Cells[COLUMN_PLAYERS_COUNTRY_NAME].Value =
-                                _presenter.PlayerCountryChanged(playerId, countrySelectorForm.ReturnValue);
+                            int countryId = _presenter.SaveNewPlayerCountry(playerId, countrySelectorForm.ReturnValue);
+                            if (countryId > 0)
+                            {
+                                dgv.Rows[e.RowIndex].Cells[COLUMN_PLAYERS_COUNTRY].Value = countryId;
+                                dgv.Rows[e.RowIndex].Cells[COLUMN_PLAYERS_COUNTRY_NAME].Value = countrySelectorForm.ReturnValue;
+                            }
                         }
                     }
                 }
@@ -176,6 +184,14 @@ namespace MahjongTournamentSuite.TournamentManager
                     else
                         DGVCancelEdit();
                 }
+            }
+        }
+
+        private void dgv_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex > -1 && dgv.Columns[e.ColumnIndex].Name.Equals(COLUMN_PLAYERS_TEAM_NAME))
+            {
+                _presenter.PlayerTeamChanged();
             }
         }
 
@@ -242,6 +258,31 @@ namespace MahjongTournamentSuite.TournamentManager
             }
         }
 
+        public void MarkWrongTeamsPlayers(List<WrongTeam> wrongTeams)
+        {
+            if (wrongTeams.Count > 0)
+            {
+                foreach (DataGridViewRow row in dgv.Rows)
+                {
+                    int currentRowTeamId = (int)row.Cells[COLUMN_PLAYERS_TEAM].Value;
+                    WrongTeam wrongTeam = wrongTeams.Find(x => x.TeamId == currentRowTeamId);
+                    if(wrongTeam != null)
+                    {
+                        row.Cells[COLUMN_PLAYERS_TEAM_NAME].ErrorText =
+                            string.Format("{0} players in this team", wrongTeam.NumPlayers);
+                    }
+                }
+            }
+        }
+
+        public void CleanWrongTeamsPlayers()
+        {
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                row.Cells[COLUMN_PLAYERS_TEAM_NAME].ErrorText = string.Empty;
+            }
+        }
+        
         public void AddRoundsSubButtons(int numRounds)
         {
             int numButtonsHorizontal = (splitContainer1.Width - (MARGIN_SIZE * 3)) / (BUTTON_SIDE + MARGIN_SIZE);
@@ -440,6 +481,16 @@ namespace MahjongTournamentSuite.TournamentManager
             dgv.Visible = false;
         }
 
+        public void ShowButtonPlayersBorder()
+        {
+            btnPlayers.FlatAppearance.BorderSize = 1;
+        }
+
+        public void HideButtonPlayersBorder()
+        {
+            btnPlayers.FlatAppearance.BorderSize = 0;
+        }
+
         public void EmptyPanelRoundsButtons()
         {
             List<Control> panelTournamentControls = new List<Control>();
@@ -477,6 +528,22 @@ namespace MahjongTournamentSuite.TournamentManager
         public void DGVCancelEdit()
         {
             dgv.CancelEdit();
+        }
+
+        public void ShowWrongNumberOfPlayersPerTeamMessage(List<WrongTeam> wrongTeams)
+        {
+            string message = string.Empty;
+            foreach (WrongTeam wrongTeam in wrongTeams)
+            {
+                if (message != string.Empty)
+                    message += "\n";
+                message = string.Format("{0}The team \"{1}\" have {2} players.",
+                    message, wrongTeam.TeamName, wrongTeam.NumPlayers);
+            }
+            string caption = "Wrong team number of players";
+            if(wrongTeams.Count > 1)
+                caption = "Wrong teams number of players";
+            MessageBox.Show(message, caption);
         }
 
         public void ShowMessageTeamNameInUse(string usedName, int ownerTeamId)

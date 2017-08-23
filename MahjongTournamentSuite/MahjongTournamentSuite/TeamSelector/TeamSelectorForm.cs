@@ -19,9 +19,9 @@ namespace MahjongTournamentSuite.TeamSelector
         {
             InitializeComponent();
             _presenter = Injector.provideTeamSelectorPresenter(this);
-            _presenter.LoadTeams(tournamentId);
             CancelButton = btnCancel;
             AcceptButton = btnOk;
+            _presenter.LoadTeams(tournamentId);
         }
 
         #endregion
@@ -35,7 +35,7 @@ namespace MahjongTournamentSuite.TeamSelector
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            if (lbTeams.SelectedIndex > 0)
+            if (lbTeams.SelectedIndex >= 0)
                 CloseReturningValue();
         }
 
@@ -58,6 +58,8 @@ namespace MahjongTournamentSuite.TeamSelector
                 Height = 600;
             else
                 Height += heightIncrement;
+
+            lbTeams.SelectedIndex = 0;
         }
 
         #endregion

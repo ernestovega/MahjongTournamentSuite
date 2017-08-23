@@ -35,7 +35,7 @@ namespace MahjongTournamentSuite.CountrySelector
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            if (lbCountries.SelectedIndex > 0)
+            if (lbCountries.SelectedIndex >= 0)
                 CloseReturningValue();
         }
 

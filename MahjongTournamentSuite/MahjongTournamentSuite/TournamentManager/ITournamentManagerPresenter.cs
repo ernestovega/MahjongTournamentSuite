@@ -1,4 +1,7 @@
-﻿namespace MahjongTournamentSuite.TournamentManager
+﻿using MahjongTournamentSuite.Model;
+using System.Collections.Generic;
+
+namespace MahjongTournamentSuite.TournamentManager
 {
     interface ITournamentManagerPresenter
     {
@@ -20,8 +23,10 @@
 
         void PlayerNameChanged(int playerId, string newPlayerName);
 
-        string PlayerTeamChanged(int playerId, string newTeamName);
+        int SaveNewPlayerTeam(int playerId, string newTeamName);
 
-        string PlayerCountryChanged(int playerId, string newCountryName);
+        void PlayerTeamChanged();
+
+        int SaveNewPlayerCountry(int playerId, string newCountryName);
     }
 }

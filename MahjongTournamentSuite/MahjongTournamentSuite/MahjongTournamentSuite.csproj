@@ -113,6 +113,7 @@
     <Compile Include="Model\TableWithAll.cs" />
     <Compile Include="Model\TablePlayer.cs" />
     <Compile Include="Model\DBTournament.cs" />
+    <Compile Include="Model\WrongTeam.cs" />
     <Compile Include="NewTournament\INewTournamentForm.cs" />
     <Compile Include="NewTournament\INewTournamentPresenter.cs" />
     <Compile Include="NewTournament\NewTournamentForm.cs">

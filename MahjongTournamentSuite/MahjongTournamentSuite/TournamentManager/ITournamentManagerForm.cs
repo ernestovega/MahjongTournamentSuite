@@ -11,6 +11,10 @@ namespace MahjongTournamentSuite.TournamentManager
 
         void FillDGVWithPlayers(List<DGVPlayer> players, bool isTeams);
 
+        void MarkWrongTeamsPlayers(List<WrongTeam> wrongTeams);
+
+        void CleanWrongTeamsPlayers();
+
         void AddRoundTablesButtons(int roundId, int numTables);
 
         void GoToTableManager(int roundId, int tableId);
@@ -51,6 +55,10 @@ namespace MahjongTournamentSuite.TournamentManager
 
         void HideDGV();
 
+        void ShowButtonPlayersBorder();
+
+        void HideButtonPlayersBorder();
+
         void EmptyPanelRoundsButtons();
 
         void EmptyPanelRoundTablesButtons();
@@ -68,5 +76,7 @@ namespace MahjongTournamentSuite.TournamentManager
         void ShowMessageCountryError();
 
         void ShowMessageTeamError();
+
+        void ShowWrongNumberOfPlayersPerTeamMessage(List<WrongTeam> wrongTeamNames);
     }
 }

@@ -42,6 +42,14 @@ namespace MahjongTournamentSuite.TournamentManager
             {
                 _teams = _db.GetTournamentTeams(tournamentId);
                 _form.ShowButtonTeams();
+                List<WrongTeam> wrongTeams = GetWrongTeams();
+                if (wrongTeams.Count > 0)
+                {
+                    _form.HideButtonRounds();
+                    _form.ShowButtonPlayersBorder();
+                    ButtonTeamsClicked();
+                    return;
+                }
             }
             ButtonRoundsClicked();
         }
@@ -82,8 +90,24 @@ namespace MahjongTournamentSuite.TournamentManager
             isPlayersSelected = true;
             _form.SelectPlayersButton();
             _form.HideRoundsButtonsAndTablesPanel();
-            _form.ShowDGV();            
+            _form.ShowDGV();
             _form.FillDGVWithPlayers(GetDataGridPlayers(), _tournament.IsTeams);
+            if (_tournament.IsTeams)
+            {
+                List<WrongTeam> wrongTeams = GetWrongTeams();
+                if (wrongTeams.Count > 0)
+                {
+                    _form.HideButtonRounds();
+                    _form.ShowButtonPlayersBorder();
+                    _form.MarkWrongTeamsPlayers(wrongTeams);
+                    _form.ShowWrongNumberOfPlayersPerTeamMessage(wrongTeams);
+                }
+                else
+                {
+                    _form.HideButtonPlayersBorder();
+                    _form.ShowButtonRounds();
+                }
+            }
         }
 
         public void ButtonRoundsClicked()
@@ -147,33 +171,46 @@ namespace MahjongTournamentSuite.TournamentManager
             }
         }
 
-        public string PlayerTeamChanged(int playerId, string newTeamName)
+        public int SaveNewPlayerTeam(int playerId, string newTeamName)
         {
             int newTeamId = _db.GetTeamId(_tournament.TournamentId, newTeamName);
             if (newTeamId > 0)
             {
                 _db.UpdatePlayerTeam(_tournament.TournamentId, playerId, newTeamId);
-                return newTeamName;
+                return newTeamId;
             }
             else
             {
                 _form.ShowMessageTeamError();
-                return "";
+                return 0;
             }
         }
 
-        public string PlayerCountryChanged(int playerId, string newCountryName)
+        public void PlayerTeamChanged()
+        {
+            List<WrongTeam> wrongTeams = GetWrongTeams();
+            if (wrongTeams.Count > 0)
+                ButtonPlayersClicked();
+            else
+            {
+                _form.CleanWrongTeamsPlayers();
+                _form.HideButtonPlayersBorder();
+                _form.ShowButtonRounds();
+            }
+        }
+
+        public int SaveNewPlayerCountry(int playerId, string newCountryName)
         {
             int newCountryId = _db.GetCountryId(newCountryName);
             if (newCountryId > 0)
             {
                 _db.UpdatePlayerCountry(_tournament.TournamentId, playerId, newCountryId);
-                return newCountryName;
+                return newCountryId;
             }
             else
             {
                 _form.ShowMessageCountryError();
-                return "";
+                return 0;
             }
         }
 
@@ -196,6 +233,22 @@ namespace MahjongTournamentSuite.TournamentManager
             return true;
         }
         
+        private List<WrongTeam> GetWrongTeams()
+        {
+            List<WrongTeam> wrongTeams = new List<WrongTeam>();
+            foreach (DBTeam team in _teams)
+            {
+                List<DBPlayer> teamPlayers = _players.FindAll(
+                    x => x.PlayerTournamentId == _tournament.TournamentId
+                    && x.PlayerTeamId == team.TeamId);
+                if (teamPlayers.Count == 0)
+                    wrongTeams.Add(new WrongTeam(team.TeamId, team.TeamName, 0));
+                else if (teamPlayers.Count != 4)
+                    wrongTeams.Add(new WrongTeam(team.TeamId, team.TeamName, teamPlayers.Count));
+            }
+            return wrongTeams;
+        }
+
         /// <summary>
         /// Look for a team that were using the same name. 
         /// </summary>
