@@ -209,6 +209,7 @@
             this.dgvTournaments.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvTournaments_CellFormatting);
             this.dgvTournaments.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvTournaments_CellMouseClick);
             this.dgvTournaments.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvTournaments_CellValidating);
+            this.dgvTournaments.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvTournaments_RowsAdded);
             // 
             // label1
             // 

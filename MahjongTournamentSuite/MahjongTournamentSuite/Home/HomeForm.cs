@@ -26,7 +26,7 @@ namespace MahjongTournamentSuite.Home
         #region Fields
 
         private IHomePresenter _presenter;
-        private int numTournaments = 0;
+        private int _numTournaments = 0;
 
         #endregion
 
@@ -95,6 +95,14 @@ namespace MahjongTournamentSuite.Home
             Process.Start(mahjongTournamentTimer.returnExecutablePath());
         }
 
+        private void dgvTournaments_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            /* BUG FIX: Cuando arrancamos la aplicación y no hay campeonatos, y al crear uno se muestra 
+             * una segunda fila vacía. No entiendo por qué es pero con esto parace que se oculta sin efectos colaterales. */
+            if (dgvTournaments.RowCount > _numTournaments)
+                dgvTournaments.Rows[dgvTournaments.RowCount - 1].Visible = false;
+        }
+
         private void dgvTournaments_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (dgvTournaments.Columns[e.ColumnIndex].Name.Equals(COLUMN_IS_TEAMS_IMAGES))
@@ -149,6 +157,7 @@ namespace MahjongTournamentSuite.Home
 
         public void FillDataGridTournaments(List<DBTournament> tournaments)
         {
+            _numTournaments = tournaments.Count;
             SortableBindingList<DBTournament> sortableTournaments = 
                 new SortableBindingList<DBTournament>(tournaments);
             dgvTournaments.DataSource = sortableTournaments;
@@ -161,7 +170,7 @@ namespace MahjongTournamentSuite.Home
                 dgvTournaments.Columns.Add(imgColumn);
             }
             //Visible
-            dgvTournaments.Columns[COLUMN_ID].Visible = true;
+            dgvTournaments.Columns[COLUMN_ID].Visible = false;
             dgvTournaments.Columns[COLUMN_IS_TEAMS].Visible = false;
             //ReadOnly
             dgvTournaments.Columns[COLUMN_DATE].ReadOnly = true;
