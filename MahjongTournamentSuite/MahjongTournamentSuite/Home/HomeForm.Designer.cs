@@ -36,12 +36,12 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.imgLogoEMA = new System.Windows.Forms.PictureBox();
             this.imgLogoMM = new System.Windows.Forms.PictureBox();
-            this.dgvTournaments = new System.Windows.Forms.DataGridView();
+            this.dgv = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.btnTimer = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoEMA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTournaments)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
             // 
             // btnNew
@@ -163,20 +163,20 @@
             this.imgLogoMM.TabStop = false;
             this.imgLogoMM.Click += new System.EventHandler(this.imgLogoMM_Click);
             // 
-            // dgvTournaments
+            // dgv
             // 
-            this.dgvTournaments.AllowUserToAddRows = false;
-            this.dgvTournaments.AllowUserToDeleteRows = false;
-            this.dgvTournaments.AllowUserToOrderColumns = true;
-            this.dgvTournaments.AllowUserToResizeColumns = false;
-            this.dgvTournaments.AllowUserToResizeRows = false;
-            this.dgvTournaments.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dgv.AllowUserToAddRows = false;
+            this.dgv.AllowUserToDeleteRows = false;
+            this.dgv.AllowUserToOrderColumns = true;
+            this.dgv.AllowUserToResizeColumns = false;
+            this.dgv.AllowUserToResizeRows = false;
+            this.dgv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvTournaments.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dgvTournaments.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dgvTournaments.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvTournaments.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgv.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgv.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ButtonFace;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
@@ -184,9 +184,9 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvTournaments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvTournaments.ColumnHeadersHeight = 40;
-            this.dgvTournaments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgv.ColumnHeadersHeight = 40;
+            this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
@@ -194,22 +194,22 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvTournaments.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvTournaments.GridColor = System.Drawing.SystemColors.Control;
-            this.dgvTournaments.Location = new System.Drawing.Point(14, 122);
-            this.dgvTournaments.Margin = new System.Windows.Forms.Padding(5);
-            this.dgvTournaments.MultiSelect = false;
-            this.dgvTournaments.Name = "dgvTournaments";
-            this.dgvTournaments.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dgvTournaments.RowHeadersVisible = false;
-            this.dgvTournaments.RowTemplate.Height = 32;
-            this.dgvTournaments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTournaments.Size = new System.Drawing.Size(980, 612);
-            this.dgvTournaments.TabIndex = 7;
-            this.dgvTournaments.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvTournaments_CellFormatting);
-            this.dgvTournaments.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvTournaments_CellMouseClick);
-            this.dgvTournaments.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvTournaments_CellValidating);
-            this.dgvTournaments.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvTournaments_RowsAdded);
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgv.GridColor = System.Drawing.SystemColors.Control;
+            this.dgv.Location = new System.Drawing.Point(14, 122);
+            this.dgv.Margin = new System.Windows.Forms.Padding(5);
+            this.dgv.MultiSelect = false;
+            this.dgv.Name = "dgv";
+            this.dgv.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgv.RowHeadersVisible = false;
+            this.dgv.RowTemplate.Height = 32;
+            this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv.Size = new System.Drawing.Size(980, 612);
+            this.dgv.TabIndex = 7;
+            this.dgv.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvTournaments_CellFormatting);
+            this.dgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvTournaments_CellMouseClick);
+            this.dgv.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvTournaments_CellValidating);
+            this.dgv.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvTournaments_RowsAdded);
             // 
             // label1
             // 
@@ -262,7 +262,7 @@
             this.Controls.Add(this.btnTimer);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnResume);
-            this.Controls.Add(this.dgvTournaments);
+            this.Controls.Add(this.dgv);
             this.Controls.Add(this.btnNew);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.imgLogoMM);
@@ -275,7 +275,7 @@
             this.Text = "Mahjong Tournament Suite - Home";
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoEMA)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTournaments)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -286,7 +286,7 @@
         private System.Windows.Forms.PictureBox imgLogoEMA;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.PictureBox imgLogoMM;
-        private System.Windows.Forms.DataGridView dgvTournaments;
+        private System.Windows.Forms.DataGridView dgv;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnTimer;
     }

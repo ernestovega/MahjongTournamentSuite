@@ -31,10 +31,12 @@ namespace MahjongTournamentSuite.NewTournament
         public NewTournamentForm()
         {
             InitializeComponent();
+            Cursor = Cursors.WaitCursor;
             tbTournamentName.Text = TOURNAMENT_NAME_TEMPLATE_TEXT;
             _presenter = Injector.provideNewTournamentPresenter(this);
             ActiveControl = tbTournamentName;
             tbTournamentName.SelectAll();
+            Cursor = Cursors.Default;
         }
 
         #endregion
@@ -113,7 +115,7 @@ namespace MahjongTournamentSuite.NewTournament
             panelLoading.Visible = false;
             panelOptions.Visible = true;
             btnStart.Visible = false;
-            Cursor.Current = Cursors.Default;
+            Cursor = Cursors.Default;
         }
 
         public void DisableViews()
@@ -123,7 +125,7 @@ namespace MahjongTournamentSuite.NewTournament
             btnStart.FlatAppearance.MouseOverBackColor = redDisabledHover;
             panelOptions.Visible = false;
             panelLoading.Visible = true;
-            Cursor.Current = Cursors.WaitCursor;
+            Cursor = Cursors.WaitCursor;
         }
 
         public void ShowEnterTournamentNameMessage()

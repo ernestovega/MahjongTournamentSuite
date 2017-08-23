@@ -30,7 +30,7 @@ namespace MahjongTournamentSuite.Home
         {
             _tournaments = _db.GetTournaments();
             ResumeAndDeleteButtonsEnabling();
-            _form.FillDataGridTournaments(_tournaments);
+            _form.FillDGVTournaments(_tournaments);
         }
 
         public void DeleteClicked(int tournamentId)
@@ -40,7 +40,7 @@ namespace MahjongTournamentSuite.Home
                 _db.DeleteTournament(tournamentId);
                 _tournaments = _db.GetTournaments();
                 ResumeAndDeleteButtonsEnabling();
-                _form.FillDataGridTournaments(_tournaments);
+                _form.FillDGVTournaments(_tournaments);
             }
         }
 

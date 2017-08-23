@@ -5,6 +5,7 @@ using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace MahjongTournamentSuite.Home
@@ -34,8 +35,8 @@ namespace MahjongTournamentSuite.Home
 
         public HomeForm()
         {
-            Cursor = Cursors.WaitCursor;
             InitializeComponent();
+            Cursor = Cursors.WaitCursor;
             _presenter = Injector.provideHomePresenter(this);
             _presenter.LoadTournaments();
             Cursor = Cursors.Default;
@@ -47,21 +48,27 @@ namespace MahjongTournamentSuite.Home
 
         private void imgLogoMM_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             ProcessStartInfo sInfo = new ProcessStartInfo("http://www.mahjongmadrid.com/");
             Process.Start(sInfo);
+            Cursor = Cursors.Default;
         }
 
         private void imgLogoEMA_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             ProcessStartInfo sInfo = new ProcessStartInfo("http://mahjong-europe.org/portal/");
             Process.Start(sInfo);
+            Cursor = Cursors.Default;
         }
 
         public void btnNew_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             NewTournamentForm newTournamentForm = new NewTournamentForm();
             newTournamentForm.FormClosed += new FormClosedEventHandler(NewTournamentForm_FormClosed);
             newTournamentForm.ShowDialog();
+            Cursor = Cursors.Default;
         }
 
         void NewTournamentForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -91,63 +98,65 @@ namespace MahjongTournamentSuite.Home
 
         private void btnTimer_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             var mahjongTournamentTimer = new MahjongTournamentTimer.Program();
             Process.Start(mahjongTournamentTimer.returnExecutablePath());
+            Cursor = Cursors.Default;
         }
 
         private void dgvTournaments_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
-            /* BUG FIX: Cuando arrancamos la aplicación y no hay campeonatos, y al crear uno se muestra 
-             * una segunda fila vacía. No entiendo por qué es pero con esto parace que se oculta sin efectos colaterales. */
-            if (dgvTournaments.RowCount > _numTournaments)
-                dgvTournaments.Rows[dgvTournaments.RowCount - 1].Visible = false;
+            /* BUG FIX: Cuando arrancamos la aplicación y no hay campeonatos, al crear uno, se muestra una
+             * segunda fila vacía. No entiendo por qué es, pero con esto parace que se oculta sin efectos colaterales. */
+            if (dgv.RowCount > _numTournaments)
+                dgv.Rows[dgv.RowCount - 1].Visible = false;
         }
 
         private void dgvTournaments_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (dgvTournaments.Columns[e.ColumnIndex].Name.Equals(COLUMN_IS_TEAMS_IMAGES))
+            if (dgv.Columns[e.ColumnIndex].Name.Equals(COLUMN_IS_TEAMS_IMAGES))
             {
                 DataGridViewCheckBoxCell cellIsTeams = 
-                    (DataGridViewCheckBoxCell)dgvTournaments.Rows[e.RowIndex].Cells[COLUMN_IS_TEAMS];
+                    (DataGridViewCheckBoxCell)dgv.Rows[e.RowIndex].Cells[COLUMN_IS_TEAMS];
                 if (cellIsTeams.Value != null)
                 {
                     if ((bool)cellIsTeams.Value)
                     {
-                        if (dgvTournaments.CurrentCell != null && dgvTournaments.CurrentCell.RowIndex == e.RowIndex)
+                        if (dgv.CurrentCell != null && dgv.CurrentCell.RowIndex == e.RowIndex)
                             e.Value = Properties.Resources.yes_white;
                         else
                             e.Value = Properties.Resources.yes;
                     }
                     else
                     {
-                        if (dgvTournaments.CurrentCell != null && dgvTournaments.CurrentCell.RowIndex == e.RowIndex)
+                        if (dgv.CurrentCell != null && dgv.CurrentCell.RowIndex == e.RowIndex)
                             e.Value = Properties.Resources.no_white;
                         else
                             e.Value = Properties.Resources.no;
                     }
 
-                    dgvTournaments.NotifyCurrentCellDirty(true);
+                    dgv.NotifyCurrentCellDirty(true);
                 }
             }
         }
 
         private void dgvTournaments_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.RowIndex >= 0 && dgvTournaments.Columns[e.ColumnIndex].Name.Equals(COLUMN_NAME))
-                dgvTournaments.BeginEdit(true);
+            if (e.RowIndex >= 0 && dgv.Columns[e.ColumnIndex].Name.Equals(COLUMN_NAME))
+                dgv.BeginEdit(true);
         }
 
         private void dgvTournaments_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if (e.RowIndex >= 0 && dgvTournaments.Columns[e.ColumnIndex].Name.Equals(COLUMN_NAME))
+            if (e.RowIndex >= 0 && dgv.Columns[e.ColumnIndex].Name.Equals(COLUMN_NAME))
             {
                 int tournamentId = GetSelectedTournamentId(e.RowIndex);
-                string previousValue = (string)dgvTournaments.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                string previousValue = (string)dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
                 string newValue = ((string)e.FormattedValue).Trim();
                 if (newValue.Length > 0 && !newValue.Equals(previousValue))
                     _presenter.NameChanged(tournamentId, newValue);
                 else
-                    dgvTournaments.CancelEdit();
+                    dgv.CancelEdit();
             }
         }
 
@@ -155,38 +164,48 @@ namespace MahjongTournamentSuite.Home
 
         #region IHomeForm implementation
 
-        public void FillDataGridTournaments(List<DBTournament> tournaments)
+        public void FillDGVTournaments(List<DBTournament> tournaments)
         {
             _numTournaments = tournaments.Count;
             SortableBindingList<DBTournament> sortableTournaments = 
                 new SortableBindingList<DBTournament>(tournaments);
-            dgvTournaments.DataSource = sortableTournaments;
+            dgv.DataSource = sortableTournaments;
 
             //IsTeams images column creation
-            if (!dgvTournaments.Columns.Contains(COLUMN_IS_TEAMS_IMAGES))
+            if (!dgv.Columns.Contains(COLUMN_IS_TEAMS_IMAGES))
             {
                 DataGridViewImageColumn imgColumn = new DataGridViewImageColumn();
                 imgColumn.Name = COLUMN_IS_TEAMS_IMAGES;
-                dgvTournaments.Columns.Add(imgColumn);
+                dgv.Columns.Add(imgColumn);
             }
             //Visible
-            dgvTournaments.Columns[COLUMN_ID].Visible = false;
-            dgvTournaments.Columns[COLUMN_IS_TEAMS].Visible = false;
+            dgv.Columns[COLUMN_ID].Visible = false;
+            dgv.Columns[COLUMN_IS_TEAMS].Visible = false;
             //ReadOnly
-            dgvTournaments.Columns[COLUMN_DATE].ReadOnly = true;
-            dgvTournaments.Columns[COLUMN_PLAYERS].ReadOnly = true;
-            dgvTournaments.Columns[COLUMN_ROUNDS].ReadOnly = true;
-            dgvTournaments.Columns[COLUMN_IS_TEAMS_IMAGES].ReadOnly = true;
+            dgv.Columns[COLUMN_DATE].ReadOnly = true;
+            dgv.Columns[COLUMN_PLAYERS].ReadOnly = true;
+            dgv.Columns[COLUMN_ROUNDS].ReadOnly = true;
+            dgv.Columns[COLUMN_IS_TEAMS_IMAGES].ReadOnly = true;
+            //Readonly Columns BackColor
+            dgv.Columns[COLUMN_DATE].DefaultCellStyle.BackColor = SystemColors.ControlLight;
+            dgv.Columns[COLUMN_PLAYERS].DefaultCellStyle.BackColor = SystemColors.ControlLight;
+            dgv.Columns[COLUMN_ROUNDS].DefaultCellStyle.BackColor = SystemColors.ControlLight;
+            dgv.Columns[COLUMN_IS_TEAMS_IMAGES].DefaultCellStyle.BackColor = SystemColors.ControlLight;
+            //Readonly Columns ForeColor
+            dgv.Columns[COLUMN_DATE].DefaultCellStyle.ForeColor = SystemColors.GrayText;
+            dgv.Columns[COLUMN_PLAYERS].DefaultCellStyle.ForeColor = SystemColors.GrayText;
+            dgv.Columns[COLUMN_ROUNDS].DefaultCellStyle.ForeColor = SystemColors.GrayText;
+            dgv.Columns[COLUMN_IS_TEAMS_IMAGES].DefaultCellStyle.ForeColor = SystemColors.GrayText;
             //HeaderText
-            dgvTournaments.Columns[COLUMN_DATE].HeaderText = "Creation date";
-            dgvTournaments.Columns[COLUMN_NAME].HeaderText = "Tournament name";
-            dgvTournaments.Columns[COLUMN_PLAYERS].HeaderText = "Players";
-            dgvTournaments.Columns[COLUMN_ROUNDS].HeaderText = "Rounds";
-            dgvTournaments.Columns[COLUMN_IS_TEAMS_IMAGES].HeaderText = "Teams";
+            dgv.Columns[COLUMN_DATE].HeaderText = "Creation date";
+            dgv.Columns[COLUMN_NAME].HeaderText = "Tournament name";
+            dgv.Columns[COLUMN_PLAYERS].HeaderText = "Players";
+            dgv.Columns[COLUMN_ROUNDS].HeaderText = "Rounds";
+            dgv.Columns[COLUMN_IS_TEAMS_IMAGES].HeaderText = "Teams";
             //AutoSizeMode
-            dgvTournaments.Columns[COLUMN_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgv.Columns[COLUMN_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             //SortMode
-            foreach (DataGridViewColumn column in dgvTournaments.Columns)
+            foreach (DataGridViewColumn column in dgv.Columns)
                 column.SortMode = DataGridViewColumnSortMode.Automatic;
         }
 
@@ -238,17 +257,17 @@ namespace MahjongTournamentSuite.Home
 
         private DataGridViewRow GetCurrentSelectedRow()
         {
-            DataGridViewSelectedRowCollection selectedRows = dgvTournaments.SelectedRows;
+            DataGridViewSelectedRowCollection selectedRows = dgv.SelectedRows;
             if (selectedRows != null && selectedRows.Count > 0)
             {
-                return dgvTournaments.SelectedRows[0];
+                return dgv.SelectedRows[0];
             }
             return null;
         }
 
         private int GetSelectedTournamentId(int rowIndex)
         {
-            return (int)dgvTournaments.Rows[rowIndex].Cells[COLUMN_ID].Value;
+            return (int)dgv.Rows[rowIndex].Cells[COLUMN_ID].Value;
         }
 
         #endregion

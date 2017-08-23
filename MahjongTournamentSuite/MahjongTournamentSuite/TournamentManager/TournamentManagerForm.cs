@@ -52,9 +52,11 @@ namespace MahjongTournamentSuite.TournamentManager
         public TournamentManagerForm(int tournamentId)
         {
             InitializeComponent();
+            ShowWaitCursor();
             _tournamentId = tournamentId;
             _presenter = Injector.provideTournamentManagerPresenter(this);
             _presenter.LoadTournament(_tournamentId);
+            ShowDefaultCursor();
         }
 
         #endregion
@@ -77,14 +79,18 @@ namespace MahjongTournamentSuite.TournamentManager
 
         private void imgLogoMM_Click(object sender, EventArgs e)
         {
+            ShowWaitCursor();
             ProcessStartInfo sInfo = new ProcessStartInfo("http://www.mahjongmadrid.com/");
             Process.Start(sInfo);
+            ShowDefaultCursor();
         }
 
         private void imgLogoEMA_Click(object sender, EventArgs e)
         {
+            ShowWaitCursor();
             ProcessStartInfo sInfo = new ProcessStartInfo("http://mahjong-europe.org/portal/");
             Process.Start(sInfo);
+            ShowDefaultCursor();
         }
 
         private void btnTeams_Click(object sender, EventArgs e)
@@ -104,14 +110,18 @@ namespace MahjongTournamentSuite.TournamentManager
 
         private void btnTimer_Click(object sender, EventArgs e)
         {
+            ShowWaitCursor();
             var mahjongTournamentTimer = new MahjongTournamentTimer.Program();
             Process.Start(mahjongTournamentTimer.returnExecutablePath());
+            ShowDefaultCursor();
         }
 
         private void btnRanking_Click(object sender, EventArgs e)
         {
+            ShowWaitCursor();
             //var mahjongTournamentRankingShower = new MahjongTournamentRankingShower.Program();
             //Process.Start(mahjongTournamentRankingShower.returnExecutablePath());
+            ShowDefaultCursor();
         }
 
         private void dgv_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -210,6 +220,10 @@ namespace MahjongTournamentSuite.TournamentManager
             dgv.Columns[COLUMN_TEAMS_TOURNAMENT_ID].Visible = false;
             //ReadOnly
             dgv.Columns[COLUMN_TEAMS_ID].ReadOnly = true;
+            //Readonly columns BackColor
+            dgv.Columns[COLUMN_TEAMS_ID].DefaultCellStyle.BackColor = SystemColors.ControlLight;
+            //Readonly columns ForeColor
+            dgv.Columns[COLUMN_TEAMS_ID].DefaultCellStyle.ForeColor = SystemColors.GrayText;
             //HeaderText
             dgv.Columns[COLUMN_TEAMS_ID].HeaderText = "Team Id";
             dgv.Columns[COLUMN_TEAMS_NAME].HeaderText = "Team Name";
@@ -231,7 +245,12 @@ namespace MahjongTournamentSuite.TournamentManager
             dgv.Columns[COLUMN_PLAYERS_COUNTRY].Visible = false;
             //ReadOnly
             dgv.Columns[COLUMN_PLAYERS_ID].ReadOnly = true;
+            dgv.Columns[COLUMN_PLAYERS_TEAM_NAME].ReadOnly = true;
             dgv.Columns[COLUMN_PLAYERS_COUNTRY_NAME].ReadOnly = true;
+            //Readonly Columns BackColor
+            dgv.Columns[COLUMN_PLAYERS_ID].DefaultCellStyle.BackColor = SystemColors.ControlLight;
+            //Readonly Columns ForeColor
+            dgv.Columns[COLUMN_PLAYERS_ID].DefaultCellStyle.ForeColor = SystemColors.GrayText;
             //HeaderText
             dgv.Columns[COLUMN_PLAYERS_ID].HeaderText = "Player Id";
             dgv.Columns[COLUMN_PLAYERS_NAME].HeaderText = "Player Name";
@@ -303,7 +322,9 @@ namespace MahjongTournamentSuite.TournamentManager
                 btnRound.Location = buttonStartPoint;
                 btnRound.Click += delegate
                 {
+                    ShowWaitCursor();
                     _presenter.ButtonRoundClicked((int)btnRound.Tag);
+                    ShowDefaultCursor();
                 };
 
                 splitContainer1.Panel1.Controls.Add(btnRound);
@@ -347,7 +368,9 @@ namespace MahjongTournamentSuite.TournamentManager
                 button.Location = buttonStartPoint;
                 button.Click += delegate
                 {
+                    ShowWaitCursor();
                     _presenter.ButtonRoundTableClicked((int)button.Tag);
+                    ShowDefaultCursor();
                 };
 
                 splitContainer1.Panel2.Controls.Add(button);
@@ -469,6 +492,16 @@ namespace MahjongTournamentSuite.TournamentManager
         public void HideButtonRounds()
         {
             btnRounds.Visible = false;
+        }
+
+        public void ShowWaitCursor()
+        {
+            Cursor = Cursors.WaitCursor;
+        }
+
+        public void ShowDefaultCursor()
+        {
+            Cursor = Cursors.Default;
         }
 
         public void ShowDGV()

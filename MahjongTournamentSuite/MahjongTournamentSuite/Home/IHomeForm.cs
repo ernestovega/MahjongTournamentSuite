@@ -5,7 +5,7 @@ namespace MahjongTournamentSuite.Home
 {
     internal interface IHomeForm
     {
-        void FillDataGridTournaments(List<DBTournament> tournaments);
+        void FillDGVTournaments(List<DBTournament> tournaments);
 
         string GetCurrentTournamentName();
 

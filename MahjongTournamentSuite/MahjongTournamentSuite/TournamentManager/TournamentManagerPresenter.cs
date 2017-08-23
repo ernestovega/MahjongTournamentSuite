@@ -56,7 +56,8 @@ namespace MahjongTournamentSuite.TournamentManager
 
         public void OnFormResized()
         {
-            if(isRoundsSelected)
+            _form.ShowWaitCursor();
+            if (isRoundsSelected)
             {
                 _form.EmptyPanelRoundsButtons();
                 _form.AddRoundsSubButtons(_tournament.NumRounds);
@@ -65,11 +66,13 @@ namespace MahjongTournamentSuite.TournamentManager
                 _form.SelectRoundButton(roundSelected);
                 if(tableSelected > 0)
                     _form.SelectRoundTableButton(tableSelected);
+                _form.ShowDefaultCursor();
             }
         }
 
         public void ButtonTeamsClicked()
         {
+            _form.ShowWaitCursor();
             UnselectTable(tableSelected);
             UnselectRound(roundSelected);
             UnselectRounds();
@@ -79,10 +82,12 @@ namespace MahjongTournamentSuite.TournamentManager
             _form.HideRoundsButtonsAndTablesPanel();
             _form.ShowDGV();
             _form.FillDGVWithTeams(_teams);
+            _form.ShowDefaultCursor();
         }
 
         public void ButtonPlayersClicked()
         {
+            _form.ShowWaitCursor();
             UnselectTable(tableSelected);
             UnselectRound(roundSelected);
             UnselectRounds();
@@ -108,10 +113,12 @@ namespace MahjongTournamentSuite.TournamentManager
                     _form.ShowButtonRounds();
                 }
             }
+            _form.ShowDefaultCursor();
         }
 
         public void ButtonRoundsClicked()
         {
+            _form.ShowWaitCursor();
             UnselectTable(tableSelected);
             UnselectRound(roundSelected);
             UnselectPlayers();
@@ -126,6 +133,7 @@ namespace MahjongTournamentSuite.TournamentManager
             roundSelected = 1;
             _form.AddRoundTablesButtons(roundSelected, _tournament.NumPlayers / 4);
             _form.SelectRoundButton(roundSelected);
+            _form.ShowDefaultCursor();
         }
 
         public void ButtonRoundClicked(int roundId)
@@ -140,26 +148,32 @@ namespace MahjongTournamentSuite.TournamentManager
 
         public void ButtonRoundTableClicked(int tableId)
         {
+            _form.ShowWaitCursor();
             UnselectTable(tableSelected);
             tableSelected = tableId;
             _form.SelectRoundTableButton(tableId);
             _form.GoToTableManager(roundSelected, tableId);
+            _form.ShowDefaultCursor();
         }
 
         public void TeamNameChanged(int teamId, string newName)
         {
+            _form.ShowWaitCursor();
             int ownerTeamId = GetOwnerTeamNameId(newName);
             if (ownerTeamId > 0)
             {
                 _form.DGVCancelEdit();
                 _form.ShowMessageTeamNameInUse(newName, ownerTeamId);
+                _form.ShowDefaultCursor();
                 return;
             }
             _db.UpdateTeamName(_tournament.TournamentId, teamId, newName);
+            _form.ShowDefaultCursor();
         }
 
         public void PlayerNameChanged(int playerId, string newName)
         {
+            _form.ShowWaitCursor();
             int ownerPlayerId = GetOwnerPlayerNameId(newName);
             if (ownerPlayerId == 0)
                 _db.UpdatePlayerName(_tournament.TournamentId, playerId, newName);
@@ -167,27 +181,33 @@ namespace MahjongTournamentSuite.TournamentManager
             {
                 _form.DGVCancelEdit();
                 _form.ShowMessagePlayerNameInUse(newName, ownerPlayerId);
+                _form.ShowDefaultCursor();
                 return;
             }
+            _form.ShowDefaultCursor();
         }
 
         public int SaveNewPlayerTeam(int playerId, string newTeamName)
         {
+            _form.ShowWaitCursor();
             int newTeamId = _db.GetTeamId(_tournament.TournamentId, newTeamName);
             if (newTeamId > 0)
             {
                 _db.UpdatePlayerTeam(_tournament.TournamentId, playerId, newTeamId);
+                _form.ShowDefaultCursor();
                 return newTeamId;
             }
             else
             {
                 _form.ShowMessageTeamError();
+                _form.ShowDefaultCursor();
                 return 0;
             }
         }
 
         public void PlayerTeamChanged()
         {
+            _form.ShowWaitCursor();
             List<WrongTeam> wrongTeams = GetWrongTeams();
             if (wrongTeams.Count > 0)
                 ButtonPlayersClicked();
@@ -197,19 +217,23 @@ namespace MahjongTournamentSuite.TournamentManager
                 _form.HideButtonPlayersBorder();
                 _form.ShowButtonRounds();
             }
+            _form.ShowDefaultCursor();
         }
 
         public int SaveNewPlayerCountry(int playerId, string newCountryName)
         {
+            _form.ShowWaitCursor();
             int newCountryId = _db.GetCountryId(newCountryName);
             if (newCountryId > 0)
             {
                 _db.UpdatePlayerCountry(_tournament.TournamentId, playerId, newCountryId);
+                _form.ShowDefaultCursor();
                 return newCountryId;
             }
             else
             {
                 _form.ShowMessageCountryError();
+                _form.ShowDefaultCursor();
                 return 0;
             }
         }

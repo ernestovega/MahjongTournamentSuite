@@ -110,6 +110,12 @@ namespace MahjongTournamentSuite.NewTournament
 
             worker.ReportProgress(countTries, null);
 
+            if (worker.CancellationPending)
+            {
+                e.Cancel = true;
+                return;
+            }
+
             //Generamos todas las vistas y mostramos las mesas
             GenerateTablesWithAll(_numRounds);
             //GenerateSTablesWithNames();
@@ -118,6 +124,12 @@ namespace MahjongTournamentSuite.NewTournament
             //GenerateRivalsByPlayer();
 
             worker.ReportProgress(0, null);
+
+            if (worker.CancellationPending)
+            {
+                e.Cancel = true;
+                return;
+            }
 
             SaveTournament();
             SavePlayers();
@@ -162,11 +174,11 @@ namespace MahjongTournamentSuite.NewTournament
                 else
                     return false;
             }
+            _form.DisableViews();
             _numRounds = _form.GetNumRounds();
             _isTeamsChecked = _form.IsTeamsChecked();
             _numTriesMax = _form.GetNumTries();
             _form.SetTriesCounterLabel(1);
-            _form.DisableViews();
             return true;
         }
         
