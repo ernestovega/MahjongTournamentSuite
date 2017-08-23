@@ -19,7 +19,7 @@ namespace MahjongTournamentSuite.NewTournament
 
         private INewTournamentForm _form;
         private IDBManager _db;
-        private DBTournament dbTournament;
+        private DBTournament _tournament;
         private List<Player> players = new List<Player>();
         private List<TablePlayer> tablePlayers = new List<TablePlayer>();
         private List<TableWithAll> tablesWithAll = new List<TableWithAll>();
@@ -34,7 +34,6 @@ namespace MahjongTournamentSuite.NewTournament
         private Random random = new Random();
         private string _tournamentName = string.Empty;
         private bool _isTeamsChecked;
-        private int tournamentId;
 
         #endregion
 
@@ -112,7 +111,7 @@ namespace MahjongTournamentSuite.NewTournament
             worker.ReportProgress(countTries, null);
 
             //Generamos todas las vistas y mostramos las mesas
-            GenerateTablesWhitAll(_numRounds);
+            GenerateTablesWithAll(_numRounds);
             //GenerateSTablesWithNames();
             //GenerateSTablesWithIds();
             //GenerateTablesByPlayer();
@@ -139,7 +138,7 @@ namespace MahjongTournamentSuite.NewTournament
                  se notifica,*/
                 if (countTries >= _numTriesMax)
                     _form.ShowReachedTriesMessage(_numTriesMax);
-                else if (tournamentId > 0)
+                else if (_tournament.TournamentId > 0)
                     _form.CloseForm();
                 else
                     _form.ShowSomethingWentWrongMessage();
@@ -319,7 +318,7 @@ namespace MahjongTournamentSuite.NewTournament
             return null;
         }
 
-        private void GenerateTablesWhitAll(int numRounds)
+        private void GenerateTablesWithAll(int numRounds)
         {
             for (currentRound = 1; currentRound <= numRounds; currentRound++)
             {
@@ -439,9 +438,9 @@ namespace MahjongTournamentSuite.NewTournament
 
         private void SaveTournament()
         {
-            tournamentId = _db.GetExistingMaxTournamentId() + 1;
-            dbTournament = new DBTournament(tournamentId, DateTime.Now, players.Count, _numRounds, _isTeamsChecked, _tournamentName);
-            _db.AddTournament(dbTournament);
+            int tournamentId = _db.GetExistingMaxTournamentId() + 1;
+            _tournament = new DBTournament(tournamentId, DateTime.Now, players.Count, _numRounds, _isTeamsChecked, _tournamentName);
+            _db.AddTournament(_tournament);
         }
 
         private void SavePlayers()
@@ -449,7 +448,7 @@ namespace MahjongTournamentSuite.NewTournament
             List<DBPlayer> dbPlayers = new List<DBPlayer>();
             foreach (Player player in players)
             {
-                dbPlayers.Add(new DBPlayer(dbTournament.TournamentId, player.Id, player.Name, int.Parse(player.Team), 0));
+                dbPlayers.Add(new DBPlayer(_tournament.TournamentId, player.Id, player.Name, int.Parse(player.Team), 0));
             }
             _db.AddPlayers(dbPlayers);
         }
@@ -460,10 +459,10 @@ namespace MahjongTournamentSuite.NewTournament
             List<DBHand> dbHands = new List<DBHand>();
             foreach (TableWithAll table in tablesWithAll)
             {
-                dbTables.Add(new DBTable(dbTournament.TournamentId, table.roundId, table.tableId,
+                dbTables.Add(new DBTable(_tournament.TournamentId, table.roundId, table.tableId,
                     table.player1Id, table.player2Id, table.player3Id, table.player4Id));
                 for (int i = 1; i <= NUM_TABLE_HANDS; i++)
-                    dbHands.Add(new DBHand(tournamentId, table.roundId, table.tableId, i));
+                    dbHands.Add(new DBHand(_tournament.TournamentId, table.roundId, table.tableId, i));
             }
             _db.AddTables(dbTables, dbHands);
         }
@@ -473,7 +472,7 @@ namespace MahjongTournamentSuite.NewTournament
             List<DBTeam> dbTeams = new List<DBTeam>();
             for (int i = 1; i <= players.Count / 4; i++)
             {
-                dbTeams.Add(new DBTeam(dbTournament.TournamentId, i, i.ToString()));
+                dbTeams.Add(new DBTeam(_tournament.TournamentId, i, i.ToString()));
             }
             _db.AddTeams(dbTeams);
         }

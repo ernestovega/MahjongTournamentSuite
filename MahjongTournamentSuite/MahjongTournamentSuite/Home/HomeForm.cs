@@ -26,6 +26,7 @@ namespace MahjongTournamentSuite.Home
         #region Fields
 
         private IHomePresenter _presenter;
+        private int numTournaments = 0;
 
         #endregion
 
@@ -83,7 +84,8 @@ namespace MahjongTournamentSuite.Home
         private void btnDelete_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            _presenter.DeleteClicked();
+            int tournamentId = GetCurrentTournamentId();
+            _presenter.DeleteClicked(tournamentId);
             Cursor = Cursors.Default;
         }
 
@@ -95,12 +97,13 @@ namespace MahjongTournamentSuite.Home
 
         private void dgvTournaments_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (dgvTournaments.Columns.Count == 7 &&  dgvTournaments.Columns[e.ColumnIndex].Name.Equals(COLUMN_IS_TEAMS_IMAGES))
+            if (dgvTournaments.Columns[e.ColumnIndex].Name.Equals(COLUMN_IS_TEAMS_IMAGES))
             {
-                DataGridViewCheckBoxCell isTeamsCell = (DataGridViewCheckBoxCell)dgvTournaments.Rows[e.RowIndex].Cells[COLUMN_IS_TEAMS];
-                if (isTeamsCell.Value != null)
+                DataGridViewCheckBoxCell cellIsTeams = 
+                    (DataGridViewCheckBoxCell)dgvTournaments.Rows[e.RowIndex].Cells[COLUMN_IS_TEAMS];
+                if (cellIsTeams.Value != null)
                 {
-                    if ((bool)isTeamsCell.Value)
+                    if ((bool)cellIsTeams.Value)
                     {
                         if (dgvTournaments.CurrentCell != null && dgvTournaments.CurrentCell.RowIndex == e.RowIndex)
                             e.Value = Properties.Resources.yes_white;
@@ -120,29 +123,23 @@ namespace MahjongTournamentSuite.Home
             }
         }
 
-        private void dgvTournaments_CellEnter(object sender, DataGridViewCellEventArgs e)
+        private void dgvTournaments_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (dgvTournaments.Columns.Count == 7)
-            {
-                if (e.RowIndex > -1 && dgvTournaments.Columns[e.ColumnIndex].Name.Equals(COLUMN_NAME))
-                    dgvTournaments.BeginEdit(true);
-            }
+            if (e.RowIndex >= 0 && dgvTournaments.Columns[e.ColumnIndex].Name.Equals(COLUMN_NAME))
+                dgvTournaments.BeginEdit(true);
         }
-        
+
         private void dgvTournaments_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if (dgvTournaments.Columns.Count == 7)
+            if (e.RowIndex >= 0 && dgvTournaments.Columns[e.ColumnIndex].Name.Equals(COLUMN_NAME))
             {
-                if (e.RowIndex > -1 && dgvTournaments.Columns[e.ColumnIndex].Name.Equals(COLUMN_NAME))
-                {
-                    int tournamentId = GetSelectedTournamentId(e.RowIndex);
-                    string previousValue = (string)dgvTournaments.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-                    string newValue = ((string)e.FormattedValue).Trim();
-                    if (newValue.Length > 0 && !newValue.Equals(previousValue))
-                        _presenter.NameChanged(tournamentId, newValue);
-                    else
-                        dgvTournaments.CancelEdit();
-                }
+                int tournamentId = GetSelectedTournamentId(e.RowIndex);
+                string previousValue = (string)dgvTournaments.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                string newValue = ((string)e.FormattedValue).Trim();
+                if (newValue.Length > 0 && !newValue.Equals(previousValue))
+                    _presenter.NameChanged(tournamentId, newValue);
+                else
+                    dgvTournaments.CancelEdit();
             }
         }
 
@@ -164,7 +161,7 @@ namespace MahjongTournamentSuite.Home
                 dgvTournaments.Columns.Add(imgColumn);
             }
             //Visible
-            dgvTournaments.Columns[COLUMN_ID].Visible = false;
+            dgvTournaments.Columns[COLUMN_ID].Visible = true;
             dgvTournaments.Columns[COLUMN_IS_TEAMS].Visible = false;
             //ReadOnly
             dgvTournaments.Columns[COLUMN_DATE].ReadOnly = true;

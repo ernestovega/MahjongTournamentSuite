@@ -1,7 +1,6 @@
 ﻿using MahjongTournamentSuite.Data;
 using MahjongTournamentSuite.Model;
 using System.Collections.Generic;
-using System;
 
 namespace MahjongTournamentSuite.Home
 {
@@ -10,7 +9,7 @@ namespace MahjongTournamentSuite.Home
         #region Fields
 
         private IHomeForm _form;
-        private IDBManager _dbManager;
+        private IDBManager _db;
         private List<DBTournament> _tournaments;
 
         #endregion
@@ -20,7 +19,7 @@ namespace MahjongTournamentSuite.Home
         public HomePresenter(IHomeForm homeForm)
         {
             _form = homeForm;
-            _dbManager = Injector.provideDBManager();
+            _db = Injector.provideDBManager();
         }
 
         #endregion
@@ -29,18 +28,17 @@ namespace MahjongTournamentSuite.Home
 
         public void LoadTournaments()
         {
-            _tournaments = _dbManager.GetTournaments();
+            _tournaments = _db.GetTournaments();
             ResumeAndDeleteButtonsEnabling();
             _form.FillDataGridTournaments(_tournaments);
         }
 
-        public void DeleteClicked()
+        public void DeleteClicked(int tournamentId)
         {
-            int tournamentId = _form.GetCurrentTournamentId();
             if (tournamentId > -1 && _form.RequestDeleteTournamentConfirmation())
             {
-                DeleteTournament(tournamentId);
-                _tournaments = _dbManager.GetTournaments();
+                _db.DeleteTournament(tournamentId);
+                _tournaments = _db.GetTournaments();
                 ResumeAndDeleteButtonsEnabling();
                 _form.FillDataGridTournaments(_tournaments);
             }
@@ -48,7 +46,7 @@ namespace MahjongTournamentSuite.Home
 
         public void NameChanged(int tournamentId, string newName)
         {
-            _dbManager.UpdateTournamentName(tournamentId, newName);
+            _db.UpdateTournamentName(tournamentId, newName);
         }
 
         public string GetTournamentName(int tournamentId)
@@ -66,11 +64,6 @@ namespace MahjongTournamentSuite.Home
                 _form.EnableResumeAndDeleteButton();
             else
                 _form.DisableResumeAndDeleteButton();
-        }
-
-        private void DeleteTournament(int tournamentId)
-        {
-            _dbManager.DeleteTournament(tournamentId);
         }
 
         #endregion

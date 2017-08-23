@@ -70,14 +70,38 @@ namespace MahjongTournamentSuite.Data
 
         public void DeleteTournament(int tournamentId)
         {
-            _db.Hands.RemoveRange(_db.Hands.ToList().FindAll( x => x.HandTournamentId == tournamentId));
-            _db.Tables.RemoveRange(_db.Tables.ToList().FindAll( x => x.TableTournamentId == tournamentId));
-            _db.Players.RemoveRange(_db.Players.ToList().FindAll( x => x.PlayerTournamentId == tournamentId));
+            DeleteHands(_db.Hands.ToList().FindAll(x => x.HandTournamentId == tournamentId));
+            DeleteTables(_db.Tables.ToList().FindAll(x => x.TableTournamentId == tournamentId));
+            DeletePlayers(_db.Players.ToList().FindAll(x => x.PlayerTournamentId == tournamentId));
             DBTournament tournament = _db.Tournaments.ToList().Find( x => x.TournamentId == tournamentId);
             if (tournament.IsTeams)
-                _db.Teams.RemoveRange(_db.Teams.ToList().FindAll( x => x.TeamTournamentId == tournamentId));
+                DeleteTeams(_db.Teams.ToList().FindAll( x => x.TeamTournamentId == tournamentId));
             _db.Tournaments.Remove(tournament);
             _db.SaveChanges();
+        }
+
+        private void DeleteHands(List<DBHand> hands)
+        {
+            foreach (DBHand hand in hands)
+                _db.Hands.Remove(hand);
+        }
+
+        private void DeleteTables(List<DBTable> tables)
+        {
+            foreach (DBTable table in tables)
+                _db.Tables.Remove(table);
+        }
+
+        private void DeletePlayers(List<DBPlayer> players)
+        {
+            foreach (DBPlayer player in players)
+                _db.Players.Remove(player);
+        }
+
+        private void DeleteTeams(List<DBTeam> teams)
+        {
+            foreach (DBTeam team in teams)
+                _db.Teams.Remove(team);
         }
 
         #endregion

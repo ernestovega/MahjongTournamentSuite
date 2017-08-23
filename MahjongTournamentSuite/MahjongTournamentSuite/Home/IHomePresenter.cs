@@ -4,7 +4,7 @@
     {
         void LoadTournaments();
 
-        void DeleteClicked();
+        void DeleteClicked(int tournamentId);
 
         void NameChanged(int tournamentId, string sCellValue);
 

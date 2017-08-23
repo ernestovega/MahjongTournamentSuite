@@ -206,8 +206,8 @@
             this.dgvTournaments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvTournaments.Size = new System.Drawing.Size(980, 612);
             this.dgvTournaments.TabIndex = 7;
-            this.dgvTournaments.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTournaments_CellEnter);
             this.dgvTournaments.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvTournaments_CellFormatting);
+            this.dgvTournaments.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvTournaments_CellMouseClick);
             this.dgvTournaments.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvTournaments_CellValidating);
             // 
             // label1

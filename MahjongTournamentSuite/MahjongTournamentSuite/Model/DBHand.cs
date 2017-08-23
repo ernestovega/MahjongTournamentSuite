@@ -33,6 +33,7 @@ namespace MahjongTournamentSuite.Model
             HandRoundId = roundId;
             HandTableId = tableId;
             HandId = id;
+            HandScore = 0;
         }
     }
 }
