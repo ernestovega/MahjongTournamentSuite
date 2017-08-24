@@ -21,7 +21,7 @@ namespace MahjongTournamentSuite.Model
 
         public int PlayerLooserId { get; set; }
 
-        public int HandScore { get; set; }
+        public string HandScore { get; set; }
 
         public bool IsChickenHand { get; set; }
 
@@ -33,7 +33,20 @@ namespace MahjongTournamentSuite.Model
             HandRoundId = roundId;
             HandTableId = tableId;
             HandId = id;
-            HandScore = 0;
+            HandScore = "";
+        }
+
+        public DBHand(int tournamentId, int roundId, int tableId, int id,
+            int playerWinnerId, int playerLooserId, string handScore, bool isChickenHand)
+        {
+            HandTournamentId = tournamentId;
+            HandRoundId = roundId;
+            HandTableId = tableId;
+            HandId = id;
+            PlayerWinnerId = playerWinnerId;
+            PlayerLooserId = playerLooserId;
+            HandScore = handScore;
+            IsChickenHand = isChickenHand;
         }
     }
 }

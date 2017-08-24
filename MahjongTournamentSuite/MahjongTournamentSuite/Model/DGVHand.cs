@@ -4,24 +4,25 @@ namespace MahjongTournamentSuite.TableManager
 {
     internal class DGVHand : DBHand
     {
-        public int PlayerEastScore { get; set; }
+        public string PlayerEastScore { get; set; }
 
-        public int PlayerSouthScore { get; set; }
+        public string PlayerSouthScore { get; set; }
 
-        public int PlayerWestScore { get; set; }
+        public string PlayerWestScore { get; set; }
 
-        public int PlayerNorthScore { get; set; }
+        public string PlayerNorthScore { get; set; }
 
         public DGVHand() {}
 
-        public DGVHand(DBHand dbHand, int playerEastScore, 
-            int playerSouthScore, int playerWestScore, int playerNorthScore) 
-            : base(dbHand.HandTournamentId, dbHand.HandRoundId, dbHand.HandTableId, dbHand.HandId)
+        public DGVHand(DBHand dbHand) 
+            : base(dbHand.HandTournamentId, dbHand.HandRoundId, 
+                  dbHand.HandTableId, dbHand.HandId, dbHand.PlayerWinnerId,
+                  dbHand.PlayerLooserId, dbHand.HandScore, dbHand.IsChickenHand)
         {
-            PlayerEastScore = playerEastScore;
-            PlayerSouthScore = playerSouthScore;
-            PlayerWestScore = playerWestScore;
-            PlayerNorthScore = playerNorthScore;
+            PlayerEastScore = string.Empty;
+            PlayerSouthScore = string.Empty;
+            PlayerWestScore = string.Empty;
+            PlayerNorthScore = string.Empty;
         }
     }
 }

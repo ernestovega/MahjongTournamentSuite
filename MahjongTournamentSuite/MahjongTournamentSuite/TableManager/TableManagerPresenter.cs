@@ -44,77 +44,41 @@ namespace MahjongTournamentSuite.TableManager
                 _form.ShowDataGridHands();
                 CalculateAndFillAllScores();
             }
-            else
-            {
-                _form.OpenEastComboBox();
-            }
         }
 
         public void NameEastPlayerChanged(int selectedPlayerId)
         {
             _table.PlayerEastId = selectedPlayerId;
-            if (FillPlayerHeaders(true))
-            {
-                _form.ShowDataGridHands();
-            }
-            else
-            {
-                _form.HideDataGridHands();
-                _form.OpenSouthComboBox();
-            }
+            ShowDGVIfAllPlayersPositionsSelected();
         }
 
         public void NameSouthPlayerChanged(int selectedPlayerId)
         {
             _table.PlayerSouthId = selectedPlayerId;
-            if (FillPlayerHeaders(true))
-            {
-                _form.ShowDataGridHands();
-            }
-            else
-            {
-                _form.HideDataGridHands();
-                _form.OpenWestComboBox();
-            }
+            ShowDGVIfAllPlayersPositionsSelected();
         }
 
         public void NameWestPlayerChanged(int selectedPlayerId)
         {
             _table.PlayerWestId = selectedPlayerId;
-            if (FillPlayerHeaders(true))
-            {
-                _form.ShowDataGridHands();
-            }
-            else
-            {
-                _form.HideDataGridHands();
-                _form.OpenNorthComboBox();
-            }
+            ShowDGVIfAllPlayersPositionsSelected();
         }
 
         public void NameNorthPlayerChanged(int selectedPlayerId)
         {
             _table.PlayerNorthId = selectedPlayerId;
-            if (FillPlayerHeaders(true))
-            {
-                _form.ShowDataGridHands();
-            }
-            else
-            {
-                _form.HideDataGridHands();
-                _form.OpenEastComboBox();
-            }
+            ShowDGVIfAllPlayersPositionsSelected();
         }
 
         public void playerWinnerIdChanged(int handId, int newPlayerWinnerId)
         {
             DBHand hand = _hands.Find(x => x.HandId == handId);
             hand.PlayerWinnerId = newPlayerWinnerId;
-            if (hand.PlayerLooserId > 0 && hand.HandScore > -1)
+            if (hand.PlayerLooserId > 0 && !hand.HandScore.Equals(string.Empty))
             {
                 CalculateAndFillAllScores();
             }
-            _db.UpdateHand(hand);
+            _db.UpdateHandWinnerId(hand);
             FillDataGridHands();
         }
 
@@ -122,31 +86,30 @@ namespace MahjongTournamentSuite.TableManager
         {
             DBHand hand = _hands.Find(x => x.HandId == handId);
             hand.PlayerLooserId = newPlayerLooserId;
-            if (hand.PlayerWinnerId > 0 && hand.HandScore > -1)
+            if (hand.PlayerWinnerId > 0 && !hand.HandScore.Equals(string.Empty))
             {
                 CalculateAndFillAllScores();
             }
-            _db.UpdateHand(hand);
+            _db.UpdateHandLooserId(hand);
             FillDataGridHands();
         }
 
-        public void PointsChanged(int handId, int newPoints)
+        public void HandScoreChanged(int handId, int newPoints)
         {
             DBHand hand = _hands.Find(x => x.HandId == handId);
-            hand.HandScore = newPoints;
-            if (hand.PlayerWinnerId > 0 && hand.PlayerLooserId > 0)
+            hand.HandScore = newPoints.ToString();
+            if (hand.PlayerWinnerId > 0 && hand.PlayerLooserId > 0 
+                && !hand.HandScore.Equals(string.Empty))
             {
                 CalculateAndFillAllScores();
                 FillDataGridHands();
             }
-            _db.UpdateHand(hand);
+            _db.UpdateHandScore(hand);
         }
 
         public void IsChickenHandChanged(int handId, bool cellValue)
         {
-            DBHand hand = _hands.Find(x => x.HandId == handId);
-            hand.IsChickenHand = cellValue;
-            _db.UpdateHand(hand);
+            _db.UpdateHandIsChickenHand(_hands.Find(x => x.HandId == handId), cellValue);
         }
 
         #endregion
@@ -155,12 +118,19 @@ namespace MahjongTournamentSuite.TableManager
 
         private void FillDataGridHands()
         {
-            List<DGVHand> dataGridHands = new List<DGVHand>();
+            List<DGVHand> dgvHands = new List<DGVHand>();
             foreach(DBHand hand in _hands)
-            {
-                dataGridHands.Add(new DGVHand(hand, 0, 0, 0, 0));
-            }
-            _form.FillDataGridHands(dataGridHands);
+                dgvHands.Add(new DGVHand(hand));
+
+            _form.FillDGV(dgvHands);
+        }
+
+        private void ShowDGVIfAllPlayersPositionsSelected()
+        {
+            if (FillPlayerHeaders(true))
+                _form.ShowDataGridHands();
+            else
+                _form.HideDataGridHands();
         }
 
         private bool FillPlayerHeaders(bool shouldSave)
@@ -263,25 +233,23 @@ namespace MahjongTournamentSuite.TableManager
         {
             foreach (DBHand hand in _hands)
             {
-                if(hand.HandScore < 0)
-                {
-                    return;
-                }
-                else if (hand.HandScore == 0)//Washout
-                {
-                    _form.FillPlayersHandScores(hand.HandId, 0, 0, 0, 0);
-                }
-                else
-                {
-                    if(hand.PlayerLooserId > 0)//Ron
-                    {
-                        //_form.FillPlayersHandScores(hand.Id, 0, 0, 0, 0);
-                    }
-                    else//Tsumo
-                    {
-                        //_form.FillPlayersHandScores(hand.Id, 0, 0, 0, 0);
-                    }
-                }
+                //if(hand.HandScore < 0)
+                //    return;
+                //else if (hand.HandScore == 0)
+                //{//WASHOUT
+                //    _form.FillPlayersHandScores(hand.HandId, 0, 0, 0, 0);
+                //}
+                //else
+                //{
+                //    if(hand.PlayerLooserId > 0)
+                //    {//RON
+                //        _form.FillPlayersHandScores(hand.Id, 0, 0, 0, 0);
+                //    }
+                //    else
+                //    {//TSUMO
+                //        _form.FillPlayersHandScores(hand.Id, 0, 0, 0, 0);
+                //    }
+                //}
                 CalculateTotalScores();
             }
             

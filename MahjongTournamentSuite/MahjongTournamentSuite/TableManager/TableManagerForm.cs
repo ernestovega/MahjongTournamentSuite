@@ -109,7 +109,6 @@ namespace MahjongTournamentSuite.TableManager
                     checkCell.Value = checkCell.Value == null || !((bool)checkCell.Value);
                     dgv.BeginEdit(true);
                     dgv.RefreshEdit();
-                    //dgv.NotifyCurrentCellDirty(true);
                     _presenter.IsChickenHandChanged(GetSelectedHandId(e.RowIndex), (bool)checkCell.Value);
                     ShowDefaultCursor();
                 }
@@ -192,15 +191,16 @@ namespace MahjongTournamentSuite.TableManager
             comboNorthPlayer.SelectedIndex = playerNorthIndex;
         }
 
-        public void FillDataGridHands(List<DGVHand> dataGridHands)
+        public void FillDGV(List<DGVHand> dgvHands)
         {
-            dgv.DataSource = dataGridHands;
+            dgv.DataSource = dgvHands;
             //Column Visible
             dgv.Columns[COLUMN_TOURNAMENT_ID].Visible = false;
             dgv.Columns[COLUMN_ROUND_ID].Visible = false;
             dgv.Columns[COLUMN_TABLE_ID].Visible = false;
             //Column ReadOnly
             dgv.Columns[COLUMN_ID].ReadOnly = true;
+            dgv.Columns[COLUMN_IS_CHICKEN_HAND].ReadOnly = true;
             dgv.Columns[COLUMN_PLAYER_EAST_SCORE].ReadOnly = true;
             dgv.Columns[COLUMN_PLAYER_SOUTH_SCORE].ReadOnly = true;
             dgv.Columns[COLUMN_PLAYER_WEST_SCORE].ReadOnly = true;
@@ -262,26 +262,6 @@ namespace MahjongTournamentSuite.TableManager
         public void SetNorthPlayerHeader(string selectedText)
         {
             dgv.Columns[COLUMN_PLAYER_NORTH_SCORE].HeaderText = selectedText;
-        }
-
-        public void OpenEastComboBox()
-        {
-            comboEastPlayer.DroppedDown = true;
-        }
-
-        public void OpenSouthComboBox()
-        {
-            comboSouthPlayer.DroppedDown = true;
-        }
-
-        public void OpenWestComboBox()
-        {
-            comboWestPlayer.DroppedDown = true;
-        }
-
-        public void OpenNorthComboBox()
-        {
-            comboNorthPlayer.DroppedDown = true;
         }
 
         public void ShowWaitCursor()

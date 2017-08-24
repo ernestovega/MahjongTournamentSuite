@@ -15,7 +15,7 @@ namespace MahjongTournamentSuite.TableManager
 
         void SelectPlayersInCombos(int playerEastId, int playerSouthId, int playerWestId, int playerNorthId);
 
-        void FillDataGridHands(List<DGVHand> dataGridHands);
+        void FillDGV(List<DGVHand> dataGridHands);
 
         void FillPlayersHandScores(int id, int eastPlayerScore, 
             int southPlayerScore, int westPlayerScore, int northPlayerScore);
@@ -27,14 +27,6 @@ namespace MahjongTournamentSuite.TableManager
         void SetWestPlayerHeader(string selectedValue);
 
         void SetNorthPlayerHeader(string selectedValue);
-
-        void OpenEastComboBox();
-
-        void OpenSouthComboBox();
-
-        void OpenWestComboBox();
-
-        void OpenNorthComboBox();
 
         void ShowWaitCursor();
 

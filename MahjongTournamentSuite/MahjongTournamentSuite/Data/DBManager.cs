@@ -196,15 +196,36 @@ namespace MahjongTournamentSuite.Data
         {
             return _db.Hands.ToList().FindAll(x => x.HandTournamentId == tournamentId && x.HandRoundId == roundId && x.HandTableId == tableId);
         }
-        
-        public void UpdateHand(DBHand hand)
+
+        public void UpdateHandWinnerId(DBHand hand)
         {
             DBHand dbHand = _db.Hands.ToList().Find(x => x.HandTournamentId == hand.HandTournamentId
             && x.HandTableId == hand.HandTableId && x.HandRoundId == hand.HandRoundId && x.HandId == hand.HandId);
             dbHand.PlayerWinnerId = hand.PlayerWinnerId;
+            _db.SaveChanges();
+        }
+
+        public void UpdateHandLooserId(DBHand hand)
+        {
+            DBHand dbHand = _db.Hands.ToList().Find(x => x.HandTournamentId == hand.HandTournamentId
+            && x.HandTableId == hand.HandTableId && x.HandRoundId == hand.HandRoundId && x.HandId == hand.HandId);
             dbHand.PlayerLooserId = hand.PlayerLooserId;
+            _db.SaveChanges();
+        }
+
+        public void UpdateHandScore(DBHand hand)
+        {
+            DBHand dbHand = _db.Hands.ToList().Find(x => x.HandTournamentId == hand.HandTournamentId
+            && x.HandTableId == hand.HandTableId && x.HandRoundId == hand.HandRoundId && x.HandId == hand.HandId);
             dbHand.HandScore = hand.HandScore;
-            dbHand.IsChickenHand = hand.IsChickenHand;
+            _db.SaveChanges();
+        }
+
+        public void UpdateHandIsChickenHand(DBHand hand, bool newValue)
+        {
+            DBHand dbHand = _db.Hands.ToList().Find(x => x.HandTournamentId == hand.HandTournamentId
+            && x.HandTableId == hand.HandTableId  && x.HandRoundId == hand.HandRoundId  && x.HandId == hand.HandId);
+            dbHand.IsChickenHand = newValue;
             _db.SaveChanges();
         }
         
@@ -546,6 +567,6 @@ namespace MahjongTournamentSuite.Data
             }
         }
 
-        #endregion        
+        #endregion
     }
 }
