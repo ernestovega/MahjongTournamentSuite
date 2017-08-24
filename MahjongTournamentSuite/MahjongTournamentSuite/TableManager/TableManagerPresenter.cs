@@ -44,42 +44,66 @@ namespace MahjongTournamentSuite.TableManager
                 _form.ShowDataGridHands();
                 CalculateAndFillAllScores();
             }
+            else
+            {
+                _form.OpenEastComboBox();
+            }
         }
 
         public void NameEastPlayerChanged(int selectedPlayerId)
         {
             _table.PlayerEastId = selectedPlayerId;
             if (FillPlayerHeaders(true))
+            {
                 _form.ShowDataGridHands();
+            }
             else
+            {
                 _form.HideDataGridHands();
+                _form.OpenSouthComboBox();
+            }
         }
 
         public void NameSouthPlayerChanged(int selectedPlayerId)
         {
             _table.PlayerSouthId = selectedPlayerId;
             if (FillPlayerHeaders(true))
+            {
                 _form.ShowDataGridHands();
+            }
             else
+            {
                 _form.HideDataGridHands();
+                _form.OpenWestComboBox();
+            }
         }
 
         public void NameWestPlayerChanged(int selectedPlayerId)
         {
             _table.PlayerWestId = selectedPlayerId;
             if (FillPlayerHeaders(true))
+            {
                 _form.ShowDataGridHands();
+            }
             else
+            {
                 _form.HideDataGridHands();
+                _form.OpenNorthComboBox();
+            }
         }
 
         public void NameNorthPlayerChanged(int selectedPlayerId)
         {
             _table.PlayerNorthId = selectedPlayerId;
             if (FillPlayerHeaders(true))
+            {
                 _form.ShowDataGridHands();
+            }
             else
+            {
                 _form.HideDataGridHands();
+                _form.OpenEastComboBox();
+            }
         }
 
         public void playerWinnerIdChanged(int handId, int newPlayerWinnerId)

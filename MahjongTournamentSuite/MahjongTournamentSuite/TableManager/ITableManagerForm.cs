@@ -28,6 +28,18 @@ namespace MahjongTournamentSuite.TableManager
 
         void SetNorthPlayerHeader(string selectedValue);
 
+        void OpenEastComboBox();
+
+        void OpenSouthComboBox();
+
+        void OpenWestComboBox();
+
+        void OpenNorthComboBox();
+
+        void ShowWaitCursor();
+
+        void ShowDefaultCursor();
+
         void ShowDataGridHands();
 
         void HideDataGridHands();

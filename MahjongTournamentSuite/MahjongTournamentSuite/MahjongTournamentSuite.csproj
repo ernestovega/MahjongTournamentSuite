@@ -199,6 +199,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\EMALogo.png" />
+    <Content Include="Resources\este.png" />
     <Content Include="Resources\favicon.ico" />
     <Content Include="Resources\gong.png" />
     <Content Include="Resources\gong_big.png" />
@@ -207,9 +208,12 @@
     <Content Include="Resources\MMLoading.gif" />
     <Content Include="Resources\MMLogo.png" />
     <Content Include="Resources\no.png" />
+    <Content Include="Resources\norte.png" />
     <Content Include="Resources\no_white.png" />
+    <Content Include="Resources\oeste.png" />
     <Content Include="Resources\players.png" />
     <Content Include="Resources\players_white.png" />
+    <Content Include="Resources\sur.png" />
     <Content Include="Resources\table_white.png" />
     <Content Include="Resources\teams.png" />
     <Content Include="Resources\teams_white.png" />

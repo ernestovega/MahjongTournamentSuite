@@ -187,4 +187,16 @@
   <data name="yes_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\yes_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="este" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\este.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="norte" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\norte.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="oeste" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\oeste.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sur" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\sur.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
