@@ -64,7 +64,6 @@ namespace MahjongTournamentSuite.TableManager
             ShowDefaultCursor();
         }
 
-        //Combos
         private void comboEastPlayer_SelectionChangeCommitted(object sender, EventArgs e)
         {
             ShowWaitCursor();
@@ -93,8 +92,7 @@ namespace MahjongTournamentSuite.TableManager
             ShowDefaultCursor();
         }
 
-        //Cells
-        private void dataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void dgv_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
@@ -115,34 +113,48 @@ namespace MahjongTournamentSuite.TableManager
             }
         }
 
-        private void dataGridHands_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        private void dgv_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
                 if (dgv.Columns[e.ColumnIndex].Name.Equals(COLUMN_PLAYER_WINNER_ID))
                 {
-                    //ShowWaitCursor();
-                    //int handId = GetSelectedHandId(e.RowIndex);
-                    //string sCellValue = (string)dgv.Rows[e.RowIndex].Cells[COLUMN_PLAYER_WINNER_ID].Value;
-                    //int iCellValue = 
-                    //if (isValidIntValue(sCellValue))
-                    //    _presenter.playerWinnerIdChanged(handId, int.Parse(sCellValue));
-                    //else
-                    //    dgv.CancelEdit();
+                    ShowWaitCursor();
+                    int handId = GetSelectedHandId(e.RowIndex);
+                    string previousValue = (string)dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                    string newValue = ((string)e.FormattedValue).Trim();
+                    if (!newValue.Equals(previousValue) && _presenter.PlayerWinnerIdChanged(handId, newValue))
+                    {
+                        DGVCancelEdit();
+                        dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = int.Parse(newValue).ToString();
+                    }
+                    ShowDefaultCursor();
                 }
                 else if (dgv.Columns[e.ColumnIndex].Name.Equals(COLUMN_PLAYER_LOOSER_ID))
                 {
-                    //ShowWaitCursor();
-                    //int handId = GetSelectedHandId(e.RowIndex);
-                    //int cellValue = (int)dgv.Rows[e.RowIndex].Cells[COLUMN_PLAYER_LOOSER_ID].Value;
-                    //_presenter.playerLooserIdChanged(handId, cellValue);
+                    ShowWaitCursor();
+                    int handId = GetSelectedHandId(e.RowIndex);
+                    string previousValue = (string)dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                    string newValue = ((string)e.FormattedValue).Trim();
+                    if (!newValue.Equals(previousValue) && _presenter.PlayerLooserIdChanged(handId, newValue))
+                    {
+                        DGVCancelEdit();
+                        dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = int.Parse(newValue).ToString();
+                    }
+                    ShowDefaultCursor();
                 }
                 else if (dgv.Columns[e.ColumnIndex].Name.Equals(COLUMN_HAND_SCORE))
                 {
-                    //ShowWaitCursor();
-                    //int handId = GetSelectedHandId(e.RowIndex);
-                    //int cellValue = (int)dgv.Rows[e.RowIndex].Cells[COLUMN_HAND_SCORE].Value;
-                    //_presenter.PointsChanged(handId, cellValue);
+                    ShowWaitCursor();
+                    int handId = GetSelectedHandId(e.RowIndex);
+                    string previousValue = (string)dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                    string newValue = ((string)e.FormattedValue).Trim();
+                    if (!newValue.Equals(previousValue) && _presenter.HandScoreChanged(handId, newValue))
+                    {
+                        DGVCancelEdit();
+                        dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = int.Parse(newValue).ToString();
+                    }
+                    ShowDefaultCursor();
                 }
             }
         }
@@ -262,6 +274,11 @@ namespace MahjongTournamentSuite.TableManager
         public void SetNorthPlayerHeader(string selectedText)
         {
             dgv.Columns[COLUMN_PLAYER_NORTH_SCORE].HeaderText = selectedText;
+        }
+
+        public void DGVCancelEdit()
+        {
+            dgv.CancelEdit();
         }
 
         public void ShowWaitCursor()

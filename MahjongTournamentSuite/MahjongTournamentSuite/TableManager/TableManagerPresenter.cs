@@ -42,7 +42,7 @@ namespace MahjongTournamentSuite.TableManager
             if(FillPlayerHeaders(false))
             {
                 _form.ShowDataGridHands();
-                CalculateAndFillAllScores();
+                CalculateAndFillAllScoresIfHandIsComplete();
             }
         }
 
@@ -70,46 +70,45 @@ namespace MahjongTournamentSuite.TableManager
             ShowDGVIfAllPlayersPositionsSelected();
         }
 
-        public void playerWinnerIdChanged(int handId, int newPlayerWinnerId)
+        public bool PlayerWinnerIdChanged(int handId, string sNewPlayerWinnerId)
         {
-            DBHand hand = _hands.Find(x => x.HandId == handId);
-            hand.PlayerWinnerId = newPlayerWinnerId;
-            if (hand.PlayerLooserId > 0 && !hand.HandScore.Equals(string.Empty))
+            if (IsValidPlayerId(sNewPlayerWinnerId))
             {
-                CalculateAndFillAllScores();
+                _db.UpdateHandWinnerId(_hands.Find(x => x.HandId == handId), sNewPlayerWinnerId);
+                CalculateAndFillAllScoresIfHandIsComplete();
+                return true;
             }
-            _db.UpdateHandWinnerId(hand);
-            FillDataGridHands();
+            _form.DGVCancelEdit();
+            return false;
         }
 
-        public void playerLooserIdChanged(int handId, int newPlayerLooserId)
+        public bool PlayerLooserIdChanged(int handId, string sNewPlayerLooserId)
         {
-            DBHand hand = _hands.Find(x => x.HandId == handId);
-            hand.PlayerLooserId = newPlayerLooserId;
-            if (hand.PlayerWinnerId > 0 && !hand.HandScore.Equals(string.Empty))
+            if (IsValidPlayerId(sNewPlayerLooserId))
             {
-                CalculateAndFillAllScores();
+                _db.UpdateHandLooserId(_hands.Find(x => x.HandId == handId), sNewPlayerLooserId);
+                CalculateAndFillAllScoresIfHandIsComplete();
+                return true;
             }
-            _db.UpdateHandLooserId(hand);
-            FillDataGridHands();
+            _form.DGVCancelEdit();
+            return false;
         }
 
-        public void HandScoreChanged(int handId, int newPoints)
+        public bool HandScoreChanged(int handId, string sNewHandScore)
         {
-            DBHand hand = _hands.Find(x => x.HandId == handId);
-            hand.HandScore = newPoints.ToString();
-            if (hand.PlayerWinnerId > 0 && hand.PlayerLooserId > 0 
-                && !hand.HandScore.Equals(string.Empty))
+            if (IsValidScore(sNewHandScore))
             {
-                CalculateAndFillAllScores();
-                FillDataGridHands();
+                _db.UpdateHandScore(_hands.Find(x => x.HandId == handId), sNewHandScore);
+                CalculateAndFillAllScoresIfHandIsComplete();
+                return true;
             }
-            _db.UpdateHandScore(hand);
+            _form.DGVCancelEdit();
+            return false;
         }
 
-        public void IsChickenHandChanged(int handId, bool cellValue)
+        public void IsChickenHandChanged(int handId, bool newIsChickenHand)
         {
-            _db.UpdateHandIsChickenHand(_hands.Find(x => x.HandId == handId), cellValue);
+            _db.UpdateHandIsChickenHand(_hands.Find(x => x.HandId == handId), newIsChickenHand);
         }
 
         #endregion
@@ -229,13 +228,32 @@ namespace MahjongTournamentSuite.TableManager
                 return 4;
         }
 
-        private void CalculateAndFillAllScores()
+        private bool IsValidPlayerId(string stringValue)
+        {
+            int intValue;
+            bool result = int.TryParse(stringValue, out intValue);
+            return result && intValue > 0 && IsACurrentTablePlayerId(intValue);
+        }
+
+        private bool IsACurrentTablePlayerId(int playerId)
+        {
+            return _tablePlayers.Find(x => x.PlayerId == playerId) != null;
+        }
+
+        private bool IsValidScore(string stringValue)
+        {
+            int intValue;
+            bool result = int.TryParse(stringValue, out intValue);
+            return result && intValue >= 0;
+        }
+
+        private void CalculateAndFillAllScoresIfHandIsComplete()
         {
             foreach (DBHand hand in _hands)
             {
-                //if(hand.HandScore < 0)
+                //if(hand.HandScore.Equals(string.Empty))
                 //    return;
-                //else if (hand.HandScore == 0)
+                //else if (int.Parse(hand.HandScore) == 0)
                 //{//WASHOUT
                 //    _form.FillPlayersHandScores(hand.HandId, 0, 0, 0, 0);
                 //}

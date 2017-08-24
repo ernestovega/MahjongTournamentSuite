@@ -221,8 +221,8 @@
             this.dgv.Size = new System.Drawing.Size(980, 500);
             this.dgv.TabIndex = 26;
             this.dgv.Visible = false;
-            this.dgv.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridHands_CellEndEdit);
-            this.dgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView_CellMouseClick);
+            this.dgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_CellMouseClick);
+            this.dgv.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgv_CellValidating);
             // 
             // label6
             // 

@@ -28,6 +28,8 @@ namespace MahjongTournamentSuite.TableManager
 
         void SetNorthPlayerHeader(string selectedValue);
 
+        void DGVCancelEdit();
+
         void ShowWaitCursor();
 
         void ShowDefaultCursor();

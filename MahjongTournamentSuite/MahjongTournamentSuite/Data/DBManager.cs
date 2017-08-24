@@ -115,8 +115,7 @@ namespace MahjongTournamentSuite.Data
 
         public List<DBPlayer> GetTablePlayers(int tournamentId, int roundId, int tableId)
         {
-            DBTable table = _db.Tables.ToList().Find(
-                x => x.TableTournamentId == tournamentId && 
+            DBTable table = _db.Tables.ToList().Find(x => x.TableTournamentId == tournamentId && 
                 x.TableRoundId == roundId && x.TableId == tableId);
             List<DBPlayer> tablePlayers = new List<DBPlayer>(4);
             tablePlayers.Add(_db.Players.ToList().Find(
@@ -197,35 +196,35 @@ namespace MahjongTournamentSuite.Data
             return _db.Hands.ToList().FindAll(x => x.HandTournamentId == tournamentId && x.HandRoundId == roundId && x.HandTableId == tableId);
         }
 
-        public void UpdateHandWinnerId(DBHand hand)
+        public void UpdateHandWinnerId(DBHand hand, string newWinnerPlayerId)
         {
             DBHand dbHand = _db.Hands.ToList().Find(x => x.HandTournamentId == hand.HandTournamentId
             && x.HandTableId == hand.HandTableId && x.HandRoundId == hand.HandRoundId && x.HandId == hand.HandId);
-            dbHand.PlayerWinnerId = hand.PlayerWinnerId;
+            dbHand.PlayerWinnerId = newWinnerPlayerId;
             _db.SaveChanges();
         }
 
-        public void UpdateHandLooserId(DBHand hand)
+        public void UpdateHandLooserId(DBHand hand, string newLooserPlayerId)
         {
             DBHand dbHand = _db.Hands.ToList().Find(x => x.HandTournamentId == hand.HandTournamentId
             && x.HandTableId == hand.HandTableId && x.HandRoundId == hand.HandRoundId && x.HandId == hand.HandId);
-            dbHand.PlayerLooserId = hand.PlayerLooserId;
+            dbHand.PlayerLooserId = newLooserPlayerId;
             _db.SaveChanges();
         }
 
-        public void UpdateHandScore(DBHand hand)
+        public void UpdateHandScore(DBHand hand, string newHandScore)
         {
             DBHand dbHand = _db.Hands.ToList().Find(x => x.HandTournamentId == hand.HandTournamentId
             && x.HandTableId == hand.HandTableId && x.HandRoundId == hand.HandRoundId && x.HandId == hand.HandId);
-            dbHand.HandScore = hand.HandScore;
+            dbHand.HandScore = newHandScore;
             _db.SaveChanges();
         }
 
-        public void UpdateHandIsChickenHand(DBHand hand, bool newValue)
+        public void UpdateHandIsChickenHand(DBHand hand, bool newIsChickenHand)
         {
             DBHand dbHand = _db.Hands.ToList().Find(x => x.HandTournamentId == hand.HandTournamentId
             && x.HandTableId == hand.HandTableId  && x.HandRoundId == hand.HandRoundId  && x.HandId == hand.HandId);
-            dbHand.IsChickenHand = newValue;
+            dbHand.IsChickenHand = newIsChickenHand;
             _db.SaveChanges();
         }
         

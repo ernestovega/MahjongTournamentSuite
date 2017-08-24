@@ -17,9 +17,9 @@ namespace MahjongTournamentSuite.Model
         [Key, Column(Order = 3)]
         public int HandId { get; set; }
         
-        public int PlayerWinnerId { get; set; }
+        public string PlayerWinnerId { get; set; }
 
-        public int PlayerLooserId { get; set; }
+        public string PlayerLooserId { get; set; }
 
         public string HandScore { get; set; }
 
@@ -33,11 +33,14 @@ namespace MahjongTournamentSuite.Model
             HandRoundId = roundId;
             HandTableId = tableId;
             HandId = id;
-            HandScore = "";
+            PlayerWinnerId = string.Empty;
+            PlayerLooserId = string.Empty;
+            HandScore = string.Empty;
         }
 
         public DBHand(int tournamentId, int roundId, int tableId, int id,
-            int playerWinnerId, int playerLooserId, string handScore, bool isChickenHand)
+            string playerWinnerId, string playerLooserId, string handScore, 
+            bool isChickenHand)
         {
             HandTournamentId = tournamentId;
             HandRoundId = roundId;

@@ -73,13 +73,13 @@ namespace MahjongTournamentSuite.Data
 
         void UpdateTablePlayersPositions(DBTable table);
 
-        void UpdateHandWinnerId(DBHand hand);
+        void UpdateHandWinnerId(DBHand hand, string newPlayerWinnerId);
 
-        void UpdateHandLooserId(DBHand hand);
+        void UpdateHandLooserId(DBHand hand, string newPlayerLooserId);
 
-        void UpdateHandScore(DBHand hand);
+        void UpdateHandScore(DBHand hand, string newHandScore);
 
-        void UpdateHandIsChickenHand(DBHand hand, bool newValue);
+        void UpdateHandIsChickenHand(DBHand hand, bool newIsChickenHand);
 
         #endregion
     }

@@ -200,9 +200,7 @@ namespace MahjongTournamentSuite.TournamentManager
         private void dgv_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex > -1 && dgv.Columns[e.ColumnIndex].Name.Equals(COLUMN_PLAYERS_TEAM_NAME))
-            {
                 _presenter.PlayerTeamChanged();
-            }
         }
 
         #endregion
