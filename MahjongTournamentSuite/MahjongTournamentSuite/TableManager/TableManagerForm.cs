@@ -58,11 +58,7 @@ namespace MahjongTournamentSuite.TableManager
 
         private void TableManagerForm_SizeChanged(object sender, EventArgs e)
         {
-            if (Size.Width < dgv.Width)
-                dgv.Width = Size.Width - FORM_MARGINS;
-            else
-                dgv.Width = dgv.Width;
-            CenterDGV();
+
         }
 
         #endregion
@@ -112,25 +108,33 @@ namespace MahjongTournamentSuite.TableManager
             _presenter.NameNorthPlayerChanged(int.Parse(((ComboItem)comboNorthPlayer.SelectedItem).Value));
             ShowDefaultCursor();
         }
-
-        private void tbEastPlayerTotalScore_TextChanged(object sender, EventArgs e)
+        
+        private void tbEastPlayerTotalScore_Validated(object sender, EventArgs e)
         {
-
+            ShowWaitCursor();
+            tbEastPlayerTotalScore.Text = _presenter.TotalScoreEastPlayerChanged(tbEastPlayerTotalScore.Text.Trim());
+            ShowDefaultCursor();
         }
 
-        private void tbSouthPlayerTotalScore_TextChanged(object sender, EventArgs e)
+        private void tbSouthPlayerTotalScore_Validated(object sender, EventArgs e)
         {
-
+            ShowWaitCursor();
+            tbSouthPlayerTotalScore.Text = _presenter.TotalScoreSouthPlayerChanged(tbSouthPlayerTotalScore.Text);
+            ShowDefaultCursor();
         }
 
-        private void tbWestPlayerTotalScore_TextChanged(object sender, EventArgs e)
+        private void tbWestPlayerTotalScore_Leave(object sender, EventArgs e)
         {
-
+            ShowWaitCursor();
+            tbWestPlayerTotalScore.Text = _presenter.TotalScoreWestPlayerChanged(tbWestPlayerTotalScore.Text);
+            ShowDefaultCursor();
         }
 
-        private void tbNorthPlayerTotalScore_TextChanged(object sender, EventArgs e)
+        private void tbNorthPlayerTotalScore_Leave(object sender, EventArgs e)
         {
-
+            ShowWaitCursor();
+            tbNorthPlayerTotalScore.Text = _presenter.TotalScoreNorthPlayerChanged(tbNorthPlayerTotalScore.Text);
+            ShowDefaultCursor();
         }
 
         void dgv_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -414,7 +418,7 @@ namespace MahjongTournamentSuite.TableManager
             SetEastPlayerTotalScoreTextBox(playerEastTotalScore);
             SetSouthPlayerTotalScoreTextBox(playerSouthTotalScore);
             SetWestPlayerTotalScoreTextBox(playerWestTotalScore);
-            SetNorthPlayerTotalScoreTextBox(playerWestTotalScore);
+            SetNorthPlayerTotalScoreTextBox(playerNorthTotalScore);
         }
 
         public void FillAllTotalPointsTextBoxes(string playerEastTotalPoints, string playerSouthTotalPoints,

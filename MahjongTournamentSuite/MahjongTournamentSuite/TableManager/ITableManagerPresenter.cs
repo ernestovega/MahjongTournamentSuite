@@ -14,6 +14,14 @@ namespace MahjongTournamentSuite.TableManager
 
         void NameNorthPlayerChanged(int selectedPlayerId);
 
+        string TotalScoreEastPlayerChanged(string newScore);
+
+        string TotalScoreSouthPlayerChanged(string newScore);
+
+        string TotalScoreWestPlayerChanged(string newScore);
+
+        string TotalScoreNorthPlayerChanged(string newScore);
+
         string PlayerWinnerIdChanged(int handId, string previousValue, string newValue);
 
         string PlayerLooserIdChanged(int handId, string previousValue, string newValue);

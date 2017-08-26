@@ -515,7 +515,7 @@
             this.tbEastPlayerTotalScore.Size = new System.Drawing.Size(86, 26);
             this.tbEastPlayerTotalScore.TabIndex = 85;
             this.tbEastPlayerTotalScore.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbEastPlayerTotalScore.TextChanged += new System.EventHandler(this.tbEastPlayerTotalScore_TextChanged);
+            this.tbEastPlayerTotalScore.Validated += new System.EventHandler(this.tbEastPlayerTotalScore_Validated);
             // 
             // tbSouthPlayerTotalScore
             // 
@@ -527,7 +527,7 @@
             this.tbSouthPlayerTotalScore.Size = new System.Drawing.Size(86, 26);
             this.tbSouthPlayerTotalScore.TabIndex = 89;
             this.tbSouthPlayerTotalScore.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbSouthPlayerTotalScore.TextChanged += new System.EventHandler(this.tbSouthPlayerTotalScore_TextChanged);
+            this.tbSouthPlayerTotalScore.Validated += new System.EventHandler(this.tbSouthPlayerTotalScore_Validated);
             // 
             // tbSouthPlayerTotalPoints
             // 
@@ -580,7 +580,7 @@
             this.tbWestPlayerTotalScore.Size = new System.Drawing.Size(86, 26);
             this.tbWestPlayerTotalScore.TabIndex = 93;
             this.tbWestPlayerTotalScore.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbWestPlayerTotalScore.TextChanged += new System.EventHandler(this.tbWestPlayerTotalScore_TextChanged);
+            this.tbWestPlayerTotalScore.Leave += new System.EventHandler(this.tbWestPlayerTotalScore_Leave);
             // 
             // tbWestPlayerTotalPoints
             // 
@@ -633,7 +633,7 @@
             this.tbNorthPlayerTotalScore.Size = new System.Drawing.Size(86, 26);
             this.tbNorthPlayerTotalScore.TabIndex = 97;
             this.tbNorthPlayerTotalScore.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbNorthPlayerTotalScore.TextChanged += new System.EventHandler(this.tbNorthPlayerTotalScore_TextChanged);
+            this.tbNorthPlayerTotalScore.Leave += new System.EventHandler(this.tbNorthPlayerTotalScore_Leave);
             // 
             // tbNorthPlayerTotalPoints
             // 

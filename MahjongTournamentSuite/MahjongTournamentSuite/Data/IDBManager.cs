@@ -73,6 +73,14 @@ namespace MahjongTournamentSuite.Data
 
         void UpdateTablePlayersPositions(DBTable table);
 
+        void UpdateTableEastPlayerScore(DBTable table);
+
+        void UpdateTableSouthPlayerScore(DBTable table);
+
+        void UpdateTableWestPlayerScore(DBTable table);
+
+        void UpdateTableNorthPlayerScore(DBTable table);
+
         void UpdateHandWinnerId(DBHand hand, string newPlayerWinnerId);
 
         void UpdateHandLooserId(DBHand hand, string newPlayerLooserId);

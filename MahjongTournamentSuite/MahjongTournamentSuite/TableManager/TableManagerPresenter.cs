@@ -72,6 +72,62 @@ namespace MahjongTournamentSuite.TableManager
             ShowDGVIfAllPlayersPositionsSelected();
         }
 
+        public string TotalScoreEastPlayerChanged(string newScore)
+        {
+            int validValue;
+            if (int.TryParse(newScore, out validValue))
+            {
+                string sValidValue = validValue.ToString();
+                _table.PlayerEastTotalScore = sValidValue;
+                _db.UpdateTableEastPlayerScore(_table);
+                return validValue.ToString();
+            }
+            _form.PlayKoSound();
+            return _table.PlayerEastTotalScore;
+        }
+
+        public string TotalScoreSouthPlayerChanged(string newScore)
+        {
+            int validValue;
+            if (int.TryParse(newScore, out validValue))
+            {
+                string sValidValue = validValue.ToString();
+                _table.PlayerSouthTotalScore = sValidValue;
+                _db.UpdateTableSouthPlayerScore(_table);
+                return validValue.ToString();
+            }
+            _form.PlayKoSound();
+            return _table.PlayerSouthTotalScore;
+        }
+
+        public string TotalScoreWestPlayerChanged(string newScore)
+        {
+            int validValue;
+            if (int.TryParse(newScore, out validValue))
+            {
+                string sValidValue = validValue.ToString();
+                _table.PlayerWestTotalScore = sValidValue;
+                _db.UpdateTableWestPlayerScore(_table);
+                return validValue.ToString();
+            }
+            _form.PlayKoSound();
+            return _table.PlayerWestTotalScore;
+        }
+
+        public string TotalScoreNorthPlayerChanged(string newScore)
+        {
+            int validValue;
+            if (int.TryParse(newScore, out validValue))
+            {
+                string sValidValue = validValue.ToString();
+                _table.PlayerNorthTotalScore = sValidValue;
+                _db.UpdateTableNorthPlayerScore(_table);
+                return sValidValue;
+            }
+            _form.PlayKoSound();
+            return _table.PlayerNorthTotalScore;
+        }
+
         public string PlayerWinnerIdChanged(int handId, string previousValue, string newValue)
         {
             string returnValue = null;
@@ -261,6 +317,23 @@ namespace MahjongTournamentSuite.TableManager
             }
         }
 
+        private void FillCombosPlayers()
+        {
+            List<ComboItem> comboPlayers = new List<ComboItem>(5);
+            comboPlayers.Add(new ComboItem("Select player", "-1"));
+            foreach (DBPlayer player in _tablePlayers)
+            {
+                comboPlayers.Add(new ComboItem(string.Format("{0} - {1}", player.PlayerId, player.PlayerName), player.PlayerId.ToString()));
+            }
+            _form.FillCombosPlayers(comboPlayers);
+            if(IsAllPlayersIdsSelected())
+            {
+                _form.SelectPlayersInCombos(
+                    GetPlayerEastIndex(), GetPlayerSouthIndex(), 
+                    GetPlayerWestIndex(), GetPlayerNorthIndex());
+            }
+        }
+
         private bool FillPlayerHeaders(bool shouldSave)
         {
             if (IsAllPlayersIdsSelected() && !IsPlayerIdRepeated())
@@ -277,6 +350,7 @@ namespace MahjongTournamentSuite.TableManager
                 _form.SetSouthPlayerHeader(string.Format("{0} ({1})", playerSouth.PlayerName, playerSouth.PlayerId));
                 _form.SetWestPlayerHeader(string.Format("{0} ({1})", playerWest.PlayerName, playerWest.PlayerId));
                 _form.SetNorthPlayerHeader(string.Format("{0} ({1})", playerNorth.PlayerName, playerNorth.PlayerId));
+                FillAllPlayersTotalScores();
                 return true;
             }
             return false;
@@ -296,23 +370,6 @@ namespace MahjongTournamentSuite.TableManager
                 _table.PlayerSouthId == _table.PlayerWestId ||
                 _table.PlayerSouthId == _table.PlayerNorthId ||
                 _table.PlayerWestId == _table.PlayerNorthId;
-        }
-
-        private void FillCombosPlayers()
-        {
-            List<ComboItem> comboPlayers = new List<ComboItem>(5);
-            comboPlayers.Add(new ComboItem("Select player", "-1"));
-            foreach (DBPlayer player in _tablePlayers)
-            {
-                comboPlayers.Add(new ComboItem(string.Format("{0} - {1}", player.PlayerId, player.PlayerName), player.PlayerId.ToString()));
-            }
-            _form.FillCombosPlayers(comboPlayers);
-            if(IsAllPlayersIdsSelected())
-            {
-                _form.SelectPlayersInCombos(
-                    GetPlayerEastIndex(), GetPlayerSouthIndex(), 
-                    GetPlayerWestIndex(), GetPlayerNorthIndex());
-            }
         }
 
         private int GetPlayerEastIndex()
@@ -412,6 +469,14 @@ namespace MahjongTournamentSuite.TableManager
         private void CalculateAndFillAllPlayersTotalScores()
         {
             //_form.FillAllTotalScoreTextBoxes("0", "0", "0", "0");
+            FillAllPlayersTotalScores();
+        }
+
+        private void FillAllPlayersTotalScores()
+        {
+            _form.FillAllTotalScoreTextBoxes(
+                _table.PlayerEastTotalScore, _table.PlayerSouthTotalScore,
+                _table.PlayerWestTotalScore, _table.PlayerNorthTotalScore);
         }
 
         private void CalculateAndFillAllPlayersTotalPoints()

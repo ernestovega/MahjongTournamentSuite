@@ -179,14 +179,47 @@ namespace MahjongTournamentSuite.Data
 
         public void UpdateTablePlayersPositions(DBTable table)
         {
-            DBTable dbTable = _db.Tables.ToList().Find(x => x.TableTournamentId == table.TableTournamentId && x.TableId == table.TableId);
+            DBTable dbTable = _db.Tables.ToList()
+                .Find(x => x.TableTournamentId == table.TableTournamentId && x.TableId == table.TableId);
             dbTable.PlayerEastId = table.PlayerEastId;
             dbTable.PlayerSouthId = table.PlayerSouthId;
             dbTable.PlayerWestId = table.PlayerWestId;
             dbTable.PlayerNorthId = table.PlayerNorthId;
             _db.SaveChanges();
         }
-        
+
+        public void UpdateTableEastPlayerScore(DBTable table)
+        {
+            DBTable dbTable = _db.Tables.ToList()
+                .Find(x => x.TableTournamentId == table.TableTournamentId && x.TableId == table.TableId);
+            dbTable.PlayerEastTotalScore = table.PlayerEastTotalScore;
+            _db.SaveChanges();
+        }
+
+        public void UpdateTableSouthPlayerScore(DBTable table)
+        {
+            DBTable dbTable = _db.Tables.ToList()
+                .Find(x => x.TableTournamentId == table.TableTournamentId && x.TableId == table.TableId);
+            dbTable.PlayerSouthTotalScore = table.PlayerSouthTotalScore;
+            _db.SaveChanges();
+        }
+
+        public void UpdateTableWestPlayerScore(DBTable table)
+        {
+            DBTable dbTable = _db.Tables.ToList()
+                .Find(x => x.TableTournamentId == table.TableTournamentId && x.TableId == table.TableId);
+            dbTable.PlayerWestTotalScore = table.PlayerWestTotalScore;
+            _db.SaveChanges();
+        }
+
+        public void UpdateTableNorthPlayerScore(DBTable table)
+        {
+            DBTable dbTable = _db.Tables.ToList()
+                .Find(x => x.TableTournamentId == table.TableTournamentId && x.TableId == table.TableId);
+            dbTable.PlayerNorthTotalScore = table.PlayerNorthTotalScore;
+            _db.SaveChanges();
+        }
+
         #endregion
 
         #region Hands
