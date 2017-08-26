@@ -177,7 +177,7 @@ namespace MahjongTournamentSuite.Data
             return _db.Tables.ToList().Find(x => x.TableTournamentId == tournamentId && x.TableRoundId == roundId && x.TableId == tableId);
         }
 
-        public void UpdateTablePlayersPositions(DBTable table)
+        public void UpdateTableAllPlayersPositions(DBTable table)
         {
             DBTable dbTable = _db.Tables.ToList()
                 .Find(x => x.TableTournamentId == table.TableTournamentId && x.TableId == table.TableId);
@@ -188,34 +188,13 @@ namespace MahjongTournamentSuite.Data
             _db.SaveChanges();
         }
 
-        public void UpdateTableEastPlayerScore(DBTable table)
+        public void UpdateTableAllPlayersTotalScores(DBTable table)
         {
             DBTable dbTable = _db.Tables.ToList()
                 .Find(x => x.TableTournamentId == table.TableTournamentId && x.TableId == table.TableId);
             dbTable.PlayerEastTotalScore = table.PlayerEastTotalScore;
-            _db.SaveChanges();
-        }
-
-        public void UpdateTableSouthPlayerScore(DBTable table)
-        {
-            DBTable dbTable = _db.Tables.ToList()
-                .Find(x => x.TableTournamentId == table.TableTournamentId && x.TableId == table.TableId);
             dbTable.PlayerSouthTotalScore = table.PlayerSouthTotalScore;
-            _db.SaveChanges();
-        }
-
-        public void UpdateTableWestPlayerScore(DBTable table)
-        {
-            DBTable dbTable = _db.Tables.ToList()
-                .Find(x => x.TableTournamentId == table.TableTournamentId && x.TableId == table.TableId);
             dbTable.PlayerWestTotalScore = table.PlayerWestTotalScore;
-            _db.SaveChanges();
-        }
-
-        public void UpdateTableNorthPlayerScore(DBTable table)
-        {
-            DBTable dbTable = _db.Tables.ToList()
-                .Find(x => x.TableTournamentId == table.TableTournamentId && x.TableId == table.TableId);
             dbTable.PlayerNorthTotalScore = table.PlayerNorthTotalScore;
             _db.SaveChanges();
         }

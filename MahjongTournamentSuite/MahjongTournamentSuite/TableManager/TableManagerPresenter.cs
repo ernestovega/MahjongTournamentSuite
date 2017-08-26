@@ -7,6 +7,12 @@ namespace MahjongTournamentSuite.TableManager
 {
     class TableManagerPresenter : ITableManagerPresenter
     {
+        #region Constants
+
+        private readonly int MCR_MIN_POINTS = 8;
+
+        #endregion
+        
         #region Fields
 
         private ITableManagerForm _form;
@@ -79,7 +85,7 @@ namespace MahjongTournamentSuite.TableManager
             {
                 string sValidValue = validValue.ToString();
                 _table.PlayerEastTotalScore = sValidValue;
-                _db.UpdateTableEastPlayerScore(_table);
+                ValidateAndSaveTotalsScores();
                 return validValue.ToString();
             }
             _form.PlayKoSound();
@@ -93,7 +99,7 @@ namespace MahjongTournamentSuite.TableManager
             {
                 string sValidValue = validValue.ToString();
                 _table.PlayerSouthTotalScore = sValidValue;
-                _db.UpdateTableSouthPlayerScore(_table);
+                ValidateAndSaveTotalsScores();
                 return validValue.ToString();
             }
             _form.PlayKoSound();
@@ -107,7 +113,7 @@ namespace MahjongTournamentSuite.TableManager
             {
                 string sValidValue = validValue.ToString();
                 _table.PlayerWestTotalScore = sValidValue;
-                _db.UpdateTableWestPlayerScore(_table);
+                ValidateAndSaveTotalsScores();
                 return validValue.ToString();
             }
             _form.PlayKoSound();
@@ -121,7 +127,7 @@ namespace MahjongTournamentSuite.TableManager
             {
                 string sValidValue = validValue.ToString();
                 _table.PlayerNorthTotalScore = sValidValue;
-                _db.UpdateTableNorthPlayerScore(_table);
+                ValidateAndSaveTotalsScores();
                 return sValidValue;
             }
             _form.PlayKoSound();
@@ -130,6 +136,7 @@ namespace MahjongTournamentSuite.TableManager
 
         public string PlayerWinnerIdChanged(int handId, string previousValue, string newValue)
         {
+            DBHand hand = _hands.Find(x => x.HandId == handId);
             string returnValue = null;
             if (newValue == null || newValue.Equals(string.Empty))
                 returnValue = string.Empty;
@@ -137,7 +144,7 @@ namespace MahjongTournamentSuite.TableManager
             {
                 int validValue;
                 if (int.TryParse(newValue, out validValue) && validValue > 0 
-                    && IsACurrentTablePlayerId(validValue))
+                    && IsACurrentTablePlayerId(validValue) && !hand.PlayerLooserId.Equals(validValue.ToString()))
                     returnValue = validValue.ToString();
                 else
                 {
@@ -145,13 +152,14 @@ namespace MahjongTournamentSuite.TableManager
                     return previousValue;
                 }
             }
-            _db.UpdateHandWinnerId(_hands.Find(x => x.HandId == handId), returnValue);
+            _db.UpdateHandWinnerId(hand, returnValue);
             CalculateAndFillAllHandsScoresAndPlayersTotals();
             return returnValue;
         }
 
         public string PlayerLooserIdChanged(int handId, string previousValue, string newValue)
         {
+            DBHand hand = _hands.Find(x => x.HandId == handId);
             string returnValue = null;
             if (newValue == null || newValue.Equals(string.Empty))
                 returnValue = string.Empty;
@@ -159,7 +167,7 @@ namespace MahjongTournamentSuite.TableManager
             {
                 int validValue;
                 if (int.TryParse(newValue, out validValue) && validValue > 0 
-                    && IsACurrentTablePlayerId(validValue))
+                    && IsACurrentTablePlayerId(validValue) && !hand.PlayerWinnerId.Equals(validValue.ToString()))
                     returnValue = validValue.ToString();
                 else
                 {
@@ -167,7 +175,7 @@ namespace MahjongTournamentSuite.TableManager
                     return previousValue;
                 }
             }
-            _db.UpdateHandLooserId(_hands.Find(x => x.HandId == handId), returnValue);
+            _db.UpdateHandLooserId(hand, returnValue);
             CalculateAndFillAllHandsScoresAndPlayersTotals();
             return returnValue;
         }
@@ -180,7 +188,7 @@ namespace MahjongTournamentSuite.TableManager
             else
             {
                 int validValue;
-                if (int.TryParse(newValue, out validValue) && validValue >= 0)
+                if (int.TryParse(newValue, out validValue) && validValue >= MCR_MIN_POINTS)
                     returnValue = validValue.ToString();
                 else
                 {
@@ -188,7 +196,7 @@ namespace MahjongTournamentSuite.TableManager
                     return previousValue;
                 }
             }
-            _db.UpdateHandWinnerId(_hands.Find(x => x.HandId == handId), returnValue);
+            _db.UpdateHandScore(_hands.Find(x => x.HandId == handId), returnValue);
             CalculateAndFillAllHandsScoresAndPlayersTotals();
             return returnValue;
         }
@@ -340,7 +348,7 @@ namespace MahjongTournamentSuite.TableManager
             {
                 if (shouldSave)
                 {
-                    _db.UpdateTablePlayersPositions(_table);
+                    _db.UpdateTableAllPlayersPositions(_table);
                 }
                 DBPlayer playerEast = _tablePlayers.Find(x => x.PlayerId == _table.PlayerEastId);
                 DBPlayer playerSouth = _tablePlayers.Find(x => x.PlayerId == _table.PlayerSouthId);
@@ -370,6 +378,11 @@ namespace MahjongTournamentSuite.TableManager
                 _table.PlayerSouthId == _table.PlayerWestId ||
                 _table.PlayerSouthId == _table.PlayerNorthId ||
                 _table.PlayerWestId == _table.PlayerNorthId;
+        }
+
+        private bool IsACurrentTablePlayerId(int playerId)
+        {
+            return _tablePlayers.Find(x => x.PlayerId == playerId) != null;
         }
 
         private int GetPlayerEastIndex()
@@ -420,25 +433,49 @@ namespace MahjongTournamentSuite.TableManager
                 return 4;
         }
 
-        private int GetPlayerEastTotalScore()
+        private bool ValidateAndSaveTotalsScores()
         {
-            if (_table.PlayerEastId == _table.Player1Id)
-                return 1;
-            else if (_table.PlayerEastId == _table.Player2Id)
-                return 2;
-            else if (_table.PlayerEastId == _table.Player3Id)
-                return 3;
-            else
-                return 4;
+            if (!IsAllTotalScoresFilled())
+                return false;
+            if (!IsTotalScoresSumEqualsZero())
+            {
+                _form.ShowErrorTotalScores();
+                _form.CleanTotalPoints();
+                return false;
+            }
+            _db.UpdateTableAllPlayersTotalScores(_table);
+            _form.HideErrorTotalScores();
+            FillAllPlayersTotalScores();
+            CalculateAndFillAllPlayersTotalPoints();
+            return true;
         }
 
-        private bool IsACurrentTablePlayerId(int playerId)
+        private bool IsAllTotalScoresFilled()
         {
-            return _tablePlayers.Find(x => x.PlayerId == playerId) != null;
+            return !_table.PlayerEastTotalScore.Equals(string.Empty) &&
+                !_table.PlayerSouthTotalScore.Equals(string.Empty) &&
+                !_table.PlayerWestTotalScore.Equals(string.Empty) &&
+                !_table.PlayerNorthTotalScore.Equals(string.Empty);
+        }
+
+        private bool IsTotalScoresSumEqualsZero()
+        {
+            return (int.Parse(_table.PlayerEastTotalScore)
+                + int.Parse(_table.PlayerSouthTotalScore)
+                + int.Parse(_table.PlayerWestTotalScore)
+                + int.Parse(_table.PlayerNorthTotalScore)) == 0;
         }
 
         private void CalculateAndFillAllHandsScoresAndPlayersTotals()
         {
+            if (IsCompletelyEmptyHands())
+            {
+                _form.EnableTotalScoresTextBoxes();
+                FillAllPlayersTotalScores();
+                return;
+            }
+            _form.DisableTotalScoresTextBoxes();
+
             if (_dgvHands != null)
             {
                 foreach (DBHand hand in _dgvHands)
@@ -460,15 +497,27 @@ namespace MahjongTournamentSuite.TableManager
                     //        _form.FillHandPlayersScoresCells(hand.HandId, "0", "0", "0", "0");
                     //    }
                     //}
-                    CalculateAndFillAllPlayersTotalScores();
-                    CalculateAndFillAllPlayersTotalPoints();
                 }
+
+                CalculateAndSaveAndFillAllPlayersTotalScores();
+                CalculateAndFillAllPlayersTotalPoints();
             } 
         }
 
-        private void CalculateAndFillAllPlayersTotalScores()
+        private bool IsCompletelyEmptyHands()
         {
-            //_form.FillAllTotalScoreTextBoxes("0", "0", "0", "0");
+            foreach(DBHand hand in _hands)
+            {
+                if (!hand.HandScore.Equals(string.Empty))
+                    return false;
+            }
+            return true;
+        }
+
+        private void CalculateAndSaveAndFillAllPlayersTotalScores()
+        {
+            //Calcular scores totales aqui!
+            ValidateAndSaveTotalsScores();
             FillAllPlayersTotalScores();
         }
 

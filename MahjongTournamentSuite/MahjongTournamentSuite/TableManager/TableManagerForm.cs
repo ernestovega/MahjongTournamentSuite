@@ -203,11 +203,11 @@ namespace MahjongTournamentSuite.TableManager
                 {
                     ShowWaitCursor();
                     int handId = GetSelectedHandId(e.RowIndex);
-                    string previousValue = (string)dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                    string previousValue = (string)dgv.Rows[e.RowIndex].Cells[COLUMN_PLAYER_WINNER_ID].Value;
                     string newValue = ((string)e.FormattedValue).Trim();
                     DGVCancelEdit();
-                    dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value =
-                        _presenter.PlayerWinnerIdChanged(handId, previousValue, newValue);
+                    string returnedValue = _presenter.PlayerWinnerIdChanged(handId, previousValue, newValue);
+                    dgv.Rows[e.RowIndex].Cells[COLUMN_PLAYER_WINNER_ID].Value = returnedValue;
                     ShowDefaultCursor();
                 }
                 #endregion
@@ -216,10 +216,10 @@ namespace MahjongTournamentSuite.TableManager
                 {
                     ShowWaitCursor();
                     int handId = GetSelectedHandId(e.RowIndex);
-                    string previousValue = (string)dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                    string previousValue = (string)dgv.Rows[e.RowIndex].Cells[COLUMN_PLAYER_LOOSER_ID].Value;
                     string newValue = ((string)e.FormattedValue).Trim();
                     DGVCancelEdit();
-                    dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value =
+                    dgv.Rows[e.RowIndex].Cells[COLUMN_PLAYER_LOOSER_ID].Value =
                         _presenter.PlayerLooserIdChanged(handId, previousValue, newValue);
                     ShowDefaultCursor();
                 }
@@ -229,10 +229,10 @@ namespace MahjongTournamentSuite.TableManager
                 {
                     ShowWaitCursor();
                     int handId = GetSelectedHandId(e.RowIndex);
-                    string previousValue = (string)dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                    string previousValue = (string)dgv.Rows[e.RowIndex].Cells[COLUMN_HAND_SCORE].Value;
                     string newValue = ((string)e.FormattedValue).Trim();
                     DGVCancelEdit();
-                    dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = 
+                    dgv.Rows[e.RowIndex].Cells[COLUMN_HAND_SCORE].Value = 
                         _presenter.HandScoreChanged(handId, previousValue, newValue);
                     ShowDefaultCursor();
                 }
@@ -242,10 +242,10 @@ namespace MahjongTournamentSuite.TableManager
                 {
                     ShowWaitCursor();
                     int handId = GetSelectedHandId(e.RowIndex);
-                    string previousValue = (string)dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                    string previousValue = (string)dgv.Rows[e.RowIndex].Cells[COLUMN_PLAYER_EAST_PENALTY].Value;
                     string newValue = ((string)e.FormattedValue).Trim();
                     DGVCancelEdit();
-                    dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value =
+                    dgv.Rows[e.RowIndex].Cells[COLUMN_PLAYER_EAST_PENALTY].Value =
                         _presenter.PlayerEastPenalytChanged(handId, previousValue, newValue);
                     ShowDefaultCursor();
                 }
@@ -255,10 +255,10 @@ namespace MahjongTournamentSuite.TableManager
                 {
                     ShowWaitCursor();
                     int handId = GetSelectedHandId(e.RowIndex);
-                    string previousValue = (string)dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                    string previousValue = (string)dgv.Rows[e.RowIndex].Cells[COLUMN_PLAYER_SOUTH_PENALTY].Value;
                     string newValue = ((string)e.FormattedValue).Trim();
                     DGVCancelEdit();
-                    dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value =
+                    dgv.Rows[e.RowIndex].Cells[COLUMN_PLAYER_SOUTH_PENALTY].Value =
                         _presenter.PlayerSouthPenalytChanged(handId, previousValue, newValue);
                     ShowDefaultCursor();
                 }
@@ -268,10 +268,10 @@ namespace MahjongTournamentSuite.TableManager
                 {
                     ShowWaitCursor();
                     int handId = GetSelectedHandId(e.RowIndex);
-                    string previousValue = (string)dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                    string previousValue = (string)dgv.Rows[e.RowIndex].Cells[COLUMN_PLAYER_WEST_PENALTY].Value;
                     string newValue = ((string)e.FormattedValue).Trim();
                     DGVCancelEdit();
-                    dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value =
+                    dgv.Rows[e.RowIndex].Cells[COLUMN_PLAYER_WEST_PENALTY].Value =
                         _presenter.PlayerWestPenalytChanged(handId, previousValue, newValue);
                     ShowDefaultCursor();
                 }
@@ -281,10 +281,10 @@ namespace MahjongTournamentSuite.TableManager
                 {
                     ShowWaitCursor();
                     int handId = GetSelectedHandId(e.RowIndex);
-                    string previousValue = (string)dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                    string previousValue = (string)dgv.Rows[e.RowIndex].Cells[COLUMN_PLAYER_NORTH_PENALTY].Value;
                     string newValue = ((string)e.FormattedValue).Trim();
                     DGVCancelEdit();
-                    dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value =
+                    dgv.Rows[e.RowIndex].Cells[COLUMN_PLAYER_NORTH_PENALTY].Value =
                         _presenter.PlayerNorthPenalytChanged(handId, previousValue, newValue);
                     ShowDefaultCursor();
                 }
@@ -499,6 +499,31 @@ namespace MahjongTournamentSuite.TableManager
         public void HideDataGridHands()
         {
             dgv.Visible = false;
+        }
+
+        public void ShowErrorTotalScores()
+        {
+            tbEastPlayerTotalScore.ForeColor = CustomColors.RED_CANCEL;
+            tbSouthPlayerTotalScore.ForeColor = CustomColors.RED_CANCEL;
+            tbWestPlayerTotalScore.ForeColor = CustomColors.RED_CANCEL;
+            tbNorthPlayerTotalScore.ForeColor = CustomColors.RED_CANCEL;
+        }
+
+        public void HideErrorTotalScores()
+        {
+
+            tbEastPlayerTotalScore.ForeColor = SystemColors.ControlText;
+            tbSouthPlayerTotalScore.ForeColor = SystemColors.ControlText;
+            tbWestPlayerTotalScore.ForeColor = SystemColors.ControlText;
+            tbNorthPlayerTotalScore.ForeColor = SystemColors.ControlText;
+        }
+
+        public void CleanTotalPoints()
+        {
+            tbEastPlayerTotalPoints.Text = string.Empty;
+            tbSouthPlayerTotalPoints.Text = string.Empty;
+            tbWestPlayerTotalPoints.Text = string.Empty;
+            tbNorthPlayerTotalPoints.Text = string.Empty;
         }
 
         public void PlayKoSound()

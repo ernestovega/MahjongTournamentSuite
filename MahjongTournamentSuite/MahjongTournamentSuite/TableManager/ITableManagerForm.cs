@@ -49,6 +49,12 @@ namespace MahjongTournamentSuite.TableManager
 
         void HideDataGridHands();
 
+        void ShowErrorTotalScores();
+
+        void HideErrorTotalScores();
+
+        void CleanTotalPoints();
+
         void PlayKoSound();
     }
 }
