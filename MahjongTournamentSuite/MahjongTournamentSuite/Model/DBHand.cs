@@ -32,7 +32,7 @@ namespace MahjongTournamentSuite.Model
         public string PlayerWestPenalty { get; set; }
 
         public string PlayerNorthPenalty { get; set; }
-
+        
         public DBHand() {}
 
         public DBHand(int tournamentId, int roundId, int tableId, int id)
@@ -52,8 +52,8 @@ namespace MahjongTournamentSuite.Model
         }
 
         public DBHand(int tournamentId, int roundId, int tableId, int id,
-            string playerWinnerId, string playerLooserId, string handScore, 
-            bool isChickenHand, string playerEastPenalty, string playerSouthPenalty, 
+            string playerWinnerId, string playerLooserId, string handScore, bool isChickenHand, 
+            string playerEastPenalty, string playerSouthPenalty, 
             string playerWestPenalty, string playerNorthPenalty)
         {
             HandTournamentId = tournamentId;
@@ -64,10 +64,10 @@ namespace MahjongTournamentSuite.Model
             PlayerLooserId = playerLooserId;
             HandScore = handScore;
             IsChickenHand = isChickenHand;
-            PlayerEastPenalty = string.Empty;
-            PlayerSouthPenalty = string.Empty;
-            PlayerWestPenalty = string.Empty;
-            PlayerNorthPenalty = string.Empty;
+            PlayerEastPenalty = playerEastPenalty;
+            PlayerSouthPenalty = playerSouthPenalty;
+            PlayerWestPenalty = playerWestPenalty;
+            PlayerNorthPenalty = playerNorthPenalty;
         }
     }
 }

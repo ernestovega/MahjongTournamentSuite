@@ -113,6 +113,26 @@ namespace MahjongTournamentSuite.TableManager
             ShowDefaultCursor();
         }
 
+        private void tbEastPlayerTotalScore_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbSouthPlayerTotalScore_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbWestPlayerTotalScore_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbNorthPlayerTotalScore_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
         void dgv_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             _bindingCompleted = true;
@@ -379,13 +399,31 @@ namespace MahjongTournamentSuite.TableManager
             dgv.Columns[COLUMN_PLAYER_NORTH_SCORE].DefaultCellStyle.ForeColor = SystemColors.GrayText;
         }
         
-        public void FillPlayersHandScores(int handId, int eastPlayerScore, int southPlayerScore, 
+        public void FillHandPlayersScoresCells(int handId, int eastPlayerScore, int southPlayerScore, 
             int westPlayerScore, int northPlayerScore)
         {
-            SetEastPlayerPoints(handId, eastPlayerScore);
-            SetSouthPlayerPoints(handId, southPlayerScore);
-            SetWestPlayerPoints(handId, westPlayerScore);
-            SetNorthPlayerPoints(handId, northPlayerScore);
+            SetEastPlayerHandScoreCell(handId, eastPlayerScore);
+            SetSouthPlayerHandScoreCell(handId, southPlayerScore);
+            SetWestPlayerHandScoreCell(handId, westPlayerScore);
+            SetNorthPlayerHandScoreCell(handId, northPlayerScore);
+        }
+
+        public void FillAllTotalScoreTextBoxes(string playerEastTotalScore, string playerSouthTotalScore, 
+            string playerWestTotalScore, string playerNorthTotalScore)
+        {
+            SetEastPlayerTotalScoreTextBox(playerEastTotalScore);
+            SetSouthPlayerTotalScoreTextBox(playerSouthTotalScore);
+            SetWestPlayerTotalScoreTextBox(playerWestTotalScore);
+            SetNorthPlayerTotalScoreTextBox(playerWestTotalScore);
+        }
+
+        public void FillAllTotalPointsTextBoxes(string playerEastTotalPoints, string playerSouthTotalPoints,
+            string playerWestTotalPoints, string playerNorthTotalPoints)
+        {
+            SetEastPlayerTotalPointsTextBox(playerEastTotalPoints);
+            SetSouthPlayerTotalPointsTextBox(playerSouthTotalPoints);
+            SetWestPlayerTotalPointsTextBox(playerWestTotalPoints);
+            SetNorthPlayerTotalPointsTextBox(playerNorthTotalPoints);
         }
 
         public void SetEastPlayerHeader(string selectedText)
@@ -406,6 +444,32 @@ namespace MahjongTournamentSuite.TableManager
         public void SetNorthPlayerHeader(string selectedText)
         {
             dgv.Columns[COLUMN_PLAYER_NORTH_SCORE].HeaderText = selectedText;
+        }
+
+        public void ShowPanelTotals()
+        {
+            panelTotals.Visible = true;
+        }
+
+        public void HidePanelTotals()
+        {
+            panelTotals.Visible = false;
+        }
+
+        public void EnableTotalScoresTextBoxes()
+        {
+            tbEastPlayerTotalScore.Enabled = true;
+            tbSouthPlayerTotalScore.Enabled = true;
+            tbWestPlayerTotalScore.Enabled = true;
+            tbNorthPlayerTotalScore.Enabled = true;
+        }
+
+        public void DisableTotalScoresTextBoxes()
+        {
+            tbEastPlayerTotalScore.Enabled = false;
+            tbSouthPlayerTotalScore.Enabled = false;
+            tbWestPlayerTotalScore.Enabled = false;
+            tbNorthPlayerTotalScore.Enabled = false;
         }
 
         public void DGVCancelEdit()
@@ -455,24 +519,64 @@ namespace MahjongTournamentSuite.TableManager
             return (int)dgv.Rows[rowIndex].Cells[COLUMN_HAND_ID].Value;
         }
 
-        private void SetEastPlayerPoints(int handId, int value)
+        private void SetEastPlayerHandScoreCell(int handId, int value)
         {
             dgv.Rows[handId - 1].Cells[COLUMN_PLAYER_EAST_SCORE].Value = value;
         }
 
-        private void SetSouthPlayerPoints(int handId, int value)
+        private void SetSouthPlayerHandScoreCell(int handId, int value)
         {
             dgv.Rows[handId - 1].Cells[COLUMN_PLAYER_SOUTH_SCORE].Value = value;
         }
 
-        private void SetWestPlayerPoints(int handId, int value)
+        private void SetWestPlayerHandScoreCell(int handId, int value)
         {
             dgv.Rows[handId - 1].Cells[COLUMN_PLAYER_WEST_SCORE].Value = value;
         }
 
-        private void SetNorthPlayerPoints(int handId, int value)
+        private void SetNorthPlayerHandScoreCell(int handId, int value)
         {
             dgv.Rows[handId - 1].Cells[COLUMN_PLAYER_NORTH_SCORE].Value = value;
+        }
+
+        private void SetEastPlayerTotalScoreTextBox(string value)
+        {
+            tbEastPlayerTotalScore.Text = value;
+        }
+
+        private void SetSouthPlayerTotalScoreTextBox(string value)
+        {
+            tbSouthPlayerTotalScore.Text = value;
+        }
+
+        private void SetWestPlayerTotalScoreTextBox(string value)
+        {
+            tbWestPlayerTotalScore.Text = value;
+        }
+
+        private void SetNorthPlayerTotalScoreTextBox(string value)
+        {
+            tbNorthPlayerTotalScore.Text = value;
+        }
+
+        private void SetEastPlayerTotalPointsTextBox(string value)
+        {
+            tbEastPlayerTotalPoints.Text = value;
+        }
+
+        private void SetSouthPlayerTotalPointsTextBox(string value)
+        {
+            tbSouthPlayerTotalPoints.Text = value;
+        }
+
+        private void SetWestPlayerTotalPointsTextBox(string value)
+        {
+            tbWestPlayerTotalPoints.Text = value;
+        }
+
+        private void SetNorthPlayerTotalPointsTextBox(string value)
+        {
+            tbNorthPlayerTotalPoints.Text = value;
         }
 
         #endregion

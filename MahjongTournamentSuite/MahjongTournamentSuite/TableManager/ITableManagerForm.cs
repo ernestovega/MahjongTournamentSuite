@@ -17,8 +17,11 @@ namespace MahjongTournamentSuite.TableManager
 
         void FillDGV(List<DGVHand> dataGridHands);
 
-        void FillPlayersHandScores(int id, int eastPlayerScore, 
-            int southPlayerScore, int westPlayerScore, int northPlayerScore);
+        void FillHandPlayersScoresCells(int id, int eastPlayerScore, int southPlayerScore, int westPlayerScore, int northPlayerScore);
+
+        void FillAllTotalScoreTextBoxes(string playerEastTotalScore, string playerSouthTotalScore, string playerWestTotalScore, string playerNorthTotalScore);
+
+        void FillAllTotalPointsTextBoxes(string playerEastTotalPoints, string playerSouthTotalPoints, string playerWestTotalPoints, string playerNorthTotalPoints);
 
         void SetEastPlayerHeader(string selectedValue);
 
@@ -29,6 +32,14 @@ namespace MahjongTournamentSuite.TableManager
         void SetNorthPlayerHeader(string selectedValue);
 
         void DGVCancelEdit();
+
+        void EnableTotalScoresTextBoxes();
+
+        void DisableTotalScoresTextBoxes();
+
+        void ShowPanelTotals();
+
+        void HidePanelTotals();
 
         void ShowWaitCursor();
 

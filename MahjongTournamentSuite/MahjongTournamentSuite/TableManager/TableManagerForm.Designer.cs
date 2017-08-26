@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TableManagerForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblRoundId = new System.Windows.Forms.Label();
             this.lblTableId = new System.Windows.Forms.Label();
             this.comboWestPlayer = new System.Windows.Forms.ComboBox();
@@ -55,6 +55,23 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lblTournamentName = new System.Windows.Forms.Label();
             this.dgv = new System.Windows.Forms.DataGridView();
+            this.lblTitleTotalPointsPlayerEast = new System.Windows.Forms.Label();
+            this.lblTitleTotalScorePlayerEast = new System.Windows.Forms.Label();
+            this.tbEastPlayerTotalPoints = new System.Windows.Forms.TextBox();
+            this.tbEastPlayerTotalScore = new System.Windows.Forms.TextBox();
+            this.tbSouthPlayerTotalScore = new System.Windows.Forms.TextBox();
+            this.tbSouthPlayerTotalPoints = new System.Windows.Forms.TextBox();
+            this.lblTitleTotalScorePlayerSouth = new System.Windows.Forms.Label();
+            this.lblTitleTotalPointsPlayerSouth = new System.Windows.Forms.Label();
+            this.tbWestPlayerTotalScore = new System.Windows.Forms.TextBox();
+            this.tbWestPlayerTotalPoints = new System.Windows.Forms.TextBox();
+            this.lblTitleTotalScorePlayerWest = new System.Windows.Forms.Label();
+            this.lblTitleTotalPointsPlayerWest = new System.Windows.Forms.Label();
+            this.tbNorthPlayerTotalScore = new System.Windows.Forms.TextBox();
+            this.tbNorthPlayerTotalPoints = new System.Windows.Forms.TextBox();
+            this.lblTitleTotalScorePlayerNorth = new System.Windows.Forms.Label();
+            this.lblTitleTotalPointsPlayerNorth = new System.Windows.Forms.Label();
+            this.panelTotals = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoEMA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -64,6 +81,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
+            this.panelTotals.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblRoundId
@@ -252,7 +270,7 @@
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label7.Location = new System.Drawing.Point(14, 191);
+            this.label7.Location = new System.Drawing.Point(12, 219);
             this.label7.Margin = new System.Windows.Forms.Padding(5, 15, 5, 15);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(980, 2);
@@ -406,27 +424,27 @@
             this.dgv.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgv.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgv.ColumnHeadersHeight = 52;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgv.Cursor = System.Windows.Forms.Cursors.Default;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgv.GridColor = System.Drawing.SystemColors.Control;
-            this.dgv.Location = new System.Drawing.Point(14, 213);
+            this.dgv.Location = new System.Drawing.Point(14, 241);
             this.dgv.Margin = new System.Windows.Forms.Padding(5);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
@@ -436,7 +454,7 @@
             this.dgv.RowTemplate.Height = 32;
             this.dgv.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(980, 521);
+            this.dgv.Size = new System.Drawing.Size(980, 493);
             this.dgv.TabIndex = 26;
             this.dgv.Visible = false;
             this.dgv.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgv_CellFormatting);
@@ -446,6 +464,244 @@
             this.dgv.SizeChanged += new System.EventHandler(this.dgv_SizeChanged);
             this.dgv.Paint += new System.Windows.Forms.PaintEventHandler(this.dgv_Paint);
             // 
+            // lblTitleTotalPointsPlayerEast
+            // 
+            this.lblTitleTotalPointsPlayerEast.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lblTitleTotalPointsPlayerEast.AutoSize = true;
+            this.lblTitleTotalPointsPlayerEast.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitleTotalPointsPlayerEast.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblTitleTotalPointsPlayerEast.Location = new System.Drawing.Point(133, 5);
+            this.lblTitleTotalPointsPlayerEast.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.lblTitleTotalPointsPlayerEast.Name = "lblTitleTotalPointsPlayerEast";
+            this.lblTitleTotalPointsPlayerEast.Size = new System.Drawing.Size(53, 20);
+            this.lblTitleTotalPointsPlayerEast.TabIndex = 82;
+            this.lblTitleTotalPointsPlayerEast.Text = "Points";
+            this.lblTitleTotalPointsPlayerEast.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblTitleTotalScorePlayerEast
+            // 
+            this.lblTitleTotalScorePlayerEast.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lblTitleTotalScorePlayerEast.AutoSize = true;
+            this.lblTitleTotalScorePlayerEast.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitleTotalScorePlayerEast.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblTitleTotalScorePlayerEast.Location = new System.Drawing.Point(-4, 5);
+            this.lblTitleTotalScorePlayerEast.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.lblTitleTotalScorePlayerEast.Name = "lblTitleTotalScorePlayerEast";
+            this.lblTitleTotalScorePlayerEast.Size = new System.Drawing.Size(51, 20);
+            this.lblTitleTotalScorePlayerEast.TabIndex = 83;
+            this.lblTitleTotalScorePlayerEast.Text = "Score";
+            this.lblTitleTotalScorePlayerEast.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // tbEastPlayerTotalPoints
+            // 
+            this.tbEastPlayerTotalPoints.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.tbEastPlayerTotalPoints.Enabled = false;
+            this.tbEastPlayerTotalPoints.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.tbEastPlayerTotalPoints.Location = new System.Drawing.Point(186, 2);
+            this.tbEastPlayerTotalPoints.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.tbEastPlayerTotalPoints.MaxLength = 4;
+            this.tbEastPlayerTotalPoints.Name = "tbEastPlayerTotalPoints";
+            this.tbEastPlayerTotalPoints.Size = new System.Drawing.Size(46, 26);
+            this.tbEastPlayerTotalPoints.TabIndex = 84;
+            this.tbEastPlayerTotalPoints.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbEastPlayerTotalScore
+            // 
+            this.tbEastPlayerTotalScore.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.tbEastPlayerTotalScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.tbEastPlayerTotalScore.Location = new System.Drawing.Point(47, 2);
+            this.tbEastPlayerTotalScore.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.tbEastPlayerTotalScore.Name = "tbEastPlayerTotalScore";
+            this.tbEastPlayerTotalScore.Size = new System.Drawing.Size(86, 26);
+            this.tbEastPlayerTotalScore.TabIndex = 85;
+            this.tbEastPlayerTotalScore.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbEastPlayerTotalScore.TextChanged += new System.EventHandler(this.tbEastPlayerTotalScore_TextChanged);
+            // 
+            // tbSouthPlayerTotalScore
+            // 
+            this.tbSouthPlayerTotalScore.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.tbSouthPlayerTotalScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.tbSouthPlayerTotalScore.Location = new System.Drawing.Point(295, 2);
+            this.tbSouthPlayerTotalScore.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.tbSouthPlayerTotalScore.Name = "tbSouthPlayerTotalScore";
+            this.tbSouthPlayerTotalScore.Size = new System.Drawing.Size(86, 26);
+            this.tbSouthPlayerTotalScore.TabIndex = 89;
+            this.tbSouthPlayerTotalScore.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbSouthPlayerTotalScore.TextChanged += new System.EventHandler(this.tbSouthPlayerTotalScore_TextChanged);
+            // 
+            // tbSouthPlayerTotalPoints
+            // 
+            this.tbSouthPlayerTotalPoints.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.tbSouthPlayerTotalPoints.Enabled = false;
+            this.tbSouthPlayerTotalPoints.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.tbSouthPlayerTotalPoints.Location = new System.Drawing.Point(434, 2);
+            this.tbSouthPlayerTotalPoints.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.tbSouthPlayerTotalPoints.MaxLength = 4;
+            this.tbSouthPlayerTotalPoints.Name = "tbSouthPlayerTotalPoints";
+            this.tbSouthPlayerTotalPoints.Size = new System.Drawing.Size(46, 26);
+            this.tbSouthPlayerTotalPoints.TabIndex = 88;
+            this.tbSouthPlayerTotalPoints.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // lblTitleTotalScorePlayerSouth
+            // 
+            this.lblTitleTotalScorePlayerSouth.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lblTitleTotalScorePlayerSouth.AutoSize = true;
+            this.lblTitleTotalScorePlayerSouth.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitleTotalScorePlayerSouth.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblTitleTotalScorePlayerSouth.Location = new System.Drawing.Point(244, 5);
+            this.lblTitleTotalScorePlayerSouth.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.lblTitleTotalScorePlayerSouth.Name = "lblTitleTotalScorePlayerSouth";
+            this.lblTitleTotalScorePlayerSouth.Size = new System.Drawing.Size(51, 20);
+            this.lblTitleTotalScorePlayerSouth.TabIndex = 87;
+            this.lblTitleTotalScorePlayerSouth.Text = "Score";
+            this.lblTitleTotalScorePlayerSouth.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblTitleTotalPointsPlayerSouth
+            // 
+            this.lblTitleTotalPointsPlayerSouth.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lblTitleTotalPointsPlayerSouth.AutoSize = true;
+            this.lblTitleTotalPointsPlayerSouth.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitleTotalPointsPlayerSouth.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblTitleTotalPointsPlayerSouth.Location = new System.Drawing.Point(381, 5);
+            this.lblTitleTotalPointsPlayerSouth.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.lblTitleTotalPointsPlayerSouth.Name = "lblTitleTotalPointsPlayerSouth";
+            this.lblTitleTotalPointsPlayerSouth.Size = new System.Drawing.Size(53, 20);
+            this.lblTitleTotalPointsPlayerSouth.TabIndex = 86;
+            this.lblTitleTotalPointsPlayerSouth.Text = "Points";
+            this.lblTitleTotalPointsPlayerSouth.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // tbWestPlayerTotalScore
+            // 
+            this.tbWestPlayerTotalScore.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.tbWestPlayerTotalScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.tbWestPlayerTotalScore.Location = new System.Drawing.Point(543, 2);
+            this.tbWestPlayerTotalScore.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.tbWestPlayerTotalScore.Name = "tbWestPlayerTotalScore";
+            this.tbWestPlayerTotalScore.Size = new System.Drawing.Size(86, 26);
+            this.tbWestPlayerTotalScore.TabIndex = 93;
+            this.tbWestPlayerTotalScore.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbWestPlayerTotalScore.TextChanged += new System.EventHandler(this.tbWestPlayerTotalScore_TextChanged);
+            // 
+            // tbWestPlayerTotalPoints
+            // 
+            this.tbWestPlayerTotalPoints.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.tbWestPlayerTotalPoints.Enabled = false;
+            this.tbWestPlayerTotalPoints.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.tbWestPlayerTotalPoints.Location = new System.Drawing.Point(682, 2);
+            this.tbWestPlayerTotalPoints.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.tbWestPlayerTotalPoints.MaxLength = 4;
+            this.tbWestPlayerTotalPoints.Name = "tbWestPlayerTotalPoints";
+            this.tbWestPlayerTotalPoints.Size = new System.Drawing.Size(46, 26);
+            this.tbWestPlayerTotalPoints.TabIndex = 92;
+            this.tbWestPlayerTotalPoints.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // lblTitleTotalScorePlayerWest
+            // 
+            this.lblTitleTotalScorePlayerWest.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lblTitleTotalScorePlayerWest.AutoSize = true;
+            this.lblTitleTotalScorePlayerWest.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitleTotalScorePlayerWest.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblTitleTotalScorePlayerWest.Location = new System.Drawing.Point(492, 5);
+            this.lblTitleTotalScorePlayerWest.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.lblTitleTotalScorePlayerWest.Name = "lblTitleTotalScorePlayerWest";
+            this.lblTitleTotalScorePlayerWest.Size = new System.Drawing.Size(51, 20);
+            this.lblTitleTotalScorePlayerWest.TabIndex = 91;
+            this.lblTitleTotalScorePlayerWest.Text = "Score";
+            this.lblTitleTotalScorePlayerWest.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblTitleTotalPointsPlayerWest
+            // 
+            this.lblTitleTotalPointsPlayerWest.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lblTitleTotalPointsPlayerWest.AutoSize = true;
+            this.lblTitleTotalPointsPlayerWest.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitleTotalPointsPlayerWest.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblTitleTotalPointsPlayerWest.Location = new System.Drawing.Point(629, 5);
+            this.lblTitleTotalPointsPlayerWest.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.lblTitleTotalPointsPlayerWest.Name = "lblTitleTotalPointsPlayerWest";
+            this.lblTitleTotalPointsPlayerWest.Size = new System.Drawing.Size(53, 20);
+            this.lblTitleTotalPointsPlayerWest.TabIndex = 90;
+            this.lblTitleTotalPointsPlayerWest.Text = "Points";
+            this.lblTitleTotalPointsPlayerWest.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // tbNorthPlayerTotalScore
+            // 
+            this.tbNorthPlayerTotalScore.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.tbNorthPlayerTotalScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.tbNorthPlayerTotalScore.Location = new System.Drawing.Point(791, 2);
+            this.tbNorthPlayerTotalScore.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.tbNorthPlayerTotalScore.Name = "tbNorthPlayerTotalScore";
+            this.tbNorthPlayerTotalScore.Size = new System.Drawing.Size(86, 26);
+            this.tbNorthPlayerTotalScore.TabIndex = 97;
+            this.tbNorthPlayerTotalScore.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbNorthPlayerTotalScore.TextChanged += new System.EventHandler(this.tbNorthPlayerTotalScore_TextChanged);
+            // 
+            // tbNorthPlayerTotalPoints
+            // 
+            this.tbNorthPlayerTotalPoints.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.tbNorthPlayerTotalPoints.Enabled = false;
+            this.tbNorthPlayerTotalPoints.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.tbNorthPlayerTotalPoints.Location = new System.Drawing.Point(930, 2);
+            this.tbNorthPlayerTotalPoints.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.tbNorthPlayerTotalPoints.MaxLength = 4;
+            this.tbNorthPlayerTotalPoints.Name = "tbNorthPlayerTotalPoints";
+            this.tbNorthPlayerTotalPoints.Size = new System.Drawing.Size(46, 26);
+            this.tbNorthPlayerTotalPoints.TabIndex = 96;
+            this.tbNorthPlayerTotalPoints.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // lblTitleTotalScorePlayerNorth
+            // 
+            this.lblTitleTotalScorePlayerNorth.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lblTitleTotalScorePlayerNorth.AutoSize = true;
+            this.lblTitleTotalScorePlayerNorth.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitleTotalScorePlayerNorth.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblTitleTotalScorePlayerNorth.Location = new System.Drawing.Point(740, 5);
+            this.lblTitleTotalScorePlayerNorth.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.lblTitleTotalScorePlayerNorth.Name = "lblTitleTotalScorePlayerNorth";
+            this.lblTitleTotalScorePlayerNorth.Size = new System.Drawing.Size(51, 20);
+            this.lblTitleTotalScorePlayerNorth.TabIndex = 95;
+            this.lblTitleTotalScorePlayerNorth.Text = "Score";
+            this.lblTitleTotalScorePlayerNorth.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblTitleTotalPointsPlayerNorth
+            // 
+            this.lblTitleTotalPointsPlayerNorth.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lblTitleTotalPointsPlayerNorth.AutoSize = true;
+            this.lblTitleTotalPointsPlayerNorth.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitleTotalPointsPlayerNorth.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblTitleTotalPointsPlayerNorth.Location = new System.Drawing.Point(877, 5);
+            this.lblTitleTotalPointsPlayerNorth.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
+            this.lblTitleTotalPointsPlayerNorth.Name = "lblTitleTotalPointsPlayerNorth";
+            this.lblTitleTotalPointsPlayerNorth.Size = new System.Drawing.Size(53, 20);
+            this.lblTitleTotalPointsPlayerNorth.TabIndex = 94;
+            this.lblTitleTotalPointsPlayerNorth.Text = "Points";
+            this.lblTitleTotalPointsPlayerNorth.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // panelTotals
+            // 
+            this.panelTotals.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.panelTotals.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.panelTotals.Controls.Add(this.lblTitleTotalScorePlayerEast);
+            this.panelTotals.Controls.Add(this.tbNorthPlayerTotalScore);
+            this.panelTotals.Controls.Add(this.lblTitleTotalPointsPlayerEast);
+            this.panelTotals.Controls.Add(this.tbNorthPlayerTotalPoints);
+            this.panelTotals.Controls.Add(this.tbEastPlayerTotalPoints);
+            this.panelTotals.Controls.Add(this.lblTitleTotalScorePlayerNorth);
+            this.panelTotals.Controls.Add(this.tbEastPlayerTotalScore);
+            this.panelTotals.Controls.Add(this.lblTitleTotalPointsPlayerNorth);
+            this.panelTotals.Controls.Add(this.lblTitleTotalPointsPlayerSouth);
+            this.panelTotals.Controls.Add(this.tbWestPlayerTotalScore);
+            this.panelTotals.Controls.Add(this.lblTitleTotalScorePlayerSouth);
+            this.panelTotals.Controls.Add(this.tbWestPlayerTotalPoints);
+            this.panelTotals.Controls.Add(this.tbSouthPlayerTotalPoints);
+            this.panelTotals.Controls.Add(this.lblTitleTotalScorePlayerWest);
+            this.panelTotals.Controls.Add(this.tbSouthPlayerTotalScore);
+            this.panelTotals.Controls.Add(this.lblTitleTotalPointsPlayerWest);
+            this.panelTotals.Location = new System.Drawing.Point(16, 176);
+            this.panelTotals.Name = "panelTotals";
+            this.panelTotals.Size = new System.Drawing.Size(980, 33);
+            this.panelTotals.TabIndex = 98;
+            this.panelTotals.Visible = false;
+            // 
             // TableManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -453,6 +709,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1008, 748);
+            this.Controls.Add(this.panelTotals);
             this.Controls.Add(this.dgv);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -481,7 +738,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(1024, 786);
             this.Name = "TableManagerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -496,6 +752,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
+            this.panelTotals.ResumeLayout(false);
+            this.panelTotals.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -526,5 +784,22 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblTournamentName;
         private System.Windows.Forms.DataGridView dgv;
+        private System.Windows.Forms.Label lblTitleTotalPointsPlayerEast;
+        private System.Windows.Forms.Label lblTitleTotalScorePlayerEast;
+        private System.Windows.Forms.TextBox tbEastPlayerTotalPoints;
+        private System.Windows.Forms.TextBox tbEastPlayerTotalScore;
+        private System.Windows.Forms.TextBox tbSouthPlayerTotalScore;
+        private System.Windows.Forms.TextBox tbSouthPlayerTotalPoints;
+        private System.Windows.Forms.Label lblTitleTotalScorePlayerSouth;
+        private System.Windows.Forms.Label lblTitleTotalPointsPlayerSouth;
+        private System.Windows.Forms.TextBox tbWestPlayerTotalScore;
+        private System.Windows.Forms.TextBox tbWestPlayerTotalPoints;
+        private System.Windows.Forms.Label lblTitleTotalScorePlayerWest;
+        private System.Windows.Forms.Label lblTitleTotalPointsPlayerWest;
+        private System.Windows.Forms.TextBox tbNorthPlayerTotalScore;
+        private System.Windows.Forms.TextBox tbNorthPlayerTotalPoints;
+        private System.Windows.Forms.Label lblTitleTotalScorePlayerNorth;
+        private System.Windows.Forms.Label lblTitleTotalPointsPlayerNorth;
+        private System.Windows.Forms.Panel panelTotals;
     }
 }
