@@ -14,12 +14,20 @@ namespace MahjongTournamentSuite.TableManager
 
         void NameNorthPlayerChanged(int selectedPlayerId);
 
-        bool PlayerWinnerIdChanged(int handId, string newPlayerWinnerId);
+        string PlayerWinnerIdChanged(int handId, string previousValue, string newValue);
 
-        bool PlayerLooserIdChanged(int handId, string cellValue);
+        string PlayerLooserIdChanged(int handId, string previousValue, string newValue);
 
-        bool HandScoreChanged(int handId, string cellValue);
+        string HandScoreChanged(int handId, string previousValue, string newValue);
 
         void IsChickenHandChanged(int handId, bool cellValue);
+
+        string PlayerEastPenalytChanged(int handId, string previousValue, string newValue);
+
+        string PlayerSouthPenalytChanged(int handId, string previousValue, string newValue);
+
+        string PlayerWestPenalytChanged(int handId, string previousValue, string newValue);
+
+        string PlayerNorthPenalytChanged(int handId, string previousValue, string newValue);
     }
 }

@@ -227,7 +227,39 @@ namespace MahjongTournamentSuite.Data
             dbHand.IsChickenHand = newIsChickenHand;
             _db.SaveChanges();
         }
-        
+
+        public void UpdateHandPlayerEastPenalty(DBHand hand, string newPlayerEastPenaltyValue)
+        {
+            DBHand dbHand = _db.Hands.ToList().Find(x => x.HandTournamentId == hand.HandTournamentId
+            && x.HandTableId == hand.HandTableId && x.HandRoundId == hand.HandRoundId && x.HandId == hand.HandId);
+            dbHand.PlayerEastPenalty = newPlayerEastPenaltyValue;
+            _db.SaveChanges();
+        }
+
+        public void UpdateHandPlayerSouthPenalty(DBHand hand, string newPlayerSouthPenaltyValue)
+        {
+            DBHand dbHand = _db.Hands.ToList().Find(x => x.HandTournamentId == hand.HandTournamentId
+            && x.HandTableId == hand.HandTableId && x.HandRoundId == hand.HandRoundId && x.HandId == hand.HandId);
+            dbHand.PlayerEastPenalty = newPlayerSouthPenaltyValue;
+            _db.SaveChanges();
+        }
+
+        public void UpdateHandPlayerWestPenalty(DBHand hand, string newPlayerWestPenaltyValue)
+        {
+            DBHand dbHand = _db.Hands.ToList().Find(x => x.HandTournamentId == hand.HandTournamentId
+            && x.HandTableId == hand.HandTableId && x.HandRoundId == hand.HandRoundId && x.HandId == hand.HandId);
+            dbHand.PlayerEastPenalty = newPlayerWestPenaltyValue;
+            _db.SaveChanges();
+        }
+
+        public void UpdateHandPlayerNorthPenalty(DBHand hand, string newPlayerNorthPenaltyValue)
+        {
+            DBHand dbHand = _db.Hands.ToList().Find(x => x.HandTournamentId == hand.HandTournamentId
+            && x.HandTableId == hand.HandTableId && x.HandRoundId == hand.HandRoundId && x.HandId == hand.HandId);
+            dbHand.PlayerEastPenalty = newPlayerNorthPenaltyValue;
+            _db.SaveChanges();
+        }
+
         #endregion
 
         #region Teams

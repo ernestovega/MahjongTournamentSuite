@@ -17,7 +17,9 @@ namespace MahjongTournamentSuite.TableManager
         public DGVHand(DBHand dbHand) 
             : base(dbHand.HandTournamentId, dbHand.HandRoundId, 
                   dbHand.HandTableId, dbHand.HandId, dbHand.PlayerWinnerId,
-                  dbHand.PlayerLooserId, dbHand.HandScore, dbHand.IsChickenHand)
+                  dbHand.PlayerLooserId, dbHand.HandScore, dbHand.IsChickenHand,
+                  dbHand.PlayerEastPenalty, dbHand.PlayerSouthPenalty, 
+                  dbHand.PlayerWestPenalty, dbHand.PlayerNorthPenalty)
         {
             PlayerEastScore = string.Empty;
             PlayerSouthScore = string.Empty;

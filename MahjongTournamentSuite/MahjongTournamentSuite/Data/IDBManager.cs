@@ -81,6 +81,15 @@ namespace MahjongTournamentSuite.Data
 
         void UpdateHandIsChickenHand(DBHand hand, bool newIsChickenHand);
 
+        void UpdateHandPlayerEastPenalty(DBHand hand, string newPlayerEastPenaltyValue);
+
+        void UpdateHandPlayerSouthPenalty(DBHand hand, string newPlayerSouthPenaltyValue);
+
+        void UpdateHandPlayerWestPenalty(DBHand hand, string newPlayerWestPenaltyValue);
+
+        void UpdateHandPlayerNorthPenalty(DBHand hand, string newPlayerNorthPenaltyValue);
+
+
         #endregion
     }
 }

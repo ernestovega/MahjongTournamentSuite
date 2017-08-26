@@ -42,7 +42,7 @@ namespace MahjongTournamentSuite.TableManager
             if(FillPlayerHeaders(false))
             {
                 _form.ShowDataGridHands();
-                CalculateAndFillAllScoresIfHandIsComplete();
+                CalculateAndFillAllScores();
             }
         }
 
@@ -70,45 +70,166 @@ namespace MahjongTournamentSuite.TableManager
             ShowDGVIfAllPlayersPositionsSelected();
         }
 
-        public bool PlayerWinnerIdChanged(int handId, string sNewPlayerWinnerId)
+        public string PlayerWinnerIdChanged(int handId, string previousValue, string newValue)
         {
-            if (IsValidPlayerId(sNewPlayerWinnerId))
+            string returnValue = null;
+            if (newValue == null || newValue.Equals(string.Empty))
+                returnValue = string.Empty;
+            else
             {
-                _db.UpdateHandWinnerId(_hands.Find(x => x.HandId == handId), sNewPlayerWinnerId);
-                CalculateAndFillAllScoresIfHandIsComplete();
-                return true;
+                int validValue;
+                if (int.TryParse(newValue, out validValue) && validValue > 0 
+                    && IsACurrentTablePlayerId(validValue))
+                    returnValue = validValue.ToString();
+                else
+                {
+                    _form.PlayKoSound();
+                    return previousValue;
+                }
             }
-            _form.DGVCancelEdit();
-            return false;
+            _db.UpdateHandWinnerId(_hands.Find(x => x.HandId == handId), returnValue);
+            CalculateAndFillAllScores();
+            return returnValue;
         }
 
-        public bool PlayerLooserIdChanged(int handId, string sNewPlayerLooserId)
+        public string PlayerLooserIdChanged(int handId, string previousValue, string newValue)
         {
-            if (IsValidPlayerId(sNewPlayerLooserId))
+            string returnValue = null;
+            if (newValue == null || newValue.Equals(string.Empty))
+                returnValue = string.Empty;
+            else
             {
-                _db.UpdateHandLooserId(_hands.Find(x => x.HandId == handId), sNewPlayerLooserId);
-                CalculateAndFillAllScoresIfHandIsComplete();
-                return true;
+                int validValue;
+                if (int.TryParse(newValue, out validValue) && validValue > 0 
+                    && IsACurrentTablePlayerId(validValue))
+                    returnValue = validValue.ToString();
+                else
+                {
+                    _form.PlayKoSound();
+                    return previousValue;
+                }
             }
-            _form.DGVCancelEdit();
-            return false;
+            _db.UpdateHandLooserId(_hands.Find(x => x.HandId == handId), returnValue);
+            CalculateAndFillAllScores();
+            return returnValue;
         }
 
-        public bool HandScoreChanged(int handId, string sNewHandScore)
+        public string HandScoreChanged(int handId, string previousValue, string newValue)
         {
-            if (IsValidScore(sNewHandScore))
+            string returnValue = null;
+            if (newValue == null || newValue.Equals(string.Empty))
+                returnValue = string.Empty;
+            else
             {
-                _db.UpdateHandScore(_hands.Find(x => x.HandId == handId), sNewHandScore);
-                CalculateAndFillAllScoresIfHandIsComplete();
-                return true;
+                int validValue;
+                if (int.TryParse(newValue, out validValue) && validValue >= 0)
+                    returnValue = validValue.ToString();
+                else
+                {
+                    _form.PlayKoSound();
+                    return previousValue;
+                }
             }
-            _form.DGVCancelEdit();
-            return false;
+            _db.UpdateHandWinnerId(_hands.Find(x => x.HandId == handId), returnValue);
+            CalculateAndFillAllScores();
+            return returnValue;
         }
 
         public void IsChickenHandChanged(int handId, bool newIsChickenHand)
         {
             _db.UpdateHandIsChickenHand(_hands.Find(x => x.HandId == handId), newIsChickenHand);
+        }
+
+        public string PlayerEastPenalytChanged(int handId, string previousValue, string newValue)
+        {
+            string returnValue = null;
+            if (newValue == null || newValue.Equals(string.Empty))
+                returnValue = string.Empty;
+            else
+            {
+                int validValue;
+                if (int.TryParse(newValue, out validValue) && validValue > 0)
+                    returnValue = validValue.ToString();
+                else if (validValue == 0)
+                    returnValue = string.Empty;
+                else
+                {
+                    _form.PlayKoSound();
+                    return previousValue;
+                }
+            }
+            _db.UpdateHandPlayerEastPenalty(_hands.Find(x => x.HandId == handId), returnValue);
+            CalculateAndFillAllScores();
+            return returnValue;
+        }
+
+        public string PlayerSouthPenalytChanged(int handId, string previousValue, string newValue)
+        {
+            string returnValue = null;
+            if (newValue == null || newValue.Equals(string.Empty))
+                returnValue = string.Empty;
+            else
+            {
+                int validValue;
+                if (int.TryParse(newValue, out validValue) && validValue > 0)
+                    returnValue = validValue.ToString();
+                else if (validValue == 0)
+                    returnValue = string.Empty;
+                else
+                {
+                    _form.PlayKoSound();
+                    return previousValue;
+                }
+            }
+            _db.UpdateHandPlayerSouthPenalty(_hands.Find(x => x.HandId == handId), returnValue);
+            CalculateAndFillAllScores();
+            return returnValue;
+        }
+
+        public string PlayerWestPenalytChanged(int handId, string previousValue, string newValue)
+        {
+            string returnValue = null;
+            if (newValue == null || newValue.Equals(string.Empty))
+                returnValue = string.Empty;
+            else
+            {
+                int validValue;
+                if (int.TryParse(newValue, out validValue) && validValue > 0)
+                    returnValue = validValue.ToString();
+                else if (validValue == 0)
+                    returnValue = string.Empty;
+                else
+                {
+                    _form.PlayKoSound();
+                    return previousValue;
+                }
+            }
+            _db.UpdateHandPlayerWestPenalty(_hands.Find(x => x.HandId == handId), returnValue);
+            CalculateAndFillAllScores();
+            return returnValue;
+        }
+
+        public string PlayerNorthPenalytChanged(int handId, string previousValue, string newValue)
+        {
+            string returnValue = null;
+            if (newValue == null || newValue.Equals(string.Empty))
+                returnValue = string.Empty;
+            else
+            {
+                int validValue;
+                if (int.TryParse(newValue, out validValue) && validValue > 0)
+                    returnValue = validValue.ToString();
+                else if (validValue == 0)
+                    returnValue = string.Empty;
+                else
+                {
+                    _form.PlayKoSound();
+                    return previousValue;
+                }
+            }
+            _db.UpdateHandPlayerNorthPenalty(_hands.Find(x => x.HandId == handId), returnValue);
+            CalculateAndFillAllScores();
+            return returnValue;
         }
 
         #endregion
@@ -140,10 +261,14 @@ namespace MahjongTournamentSuite.TableManager
                 {
                     _db.UpdateTablePlayersPositions(_table);
                 }
-                _form.SetEastPlayerHeader(_tablePlayers.Find(x => x.PlayerId == _table.PlayerEastId).PlayerName);
-                _form.SetSouthPlayerHeader(_tablePlayers.Find(x => x.PlayerId == _table.PlayerSouthId).PlayerName);
-                _form.SetWestPlayerHeader(_tablePlayers.Find(x => x.PlayerId == _table.PlayerWestId).PlayerName);
-                _form.SetNorthPlayerHeader(_tablePlayers.Find(x => x.PlayerId == _table.PlayerNorthId).PlayerName);
+                DBPlayer playerEast = _tablePlayers.Find(x => x.PlayerId == _table.PlayerEastId);
+                DBPlayer playerSouth = _tablePlayers.Find(x => x.PlayerId == _table.PlayerSouthId);
+                DBPlayer playerWest = _tablePlayers.Find(x => x.PlayerId == _table.PlayerWestId);
+                DBPlayer playerNorth = _tablePlayers.Find(x => x.PlayerId == _table.PlayerNorthId);
+                _form.SetEastPlayerHeader(string.Format("{0} ({1})", playerEast.PlayerName, playerEast.PlayerId));
+                _form.SetSouthPlayerHeader(string.Format("{0} ({1})", playerSouth.PlayerName, playerSouth.PlayerId));
+                _form.SetWestPlayerHeader(string.Format("{0} ({1})", playerWest.PlayerName, playerWest.PlayerId));
+                _form.SetNorthPlayerHeader(string.Format("{0} ({1})", playerNorth.PlayerName, playerNorth.PlayerId));
                 return true;
             }
             return false;
@@ -228,26 +353,12 @@ namespace MahjongTournamentSuite.TableManager
                 return 4;
         }
 
-        private bool IsValidPlayerId(string stringValue)
-        {
-            int intValue;
-            bool result = int.TryParse(stringValue, out intValue);
-            return result && intValue > 0 && IsACurrentTablePlayerId(intValue);
-        }
-
         private bool IsACurrentTablePlayerId(int playerId)
         {
             return _tablePlayers.Find(x => x.PlayerId == playerId) != null;
         }
 
-        private bool IsValidScore(string stringValue)
-        {
-            int intValue;
-            bool result = int.TryParse(stringValue, out intValue);
-            return result && intValue >= 0;
-        }
-
-        private void CalculateAndFillAllScoresIfHandIsComplete()
+        private void CalculateAndFillAllScores()
         {
             foreach (DBHand hand in _hands)
             {

@@ -37,5 +37,7 @@ namespace MahjongTournamentSuite.TableManager
         void ShowDataGridHands();
 
         void HideDataGridHands();
+
+        void PlayKoSound();
     }
 }
