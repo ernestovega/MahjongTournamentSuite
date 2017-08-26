@@ -131,6 +131,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\CustomColors.cs" />
     <Compile Include="TableManager\ITableManagerForm.cs" />
     <Compile Include="TableManager\ITableManagerPresenter.cs" />
     <Compile Include="TableManager\TableManagerForm.cs">
@@ -255,6 +256,9 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Utils\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -1,5 +1,6 @@
 ﻿using MahjongTournamentSuite.Model;
 using MahjongTournamentSuite.NewTournament;
+using MahjongTournamentSuite.Resources;
 using MahjongTournamentSuite.TournamentManager;
 using Microsoft.VisualBasic;
 using System;
@@ -104,16 +105,25 @@ namespace MahjongTournamentSuite.Home
             Cursor = Cursors.Default;
         }
 
-        private void dgvTournaments_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        private void dgv_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
             /* BUG FIX: Cuando arrancamos la aplicación y no hay campeonatos, al crear uno, se muestra una
              * segunda fila vacía. No entiendo por qué es, pero con esto parace que se oculta sin efectos colaterales. */
             if (dgv.RowCount > _numTournaments)
                 dgv.Rows[dgv.RowCount - 1].Visible = false;
         }
-
-        private void dgvTournaments_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        
+        private void dgv_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
+            if (dgv.CurrentCell != null &&
+                dgv.CurrentCell.RowIndex == e.RowIndex &&
+                dgv.CurrentCell.ColumnIndex == e.ColumnIndex)
+            {
+                e.CellStyle.SelectionBackColor =
+                    dgv.CurrentCell.ReadOnly ?
+                    CustomColors.GREEN_MM_DARKEST :
+                    CustomColors.GREEN_MM_DARKER;
+            }
             if (dgv.Columns[e.ColumnIndex].Name.Equals(COLUMN_IS_TEAMS_IMAGES))
             {
                 DataGridViewCheckBoxCell cellIsTeams = 

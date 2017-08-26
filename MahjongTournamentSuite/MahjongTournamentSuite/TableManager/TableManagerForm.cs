@@ -1,4 +1,5 @@
 ﻿using MahjongTournamentSuite.Model;
+using MahjongTournamentSuite.Resources;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,7 +13,8 @@ namespace MahjongTournamentSuite.TableManager
     partial class TableManagerForm : Form, ITableManagerForm
     {
         #region Constants
-        
+
+        private readonly int FORM_MARGINS = 14;
         private const string COLUMN_TOURNAMENT_ID = "HandTournamentId";
         private const string COLUMN_ROUND_ID = "HandRoundId";
         private const string COLUMN_TABLE_ID = "HandTableId";
@@ -35,6 +37,7 @@ namespace MahjongTournamentSuite.TableManager
         #region Fields
 
         private ITableManagerPresenter _presenter;
+        private bool _bindingCompleted;
 
         #endregion
 
@@ -50,7 +53,20 @@ namespace MahjongTournamentSuite.TableManager
         }
 
         #endregion
-        
+
+        #region Lifecycle
+
+        private void TableManagerForm_SizeChanged(object sender, EventArgs e)
+        {
+            if (Size.Width < dgv.Width)
+                dgv.Width = Size.Width - FORM_MARGINS;
+            else
+                dgv.Width = dgv.Width;
+            CenterDGV();
+        }
+
+        #endregion
+
         #region Events
 
         private void imgLogoMM_Click(object sender, EventArgs e)
@@ -95,6 +111,38 @@ namespace MahjongTournamentSuite.TableManager
             ShowWaitCursor();
             _presenter.NameNorthPlayerChanged(int.Parse(((ComboItem)comboNorthPlayer.SelectedItem).Value));
             ShowDefaultCursor();
+        }
+
+        void dgv_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            _bindingCompleted = true;
+        }
+
+        void dgv_Paint(object sender, PaintEventArgs e)
+        {
+            if (_bindingCompleted)
+            {
+                _bindingCompleted = false;
+                dgv.Width = dgv.Columns.GetColumnsWidth(DataGridViewElementStates.Visible) + 1;
+            }
+        }
+
+        private void dgv_SizeChanged(object sender, EventArgs e)
+        {
+            CenterDGV();
+        }
+
+        private void dgv_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgv.CurrentCell != null &&
+                dgv.CurrentCell.RowIndex == e.RowIndex &&
+                dgv.CurrentCell.ColumnIndex == e.ColumnIndex)
+            {
+                e.CellStyle.SelectionBackColor = 
+                    dgv.CurrentCell.ReadOnly ? 
+                    CustomColors.GREEN_MM_DARKEST : 
+                    CustomColors.GREEN_MM_DARKER;
+            }
         }
 
         private void dgv_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -267,10 +315,28 @@ namespace MahjongTournamentSuite.TableManager
         public void FillDGV(List<DGVHand> dgvHands)
         {
             dgv.DataSource = dgvHands;
+            
             //Column Visible
             dgv.Columns[COLUMN_TOURNAMENT_ID].Visible = false;
             dgv.Columns[COLUMN_ROUND_ID].Visible = false;
             dgv.Columns[COLUMN_TABLE_ID].Visible = false;
+            //Column ReadOnly
+            dgv.Columns[COLUMN_HAND_ID].ReadOnly = true;
+            dgv.Columns[COLUMN_IS_CHICKEN_HAND].ReadOnly = true;
+            dgv.Columns[COLUMN_PLAYER_EAST_SCORE].ReadOnly = true;
+            dgv.Columns[COLUMN_PLAYER_SOUTH_SCORE].ReadOnly = true;
+            dgv.Columns[COLUMN_PLAYER_WEST_SCORE].ReadOnly = true;
+            dgv.Columns[COLUMN_PLAYER_NORTH_SCORE].ReadOnly = true;
+            //Column Header text
+            dgv.Columns[COLUMN_HAND_ID].HeaderText = "Hand";
+            dgv.Columns[COLUMN_PLAYER_WINNER_ID].HeaderText = "Winner Id";
+            dgv.Columns[COLUMN_PLAYER_LOOSER_ID].HeaderText = "Looser Id";
+            dgv.Columns[COLUMN_HAND_SCORE].HeaderText = "Hand points";
+            dgv.Columns[COLUMN_IS_CHICKEN_HAND].HeaderText = "Chicken hand";
+            dgv.Columns[COLUMN_PLAYER_EAST_PENALTY].HeaderText = "Penalty";
+            dgv.Columns[COLUMN_PLAYER_SOUTH_PENALTY].HeaderText = "Penalty";
+            dgv.Columns[COLUMN_PLAYER_WEST_PENALTY].HeaderText = "Penalty";
+            dgv.Columns[COLUMN_PLAYER_NORTH_PENALTY].HeaderText = "Penalty";
             //DisplayIndex
             dgv.Columns[COLUMN_HAND_ID].DisplayIndex = 0;
             dgv.Columns[COLUMN_PLAYER_WINNER_ID].DisplayIndex = 1;
@@ -299,13 +365,6 @@ namespace MahjongTournamentSuite.TableManager
             dgv.Columns[COLUMN_PLAYER_WEST_PENALTY].SortMode = DataGridViewColumnSortMode.NotSortable;
             dgv.Columns[COLUMN_PLAYER_NORTH_SCORE].SortMode = DataGridViewColumnSortMode.NotSortable;
             dgv.Columns[COLUMN_PLAYER_NORTH_PENALTY].SortMode = DataGridViewColumnSortMode.NotSortable;
-            //Column ReadOnly
-            dgv.Columns[COLUMN_HAND_ID].ReadOnly = true;
-            dgv.Columns[COLUMN_IS_CHICKEN_HAND].ReadOnly = true;
-            dgv.Columns[COLUMN_PLAYER_EAST_SCORE].ReadOnly = true;
-            dgv.Columns[COLUMN_PLAYER_SOUTH_SCORE].ReadOnly = true;
-            dgv.Columns[COLUMN_PLAYER_WEST_SCORE].ReadOnly = true;
-            dgv.Columns[COLUMN_PLAYER_NORTH_SCORE].ReadOnly = true;
             //Readonly columns BackColor
             dgv.Columns[COLUMN_HAND_ID].DefaultCellStyle.BackColor = SystemColors.ControlLight;
             dgv.Columns[COLUMN_PLAYER_EAST_SCORE].DefaultCellStyle.BackColor = SystemColors.ControlLight;
@@ -318,26 +377,6 @@ namespace MahjongTournamentSuite.TableManager
             dgv.Columns[COLUMN_PLAYER_SOUTH_SCORE].DefaultCellStyle.ForeColor = SystemColors.GrayText;
             dgv.Columns[COLUMN_PLAYER_WEST_SCORE].DefaultCellStyle.ForeColor = SystemColors.GrayText;
             dgv.Columns[COLUMN_PLAYER_NORTH_SCORE].DefaultCellStyle.ForeColor = SystemColors.GrayText;
-            //Column Header text
-            dgv.Columns[COLUMN_HAND_ID].HeaderText = "Hand";
-            dgv.Columns[COLUMN_PLAYER_WINNER_ID].HeaderText = "Winner Id";
-            dgv.Columns[COLUMN_PLAYER_LOOSER_ID].HeaderText = "Looser Id";
-            dgv.Columns[COLUMN_HAND_SCORE].HeaderText = "Hand points";
-            dgv.Columns[COLUMN_IS_CHICKEN_HAND].HeaderText = "Chicken hand";
-            dgv.Columns[COLUMN_PLAYER_EAST_PENALTY].HeaderText = "Penalty";
-            dgv.Columns[COLUMN_PLAYER_SOUTH_PENALTY].HeaderText = "Penalty";
-            dgv.Columns[COLUMN_PLAYER_WEST_PENALTY].HeaderText = "Penalty";
-            dgv.Columns[COLUMN_PLAYER_NORTH_PENALTY].HeaderText = "Penalty";
-            //AutoSizeMode
-            dgv.Columns[COLUMN_HAND_ID].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dgv.Columns[COLUMN_PLAYER_EAST_PENALTY].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-            dgv.Columns[COLUMN_PLAYER_SOUTH_PENALTY].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-            dgv.Columns[COLUMN_PLAYER_WEST_PENALTY].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-            dgv.Columns[COLUMN_PLAYER_NORTH_PENALTY].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-            dgv.Columns[COLUMN_PLAYER_EAST_SCORE].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-            dgv.Columns[COLUMN_PLAYER_SOUTH_SCORE].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-            dgv.Columns[COLUMN_PLAYER_WEST_SCORE].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-            dgv.Columns[COLUMN_PLAYER_NORTH_SCORE].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
         }
         
         public void FillPlayersHandScores(int handId, int eastPlayerScore, int southPlayerScore, 
@@ -402,6 +441,14 @@ namespace MahjongTournamentSuite.TableManager
         #endregion
 
         #region Private
+
+        private void CenterDGV()
+        {
+            if (Size.Width < dgv.Width)
+                dgv.Location = new Point(FORM_MARGINS / 2, dgv.Location.Y);
+            else
+                dgv.Location = new Point((Size.Width - dgv.Width) / 2, dgv.Location.Y);
+        }
 
         private int GetSelectedHandId(int rowIndex)
         {

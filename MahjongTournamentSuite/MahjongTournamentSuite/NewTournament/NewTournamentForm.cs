@@ -1,4 +1,5 @@
 ﻿using MahjongTournamentSuite.Home;
+using MahjongTournamentSuite.Resources;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -12,11 +13,6 @@ namespace MahjongTournamentSuite.NewTournament
         #region Constants
 
         internal static readonly string TOURNAMENT_NAME_TEMPLATE_TEXT = "Tournament name";
-
-        private static readonly Color greenEnabled = Color.FromArgb(0, 177, 106);
-        private static readonly Color greenEnabledHover = Color.FromArgb(0, 127, 56);
-        private static readonly Color grayDisabled = Color.FromArgb(65, 65, 65);
-        private static readonly Color redDisabledHover = Color.FromArgb(224, 0, 0);
 
         #endregion
 
@@ -109,8 +105,8 @@ namespace MahjongTournamentSuite.NewTournament
 
         public void EnableViews()
         {
-            btnStart.BackColor = greenEnabled;
-            btnStart.FlatAppearance.MouseOverBackColor = greenEnabledHover;
+            btnStart.BackColor = CustomColors.GREEN_MM;
+            btnStart.FlatAppearance.MouseOverBackColor = CustomColors.GREEN_MM_DARKER;
             btnStart.Text = "Start";
             panelLoading.Visible = false;
             panelOptions.Visible = true;
@@ -121,8 +117,8 @@ namespace MahjongTournamentSuite.NewTournament
         public void DisableViews()
         {
             btnStart.Text = "Stop";
-            btnStart.BackColor = grayDisabled;
-            btnStart.FlatAppearance.MouseOverBackColor = redDisabledHover;
+            btnStart.BackColor = CustomColors.GRAY_DISABLED;
+            btnStart.FlatAppearance.MouseOverBackColor = CustomColors.RED_CANCEL;
             panelOptions.Visible = false;
             panelLoading.Visible = true;
             Cursor = Cursors.WaitCursor;

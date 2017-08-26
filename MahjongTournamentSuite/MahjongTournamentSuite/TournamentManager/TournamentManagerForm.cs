@@ -8,6 +8,7 @@ using MahjongTournamentSuite.Home;
 using MahjongTournamentSuite.TableManager;
 using MahjongTournamentSuite.CountrySelector;
 using MahjongTournamentSuite.TeamSelector;
+using MahjongTournamentSuite.Resources;
 
 namespace MahjongTournamentSuite.TournamentManager
 {
@@ -21,10 +22,7 @@ namespace MahjongTournamentSuite.TournamentManager
         private const int TITLE_ROUNDS_HEIGHT = 23;
         private const int TITLE_TABLES_HEIGHT = 38;
         private const int NUM_TABLES_BUTTONS_HORIZONTAL = 10;
-        private const int SEPARATOR_EXTRA_MARGIN_BOTTOM = 12; 
-
-        private static readonly Color GREEN_MM = Color.FromArgb(0, 177, 106);
-        private static readonly Color GREEN_MM_DARK = Color.FromArgb(0, 147, 76);
+        private const int SEPARATOR_EXTRA_MARGIN_BOTTOM = 12;
 
         private const string COLUMN_TEAMS_TOURNAMENT_ID = "TeamTournamentId";
         private const string COLUMN_TEAMS_ID = "TeamId";
@@ -122,6 +120,19 @@ namespace MahjongTournamentSuite.TournamentManager
             //var mahjongTournamentRankingShower = new MahjongTournamentRankingShower.Program();
             //Process.Start(mahjongTournamentRankingShower.returnExecutablePath());
             ShowDefaultCursor();
+        }
+
+        private void dgv_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgv.CurrentCell != null &&
+                dgv.CurrentCell.RowIndex == e.RowIndex &&
+                dgv.CurrentCell.ColumnIndex == e.ColumnIndex)
+            {
+                e.CellStyle.SelectionBackColor =
+                    dgv.CurrentCell.ReadOnly ?
+                    CustomColors.GREEN_MM_DARKEST :
+                    CustomColors.GREEN_MM_DARKER;
+            }
         }
 
         private void dgv_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -609,8 +620,8 @@ namespace MahjongTournamentSuite.TournamentManager
             newButton.Height = BUTTON_SIDE;
             newButton.FlatStyle = FlatStyle.Flat;
             newButton.FlatAppearance.BorderSize = 0;
-            newButton.FlatAppearance.MouseDownBackColor = GREEN_MM_DARK;
-            newButton.FlatAppearance.MouseOverBackColor = GREEN_MM;
+            newButton.FlatAppearance.MouseDownBackColor = CustomColors.GREEN_MM_DARK;
+            newButton.FlatAppearance.MouseOverBackColor = CustomColors.GREEN_MM;
             newButton.BackgroundImageLayout = ImageLayout.None;
             newButton.Cursor = Cursors.Hand;
             newButton.Font = new Font(newButton.Font.Name, newButton.Font.Size, FontStyle.Bold);
@@ -624,7 +635,7 @@ namespace MahjongTournamentSuite.TournamentManager
 
         private static void MakeButtonSelected(Button button, Image image)
         {
-            button.BackColor = GREEN_MM;
+            button.BackColor = CustomColors.GREEN_MM;
             button.ForeColor = Color.White;
             button.Image = image;
         }
