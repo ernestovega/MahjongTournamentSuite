@@ -252,7 +252,7 @@ namespace MahjongTournamentSuite.Data
         {
             DBHand dbHand = _db.Hands.ToList().Find(x => x.HandTournamentId == hand.HandTournamentId
             && x.HandTableId == hand.HandTableId && x.HandRoundId == hand.HandRoundId && x.HandId == hand.HandId);
-            dbHand.PlayerEastPenalty = newPlayerSouthPenaltyValue;
+            dbHand.PlayerSouthPenalty = newPlayerSouthPenaltyValue;
             _db.SaveChanges();
         }
 
@@ -260,7 +260,7 @@ namespace MahjongTournamentSuite.Data
         {
             DBHand dbHand = _db.Hands.ToList().Find(x => x.HandTournamentId == hand.HandTournamentId
             && x.HandTableId == hand.HandTableId && x.HandRoundId == hand.HandRoundId && x.HandId == hand.HandId);
-            dbHand.PlayerEastPenalty = newPlayerWestPenaltyValue;
+            dbHand.PlayerWestPenalty = newPlayerWestPenaltyValue;
             _db.SaveChanges();
         }
 
@@ -268,7 +268,7 @@ namespace MahjongTournamentSuite.Data
         {
             DBHand dbHand = _db.Hands.ToList().Find(x => x.HandTournamentId == hand.HandTournamentId
             && x.HandTableId == hand.HandTableId && x.HandRoundId == hand.HandRoundId && x.HandId == hand.HandId);
-            dbHand.PlayerEastPenalty = newPlayerNorthPenaltyValue;
+            dbHand.PlayerNorthPenalty = newPlayerNorthPenaltyValue;
             _db.SaveChanges();
         }
 

@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TableManagerForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblRoundId = new System.Windows.Forms.Label();
             this.lblTableId = new System.Windows.Forms.Label();
             this.comboWestPlayer = new System.Windows.Forms.ComboBox();
@@ -419,30 +419,32 @@
             this.dgv.AllowUserToDeleteRows = false;
             this.dgv.AllowUserToResizeColumns = false;
             this.dgv.AllowUserToResizeRows = false;
-            this.dgv.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+            this.dgv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgv.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv.ColumnHeadersHeight = 52;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgv.Cursor = System.Windows.Forms.Cursors.Default;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv.GridColor = System.Drawing.SystemColors.Control;
             this.dgv.Location = new System.Drawing.Point(14, 241);
             this.dgv.Margin = new System.Windows.Forms.Padding(5);
@@ -454,15 +456,13 @@
             this.dgv.RowTemplate.Height = 32;
             this.dgv.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(980, 493);
+            this.dgv.Size = new System.Drawing.Size(980, 438);
             this.dgv.TabIndex = 26;
             this.dgv.Visible = false;
+            this.dgv.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellEndEdit);
             this.dgv.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgv_CellFormatting);
             this.dgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_CellMouseClick);
-            this.dgv.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgv_CellValidating);
-            this.dgv.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgv_DataBindingComplete);
-            this.dgv.SizeChanged += new System.EventHandler(this.dgv_SizeChanged);
-            this.dgv.Paint += new System.Windows.Forms.PaintEventHandler(this.dgv_Paint);
+            this.dgv.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgv_KeyPress);
             // 
             // lblTitleTotalPointsPlayerEast
             // 
@@ -515,7 +515,8 @@
             this.tbEastPlayerTotalScore.Size = new System.Drawing.Size(86, 26);
             this.tbEastPlayerTotalScore.TabIndex = 85;
             this.tbEastPlayerTotalScore.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbEastPlayerTotalScore.Validated += new System.EventHandler(this.tbEastPlayerTotalScore_Validated);
+            this.tbEastPlayerTotalScore.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbEastPlayerTotalScore_KeyPress);
+            this.tbEastPlayerTotalScore.Leave += new System.EventHandler(this.tbEastPlayerTotalScore_Leave);
             // 
             // tbSouthPlayerTotalScore
             // 
@@ -527,7 +528,8 @@
             this.tbSouthPlayerTotalScore.Size = new System.Drawing.Size(86, 26);
             this.tbSouthPlayerTotalScore.TabIndex = 89;
             this.tbSouthPlayerTotalScore.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbSouthPlayerTotalScore.Validated += new System.EventHandler(this.tbSouthPlayerTotalScore_Validated);
+            this.tbSouthPlayerTotalScore.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbSouthPlayerTotalScore_KeyPress);
+            this.tbSouthPlayerTotalScore.Leave += new System.EventHandler(this.tbSouthPlayerTotalScore_Leave);
             // 
             // tbSouthPlayerTotalPoints
             // 
@@ -580,6 +582,7 @@
             this.tbWestPlayerTotalScore.Size = new System.Drawing.Size(86, 26);
             this.tbWestPlayerTotalScore.TabIndex = 93;
             this.tbWestPlayerTotalScore.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbWestPlayerTotalScore.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbWestPlayerTotalScore_KeyPress);
             this.tbWestPlayerTotalScore.Leave += new System.EventHandler(this.tbWestPlayerTotalScore_Leave);
             // 
             // tbWestPlayerTotalPoints
@@ -633,6 +636,7 @@
             this.tbNorthPlayerTotalScore.Size = new System.Drawing.Size(86, 26);
             this.tbNorthPlayerTotalScore.TabIndex = 97;
             this.tbNorthPlayerTotalScore.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbNorthPlayerTotalScore.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbNorthPlayerTotalScore_KeyPress);
             this.tbNorthPlayerTotalScore.Leave += new System.EventHandler(this.tbNorthPlayerTotalScore_Leave);
             // 
             // tbNorthPlayerTotalPoints
@@ -708,7 +712,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1008, 748);
+            this.ClientSize = new System.Drawing.Size(1008, 693);
             this.Controls.Add(this.panelTotals);
             this.Controls.Add(this.dgv);
             this.Controls.Add(this.label2);
@@ -738,11 +742,12 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(1024, 786);
+            this.MinimumSize = new System.Drawing.Size(1024, 688);
             this.Name = "TableManagerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mahjong Tournament Suite - Table Manager";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TableManagerForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoEMA)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
