@@ -57,5 +57,6 @@ namespace MahjongTournamentSuite.TableManager
 
         void PlayKoSound();
         void ShowMessageChickenHandNeedWinnerLooserAndScore();
+        void ShowMessageWashoutShouldNotHaveWinnerOrLooser();
     }
 }

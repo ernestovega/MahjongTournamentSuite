@@ -462,30 +462,40 @@ namespace MahjongTournamentSuite.TableManager
 
             if (_dgvHands != null)
             {
-                foreach (DBHand hand in _dgvHands)
-                {
-                    //if(hand.HandScore.Equals(string.Empty))
-                    //    return;
-                    //else if (int.Parse(hand.HandScore) == 0)
-                    //{//WASHOUT
-                    //        _form.FillHandPlayersScoresCells(hand.HandId, "0", "0", "0", "0");
-                    //}
-                    //else
-                    //{
-                    //    if(hand.PlayerLooserId > 0)
-                    //    {//RON
-                    //        _form.FillHandPlayersScoresCells(hand.HandId, "0", "0", "0", "0");
-                    //    }
-                    //    else
-                    //    {//TSUMO
-                    //        _form.FillHandPlayersScoresCells(hand.HandId, "0", "0", "0", "0");
-                    //    }
-                    //}
-                }
-
-                CalculateAndSaveAndFillAllPlayersTotalScores();
-                CalculateAndFillAllPlayersTotalPoints();
+                //foreach (DBHand hand in _dgvHands)
+                //{
+                //    if (hand.HandScore.Equals(string.Empty))
+                //        return;
+                //    else if (int.Parse(hand.HandScore) == 0)
+                //    {
+                //        if (!hand.PlayerWinnerId.Equals(string.Empty)
+                //            || hand.PlayerWinnerId.Equals(string.Empty))
+                //        {
+                //            _form.ShowMessageWashoutShouldNotHaveWinnerOrLooser();
+                //            return;
+                //        }
+                //    }
+                //    else
+                //    {
+                //        if(hand.PlayerWinnerId.Equals(string.Empty))
+                //        if (!hand.PlayerLooserId.Equals(string.Empty))
+                //        {//RON
+                //        }
+                //        else
+                //        {//TSUMO
+                //        }
+                //    }
+                //    CalculateHandPenalties(hand);
+                //    _form.FillHandPlayersScoresCells(hand.HandId, "0", "0", "0", "0");
+                //}
+                //CalculateAndSaveAndFillAllPlayersTotalScores();
+                //CalculateAndFillAllPlayersTotalPoints();
             } 
+        }
+
+        private void CalculateHandPenalties(DBHand hand)
+        {
+            
         }
 
         private bool IsFilledAnyHand()
