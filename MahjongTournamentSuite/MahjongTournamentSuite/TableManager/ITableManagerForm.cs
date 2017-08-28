@@ -17,7 +17,7 @@ namespace MahjongTournamentSuite.TableManager
 
         void FillDGV(List<DGVHand> dataGridHands);
 
-        void FillHandPlayersScoresCells(int id, int eastPlayerScore, int southPlayerScore, int westPlayerScore, int northPlayerScore);
+        void FillHandPlayersScoresCells(DGVHand dgvHand);
 
         void FillAllTotalScoreTextBoxes(string playerEastTotalScore, string playerSouthTotalScore, string playerWestTotalScore, string playerNorthTotalScore);
 
@@ -56,7 +56,7 @@ namespace MahjongTournamentSuite.TableManager
         void CleanTotalPoints();
 
         void PlayKoSound();
+
         void ShowMessageChickenHandNeedWinnerLooserAndScore();
-        void ShowMessageWashoutShouldNotHaveWinnerOrLooser();
     }
 }

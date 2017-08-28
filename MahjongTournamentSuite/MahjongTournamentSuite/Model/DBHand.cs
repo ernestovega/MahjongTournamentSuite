@@ -5,6 +5,14 @@ namespace MahjongTournamentSuite.Model
 {
     public class DBHand
     {
+        public enum HandType
+        {
+            NONE = 0,
+            WASHOUT = 1,
+            TSUMO = 2,
+            RON = 3
+        }
+
         [Key, Column(Order = 0)]
         public int HandTournamentId { get; set; }
 
@@ -68,6 +76,28 @@ namespace MahjongTournamentSuite.Model
             PlayerSouthPenalty = playerSouthPenalty;
             PlayerWestPenalty = playerWestPenalty;
             PlayerNorthPenalty = playerNorthPenalty;
+        }
+
+        public HandType GetHandType()
+        {
+            if (HandScore.Equals(string.Empty))
+                return HandType.NONE;
+            else if (PlayerWinnerId.Equals(string.Empty))
+            {
+                if (PlayerLooserId.Equals(string.Empty))
+                {
+                    if (HandScore.Equals("0"))
+                        return HandType.WASHOUT;
+                    else
+                        return HandType.NONE;
+                }
+                else
+                    return HandType.NONE;
+            }
+            else if (PlayerLooserId.Equals(string.Empty))
+                return HandType.TSUMO;
+            else
+                return HandType.RON;
         }
     }
 }

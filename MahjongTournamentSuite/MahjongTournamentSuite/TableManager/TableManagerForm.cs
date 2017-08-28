@@ -434,13 +434,12 @@ namespace MahjongTournamentSuite.TableManager
             dgv.Columns[COLUMN_PLAYER_NORTH_SCORE].DefaultCellStyle.ForeColor = SystemColors.GrayText;
         }
         
-        public void FillHandPlayersScoresCells(int handId, int eastPlayerScore, int southPlayerScore, 
-            int westPlayerScore, int northPlayerScore)
+        public void FillHandPlayersScoresCells(DGVHand dgvHand)
         {
-            SetEastPlayerHandScoreCell(handId, eastPlayerScore);
-            SetSouthPlayerHandScoreCell(handId, southPlayerScore);
-            SetWestPlayerHandScoreCell(handId, westPlayerScore);
-            SetNorthPlayerHandScoreCell(handId, northPlayerScore);
+            SetEastPlayerHandScoreCell(dgvHand.HandId, dgvHand.PlayerEastScore);
+            SetSouthPlayerHandScoreCell(dgvHand.HandId, dgvHand.PlayerSouthScore);
+            SetWestPlayerHandScoreCell(dgvHand.HandId, dgvHand.PlayerWestScore);
+            SetNorthPlayerHandScoreCell(dgvHand.HandId, dgvHand.PlayerNorthScore);
         }
 
         public void FillAllTotalScoreTextBoxes(string playerEastTotalScore, string playerSouthTotalScore, 
@@ -586,22 +585,22 @@ namespace MahjongTournamentSuite.TableManager
             return (int)dgv.Rows[rowIndex].Cells[COLUMN_HAND_ID].Value;
         }
 
-        private void SetEastPlayerHandScoreCell(int handId, int value)
+        private void SetEastPlayerHandScoreCell(int handId, string value)
         {
             dgv.Rows[handId - 1].Cells[COLUMN_PLAYER_EAST_SCORE].Value = value;
         }
 
-        private void SetSouthPlayerHandScoreCell(int handId, int value)
+        private void SetSouthPlayerHandScoreCell(int handId, string value)
         {
             dgv.Rows[handId - 1].Cells[COLUMN_PLAYER_SOUTH_SCORE].Value = value;
         }
 
-        private void SetWestPlayerHandScoreCell(int handId, int value)
+        private void SetWestPlayerHandScoreCell(int handId, string value)
         {
             dgv.Rows[handId - 1].Cells[COLUMN_PLAYER_WEST_SCORE].Value = value;
         }
 
-        private void SetNorthPlayerHandScoreCell(int handId, int value)
+        private void SetNorthPlayerHandScoreCell(int handId, string value) 
         {
             dgv.Rows[handId - 1].Cells[COLUMN_PLAYER_NORTH_SCORE].Value = value;
         }

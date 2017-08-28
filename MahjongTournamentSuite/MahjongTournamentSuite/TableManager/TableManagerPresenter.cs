@@ -2,6 +2,7 @@
 using MahjongTournamentSuite.Model;
 using System.Collections.Generic;
 using System;
+using static MahjongTournamentSuite.Model.DBHand;
 
 namespace MahjongTournamentSuite.TableManager
 {
@@ -462,40 +463,81 @@ namespace MahjongTournamentSuite.TableManager
 
             if (_dgvHands != null)
             {
-                //foreach (DBHand hand in _dgvHands)
-                //{
-                //    if (hand.HandScore.Equals(string.Empty))
-                //        return;
-                //    else if (int.Parse(hand.HandScore) == 0)
-                //    {
-                //        if (!hand.PlayerWinnerId.Equals(string.Empty)
-                //            || hand.PlayerWinnerId.Equals(string.Empty))
-                //        {
-                //            _form.ShowMessageWashoutShouldNotHaveWinnerOrLooser();
-                //            return;
-                //        }
-                //    }
-                //    else
-                //    {
-                //        if(hand.PlayerWinnerId.Equals(string.Empty))
-                //        if (!hand.PlayerLooserId.Equals(string.Empty))
-                //        {//RON
-                //        }
-                //        else
-                //        {//TSUMO
-                //        }
-                //    }
-                //    CalculateHandPenalties(hand);
-                //    _form.FillHandPlayersScoresCells(hand.HandId, "0", "0", "0", "0");
-                //}
-                //CalculateAndSaveAndFillAllPlayersTotalScores();
-                //CalculateAndFillAllPlayersTotalPoints();
+                bool finishCalculation = false;
+                foreach (DBHand hand in _dgvHands)
+                {
+                    DGVHand dgvHand = _dgvHands.Find(x => x.HandId == hand.HandId);
+                    dgvHand = new DGVHand(hand);
+                    if (finishCalculation)
+                        _form.FillHandPlayersScoresCells(dgvHand);
+                    else
+                    {
+                        switch (hand.GetHandType())
+                        {
+                            case HandType.WASHOUT:
+                                CalculatePenalties(dgvHand);
+                                _form.FillHandPlayersScoresCells(dgvHand);
+                                break;
+                            case HandType.TSUMO:
+                                CalculateTsumo(dgvHand);
+                                CalculatePenalties(dgvHand);
+                                _form.FillHandPlayersScoresCells(dgvHand);
+                                break;
+                            case HandType.RON:
+                                CalculateRon(dgvHand);
+                                CalculatePenalties(dgvHand);
+                                _form.FillHandPlayersScoresCells(dgvHand);
+                                break;
+                            case HandType.NONE:
+                            default:
+                                finishCalculation = true;
+                                _form.FillHandPlayersScoresCells(new DGVHand(hand));
+                                break;
+                        }
+                    }
+                }
+                CalculateAndSaveAndFillAllPlayersTotalScores();
+                CalculateAndFillAllPlayersTotalPoints();
             } 
         }
 
-        private void CalculateHandPenalties(DBHand hand)
+        private DGVHand CalculateTsumo(DGVHand dgvHand)
         {
-            
+            //if(dgvHand.PlayerWinnerId.Equals(_table.PlayerEastId))
+            //{
+            //}
+            //else if (dgvHand.PlayerWinnerId.Equals(_table.PlayerSouthId))
+            //{
+            //}
+            //else if (dgvHand.PlayerWinnerId.Equals(_table.PlayerWestId))
+            //{
+            //}
+            //else if (dgvHand.PlayerWinnerId.Equals(_table.PlayerSouthId))
+            //{
+            //}
+            return dgvHand;
+        }
+
+        private DGVHand CalculateRon(DGVHand dgvHand)
+        {
+            //if(dgvHand.PlayerWinnerId.Equals(_table.PlayerEastId))
+            //{
+            //}
+            //else if (dgvHand.PlayerWinnerId.Equals(_table.PlayerSouthId))
+            //{
+            //}
+            //else if (dgvHand.PlayerWinnerId.Equals(_table.PlayerWestId))
+            //{
+            //}
+            //else if (dgvHand.PlayerWinnerId.Equals(_table.PlayerSouthId))
+            //{
+            //}
+            return dgvHand;
+        }
+
+        private DGVHand CalculatePenalties(DGVHand dgvHand)
+        {
+            return dgvHand;
         }
 
         private bool IsFilledAnyHand()
