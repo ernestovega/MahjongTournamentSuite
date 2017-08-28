@@ -212,7 +212,7 @@ namespace MahjongTournamentSuite.TableManager
                     dgv.BeginEdit(true);
                 else if (dgv.Columns[e.ColumnIndex].Name.Equals(COLUMN_IS_CHICKEN_HAND))
                 {
-                    IsChickenHandChanged(e.RowIndex, e.ColumnIndex);
+                    CellIsChickenHandChanged(e.RowIndex, e.ColumnIndex);
                 }
             }
         }
@@ -222,7 +222,7 @@ namespace MahjongTournamentSuite.TableManager
             if (e.KeyChar == (char)Keys.Space && dgv.CurrentCell != null 
                 && dgv.CurrentCell.RowIndex >= 0 
                 && dgv.CurrentCell.OwningColumn.Name.Equals(COLUMN_IS_CHICKEN_HAND))
-                IsChickenHandChanged(dgv.CurrentCell.RowIndex,
+                CellIsChickenHandChanged(dgv.CurrentCell.RowIndex,
                     dgv.CurrentCell.ColumnIndex);
         }
 
@@ -549,6 +549,11 @@ namespace MahjongTournamentSuite.TableManager
             tbNorthPlayerTotalScore.ForeColor = SystemColors.ControlText;
         }
 
+        public void ShowMessageChickenHandNeedWinnerLooserAndScore()
+        {
+            MessageBox.Show("Chicken hand need to have Winner, Looser and Hand Score.", "Wrong Chicken hand");
+        }
+
         public void CleanTotalPoints()
         {
             tbEastPlayerTotalPoints.Text = string.Empty;
@@ -566,14 +571,13 @@ namespace MahjongTournamentSuite.TableManager
 
         #region Private
 
-        private void IsChickenHandChanged(int rowIndex, int colIndex)
+        private void CellIsChickenHandChanged(int rowIndex, int colIndex)
         {
             ShowWaitCursor();
-            DataGridViewCheckBoxCell checkCell = dgv.Rows[rowIndex].Cells[colIndex] as DataGridViewCheckBoxCell;
-            checkCell.Value = checkCell.Value == null || !((bool)checkCell.Value);
+            DataGridViewCheckBoxCell checkCell = dgv.Rows[rowIndex].Cells[colIndex] as DataGridViewCheckBoxCell;            
+            checkCell.Value = _presenter.IsChickenHandChanged(GetSelectedHandId(rowIndex));
             dgv.BeginEdit(true);
             dgv.RefreshEdit();
-            _presenter.IsChickenHandChanged(GetSelectedHandId(rowIndex), (bool)checkCell.Value);
             ShowDefaultCursor();
         }
 

@@ -144,7 +144,8 @@ namespace MahjongTournamentSuite.TableManager
             {
                 int validValue;
                 if (int.TryParse(newValue, out validValue) && validValue > 0 
-                    && IsACurrentTablePlayerId(validValue) && !hand.PlayerLooserId.Equals(validValue.ToString()))
+                    && IsACurrentTablePlayerId(validValue) && 
+                    !hand.PlayerLooserId.Equals(validValue.ToString()))
                     returnValue = validValue.ToString();
                 else
                 {
@@ -167,7 +168,8 @@ namespace MahjongTournamentSuite.TableManager
             {
                 int validValue;
                 if (int.TryParse(newValue, out validValue) && validValue > 0 
-                    && IsACurrentTablePlayerId(validValue) && !hand.PlayerWinnerId.Equals(validValue.ToString()))
+                    && IsACurrentTablePlayerId(validValue) 
+                    && !hand.PlayerWinnerId.Equals(validValue.ToString()))
                     returnValue = validValue.ToString();
                 else
                 {
@@ -202,9 +204,27 @@ namespace MahjongTournamentSuite.TableManager
             return returnValue;
         }
 
-        public void IsChickenHandChanged(int handId, bool newIsChickenHand)
+        public bool IsChickenHandChanged(int handId)
         {
-            _db.UpdateHandIsChickenHand(_hands.Find(x => x.HandId == handId), newIsChickenHand);
+            DBHand hand = _hands.Find(x => x.HandId == handId);
+            bool returnValue;
+            if (hand.IsChickenHand)
+                returnValue = false;
+            else
+            {
+                if (!hand.HandScore.Equals(string.Empty) &&
+                    !hand.PlayerWinnerId.Equals(string.Empty) &&
+                    !hand.PlayerLooserId.Equals(string.Empty))
+                    returnValue = true;
+                else
+                {
+                    _form.PlayKoSound();
+                    _form.ShowMessageChickenHandNeedWinnerLooserAndScore();
+                    returnValue = false;
+                }
+            }
+            _db.UpdateHandIsChickenHand(_hands.Find(x => x.HandId == handId), returnValue);
+            return returnValue;
         }
 
         public string PlayerEastPenalytChanged(int handId, string newValue)
@@ -432,7 +452,7 @@ namespace MahjongTournamentSuite.TableManager
 
         private void CalculateAndFillAllHandsScoresAndPlayersTotals()
         {
-            if (IsCompletelyEmptyHands())
+            if (!IsFilledAnyHand())
             {
                 _form.EnableTotalScoresTextBoxes();
                 FillAllPlayersTotalScores();
@@ -468,14 +488,16 @@ namespace MahjongTournamentSuite.TableManager
             } 
         }
 
-        private bool IsCompletelyEmptyHands()
+        private bool IsFilledAnyHand()
         {
             foreach(DBHand hand in _hands)
             {
-                if (!hand.HandScore.Equals(string.Empty))
-                    return false;
+                if (!hand.HandScore.Equals(string.Empty) &&
+                    (!hand.PlayerWinnerId.Equals(string.Empty) ||
+                    hand.PlayerLooserId.Equals(string.Empty)))
+                    return true;
             }
-            return true;
+            return false;
         }
 
         private void CalculateAndSaveAndFillAllPlayersTotalScores()

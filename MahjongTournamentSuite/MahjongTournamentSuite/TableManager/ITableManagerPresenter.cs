@@ -28,7 +28,7 @@ namespace MahjongTournamentSuite.TableManager
 
         string HandScoreChanged(int handId, string newValue);
 
-        void IsChickenHandChanged(int handId, bool cellValue);
+        bool IsChickenHandChanged(int handId);
 
         string PlayerEastPenalytChanged(int handId, string newValue);
 
