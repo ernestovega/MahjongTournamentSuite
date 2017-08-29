@@ -37,7 +37,6 @@ namespace MahjongTournamentSuite.TableManager
         #region Fields
 
         private ITableManagerPresenter _presenter;
-        private bool _bindingCompleted;
 
         #endregion
 

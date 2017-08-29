@@ -11,9 +11,10 @@ namespace MahjongTournamentSuite.TableManager
         #region Constants
 
         private readonly int MCR_MIN_POINTS = 8;
+        private const int NUM_LOOSER_PLAYERS = 3;
 
         #endregion
-        
+
         #region Fields
 
         private ITableManagerForm _form;
@@ -138,22 +139,7 @@ namespace MahjongTournamentSuite.TableManager
         public string PlayerWinnerIdChanged(int handId, string newValue)
         {
             DBHand hand = _hands.Find(x => x.HandId == handId);
-            string returnValue = null;
-            if (newValue == null || newValue.Equals(string.Empty))
-                returnValue = string.Empty;
-            else
-            {
-                int validValue;
-                if (int.TryParse(newValue, out validValue) && validValue > 0 
-                    && IsACurrentTablePlayerId(validValue) && 
-                    !hand.PlayerLooserId.Equals(validValue.ToString()))
-                    returnValue = validValue.ToString();
-                else
-                {
-                    _form.PlayKoSound();
-                    return hand.PlayerWinnerId;
-                }
-            }
+            string returnValue = ValidatePlayerId(hand, newValue);
             _db.UpdateHandWinnerId(hand, returnValue);
             CalculateAndFillAllHandsScoresAndPlayersTotals();
             return returnValue;
@@ -162,22 +148,7 @@ namespace MahjongTournamentSuite.TableManager
         public string PlayerLooserIdChanged(int handId, string newValue)
         {
             DBHand hand = _hands.Find(x => x.HandId == handId);
-            string returnValue = null;
-            if (newValue == null || newValue.Equals(string.Empty))
-                returnValue = string.Empty;
-            else
-            {
-                int validValue;
-                if (int.TryParse(newValue, out validValue) && validValue > 0 
-                    && IsACurrentTablePlayerId(validValue) 
-                    && !hand.PlayerWinnerId.Equals(validValue.ToString()))
-                    returnValue = validValue.ToString();
-                else
-                {
-                    _form.PlayKoSound();
-                    return hand.PlayerLooserId;
-                }
-            }
+            string returnValue = ValidatePlayerId(hand, newValue);
             _db.UpdateHandLooserId(hand, returnValue);
             CalculateAndFillAllHandsScoresAndPlayersTotals();
             return returnValue;
@@ -186,20 +157,7 @@ namespace MahjongTournamentSuite.TableManager
         public string HandScoreChanged(int handId, string newValue)
         {
             DBHand hand = _hands.Find(x => x.HandId == handId);
-            string returnValue = null;
-            if (newValue == null || newValue.Equals(string.Empty))
-                returnValue = string.Empty;
-            else
-            {
-                int validValue;
-                if (int.TryParse(newValue, out validValue) && validValue >= MCR_MIN_POINTS)
-                    returnValue = validValue.ToString();
-                else
-                {
-                    _form.PlayKoSound();
-                    return hand.HandScore;
-                }
-            }
+            string returnValue = ValidateHandScore(hand, newValue);
             _db.UpdateHandScore(_hands.Find(x => x.HandId == handId), returnValue);
             CalculateAndFillAllHandsScoresAndPlayersTotals();
             return returnValue;
@@ -360,7 +318,7 @@ namespace MahjongTournamentSuite.TableManager
             else if (int.Parse(_table.PlayerEastId) == _table.Player2Id)
                 return 2;
             else if (int.Parse(_table.PlayerEastId) == _table.Player3Id)
-                return 3;
+                return NUM_LOOSER_PLAYERS;
             else
                 return 4;
         }
@@ -372,7 +330,7 @@ namespace MahjongTournamentSuite.TableManager
             else if (int.Parse(_table.PlayerSouthId) == _table.Player2Id)
                 return 2;
             else if (int.Parse(_table.PlayerSouthId) == _table.Player3Id)
-                return 3;
+                return NUM_LOOSER_PLAYERS;
             else
                 return 4;
         }
@@ -384,7 +342,7 @@ namespace MahjongTournamentSuite.TableManager
             else if (int.Parse(_table.PlayerWestId) == _table.Player2Id)
                 return 2;
             else if (int.Parse(_table.PlayerWestId) == _table.Player3Id)
-                return 3;
+                return NUM_LOOSER_PLAYERS;
             else
                 return 4;
         }
@@ -396,28 +354,51 @@ namespace MahjongTournamentSuite.TableManager
             else if (int.Parse(_table.PlayerNorthId) == _table.Player2Id)
                 return 2;
             else if (int.Parse(_table.PlayerNorthId) == _table.Player3Id)
-                return 3;
+                return NUM_LOOSER_PLAYERS;
             else
                 return 4;
+        }
+
+        private string ValidatePlayerId(DBHand hand, string newValue)
+        {
+            if (newValue == null || newValue.Equals(string.Empty))
+                return string.Empty;
+            int validValue;
+            if (int.TryParse(newValue, out validValue))
+            {
+                if (validValue == 0)
+                    return string.Empty;
+                else if (validValue > 0 && IsACurrentTablePlayerId(validValue) &&
+                !hand.PlayerLooserId.Equals(validValue.ToString()))
+                    return validValue.ToString();
+            }
+            _form.PlayKoSound();
+            return hand.PlayerWinnerId;
+        }
+
+        private string ValidateHandScore(DBHand hand, string newValue)
+        {
+            if (newValue == null || newValue.Equals(string.Empty))
+                return string.Empty;
+            int validValue;
+            if (int.TryParse(newValue, out validValue) &&
+                (validValue == 0 || validValue >= MCR_MIN_POINTS))
+                return validValue.ToString();
+            _form.PlayKoSound();
+            return hand.HandScore;
         }
 
         private string ValidatePenalty(string previousValue, string newValue)
         {
             if (newValue == null || newValue.Equals(string.Empty))
                 return string.Empty;
-            else
-            {
-                int validValue;
-                if (int.TryParse(newValue, out validValue) && validValue > 0)
-                    return validValue.ToString();
-                else if (validValue == 0)
-                    return string.Empty;
-                else
-                {
-                    _form.PlayKoSound();
-                    return previousValue;
-                }
-            }
+            int validValue;
+            if (int.TryParse(newValue, out validValue))
+                return validValue.ToString();
+            else if (validValue == 0)
+                return string.Empty;
+            _form.PlayKoSound();
+            return previousValue;
         }
 
         private bool ValidateAndSaveTotalsScores()
@@ -477,6 +458,7 @@ namespace MahjongTournamentSuite.TableManager
                         switch (hand.GetHandType())
                         {
                             case HandType.WASHOUT:
+                                CalculateWashout(dgvHand);
                                 CalculatePenalties(dgvHand);
                                 _form.FillHandPlayersScoresCells(dgvHand);
                                 break;
@@ -503,10 +485,30 @@ namespace MahjongTournamentSuite.TableManager
             } 
         }
 
-        private DGVHand CalculateTsumo(DGVHand dgvHand)
+        private bool IsFilledAnyHand()
         {
-            string winnerPoints = ((int.Parse(dgvHand.HandScore) + 8) * 3).ToString();
-            string looserPoints = (int.Parse(dgvHand.HandScore) + 8).ToString();
+            foreach(DBHand hand in _hands)
+            {
+                if (!hand.HandScore.Equals(string.Empty) &&
+                    (!hand.PlayerWinnerId.Equals(string.Empty) ||
+                    hand.PlayerLooserId.Equals(string.Empty)))
+                    return true;
+            }
+            return false;
+        }
+
+        private void CalculateWashout(DGVHand dgvHand)
+        {
+            dgvHand.PlayerEastScore = "0";
+            dgvHand.PlayerSouthScore = "0";
+            dgvHand.PlayerWestScore = "0";
+            dgvHand.PlayerNorthScore = "0";
+        }
+
+        private void CalculateTsumo(DGVHand dgvHand)
+        {
+            string winnerPoints = ((int.Parse(dgvHand.HandScore) + MCR_MIN_POINTS) * NUM_LOOSER_PLAYERS).ToString();
+            string looserPoints = (-(int.Parse(dgvHand.HandScore) + MCR_MIN_POINTS)).ToString();
             if (dgvHand.PlayerWinnerId.Equals(_table.PlayerEastId))
             {
                 dgvHand.PlayerEastScore = winnerPoints;
@@ -535,14 +537,13 @@ namespace MahjongTournamentSuite.TableManager
                 dgvHand.PlayerWestScore = looserPoints;
                 dgvHand.PlayerNorthScore = winnerPoints;
             }
-            return dgvHand;
         }
 
-        private DGVHand CalculateRon(DGVHand dgvHand)
+        private void CalculateRon(DGVHand dgvHand)
         {
-            string winnerPoints = (int.Parse(dgvHand.HandScore) + (8 * 3)).ToString();
-            string looserPoints = (int.Parse(dgvHand.HandScore) + 8).ToString();
-            string restPlayersPoints = "8";
+            string winnerPoints = (int.Parse(dgvHand.HandScore) + (8 * NUM_LOOSER_PLAYERS)).ToString();
+            string looserPoints = (-(int.Parse(dgvHand.HandScore) + 8)).ToString();
+            string restPlayersPoints = "-8";
             //EAST
             if (_table.PlayerEastId.Equals(dgvHand.PlayerWinnerId))
                 dgvHand.PlayerEastScore = winnerPoints;
@@ -571,55 +572,20 @@ namespace MahjongTournamentSuite.TableManager
                 dgvHand.PlayerNorthScore = looserPoints;
             else
                 dgvHand.PlayerNorthScore = restPlayersPoints;
-
-            return dgvHand;
         }
 
-        private DGVHand CalculatePenalties(DGVHand dgvHand)
+        private void CalculatePenalties(DGVHand dgvHand)
         {
             if (!dgvHand.PlayerEastPenalty.Equals(string.Empty))
-            {
-                dgvHand.PlayerEastScore = (int.Parse(dgvHand.PlayerEastScore) - int.Parse(dgvHand.PlayerEastPenalty)).ToString();
-                dgvHand.PlayerSouthScore = (int.Parse(dgvHand.PlayerSouthScore) + (int.Parse(dgvHand.PlayerEastPenalty) / 3)).ToString();
-                dgvHand.PlayerWestScore = (int.Parse(dgvHand.PlayerWestScore) + (int.Parse(dgvHand.PlayerEastPenalty) / 3)).ToString();
-                dgvHand.PlayerNorthScore = (int.Parse(dgvHand.PlayerNorthScore) + (int.Parse(dgvHand.PlayerEastPenalty) / 3)).ToString();
-            }
+                    dgvHand.PlayerEastScore = (int.Parse(dgvHand.PlayerEastScore) + int.Parse(dgvHand.PlayerEastPenalty)).ToString();
             if (!dgvHand.PlayerSouthPenalty.Equals(string.Empty))
-            {
-                dgvHand.PlayerEastScore = (int.Parse(dgvHand.PlayerEastScore) + (int.Parse(dgvHand.PlayerSouthPenalty) / 3)).ToString();
-                dgvHand.PlayerSouthScore = (int.Parse(dgvHand.PlayerSouthScore) - int.Parse(dgvHand.PlayerSouthPenalty)).ToString();
-                dgvHand.PlayerWestScore = (int.Parse(dgvHand.PlayerWestScore) + (int.Parse(dgvHand.PlayerSouthPenalty) / 3)).ToString();
-                dgvHand.PlayerNorthScore = (int.Parse(dgvHand.PlayerNorthScore) + (int.Parse(dgvHand.PlayerSouthPenalty) / 3)).ToString();
-            }
-            if (!dgvHand.PlayerEastPenalty.Equals(string.Empty))
-            {
-                dgvHand.PlayerEastScore = (int.Parse(dgvHand.PlayerEastScore) + (int.Parse(dgvHand.PlayerWestPenalty) / 3)).ToString();
-                dgvHand.PlayerSouthScore = (int.Parse(dgvHand.PlayerSouthScore) + (int.Parse(dgvHand.PlayerWestPenalty) / 3)).ToString();
-                dgvHand.PlayerWestScore = (int.Parse(dgvHand.PlayerWestScore) - int.Parse(dgvHand.PlayerWestPenalty)).ToString();
-                dgvHand.PlayerNorthScore = (int.Parse(dgvHand.PlayerNorthScore) + (int.Parse(dgvHand.PlayerWestPenalty) / 3)).ToString();
-            }
-            if (!dgvHand.PlayerEastPenalty.Equals(string.Empty))
-            {
-                dgvHand.PlayerEastScore = (int.Parse(dgvHand.PlayerEastScore) + (int.Parse(dgvHand.PlayerNorthPenalty) / 3)).ToString();
-                dgvHand.PlayerSouthScore = (int.Parse(dgvHand.PlayerSouthScore) + (int.Parse(dgvHand.PlayerNorthPenalty) / 3)).ToString();
-                dgvHand.PlayerWestScore = (int.Parse(dgvHand.PlayerWestScore) + (int.Parse(dgvHand.PlayerNorthPenalty) / 3)).ToString();
-                dgvHand.PlayerNorthScore = (int.Parse(dgvHand.PlayerNorthScore) - int.Parse(dgvHand.PlayerNorthPenalty)).ToString();
-            }
-            return dgvHand;
+                    dgvHand.PlayerSouthScore = (int.Parse(dgvHand.PlayerSouthScore) + int.Parse(dgvHand.PlayerSouthPenalty)).ToString();
+            if (!dgvHand.PlayerWestPenalty.Equals(string.Empty))
+                    dgvHand.PlayerWestScore = (int.Parse(dgvHand.PlayerWestScore) + int.Parse(dgvHand.PlayerWestPenalty)).ToString();
+            if (!dgvHand.PlayerNorthPenalty.Equals(string.Empty))
+                    dgvHand.PlayerNorthScore = (int.Parse(dgvHand.PlayerNorthScore) + int.Parse(dgvHand.PlayerNorthPenalty)).ToString();
         }
-
-        private bool IsFilledAnyHand()
-        {
-            foreach(DBHand hand in _hands)
-            {
-                if (!hand.HandScore.Equals(string.Empty) &&
-                    (!hand.PlayerWinnerId.Equals(string.Empty) ||
-                    hand.PlayerLooserId.Equals(string.Empty)))
-                    return true;
-            }
-            return false;
-        }
-
+        
         private void CalculateAndSaveAndFillAllPlayersTotalScores()
         {
             //Calcular scores totales aqui!
