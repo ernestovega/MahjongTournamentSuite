@@ -134,6 +134,7 @@
     <Compile Include="Resources\CustomColors.cs" />
     <Compile Include="TableManager\ITableManagerForm.cs" />
     <Compile Include="TableManager\ITableManagerPresenter.cs" />
+    <Compile Include="Model\PlayerTotalScore.cs" />
     <Compile Include="TableManager\TableManagerForm.cs">
       <SubType>Form</SubType>
     </Compile>
