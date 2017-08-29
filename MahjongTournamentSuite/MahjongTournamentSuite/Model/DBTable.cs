@@ -22,13 +22,13 @@ namespace MahjongTournamentSuite.Model
 
         public int Player4Id { get; set; }
 
-        public int PlayerEastId { get; set; }
+        public string PlayerEastId { get; set; }
 
-        public int PlayerSouthId { get; set; }
+        public string PlayerSouthId { get; set; }
 
-        public int PlayerWestId { get; set; }
+        public string PlayerWestId { get; set; }
 
-        public int PlayerNorthId { get; set; }
+        public string PlayerNorthId { get; set; }
 
         public string PlayerEastTotalScore { get; set; }
 
@@ -50,10 +50,10 @@ namespace MahjongTournamentSuite.Model
             Player2Id = player2Id;
             Player3Id = player3Id;
             Player4Id = player4Id;
-            PlayerEastId = 0;
-            PlayerSouthId = 0;
-            PlayerWestId = 0;
-            PlayerNorthId = 0;
+            PlayerEastId = string.Empty;
+            PlayerSouthId = string.Empty;
+            PlayerWestId = string.Empty;
+            PlayerNorthId = string.Empty;
             PlayerEastTotalScore = string.Empty;
             PlayerSouthTotalScore = string.Empty;
             PlayerWestTotalScore = string.Empty;

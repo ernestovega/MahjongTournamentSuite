@@ -6,13 +6,13 @@ namespace MahjongTournamentSuite.TableManager
     {
         void LoadForm(int tournamentId, int roundId, int tableId);
 
-        void NameEastPlayerChanged(int selectedPlayerId);
+        void NameEastPlayerChanged(string selectedPlayerId);
 
-        void NameSouthPlayerChanged(int selectedPlayerId);
+        void NameSouthPlayerChanged(string selectedPlayerId);
 
-        void NameWestPlayerChanged(int selectedPlayerId);
+        void NameWestPlayerChanged(string selectedPlayerId);
 
-        void NameNorthPlayerChanged(int selectedPlayerId);
+        void NameNorthPlayerChanged(string selectedPlayerId);
 
         string TotalScoreEastPlayerChanged(string newScore);
 

@@ -86,28 +86,28 @@ namespace MahjongTournamentSuite.TableManager
         private void comboEastPlayer_SelectionChangeCommitted(object sender, EventArgs e)
         {
             ShowWaitCursor();
-            _presenter.NameEastPlayerChanged(int.Parse(((ComboItem)comboEastPlayer.SelectedItem).Value));
+            _presenter.NameEastPlayerChanged(((ComboItem)comboEastPlayer.SelectedItem).Value);
             ShowDefaultCursor();
         }
 
         private void comboSouthPlayer_SelectionChangeCommitted(object sender, EventArgs e)
         {
             ShowWaitCursor();
-            _presenter.NameSouthPlayerChanged(int.Parse(((ComboItem)comboSouthPlayer.SelectedItem).Value));
+            _presenter.NameSouthPlayerChanged(((ComboItem)comboSouthPlayer.SelectedItem).Value);
             ShowDefaultCursor();
         }
 
         private void comboWestPlayer_SelectionChangeCommitted(object sender, EventArgs e)
         {
             ShowWaitCursor();
-            _presenter.NameWestPlayerChanged(int.Parse(((ComboItem)comboWestPlayer.SelectedItem).Value));
+            _presenter.NameWestPlayerChanged(((ComboItem)comboWestPlayer.SelectedItem).Value);
             ShowDefaultCursor();
         }
 
         private void comboNorthPlayer_SelectionChangeCommitted(object sender, EventArgs e)
         {
             ShowWaitCursor();
-            _presenter.NameNorthPlayerChanged(int.Parse(((ComboItem)comboNorthPlayer.SelectedItem).Value));
+            _presenter.NameNorthPlayerChanged(((ComboItem)comboNorthPlayer.SelectedItem).Value);
             ShowDefaultCursor();
         }
         #endregion

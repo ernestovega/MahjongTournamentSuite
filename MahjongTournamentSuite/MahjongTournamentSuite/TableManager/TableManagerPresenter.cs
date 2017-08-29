@@ -55,25 +55,25 @@ namespace MahjongTournamentSuite.TableManager
             }
         }
 
-        public void NameEastPlayerChanged(int selectedPlayerId)
+        public void NameEastPlayerChanged(string selectedPlayerId)
         {
             _table.PlayerEastId = selectedPlayerId;
             ShowDGVIfAllPlayersPositionsSelected();
         }
 
-        public void NameSouthPlayerChanged(int selectedPlayerId)
+        public void NameSouthPlayerChanged(string selectedPlayerId)
         {
             _table.PlayerSouthId = selectedPlayerId;
             ShowDGVIfAllPlayersPositionsSelected();
         }
 
-        public void NameWestPlayerChanged(int selectedPlayerId)
+        public void NameWestPlayerChanged(string selectedPlayerId)
         {
             _table.PlayerWestId = selectedPlayerId;
             ShowDGVIfAllPlayersPositionsSelected();
         }
 
-        public void NameNorthPlayerChanged(int selectedPlayerId)
+        public void NameNorthPlayerChanged(string selectedPlayerId)
         {
             _table.PlayerNorthId = selectedPlayerId;
             ShowDGVIfAllPlayersPositionsSelected();
@@ -316,10 +316,10 @@ namespace MahjongTournamentSuite.TableManager
                 {
                     _db.UpdateTableAllPlayersPositions(_table);
                 }
-                DBPlayer playerEast = _tablePlayers.Find(x => x.PlayerId == _table.PlayerEastId);
-                DBPlayer playerSouth = _tablePlayers.Find(x => x.PlayerId == _table.PlayerSouthId);
-                DBPlayer playerWest = _tablePlayers.Find(x => x.PlayerId == _table.PlayerWestId);
-                DBPlayer playerNorth = _tablePlayers.Find(x => x.PlayerId == _table.PlayerNorthId);
+                DBPlayer playerEast = _tablePlayers.Find(x => x.PlayerId == int.Parse(_table.PlayerEastId));
+                DBPlayer playerSouth = _tablePlayers.Find(x => x.PlayerId == int.Parse(_table.PlayerSouthId));
+                DBPlayer playerWest = _tablePlayers.Find(x => x.PlayerId == int.Parse(_table.PlayerWestId));
+                DBPlayer playerNorth = _tablePlayers.Find(x => x.PlayerId == int.Parse(_table.PlayerNorthId));
                 _form.SetEastPlayerHeader(string.Format("{0} ({1})", playerEast.PlayerName, playerEast.PlayerId));
                 _form.SetSouthPlayerHeader(string.Format("{0} ({1})", playerSouth.PlayerName, playerSouth.PlayerId));
                 _form.SetWestPlayerHeader(string.Format("{0} ({1})", playerWest.PlayerName, playerWest.PlayerId));
@@ -332,18 +332,20 @@ namespace MahjongTournamentSuite.TableManager
 
         private bool IsAllPlayersIdsSelected()
         {
-            return _table.PlayerEastId > 0 && _table.PlayerSouthId > 0
-                && _table.PlayerWestId > 0 && _table.PlayerNorthId > 0;
+            return !_table.PlayerEastId.Equals(string.Empty) && int.Parse(_table.PlayerEastId) > 0 &&
+                !_table.PlayerSouthId.Equals(string.Empty) && int.Parse(_table.PlayerSouthId) > 0 &&
+                !_table.PlayerWestId.Equals(string.Empty) && int.Parse(_table.PlayerWestId) > 0 &&
+                !_table.PlayerNorthId.Equals(string.Empty) && int.Parse(_table.PlayerNorthId) > 0;
         }
 
         private bool IsPlayerIdRepeated()
         {
-            return _table.PlayerEastId == _table.PlayerSouthId ||
-                _table.PlayerEastId == _table.PlayerWestId ||
-                _table.PlayerEastId == _table.PlayerNorthId ||
-                _table.PlayerSouthId == _table.PlayerWestId ||
-                _table.PlayerSouthId == _table.PlayerNorthId ||
-                _table.PlayerWestId == _table.PlayerNorthId;
+            return _table.PlayerEastId.Equals(_table.PlayerSouthId) ||
+                _table.PlayerEastId.Equals(_table.PlayerWestId) ||
+                _table.PlayerEastId.Equals(_table.PlayerNorthId) ||
+                _table.PlayerSouthId.Equals(_table.PlayerWestId) ||
+                _table.PlayerSouthId.Equals(_table.PlayerNorthId) ||
+                _table.PlayerWestId.Equals(_table.PlayerNorthId);
         }
 
         private bool IsACurrentTablePlayerId(int playerId)
@@ -353,11 +355,11 @@ namespace MahjongTournamentSuite.TableManager
 
         private int GetPlayerEastIndex()
         {
-            if (_table.PlayerEastId == _table.Player1Id)
+            if (int.Parse(_table.PlayerEastId) == _table.Player1Id)
                 return 1;
-            else if (_table.PlayerEastId == _table.Player2Id)
+            else if (int.Parse(_table.PlayerEastId) == _table.Player2Id)
                 return 2;
-            else if (_table.PlayerEastId == _table.Player3Id)
+            else if (int.Parse(_table.PlayerEastId) == _table.Player3Id)
                 return 3;
             else
                 return 4;
@@ -365,11 +367,11 @@ namespace MahjongTournamentSuite.TableManager
 
         private int GetPlayerSouthIndex()
         {
-            if (_table.PlayerSouthId == _table.Player1Id)
+            if (int.Parse(_table.PlayerSouthId) == _table.Player1Id)
                 return 1;
-            else if (_table.PlayerSouthId == _table.Player2Id)
+            else if (int.Parse(_table.PlayerSouthId) == _table.Player2Id)
                 return 2;
-            else if (_table.PlayerSouthId == _table.Player3Id)
+            else if (int.Parse(_table.PlayerSouthId) == _table.Player3Id)
                 return 3;
             else
                 return 4;
@@ -377,11 +379,11 @@ namespace MahjongTournamentSuite.TableManager
 
         private int GetPlayerWestIndex()
         {
-            if (_table.PlayerWestId == _table.Player1Id)
+            if (int.Parse(_table.PlayerWestId) == _table.Player1Id)
                 return 1;
-            else if (_table.PlayerWestId == _table.Player2Id)
+            else if (int.Parse(_table.PlayerWestId) == _table.Player2Id)
                 return 2;
-            else if (_table.PlayerWestId == _table.Player3Id)
+            else if (int.Parse(_table.PlayerWestId) == _table.Player3Id)
                 return 3;
             else
                 return 4;
@@ -389,11 +391,11 @@ namespace MahjongTournamentSuite.TableManager
 
         private int GetPlayerNorthIndex()
         {
-            if (_table.PlayerNorthId == _table.Player1Id)
+            if (int.Parse(_table.PlayerNorthId) == _table.Player1Id)
                 return 1;
-            else if (_table.PlayerNorthId == _table.Player2Id)
+            else if (int.Parse(_table.PlayerNorthId) == _table.Player2Id)
                 return 2;
-            else if (_table.PlayerNorthId == _table.Player3Id)
+            else if (int.Parse(_table.PlayerNorthId) == _table.Player3Id)
                 return 3;
             else
                 return 4;
