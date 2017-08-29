@@ -503,40 +503,106 @@ namespace MahjongTournamentSuite.TableManager
 
         private DGVHand CalculateTsumo(DGVHand dgvHand)
         {
-            //if(dgvHand.PlayerWinnerId.Equals(_table.PlayerEastId))
-            //{
-            //}
-            //else if (dgvHand.PlayerWinnerId.Equals(_table.PlayerSouthId))
-            //{
-            //}
-            //else if (dgvHand.PlayerWinnerId.Equals(_table.PlayerWestId))
-            //{
-            //}
-            //else if (dgvHand.PlayerWinnerId.Equals(_table.PlayerSouthId))
-            //{
-            //}
+            string winnerPoints = ((int.Parse(dgvHand.HandScore) + 8) * 3).ToString();
+            string looserPoints = (int.Parse(dgvHand.HandScore) + 8).ToString();
+            if (dgvHand.PlayerWinnerId.Equals(_table.PlayerEastId))
+            {
+                dgvHand.PlayerEastScore = winnerPoints;
+                dgvHand.PlayerSouthScore = looserPoints;
+                dgvHand.PlayerWestScore = looserPoints;
+                dgvHand.PlayerNorthScore = looserPoints;
+            }
+            else if (dgvHand.PlayerWinnerId.Equals(_table.PlayerSouthId))
+            {
+                dgvHand.PlayerEastScore = looserPoints;
+                dgvHand.PlayerSouthScore = winnerPoints;
+                dgvHand.PlayerWestScore = looserPoints;
+                dgvHand.PlayerNorthScore = looserPoints;
+            }
+            else if (dgvHand.PlayerWinnerId.Equals(_table.PlayerWestId))
+            {
+                dgvHand.PlayerEastScore = looserPoints;
+                dgvHand.PlayerSouthScore = looserPoints;
+                dgvHand.PlayerWestScore = winnerPoints;
+                dgvHand.PlayerNorthScore = looserPoints;
+            }
+            else
+            {
+                dgvHand.PlayerEastScore = looserPoints;
+                dgvHand.PlayerSouthScore = looserPoints;
+                dgvHand.PlayerWestScore = looserPoints;
+                dgvHand.PlayerNorthScore = winnerPoints;
+            }
             return dgvHand;
         }
 
         private DGVHand CalculateRon(DGVHand dgvHand)
         {
-            //if(dgvHand.PlayerWinnerId.Equals(_table.PlayerEastId))
-            //{
-            //}
-            //else if (dgvHand.PlayerWinnerId.Equals(_table.PlayerSouthId))
-            //{
-            //}
-            //else if (dgvHand.PlayerWinnerId.Equals(_table.PlayerWestId))
-            //{
-            //}
-            //else if (dgvHand.PlayerWinnerId.Equals(_table.PlayerSouthId))
-            //{
-            //}
+            string winnerPoints = (int.Parse(dgvHand.HandScore) + (8 * 3)).ToString();
+            string looserPoints = (int.Parse(dgvHand.HandScore) + 8).ToString();
+            string restPlayersPoints = "8";
+            //EAST
+            if (_table.PlayerEastId.Equals(dgvHand.PlayerWinnerId))
+                dgvHand.PlayerEastScore = winnerPoints;
+            else if(_table.PlayerEastId.Equals(dgvHand.PlayerLooserId))
+                dgvHand.PlayerEastScore = looserPoints;
+            else
+                dgvHand.PlayerEastScore = restPlayersPoints;
+            //SOUTH
+            if (_table.PlayerSouthId.Equals(dgvHand.PlayerWinnerId))
+                dgvHand.PlayerSouthScore = winnerPoints;
+            else if (_table.PlayerSouthId.Equals(dgvHand.PlayerLooserId))
+                dgvHand.PlayerSouthScore = looserPoints;
+            else
+                dgvHand.PlayerSouthScore = restPlayersPoints;
+            //WEST
+            if (_table.PlayerWestId.Equals(dgvHand.PlayerWinnerId))
+                dgvHand.PlayerWestScore = winnerPoints;
+            else if (_table.PlayerWestId.Equals(dgvHand.PlayerLooserId))
+                dgvHand.PlayerWestScore = looserPoints;
+            else
+                dgvHand.PlayerWestScore = restPlayersPoints;
+            //NORTH
+            if (_table.PlayerNorthId.Equals(dgvHand.PlayerWinnerId))
+                dgvHand.PlayerNorthScore = winnerPoints;
+            else if (_table.PlayerNorthId.Equals(dgvHand.PlayerLooserId))
+                dgvHand.PlayerNorthScore = looserPoints;
+            else
+                dgvHand.PlayerNorthScore = restPlayersPoints;
+
             return dgvHand;
         }
 
         private DGVHand CalculatePenalties(DGVHand dgvHand)
         {
+            if (!dgvHand.PlayerEastPenalty.Equals(string.Empty))
+            {
+                dgvHand.PlayerEastScore = (int.Parse(dgvHand.PlayerEastScore) - int.Parse(dgvHand.PlayerEastPenalty)).ToString();
+                dgvHand.PlayerSouthScore = (int.Parse(dgvHand.PlayerSouthScore) + (int.Parse(dgvHand.PlayerEastPenalty) / 3)).ToString();
+                dgvHand.PlayerWestScore = (int.Parse(dgvHand.PlayerWestScore) + (int.Parse(dgvHand.PlayerEastPenalty) / 3)).ToString();
+                dgvHand.PlayerNorthScore = (int.Parse(dgvHand.PlayerNorthScore) + (int.Parse(dgvHand.PlayerEastPenalty) / 3)).ToString();
+            }
+            if (!dgvHand.PlayerSouthPenalty.Equals(string.Empty))
+            {
+                dgvHand.PlayerEastScore = (int.Parse(dgvHand.PlayerEastScore) + (int.Parse(dgvHand.PlayerSouthPenalty) / 3)).ToString();
+                dgvHand.PlayerSouthScore = (int.Parse(dgvHand.PlayerSouthScore) - int.Parse(dgvHand.PlayerSouthPenalty)).ToString();
+                dgvHand.PlayerWestScore = (int.Parse(dgvHand.PlayerWestScore) + (int.Parse(dgvHand.PlayerSouthPenalty) / 3)).ToString();
+                dgvHand.PlayerNorthScore = (int.Parse(dgvHand.PlayerNorthScore) + (int.Parse(dgvHand.PlayerSouthPenalty) / 3)).ToString();
+            }
+            if (!dgvHand.PlayerEastPenalty.Equals(string.Empty))
+            {
+                dgvHand.PlayerEastScore = (int.Parse(dgvHand.PlayerEastScore) + (int.Parse(dgvHand.PlayerWestPenalty) / 3)).ToString();
+                dgvHand.PlayerSouthScore = (int.Parse(dgvHand.PlayerSouthScore) + (int.Parse(dgvHand.PlayerWestPenalty) / 3)).ToString();
+                dgvHand.PlayerWestScore = (int.Parse(dgvHand.PlayerWestScore) - int.Parse(dgvHand.PlayerWestPenalty)).ToString();
+                dgvHand.PlayerNorthScore = (int.Parse(dgvHand.PlayerNorthScore) + (int.Parse(dgvHand.PlayerWestPenalty) / 3)).ToString();
+            }
+            if (!dgvHand.PlayerEastPenalty.Equals(string.Empty))
+            {
+                dgvHand.PlayerEastScore = (int.Parse(dgvHand.PlayerEastScore) + (int.Parse(dgvHand.PlayerNorthPenalty) / 3)).ToString();
+                dgvHand.PlayerSouthScore = (int.Parse(dgvHand.PlayerSouthScore) + (int.Parse(dgvHand.PlayerNorthPenalty) / 3)).ToString();
+                dgvHand.PlayerWestScore = (int.Parse(dgvHand.PlayerWestScore) + (int.Parse(dgvHand.PlayerNorthPenalty) / 3)).ToString();
+                dgvHand.PlayerNorthScore = (int.Parse(dgvHand.PlayerNorthScore) - int.Parse(dgvHand.PlayerNorthPenalty)).ToString();
+            }
             return dgvHand;
         }
 
