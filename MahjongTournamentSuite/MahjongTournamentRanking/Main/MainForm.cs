@@ -6,10 +6,11 @@ namespace MahjongTournamentRanking.Main
     {
         private IMainPresenter _presenter;
 
-        public MainForm()
+        public MainForm(int tournamentId)
         {
             InitializeComponent();
             _presenter = new MainPresenter();
+            _presenter.LoadRanking(tournamentId);
         }
     }
 }

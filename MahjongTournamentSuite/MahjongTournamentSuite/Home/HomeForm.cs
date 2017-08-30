@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Threading;
+using MahjongTournamentSuitePresentationLayer.Splash;
 
 namespace MahjongTournamentSuitePresentationLayer.Home
 {
@@ -37,11 +39,19 @@ namespace MahjongTournamentSuitePresentationLayer.Home
 
         public HomeForm()
         {
+            Thread splashThread = new Thread(new ThreadStart(openSplash));
+            splashThread.Start();
             InitializeComponent();
             Cursor = Cursors.WaitCursor;
             _presenter = Injector.provideHomePresenter(this);
             _presenter.LoadTournaments();
             Cursor = Cursors.Default;
+            splashThread.Abort();
+        }
+
+        public void openSplash()
+        {
+            Application.Run(new SplashForm());
         }
 
         #endregion

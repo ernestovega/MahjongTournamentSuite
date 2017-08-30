@@ -118,7 +118,7 @@ namespace MahjongTournamentSuitePresentationLayer.TournamentManager
         private void btnRanking_Click(object sender, EventArgs e)
         {
             ShowWaitCursor();
-            var mahjongTournamentRanking = new MahjongTournamentRanking.Program();
+            var mahjongTournamentRanking = new MahjongTournamentRanking.Program(_tournamentId);
             Process.Start(mahjongTournamentRanking.returnExecutablePath());
             ShowDefaultCursor();
         }

@@ -165,6 +165,11 @@ namespace MahjongTournamentSuiteDataLayer.Data
 
         #region Table
 
+        public List<DBTable> GetTournamentTables(int tournamentId)
+        {
+            return _db.Tables.ToList().FindAll(x => x.TableTournamentId == tournamentId);
+        }
+
         public void AddTables(List<DBTable> tables, List<DBHand> hands)
         {
             _db.Tables.AddRange(tables);

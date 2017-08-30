@@ -6,6 +6,13 @@ namespace MahjongTournamentRanking
 {
     public class Program
     {
+        private static int _tournamentId;
+
+        public Program (int tournamentId)
+        {
+            _tournamentId = tournamentId;
+        }
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -14,7 +21,7 @@ namespace MahjongTournamentRanking
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            Application.Run(new MainForm(_tournamentId));
         }
 
         public string returnExecutablePath()

@@ -82,7 +82,6 @@
             this.btnRanking.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnRanking.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRanking.UseVisualStyleBackColor = false;
-            this.btnRanking.Visible = false;
             this.btnRanking.Click += new System.EventHandler(this.btnRanking_Click);
             // 
             // btnTimer

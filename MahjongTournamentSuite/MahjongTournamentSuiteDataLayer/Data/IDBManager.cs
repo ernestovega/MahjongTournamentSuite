@@ -31,11 +31,13 @@ namespace MahjongTournamentSuiteDataLayer.Data
 
         List<DBTournament> GetTournaments();
 
+        List<DBPlayer> GetTournamentPlayers(int tournamentId);
+
         List<DBTeam> GetTournamentTeams(int tournamentId);
 
-        List<string> GetTeamsNames(int tournamentId);
+        List<DBTable> GetTournamentTables(int tournamentId);
 
-        List<DBPlayer> GetTournamentPlayers(int tournamentId);
+        List<string> GetTeamsNames(int tournamentId);
 
         string GetTeamName(int tournamentId, int teamId);
 

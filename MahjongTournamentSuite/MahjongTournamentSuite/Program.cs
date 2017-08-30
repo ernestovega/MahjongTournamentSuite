@@ -1,4 +1,5 @@
 ﻿using MahjongTournamentSuitePresentationLayer.Home;
+using MahjongTournamentSuitePresentationLayer.Splash;
 using System;
 using System.Windows.Forms;
 
@@ -14,9 +15,9 @@ namespace MahjongTournamentSuitePresentationLayer
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            var home = new HomeForm();
-            home.FormClosed += new FormClosedEventHandler(FormClosed);
-            home.Show();
+            var homeForm = new HomeForm();
+            homeForm.FormClosed += new FormClosedEventHandler(FormClosed);
+            homeForm.Show();
             Application.Run();
         }
 

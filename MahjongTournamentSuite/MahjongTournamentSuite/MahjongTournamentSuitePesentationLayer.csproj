@@ -115,6 +115,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\CustomColors.cs" />
+    <Compile Include="Splash\SplashForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Splash\SplashForm.Designer.cs">
+      <DependentUpon>SplashForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="TableManager\ITableManagerForm.cs" />
     <Compile Include="TableManager\ITableManagerPresenter.cs" />
     <Compile Include="Model\PlayerTotalScore.cs" />
@@ -156,6 +162,9 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Splash\SplashForm.resx">
+      <DependentUpon>SplashForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TableManager\TableManagerForm.resx">
       <DependentUpon>TableManagerForm.cs</DependentUpon>

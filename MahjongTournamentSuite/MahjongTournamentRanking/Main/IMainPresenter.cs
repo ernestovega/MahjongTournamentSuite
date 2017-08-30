@@ -2,5 +2,6 @@
 {
     interface IMainPresenter
     {
+        void LoadRanking(int tournamentId);
     }
 }
