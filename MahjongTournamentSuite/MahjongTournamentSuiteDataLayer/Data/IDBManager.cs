@@ -1,9 +1,9 @@
-﻿using MahjongTournamentSuite.Model;
+﻿using MahjongTournamentSuiteDataLayer.Model;
 using System.Collections.Generic;
 
-namespace MahjongTournamentSuite.Data
+namespace MahjongTournamentSuiteDataLayer.Data
 {
-    internal interface IDBManager
+    public interface IDBManager
     {
         #region NewTournament
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace MahjongTournamentSuite.Model
+namespace MahjongTournamentSuiteDataLayer.Model
 {
     public class DBTournament
     {

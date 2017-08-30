@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MahjongTournamentSuite", "MahjongTournamentSuite\MahjongTournamentSuite.csproj", "{EB221EF2-4AC2-4AE7-876D-7E1B44FCA8B6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MahjongTournamentSuitePesentationLayer", "MahjongTournamentSuite\MahjongTournamentSuitePesentationLayer.csproj", "{EB221EF2-4AC2-4AE7-876D-7E1B44FCA8B6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MahjongTournamentTimer", "MahjongTournamentTimer\MahjongTournamentTimer.csproj", "{6898DB2E-A09D-4F94-A8B2-1E14F19C2ED3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MahjongTournamentRanking", "MahjongTournamentRanking\MahjongTournamentRanking.csproj", "{3B1AD647-3E01-4D90-ACA0-BCE7E9DEE663}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MahjongTournamentSuiteDataLayer", "MahjongTournamentSuiteDataLayer\MahjongTournamentSuiteDataLayer.csproj", "{7073B9DE-15B0-40DC-9A07-1DF5DE69D857}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{6898DB2E-A09D-4F94-A8B2-1E14F19C2ED3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6898DB2E-A09D-4F94-A8B2-1E14F19C2ED3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6898DB2E-A09D-4F94-A8B2-1E14F19C2ED3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B1AD647-3E01-4D90-ACA0-BCE7E9DEE663}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B1AD647-3E01-4D90-ACA0-BCE7E9DEE663}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B1AD647-3E01-4D90-ACA0-BCE7E9DEE663}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B1AD647-3E01-4D90-ACA0-BCE7E9DEE663}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7073B9DE-15B0-40DC-9A07-1DF5DE69D857}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7073B9DE-15B0-40DC-9A07-1DF5DE69D857}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7073B9DE-15B0-40DC-9A07-1DF5DE69D857}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7073B9DE-15B0-40DC-9A07-1DF5DE69D857}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

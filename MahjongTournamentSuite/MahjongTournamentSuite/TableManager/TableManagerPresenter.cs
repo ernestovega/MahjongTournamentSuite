@@ -1,11 +1,11 @@
-﻿using MahjongTournamentSuite.Data;
-using MahjongTournamentSuite.Model;
+﻿using MahjongTournamentSuitePresentationLayer.Model;
 using System.Collections.Generic;
-using System;
-using static MahjongTournamentSuite.Model.DBHand;
-using static MahjongTournamentSuite.TableManager.PlayerTablePoints;
+using static MahjongTournamentSuitePresentationLayer.TableManager.PlayerTablePoints;
+using MahjongTournamentSuiteDataLayer.Data;
+using MahjongTournamentSuiteDataLayer.Model;
+using static MahjongTournamentSuiteDataLayer.Model.DBHand;
 
-namespace MahjongTournamentSuite.TableManager
+namespace MahjongTournamentSuitePresentationLayer.TableManager
 {
     class TableManagerPresenter : ITableManagerPresenter
     {
@@ -140,7 +140,28 @@ namespace MahjongTournamentSuite.TableManager
         public string PlayerWinnerIdChanged(int handId, string newValue)
         {
             DBHand hand = _hands.Find(x => x.HandId == handId);
-            string returnValue = ValidatePlayerId(hand, newValue);
+            string returnValue = string.Empty;
+            if (newValue == null || newValue.Equals(string.Empty))
+                returnValue = string.Empty;
+            int validValue;
+            if (int.TryParse(newValue, out validValue))
+            {
+                if (validValue == 0)
+                    returnValue = string.Empty;
+                else if (validValue > 0 && IsACurrentTablePlayerId(validValue) &&
+                !hand.PlayerLooserId.Equals(validValue.ToString()))
+                    returnValue = validValue.ToString();
+                else
+                {
+                    _form.PlayKoSound();
+                    returnValue = hand.PlayerWinnerId;
+                }
+            }
+            else
+            {
+                _form.PlayKoSound();
+                returnValue = hand.PlayerWinnerId;
+            }
             _db.UpdateHandWinnerId(hand, returnValue);
             CalculateAndFillAllHandsScoresAndPlayersTotalsAndPoints();
             return returnValue;
@@ -149,7 +170,28 @@ namespace MahjongTournamentSuite.TableManager
         public string PlayerLooserIdChanged(int handId, string newValue)
         {
             DBHand hand = _hands.Find(x => x.HandId == handId);
-            string returnValue = ValidatePlayerId(hand, newValue);
+            string returnValue = string.Empty;
+            if (newValue == null || newValue.Equals(string.Empty))
+                returnValue = string.Empty;
+            int validValue;
+            if (int.TryParse(newValue, out validValue))
+            {
+                if (validValue == 0)
+                    returnValue = string.Empty;
+                else if (validValue > 0 && IsACurrentTablePlayerId(validValue) &&
+                !hand.PlayerWinnerId.Equals(validValue.ToString()))
+                    returnValue = validValue.ToString();
+                else
+                {
+                    _form.PlayKoSound();
+                    returnValue = hand.PlayerLooserId;
+                }
+            }
+            else
+            {
+                _form.PlayKoSound();
+                returnValue = hand.PlayerWinnerId;
+            }
             _db.UpdateHandLooserId(hand, returnValue);
             CalculateAndFillAllHandsScoresAndPlayersTotalsAndPoints();
             return returnValue;
@@ -158,7 +200,27 @@ namespace MahjongTournamentSuite.TableManager
         public string HandScoreChanged(int handId, string newValue)
         {
             DBHand hand = _hands.Find(x => x.HandId == handId);
-            string returnValue = ValidateHandScore(hand, newValue);
+            string returnValue = string.Empty;
+            if (newValue == null || newValue.Equals(string.Empty))
+                returnValue = string.Empty;
+            int validValue;
+            if (int.TryParse(newValue, out validValue)) {
+                if(validValue >= MCR_MIN_POINTS || (
+                    validValue == 0 && 
+                    hand.PlayerWinnerId.Equals(string.Empty) &&
+                    hand.PlayerLooserId.Equals(string.Empty)))
+                    returnValue = validValue.ToString();
+                else
+                {
+                    _form.PlayKoSound();
+                    returnValue = hand.HandScore;
+                }
+            }
+            else
+            {
+                _form.PlayKoSound();
+                returnValue = hand.HandScore;
+            }
             _db.UpdateHandScore(_hands.Find(x => x.HandId == handId), returnValue);
             CalculateAndFillAllHandsScoresAndPlayersTotalsAndPoints();
             return returnValue;
@@ -361,35 +423,6 @@ namespace MahjongTournamentSuite.TableManager
                 return 4;
         }
 
-        private string ValidatePlayerId(DBHand hand, string newValue)
-        {
-            if (newValue == null || newValue.Equals(string.Empty))
-                return string.Empty;
-            int validValue;
-            if (int.TryParse(newValue, out validValue))
-            {
-                if (validValue == 0)
-                    return string.Empty;
-                else if (validValue > 0 && IsACurrentTablePlayerId(validValue) &&
-                !hand.PlayerLooserId.Equals(validValue.ToString()))
-                    return validValue.ToString();
-            }
-            _form.PlayKoSound();
-            return hand.PlayerWinnerId;
-        }
-
-        private string ValidateHandScore(DBHand hand, string newValue)
-        {
-            if (newValue == null || newValue.Equals(string.Empty))
-                return string.Empty;
-            int validValue;
-            if (int.TryParse(newValue, out validValue) &&
-                (validValue == 0 || validValue >= MCR_MIN_POINTS))
-                return validValue.ToString();
-            _form.PlayKoSound();
-            return hand.HandScore;
-        }
-
         private string ValidatePenalty(string previousValue, string newValue)
         {
             if (newValue == null || newValue.Equals(string.Empty))
@@ -417,6 +450,7 @@ namespace MahjongTournamentSuite.TableManager
             {
                 _form.EnableTotalScoresTextBoxes();
                 FillAllPlayersTotalScores();
+                FillAllPlayersPoints();
                 return;
             }
             _form.DisableTotalScoresTextBoxes();
@@ -424,7 +458,7 @@ namespace MahjongTournamentSuite.TableManager
             if (_dgvHands != null)
             {
                 bool finishCalculation = false;
-                foreach (DBHand hand in _dgvHands)
+                foreach (DBHand hand in _hands)
                 {
                     DGVHand dgvHand = _dgvHands.Find(x => x.HandId == hand.HandId);
                     dgvHand = new DGVHand(hand);
@@ -589,7 +623,6 @@ namespace MahjongTournamentSuite.TableManager
             _table.PlayerWestTotalScore = westTotalScore.ToString();
             _table.PlayerNorthTotalScore = northTotalScore.ToString();
             ValidateAndSaveAndFillTotalsScoresAndPoints();
-            FillAllPlayersTotalScores();
         }
 
         private bool ValidateAndSaveAndFillTotalsScoresAndPoints()
@@ -681,6 +714,7 @@ namespace MahjongTournamentSuite.TableManager
             _table.PlayerNorthPoints = ptp.Find(x => x.Seat == Seats.NORTH).Points;
 
             _db.UpdateTableAllPlayersPoints(_table);
+            FillAllPlayersPoints();
         }
 
         private void FillAllPlayersPoints()

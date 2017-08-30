@@ -1,8 +1,8 @@
-﻿using MahjongTournamentSuite.Home;
+﻿using MahjongTournamentSuitePresentationLayer.Home;
 using System;
 using System.Windows.Forms;
 
-namespace MahjongTournamentSuite
+namespace MahjongTournamentSuitePresentationLayer
 {
     static class Program
     {

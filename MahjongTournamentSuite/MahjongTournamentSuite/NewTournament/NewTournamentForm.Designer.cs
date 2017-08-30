@@ -1,4 +1,4 @@
-﻿namespace MahjongTournamentSuite.NewTournament
+﻿namespace MahjongTournamentSuitePresentationLayer.NewTournament
 {
     partial class NewTournamentForm
     {
@@ -114,7 +114,7 @@
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Image = global::MahjongTournamentSuite.Properties.Resources.MMLoading;
+            this.pictureBox1.Image = Properties.Resources.MMLoading;
             this.pictureBox1.Location = new System.Drawing.Point(13, 0);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox1.Name = "pictureBox1";

@@ -1,11 +1,12 @@
-﻿using MahjongTournamentSuite.Data;
-using MahjongTournamentSuite.Model;
+﻿using MahjongTournamentSuiteDataLayer.Data;
+using MahjongTournamentSuiteDataLayer.Model;
+using MahjongTournamentSuitePresentationLayer.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 
-namespace MahjongTournamentSuite.NewTournament
+namespace MahjongTournamentSuitePresentationLayer.NewTournament
 {
     class NewTournamentPresenter : INewTournamentPresenter
     {

@@ -1,12 +1,12 @@
-﻿using MahjongTournamentSuite.Home;
-using MahjongTournamentSuite.Resources;
+﻿using MahjongTournamentSuitePresentationLayer.Home;
+using MahjongTournamentSuitePresentationLayer.Resources;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace MahjongTournamentSuite.NewTournament
+namespace MahjongTournamentSuitePresentationLayer.NewTournament
 {
     public partial class NewTournamentForm : Form, INewTournamentForm
     {

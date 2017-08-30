@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MahjongTournamentSuite.CountrySelector
+namespace MahjongTournamentSuitePresentationLayer.CountrySelector
 {
     interface ICountrySelectorForm
     {

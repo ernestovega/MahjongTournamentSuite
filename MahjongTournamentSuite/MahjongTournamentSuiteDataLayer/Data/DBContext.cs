@@ -1,9 +1,9 @@
-﻿using MahjongTournamentSuite.Model;
+﻿using MahjongTournamentSuiteDataLayer.Model;
 using System.Data.Entity;
 
-namespace MahjongTournamentSuite.Data
+namespace MahjongTournamentSuiteDataLayer.Data
 {
-    class DBContext
+    public class DBContext
     {
         /**
          * https://msdn.microsoft.com/en-us/library/jj193542(v=vs.113).aspx

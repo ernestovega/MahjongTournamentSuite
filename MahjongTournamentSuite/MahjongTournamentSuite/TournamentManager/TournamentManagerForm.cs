@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Forms;
-using MahjongTournamentSuite.Model;
+using MahjongTournamentSuitePresentationLayer.Model;
 using System.Drawing;
-using MahjongTournamentSuite.Home;
-using MahjongTournamentSuite.TableManager;
-using MahjongTournamentSuite.CountrySelector;
-using MahjongTournamentSuite.TeamSelector;
-using MahjongTournamentSuite.Resources;
+using MahjongTournamentSuitePresentationLayer.Home;
+using MahjongTournamentSuitePresentationLayer.TableManager;
+using MahjongTournamentSuitePresentationLayer.CountrySelector;
+using MahjongTournamentSuitePresentationLayer.TeamSelector;
+using MahjongTournamentSuitePresentationLayer.Resources;
+using MahjongTournamentSuiteDataLayer.Model;
 
-namespace MahjongTournamentSuite.TournamentManager
+namespace MahjongTournamentSuitePresentationLayer.TournamentManager
 {
     public partial class TournamentManagerForm : Form, ITournamentManagerForm
     {
@@ -117,8 +118,8 @@ namespace MahjongTournamentSuite.TournamentManager
         private void btnRanking_Click(object sender, EventArgs e)
         {
             ShowWaitCursor();
-            //var mahjongTournamentRankingShower = new MahjongTournamentRankingShower.Program();
-            //Process.Start(mahjongTournamentRankingShower.returnExecutablePath());
+            var mahjongTournamentRanking = new MahjongTournamentRanking.Program();
+            Process.Start(mahjongTournamentRanking.returnExecutablePath());
             ShowDefaultCursor();
         }
 

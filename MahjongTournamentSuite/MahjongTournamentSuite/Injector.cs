@@ -1,13 +1,12 @@
-﻿using System;
-using MahjongTournamentSuite.CountrySelector;
-using MahjongTournamentSuite.Data;
-using MahjongTournamentSuite.Home;
-using MahjongTournamentSuite.NewTournament;
-using MahjongTournamentSuite.TableManager;
-using MahjongTournamentSuite.TeamSelector;
-using MahjongTournamentSuite.TournamentManager;
+﻿using MahjongTournamentSuitePresentationLayer.CountrySelector;
+using MahjongTournamentSuitePresentationLayer.Home;
+using MahjongTournamentSuitePresentationLayer.NewTournament;
+using MahjongTournamentSuitePresentationLayer.TableManager;
+using MahjongTournamentSuitePresentationLayer.TeamSelector;
+using MahjongTournamentSuitePresentationLayer.TournamentManager;
+using MahjongTournamentSuiteDataLayer.Data;
 
-namespace MahjongTournamentSuite
+namespace MahjongTournamentSuitePresentationLayer
 {
     class Injector
     {

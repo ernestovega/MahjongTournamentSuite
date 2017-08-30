@@ -1,8 +1,8 @@
-﻿using MahjongTournamentSuite.Data;
-using MahjongTournamentSuite.Model;
+﻿using MahjongTournamentSuiteDataLayer.Data;
+using MahjongTournamentSuiteDataLayer.Model;
 using System.Collections.Generic;
 
-namespace MahjongTournamentSuite.Home
+namespace MahjongTournamentSuitePresentationLayer.Home
 {
     class HomePresenter : IHomePresenter
     {

@@ -1,7 +1,8 @@
-﻿using MahjongTournamentSuite.Model;
-using MahjongTournamentSuite.NewTournament;
-using MahjongTournamentSuite.Resources;
-using MahjongTournamentSuite.TournamentManager;
+﻿using MahjongTournamentSuitePresentationLayer.Model;
+using MahjongTournamentSuitePresentationLayer.NewTournament;
+using MahjongTournamentSuitePresentationLayer.Resources;
+using MahjongTournamentSuitePresentationLayer.TournamentManager;
+using MahjongTournamentSuiteDataLayer.Model;
 using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace MahjongTournamentSuite.Home
+namespace MahjongTournamentSuitePresentationLayer.Home
 {
     public partial class HomeForm : Form, IHomeForm
     {

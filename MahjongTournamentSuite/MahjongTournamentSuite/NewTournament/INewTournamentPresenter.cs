@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace MahjongTournamentSuite.NewTournament
+namespace MahjongTournamentSuitePresentationLayer.NewTournament
 {
     interface INewTournamentPresenter
     {

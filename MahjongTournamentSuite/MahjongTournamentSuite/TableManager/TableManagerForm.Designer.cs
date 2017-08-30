@@ -1,4 +1,4 @@
-﻿namespace MahjongTournamentSuite.TableManager
+﻿namespace MahjongTournamentSuitePresentationLayer.TableManager
 {
     partial class TableManagerForm
     {
@@ -252,10 +252,10 @@
             this.imgLogoEMA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.imgLogoEMA.BackColor = System.Drawing.Color.Transparent;
             this.imgLogoEMA.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.imgLogoEMA.ErrorImage = global::MahjongTournamentSuite.Properties.Resources.EMALogo;
-            this.imgLogoEMA.Image = global::MahjongTournamentSuite.Properties.Resources.EMALogo;
+            this.imgLogoEMA.ErrorImage = Properties.Resources.EMALogo;
+            this.imgLogoEMA.Image = Properties.Resources.EMALogo;
             this.imgLogoEMA.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.imgLogoEMA.InitialImage = global::MahjongTournamentSuite.Properties.Resources.EMALogo;
+            this.imgLogoEMA.InitialImage = Properties.Resources.EMALogo;
             this.imgLogoEMA.Location = new System.Drawing.Point(930, 14);
             this.imgLogoEMA.Margin = new System.Windows.Forms.Padding(25, 5, 5, 5);
             this.imgLogoEMA.Name = "imgLogoEMA";
@@ -290,9 +290,9 @@
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBox1.ErrorImage = global::MahjongTournamentSuite.Properties.Resources.gong;
-            this.pictureBox1.Image = global::MahjongTournamentSuite.Properties.Resources.gong;
-            this.pictureBox1.InitialImage = global::MahjongTournamentSuite.Properties.Resources.gong;
+            this.pictureBox1.ErrorImage = Properties.Resources.gong;
+            this.pictureBox1.Image = Properties.Resources.gong;
+            this.pictureBox1.InitialImage = Properties.Resources.gong;
             this.pictureBox1.Location = new System.Drawing.Point(108, 25);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox1.Name = "pictureBox1";
@@ -304,9 +304,9 @@
             // pictureBox2
             // 
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBox2.ErrorImage = global::MahjongTournamentSuite.Properties.Resources.table;
-            this.pictureBox2.Image = global::MahjongTournamentSuite.Properties.Resources.table;
-            this.pictureBox2.InitialImage = global::MahjongTournamentSuite.Properties.Resources.table;
+            this.pictureBox2.ErrorImage = Properties.Resources.table;
+            this.pictureBox2.Image = Properties.Resources.table;
+            this.pictureBox2.InitialImage = Properties.Resources.table;
             this.pictureBox2.Location = new System.Drawing.Point(252, 25);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(25, 5, 5, 5);
             this.pictureBox2.Name = "pictureBox2";
@@ -319,9 +319,9 @@
             // 
             this.pictureBox3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBox3.ErrorImage = global::MahjongTournamentSuite.Properties.Resources.este;
-            this.pictureBox3.Image = global::MahjongTournamentSuite.Properties.Resources.este;
-            this.pictureBox3.InitialImage = global::MahjongTournamentSuite.Properties.Resources.este;
+            this.pictureBox3.ErrorImage = Properties.Resources.este;
+            this.pictureBox3.Image = Properties.Resources.este;
+            this.pictureBox3.InitialImage = Properties.Resources.este;
             this.pictureBox3.Location = new System.Drawing.Point(14, 111);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox3.Name = "pictureBox3";
@@ -334,9 +334,9 @@
             // 
             this.pictureBox4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBox4.ErrorImage = global::MahjongTournamentSuite.Properties.Resources.sur;
-            this.pictureBox4.Image = global::MahjongTournamentSuite.Properties.Resources.sur;
-            this.pictureBox4.InitialImage = global::MahjongTournamentSuite.Properties.Resources.sur;
+            this.pictureBox4.ErrorImage = Properties.Resources.sur;
+            this.pictureBox4.Image = Properties.Resources.sur;
+            this.pictureBox4.InitialImage = Properties.Resources.sur;
             this.pictureBox4.Location = new System.Drawing.Point(262, 111);
             this.pictureBox4.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox4.Name = "pictureBox4";
@@ -349,9 +349,9 @@
             // 
             this.pictureBox5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBox5.ErrorImage = global::MahjongTournamentSuite.Properties.Resources.oeste;
-            this.pictureBox5.Image = global::MahjongTournamentSuite.Properties.Resources.oeste;
-            this.pictureBox5.InitialImage = global::MahjongTournamentSuite.Properties.Resources.oeste;
+            this.pictureBox5.ErrorImage = Properties.Resources.oeste;
+            this.pictureBox5.Image = Properties.Resources.oeste;
+            this.pictureBox5.InitialImage = Properties.Resources.oeste;
             this.pictureBox5.Location = new System.Drawing.Point(510, 111);
             this.pictureBox5.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox5.Name = "pictureBox5";
@@ -364,9 +364,9 @@
             // 
             this.pictureBox6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBox6.ErrorImage = global::MahjongTournamentSuite.Properties.Resources.norte;
-            this.pictureBox6.Image = global::MahjongTournamentSuite.Properties.Resources.norte;
-            this.pictureBox6.InitialImage = global::MahjongTournamentSuite.Properties.Resources.norte;
+            this.pictureBox6.ErrorImage = Properties.Resources.norte;
+            this.pictureBox6.Image = Properties.Resources.norte;
+            this.pictureBox6.InitialImage = Properties.Resources.norte;
             this.pictureBox6.Location = new System.Drawing.Point(758, 111);
             this.pictureBox6.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox6.Name = "pictureBox6";

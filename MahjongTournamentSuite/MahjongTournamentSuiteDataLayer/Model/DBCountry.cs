@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MahjongTournamentSuite.Model
+namespace MahjongTournamentSuiteDataLayer.Model
 {
     public class DBCountry
     {

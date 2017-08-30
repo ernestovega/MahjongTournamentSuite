@@ -1,12 +1,12 @@
-﻿using MahjongTournamentSuite.Model;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using static MahjongTournamentSuite.Data.DBContext;
 using System;
+using static MahjongTournamentSuiteDataLayer.Data.DBContext;
+using MahjongTournamentSuiteDataLayer.Model;
 
-namespace MahjongTournamentSuite.Data
+namespace MahjongTournamentSuiteDataLayer.Data
 {
-    class DBManager : IDBManager
+    public class DBManager : IDBManager
     {
         #region Fields
 

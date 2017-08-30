@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace MahjongTournamentSuite.Resources
+namespace MahjongTournamentSuitePresentationLayer.Resources
 {
     public static class CustomColors
     {

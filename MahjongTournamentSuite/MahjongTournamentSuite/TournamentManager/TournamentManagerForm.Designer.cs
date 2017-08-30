@@ -1,4 +1,4 @@
-﻿namespace MahjongTournamentSuite.TournamentManager
+﻿namespace MahjongTournamentSuitePresentationLayer.TournamentManager
 {
     partial class TournamentManagerForm
     {
@@ -136,10 +136,10 @@
             this.imgLogoEMA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.imgLogoEMA.BackColor = System.Drawing.Color.Transparent;
             this.imgLogoEMA.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.imgLogoEMA.ErrorImage = global::MahjongTournamentSuite.Properties.Resources.EMALogo;
-            this.imgLogoEMA.Image = global::MahjongTournamentSuite.Properties.Resources.EMALogo;
+            this.imgLogoEMA.ErrorImage = global::MahjongTournamentSuitePresentationLayer.Properties.Resources.EMALogo;
+            this.imgLogoEMA.Image = global::MahjongTournamentSuitePresentationLayer.Properties.Resources.EMALogo;
             this.imgLogoEMA.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.imgLogoEMA.InitialImage = global::MahjongTournamentSuite.Properties.Resources.EMALogo;
+            this.imgLogoEMA.InitialImage = global::MahjongTournamentSuitePresentationLayer.Properties.Resources.EMALogo;
             this.imgLogoEMA.Location = new System.Drawing.Point(930, 14);
             this.imgLogoEMA.Margin = new System.Windows.Forms.Padding(5);
             this.imgLogoEMA.Name = "imgLogoEMA";
@@ -210,7 +210,7 @@
             this.btnRounds.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRounds.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
             this.btnRounds.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnRounds.Image = global::MahjongTournamentSuite.Properties.Resources.gong_big;
+            this.btnRounds.Image = global::MahjongTournamentSuitePresentationLayer.Properties.Resources.gong_big;
             this.btnRounds.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnRounds.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnRounds.Location = new System.Drawing.Point(156, 0);
@@ -238,7 +238,7 @@
             this.btnPlayers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPlayers.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
             this.btnPlayers.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnPlayers.Image = global::MahjongTournamentSuite.Properties.Resources.players;
+            this.btnPlayers.Image = global::MahjongTournamentSuitePresentationLayer.Properties.Resources.players;
             this.btnPlayers.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnPlayers.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnPlayers.Location = new System.Drawing.Point(78, 0);
@@ -267,7 +267,7 @@
             this.btnTeams.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTeams.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
             this.btnTeams.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnTeams.Image = global::MahjongTournamentSuite.Properties.Resources.teams;
+            this.btnTeams.Image = global::MahjongTournamentSuitePresentationLayer.Properties.Resources.teams;
             this.btnTeams.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnTeams.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnTeams.Location = new System.Drawing.Point(0, 0);

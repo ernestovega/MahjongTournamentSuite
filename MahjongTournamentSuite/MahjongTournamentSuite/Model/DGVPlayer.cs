@@ -1,4 +1,6 @@
-﻿namespace MahjongTournamentSuite.Model
+﻿using MahjongTournamentSuiteDataLayer.Model;
+
+namespace MahjongTournamentSuitePresentationLayer.Model
 {
     public class DGVPlayer : DBPlayer
     {

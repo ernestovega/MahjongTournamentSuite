@@ -1,9 +1,10 @@
-﻿using MahjongTournamentSuite.Data;
-using MahjongTournamentSuite.Model;
+﻿using MahjongTournamentSuitePresentationLayer.Model;
 using System.Collections.Generic;
 using System;
+using MahjongTournamentSuiteDataLayer.Model;
+using MahjongTournamentSuiteDataLayer.Data;
 
-namespace MahjongTournamentSuite.TournamentManager
+namespace MahjongTournamentSuitePresentationLayer.TournamentManager
 {
     class TournamentManagerPresenter : ITournamentManagerPresenter
     {

@@ -1,6 +1,6 @@
-﻿using MahjongTournamentSuite.Model;
+﻿using MahjongTournamentSuitePresentationLayer.Model;
 
-namespace MahjongTournamentSuite.TableManager
+namespace MahjongTournamentSuitePresentationLayer.TableManager
 {
     interface ITableManagerPresenter
     {

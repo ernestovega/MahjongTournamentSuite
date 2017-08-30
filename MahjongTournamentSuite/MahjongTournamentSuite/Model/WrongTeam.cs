@@ -1,4 +1,4 @@
-﻿namespace MahjongTournamentSuite.Model
+﻿namespace MahjongTournamentSuitePresentationLayer.Model
 {
     public class WrongTeam
     {

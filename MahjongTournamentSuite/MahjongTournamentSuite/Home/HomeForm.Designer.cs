@@ -1,4 +1,4 @@
-﻿namespace MahjongTournamentSuite.Home
+﻿namespace MahjongTournamentSuitePresentationLayer.Home
 {
     partial class HomeForm
     {
@@ -133,10 +133,10 @@
             this.imgLogoEMA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.imgLogoEMA.BackColor = System.Drawing.Color.Transparent;
             this.imgLogoEMA.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.imgLogoEMA.ErrorImage = global::MahjongTournamentSuite.Properties.Resources.EMALogo;
-            this.imgLogoEMA.Image = global::MahjongTournamentSuite.Properties.Resources.EMALogo;
+            this.imgLogoEMA.ErrorImage = Properties.Resources.EMALogo;
+            this.imgLogoEMA.Image = Properties.Resources.EMALogo;
             this.imgLogoEMA.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.imgLogoEMA.InitialImage = global::MahjongTournamentSuite.Properties.Resources.EMALogo;
+            this.imgLogoEMA.InitialImage = Properties.Resources.EMALogo;
             this.imgLogoEMA.Location = new System.Drawing.Point(930, 14);
             this.imgLogoEMA.Margin = new System.Windows.Forms.Padding(5);
             this.imgLogoEMA.Name = "imgLogoEMA";
@@ -150,10 +150,10 @@
             // 
             this.imgLogoMM.BackColor = System.Drawing.Color.Transparent;
             this.imgLogoMM.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.imgLogoMM.ErrorImage = global::MahjongTournamentSuite.Properties.Resources.MMLogo;
-            this.imgLogoMM.Image = global::MahjongTournamentSuite.Properties.Resources.MMLogo;
+            this.imgLogoMM.ErrorImage = Properties.Resources.MMLogo;
+            this.imgLogoMM.Image = Properties.Resources.MMLogo;
             this.imgLogoMM.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.imgLogoMM.InitialImage = global::MahjongTournamentSuite.Properties.Resources.MMLogo;
+            this.imgLogoMM.InitialImage = Properties.Resources.MMLogo;
             this.imgLogoMM.Location = new System.Drawing.Point(14, 14);
             this.imgLogoMM.Margin = new System.Windows.Forms.Padding(5);
             this.imgLogoMM.Name = "imgLogoMM";

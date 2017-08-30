@@ -1,6 +1,6 @@
-﻿using MahjongTournamentSuite.Model;
+﻿using MahjongTournamentSuiteDataLayer.Model;
 
-namespace MahjongTournamentSuite.TableManager
+namespace MahjongTournamentSuitePresentationLayer.TableManager
 {
     internal class DGVHand : DBHand
     {

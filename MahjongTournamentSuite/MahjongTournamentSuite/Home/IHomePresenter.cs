@@ -1,4 +1,4 @@
-﻿namespace MahjongTournamentSuite
+﻿namespace MahjongTournamentSuitePresentationLayer
 {
     interface IHomePresenter
     {

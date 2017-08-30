@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MahjongTournamentSuite.TeamSelector
+namespace MahjongTournamentSuitePresentationLayer.TeamSelector
 {
     interface ITeamSelectorForm
     {

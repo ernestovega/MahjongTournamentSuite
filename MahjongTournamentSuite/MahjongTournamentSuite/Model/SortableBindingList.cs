@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace MahjongTournamentSuite.Model
+namespace MahjongTournamentSuitePresentationLayer.Model
 {
     public class SortableBindingList<T> : BindingList<T>
     {
