@@ -284,6 +284,7 @@ namespace MahjongTournamentSuite.TableManager
                 _form.SetWestPlayerHeader(string.Format("{0} ({1})", playerWest.PlayerName, playerWest.PlayerId));
                 _form.SetNorthPlayerHeader(string.Format("{0} ({1})", playerNorth.PlayerName, playerNorth.PlayerId));
                 FillAllPlayersTotalScores();
+                FillAllPlayersPoints();
                 return true;
             }
             return false;
@@ -597,7 +598,7 @@ namespace MahjongTournamentSuite.TableManager
                 return false;
             _db.UpdateTableAllPlayersTotalScores(_table);
             FillAllPlayersTotalScores();
-            CalculateAndFillAllPlayersTotalPoints();
+            CalculateAndSaveAndFillAllPlayersPoints();
             return true;
         }
 
@@ -608,7 +609,7 @@ namespace MahjongTournamentSuite.TableManager
                 _table.PlayerWestTotalScore, _table.PlayerNorthTotalScore);
         }
 
-        private void CalculateAndFillAllPlayersTotalPoints()
+        private void CalculateAndSaveAndFillAllPlayersPoints()
         {
             List<PlayerTablePoints> ptp = new List<PlayerTablePoints>(4);
             ptp.Add(new PlayerTablePoints(Seats.EAST, int.Parse(_table.PlayerEastTotalScore)));
@@ -673,11 +674,22 @@ namespace MahjongTournamentSuite.TableManager
                 ptp[2].Points = "1";
                 ptp[3].Points = "0";
             }
+
+            _table.PlayerEastPoints = ptp.Find(x => x.Seat == Seats.EAST).Points;
+            _table.PlayerSouthPoints = ptp.Find(x => x.Seat == Seats.SOUTH).Points;
+            _table.PlayerWestPoints = ptp.Find(x => x.Seat == Seats.WEST).Points;
+            _table.PlayerNorthPoints = ptp.Find(x => x.Seat == Seats.NORTH).Points;
+
+            _db.UpdateTableAllPlayersPoints(_table);
+        }
+
+        private void FillAllPlayersPoints()
+        {
             _form.FillAllTotalPointsTextBoxes(
-                ptp.Find(x => x.Seat == Seats.EAST).Points, 
-                ptp.Find(x => x.Seat == Seats.SOUTH).Points, 
-                ptp.Find(x => x.Seat == Seats.WEST).Points,
-                ptp.Find(x => x.Seat == Seats.NORTH).Points);
+                _table.PlayerEastPoints,
+                _table.PlayerSouthPoints,
+                _table.PlayerWestPoints,
+                _table.PlayerNorthPoints);
         }
 
         #endregion

@@ -199,6 +199,17 @@ namespace MahjongTournamentSuite.Data
             _db.SaveChanges();
         }
 
+        public void UpdateTableAllPlayersPoints(DBTable table)
+        {
+            DBTable dbTable = _db.Tables.ToList()
+                .Find(x => x.TableTournamentId == table.TableTournamentId && x.TableId == table.TableId);
+            dbTable.PlayerEastPoints = table.PlayerEastPoints;
+            dbTable.PlayerSouthPoints = table.PlayerSouthPoints;
+            dbTable.PlayerWestPoints = table.PlayerWestPoints;
+            dbTable.PlayerNorthPoints = table.PlayerNorthPoints;
+            _db.SaveChanges();
+        }
+
         #endregion
 
         #region Hands

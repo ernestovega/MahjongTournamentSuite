@@ -38,6 +38,14 @@ namespace MahjongTournamentSuite.Model
 
         public string PlayerNorthTotalScore { get; set; }
 
+        public string PlayerEastPoints { get; set; }
+
+        public string PlayerSouthPoints { get; set; }
+
+        public string PlayerWestPoints { get; set; }
+
+        public string PlayerNorthPoints { get; set; }
+
         public DBTable() {}
 
         public DBTable(int tournamentId, int roundId, int id,
@@ -58,6 +66,10 @@ namespace MahjongTournamentSuite.Model
             PlayerSouthTotalScore = string.Empty;
             PlayerWestTotalScore = string.Empty;
             PlayerNorthTotalScore = string.Empty;
+            PlayerEastPoints = string.Empty;
+            PlayerSouthPoints = string.Empty;
+            PlayerWestPoints = string.Empty;
+            PlayerNorthPoints = string.Empty;
         }
     }
 }
