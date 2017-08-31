@@ -1,12 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using MahjongTournamentSuite.Model;
+using System.Runtime.InteropServices;
 
 namespace MahjongTournamentSuite.Ranking
 {
     public partial class RankingForm : Form, IRankingForm
     {
         #region Constants
+
+        private const int WM_NCLBUTTONDOWN = 0xA1;
+        private const int HT_CAPTION = 0x2;
+        [DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
 
         private const string COLUMN_PLAYER_RANKING_PLAYER_ID = "PlayerId";
         private const string COLUMN_PLAYER_RANKING_PLAYER_NAME = "PlayerName";
@@ -27,6 +36,7 @@ namespace MahjongTournamentSuite.Ranking
         #region Fields
 
         private IRankingPresenter _presenter;
+        private int _actualNumRows = RankingPresenter.DEFAULT_NUM_ROWS_PER_SCREEN;
 
         #endregion
 
@@ -43,14 +53,27 @@ namespace MahjongTournamentSuite.Ranking
 
         #region Events
 
-        private void RankingForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void btnMaximize_Click(object sender, EventArgs e)
         {
-            _presenter.StopShowRankingThread();
+            if (WindowState != FormWindowState.Maximized)
+                WindowState = FormWindowState.Maximized;
+            else
+                WindowState = FormWindowState.Normal;
         }
 
         private void btnClose_Click(object sender, System.EventArgs e)
         {
             Close();
+        }
+
+        private void RankingForm_Resize(object sender, EventArgs e)
+        {
+            CalculateAndSetRowHeightToFillScreen();
+        }
+
+        private void RankingForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _presenter.StopShowRankingThread();
         }
 
         #endregion
@@ -73,14 +96,22 @@ namespace MahjongTournamentSuite.Ranking
 
         private void FillDGVPlayers(List<PlayerRanking> playersRankingsRange)
         {
+            lblRankingTitle.Text = "PLAYERS RANKING";
+            _actualNumRows = playersRankingsRange.Count;
             dgv.DataSource = playersRankingsRange;
 
             //Visible
+            dgv.Columns[COLUMN_PLAYER_RANKING_PLAYER_ID].Visible = true;
+            dgv.Columns[COLUMN_PLAYER_RANKING_PLAYER_NAME].Visible = true;
+            dgv.Columns[COLUMN_PLAYER_RANKING_PLAYER_POINTS].Visible = true;
+            dgv.Columns[COLUMN_PLAYER_RANKING_PLAYER_SCORE].Visible = true;
             dgv.Columns[COLUMN_PLAYER_RANKING_TEAM_ID].Visible = false;
+            dgv.Columns[COLUMN_PLAYER_RANKING_TEAM_NAME].Visible = true;
             dgv.Columns[COLUMN_PLAYER_RANKING_COUNTRY_ID].Visible = false;
+            dgv.Columns[COLUMN_PLAYER_RANKING_COUNTRY_NAME].Visible = true;
             //HeaderText
             dgv.Columns[COLUMN_PLAYER_RANKING_PLAYER_ID].HeaderText = "#";
-            dgv.Columns[COLUMN_PLAYER_RANKING_PLAYER_NAME].HeaderText = "NAME";
+            dgv.Columns[COLUMN_PLAYER_RANKING_PLAYER_NAME].HeaderText = "PLAYER NAME";
             dgv.Columns[COLUMN_PLAYER_RANKING_PLAYER_POINTS].HeaderText = "POINTS";
             dgv.Columns[COLUMN_PLAYER_RANKING_PLAYER_SCORE].HeaderText = "SCORE";
             dgv.Columns[COLUMN_PLAYER_RANKING_TEAM_NAME].HeaderText = "TEAM";
@@ -102,11 +133,18 @@ namespace MahjongTournamentSuite.Ranking
 
         private void FillDGVTeams(List<TeamRanking> teamsRankingsRange)
         {
+            lblRankingTitle.Text = "TEAMS RANKING";
+            _actualNumRows = teamsRankingsRange.Count;
             dgv.DataSource = teamsRankingsRange;
-            
+
+            //Visible
+            dgv.Columns[COLUMN_TEAM_RANKING_TEAM_ID].Visible = true;
+            dgv.Columns[COLUMN_TEAM_RANKING_TEAM_NAME].Visible = true;
+            dgv.Columns[COLUMN_TEAM_RANKING_TEAM_POINTS].Visible = true;
+            dgv.Columns[COLUMN_TEAM_RANKING_TEAM_SCORE].Visible = true;
             //HeaderText
             dgv.Columns[COLUMN_TEAM_RANKING_TEAM_ID].HeaderText = "#";
-            dgv.Columns[COLUMN_TEAM_RANKING_TEAM_NAME].HeaderText = "NAME";
+            dgv.Columns[COLUMN_TEAM_RANKING_TEAM_NAME].HeaderText = "TEAM NAME";
             dgv.Columns[COLUMN_TEAM_RANKING_TEAM_POINTS].HeaderText = "POINTS";
             dgv.Columns[COLUMN_TEAM_RANKING_TEAM_SCORE].HeaderText = "SCORE";
             ////AutoSizeMode
@@ -118,6 +156,24 @@ namespace MahjongTournamentSuite.Ranking
             dgv.Columns[COLUMN_TEAM_RANKING_TEAM_SCORE].DisplayIndex = 3;
         }
 
+        private void CalculateAndSetRowHeightToFillScreen()
+        {
+            int rowsTotalSpace = dgv.Height - dgv.ColumnHeadersHeight;
+            int newRowHeight = rowsTotalSpace / _actualNumRows;
+            dgv.RowTemplate.Height = newRowHeight;
+        }
+
         #endregion
+
+        private void RankingForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                if (WindowState == FormWindowState.Maximized)
+                    WindowState = FormWindowState.Normal;
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
     }
 }

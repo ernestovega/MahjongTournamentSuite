@@ -12,8 +12,8 @@ namespace MahjongTournamentSuite.Ranking
     {
         #region Constants
 
-        private static readonly int NUM_ROWS_PER_SCREEN = 20;
-        private static readonly int SLEEP_TIME = 5000;
+        public static readonly int DEFAULT_NUM_ROWS_PER_SCREEN = 20;
+        public static readonly int DEFAULT_SLEEP_TIME = 5000;
 
         #endregion
 
@@ -129,7 +129,7 @@ namespace MahjongTournamentSuite.Ranking
         private void ShowRanking()
         {
             bool showPlayers = true;
-            int startIndex = 0, rowsRange = NUM_ROWS_PER_SCREEN;
+            int startIndex = 0, rowsRange = DEFAULT_NUM_ROWS_PER_SCREEN;
             while (true)
             {
                 if (showPlayers)
@@ -139,15 +139,15 @@ namespace MahjongTournamentSuite.Ranking
 
                     _form.FillDGVPlayersFromThread(_playersRankings.GetRange(startIndex, rowsRange));
 
-                    if ((startIndex + NUM_ROWS_PER_SCREEN) < _playersRankings.Count)
+                    if ((startIndex + DEFAULT_NUM_ROWS_PER_SCREEN) < _playersRankings.Count)
                     {
-                        startIndex += NUM_ROWS_PER_SCREEN;
+                        startIndex += DEFAULT_NUM_ROWS_PER_SCREEN;
                     }
                     else
                     {
                         showPlayers = false;
                         startIndex = 0;
-                        rowsRange = NUM_ROWS_PER_SCREEN;
+                        rowsRange = DEFAULT_NUM_ROWS_PER_SCREEN;
                     }
                 }
                 else
@@ -157,16 +157,16 @@ namespace MahjongTournamentSuite.Ranking
 
                     _form.FillDGVTeamsFromThread(_teamsRankings.GetRange(startIndex, rowsRange));
 
-                    if ((startIndex + NUM_ROWS_PER_SCREEN) < _teamsRankings.Count)
-                        startIndex += NUM_ROWS_PER_SCREEN;
+                    if ((startIndex + DEFAULT_NUM_ROWS_PER_SCREEN) < _teamsRankings.Count)
+                        startIndex += DEFAULT_NUM_ROWS_PER_SCREEN;
                     else
                     {
                         showPlayers = true;
                         startIndex = 0;
-                        rowsRange = NUM_ROWS_PER_SCREEN;
+                        rowsRange = DEFAULT_NUM_ROWS_PER_SCREEN;
                     }
                 }
-                Thread.Sleep(SLEEP_TIME);
+                Thread.Sleep(DEFAULT_SLEEP_TIME);
             }
         }
 

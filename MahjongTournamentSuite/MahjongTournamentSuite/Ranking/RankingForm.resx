@@ -118,6 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnMaximize.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAAxElEQVQ4T6WS7QrCMAxFK6L7
+        clMR/OX7P5avUu8pTS2YSaeFw7bccJNmCTHGv3CDW3i/hLATR3HIz04MFWNmEp1ngPBsZPIM+iw+xFVc
+        xCJmcRJUPwtyBs+AlhHH/O0dy/lqQBXm4R27ZiqyZkC7DLJoVQ7XWjVg0ojMIh3TqpybIGcusUqkcqvB
+        UmKVaBNmB0q8Rsdm4HbAL0uiYB50Ystjy2QzcPdgyyK5HewFVanEky5spTHniszgLvoPg19xg+3E8AKm
+        D6bQ/I6YCQAAAABJRU5ErkJggg==
+</value>
+  </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAYAEBAAAAEAIABoBAAAZgAAACAgAAABACAAqBAAAM4EAAAwMAAAAQAgAKglAAB2FQAAQEAAAAEA

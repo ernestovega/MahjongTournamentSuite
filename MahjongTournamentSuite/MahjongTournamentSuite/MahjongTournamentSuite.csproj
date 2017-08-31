@@ -213,6 +213,7 @@
     <Content Include="Resources\gong_big.png" />
     <Content Include="Resources\gong_big_white.png" />
     <Content Include="Resources\gong_white.png" />
+    <Content Include="Resources\maximize.png" />
     <Content Include="Resources\MMLoading.gif" />
     <Content Include="Resources\MMLogo.png" />
     <Content Include="Resources\no.png" />
