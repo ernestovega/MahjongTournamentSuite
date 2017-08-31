@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace MahjongTournamentSuitePresentationLayer.CountrySelector
+namespace MahjongTournamentSuite.CountrySelector
 {
     public partial class CountrySelectorForm : Form, ICountrySelectorForm
     {

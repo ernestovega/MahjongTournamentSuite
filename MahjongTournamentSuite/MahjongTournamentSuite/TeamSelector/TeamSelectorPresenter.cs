@@ -1,7 +1,7 @@
 ﻿using MahjongTournamentSuiteDataLayer.Data;
 using System.Collections.Generic;
 
-namespace MahjongTournamentSuitePresentationLayer.TeamSelector
+namespace MahjongTournamentSuite.TeamSelector
 {
     class TeamSelectorPresenter : ITeamSelectorPresenter
     {

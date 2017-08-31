@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
 
-namespace MahjongTournamentSuitePresentationLayer.Model
+namespace MahjongTournamentSuite.Model
 {
     public class PropertyComparer<T> : IComparer<T>
     {

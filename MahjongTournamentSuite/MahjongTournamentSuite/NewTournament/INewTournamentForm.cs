@@ -1,4 +1,4 @@
-﻿namespace MahjongTournamentSuitePresentationLayer.NewTournament
+﻿namespace MahjongTournamentSuite.NewTournament
 {
     interface INewTournamentForm
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace MahjongTournamentSuitePresentationLayer.TeamSelector
+namespace MahjongTournamentSuite.TeamSelector
 {
     public partial class TeamSelectorForm : Form, ITeamSelectorForm
     {

@@ -2,7 +2,7 @@
 using MahjongTournamentSuiteDataLayer.Model;
 using System.Collections.Generic;
 
-namespace MahjongTournamentSuitePresentationLayer.Home
+namespace MahjongTournamentSuite.Home
 {
     class HomePresenter : IHomePresenter
     {

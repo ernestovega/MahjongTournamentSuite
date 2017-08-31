@@ -1,4 +1,4 @@
-﻿namespace MahjongTournamentSuitePresentationLayer.CountrySelector
+﻿namespace MahjongTournamentSuite.CountrySelector
 {
     interface ICountrySelectorPresenter
     {

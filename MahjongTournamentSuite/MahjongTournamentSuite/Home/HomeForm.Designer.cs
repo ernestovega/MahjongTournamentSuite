@@ -1,4 +1,4 @@
-﻿namespace MahjongTournamentSuitePresentationLayer.Home
+﻿namespace MahjongTournamentSuite.Home
 {
     partial class HomeForm
     {

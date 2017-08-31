@@ -1,6 +1,6 @@
 ﻿using MahjongTournamentSuiteDataLayer.Model;
 
-namespace MahjongTournamentSuitePresentationLayer.Model
+namespace MahjongTournamentSuite.Model
 {
     public class DGVPlayer : DBPlayer
     {

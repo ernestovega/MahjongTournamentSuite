@@ -1,11 +1,11 @@
-﻿using MahjongTournamentSuitePresentationLayer.Model;
+﻿using MahjongTournamentSuite.Model;
 using System.Collections.Generic;
-using static MahjongTournamentSuitePresentationLayer.TableManager.PlayerTablePoints;
+using static MahjongTournamentSuite.TableManager.PlayerTablePoints;
 using MahjongTournamentSuiteDataLayer.Data;
 using MahjongTournamentSuiteDataLayer.Model;
 using static MahjongTournamentSuiteDataLayer.Model.DBHand;
 
-namespace MahjongTournamentSuitePresentationLayer.TableManager
+namespace MahjongTournamentSuite.TableManager
 {
     class TableManagerPresenter : ITableManagerPresenter
     {

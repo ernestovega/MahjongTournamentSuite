@@ -1,8 +1,8 @@
 ﻿using MahjongTournamentSuiteDataLayer.Model;
-using MahjongTournamentSuitePresentationLayer.Model;
+using MahjongTournamentSuite.Model;
 using System.Collections.Generic;
 
-namespace MahjongTournamentSuitePresentationLayer.Home
+namespace MahjongTournamentSuite.Home
 {
     internal interface IHomeForm
     {

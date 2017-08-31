@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using MahjongTournamentRanking.Model;
+using MahjongTournamentSuite.Model;
 
-namespace MahjongTournamentRanking.Main
+namespace MahjongTournamentSuite.Ranking
 {
-    interface IMainForm
+    interface IRankingForm
     {
         void FillDGVPlayersFromThread(List<PlayerRanking> playersRankingsRange);
 

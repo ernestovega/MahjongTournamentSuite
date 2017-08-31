@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MahjongTournamentSuitePresentationLayer.TeamSelector
+namespace MahjongTournamentSuite.TeamSelector
 {
     interface ITeamSelectorPresenter
     {

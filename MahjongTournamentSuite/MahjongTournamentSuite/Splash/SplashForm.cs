@@ -1,9 +1,9 @@
-﻿using MahjongTournamentSuitePresentationLayer.Home;
+﻿using MahjongTournamentSuite.Home;
 using System;
 using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace MahjongTournamentSuitePresentationLayer.Splash
+namespace MahjongTournamentSuite.Splash
 {
     public partial class SplashForm : Form
     {

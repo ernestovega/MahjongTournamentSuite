@@ -1,9 +1,9 @@
-﻿using MahjongTournamentSuitePresentationLayer.Home;
-using MahjongTournamentSuitePresentationLayer.Splash;
+﻿using MahjongTournamentSuite.Home;
+using MahjongTournamentSuite.Splash;
 using System;
 using System.Windows.Forms;
 
-namespace MahjongTournamentSuitePresentationLayer
+namespace MahjongTournamentSuite
 {
     static class Program
     {

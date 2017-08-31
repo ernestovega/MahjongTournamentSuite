@@ -1,7 +1,7 @@
 ﻿using MahjongTournamentSuiteDataLayer.Data;
 using System.Collections.Generic;
 
-namespace MahjongTournamentSuitePresentationLayer.CountrySelector
+namespace MahjongTournamentSuite.CountrySelector
 {
     class CountrySelectorPresenter : ICountrySelectorPresenter
     {

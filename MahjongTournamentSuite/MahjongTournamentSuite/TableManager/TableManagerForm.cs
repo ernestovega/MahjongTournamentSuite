@@ -1,5 +1,5 @@
-﻿using MahjongTournamentSuitePresentationLayer.Model;
-using MahjongTournamentSuitePresentationLayer.Resources;
+﻿using MahjongTournamentSuite.Model;
+using MahjongTournamentSuite.Resources;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,7 +8,7 @@ using System.Drawing;
 using System.Media;
 using System.Windows.Forms;
 
-namespace MahjongTournamentSuitePresentationLayer.TableManager
+namespace MahjongTournamentSuite.TableManager
 {
     partial class TableManagerForm : Form, ITableManagerForm
     {

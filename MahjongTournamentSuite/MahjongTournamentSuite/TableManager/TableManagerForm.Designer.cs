@@ -1,4 +1,4 @@
-﻿namespace MahjongTournamentSuitePresentationLayer.TableManager
+﻿namespace MahjongTournamentSuite.TableManager
 {
     partial class TableManagerForm
     {

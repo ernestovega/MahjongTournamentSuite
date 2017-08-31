@@ -1,14 +1,14 @@
-﻿using System;
-using MahjongTournamentSuiteDataLayer.Data;
+﻿using MahjongTournamentSuiteDataLayer.Data;
 using MahjongTournamentSuiteDataLayer.Model;
 using System.Collections.Generic;
 using System.Threading;
-using MahjongTournamentRanking.Model;
+using MahjongTournamentSuite.Model;
 using System.Linq;
+using System;
 
-namespace MahjongTournamentRanking.Main
+namespace MahjongTournamentSuite.Ranking
 {
-    class MainPresenter : IMainPresenter
+    class RankingPresenter : IRankingPresenter
     {
         #region Constants
 
@@ -20,12 +20,12 @@ namespace MahjongTournamentRanking.Main
         #region Fields
 
         private IDBManager _db;
-        private IMainForm _form;
+        private IRankingForm _form;
         private DBTournament _tournament;
         private List<DBPlayer> _players;
         private List<DBTeam> _teams;
         private List<DBTable> _tables;
-        private Thread showerThread;
+        private Thread _showerThread;
         private List<PlayerRanking> _playersRankings;
         private List<TeamRanking> _teamsRankings;
 
@@ -33,7 +33,7 @@ namespace MahjongTournamentRanking.Main
 
         #region Constructor
 
-        public MainPresenter(IMainForm mainForm)
+        public RankingPresenter(IRankingForm mainForm)
         {
             _db = new DBManager();
             _form = mainForm;
@@ -43,7 +43,7 @@ namespace MahjongTournamentRanking.Main
 
         #region IMainPresenter implementation
 
-        public void LoadRanking(int tournamentId)
+        public void LoadDataAndStartShowRankingThread(int tournamentId)
         {
             _tournament = _db.GetTournament(tournamentId);
             _players = _db.GetTournamentPlayers(tournamentId);
@@ -53,8 +53,13 @@ namespace MahjongTournamentRanking.Main
             CalculateAndSortPlayersScores();
             CalculateAndSortTeamsScores();
 
-            showerThread = new Thread(new ThreadStart(ShowRanking));
-            showerThread.Start();
+            _showerThread = new Thread(new ThreadStart(ShowRanking));
+            _showerThread.Start();
+        }
+
+        public void StopShowRankingThread()
+        {
+            _showerThread.Abort();
         }
 
         #endregion
@@ -123,41 +128,44 @@ namespace MahjongTournamentRanking.Main
         
         private void ShowRanking()
         {
-            bool showTeams = false;
-            int start = 0, end = NUM_ROWS_PER_SCREEN;
+            bool showPlayers = true;
+            int startIndex = 0, rowsRange = NUM_ROWS_PER_SCREEN;
             while (true)
             {
-                if (showTeams)
+                if (showPlayers)
                 {
-                    _form.FillDGVTeamsFromThread(_teamsRankings.GetRange(start, end));
-                    if (end < _teamsRankings.Count)
+                    if ((startIndex + rowsRange) > _playersRankings.Count)
+                        rowsRange -= (startIndex + rowsRange) - _playersRankings.Count;
+
+                    _form.FillDGVPlayersFromThread(_playersRankings.GetRange(startIndex, rowsRange));
+
+                    if ((startIndex + NUM_ROWS_PER_SCREEN) < _playersRankings.Count)
                     {
-                        start += NUM_ROWS_PER_SCREEN;
-                        end += NUM_ROWS_PER_SCREEN;
+                        startIndex += NUM_ROWS_PER_SCREEN;
                     }
                     else
                     {
-                        showTeams = false;
-                        start = 0;
-                        end = NUM_ROWS_PER_SCREEN;
+                        showPlayers = false;
+                        startIndex = 0;
+                        rowsRange = NUM_ROWS_PER_SCREEN;
                     }
                 }
                 else
                 {
-                    _form.FillDGVPlayersFromThread(_playersRankings.GetRange(start, end));
-                    if (end < _playersRankings.Count)
-                    {
-                        start += NUM_ROWS_PER_SCREEN;
-                        end += NUM_ROWS_PER_SCREEN;
-                    }
+                    if ((startIndex + rowsRange) > _teamsRankings.Count)
+                        rowsRange -= (startIndex + rowsRange) - _teamsRankings.Count;
+
+                    _form.FillDGVTeamsFromThread(_teamsRankings.GetRange(startIndex, rowsRange));
+
+                    if ((startIndex + NUM_ROWS_PER_SCREEN) < _teamsRankings.Count)
+                        startIndex += NUM_ROWS_PER_SCREEN;
                     else
                     {
-                        showTeams = true;
-                        start = 0;
-                        end = NUM_ROWS_PER_SCREEN;
+                        showPlayers = true;
+                        startIndex = 0;
+                        rowsRange = NUM_ROWS_PER_SCREEN;
                     }
                 }
-
                 Thread.Sleep(SLEEP_TIME);
             }
         }

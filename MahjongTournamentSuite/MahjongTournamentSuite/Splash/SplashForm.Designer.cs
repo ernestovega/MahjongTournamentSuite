@@ -1,4 +1,4 @@
-﻿namespace MahjongTournamentSuitePresentationLayer.Splash
+﻿namespace MahjongTournamentSuite.Splash
 {
     partial class SplashForm
     {
@@ -59,10 +59,10 @@
             this.imgLogoEMA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.imgLogoEMA.BackColor = System.Drawing.Color.Transparent;
             this.imgLogoEMA.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.imgLogoEMA.ErrorImage = global::MahjongTournamentSuitePresentationLayer.Properties.Resources.EMALogo;
-            this.imgLogoEMA.Image = global::MahjongTournamentSuitePresentationLayer.Properties.Resources.EMALogo;
+            this.imgLogoEMA.ErrorImage = global::MahjongTournamentSuite.Properties.Resources.EMALogo;
+            this.imgLogoEMA.Image = global::MahjongTournamentSuite.Properties.Resources.EMALogo;
             this.imgLogoEMA.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.imgLogoEMA.InitialImage = global::MahjongTournamentSuitePresentationLayer.Properties.Resources.EMALogo;
+            this.imgLogoEMA.InitialImage = global::MahjongTournamentSuite.Properties.Resources.EMALogo;
             this.imgLogoEMA.Location = new System.Drawing.Point(306, 14);
             this.imgLogoEMA.Margin = new System.Windows.Forms.Padding(5);
             this.imgLogoEMA.Name = "imgLogoEMA";
@@ -84,9 +84,9 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.ErrorImage = global::MahjongTournamentSuitePresentationLayer.Properties.Resources.MMLoading;
-            this.pictureBox1.Image = global::MahjongTournamentSuitePresentationLayer.Properties.Resources.MMLoading;
-            this.pictureBox1.InitialImage = global::MahjongTournamentSuitePresentationLayer.Properties.Resources.MMLoading;
+            this.pictureBox1.ErrorImage = global::MahjongTournamentSuite.Properties.Resources.MMLoading;
+            this.pictureBox1.Image = global::MahjongTournamentSuite.Properties.Resources.MMLoading;
+            this.pictureBox1.InitialImage = global::MahjongTournamentSuite.Properties.Resources.MMLoading;
             this.pictureBox1.Location = new System.Drawing.Point(86, 44);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(212, 292);

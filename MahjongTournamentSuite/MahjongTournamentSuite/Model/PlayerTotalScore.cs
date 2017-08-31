@@ -1,4 +1,4 @@
-﻿namespace MahjongTournamentSuitePresentationLayer.TableManager
+﻿namespace MahjongTournamentSuite.TableManager
 {
     public class PlayerTablePoints
     {

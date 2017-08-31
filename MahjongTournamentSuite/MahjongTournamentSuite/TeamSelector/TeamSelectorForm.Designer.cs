@@ -1,4 +1,4 @@
-﻿namespace MahjongTournamentSuitePresentationLayer.TeamSelector
+﻿namespace MahjongTournamentSuite.TeamSelector
 {
     partial class TeamSelectorForm
     {

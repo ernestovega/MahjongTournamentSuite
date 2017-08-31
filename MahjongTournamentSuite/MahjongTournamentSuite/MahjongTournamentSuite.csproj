@@ -7,7 +7,7 @@
     <ProjectGuid>{EB221EF2-4AC2-4AE7-876D-7E1B44FCA8B6}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MahjongTournamentSuitePresentationLayer</RootNamespace>
+    <RootNamespace>MahjongTournamentSuite</RootNamespace>
     <AssemblyName>MahjongTournamentSuite</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -48,7 +48,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>MahjongTournamentSuitePresentationLayer.Program</StartupObject>
+    <StartupObject>MahjongTournamentSuite.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
@@ -88,14 +88,25 @@
     <Compile Include="Home\IHomeForm.cs" />
     <Compile Include="Home\IHomePresenter.cs" />
     <Compile Include="Injector.cs" />
+    <Compile Include="Ranking\IRankingForm.cs" />
+    <Compile Include="Ranking\IRankingPresenter.cs" />
+    <Compile Include="Ranking\RankingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ranking\RankingForm.Designer.cs">
+      <DependentUpon>RankingForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ranking\RankingPresenter.cs" />
     <Compile Include="Model\ComboItem.cs" />
     <Compile Include="Model\DGVPlayer.cs" />
     <Compile Include="Model\Player.cs" />
+    <Compile Include="Model\PlayerRanking.cs" />
     <Compile Include="Model\PropertyComparer.cs" />
     <Compile Include="Model\Rivals.cs" />
     <Compile Include="Model\SortableBindingList.cs" />
     <Compile Include="Model\TableWithAll.cs" />
     <Compile Include="Model\TablePlayer.cs" />
+    <Compile Include="Model\TeamRanking.cs" />
     <Compile Include="Model\WrongTeam.cs" />
     <Compile Include="NewTournament\INewTournamentForm.cs" />
     <Compile Include="NewTournament\INewTournamentPresenter.cs" />
@@ -154,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Home\HomeForm.resx">
       <DependentUpon>HomeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ranking\RankingForm.resx">
+      <DependentUpon>RankingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewTournament\NewTournamentForm.resx">
       <DependentUpon>NewTournamentForm.cs</DependentUpon>
@@ -222,10 +236,6 @@
     <None Include="Resources\add.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MahjongTournamentRanking\MahjongTournamentRanking.csproj">
-      <Project>{3b1ad647-3e01-4d90-aca0-bce7e9dee663}</Project>
-      <Name>MahjongTournamentRanking</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MahjongTournamentSuiteDataLayer\MahjongTournamentSuiteDataLayer.csproj">
       <Project>{7073b9de-15b0-40dc-9a07-1df5de69d857}</Project>
       <Name>MahjongTournamentSuiteDataLayer</Name>
