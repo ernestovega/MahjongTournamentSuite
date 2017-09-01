@@ -2,6 +2,7 @@
 {
     public class TeamRanking
     {
+        public int Order { get; set; }
         public int TeamId { get; set; }
         public string TeamName { get; set; }
         public int TeamPoints { get; set; }
@@ -11,6 +12,7 @@
 
         public TeamRanking(int teamId, string teamName)
         {
+            Order = 0;
             TeamId = teamId;
             TeamName = teamName;
             TeamPoints = 0;

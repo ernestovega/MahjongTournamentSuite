@@ -51,7 +51,11 @@ namespace MahjongTournamentSuite.Home
 
         public void openSplash()
         {
-            Application.Run(new SplashForm());
+            try
+            {
+                Application.Run(new SplashForm());
+            }
+            catch {}
         }
 
         #endregion

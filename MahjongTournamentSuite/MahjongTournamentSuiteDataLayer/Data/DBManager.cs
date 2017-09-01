@@ -219,6 +219,11 @@ namespace MahjongTournamentSuiteDataLayer.Data
 
         #region Hands
 
+        public List<DBHand> GetTournamentHands(int tournamentId)
+        {
+            return _db.Hands.ToList().FindAll(x => x.HandTournamentId == tournamentId);
+        }
+
         public List<DBHand> GetTableHands(int tournamentId, int roundId, int tableId)
         {
             return _db.Hands.ToList().FindAll(x => x.HandTournamentId == tournamentId && x.HandRoundId == roundId && x.HandTableId == tableId);

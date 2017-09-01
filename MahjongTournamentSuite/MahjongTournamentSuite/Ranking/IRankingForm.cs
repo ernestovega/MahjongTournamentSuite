@@ -8,5 +8,7 @@ namespace MahjongTournamentSuite.Ranking
         void FillDGVPlayersFromThread(List<PlayerRanking> playersRankingsRange);
 
         void FillDGVTeamsFromThread(List<TeamRanking> teamsRankingsRange);
+
+        void FillDGVPlayersChickenHandsFromThread(List<PlayerChickenHandRanking> playersChickenHandsRankingsRange);
     }
 }

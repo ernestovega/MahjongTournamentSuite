@@ -35,8 +35,6 @@ namespace MahjongTournamentSuiteDataLayer.Data
 
         List<DBTeam> GetTournamentTeams(int tournamentId);
 
-        List<DBTable> GetTournamentTables(int tournamentId);
-
         List<string> GetTeamsNames(int tournamentId);
 
         string GetTeamName(int tournamentId, int teamId);
@@ -95,6 +93,14 @@ namespace MahjongTournamentSuiteDataLayer.Data
 
         void UpdateHandPlayerNorthPenalty(DBHand hand, string newPlayerNorthPenaltyValue);
 
+
+        #endregion
+
+        #region Ranking
+
+        List<DBTable> GetTournamentTables(int tournamentId);
+
+        List<DBHand> GetTournamentHands(int tournamentId);
 
         #endregion
     }

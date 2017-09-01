@@ -28,14 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RankingForm));
             this.dgv = new System.Windows.Forms.DataGridView();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnMaximize = new System.Windows.Forms.Button();
             this.lblRankingTitle = new System.Windows.Forms.Label();
+            this.pbIconTitle = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIconTitle)).BeginInit();
             this.SuspendLayout();
             // 
             // dgv
@@ -53,29 +55,29 @@
             this.dgv.CausesValidation = false;
             this.dgv.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dgv.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgv.ColumnHeadersHeight = 48;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgv.ColumnHeadersHeight = 52;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv.Enabled = false;
             this.dgv.EnableHeadersVisualStyles = false;
             this.dgv.GridColor = System.Drawing.Color.White;
-            this.dgv.Location = new System.Drawing.Point(9, 59);
-            this.dgv.Margin = new System.Windows.Forms.Padding(0);
+            this.dgv.Location = new System.Drawing.Point(14, 97);
+            this.dgv.Margin = new System.Windows.Forms.Padding(5);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
@@ -90,7 +92,7 @@
             this.dgv.ShowCellToolTips = false;
             this.dgv.ShowEditingIcon = false;
             this.dgv.ShowRowErrors = false;
-            this.dgv.Size = new System.Drawing.Size(1006, 700);
+            this.dgv.Size = new System.Drawing.Size(996, 657);
             this.dgv.TabIndex = 67;
             // 
             // btnClose
@@ -147,17 +149,34 @@
             // 
             // lblRankingTitle
             // 
-            this.lblRankingTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblRankingTitle.Font = new System.Drawing.Font("Gang of Three", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRankingTitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lblRankingTitle.AutoSize = true;
+            this.lblRankingTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lblRankingTitle.Font = new System.Drawing.Font("Gang of Three", 28F, System.Drawing.FontStyle.Bold);
             this.lblRankingTitle.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblRankingTitle.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.lblRankingTitle.Location = new System.Drawing.Point(316, 9);
+            this.lblRankingTitle.Location = new System.Drawing.Point(440, 29);
             this.lblRankingTitle.Name = "lblRankingTitle";
-            this.lblRankingTitle.Size = new System.Drawing.Size(447, 50);
+            this.lblRankingTitle.Size = new System.Drawing.Size(174, 42);
             this.lblRankingTitle.TabIndex = 70;
-            this.lblRankingTitle.Text = "CHICKEN HAND RANKING";
+            this.lblRankingTitle.Text = "RANKING";
             this.lblRankingTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pbIconTitle
+            // 
+            this.pbIconTitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.pbIconTitle.BackColor = System.Drawing.Color.Transparent;
+            this.pbIconTitle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pbIconTitle.ErrorImage = global::MahjongTournamentSuite.Properties.Resources.ranking;
+            this.pbIconTitle.Image = global::MahjongTournamentSuite.Properties.Resources.ranking;
+            this.pbIconTitle.InitialImage = global::MahjongTournamentSuite.Properties.Resources.ranking;
+            this.pbIconTitle.Location = new System.Drawing.Point(400, 34);
+            this.pbIconTitle.Margin = new System.Windows.Forms.Padding(5);
+            this.pbIconTitle.Name = "pbIconTitle";
+            this.pbIconTitle.Size = new System.Drawing.Size(32, 32);
+            this.pbIconTitle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pbIconTitle.TabIndex = 75;
+            this.pbIconTitle.TabStop = false;
             // 
             // RankingForm
             // 
@@ -167,6 +186,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1024, 768);
             this.Controls.Add(this.lblRankingTitle);
+            this.Controls.Add(this.pbIconTitle);
             this.Controls.Add(this.btnMaximize);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.dgv);
@@ -174,6 +194,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(1024, 768);
             this.Name = "RankingForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -181,7 +202,9 @@
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.RankingForm_MouseDown);
             this.Resize += new System.EventHandler(this.RankingForm_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbIconTitle)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -191,6 +214,7 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnMaximize;
         private System.Windows.Forms.Label lblRankingTitle;
+        private System.Windows.Forms.PictureBox pbIconTitle;
     }
 }
 

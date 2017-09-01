@@ -88,6 +88,7 @@
     <Compile Include="Home\IHomeForm.cs" />
     <Compile Include="Home\IHomePresenter.cs" />
     <Compile Include="Injector.cs" />
+    <Compile Include="Model\PlayerChickenHandRanking.cs" />
     <Compile Include="Ranking\IRankingForm.cs" />
     <Compile Include="Ranking\IRankingPresenter.cs" />
     <Compile Include="Ranking\RankingForm.cs">
@@ -206,6 +207,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\chicken.png" />
     <Content Include="Resources\EMALogo.png" />
     <Content Include="Resources\este.png" />
     <Content Include="Resources\favicon.ico" />

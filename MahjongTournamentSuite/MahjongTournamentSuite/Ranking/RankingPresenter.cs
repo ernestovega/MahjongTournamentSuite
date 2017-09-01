@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Threading;
 using MahjongTournamentSuite.Model;
 using System.Linq;
-using System;
 
 namespace MahjongTournamentSuite.Ranking
 {
@@ -25,9 +24,11 @@ namespace MahjongTournamentSuite.Ranking
         private List<DBPlayer> _players;
         private List<DBTeam> _teams;
         private List<DBTable> _tables;
+        private List<DBHand> _hands;
         private Thread _showerThread;
         private List<PlayerRanking> _playersRankings;
         private List<TeamRanking> _teamsRankings;
+        private List<PlayerChickenHandRanking> _playersChickenHandsRankings;
 
         #endregion
 
@@ -47,11 +48,15 @@ namespace MahjongTournamentSuite.Ranking
         {
             _tournament = _db.GetTournament(tournamentId);
             _players = _db.GetTournamentPlayers(tournamentId);
-            _teams = _db.GetTournamentTeams(tournamentId);
+            if(_tournament.IsTeams)
+                _teams = _db.GetTournamentTeams(tournamentId);
             _tables = _db.GetTournamentTables(tournamentId);
+            _hands = _db.GetTournamentHands(tournamentId);
 
             CalculateAndSortPlayersScores();
-            CalculateAndSortTeamsScores();
+            if (_tournament.IsTeams)
+                CalculateAndSortTeamsScores();
+            CalculateAndSortPlayersChickenHands();
 
             _showerThread = new Thread(new ThreadStart(ShowRanking));
             _showerThread.Start();
@@ -105,7 +110,9 @@ namespace MahjongTournamentSuite.Ranking
                 }
                 _playersRankings.Add(playerRanking);
             }
-            _playersRankings.OrderBy(x => x.PlayerPoints).ThenBy(x => x.PlayerScore);
+            _playersRankings = _playersRankings.OrderByDescending(x => x.PlayerPoints).ThenByDescending(x => x.PlayerScore).ToList();
+            for (int i = 0; i < _playersRankings.Count; i++)
+                _playersRankings[i].Order = i + 1;
         }
 
         private void CalculateAndSortTeamsScores()
@@ -123,13 +130,37 @@ namespace MahjongTournamentSuite.Ranking
                 }
                 _teamsRankings.Add(teamRanking);
             }
-            _teamsRankings.OrderBy(x => x.TeamPoints).ThenBy(x => x.TeamScore);
+            _teamsRankings = _teamsRankings.OrderByDescending(x => x.TeamPoints).ThenByDescending(x => x.TeamScore).ToList();
+            for (int i = 0; i < _teamsRankings.Count; i++)
+                _teamsRankings[i].Order = i + 1;
         }
-        
+
+        private void CalculateAndSortPlayersChickenHands()
+        {
+            _playersChickenHandsRankings = new List<PlayerChickenHandRanking>();
+            foreach (PlayerRanking playerRanking in _playersRankings)
+            {
+                PlayerChickenHandRanking playerChickenHandRanking = new PlayerChickenHandRanking(playerRanking.PlayerId, playerRanking.PlayerName, 
+                    playerRanking.PlayerPoints, playerRanking.PlayerScore, playerRanking.CountryId, playerRanking.CountryName);
+
+                playerChickenHandRanking.NumChickenHands = 
+                    _hands.Count(x => x.IsChickenHand && int.Parse(x.PlayerWinnerId) == playerRanking.PlayerId);
+
+                _playersChickenHandsRankings.Add(playerChickenHandRanking);
+            }
+            _playersChickenHandsRankings = _playersChickenHandsRankings.OrderByDescending(x => x.NumChickenHands)
+                .ThenByDescending(x => x.PlayerPoints).ThenByDescending(x => x.PlayerScore).ToList();
+            for (int i = 0; i < _playersChickenHandsRankings.Count; i++)
+                _playersChickenHandsRankings[i].Order = i + 1;
+        }
+
         private void ShowRanking()
         {
             bool showPlayers = true;
-            int startIndex = 0, rowsRange = DEFAULT_NUM_ROWS_PER_SCREEN;
+            bool showTeams = false;
+            int startIndex = 0;
+            int rowsRange = DEFAULT_NUM_ROWS_PER_SCREEN;
+
             while (true)
             {
                 if (showPlayers)
@@ -146,19 +177,54 @@ namespace MahjongTournamentSuite.Ranking
                     else
                     {
                         showPlayers = false;
+                        showTeams = true;
+                        startIndex = 0;
+                        rowsRange = DEFAULT_NUM_ROWS_PER_SCREEN;
+                    }
+                }
+                else if(showTeams)
+                {
+                    if (_tournament.IsTeams)
+                    {
+                        if ((startIndex + rowsRange) > _teamsRankings.Count)
+                            rowsRange -= (startIndex + rowsRange) - _teamsRankings.Count;
+
+                        _form.FillDGVTeamsFromThread(_teamsRankings.GetRange(startIndex, rowsRange));
+
+                        if ((startIndex + DEFAULT_NUM_ROWS_PER_SCREEN) < _teamsRankings.Count)
+                            startIndex += DEFAULT_NUM_ROWS_PER_SCREEN;
+                        else
+                        {
+                            showTeams = false;
+                            startIndex = 0;
+                            rowsRange = DEFAULT_NUM_ROWS_PER_SCREEN;
+                        }
+                    }
+                    else
+                    {
+                        showTeams = false;
                         startIndex = 0;
                         rowsRange = DEFAULT_NUM_ROWS_PER_SCREEN;
                     }
                 }
                 else
                 {
-                    if ((startIndex + rowsRange) > _teamsRankings.Count)
-                        rowsRange -= (startIndex + rowsRange) - _teamsRankings.Count;
+                    if (_playersChickenHandsRankings.Count > 0)
+                    {
+                        if ((startIndex + rowsRange) > _teamsRankings.Count)
+                            rowsRange -= (startIndex + rowsRange) - _playersChickenHandsRankings.Count;
 
-                    _form.FillDGVTeamsFromThread(_teamsRankings.GetRange(startIndex, rowsRange));
+                        _form.FillDGVPlayersChickenHandsFromThread(_playersChickenHandsRankings.GetRange(startIndex, rowsRange));
 
-                    if ((startIndex + DEFAULT_NUM_ROWS_PER_SCREEN) < _teamsRankings.Count)
-                        startIndex += DEFAULT_NUM_ROWS_PER_SCREEN;
+                        if ((startIndex + DEFAULT_NUM_ROWS_PER_SCREEN) < _teamsRankings.Count)
+                            startIndex += DEFAULT_NUM_ROWS_PER_SCREEN;
+                        else
+                        {
+                            showPlayers = true;
+                            startIndex = 0;
+                            rowsRange = DEFAULT_NUM_ROWS_PER_SCREEN;
+                        }
+                    }
                     else
                     {
                         showPlayers = true;

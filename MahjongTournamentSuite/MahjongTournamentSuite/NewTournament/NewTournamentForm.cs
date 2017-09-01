@@ -110,7 +110,7 @@ namespace MahjongTournamentSuite.NewTournament
             btnStart.Text = "Start";
             panelLoading.Visible = false;
             panelOptions.Visible = true;
-            btnStart.Visible = false;
+            btnStart.Visible = true;
             Cursor = Cursors.Default;
         }
 
