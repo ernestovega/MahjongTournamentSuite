@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading;
 using MahjongTournamentSuite.Model;
 using System.Linq;
+using System;
 
 namespace MahjongTournamentSuite.Ranking
 {
@@ -11,8 +12,8 @@ namespace MahjongTournamentSuite.Ranking
     {
         #region Constants
 
-        public static readonly int DEFAULT_NUM_ROWS_PER_SCREEN = 20;
-        public static readonly int DEFAULT_SLEEP_TIME = 5000;
+        public const int DEFAULT_NUM_ROWS_PER_SCREEN = 20;
+        private readonly int MAX_PAGE_SHOW_TIME = 5; //Seconds
 
         #endregion
 
@@ -29,6 +30,8 @@ namespace MahjongTournamentSuite.Ranking
         private List<PlayerRanking> _playersRankings;
         private List<TeamRanking> _teamsRankings;
         private List<PlayerChickenHandRanking> _playersChickenHandsRankings;
+        private int _numRowsPerScreen;
+        private bool _stopShow = false;
 
         #endregion
 
@@ -44,10 +47,12 @@ namespace MahjongTournamentSuite.Ranking
 
         #region IMainPresenter implementation
 
-        public void LoadDataAndStartShowRankingThread(int tournamentId)
+        public void LoadData(int tournamentId)
         {
             _tournament = _db.GetTournament(tournamentId);
             _players = _db.GetTournamentPlayers(tournamentId);
+            _numRowsPerScreen = _players.Count < DEFAULT_NUM_ROWS_PER_SCREEN ? _players.Count : DEFAULT_NUM_ROWS_PER_SCREEN;
+            _form.SetNumRowsPerScreen(_numRowsPerScreen);
             if(_tournament.IsTeams)
                 _teams = _db.GetTournamentTeams(tournamentId);
             _tables = _db.GetTournamentTables(tournamentId);
@@ -59,12 +64,22 @@ namespace MahjongTournamentSuite.Ranking
             CalculateAndSortPlayersChickenHands();
 
             _showerThread = new Thread(new ThreadStart(ShowRanking));
+        }
+
+        public void StartShowRankingThread()
+        {
             _showerThread.Start();
         }
 
         public void StopShowRankingThread()
         {
-            _showerThread.Abort();
+            _stopShow = true;
+        }
+
+        public void AbortShowRankingThreadIfAlive()
+        {
+            if(_showerThread.IsAlive)
+                _showerThread.Abort();
         }
 
         #endregion
@@ -76,7 +91,9 @@ namespace MahjongTournamentSuite.Ranking
             _playersRankings = new List<PlayerRanking>(_players.Count);
             foreach(DBPlayer player in _players)
             {
-                string teamName = _teams.Find(x => x.TeamId == player.PlayerTeamId).TeamName;
+                string teamName = string.Empty;
+                if(_tournament.IsTeams)
+                     teamName = _teams.Find(x => x.TeamId == player.PlayerTeamId).TeamName;
                 string countryName = _db.GetCountryName(player.PlayerCountryId);
                 PlayerRanking playerRanking = new PlayerRanking(player.PlayerId, player.PlayerName, 
                     player.PlayerTeamId, teamName, player.PlayerCountryId, countryName);
@@ -140,13 +157,15 @@ namespace MahjongTournamentSuite.Ranking
             _playersChickenHandsRankings = new List<PlayerChickenHandRanking>();
             foreach (PlayerRanking playerRanking in _playersRankings)
             {
-                PlayerChickenHandRanking playerChickenHandRanking = new PlayerChickenHandRanking(playerRanking.PlayerId, playerRanking.PlayerName, 
+                PlayerChickenHandRanking playerChickenHandRanking = new PlayerChickenHandRanking(playerRanking.PlayerId, playerRanking.PlayerName,
                     playerRanking.PlayerPoints, playerRanking.PlayerScore, playerRanking.CountryId, playerRanking.CountryName);
 
-                playerChickenHandRanking.NumChickenHands = 
-                    _hands.Count(x => x.IsChickenHand && int.Parse(x.PlayerWinnerId) == playerRanking.PlayerId);
-
-                _playersChickenHandsRankings.Add(playerChickenHandRanking);
+                int numChickenHands = _hands.Count(x => x.IsChickenHand && int.Parse(x.PlayerWinnerId) == playerRanking.PlayerId);
+                if (numChickenHands > 0)
+                {
+                    playerChickenHandRanking.NumChickenHands = numChickenHands;
+                    _playersChickenHandsRankings.Add(playerChickenHandRanking);
+                }
             }
             _playersChickenHandsRankings = _playersChickenHandsRankings.OrderByDescending(x => x.NumChickenHands)
                 .ThenByDescending(x => x.PlayerPoints).ThenByDescending(x => x.PlayerScore).ToList();
@@ -159,27 +178,27 @@ namespace MahjongTournamentSuite.Ranking
             bool showPlayers = true;
             bool showTeams = false;
             int startIndex = 0;
-            int rowsRange = DEFAULT_NUM_ROWS_PER_SCREEN;
+            int rowsRange = _numRowsPerScreen;
 
-            while (true)
+            while (!_stopShow)
             {
                 if (showPlayers)
                 {
                     if ((startIndex + rowsRange) > _playersRankings.Count)
                         rowsRange -= (startIndex + rowsRange) - _playersRankings.Count;
 
-                    _form.FillDGVPlayersFromThread(_playersRankings.GetRange(startIndex, rowsRange));
+                    _form.FillDGVPlayersFromThread(_playersRankings.GetRange(startIndex, rowsRange), _tournament.IsTeams);
 
-                    if ((startIndex + DEFAULT_NUM_ROWS_PER_SCREEN) < _playersRankings.Count)
+                    if ((startIndex + _numRowsPerScreen) < _playersRankings.Count)
                     {
-                        startIndex += DEFAULT_NUM_ROWS_PER_SCREEN;
+                        startIndex += _numRowsPerScreen;
                     }
                     else
                     {
                         showPlayers = false;
                         showTeams = true;
                         startIndex = 0;
-                        rowsRange = DEFAULT_NUM_ROWS_PER_SCREEN;
+                        rowsRange = _numRowsPerScreen;
                     }
                 }
                 else if(showTeams)
@@ -191,49 +210,55 @@ namespace MahjongTournamentSuite.Ranking
 
                         _form.FillDGVTeamsFromThread(_teamsRankings.GetRange(startIndex, rowsRange));
 
-                        if ((startIndex + DEFAULT_NUM_ROWS_PER_SCREEN) < _teamsRankings.Count)
-                            startIndex += DEFAULT_NUM_ROWS_PER_SCREEN;
+                        if ((startIndex + _numRowsPerScreen) < _teamsRankings.Count)
+                            startIndex += _numRowsPerScreen;
                         else
                         {
                             showTeams = false;
                             startIndex = 0;
-                            rowsRange = DEFAULT_NUM_ROWS_PER_SCREEN;
+                            rowsRange = _numRowsPerScreen;
                         }
                     }
                     else
                     {
                         showTeams = false;
                         startIndex = 0;
-                        rowsRange = DEFAULT_NUM_ROWS_PER_SCREEN;
+                        rowsRange = _numRowsPerScreen;
                     }
                 }
                 else
                 {
                     if (_playersChickenHandsRankings.Count > 0)
                     {
-                        if ((startIndex + rowsRange) > _teamsRankings.Count)
+                        if ((startIndex + rowsRange) > _playersChickenHandsRankings.Count)
                             rowsRange -= (startIndex + rowsRange) - _playersChickenHandsRankings.Count;
 
                         _form.FillDGVPlayersChickenHandsFromThread(_playersChickenHandsRankings.GetRange(startIndex, rowsRange));
 
-                        if ((startIndex + DEFAULT_NUM_ROWS_PER_SCREEN) < _teamsRankings.Count)
-                            startIndex += DEFAULT_NUM_ROWS_PER_SCREEN;
+                        if ((startIndex + _numRowsPerScreen) < _playersChickenHandsRankings.Count)
+                            startIndex += _numRowsPerScreen;
                         else
                         {
                             showPlayers = true;
                             startIndex = 0;
-                            rowsRange = DEFAULT_NUM_ROWS_PER_SCREEN;
+                            rowsRange = _numRowsPerScreen;
                         }
                     }
                     else
                     {
                         showPlayers = true;
                         startIndex = 0;
-                        rowsRange = DEFAULT_NUM_ROWS_PER_SCREEN;
+                        rowsRange = _numRowsPerScreen;
                     }
                 }
-                Thread.Sleep(DEFAULT_SLEEP_TIME);
+                for (int i = 0; i < MAX_PAGE_SHOW_TIME * 2; i++)
+                {
+                    Thread.Sleep(500); //0.5 seconds
+                    if (_stopShow)
+                        break;
+                }
             }
+            _form.CloseFormFromThread();
         }
 
         #endregion

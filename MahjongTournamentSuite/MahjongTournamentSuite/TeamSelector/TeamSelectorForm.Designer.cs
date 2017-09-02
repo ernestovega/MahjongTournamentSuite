@@ -132,6 +132,7 @@
             this.Name = "TeamSelectorForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mahjong Tournament Suite - Team Selector";
+            this.Load += new System.EventHandler(this.TeamSelectorForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

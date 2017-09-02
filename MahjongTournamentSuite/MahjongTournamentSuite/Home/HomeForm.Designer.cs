@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomeForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnNew = new System.Windows.Forms.Button();
             this.btnResume = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -133,10 +133,10 @@
             this.imgLogoEMA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.imgLogoEMA.BackColor = System.Drawing.Color.Transparent;
             this.imgLogoEMA.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.imgLogoEMA.ErrorImage = Properties.Resources.EMALogo;
-            this.imgLogoEMA.Image = Properties.Resources.EMALogo;
+            this.imgLogoEMA.ErrorImage = global::MahjongTournamentSuite.Properties.Resources.EMALogo;
+            this.imgLogoEMA.Image = global::MahjongTournamentSuite.Properties.Resources.EMALogo;
             this.imgLogoEMA.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.imgLogoEMA.InitialImage = Properties.Resources.EMALogo;
+            this.imgLogoEMA.InitialImage = global::MahjongTournamentSuite.Properties.Resources.EMALogo;
             this.imgLogoEMA.Location = new System.Drawing.Point(930, 14);
             this.imgLogoEMA.Margin = new System.Windows.Forms.Padding(5);
             this.imgLogoEMA.Name = "imgLogoEMA";
@@ -150,10 +150,10 @@
             // 
             this.imgLogoMM.BackColor = System.Drawing.Color.Transparent;
             this.imgLogoMM.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.imgLogoMM.ErrorImage = Properties.Resources.MMLogo;
-            this.imgLogoMM.Image = Properties.Resources.MMLogo;
+            this.imgLogoMM.ErrorImage = global::MahjongTournamentSuite.Properties.Resources.MMLogo;
+            this.imgLogoMM.Image = global::MahjongTournamentSuite.Properties.Resources.MMLogo;
             this.imgLogoMM.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.imgLogoMM.InitialImage = Properties.Resources.MMLogo;
+            this.imgLogoMM.InitialImage = global::MahjongTournamentSuite.Properties.Resources.MMLogo;
             this.imgLogoMM.Location = new System.Drawing.Point(14, 14);
             this.imgLogoMM.Margin = new System.Windows.Forms.Padding(5);
             this.imgLogoMM.Name = "imgLogoMM";
@@ -177,24 +177,24 @@
             this.dgv.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgv.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.ButtonFace;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ButtonFace;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv.ColumnHeadersHeight = 40;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv.GridColor = System.Drawing.SystemColors.Control;
             this.dgv.Location = new System.Drawing.Point(14, 120);
             this.dgv.Margin = new System.Windows.Forms.Padding(5);
@@ -274,6 +274,8 @@
             this.Name = "HomeForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mahjong Tournament Suite - Home";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.HomeForm_FormClosed);
+            this.Load += new System.EventHandler(this.HomeForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoEMA)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();

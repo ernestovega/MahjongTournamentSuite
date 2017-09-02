@@ -37,6 +37,9 @@ namespace MahjongTournamentSuite.TableManager
         #region Fields
 
         private ITableManagerPresenter _presenter;
+        private int _tournamentId;
+        private int _roundId;
+        private int _tableId;
 
         #endregion
 
@@ -45,10 +48,9 @@ namespace MahjongTournamentSuite.TableManager
         public TableManagerForm(int tournamentId, int roundId, int tableId)
         {
             InitializeComponent();
-            ShowWaitCursor();
-            _presenter = Injector.provideTableManagerPresenter(this);
-            _presenter.LoadForm(tournamentId, roundId, tableId);
-            ShowDefaultCursor();
+            _tournamentId = tournamentId;
+            _roundId = roundId;
+            _tableId = tableId;
         }
 
         #endregion
@@ -56,6 +58,15 @@ namespace MahjongTournamentSuite.TableManager
         #region Events
 
         #region Form
+
+        private void TableManagerForm_Load(object sender, EventArgs e)
+        {
+            ShowWaitCursor();
+            _presenter = Injector.provideTableManagerPresenter(this);
+            _presenter.LoadForm(_tournamentId, _roundId, _tableId);
+            ShowDefaultCursor();
+        }
+
         private void TableManagerForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             //Quitamos el foco el DGV para forzar el evento CellEndEdit y que se guarden los datos.

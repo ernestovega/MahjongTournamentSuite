@@ -27,6 +27,14 @@ namespace MahjongTournamentSuite.NewTournament
         public NewTournamentForm()
         {
             InitializeComponent();
+        }
+
+        #endregion
+
+        #region Events
+
+        private void NewTournamentForm_Load(object sender, EventArgs e)
+        {
             Cursor = Cursors.WaitCursor;
             tbTournamentName.Text = TOURNAMENT_NAME_TEMPLATE_TEXT;
             _presenter = Injector.provideNewTournamentPresenter(this);
@@ -34,10 +42,6 @@ namespace MahjongTournamentSuite.NewTournament
             tbTournamentName.SelectAll();
             Cursor = Cursors.Default;
         }
-
-        #endregion
-
-        #region Events
 
         private void btnStart_Click(object sender, EventArgs e)
         {

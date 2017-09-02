@@ -18,15 +18,19 @@ namespace MahjongTournamentSuite.CountrySelector
         public CountrySelectorForm()
         {
             InitializeComponent();
-            _presenter = Injector.provideCountrySelectorPresenter(this);
-            _presenter.LoadCountries();
-            CancelButton = btnCancel;
-            AcceptButton = btnOk;
         }
 
         #endregion
 
         #region Events
+
+        private void CountrySelectorForm_Load(object sender, EventArgs e)
+        {
+            _presenter = Injector.provideCountrySelectorPresenter(this);
+            _presenter.LoadCountries();
+            CancelButton = btnCancel;
+            AcceptButton = btnOk;
+        }
 
         private void lbCountries_MouseDoubleClick(object sender, MouseEventArgs e)
         {

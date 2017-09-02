@@ -52,16 +52,20 @@ namespace MahjongTournamentSuite.TournamentManager
         public TournamentManagerForm(int tournamentId)
         {
             InitializeComponent();
-            ShowWaitCursor();
             _tournamentId = tournamentId;
-            _presenter = Injector.provideTournamentManagerPresenter(this);
-            _presenter.LoadTournament(_tournamentId);
-            ShowDefaultCursor();
         }
 
         #endregion
 
         #region Lifecycle
+
+        private void TournamentManagerForm_Load(object sender, EventArgs e)
+        {
+            ShowWaitCursor();
+            _presenter = Injector.provideTournamentManagerPresenter(this);
+            _presenter.LoadTournament(_tournamentId);
+            ShowDefaultCursor();
+        }
 
         private void TournamentManagerForm_Resize(object sender, EventArgs e)
         {
@@ -119,7 +123,11 @@ namespace MahjongTournamentSuite.TournamentManager
         private void btnRanking_Click(object sender, EventArgs e)
         {
             ShowWaitCursor();
-            new RankingForm(_tournamentId).Show();
+            try
+            {
+                new RankingForm(_tournamentId).Show();
+            }
+            catch {}
             ShowDefaultCursor();
         }
 

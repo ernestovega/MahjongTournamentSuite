@@ -132,6 +132,7 @@
             this.Name = "CountrySelectorForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mahjong Tournament Suite - Country Selector";
+            this.Load += new System.EventHandler(this.CountrySelectorForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

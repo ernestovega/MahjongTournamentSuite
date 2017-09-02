@@ -5,10 +5,14 @@ namespace MahjongTournamentSuite.Ranking
 {
     interface IRankingForm
     {
-        void FillDGVPlayersFromThread(List<PlayerRanking> playersRankingsRange);
+        void SetNumRowsPerScreen(int numRowsPerScreen);
+
+        void FillDGVPlayersFromThread(List<PlayerRanking> playersRankingsRange, bool isTeams);
 
         void FillDGVTeamsFromThread(List<TeamRanking> teamsRankingsRange);
 
         void FillDGVPlayersChickenHandsFromThread(List<PlayerChickenHandRanking> playersChickenHandsRankingsRange);
+
+        void CloseFormFromThread();
     }
 }

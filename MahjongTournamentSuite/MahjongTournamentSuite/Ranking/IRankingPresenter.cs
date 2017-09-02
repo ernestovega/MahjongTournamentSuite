@@ -2,8 +2,12 @@
 {
     interface IRankingPresenter
     {
-        void LoadDataAndStartShowRankingThread(int tournamentId);
+        void LoadData(int tournamentId);
+
+        void StartShowRankingThread();
 
         void StopShowRankingThread();
+
+        void AbortShowRankingThreadIfAlive();
     }
 }

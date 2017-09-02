@@ -403,6 +403,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mahjong Tournament Suite - Tournament Manager";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.TournamentManagerForm_FormClosed);
+            this.Load += new System.EventHandler(this.TournamentManagerForm_Load);
             this.Resize += new System.EventHandler(this.TournamentManagerForm_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoEMA)).EndInit();

@@ -9,8 +9,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Threading;
-using MahjongTournamentSuite.Splash;
 
 namespace MahjongTournamentSuite.Home
 {
@@ -39,28 +37,26 @@ namespace MahjongTournamentSuite.Home
 
         public HomeForm()
         {
-            Thread splashThread = new Thread(new ThreadStart(openSplash));
-            splashThread.Start();
             InitializeComponent();
+        }
+        
+        #endregion
+
+        #region Events
+
+        private void HomeForm_Load(object sender, EventArgs e)
+        {
             Cursor = Cursors.WaitCursor;
             _presenter = Injector.provideHomePresenter(this);
             _presenter.LoadTournaments();
             Cursor = Cursors.Default;
-            splashThread.Abort();
         }
 
-        public void openSplash()
+        private void HomeForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            try
-            {
-                Application.Run(new SplashForm());
-            }
-            catch {}
+            if (Application.OpenForms.Count == 0)
+                Application.Exit();
         }
-
-        #endregion
-
-        #region Events
 
         private void imgLogoMM_Click(object sender, EventArgs e)
         {
@@ -96,11 +92,8 @@ namespace MahjongTournamentSuite.Home
         {
             Cursor = Cursors.WaitCursor;
             int tournamentId = GetCurrentTournamentId();
-            if (tournamentId > -1)
-            {
-                new TournamentManagerForm(tournamentId).Show();
-                Close();
-            }
+            new TournamentManagerForm(tournamentId).Show();
+            Close();
             Cursor = Cursors.Default;
         }
 
