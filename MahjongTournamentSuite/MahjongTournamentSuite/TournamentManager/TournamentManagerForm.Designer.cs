@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TournamentManagerForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnRanking = new System.Windows.Forms.Button();
             this.btnTimer = new System.Windows.Forms.Button();
             this.imgLogoMM = new System.Windows.Forms.PictureBox();
@@ -45,6 +45,8 @@
             this.lblSeparator = new System.Windows.Forms.Label();
             this.lblTitleTables = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnExportExcel = new System.Windows.Forms.Button();
+            this.btnExportHTML = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoEMA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
@@ -161,24 +163,24 @@
             this.dgv.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgv.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgv.ColumnHeadersHeight = 40;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgv.GridColor = System.Drawing.SystemColors.Control;
             this.dgv.Location = new System.Drawing.Point(14, 120);
             this.dgv.Margin = new System.Windows.Forms.Padding(5);
@@ -284,17 +286,15 @@
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel1.AutoSize = true;
             this.flowLayoutPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.flowLayoutPanel1.Controls.Add(this.btnTeams);
             this.flowLayoutPanel1.Controls.Add(this.btnPlayers);
             this.flowLayoutPanel1.Controls.Add(this.btnRounds);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(108, 14);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(25, 5, 5, 5);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(309, 14);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(50, 5, 5, 5);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(278, 64);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(261, 64);
             this.flowLayoutPanel1.TabIndex = 69;
             // 
             // splitContainer1
@@ -380,6 +380,62 @@
             this.label1.Size = new System.Drawing.Size(980, 2);
             this.label1.TabIndex = 71;
             // 
+            // btnExportExcel
+            // 
+            this.btnExportExcel.BackColor = System.Drawing.Color.Transparent;
+            this.btnExportExcel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnExportExcel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExportExcel.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlText;
+            this.btnExportExcel.FlatAppearance.BorderSize = 0;
+            this.btnExportExcel.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
+            this.btnExportExcel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(76)))));
+            this.btnExportExcel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            this.btnExportExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExportExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.btnExportExcel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnExportExcel.Image = global::MahjongTournamentSuite.Properties.Resources.export;
+            this.btnExportExcel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnExportExcel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnExportExcel.Location = new System.Drawing.Point(108, 14);
+            this.btnExportExcel.Margin = new System.Windows.Forms.Padding(25, 0, 5, 0);
+            this.btnExportExcel.Name = "btnExportExcel";
+            this.btnExportExcel.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.btnExportExcel.Size = new System.Drawing.Size(68, 64);
+            this.btnExportExcel.TabIndex = 72;
+            this.btnExportExcel.Text = "Excel";
+            this.btnExportExcel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnExportExcel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnExportExcel.UseVisualStyleBackColor = false;
+            this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
+            // 
+            // btnExportHTML
+            // 
+            this.btnExportHTML.BackColor = System.Drawing.Color.Transparent;
+            this.btnExportHTML.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnExportHTML.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExportHTML.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.btnExportHTML.FlatAppearance.BorderSize = 0;
+            this.btnExportHTML.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
+            this.btnExportHTML.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(76)))));
+            this.btnExportHTML.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            this.btnExportHTML.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExportHTML.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.btnExportHTML.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnExportHTML.Image = global::MahjongTournamentSuite.Properties.Resources.export;
+            this.btnExportHTML.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnExportHTML.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnExportHTML.Location = new System.Drawing.Point(186, 14);
+            this.btnExportHTML.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.btnExportHTML.Name = "btnExportHTML";
+            this.btnExportHTML.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.btnExportHTML.Size = new System.Drawing.Size(68, 64);
+            this.btnExportHTML.TabIndex = 72;
+            this.btnExportHTML.Text = "HTML";
+            this.btnExportHTML.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnExportHTML.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnExportHTML.UseVisualStyleBackColor = false;
+            this.btnExportHTML.Click += new System.EventHandler(this.btnExportHTML_Click);
+            // 
             // TournamentManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -390,6 +446,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.imgLogoEMA);
+            this.Controls.Add(this.btnExportHTML);
+            this.Controls.Add(this.btnExportExcel);
             this.Controls.Add(this.imgLogoMM);
             this.Controls.Add(this.btnTimer);
             this.Controls.Add(this.btnRanking);
@@ -433,5 +491,7 @@
         private System.Windows.Forms.Label lblSeparator;
         private System.Windows.Forms.Label lblTitleRounds;
         private System.Windows.Forms.Label lblTitleTables;
+        private System.Windows.Forms.Button btnExportExcel;
+        private System.Windows.Forms.Button btnExportHTML;
     }
 }

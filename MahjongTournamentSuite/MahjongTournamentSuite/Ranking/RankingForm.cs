@@ -166,7 +166,7 @@ namespace MahjongTournamentSuite.Ranking
 
         private void FillDGVPlayers(List<PlayerRanking> playersRankingsRange, bool isTeams)
         {
-            pbIconTitle.Image = Properties.Resources.players;
+            pbIconTitle.Image = Properties.Resources.player_big;
             lblRankingTitle.Text = "PLAYERS RANKING";
             dgv.DataSource = playersRankingsRange;
 
@@ -224,7 +224,7 @@ namespace MahjongTournamentSuite.Ranking
 
         private void FillDGVTeams(List<TeamRanking> teamsRankingsRange)
         {
-            pbIconTitle.Image = Properties.Resources.teams;
+            pbIconTitle.Image = Properties.Resources.team_big;
             lblRankingTitle.Text = "TEAMS RANKING";
             dgv.DataSource = teamsRankingsRange;
 
@@ -256,7 +256,7 @@ namespace MahjongTournamentSuite.Ranking
 
         private void FillDGVPlayersChickenHands(List<PlayerChickenHandRanking> playersChickenHandsRankingsRange)
         {
-            pbIconTitle.Image = Properties.Resources.chicken;
+            pbIconTitle.Image = Properties.Resources.chicken_big;
             lblRankingTitle.Text = "CHICKEN HAND RANKING";
             dgv.DataSource = playersChickenHandsRankingsRange;
 

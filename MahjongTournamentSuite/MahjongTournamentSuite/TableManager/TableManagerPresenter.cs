@@ -4,6 +4,7 @@ using static MahjongTournamentSuite.TableManager.PlayerTablePoints;
 using MahjongTournamentSuiteDataLayer.Data;
 using MahjongTournamentSuiteDataLayer.Model;
 using static MahjongTournamentSuiteDataLayer.Model.DBHand;
+using System;
 
 namespace MahjongTournamentSuite.TableManager
 {
@@ -141,13 +142,21 @@ namespace MahjongTournamentSuite.TableManager
         {
             DBHand hand = _hands.Find(x => x.HandId == handId);
             string returnValue = string.Empty;
-            if (newValue == null || newValue.Equals(string.Empty))
-                returnValue = string.Empty;
             int validValue;
-            if (int.TryParse(newValue, out validValue))
+            if (newValue == null || newValue.Equals(string.Empty))
+            {
+                if (hand.IsChickenHand)
+                    UncheckChickenHandAndNotifyUser(hand);
+                returnValue = string.Empty;
+            }
+            else if (int.TryParse(newValue, out validValue))
             {
                 if (validValue == 0)
+                {
+                    if (hand.IsChickenHand)
+                        UncheckChickenHandAndNotifyUser(hand);
                     returnValue = string.Empty;
+                }
                 else if (validValue > 0 && IsACurrentTablePlayerId(validValue) &&
                 !hand.PlayerLooserId.Equals(validValue.ToString()))
                     returnValue = validValue.ToString();
@@ -171,15 +180,23 @@ namespace MahjongTournamentSuite.TableManager
         {
             DBHand hand = _hands.Find(x => x.HandId == handId);
             string returnValue = string.Empty;
-            if (newValue == null || newValue.Equals(string.Empty))
-                returnValue = string.Empty;
             int validValue;
-            if (int.TryParse(newValue, out validValue))
+            if (newValue == null || newValue.Equals(string.Empty))
+            {
+                if (hand.IsChickenHand)
+                    UncheckChickenHandAndNotifyUser(hand);
+                returnValue = string.Empty;
+            }
+            else if (int.TryParse(newValue, out validValue))
             {
                 if (validValue == 0)
+                {
+                    if (hand.IsChickenHand)
+                        UncheckChickenHandAndNotifyUser(hand);
                     returnValue = string.Empty;
+                }
                 else if (validValue > 0 && IsACurrentTablePlayerId(validValue) &&
-                !hand.PlayerWinnerId.Equals(validValue.ToString()))
+                !hand.PlayerLooserId.Equals(validValue.ToString()))
                     returnValue = validValue.ToString();
                 else
                 {
@@ -190,7 +207,7 @@ namespace MahjongTournamentSuite.TableManager
             else
             {
                 _form.PlayKoSound();
-                returnValue = hand.PlayerWinnerId;
+                returnValue = hand.PlayerLooserId;
             }
             _db.UpdateHandLooserId(hand, returnValue);
             CalculateAndFillAllHandsScoresAndPlayersTotalsAndPoints();
@@ -201,15 +218,24 @@ namespace MahjongTournamentSuite.TableManager
         {
             DBHand hand = _hands.Find(x => x.HandId == handId);
             string returnValue = string.Empty;
-            if (newValue == null || newValue.Equals(string.Empty))
-                returnValue = string.Empty;
             int validValue;
-            if (int.TryParse(newValue, out validValue)) {
-                if(validValue >= MCR_MIN_POINTS || (
-                    validValue == 0 && 
-                    hand.PlayerWinnerId.Equals(string.Empty) &&
-                    hand.PlayerLooserId.Equals(string.Empty)))
+            if (newValue == null || newValue.Equals(string.Empty))
+            {
+                if (hand.IsChickenHand)
+                    UncheckChickenHandAndNotifyUser(hand);
+                returnValue = string.Empty;
+            }
+            else if (int.TryParse(newValue, out validValue)) {
+                if (validValue >= MCR_MIN_POINTS)
                     returnValue = validValue.ToString();
+                else if (validValue == 0 &&
+                    hand.PlayerWinnerId.Equals(string.Empty) &&
+                    hand.PlayerLooserId.Equals(string.Empty))
+                {
+                    if(hand.IsChickenHand)
+                        UncheckChickenHandAndNotifyUser(hand);
+                    returnValue = validValue.ToString();
+                }
                 else
                 {
                     _form.PlayKoSound();
@@ -421,6 +447,12 @@ namespace MahjongTournamentSuite.TableManager
                 return NUM_LOOSER_PLAYERS;
             else
                 return 4;
+        }
+
+        private void UncheckChickenHandAndNotifyUser(DBHand hand)
+        {
+            _form.PlayKoSound();
+            _form.UncheckChickenHand(hand.HandId);
         }
 
         private string ValidatePenalty(string previousValue, string newValue)

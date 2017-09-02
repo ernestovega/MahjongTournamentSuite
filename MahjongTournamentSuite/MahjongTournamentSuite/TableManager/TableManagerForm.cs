@@ -496,6 +496,24 @@ namespace MahjongTournamentSuite.TableManager
             dgv.Columns[COLUMN_PLAYER_NORTH_SCORE].HeaderText = selectedText;
         }
 
+        public void DGVCancelEdit()
+        {
+            dgv.CancelEdit();
+        }
+
+        public void UncheckChickenHand(int handId)
+        {
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                if(((int)row.Cells[COLUMN_HAND_ID].Value) == handId)
+                {
+                    CellIsChickenHandChanged(row.Index, row.Cells[COLUMN_IS_CHICKEN_HAND].ColumnIndex);
+                    MessageBox.Show("Chicken hand has been unchecked because it need to have Winner, Looser and Hand Score.", "Wrong Chicken hand");
+                    return;
+                }
+            }
+        }
+
         public void ShowPanelTotals()
         {
             panelTotals.Visible = true;
@@ -520,11 +538,6 @@ namespace MahjongTournamentSuite.TableManager
             tbSouthPlayerTotalScore.Enabled = false;
             tbWestPlayerTotalScore.Enabled = false;
             tbNorthPlayerTotalScore.Enabled = false;
-        }
-
-        public void DGVCancelEdit()
-        {
-            dgv.CancelEdit();
         }
 
         public void ShowWaitCursor()

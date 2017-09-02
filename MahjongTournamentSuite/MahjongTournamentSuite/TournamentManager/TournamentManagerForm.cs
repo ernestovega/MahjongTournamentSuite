@@ -97,6 +97,23 @@ namespace MahjongTournamentSuite.TournamentManager
             ShowDefaultCursor();
         }
 
+        private void btnExportExcel_Click(object sender, EventArgs e)
+        {
+            //GenerateTablesWhitAll(numRounds);
+            //GenerateSTablesWithNames();
+            //GenerateSTablesWithIds();
+            //GenerateTablesByPlayer();
+            //GenerateRivalsByPlayer();
+
+            //ExportTournament(worker, e);
+            //ExportScoreTables(worker, e);
+        }
+
+        private void btnExportHTML_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void btnTeams_Click(object sender, EventArgs e)
         {
             _presenter.ButtonTeamsClicked();

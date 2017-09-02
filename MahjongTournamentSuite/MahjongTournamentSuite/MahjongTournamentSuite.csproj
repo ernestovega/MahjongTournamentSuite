@@ -207,9 +207,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\chicken.png" />
+    <Content Include="Resources\chicken_big.png" />
     <Content Include="Resources\EMALogo.png" />
     <Content Include="Resources\este.png" />
+    <Content Include="Resources\export.png" />
     <Content Include="Resources\favicon.ico" />
     <Content Include="Resources\gong.png" />
     <Content Include="Resources\gong_big.png" />
@@ -224,10 +225,12 @@
     <Content Include="Resources\oeste.png" />
     <Content Include="Resources\players.png" />
     <Content Include="Resources\players_white.png" />
+    <Content Include="Resources\player_big.png" />
     <Content Include="Resources\sur.png" />
     <Content Include="Resources\table_white.png" />
     <Content Include="Resources\teams.png" />
     <Content Include="Resources\teams_white.png" />
+    <Content Include="Resources\team_big.png" />
     <Content Include="Resources\yes.png" />
     <Content Include="Resources\yes_white.png" />
     <None Include="Resources\table32.png" />

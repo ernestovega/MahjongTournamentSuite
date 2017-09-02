@@ -73,9 +73,9 @@ namespace MahjongTournamentSuite.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap chicken {
+        public static System.Drawing.Bitmap chicken_big {
             get {
-                object obj = ResourceManager.GetObject("chicken", resourceCulture);
+                object obj = ResourceManager.GetObject("chicken_big", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -96,6 +96,16 @@ namespace MahjongTournamentSuite.Properties {
         public static System.Drawing.Bitmap este {
             get {
                 object obj = ResourceManager.GetObject("este", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap export {
+            get {
+                object obj = ResourceManager.GetObject("export", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -233,6 +243,16 @@ namespace MahjongTournamentSuite.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap player_big {
+            get {
+                object obj = ResourceManager.GetObject("player_big", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap players {
             get {
                 object obj = ResourceManager.GetObject("players", resourceCulture);
@@ -296,6 +316,16 @@ namespace MahjongTournamentSuite.Properties {
         public static System.Drawing.Bitmap table_white {
             get {
                 object obj = ResourceManager.GetObject("table_white", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap team_big {
+            get {
+                object obj = ResourceManager.GetObject("team_big", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

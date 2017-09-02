@@ -33,6 +33,8 @@ namespace MahjongTournamentSuite.TableManager
 
         void DGVCancelEdit();
 
+        void UncheckChickenHand(int handId);
+
         void EnableTotalScoresTextBoxes();
 
         void DisableTotalScoresTextBoxes();
