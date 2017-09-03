@@ -48,16 +48,18 @@ namespace MahjongTournamentSuite.Ranking
 
         private IRankingPresenter _presenter;
         private int _tournamentId;
+        private Rankings _rankings;
         private int _numRowsPerScreen = RankingPresenter.DEFAULT_NUM_ROWS_PER_SCREEN;
 
         #endregion
 
         #region Constructor
 
-        public RankingForm(int tournamentId)
+        public RankingForm(Rankings rankings)
         {
             InitializeComponent();
-            _tournamentId = tournamentId;
+            _presenter = Injector.provideRankingPresenter(this);
+            _rankings = rankings;
         }
 
         #endregion
@@ -67,8 +69,7 @@ namespace MahjongTournamentSuite.Ranking
         private void RankingForm_Load(object sender, EventArgs e)
         {
             ShowWaitCursor();
-            _presenter = new RankingPresenter(this);
-            _presenter.LoadData(_tournamentId);
+            _presenter.LoadData(_rankings);
             _presenter.StartShowRankingThread();
             ShowDefaultCursor();
         }
@@ -166,7 +167,7 @@ namespace MahjongTournamentSuite.Ranking
 
         private void FillDGVPlayers(List<PlayerRanking> playersRankingsRange, bool isTeams)
         {
-            pbIconTitle.Image = Properties.Resources.player_big;
+            pbIconTitle.Image = Properties.Resources.players_big;
             lblRankingTitle.Text = "PLAYERS RANKING";
             dgv.DataSource = playersRankingsRange;
 
@@ -224,7 +225,7 @@ namespace MahjongTournamentSuite.Ranking
 
         private void FillDGVTeams(List<TeamRanking> teamsRankingsRange)
         {
-            pbIconTitle.Image = Properties.Resources.team_big;
+            pbIconTitle.Image = Properties.Resources.teams_big;
             lblRankingTitle.Text = "TEAMS RANKING";
             dgv.DataSource = teamsRankingsRange;
 

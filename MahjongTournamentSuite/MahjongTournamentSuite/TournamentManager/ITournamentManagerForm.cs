@@ -20,6 +20,10 @@ namespace MahjongTournamentSuite.TournamentManager
 
         void GoToTableManager(int roundId, int tableId);
 
+        void GoToRankings(Rankings rankings);
+
+        void GoToHTMLViewer(HTMLRankings htmlRankings);
+
         void SelectTeamsButton();
 
         void UnselectTeamsButton();

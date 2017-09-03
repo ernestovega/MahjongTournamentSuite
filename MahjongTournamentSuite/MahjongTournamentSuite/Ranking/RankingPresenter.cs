@@ -21,15 +21,8 @@ namespace MahjongTournamentSuite.Ranking
 
         private IDBManager _db;
         private IRankingForm _form;
-        private DBTournament _tournament;
-        private List<DBPlayer> _players;
-        private List<DBTeam> _teams;
-        private List<DBTable> _tables;
-        private List<DBHand> _hands;
+        private Rankings _rankings;
         private Thread _showerThread;
-        private List<PlayerRanking> _playersRankings;
-        private List<TeamRanking> _teamsRankings;
-        private List<PlayerChickenHandRanking> _playersChickenHandsRankings;
         private int _numRowsPerScreen;
         private bool _stopShow = false;
 
@@ -47,23 +40,13 @@ namespace MahjongTournamentSuite.Ranking
 
         #region IMainPresenter implementation
 
-        public void LoadData(int tournamentId)
+        public void LoadData(Rankings rankings)
         {
-            _tournament = _db.GetTournament(tournamentId);
-            _players = _db.GetTournamentPlayers(tournamentId);
-            _numRowsPerScreen = _players.Count < DEFAULT_NUM_ROWS_PER_SCREEN ? _players.Count : DEFAULT_NUM_ROWS_PER_SCREEN;
+            _rankings = rankings;
+            _numRowsPerScreen = _rankings.PlayersRankings.Count < DEFAULT_NUM_ROWS_PER_SCREEN ? 
+                _rankings.PlayersRankings.Count : DEFAULT_NUM_ROWS_PER_SCREEN;
             _form.SetNumRowsPerScreen(_numRowsPerScreen);
-            if(_tournament.IsTeams)
-                _teams = _db.GetTournamentTeams(tournamentId);
-            _tables = _db.GetTournamentTables(tournamentId);
-            _hands = _db.GetTournamentHands(tournamentId);
-
-            CalculateAndSortPlayersScores();
-            if (_tournament.IsTeams)
-                CalculateAndSortTeamsScores();
-            CalculateAndSortPlayersChickenHands();
-
-            _showerThread = new Thread(new ThreadStart(ShowRanking));
+            _showerThread = new Thread(new ThreadStart(ShowRankings));
         }
 
         public void StartShowRankingThread()
@@ -86,94 +69,7 @@ namespace MahjongTournamentSuite.Ranking
 
         #region Private
 
-        private void CalculateAndSortPlayersScores()
-        {
-            _playersRankings = new List<PlayerRanking>(_players.Count);
-            foreach(DBPlayer player in _players)
-            {
-                string teamName = string.Empty;
-                if(_tournament.IsTeams)
-                     teamName = _teams.Find(x => x.TeamId == player.PlayerTeamId).TeamName;
-                string countryName = _db.GetCountryName(player.PlayerCountryId);
-                PlayerRanking playerRanking = new PlayerRanking(player.PlayerId, player.PlayerName, 
-                    player.PlayerTeamId, teamName, player.PlayerCountryId, countryName);
-
-                List<DBTable> playerTables = _tables.FindAll(x => 
-                player.PlayerId == x.Player1Id || player.PlayerId == x.Player2Id ||
-                player.PlayerId == x.Player3Id || player.PlayerId == x.Player4Id);
-                
-                foreach (DBTable table in playerTables)
-                {
-                    if (player.PlayerId.ToString().Equals(table.PlayerEastId))
-                    {
-                        playerRanking.PlayerPoints += table.PlayerEastPoints.Equals(string.Empty) ? 0 : int.Parse(table.PlayerEastPoints);
-                        playerRanking.PlayerScore += table.PlayerEastTotalScore.Equals(string.Empty) ? 0 : int.Parse(table.PlayerEastTotalScore);
-                    }
-                    else if (player.PlayerId.ToString().Equals(table.PlayerSouthId))
-                    {
-                        playerRanking.PlayerPoints += table.PlayerSouthPoints.Equals(string.Empty) ? 0 : int.Parse(table.PlayerSouthPoints);
-                        playerRanking.PlayerScore += table.PlayerSouthTotalScore.Equals(string.Empty) ? 0 : int.Parse(table.PlayerSouthTotalScore);
-                    }
-                    else if (player.PlayerId.ToString().Equals(table.PlayerWestId))
-                    {
-                        playerRanking.PlayerPoints += table.PlayerWestPoints.Equals(string.Empty) ? 0 : int.Parse(table.PlayerWestPoints);
-                        playerRanking.PlayerScore += table.PlayerWestTotalScore.Equals(string.Empty) ? 0 : int.Parse(table.PlayerWestTotalScore);
-                    }
-                    else
-                    {
-                        playerRanking.PlayerPoints += table.PlayerNorthPoints.Equals(string.Empty) ? 0 : int.Parse(table.PlayerNorthPoints);
-                        playerRanking.PlayerScore += table.PlayerNorthTotalScore.Equals(string.Empty) ? 0 : int.Parse(table.PlayerNorthTotalScore);
-                    }
-                }
-                _playersRankings.Add(playerRanking);
-            }
-            _playersRankings = _playersRankings.OrderByDescending(x => x.PlayerPoints).ThenByDescending(x => x.PlayerScore).ToList();
-            for (int i = 0; i < _playersRankings.Count; i++)
-                _playersRankings[i].Order = i + 1;
-        }
-
-        private void CalculateAndSortTeamsScores()
-        {
-            _teamsRankings = new List<TeamRanking>(_teams.Count);
-            foreach (DBTeam team in _teams)
-            {
-                TeamRanking teamRanking = new TeamRanking(team.TeamId, team.TeamName);
-                List<PlayerRanking> teamPlayersRankings = _playersRankings.FindAll(x => x.TeamId == team.TeamId);
-                
-                foreach (PlayerRanking pr in teamPlayersRankings)
-                {
-                    teamRanking.TeamPoints += pr.PlayerPoints;
-                    teamRanking.TeamScore += pr.PlayerScore;
-                }
-                _teamsRankings.Add(teamRanking);
-            }
-            _teamsRankings = _teamsRankings.OrderByDescending(x => x.TeamPoints).ThenByDescending(x => x.TeamScore).ToList();
-            for (int i = 0; i < _teamsRankings.Count; i++)
-                _teamsRankings[i].Order = i + 1;
-        }
-
-        private void CalculateAndSortPlayersChickenHands()
-        {
-            _playersChickenHandsRankings = new List<PlayerChickenHandRanking>();
-            foreach (PlayerRanking playerRanking in _playersRankings)
-            {
-                PlayerChickenHandRanking playerChickenHandRanking = new PlayerChickenHandRanking(playerRanking.PlayerId, playerRanking.PlayerName,
-                    playerRanking.PlayerPoints, playerRanking.PlayerScore, playerRanking.CountryId, playerRanking.CountryName);
-
-                int numChickenHands = _hands.Count(x => x.IsChickenHand && int.Parse(x.PlayerWinnerId) == playerRanking.PlayerId);
-                if (numChickenHands > 0)
-                {
-                    playerChickenHandRanking.NumChickenHands = numChickenHands;
-                    _playersChickenHandsRankings.Add(playerChickenHandRanking);
-                }
-            }
-            _playersChickenHandsRankings = _playersChickenHandsRankings.OrderByDescending(x => x.NumChickenHands)
-                .ThenByDescending(x => x.PlayerPoints).ThenByDescending(x => x.PlayerScore).ToList();
-            for (int i = 0; i < _playersChickenHandsRankings.Count; i++)
-                _playersChickenHandsRankings[i].Order = i + 1;
-        }
-
-        private void ShowRanking()
+        private void ShowRankings()
         {
             bool showPlayers = true;
             bool showTeams = false;
@@ -184,15 +80,13 @@ namespace MahjongTournamentSuite.Ranking
             {
                 if (showPlayers)
                 {
-                    if ((startIndex + rowsRange) > _playersRankings.Count)
-                        rowsRange -= (startIndex + rowsRange) - _playersRankings.Count;
+                    if ((startIndex + rowsRange) > _rankings.PlayersRankings.Count)
+                        rowsRange -= (startIndex + rowsRange) - _rankings.PlayersRankings.Count;
 
-                    _form.FillDGVPlayersFromThread(_playersRankings.GetRange(startIndex, rowsRange), _tournament.IsTeams);
+                    _form.FillDGVPlayersFromThread(_rankings.PlayersRankings.GetRange(startIndex, rowsRange), _rankings.IsTeams);
 
-                    if ((startIndex + _numRowsPerScreen) < _playersRankings.Count)
-                    {
+                    if ((startIndex + _numRowsPerScreen) < _rankings.PlayersRankings.Count)
                         startIndex += _numRowsPerScreen;
-                    }
                     else
                     {
                         showPlayers = false;
@@ -203,14 +97,14 @@ namespace MahjongTournamentSuite.Ranking
                 }
                 else if(showTeams)
                 {
-                    if (_tournament.IsTeams)
+                    if (_rankings.IsTeams)
                     {
-                        if ((startIndex + rowsRange) > _teamsRankings.Count)
-                            rowsRange -= (startIndex + rowsRange) - _teamsRankings.Count;
+                        if ((startIndex + rowsRange) > _rankings.TeamsRankings.Count)
+                            rowsRange -= (startIndex + rowsRange) - _rankings.TeamsRankings.Count;
 
-                        _form.FillDGVTeamsFromThread(_teamsRankings.GetRange(startIndex, rowsRange));
+                        _form.FillDGVTeamsFromThread(_rankings.TeamsRankings.GetRange(startIndex, rowsRange));
 
-                        if ((startIndex + _numRowsPerScreen) < _teamsRankings.Count)
+                        if ((startIndex + _numRowsPerScreen) < _rankings.TeamsRankings.Count)
                             startIndex += _numRowsPerScreen;
                         else
                         {
@@ -228,14 +122,14 @@ namespace MahjongTournamentSuite.Ranking
                 }
                 else
                 {
-                    if (_playersChickenHandsRankings.Count > 0)
+                    if (_rankings.PlayersChickenHandsRankings.Count > 0)
                     {
-                        if ((startIndex + rowsRange) > _playersChickenHandsRankings.Count)
-                            rowsRange -= (startIndex + rowsRange) - _playersChickenHandsRankings.Count;
+                        if ((startIndex + rowsRange) > _rankings.PlayersChickenHandsRankings.Count)
+                            rowsRange -= (startIndex + rowsRange) - _rankings.PlayersChickenHandsRankings.Count;
 
-                        _form.FillDGVPlayersChickenHandsFromThread(_playersChickenHandsRankings.GetRange(startIndex, rowsRange));
+                        _form.FillDGVPlayersChickenHandsFromThread(_rankings.PlayersChickenHandsRankings.GetRange(startIndex, rowsRange));
 
-                        if ((startIndex + _numRowsPerScreen) < _playersChickenHandsRankings.Count)
+                        if ((startIndex + _numRowsPerScreen) < _rankings.PlayersChickenHandsRankings.Count)
                             startIndex += _numRowsPerScreen;
                         else
                         {

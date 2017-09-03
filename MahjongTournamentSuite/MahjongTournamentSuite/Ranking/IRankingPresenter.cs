@@ -1,8 +1,10 @@
-﻿namespace MahjongTournamentSuite.Ranking
+﻿using MahjongTournamentSuite.Model;
+
+namespace MahjongTournamentSuite.Ranking
 {
     interface IRankingPresenter
     {
-        void LoadData(int tournamentId);
+        void LoadData(Rankings rankings);
 
         void StartShowRankingThread();
 

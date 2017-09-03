@@ -87,8 +87,24 @@
     <Compile Include="Home\HomePresenter.cs" />
     <Compile Include="Home\IHomeForm.cs" />
     <Compile Include="Home\IHomePresenter.cs" />
+    <Compile Include="HTMLViewer\HTMLViewerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HTMLViewer\HTMLViewerForm.Designer.cs">
+      <DependentUpon>HTMLViewerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HTMLViewer\HTMLViewerPresenter.cs" />
+    <Compile Include="HTMLViewer\IHTMLViewerForm.cs" />
+    <Compile Include="HTMLViewer\IHTMLViewerPresenter.cs" />
     <Compile Include="Injector.cs" />
     <Compile Include="Model\PlayerChickenHandRanking.cs" />
+    <Compile Include="Model\HTMLRankings.cs" />
+    <Compile Include="Model\Rankings.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Ranking\IRankingForm.cs" />
     <Compile Include="Ranking\IRankingPresenter.cs" />
     <Compile Include="Ranking\RankingForm.cs">
@@ -121,11 +137,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\DGVHand.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Resources\CustomColors.cs" />
     <Compile Include="Splash\SplashForm.cs">
       <SubType>Form</SubType>
@@ -166,6 +177,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Home\HomeForm.resx">
       <DependentUpon>HomeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HTMLViewer\HTMLViewerForm.resx">
+      <DependentUpon>HTMLViewerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ranking\RankingForm.resx">
       <DependentUpon>RankingForm.cs</DependentUpon>
@@ -208,14 +222,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\chicken_big.png" />
+    <Content Include="Resources\countries.png" />
     <Content Include="Resources\EMALogo.png" />
     <Content Include="Resources\este.png" />
-    <Content Include="Resources\export.png" />
+    <Content Include="Resources\export_excel.png" />
+    <Content Include="Resources\export_html.png" />
     <Content Include="Resources\favicon.ico" />
     <Content Include="Resources\gong.png" />
     <Content Include="Resources\gong_big.png" />
     <Content Include="Resources\gong_big_white.png" />
     <Content Include="Resources\gong_white.png" />
+    <Content Include="Resources\import.png" />
     <Content Include="Resources\maximize.png" />
     <Content Include="Resources\MMLoading.gif" />
     <Content Include="Resources\MMLogo.png" />
@@ -224,13 +241,13 @@
     <Content Include="Resources\no_white.png" />
     <Content Include="Resources\oeste.png" />
     <Content Include="Resources\players.png" />
+    <Content Include="Resources\players_big.png" />
     <Content Include="Resources\players_white.png" />
-    <Content Include="Resources\player_big.png" />
     <Content Include="Resources\sur.png" />
     <Content Include="Resources\table_white.png" />
     <Content Include="Resources\teams.png" />
+    <Content Include="Resources\teams_big.png" />
     <Content Include="Resources\teams_white.png" />
-    <Content Include="Resources\team_big.png" />
     <Content Include="Resources\yes.png" />
     <Content Include="Resources\yes_white.png" />
     <None Include="Resources\table32.png" />

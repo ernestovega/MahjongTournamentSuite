@@ -11,6 +11,7 @@ using MahjongTournamentSuite.TeamSelector;
 using MahjongTournamentSuite.Resources;
 using MahjongTournamentSuiteDataLayer.Model;
 using MahjongTournamentSuite.Ranking;
+using MahjongTournamentSuite.HTMLViewer;
 
 namespace MahjongTournamentSuite.TournamentManager
 {
@@ -132,14 +133,10 @@ namespace MahjongTournamentSuite.TournamentManager
             ShowDefaultCursor();
         }
 
-        private void btnRanking_Click(object sender, EventArgs e)
+        private void btnRankings_Click(object sender, EventArgs e)
         {
             ShowWaitCursor();
-            try
-            {
-                new RankingForm(_tournamentId).Show();
-            }
-            catch {}
+            _presenter.ShowRankingsClicked();
             ShowDefaultCursor();
         }
 
@@ -426,6 +423,20 @@ namespace MahjongTournamentSuite.TournamentManager
         public void GoToTableManager(int roundId, int tableId)
         {
             new TableManagerForm(_tournamentId, roundId, tableId).ShowDialog();
+        }
+
+        public void GoToRankings(Rankings rankings)
+        {
+            try
+            {
+                new RankingForm(rankings).Show();
+            }
+            catch { }
+        }
+
+        public void GoToHTMLViewer(HTMLRankings htmlRankings)
+        {
+            new HTMLViewerForm(htmlRankings).ShowDialog();
         }
 
         public void SelectTeamsButton()

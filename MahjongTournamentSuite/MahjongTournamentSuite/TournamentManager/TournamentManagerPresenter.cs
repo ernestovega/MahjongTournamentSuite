@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System;
 using MahjongTournamentSuiteDataLayer.Model;
 using MahjongTournamentSuiteDataLayer.Data;
+using System.Linq;
 
 namespace MahjongTournamentSuite.TournamentManager
 {
@@ -15,11 +16,16 @@ namespace MahjongTournamentSuite.TournamentManager
         private DBTournament _tournament;
         private List<DBTeam> _teams;
         private List<DBPlayer> _players;
+        private List<DBTable> _tables;
+        private List<DBHand> _hands;
         private bool isTeamsSelected = false;
         private bool isPlayersSelected = false;
         private bool isRoundsSelected = false;
         private int roundSelected = 0;
         private int tableSelected = 0;
+        private List<PlayerRanking> _playersRankings; 
+        private List<TeamRanking> _teamsRankings;
+        private List<PlayerChickenHandRanking> _playersChickenHandsRankings;
 
         #endregion
 
@@ -39,6 +45,8 @@ namespace MahjongTournamentSuite.TournamentManager
         {
             _tournament = _db.GetTournament(tournamentId);
             _players = _db.GetTournamentPlayers(tournamentId);
+            _tables = _db.GetTournamentTables(tournamentId);
+            _hands = _db.GetTournamentHands(tournamentId);
             if(_tournament.IsTeams)
             {
                 _teams = _db.GetTournamentTeams(tournamentId);
@@ -239,6 +247,14 @@ namespace MahjongTournamentSuite.TournamentManager
             }
         }
 
+        public void ShowRankingsClicked()
+        {
+            GenerateRankings();
+            Rankings rankings = new Rankings(_playersRankings, _teamsRankings, 
+                _playersChickenHandsRankings, _tournament.IsTeams);
+            _form.GoToRankings(rankings);
+        }
+
         public void ExportTournamentToExcel()
         {
             //GenerateTablesWhitAll();
@@ -249,6 +265,32 @@ namespace MahjongTournamentSuite.TournamentManager
 
             //ExportTournament();
             //ExportScoreTables();
+        }
+
+        public void ExportRankingsToHTML()
+        {
+            GenerateRankings();
+            string playersHtmlRanking = GeneratePlayersHTMLRanking();            
+            string teamsHtmlRanking = GenerateTeamsHTMLRanking();
+            string chickenHandsHtmlRanking = GenerateChickenHandsHTMLRanking();
+            HTMLRankings htmlRankings = new HTMLRankings(playersHtmlRanking, teamsHtmlRanking,
+                chickenHandsHtmlRanking, _tournament.IsTeams);
+            _form.GoToHTMLViewer(htmlRankings);
+        }
+
+        private string GenerateChickenHandsHTMLRanking()
+        {
+            throw new NotImplementedException();
+        }
+
+        private string GenerateTeamsHTMLRanking()
+        {
+            throw new NotImplementedException();
+        }
+
+        private string GeneratePlayersHTMLRanking()
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
@@ -376,6 +418,108 @@ namespace MahjongTournamentSuite.TournamentManager
             }
         }
 
+        #region Rankings
+
+        private void GenerateRankings()
+        {
+            _tables = _db.GetTournamentTables(_tournament.TournamentId);
+            _hands = _db.GetTournamentHands(_tournament.TournamentId);
+
+            CalculateAndSortPlayersScores();
+            if (_tournament.IsTeams)
+                CalculateAndSortTeamsScores();
+            CalculateAndSortPlayersChickenHands();
+        }
+
+        private void CalculateAndSortPlayersScores()
+        {
+            _playersRankings = new List<PlayerRanking>(_players.Count);
+            foreach (DBPlayer player in _players)
+            {
+                string teamName = string.Empty;
+                if (_tournament.IsTeams)
+                    teamName = _teams.Find(x => x.TeamId == player.PlayerTeamId).TeamName;
+                string countryName = _db.GetCountryName(player.PlayerCountryId);
+                PlayerRanking playerRanking = new PlayerRanking(player.PlayerId, player.PlayerName,
+                    player.PlayerTeamId, teamName, player.PlayerCountryId, countryName);
+
+                List<DBTable> playerTables = _tables.FindAll(x =>
+                player.PlayerId == x.Player1Id || player.PlayerId == x.Player2Id ||
+                player.PlayerId == x.Player3Id || player.PlayerId == x.Player4Id);
+
+                foreach (DBTable table in playerTables)
+                {
+                    if (player.PlayerId.ToString().Equals(table.PlayerEastId))
+                    {
+                        playerRanking.PlayerPoints += table.PlayerEastPoints.Equals(string.Empty) ? 0 : int.Parse(table.PlayerEastPoints);
+                        playerRanking.PlayerScore += table.PlayerEastTotalScore.Equals(string.Empty) ? 0 : int.Parse(table.PlayerEastTotalScore);
+                    }
+                    else if (player.PlayerId.ToString().Equals(table.PlayerSouthId))
+                    {
+                        playerRanking.PlayerPoints += table.PlayerSouthPoints.Equals(string.Empty) ? 0 : int.Parse(table.PlayerSouthPoints);
+                        playerRanking.PlayerScore += table.PlayerSouthTotalScore.Equals(string.Empty) ? 0 : int.Parse(table.PlayerSouthTotalScore);
+                    }
+                    else if (player.PlayerId.ToString().Equals(table.PlayerWestId))
+                    {
+                        playerRanking.PlayerPoints += table.PlayerWestPoints.Equals(string.Empty) ? 0 : int.Parse(table.PlayerWestPoints);
+                        playerRanking.PlayerScore += table.PlayerWestTotalScore.Equals(string.Empty) ? 0 : int.Parse(table.PlayerWestTotalScore);
+                    }
+                    else
+                    {
+                        playerRanking.PlayerPoints += table.PlayerNorthPoints.Equals(string.Empty) ? 0 : int.Parse(table.PlayerNorthPoints);
+                        playerRanking.PlayerScore += table.PlayerNorthTotalScore.Equals(string.Empty) ? 0 : int.Parse(table.PlayerNorthTotalScore);
+                    }
+                }
+                _playersRankings.Add(playerRanking);
+            }
+            _playersRankings = _playersRankings.OrderByDescending(x => x.PlayerPoints).ThenByDescending(x => x.PlayerScore).ToList();
+            for (int i = 0; i < _playersRankings.Count; i++)
+                _playersRankings[i].Order = i + 1;
+        }
+
+        private void CalculateAndSortTeamsScores()
+        {
+            _teamsRankings = new List<TeamRanking>(_teams.Count);
+            foreach (DBTeam team in _teams)
+            {
+                TeamRanking teamRanking = new TeamRanking(team.TeamId, team.TeamName);
+                List<PlayerRanking> teamPlayersRankings = _playersRankings.FindAll(x => x.TeamId == team.TeamId);
+
+                foreach (PlayerRanking pr in teamPlayersRankings)
+                {
+                    teamRanking.TeamPoints += pr.PlayerPoints;
+                    teamRanking.TeamScore += pr.PlayerScore;
+                }
+                _teamsRankings.Add(teamRanking);
+            }
+            _teamsRankings = _teamsRankings.OrderByDescending(x => x.TeamPoints).ThenByDescending(x => x.TeamScore).ToList();
+            for (int i = 0; i < _teamsRankings.Count; i++)
+                _teamsRankings[i].Order = i + 1;
+        }
+
+        private void CalculateAndSortPlayersChickenHands()
+        {
+            _playersChickenHandsRankings = new List<PlayerChickenHandRanking>();
+            foreach (PlayerRanking playerRanking in _playersRankings)
+            {
+                PlayerChickenHandRanking playerChickenHandRanking = new PlayerChickenHandRanking(playerRanking.PlayerId, playerRanking.PlayerName,
+                    playerRanking.PlayerPoints, playerRanking.PlayerScore, playerRanking.CountryId, playerRanking.CountryName);
+
+                int numChickenHands = _hands.Count(x => x.IsChickenHand && int.Parse(x.PlayerWinnerId) == playerRanking.PlayerId);
+                if (numChickenHands > 0)
+                {
+                    playerChickenHandRanking.NumChickenHands = numChickenHands;
+                    _playersChickenHandsRankings.Add(playerChickenHandRanking);
+                }
+            }
+            _playersChickenHandsRankings = _playersChickenHandsRankings.OrderByDescending(x => x.NumChickenHands)
+                .ThenByDescending(x => x.PlayerPoints).ThenByDescending(x => x.PlayerScore).ToList();
+            for (int i = 0; i < _playersChickenHandsRankings.Count; i++)
+                _playersChickenHandsRankings[i].Order = i + 1;
+        }
+
+        #endregion
+
         #region Excel export
 
         //private void GenerateTablesWhitAll()
@@ -495,6 +639,12 @@ namespace MahjongTournamentSuite.TournamentManager
         //            t.player4Id.ToString(), });
         //    }
         //}
+
+        #endregion
+
+        #region HTML export
+
+
 
         #endregion
 

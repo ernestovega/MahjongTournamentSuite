@@ -15,6 +15,8 @@ namespace MahjongTournamentSuite.TournamentManager
 
         void ButtonRoundsClicked();
 
+        void ShowRankingsClicked();
+
         void ButtonRoundClicked(int roundId);
 
         void ButtonRoundTableClicked(int tableId);
@@ -30,5 +32,7 @@ namespace MahjongTournamentSuite.TournamentManager
         int SaveNewPlayerCountry(int playerId, string newCountryName);
 
         void ExportTournamentToExcel();
+
+        void ExportRankingsToHTML();
     }
 }

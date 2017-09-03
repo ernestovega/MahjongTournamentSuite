@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TournamentManagerForm));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.btnRanking = new System.Windows.Forms.Button();
+            this.btnRankings = new System.Windows.Forms.Button();
             this.btnTimer = new System.Windows.Forms.Button();
             this.imgLogoMM = new System.Windows.Forms.PictureBox();
             this.imgLogoEMA = new System.Windows.Forms.PictureBox();
@@ -59,32 +59,32 @@
             // 
             // btnRanking
             // 
-            this.btnRanking.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRanking.BackColor = System.Drawing.Color.Transparent;
-            this.btnRanking.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnRanking.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRanking.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
-            this.btnRanking.FlatAppearance.BorderSize = 0;
-            this.btnRanking.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
-            this.btnRanking.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(76)))));
-            this.btnRanking.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
-            this.btnRanking.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRanking.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.btnRanking.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnRanking.Image = ((System.Drawing.Image)(resources.GetObject("btnRanking.Image")));
-            this.btnRanking.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnRanking.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnRanking.Location = new System.Drawing.Point(754, 14);
-            this.btnRanking.Margin = new System.Windows.Forms.Padding(5);
-            this.btnRanking.Name = "btnRanking";
-            this.btnRanking.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.btnRanking.Size = new System.Drawing.Size(68, 64);
-            this.btnRanking.TabIndex = 14;
-            this.btnRanking.Text = "Ranking";
-            this.btnRanking.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnRanking.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnRanking.UseVisualStyleBackColor = false;
-            this.btnRanking.Click += new System.EventHandler(this.btnRanking_Click);
+            this.btnRankings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRankings.BackColor = System.Drawing.Color.Transparent;
+            this.btnRankings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnRankings.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRankings.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.btnRankings.FlatAppearance.BorderSize = 0;
+            this.btnRankings.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
+            this.btnRankings.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(76)))));
+            this.btnRankings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            this.btnRankings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRankings.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.btnRankings.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnRankings.Image = ((System.Drawing.Image)(resources.GetObject("btnRanking.Image")));
+            this.btnRankings.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnRankings.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnRankings.Location = new System.Drawing.Point(754, 14);
+            this.btnRankings.Margin = new System.Windows.Forms.Padding(5);
+            this.btnRankings.Name = "btnRanking";
+            this.btnRankings.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.btnRankings.Size = new System.Drawing.Size(68, 64);
+            this.btnRankings.TabIndex = 14;
+            this.btnRankings.Text = "Ranking";
+            this.btnRankings.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnRankings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnRankings.UseVisualStyleBackColor = false;
+            this.btnRankings.Click += new System.EventHandler(this.btnRankings_Click);
             // 
             // btnTimer
             // 
@@ -393,7 +393,7 @@
             this.btnExportExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExportExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
             this.btnExportExcel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnExportExcel.Image = global::MahjongTournamentSuite.Properties.Resources.export;
+            this.btnExportExcel.Image = global::MahjongTournamentSuite.Properties.Resources.export_excel;
             this.btnExportExcel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnExportExcel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnExportExcel.Location = new System.Drawing.Point(108, 14);
@@ -421,7 +421,7 @@
             this.btnExportHTML.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExportHTML.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
             this.btnExportHTML.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnExportHTML.Image = global::MahjongTournamentSuite.Properties.Resources.export;
+            this.btnExportHTML.Image = global::MahjongTournamentSuite.Properties.Resources.export_html;
             this.btnExportHTML.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnExportHTML.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnExportHTML.Location = new System.Drawing.Point(186, 14);
@@ -450,7 +450,7 @@
             this.Controls.Add(this.btnExportExcel);
             this.Controls.Add(this.imgLogoMM);
             this.Controls.Add(this.btnTimer);
-            this.Controls.Add(this.btnRanking);
+            this.Controls.Add(this.btnRankings);
             this.Controls.Add(this.dgv);
             this.Controls.Add(this.splitContainer1);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -477,7 +477,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button btnRanking;
+        private System.Windows.Forms.Button btnRankings;
         private System.Windows.Forms.Button btnTimer;
         private System.Windows.Forms.PictureBox imgLogoMM;
         private System.Windows.Forms.PictureBox imgLogoEMA;
