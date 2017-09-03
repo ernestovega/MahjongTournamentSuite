@@ -28,5 +28,7 @@ namespace MahjongTournamentSuite.TournamentManager
         void PlayerTeamChanged();
 
         int SaveNewPlayerCountry(int playerId, string newCountryName);
+
+        void ExportTournamentToExcel();
     }
 }
