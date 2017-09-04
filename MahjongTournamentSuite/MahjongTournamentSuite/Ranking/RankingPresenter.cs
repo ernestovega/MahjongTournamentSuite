@@ -153,6 +153,7 @@ namespace MahjongTournamentSuite.Ranking
                 }
             }
             _form.CloseFormFromThread();
+            return;
         }
 
         #endregion

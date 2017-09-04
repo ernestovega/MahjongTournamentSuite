@@ -1,6 +1,6 @@
 ﻿namespace MahjongTournamentSuite.Model
 {
-    public class PlayerChickenHandRanking
+    public class ChickenHandRanking
     {
         public int Order { get; set; }
         public int PlayerId { get; set; }
@@ -11,9 +11,9 @@
         public int CountryId { get; set; }
         public string CountryName { get; set; }
 
-        public PlayerChickenHandRanking() { }
+        public ChickenHandRanking() { }
 
-        public PlayerChickenHandRanking(int playerId, string playerName, 
+        public ChickenHandRanking(int playerId, string playerName, 
             int playerPoints, int playerScore, int countryId, string countryName)
         {
             Order = 0;

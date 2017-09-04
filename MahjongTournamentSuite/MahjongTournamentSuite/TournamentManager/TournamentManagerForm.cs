@@ -70,7 +70,8 @@ namespace MahjongTournamentSuite.TournamentManager
 
         private void TournamentManagerForm_Resize(object sender, EventArgs e)
         {
-            _presenter.OnFormResized();
+            if(_presenter != null)
+                _presenter.OnFormResized();
         }
 
         private void TournamentManagerForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -107,7 +108,9 @@ namespace MahjongTournamentSuite.TournamentManager
 
         private void btnExportHTML_Click(object sender, EventArgs e)
         {
-
+            ShowWaitCursor();
+            _presenter.ExportRankingsToHTML();
+            ShowDefaultCursor();
         }
 
         private void btnTeams_Click(object sender, EventArgs e)
@@ -148,8 +151,8 @@ namespace MahjongTournamentSuite.TournamentManager
             {
                 e.CellStyle.SelectionBackColor =
                     dgv.CurrentCell.ReadOnly ?
-                    CustomColors.GREEN_MM_DARKEST :
-                    CustomColors.GREEN_MM_DARKER;
+                    MyConstants.GREEN_MM_DARKEST :
+                    MyConstants.GREEN_MM_DARKER;
             }
         }
 
@@ -652,8 +655,8 @@ namespace MahjongTournamentSuite.TournamentManager
             newButton.Height = BUTTON_SIDE;
             newButton.FlatStyle = FlatStyle.Flat;
             newButton.FlatAppearance.BorderSize = 0;
-            newButton.FlatAppearance.MouseDownBackColor = CustomColors.GREEN_MM_DARK;
-            newButton.FlatAppearance.MouseOverBackColor = CustomColors.GREEN_MM;
+            newButton.FlatAppearance.MouseDownBackColor = MyConstants.GREEN_MM_DARK;
+            newButton.FlatAppearance.MouseOverBackColor = MyConstants.GREEN_MM;
             newButton.BackgroundImageLayout = ImageLayout.None;
             newButton.Cursor = Cursors.Hand;
             newButton.Font = new Font(newButton.Font.Name, newButton.Font.Size, FontStyle.Bold);
@@ -667,7 +670,7 @@ namespace MahjongTournamentSuite.TournamentManager
 
         private static void MakeButtonSelected(Button button, Image image)
         {
-            button.BackColor = CustomColors.GREEN_MM;
+            button.BackColor = MyConstants.GREEN_MM;
             button.ForeColor = Color.White;
             button.Image = image;
         }

@@ -129,8 +129,8 @@ namespace MahjongTournamentSuite.Home
             {
                 e.CellStyle.SelectionBackColor =
                     dgv.CurrentCell.ReadOnly ?
-                    CustomColors.GREEN_MM_DARKEST :
-                    CustomColors.GREEN_MM_DARKER;
+                    Resources.MyConstants.GREEN_MM_DARKEST :
+                    Resources.MyConstants.GREEN_MM_DARKER;
             }
             if (dgv.Columns[e.ColumnIndex].Name.Equals(COLUMN_IS_TEAMS_IMAGES))
             {

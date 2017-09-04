@@ -124,7 +124,7 @@ namespace MahjongTournamentSuite.Ranking
 
         public void FillDGVPlayersFromThread(List<PlayerRanking> playersRankingsRange, bool isTeams)
         {
-            dgv.Invoke(new MethodInvoker(() =>
+            Invoke(new MethodInvoker(() =>
             {
                 ShowWaitCursor();
                 FillDGVPlayers(playersRankingsRange, isTeams);
@@ -134,7 +134,7 @@ namespace MahjongTournamentSuite.Ranking
 
         public void FillDGVTeamsFromThread(List<TeamRanking> teamsRankingsRange)
         {
-            dgv.Invoke(new MethodInvoker(() =>
+            Invoke(new MethodInvoker(() =>
             {
                 ShowWaitCursor();
                 FillDGVTeams(teamsRankingsRange);
@@ -142,9 +142,9 @@ namespace MahjongTournamentSuite.Ranking
             }));
         }
 
-        public void FillDGVPlayersChickenHandsFromThread(List<PlayerChickenHandRanking> playersChickenHandsRankingsRange)
+        public void FillDGVPlayersChickenHandsFromThread(List<ChickenHandRanking> playersChickenHandsRankingsRange)
         {
-            dgv.Invoke(new MethodInvoker(() => 
+            Invoke(new MethodInvoker(() => 
             {
                 ShowWaitCursor();
                 FillDGVPlayersChickenHands(playersChickenHandsRankingsRange);
@@ -255,7 +255,7 @@ namespace MahjongTournamentSuite.Ranking
             dgv.Columns[COLUMN_TEAM_RANKING_TEAM_SCORE].SortMode = DataGridViewColumnSortMode.NotSortable;
         }
 
-        private void FillDGVPlayersChickenHands(List<PlayerChickenHandRanking> playersChickenHandsRankingsRange)
+        private void FillDGVPlayersChickenHands(List<ChickenHandRanking> playersChickenHandsRankingsRange)
         {
             pbIconTitle.Image = Properties.Resources.chicken_big_64;
             lblRankingTitle.Text = "CHICKEN HAND RANKING";

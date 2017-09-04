@@ -4,6 +4,7 @@ using System;
 using MahjongTournamentSuiteDataLayer.Model;
 using MahjongTournamentSuiteDataLayer.Data;
 using System.Linq;
+using MahjongTournamentSuite.Resources;
 
 namespace MahjongTournamentSuite.TournamentManager
 {
@@ -25,7 +26,7 @@ namespace MahjongTournamentSuite.TournamentManager
         private int tableSelected = 0;
         private List<PlayerRanking> _playersRankings; 
         private List<TeamRanking> _teamsRankings;
-        private List<PlayerChickenHandRanking> _playersChickenHandsRankings;
+        private List<ChickenHandRanking> _chickenHandsRankings;
 
         #endregion
 
@@ -251,7 +252,7 @@ namespace MahjongTournamentSuite.TournamentManager
         {
             GenerateRankings();
             Rankings rankings = new Rankings(_playersRankings, _teamsRankings, 
-                _playersChickenHandsRankings, _tournament.IsTeams);
+                _chickenHandsRankings, _tournament.IsTeams);
             _form.GoToRankings(rankings);
         }
 
@@ -276,21 +277,6 @@ namespace MahjongTournamentSuite.TournamentManager
             HTMLRankings htmlRankings = new HTMLRankings(playersHtmlRanking, teamsHtmlRanking,
                 chickenHandsHtmlRanking, _tournament.IsTeams);
             _form.GoToHTMLViewer(htmlRankings);
-        }
-
-        private string GenerateChickenHandsHTMLRanking()
-        {
-            throw new NotImplementedException();
-        }
-
-        private string GenerateTeamsHTMLRanking()
-        {
-            throw new NotImplementedException();
-        }
-
-        private string GeneratePlayersHTMLRanking()
-        {
-            throw new NotImplementedException();
         }
 
         #endregion
@@ -499,23 +485,23 @@ namespace MahjongTournamentSuite.TournamentManager
 
         private void CalculateAndSortPlayersChickenHands()
         {
-            _playersChickenHandsRankings = new List<PlayerChickenHandRanking>();
+            _chickenHandsRankings = new List<ChickenHandRanking>();
             foreach (PlayerRanking playerRanking in _playersRankings)
             {
-                PlayerChickenHandRanking playerChickenHandRanking = new PlayerChickenHandRanking(playerRanking.PlayerId, playerRanking.PlayerName,
-                    playerRanking.PlayerPoints, playerRanking.PlayerScore, playerRanking.CountryId, playerRanking.CountryName);
+                ChickenHandRanking playerChickenHandRanking = new ChickenHandRanking(playerRanking.PlayerId, playerRanking.PlayerName,
+                    playerRanking.PlayerPoints, playerRanking.PlayerScore, playerRanking.CountryId, playerRanking.PlayerCountryName);
 
                 int numChickenHands = _hands.Count(x => x.IsChickenHand && int.Parse(x.PlayerWinnerId) == playerRanking.PlayerId);
                 if (numChickenHands > 0)
                 {
                     playerChickenHandRanking.NumChickenHands = numChickenHands;
-                    _playersChickenHandsRankings.Add(playerChickenHandRanking);
+                    _chickenHandsRankings.Add(playerChickenHandRanking);
                 }
             }
-            _playersChickenHandsRankings = _playersChickenHandsRankings.OrderByDescending(x => x.NumChickenHands)
+            _chickenHandsRankings = _chickenHandsRankings.OrderByDescending(x => x.NumChickenHands)
                 .ThenByDescending(x => x.PlayerPoints).ThenByDescending(x => x.PlayerScore).ToList();
-            for (int i = 0; i < _playersChickenHandsRankings.Count; i++)
-                _playersChickenHandsRankings[i].Order = i + 1;
+            for (int i = 0; i < _chickenHandsRankings.Count; i++)
+                _chickenHandsRankings[i].Order = i + 1;
         }
 
         #endregion
@@ -644,7 +630,123 @@ namespace MahjongTournamentSuite.TournamentManager
 
         #region HTML export
 
+        private string GeneratePlayersHTMLRanking()
+        {
+            string htmlPlayersRanking = string.Format("{0}{1}{2}{3}{4}{5}{6}{7}{8}\n{9}", MyConstants.HTML_OPEN_TABLE,
+                MyConstants.HTML_OPEN_COLGROUP, MyConstants.HTML_COL_ORDER, MyConstants.HTML_COL_NAME,
+                MyConstants.HTML_COL_POINTS, MyConstants.HTML_COL_SCORE, MyConstants.HTML_COL_TEAM,
+                MyConstants.HTML_COL_COUNTRY, MyConstants.HTML_CLOSE_COLGROUP, MyConstants.HTML_OPEN_TBODY);
 
+            foreach (PlayerRanking playerRanking in _playersRankings)
+            {
+                htmlPlayersRanking = string.Format("{0}\n{1}", htmlPlayersRanking, MyConstants.HTML_OPEN_TR);
+
+                htmlPlayersRanking = string.Format("{0}\n{1}{2}{3}{4}{5}", htmlPlayersRanking, 
+                    MyConstants.HTML_OPEN_TD, MyConstants.HTML_OPEN_STRONG, playerRanking.Order,
+                    MyConstants.HTML_CLOSE_STRONG, MyConstants.HTML_CLOSE_TD);
+
+                htmlPlayersRanking = string.Format("{0}\n{1}{2}{3}", htmlPlayersRanking,
+                    MyConstants.HTML_OPEN_TD, playerRanking.PlayerName, MyConstants.HTML_CLOSE_TD);
+
+                htmlPlayersRanking = string.Format("{0}\n{1}{2}{3}{4}{5}", htmlPlayersRanking,
+                    MyConstants.HTML_OPEN_TD, MyConstants.HTML_OPEN_STRONG, playerRanking.PlayerPoints,
+                    MyConstants.HTML_CLOSE_STRONG, MyConstants.HTML_CLOSE_TD);
+
+                htmlPlayersRanking = string.Format("{0}\n{1}{2}{3}{4}{5}", htmlPlayersRanking,
+                    MyConstants.HTML_OPEN_TD, MyConstants.HTML_OPEN_STRONG, playerRanking.PlayerScore,
+                    MyConstants.HTML_CLOSE_STRONG, MyConstants.HTML_CLOSE_TD);
+
+                htmlPlayersRanking = string.Format("{0}\n{1}{2}{3}", htmlPlayersRanking,
+                    MyConstants.HTML_OPEN_TD, playerRanking.PlayerTeamName, MyConstants.HTML_CLOSE_TD);
+
+                htmlPlayersRanking = string.Format("{0}\n{1}{2}{3}", htmlPlayersRanking,
+                    MyConstants.HTML_OPEN_TD, playerRanking.PlayerCountryName, MyConstants.HTML_CLOSE_TD);
+
+                htmlPlayersRanking = string.Format("{0}\n{1}", htmlPlayersRanking, MyConstants.HTML_CLOSE_TR);
+            }
+
+            htmlPlayersRanking = string.Format("{0}\n{1}{2}", htmlPlayersRanking, MyConstants.HTML_CLOSE_TBODY,
+                MyConstants.HTML_CLOSE_TABLE);
+
+            return htmlPlayersRanking;
+        }
+
+        private string GenerateTeamsHTMLRanking()
+        {
+            string htmlTeamsRanking = string.Format("{0}{1}{2}{3}{4}{5}{6}\n{7}", MyConstants.HTML_OPEN_TABLE,
+                   MyConstants.HTML_OPEN_COLGROUP, MyConstants.HTML_COL_ORDER, MyConstants.HTML_COL_NAME,
+                   MyConstants.HTML_COL_POINTS, MyConstants.HTML_COL_SCORE, MyConstants.HTML_CLOSE_COLGROUP, 
+                   MyConstants.HTML_OPEN_TBODY);
+
+            foreach (TeamRanking teamRanking in _teamsRankings)
+            {
+                htmlTeamsRanking = string.Format("{0}\n{1}", htmlTeamsRanking, MyConstants.HTML_OPEN_TR);
+
+                htmlTeamsRanking = string.Format("{0}\n{1}{2}{3}{4}{5}", htmlTeamsRanking,
+                    MyConstants.HTML_OPEN_TD, MyConstants.HTML_OPEN_STRONG, teamRanking.Order,
+                    MyConstants.HTML_CLOSE_STRONG, MyConstants.HTML_CLOSE_TD);
+
+                htmlTeamsRanking = string.Format("{0}\n{1}{2}{3}", htmlTeamsRanking,
+                    MyConstants.HTML_OPEN_TD, teamRanking.TeamName, MyConstants.HTML_CLOSE_TD);
+
+                htmlTeamsRanking = string.Format("{0}\n{1}{2}{3}{4}{5}", htmlTeamsRanking,
+                    MyConstants.HTML_OPEN_TD, MyConstants.HTML_OPEN_STRONG, teamRanking.TeamPoints,
+                    MyConstants.HTML_CLOSE_STRONG, MyConstants.HTML_CLOSE_TD);
+
+                htmlTeamsRanking = string.Format("{0}\n{1}{2}{3}{4}{5}", htmlTeamsRanking,
+                    MyConstants.HTML_OPEN_TD, MyConstants.HTML_OPEN_STRONG, teamRanking.TeamScore,
+                    MyConstants.HTML_CLOSE_STRONG, MyConstants.HTML_CLOSE_TD);
+
+                htmlTeamsRanking = string.Format("{0}\n{1}", htmlTeamsRanking, MyConstants.HTML_CLOSE_TR);
+            }
+
+            htmlTeamsRanking = string.Format("{0}\n{1}{2}", htmlTeamsRanking, MyConstants.HTML_CLOSE_TBODY,
+                MyConstants.HTML_CLOSE_TABLE);
+
+            return htmlTeamsRanking;
+        }
+
+        private string GenerateChickenHandsHTMLRanking()
+        {
+            string htmlChickenHandsRanking = string.Format("{0}{1}{2}{3}{4}{5}{6}\n{7}", MyConstants.HTML_OPEN_TABLE,
+                   MyConstants.HTML_OPEN_COLGROUP, MyConstants.HTML_COL_ORDER, MyConstants.HTML_COL_NAME,
+                   MyConstants.HTML_COL_POINTS, MyConstants.HTML_COL_POINTS, MyConstants.HTML_COL_SCORE,
+                   MyConstants.HTML_COL_COUNTRY, MyConstants.HTML_CLOSE_COLGROUP, MyConstants.HTML_OPEN_TBODY);
+
+            foreach (ChickenHandRanking chickenHandRanking in _chickenHandsRankings)
+            {
+                htmlChickenHandsRanking = string.Format("{0}\n{1}", htmlChickenHandsRanking, MyConstants.HTML_OPEN_TR);
+
+                htmlChickenHandsRanking = string.Format("{0}\n{1}{2}{3}{4}{5}", htmlChickenHandsRanking,
+                    MyConstants.HTML_OPEN_TD, MyConstants.HTML_OPEN_STRONG, chickenHandRanking.Order,
+                    MyConstants.HTML_CLOSE_STRONG, MyConstants.HTML_CLOSE_TD);
+
+                htmlChickenHandsRanking = string.Format("{0}\n{1}{2}{3}", htmlChickenHandsRanking,
+                    MyConstants.HTML_OPEN_TD, chickenHandRanking.PlayerName, MyConstants.HTML_CLOSE_TD);
+
+                htmlChickenHandsRanking = string.Format("{0}\n{1}{2}{3}{4}{5}", htmlChickenHandsRanking,
+                    MyConstants.HTML_OPEN_TD, MyConstants.HTML_OPEN_STRONG, chickenHandRanking.NumChickenHands,
+                    MyConstants.HTML_CLOSE_STRONG, MyConstants.HTML_CLOSE_TD);
+
+                htmlChickenHandsRanking = string.Format("{0}\n{1}{2}{3}{4}{5}", htmlChickenHandsRanking,
+                    MyConstants.HTML_OPEN_TD, MyConstants.HTML_OPEN_STRONG, chickenHandRanking.PlayerPoints,
+                    MyConstants.HTML_CLOSE_STRONG, MyConstants.HTML_CLOSE_TD);
+
+                htmlChickenHandsRanking = string.Format("{0}\n{1}{2}{3}{4}{5}", htmlChickenHandsRanking,
+                    MyConstants.HTML_OPEN_TD, MyConstants.HTML_OPEN_STRONG, chickenHandRanking.PlayerScore,
+                    MyConstants.HTML_CLOSE_STRONG, MyConstants.HTML_CLOSE_TD);
+
+                htmlChickenHandsRanking = string.Format("{0}\n{1}{2}{3}", htmlChickenHandsRanking,
+                    MyConstants.HTML_OPEN_TD, chickenHandRanking.CountryName, MyConstants.HTML_CLOSE_TD);
+
+                htmlChickenHandsRanking = string.Format("{0}\n{1}", htmlChickenHandsRanking, MyConstants.HTML_CLOSE_TR);
+            }
+
+            htmlChickenHandsRanking = string.Format("{0}\n{1}{2}", htmlChickenHandsRanking, MyConstants.HTML_CLOSE_TBODY,
+                MyConstants.HTML_CLOSE_TABLE);
+
+            return htmlChickenHandsRanking;
+        }
 
         #endregion
 
