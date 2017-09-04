@@ -393,7 +393,6 @@
             this.btnExportExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExportExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
             this.btnExportExcel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnExportExcel.Image = global::MahjongTournamentSuite.Properties.Resources.export_excel;
             this.btnExportExcel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnExportExcel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnExportExcel.Location = new System.Drawing.Point(108, 14);
@@ -421,7 +420,6 @@
             this.btnExportHTML.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExportHTML.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
             this.btnExportHTML.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnExportHTML.Image = global::MahjongTournamentSuite.Properties.Resources.export_html;
             this.btnExportHTML.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnExportHTML.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnExportHTML.Location = new System.Drawing.Point(186, 14);

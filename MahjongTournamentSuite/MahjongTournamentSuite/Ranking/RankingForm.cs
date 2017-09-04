@@ -257,7 +257,7 @@ namespace MahjongTournamentSuite.Ranking
 
         private void FillDGVPlayersChickenHands(List<PlayerChickenHandRanking> playersChickenHandsRankingsRange)
         {
-            pbIconTitle.Image = Properties.Resources.chicken_big;
+            pbIconTitle.Image = Properties.Resources.chicken_big_64;
             lblRankingTitle.Text = "CHICKEN HAND RANKING";
             dgv.DataSource = playersChickenHandsRankingsRange;
 

@@ -114,7 +114,7 @@
             this.pbIconTitle.BackColor = System.Drawing.Color.Transparent;
             this.pbIconTitle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pbIconTitle.ErrorImage = global::MahjongTournamentSuite.Properties.Resources.ranking;
-            this.pbIconTitle.Image = global::MahjongTournamentSuite.Properties.Resources.chicken_big;
+            this.pbIconTitle.Image = global::MahjongTournamentSuite.Properties.Resources.chicken_big_64;
             this.pbIconTitle.InitialImage = global::MahjongTournamentSuite.Properties.Resources.ranking;
             this.pbIconTitle.Location = new System.Drawing.Point(293, 19);
             this.pbIconTitle.Margin = new System.Windows.Forms.Padding(5);
