@@ -2,7 +2,6 @@
 using MahjongTournamentSuite.Resources;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Media;
@@ -13,8 +12,7 @@ namespace MahjongTournamentSuite.TableManager
     partial class TableManagerForm : Form, ITableManagerForm
     {
         #region Constants
-
-        private readonly int FORM_MARGINS = 14;
+        
         private const string COLUMN_TOURNAMENT_ID = "HandTournamentId";
         private const string COLUMN_ROUND_ID = "HandRoundId";
         private const string COLUMN_TABLE_ID = "HandTableId";

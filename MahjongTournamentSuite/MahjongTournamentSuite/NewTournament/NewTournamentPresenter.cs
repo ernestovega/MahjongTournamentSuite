@@ -493,14 +493,25 @@ namespace MahjongTournamentSuite.NewTournament
             {
                 DBTable dbTable = new DBTable(_tournament.TournamentId, table.roundId, table.tableId,
                     table.player1Id, table.player2Id, table.player3Id, table.player4Id,
-                    );
+                    table.player1Id.ToString(), table.player2Id.ToString(), table.player3Id.ToString(), table.player4Id.ToString(),
+                    "107", "13", "-115", "-5", "4", "2", "0", "1");
 
-                for (int i = 1; i <= NUM_TABLE_HANDS; i++)
-                {
-                    dbHands.Add(new DBHand(_tournament.TournamentId, table.roundId, table.tableId, i,
-                        ));
-                }
-
+                dbHands.Add(new DBHand(_tournament.TournamentId, table.roundId, table.tableId, 1,  table.player1Id.ToString(), table.player4Id.ToString(), "9",  true,   "0", "0", "0", "0"));
+                dbHands.Add(new DBHand(_tournament.TournamentId, table.roundId, table.tableId, 2,  table.player1Id.ToString(), table.player2Id.ToString(), "25", false,  "0", "0", "0", "0"));
+                dbHands.Add(new DBHand(_tournament.TournamentId, table.roundId, table.tableId, 3,  table.player4Id.ToString(), table.player1Id.ToString(), "20", false,  "0", "0", "0", "0"));
+                dbHands.Add(new DBHand(_tournament.TournamentId, table.roundId, table.tableId, 4,  string.Empty,               string.Empty,               "0",  false , "0", "0", "0", "0"));
+                dbHands.Add(new DBHand(_tournament.TournamentId, table.roundId, table.tableId, 5,  table.player2Id.ToString(), table.player4Id.ToString(), "18", false,  "0", "0", "0", "0"));
+                dbHands.Add(new DBHand(_tournament.TournamentId, table.roundId, table.tableId, 6,  table.player1Id.ToString(), table.player4Id.ToString(), "12", false,  "0", "0", "0", "0"));
+                dbHands.Add(new DBHand(_tournament.TournamentId, table.roundId, table.tableId, 7,  table.player2Id.ToString(), string.Empty,               "23", false,  "0", "0", "0", "0"));
+                dbHands.Add(new DBHand(_tournament.TournamentId, table.roundId, table.tableId, 8,  table.player4Id.ToString(), table.player1Id.ToString(), "13", false,  "0", "0", "0", "0"));
+                dbHands.Add(new DBHand(_tournament.TournamentId, table.roundId, table.tableId, 9,  table.player1Id.ToString(), table.player2Id.ToString(), "10", true,   "0", "0", "0", "0"));
+                dbHands.Add(new DBHand(_tournament.TournamentId, table.roundId, table.tableId, 10, table.player1Id.ToString(), table.player2Id.ToString(), "10", true,   "0", "0", "0", "0"));
+                dbHands.Add(new DBHand(_tournament.TournamentId, table.roundId, table.tableId, 11, table.player3Id.ToString(), table.player2Id.ToString(), "20", false,  "0", "0", "0", "0"));
+                dbHands.Add(new DBHand(_tournament.TournamentId, table.roundId, table.tableId, 12, table.player2Id.ToString(), table.player3Id.ToString(), "11", false,  "0", "0", "0", "0"));
+                dbHands.Add(new DBHand(_tournament.TournamentId, table.roundId, table.tableId, 13, table.player4Id.ToString(), string.Empty,               "11", false,  "0", "0", "0", "0"));
+                dbHands.Add(new DBHand(_tournament.TournamentId, table.roundId, table.tableId, 14, table.player1Id.ToString(), table.player3Id.ToString(), "20", false,  "0", "0", "0", "0"));
+                dbHands.Add(new DBHand(_tournament.TournamentId, table.roundId, table.tableId, 15));
+                dbHands.Add(new DBHand(_tournament.TournamentId, table.roundId, table.tableId, 16));
                 dbTables.Add(dbTable);
             }
             _db.AddTables(dbTables, dbHands);

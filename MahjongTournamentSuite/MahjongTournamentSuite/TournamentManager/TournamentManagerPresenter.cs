@@ -19,8 +19,6 @@ namespace MahjongTournamentSuite.TournamentManager
         private List<DBPlayer> _players;
         private List<DBTable> _tables;
         private List<DBHand> _hands;
-        private bool isTeamsSelected = false;
-        private bool isPlayersSelected = false;
         private bool isRoundsSelected = false;
         private int roundSelected = 0;
         private int tableSelected = 0;
@@ -88,7 +86,6 @@ namespace MahjongTournamentSuite.TournamentManager
             UnselectRound(roundSelected);
             UnselectRounds();
             UnselectPlayers();
-            isTeamsSelected = true;
             _form.SelectTeamsButton();
             _form.HideRoundsButtonsAndTablesPanel();
             _form.ShowDGV();
@@ -103,7 +100,6 @@ namespace MahjongTournamentSuite.TournamentManager
             UnselectRound(roundSelected);
             UnselectRounds();
             UnselectTeams();
-            isPlayersSelected = true;
             _form.SelectPlayersButton();
             _form.HideRoundsButtonsAndTablesPanel();
             _form.ShowDGV();
@@ -372,13 +368,11 @@ namespace MahjongTournamentSuite.TournamentManager
         private void UnselectTeams()
         {
             _form.UnselectTeamsButton();
-            isTeamsSelected = false;
         }
 
         private void UnselectPlayers()
         {
             _form.UnselectPlayersButton();
-            isPlayersSelected = false;
         }
 
         private void UnselectRounds()

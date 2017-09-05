@@ -47,7 +47,6 @@ namespace MahjongTournamentSuite.Ranking
         #region Fields
 
         private IRankingPresenter _presenter;
-        private int _tournamentId;
         private Rankings _rankings;
         private int _numRowsPerScreen = RankingPresenter.DEFAULT_NUM_ROWS_PER_SCREEN;
 
