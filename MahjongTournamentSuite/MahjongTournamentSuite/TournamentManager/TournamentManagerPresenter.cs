@@ -67,6 +67,7 @@ namespace MahjongTournamentSuite.TournamentManager
         public void OnFormResized()
         {
             _form.ShowWaitCursor();
+            _form.CenterMainButtons();
             if (isRoundsSelected)
             {
                 _form.EmptyPanelRoundsButtons();
@@ -665,7 +666,7 @@ namespace MahjongTournamentSuite.TournamentManager
                 htmlPlayersRanking = string.Format("{0}\n{1}", htmlPlayersRanking, MyConstants.HTML_CLOSE_TR);
             }
 
-            htmlPlayersRanking = string.Format("{0}\n{1}{2}", htmlPlayersRanking, MyConstants.HTML_CLOSE_TBODY,
+            htmlPlayersRanking = string.Format("{0}\n{1}\n{2}", htmlPlayersRanking, MyConstants.HTML_CLOSE_TBODY,
                 MyConstants.HTML_CLOSE_TABLE);
 
             return htmlPlayersRanking;
@@ -700,7 +701,7 @@ namespace MahjongTournamentSuite.TournamentManager
                 htmlTeamsRanking = string.Format("{0}\n{1}", htmlTeamsRanking, MyConstants.HTML_CLOSE_TR);
             }
 
-            htmlTeamsRanking = string.Format("{0}\n{1}{2}", htmlTeamsRanking, MyConstants.HTML_CLOSE_TBODY,
+            htmlTeamsRanking = string.Format("{0}\n{1}\n{2}", htmlTeamsRanking, MyConstants.HTML_CLOSE_TBODY,
                 MyConstants.HTML_CLOSE_TABLE);
 
             return htmlTeamsRanking;
@@ -742,7 +743,7 @@ namespace MahjongTournamentSuite.TournamentManager
                 htmlChickenHandsRanking = string.Format("{0}\n{1}", htmlChickenHandsRanking, MyConstants.HTML_CLOSE_TR);
             }
 
-            htmlChickenHandsRanking = string.Format("{0}\n{1}{2}", htmlChickenHandsRanking, MyConstants.HTML_CLOSE_TBODY,
+            htmlChickenHandsRanking = string.Format("{0}\n{1}\n{2}", htmlChickenHandsRanking, MyConstants.HTML_CLOSE_TBODY,
                 MyConstants.HTML_CLOSE_TABLE);
 
             return htmlChickenHandsRanking;

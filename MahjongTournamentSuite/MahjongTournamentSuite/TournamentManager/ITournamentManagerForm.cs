@@ -6,6 +6,8 @@ namespace MahjongTournamentSuite.TournamentManager
 {
     interface ITournamentManagerForm
     {
+        void CenterMainButtons();
+
         void AddRoundsSubButtons(int numRounds);
 
         void FillDGVWithTeams(List<DBTeam> teams);

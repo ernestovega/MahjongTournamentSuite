@@ -63,6 +63,7 @@ namespace MahjongTournamentSuite.TournamentManager
         private void TournamentManagerForm_Load(object sender, EventArgs e)
         {
             ShowWaitCursor();
+            CenterMainButtons();
             _presenter = Injector.provideTournamentManagerPresenter(this);
             _presenter.LoadTournament(_tournamentId);
             ShowDefaultCursor();
@@ -331,7 +332,13 @@ namespace MahjongTournamentSuite.TournamentManager
                 row.Cells[COLUMN_PLAYERS_TEAM_NAME].ErrorText = string.Empty;
             }
         }
-        
+
+        public void CenterMainButtons()
+        {
+            panelMainButtons.Location =
+                new Point((Width - panelMainButtons.Width) / 2, panelMainButtons.Location.Y);
+        }
+
         public void AddRoundsSubButtons(int numRounds)
         {
             int numButtonsHorizontal = (splitContainer1.Width - (MARGIN_SIZE * 3)) / (BUTTON_SIDE + MARGIN_SIZE);
