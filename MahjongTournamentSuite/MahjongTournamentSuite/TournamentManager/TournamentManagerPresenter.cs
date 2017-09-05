@@ -79,6 +79,38 @@ namespace MahjongTournamentSuite.TournamentManager
             }
         }
 
+        public void ExportTournamentToExcel()
+        {
+            _form.ShowWaitCursor();
+            UnselectExportHTML();
+            _form.SelectExportExcelButton();
+            //GenerateTablesWhitAll();
+            //GenerateSTablesWithNames();
+            //GenerateSTablesWithIds();
+            //GenerateTablesByPlayer();
+            //GenerateRivalsByPlayer();
+
+            //ExportTournament();
+            //ExportScoreTables();
+            UnselectExportExcel();
+            _form.ShowDefaultCursor();
+        }
+
+        public void ExportRankingsToHTML()
+        {
+            _form.ShowWaitCursor();
+            UnselectExportExcel();
+            _form.SelectExportHTMLButton();
+            GenerateRankings();
+            string playersHtmlRanking = GeneratePlayersHTMLRanking();
+            string teamsHtmlRanking = GenerateTeamsHTMLRanking();
+            string chickenHandsHtmlRanking = GenerateChickenHandsHTMLRanking();
+            HTMLRankings htmlRankings = new HTMLRankings(playersHtmlRanking, teamsHtmlRanking,
+                chickenHandsHtmlRanking, _tournament.IsTeams);
+            _form.GoToHTMLViewer(htmlRankings);
+            _form.ShowDefaultCursor();
+        }
+
         public void ButtonTeamsClicked()
         {
             _form.ShowWaitCursor();
@@ -253,27 +285,9 @@ namespace MahjongTournamentSuite.TournamentManager
             _form.GoToRankings(rankings);
         }
 
-        public void ExportTournamentToExcel()
+        public void HTMLViewerFormClosed()
         {
-            //GenerateTablesWhitAll();
-            //GenerateSTablesWithNames();
-            //GenerateSTablesWithIds();
-            //GenerateTablesByPlayer();
-            //GenerateRivalsByPlayer();
-
-            //ExportTournament();
-            //ExportScoreTables();
-        }
-
-        public void ExportRankingsToHTML()
-        {
-            GenerateRankings();
-            string playersHtmlRanking = GeneratePlayersHTMLRanking();            
-            string teamsHtmlRanking = GenerateTeamsHTMLRanking();
-            string chickenHandsHtmlRanking = GenerateChickenHandsHTMLRanking();
-            HTMLRankings htmlRankings = new HTMLRankings(playersHtmlRanking, teamsHtmlRanking,
-                chickenHandsHtmlRanking, _tournament.IsTeams);
-            _form.GoToHTMLViewer(htmlRankings);
+            UnselectExportHTML();
         }
 
         #endregion
@@ -363,6 +377,16 @@ namespace MahjongTournamentSuite.TournamentManager
         private string getPlayerCountryName(int countryId)
         {
             return _db.GetCountryImageUrl(countryId);
+        }
+
+        private void UnselectExportHTML()
+        {
+            _form.UnselectExportHTMLButton();
+        }
+
+        private void UnselectExportExcel()
+        {
+            _form.UnselectExportExcelButton();
         }
 
         private void UnselectTeams()

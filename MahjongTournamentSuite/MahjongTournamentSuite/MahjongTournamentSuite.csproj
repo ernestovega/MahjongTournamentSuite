@@ -97,6 +97,12 @@
     <Compile Include="HTMLViewer\IHTMLViewerForm.cs" />
     <Compile Include="HTMLViewer\IHTMLViewerPresenter.cs" />
     <Compile Include="Injector.cs" />
+    <Compile Include="ManageCountries\ManageCountriesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ManageCountries\ManageCountriesForm.Designer.cs">
+      <DependentUpon>ManageCountriesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\ChickenHandRanking.cs" />
     <Compile Include="Model\HTMLRankings.cs" />
     <Compile Include="Model\Rankings.cs" />
@@ -223,10 +229,13 @@
   <ItemGroup>
     <Content Include="Resources\chicken_big.png" />
     <Content Include="Resources\countries.png" />
+    <Content Include="Resources\countries_white.png" />
     <Content Include="Resources\EMALogo.png" />
     <Content Include="Resources\este.png" />
     <Content Include="Resources\export_excel.png" />
+    <Content Include="Resources\export_excel_white.png" />
     <Content Include="Resources\export_html.png" />
+    <Content Include="Resources\export_html_white.png" />
     <Content Include="Resources\favicon.ico" />
     <Content Include="Resources\gong.png" />
     <Content Include="Resources\gong_big.png" />

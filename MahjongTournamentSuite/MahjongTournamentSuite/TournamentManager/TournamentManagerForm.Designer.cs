@@ -203,7 +203,7 @@
             this.btnRounds.BackColor = System.Drawing.Color.Transparent;
             this.btnRounds.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnRounds.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRounds.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlText;
+            this.btnRounds.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.btnRounds.FlatAppearance.BorderSize = 0;
             this.btnRounds.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
             this.btnRounds.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(76)))));
@@ -231,7 +231,7 @@
             this.btnPlayers.BackColor = System.Drawing.Color.Transparent;
             this.btnPlayers.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnPlayers.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPlayers.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.btnPlayers.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.btnPlayers.FlatAppearance.BorderSize = 0;
             this.btnPlayers.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
             this.btnPlayers.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(76)))));
@@ -260,7 +260,7 @@
             this.btnTeams.BackColor = System.Drawing.Color.Transparent;
             this.btnTeams.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnTeams.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnTeams.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlText;
+            this.btnTeams.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.btnTeams.FlatAppearance.BorderSize = 0;
             this.btnTeams.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
             this.btnTeams.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(76)))));
@@ -372,7 +372,7 @@
             this.btnExportExcel.BackColor = System.Drawing.Color.Transparent;
             this.btnExportExcel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnExportExcel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnExportExcel.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlText;
+            this.btnExportExcel.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.btnExportExcel.FlatAppearance.BorderSize = 0;
             this.btnExportExcel.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
             this.btnExportExcel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(76)))));
@@ -400,7 +400,7 @@
             this.btnExportHTML.BackColor = System.Drawing.Color.Transparent;
             this.btnExportHTML.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnExportHTML.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnExportHTML.FlatAppearance.BorderColor = System.Drawing.Color.Red;
+            this.btnExportHTML.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.btnExportHTML.FlatAppearance.BorderSize = 0;
             this.btnExportHTML.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
             this.btnExportHTML.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(76)))));

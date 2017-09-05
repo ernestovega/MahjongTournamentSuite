@@ -1,6 +1,7 @@
 ﻿using MahjongTournamentSuiteDataLayer.Data;
 using MahjongTournamentSuiteDataLayer.Model;
 using System.Collections.Generic;
+using System;
 
 namespace MahjongTournamentSuite.Home
 {
@@ -31,6 +32,11 @@ namespace MahjongTournamentSuite.Home
             _tournaments = _db.GetTournaments();
             ResumeAndDeleteButtonsEnabling();
             _form.FillDGVTournaments(_tournaments);
+        }
+
+        public void OnFormResized()
+        {
+            _form.CenterMainButtons();
         }
 
         public void DeleteClicked(int tournamentId)

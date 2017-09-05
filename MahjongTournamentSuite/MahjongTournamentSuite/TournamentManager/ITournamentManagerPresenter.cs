@@ -34,5 +34,6 @@ namespace MahjongTournamentSuite.TournamentManager
         void ExportTournamentToExcel();
 
         void ExportRankingsToHTML();
+        void HTMLViewerFormClosed();
     }
 }

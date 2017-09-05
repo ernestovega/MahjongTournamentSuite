@@ -26,6 +26,14 @@ namespace MahjongTournamentSuite.TournamentManager
 
         void GoToHTMLViewer(HTMLRankings htmlRankings);
 
+        void SelectExportExcelButton();
+
+        void UnselectExportExcelButton();
+
+        void SelectExportHTMLButton();
+
+        void UnselectExportHTMLButton();
+
         void SelectTeamsButton();
 
         void UnselectTeamsButton();

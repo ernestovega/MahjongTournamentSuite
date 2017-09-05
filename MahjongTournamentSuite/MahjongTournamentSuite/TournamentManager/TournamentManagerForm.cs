@@ -102,16 +102,12 @@ namespace MahjongTournamentSuite.TournamentManager
 
         private void btnExportExcel_Click(object sender, EventArgs e)
         {
-            ShowWaitCursor();
             _presenter.ExportTournamentToExcel();
-            ShowDefaultCursor();
         }
 
         private void btnExportHTML_Click(object sender, EventArgs e)
         {
-            ShowWaitCursor();
             _presenter.ExportRankingsToHTML();
-            ShowDefaultCursor();
         }
 
         private void btnTeams_Click(object sender, EventArgs e)
@@ -446,7 +442,34 @@ namespace MahjongTournamentSuite.TournamentManager
 
         public void GoToHTMLViewer(HTMLRankings htmlRankings)
         {
-            new HTMLViewerForm(htmlRankings).ShowDialog();
+            HTMLViewerForm htmlViewerForm = new HTMLViewerForm(htmlRankings);
+            htmlViewerForm.FormClosed += new FormClosedEventHandler(HTMLViewerForm_FormClosed);
+            htmlViewerForm.ShowDialog();
+        }
+
+        void HTMLViewerForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _presenter.HTMLViewerFormClosed();
+        }
+
+        public void SelectExportExcelButton()
+        {
+            MakeButtonSelected(btnExportExcel, Properties.Resources.export_excel_white);
+        }
+
+        public void UnselectExportExcelButton()
+        {
+            MakeButtonUnselected(btnExportExcel, Properties.Resources.export_excel);
+        }
+
+        public void SelectExportHTMLButton()
+        {
+            MakeButtonSelected(btnExportHTML, Properties.Resources.export_html_white);
+        }
+
+        public void UnselectExportHTMLButton()
+        {
+            MakeButtonUnselected(btnExportHTML, Properties.Resources.export_html);
         }
 
         public void SelectTeamsButton()

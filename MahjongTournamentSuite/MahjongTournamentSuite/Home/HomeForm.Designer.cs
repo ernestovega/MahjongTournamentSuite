@@ -39,9 +39,12 @@
             this.dgv = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.btnTimer = new System.Windows.Forms.Button();
+            this.btnCountries = new System.Windows.Forms.Button();
+            this.panelMainButtons = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoEMA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
+            this.panelMainButtons.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnNew
@@ -60,8 +63,8 @@
             this.btnNew.Image = ((System.Drawing.Image)(resources.GetObject("btnNew.Image")));
             this.btnNew.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnNew.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnNew.Location = new System.Drawing.Point(108, 14);
-            this.btnNew.Margin = new System.Windows.Forms.Padding(25, 5, 5, 5);
+            this.btnNew.Location = new System.Drawing.Point(0, 0);
+            this.btnNew.Margin = new System.Windows.Forms.Padding(5);
             this.btnNew.Name = "btnNew";
             this.btnNew.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
             this.btnNew.Size = new System.Drawing.Size(68, 64);
@@ -88,7 +91,7 @@
             this.btnResume.Image = ((System.Drawing.Image)(resources.GetObject("btnResume.Image")));
             this.btnResume.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnResume.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResume.Location = new System.Drawing.Point(186, 14);
+            this.btnResume.Location = new System.Drawing.Point(78, 0);
             this.btnResume.Margin = new System.Windows.Forms.Padding(5);
             this.btnResume.Name = "btnResume";
             this.btnResume.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
@@ -116,7 +119,7 @@
             this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
             this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnDelete.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDelete.Location = new System.Drawing.Point(264, 14);
+            this.btnDelete.Location = new System.Drawing.Point(156, 0);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(5);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
@@ -253,6 +256,45 @@
             this.btnTimer.UseVisualStyleBackColor = false;
             this.btnTimer.Click += new System.EventHandler(this.btnTimer_Click);
             // 
+            // btnCountries
+            // 
+            this.btnCountries.BackColor = System.Drawing.Color.Transparent;
+            this.btnCountries.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnCountries.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCountries.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.btnCountries.FlatAppearance.BorderSize = 0;
+            this.btnCountries.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
+            this.btnCountries.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(76)))));
+            this.btnCountries.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            this.btnCountries.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCountries.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.btnCountries.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnCountries.Image = global::MahjongTournamentSuite.Properties.Resources.countries;
+            this.btnCountries.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnCountries.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnCountries.Location = new System.Drawing.Point(108, 14);
+            this.btnCountries.Margin = new System.Windows.Forms.Padding(25, 5, 5, 5);
+            this.btnCountries.Name = "btnCountries";
+            this.btnCountries.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.btnCountries.Size = new System.Drawing.Size(76, 64);
+            this.btnCountries.TabIndex = 81;
+            this.btnCountries.Text = "Countries";
+            this.btnCountries.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnCountries.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnCountries.UseVisualStyleBackColor = false;
+            this.btnCountries.Click += new System.EventHandler(this.btnCountries_Click);
+            // 
+            // panelMainButtons
+            // 
+            this.panelMainButtons.BackColor = System.Drawing.Color.Transparent;
+            this.panelMainButtons.Controls.Add(this.btnDelete);
+            this.panelMainButtons.Controls.Add(this.btnResume);
+            this.panelMainButtons.Controls.Add(this.btnNew);
+            this.panelMainButtons.Location = new System.Drawing.Point(392, 14);
+            this.panelMainButtons.Name = "panelMainButtons";
+            this.panelMainButtons.Size = new System.Drawing.Size(224, 64);
+            this.panelMainButtons.TabIndex = 82;
+            // 
             // HomeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -261,12 +303,11 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1008, 748);
+            this.Controls.Add(this.panelMainButtons);
+            this.Controls.Add(this.btnCountries);
             this.Controls.Add(this.btnTimer);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnResume);
             this.Controls.Add(this.dgv);
-            this.Controls.Add(this.btnNew);
-            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.imgLogoMM);
             this.Controls.Add(this.imgLogoEMA);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -277,9 +318,11 @@
             this.Text = "Mahjong Tournament Suite - Home";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.HomeForm_FormClosed);
             this.Load += new System.EventHandler(this.HomeForm_Load);
+            this.Resize += new System.EventHandler(this.HomeForm_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoEMA)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
+            this.panelMainButtons.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -293,5 +336,7 @@
         private System.Windows.Forms.DataGridView dgv;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnTimer;
+        private System.Windows.Forms.Button btnCountries;
+        private System.Windows.Forms.Panel panelMainButtons;
     }
 }

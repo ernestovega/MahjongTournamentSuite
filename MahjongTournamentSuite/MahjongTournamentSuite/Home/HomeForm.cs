@@ -1,4 +1,5 @@
-﻿using MahjongTournamentSuite.Model;
+﻿using MahjongTournamentSuite.ManageCountries;
+using MahjongTournamentSuite.Model;
 using MahjongTournamentSuite.NewTournament;
 using MahjongTournamentSuite.Resources;
 using MahjongTournamentSuite.TournamentManager;
@@ -47,9 +48,19 @@ namespace MahjongTournamentSuite.Home
         private void HomeForm_Load(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
+            CenterMainButtons();
             _presenter = Injector.provideHomePresenter(this);
             _presenter.LoadTournaments();
             Cursor = Cursors.Default;
+        }
+
+        private void HomeForm_Resize(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            if (_presenter != null)
+                _presenter.OnFormResized();
+            Cursor = Cursors.Default;
+
         }
 
         private void HomeForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -71,6 +82,13 @@ namespace MahjongTournamentSuite.Home
             Cursor = Cursors.WaitCursor;
             ProcessStartInfo sInfo = new ProcessStartInfo("http://mahjong-europe.org/portal/");
             Process.Start(sInfo);
+            Cursor = Cursors.Default;
+        }
+
+        private void btnCountries_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            new ManageCountriesForm().ShowDialog();
             Cursor = Cursors.Default;
         }
 
@@ -187,6 +205,12 @@ namespace MahjongTournamentSuite.Home
         #endregion
 
         #region IHomeForm implementation
+
+        public void CenterMainButtons()
+        {
+            panelMainButtons.Location =
+                new Point((Width - panelMainButtons.Width) / 2, panelMainButtons.Location.Y);
+        }
 
         public void FillDGVTournaments(List<DBTournament> tournaments)
         {
