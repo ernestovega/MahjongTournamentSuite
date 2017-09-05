@@ -44,41 +44,45 @@
             // 
             this.tbPlayers.BackColor = System.Drawing.Color.White;
             this.tbPlayers.Location = new System.Drawing.Point(12, 25);
+            this.tbPlayers.Margin = new System.Windows.Forms.Padding(5);
             this.tbPlayers.MaxLength = 500000;
             this.tbPlayers.MinimumSize = new System.Drawing.Size(4, 40);
             this.tbPlayers.Multiline = true;
             this.tbPlayers.Name = "tbPlayers";
             this.tbPlayers.ReadOnly = true;
-            this.tbPlayers.Size = new System.Drawing.Size(430, 142);
+            this.tbPlayers.Size = new System.Drawing.Size(478, 142);
             this.tbPlayers.TabIndex = 0;
             // 
             // tbTeams
             // 
             this.tbTeams.BackColor = System.Drawing.Color.White;
             this.tbTeams.Location = new System.Drawing.Point(12, 186);
+            this.tbTeams.Margin = new System.Windows.Forms.Padding(5);
             this.tbTeams.MaxLength = 500000;
             this.tbTeams.Multiline = true;
             this.tbTeams.Name = "tbTeams";
             this.tbTeams.ReadOnly = true;
-            this.tbTeams.Size = new System.Drawing.Size(430, 142);
+            this.tbTeams.Size = new System.Drawing.Size(478, 142);
             this.tbTeams.TabIndex = 1;
             // 
             // tbChickenHands
             // 
             this.tbChickenHands.BackColor = System.Drawing.Color.White;
             this.tbChickenHands.Location = new System.Drawing.Point(12, 347);
+            this.tbChickenHands.Margin = new System.Windows.Forms.Padding(5);
             this.tbChickenHands.MaxLength = 500000;
             this.tbChickenHands.Multiline = true;
             this.tbChickenHands.Name = "tbChickenHands";
             this.tbChickenHands.ReadOnly = true;
-            this.tbChickenHands.Size = new System.Drawing.Size(430, 142);
+            this.tbChickenHands.Size = new System.Drawing.Size(478, 142);
             this.tbChickenHands.TabIndex = 2;
             // 
             // btnCopyPlayers
             // 
-            this.btnCopyPlayers.Location = new System.Drawing.Point(448, 23);
+            this.btnCopyPlayers.Location = new System.Drawing.Point(500, 25);
+            this.btnCopyPlayers.Margin = new System.Windows.Forms.Padding(5);
             this.btnCopyPlayers.Name = "btnCopyPlayers";
-            this.btnCopyPlayers.Size = new System.Drawing.Size(54, 144);
+            this.btnCopyPlayers.Size = new System.Drawing.Size(72, 142);
             this.btnCopyPlayers.TabIndex = 3;
             this.btnCopyPlayers.Text = "Copy";
             this.btnCopyPlayers.UseVisualStyleBackColor = true;
@@ -86,9 +90,10 @@
             // 
             // btnCopyTeams
             // 
-            this.btnCopyTeams.Location = new System.Drawing.Point(448, 184);
+            this.btnCopyTeams.Location = new System.Drawing.Point(500, 186);
+            this.btnCopyTeams.Margin = new System.Windows.Forms.Padding(5);
             this.btnCopyTeams.Name = "btnCopyTeams";
-            this.btnCopyTeams.Size = new System.Drawing.Size(54, 144);
+            this.btnCopyTeams.Size = new System.Drawing.Size(72, 142);
             this.btnCopyTeams.TabIndex = 4;
             this.btnCopyTeams.Text = "Copy";
             this.btnCopyTeams.UseVisualStyleBackColor = true;
@@ -96,9 +101,10 @@
             // 
             // btnCopyChickenHands
             // 
-            this.btnCopyChickenHands.Location = new System.Drawing.Point(448, 345);
+            this.btnCopyChickenHands.Location = new System.Drawing.Point(500, 347);
+            this.btnCopyChickenHands.Margin = new System.Windows.Forms.Padding(5);
             this.btnCopyChickenHands.Name = "btnCopyChickenHands";
-            this.btnCopyChickenHands.Size = new System.Drawing.Size(54, 144);
+            this.btnCopyChickenHands.Size = new System.Drawing.Size(72, 142);
             this.btnCopyChickenHands.TabIndex = 5;
             this.btnCopyChickenHands.Text = "Copy";
             this.btnCopyChickenHands.UseVisualStyleBackColor = true;
@@ -106,13 +112,10 @@
             // 
             // btnCopyAll
             // 
-            this.btnCopyAll.Location = new System.Drawing.Point(508, 23);
+            this.btnCopyAll.Location = new System.Drawing.Point(0, 0);
             this.btnCopyAll.Name = "btnCopyAll";
-            this.btnCopyAll.Size = new System.Drawing.Size(64, 466);
-            this.btnCopyAll.TabIndex = 6;
-            this.btnCopyAll.Text = "Copy all";
-            this.btnCopyAll.UseVisualStyleBackColor = true;
-            this.btnCopyAll.Click += new System.EventHandler(this.btnCopyAll_Click);
+            this.btnCopyAll.Size = new System.Drawing.Size(75, 23);
+            this.btnCopyAll.TabIndex = 10;
             // 
             // lblPlayers
             // 

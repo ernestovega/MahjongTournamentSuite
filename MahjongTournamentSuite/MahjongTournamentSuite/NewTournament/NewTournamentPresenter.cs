@@ -21,17 +21,12 @@ namespace MahjongTournamentSuite.NewTournament
         private INewTournamentForm _form;
         private IDBManager _db;
         private DBTournament _tournament;
-        private List<Player> players = new List<Player>();
-        private List<TablePlayer> tablePlayers = new List<TablePlayer>();
-        private List<TableWithAll> tablesWithAll = new List<TableWithAll>();
-        private List<string[]> sTablesNames = new List<string[]>();
-        private List<string[]> sTablesTeams = new List<string[]>();
-        private List<string[]> sTablesCountries = new List<string[]>();
-        private List<string[]> sTablesIds = new List<string[]>();
-        private List<TableWithAll> tablesByPlayer = new List<TableWithAll>();
-        private List<Rivals> rivalsByPlayer = new List<Rivals>();
-        private int currentRound, currentTable, currentTablePlayer;
-        private int _numTriesMax, result, _numPlayers, _numRounds, countTries;
+        private List<Player> _players = new List<Player>();
+        private List<TablePlayer> _tablePlayers = new List<TablePlayer>();
+        private List<TableWithAll> _tablesWithAll = new List<TableWithAll>();
+        private List<TableWithAll> _tablesByPlayer = new List<TableWithAll>();
+        private List<Rivals> _rivalsByPlayer = new List<Rivals>();
+        private int _numTriesMax, _numPlayers, _numRounds, _countTries;
         private Random random = new Random();
         private string _tournamentName = string.Empty;
         private bool _isTeamsChecked;
@@ -89,40 +84,35 @@ namespace MahjongTournamentSuite.NewTournament
             //    DateTime.Now.Day, DateTime.Now.Hour, DateTime.Now.Minute, DateTime.Now.Second);
 
             //Cada vez que un cálculo es imposible se reintenta desde cero, tantas veces como se hayan indicado.
-            result = -1;
-            countTries = 0;
-            while (result < 0 && countTries < _numTriesMax)
+            int _result = -1;
+            _countTries = 0;
+            while (_result < 0 && _countTries < _numTriesMax)
             {
                 if (worker.CancellationPending)
                 {
                     e.Cancel = true;
                     return;
                 }
-                countTries++;
-                worker.ReportProgress(countTries, null);
-                result = GenerateTournament(_numRounds);
+                _countTries++;
+                worker.ReportProgress(_countTries, null);
+                _result = GenerateTournament(_numRounds);
                 _form.ApplicationDoEvents();
             }
 
-            if (countTries >= _numTriesMax)
+            if (_countTries >= _numTriesMax)
             {
                 return;
             }
 
-            worker.ReportProgress(countTries, null);
+            worker.ReportProgress(_countTries, null);
 
             if (worker.CancellationPending)
             {
                 e.Cancel = true;
                 return;
             }
-
-            //Generamos todas las vistas y mostramos las mesas
+            
             GenerateTablesWithAll(_numRounds);
-            //GenerateSTablesWithNames();
-            //GenerateSTablesWithIds();
-            //GenerateTablesByPlayer();
-            //GenerateRivalsByPlayer();
 
             worker.ReportProgress(0, null);
 
@@ -133,12 +123,13 @@ namespace MahjongTournamentSuite.NewTournament
             }
 
             SaveTournament();
-            SavePlayers();
             if (_isTeamsChecked)
                 SaveTeams();
 #if DEBUG
-            SaveTablesAndHandsWithFakeData();  
-#else              
+            SavePlayersWithFakeData();
+            SaveTablesAndHandsWithFakeData();
+#else
+            SavePlayers();
             SaveTablesAndHands();
 #endif
         }
@@ -153,7 +144,7 @@ namespace MahjongTournamentSuite.NewTournament
             {
                 /*Si no se ha podido calcular en los intentos indicados, 
                  se notifica,*/
-                if (countTries >= _numTriesMax)
+                if (_countTries >= _numTriesMax)
                     _form.ShowReachedTriesMessage(_numTriesMax);
                 else if (_tournament.TournamentId > 0)
                     _form.CloseForm();
@@ -189,7 +180,7 @@ namespace MahjongTournamentSuite.NewTournament
         
         private void GeneratePlayers()
         {
-            players.Clear();
+            _players.Clear();
             for (int i = 1; i <= _numPlayers / 4; i++)//Recorremos cada equipo
             {
                 int teamId = (4 * i) / 4;//Generamos el id del equipo
@@ -200,7 +191,7 @@ namespace MahjongTournamentSuite.NewTournament
                     //Creamos el jugador
                     Player player = new Player(playerId.ToString(), playerId.ToString(), teamId.ToString());
                     //Añadimos el jugador
-                    players.Add(player);
+                    _players.Add(player);
                 }
             }
         }
@@ -208,22 +199,20 @@ namespace MahjongTournamentSuite.NewTournament
         private int GenerateTournament(int numRounds)
         {
             //Limpiamos las tablas
-            tablePlayers.Clear();
-            tablesWithAll.Clear();
-            sTablesNames.Clear();
-            sTablesTeams.Clear();
-            sTablesCountries.Clear();
-            sTablesIds.Clear();
-            tablesByPlayer.Clear();
-            rivalsByPlayer.Clear();
+            _tablePlayers.Clear();
+            _tablesWithAll.Clear();
+            _tablesByPlayer.Clear();
+            _rivalsByPlayer.Clear();
+
+            int currentRound, currentTable, currentTablePlayer;
 
             for (currentRound = 1; currentRound <= numRounds; currentRound++)
             {//Iteramos por rondas
 
                 //Copiamos la lista de jugadores para ir borrando los que vayamos usando cada ronda
-                List<int> playersNotUsedThisRound = players.Select(x => x.Clone()).ToList().Select(x => x.Id).ToList();
+                List<int> playersNotUsedThisRound = _players.Select(x => x.Clone()).ToList().Select(x => x.Id).ToList();
 
-                for (currentTable = 1; currentTable <= players.Count / 4; currentTable++)
+                for (currentTable = 1; currentTable <= _players.Count / 4; currentTable++)
                 {//Iteramos por mesas en cada ronda
 
                     for (currentTablePlayer = 1; currentTablePlayer <= 4; currentTablePlayer++)
@@ -239,7 +228,7 @@ namespace MahjongTournamentSuite.NewTournament
                         while (!playerFounded && playersIdsNotDiscarded.Count > 0)
                         {
                             //Obtenemos la lista de jugadores de la actual mesa
-                            List<TablePlayer> currentTableTablePlayers = tablePlayers.FindAll
+                            List<TablePlayer> currentTableTablePlayers = _tablePlayers.FindAll
                                 (x => x.round == currentRound && x.table == currentTable).ToList();
                             List<Player> currentTablePlayers = new List<Player>();
                             foreach (TablePlayer tp in currentTableTablePlayers)
@@ -251,7 +240,7 @@ namespace MahjongTournamentSuite.NewTournament
                             playersIdsNotDiscarded.Remove(choosenOne.Id);
 
                             //Obtenemos la lista de jugadores que han jugado en anteriores rondas contra el elegido
-                            List<int> playersWHPATCO = GetPlayersWhoHavePlayedAgainstTheChoosenOne(choosenOne);
+                            List<int> playersWHPATCO = GetPlayersWhoHavePlayedAgainstTheChoosenOne(choosenOne, currentRound);
                             bool anyoneHavePlayed = false;
                             foreach (int ctp in currentTablePlayers.Select(x => x.Id))
                             {
@@ -269,7 +258,7 @@ namespace MahjongTournamentSuite.NewTournament
                                y lo quitamos de la lista de jugadores sin usar esta ronda*/
 
                                 playerFounded = true;
-                                tablePlayers.Add(new TablePlayer(currentRound, currentTable, currentTablePlayer,
+                                _tablePlayers.Add(new TablePlayer(currentRound, currentTable, currentTablePlayer,
                                     choosenOne.Id));
                                 playersNotUsedThisRound.Remove(choosenOne.Id);
                             }
@@ -285,10 +274,10 @@ namespace MahjongTournamentSuite.NewTournament
             return 1;
         }
 
-        private List<int> GetPlayersWhoHavePlayedAgainstTheChoosenOne(Player choosenOne)
+        private List<int> GetPlayersWhoHavePlayedAgainstTheChoosenOne(Player choosenOne, int currentRound)
         {
             //Obtenemos una lista con las mesas de las anteriores rondas
-            List<TablePlayer> anterioresRondas = tablePlayers.FindAll(x => x.round < currentRound).ToList();
+            List<TablePlayer> anterioresRondas = _tablePlayers.FindAll(x => x.round < currentRound).ToList();
 
             //Si hay anteriores rondas
             if (anterioresRondas.Count > 0)
@@ -325,7 +314,7 @@ namespace MahjongTournamentSuite.NewTournament
 
         private Player GetPlayerById(int id)
         {
-            foreach (Player p in players)
+            foreach (Player p in _players)
             {
                 if (p.Id == id)
                 {
@@ -337,9 +326,11 @@ namespace MahjongTournamentSuite.NewTournament
 
         private void GenerateTablesWithAll(int numRounds)
         {
+            int currentRound, currentTable, currentTablePlayer;
+
             for (currentRound = 1; currentRound <= numRounds; currentRound++)
             {
-                for (currentTable = 1; currentTable <= players.Count / 4; currentTable++)
+                for (currentTable = 1; currentTable <= _players.Count / 4; currentTable++)
                 {
                     TableWithAll tableWithAll = new TableWithAll();
                     tableWithAll.roundId = currentRound;
@@ -349,132 +340,86 @@ namespace MahjongTournamentSuite.NewTournament
                         switch (currentTablePlayer)
                         {
                             case 1:
-                                int player1Id = tablePlayers.Find(x => x.round == currentRound &&
+                                int player1Id = _tablePlayers.Find(x => x.round == currentRound &&
                                 x.table == currentTable && x.player == currentTablePlayer).playerId;
-                                Player player = players.Find(x => x.Id == player1Id);
+                                Player player = _players.Find(x => x.Id == player1Id);
                                 tableWithAll.player1Name = player.Name;
                                 tableWithAll.player1Team = player.Team;
                                 tableWithAll.player1Id = player.Id;
                                 break;
                             case 2:
-                                int player2Id = tablePlayers.Find(x => x.round == currentRound &&
+                                int player2Id = _tablePlayers.Find(x => x.round == currentRound &&
                                 x.table == currentTable && x.player == currentTablePlayer).playerId;
-                                Player player2 = players.Find(x => x.Id == player2Id);
+                                Player player2 = _players.Find(x => x.Id == player2Id);
                                 tableWithAll.player2Name = player2.Name;
                                 tableWithAll.player2Team = player2.Team;
                                 tableWithAll.player2Id = player2.Id;
                                 break;
                             case 3:
-                                int player3Id = tablePlayers.Find(x => x.round == currentRound &&
+                                int player3Id = _tablePlayers.Find(x => x.round == currentRound &&
                                 x.table == currentTable && x.player == currentTablePlayer).playerId;
-                                Player player3 = players.Find(x => x.Id == player3Id);
+                                Player player3 = _players.Find(x => x.Id == player3Id);
                                 tableWithAll.player3Name = player3.Name;
                                 tableWithAll.player3Team = player3.Team;
                                 tableWithAll.player3Id = player3.Id;
                                 break;
                             case 4:
-                                int player4Id = tablePlayers.Find(x => x.round == currentRound &&
+                                int player4Id = _tablePlayers.Find(x => x.round == currentRound &&
                                 x.table == currentTable && x.player == currentTablePlayer).playerId;
-                                Player player4 = players.Find(x => x.Id == player4Id);
+                                Player player4 = _players.Find(x => x.Id == player4Id);
                                 tableWithAll.player4Name = player4.Name;
                                 tableWithAll.player4Team = player4.Team;
                                 tableWithAll.player4Id = player4.Id;
                                 break;
                         }
                     }
-                    tablesWithAll.Add(tableWithAll);
+                    _tablesWithAll.Add(tableWithAll);
                 }
-            }
-        }
-
-        private void GenerateTablesByPlayer()
-        {
-            foreach (Player p in players)
-            {
-                tablesByPlayer.AddRange(
-                    tablesWithAll.FindAll(x =>
-                        x.player1Name.Equals(p.Name) ||
-                        x.player2Name.Equals(p.Name) ||
-                        x.player3Name.Equals(p.Name) ||
-                        x.player4Name.Equals(p.Name)));
-            }
-        }
-
-        private void GenerateRivalsByPlayer()
-        {
-            foreach (Player p in players)
-            {
-                List<TableWithAll> thisPlayerTables = tablesWithAll.FindAll(x =>
-                        x.player1Name.Equals(p.Name) ||
-                        x.player2Name.Equals(p.Name) ||
-                        x.player3Name.Equals(p.Name) ||
-                        x.player4Name.Equals(p.Name));
-                List<string> thisPlayerRivals = new List<string>();
-                foreach (TableWithAll twa in thisPlayerTables)
-                {
-                    if (!twa.player1Name.Equals(p.Name))
-                        thisPlayerRivals.Add(twa.player1Name);
-                    if (!twa.player2Name.Equals(p.Name))
-                        thisPlayerRivals.Add(twa.player2Name);
-                    if (!twa.player3Name.Equals(p.Name))
-                        thisPlayerRivals.Add(twa.player3Name);
-                    if (!twa.player4Name.Equals(p.Name))
-                        thisPlayerRivals.Add(twa.player4Name);
-                }
-                rivalsByPlayer.Add(new Rivals(p.Name, thisPlayerRivals.ToArray()));
-            }
-        }
-
-        private void GenerateSTablesWithNames()
-        {
-            foreach (TableWithAll t in tablesWithAll)
-            {
-                sTablesNames.Add(new string[] {
-                    t.roundId.ToString(),
-                    t.tableId.ToString(),
-                    t.player1Name.ToString(),
-                    t.player2Name.ToString(),
-                    t.player3Name.ToString(),
-                    t.player4Name.ToString(), });
-            }
-        }
-
-        private void GenerateSTablesWithIds()
-        {
-            foreach (TableWithAll t in tablesWithAll)
-            {
-                sTablesIds.Add(new string[] {
-                    t.roundId.ToString(),
-                    t.tableId.ToString(),
-                    t.player1Id.ToString(),
-                    t.player2Id.ToString(),
-                    t.player3Id.ToString(),
-                    t.player4Id.ToString(), });
             }
         }
 
         private void SaveTournament()
         {
             int tournamentId = _db.GetExistingMaxTournamentId() + 1;
-            _tournament = new DBTournament(tournamentId, DateTime.Now, players.Count, _numRounds, _isTeamsChecked, _tournamentName);
+            _tournament = new DBTournament(tournamentId, DateTime.Now, _players.Count, _numRounds, _isTeamsChecked, _tournamentName);
             _db.AddTournament(_tournament);
         }
 
         private void SavePlayers()
         {
             List<DBPlayer> dbPlayers = new List<DBPlayer>();
-            foreach (Player player in players)
+            foreach (Player player in _players)
             {
-                dbPlayers.Add(new DBPlayer(_tournament.TournamentId, player.Id, player.Name, int.Parse(player.Team), 0));
+                dbPlayers.Add(new DBPlayer(_tournament.TournamentId, player.Id, string.Format("Player {0}", player.Id), int.Parse(player.Team), 0));
             }
             _db.AddPlayers(dbPlayers);
+        }
+
+        private void SavePlayersWithFakeData()
+        {
+            List<DBPlayer> dbPlayers = new List<DBPlayer>();
+            foreach (Player player in _players)
+            {
+                dbPlayers.Add(new DBPlayer(_tournament.TournamentId, player.Id, string.Format("Player {0}", player.Id), int.Parse(player.Team), random.Next(1, 252)));
+            }
+            _db.AddPlayers(dbPlayers);
+        }
+
+        private void SaveTeams()
+        {
+            List<DBTeam> dbTeams = new List<DBTeam>();
+            for (int i = 1; i <= _players.Count / 4; i++)
+            {
+                dbTeams.Add(new DBTeam(_tournament.TournamentId, i, string.Format("Team {0}", i)));
+            }
+            _db.AddTeams(dbTeams);
         }
 
         private void SaveTablesAndHands()
         {
             List<DBTable> dbTables = new List<DBTable>();
             List<DBHand> dbHands = new List<DBHand>();
-            foreach (TableWithAll table in tablesWithAll)
+            foreach (TableWithAll table in _tablesWithAll)
             {
                 dbTables.Add(new DBTable(_tournament.TournamentId, table.roundId, table.tableId,
                     table.player1Id, table.player2Id, table.player3Id, table.player4Id));
@@ -489,7 +434,7 @@ namespace MahjongTournamentSuite.NewTournament
         {
             List<DBTable> dbTables = new List<DBTable>();
             List<DBHand> dbHands = new List<DBHand>();
-            foreach (TableWithAll table in tablesWithAll)
+            foreach (TableWithAll table in _tablesWithAll)
             {
                 DBTable dbTable = new DBTable(_tournament.TournamentId, table.roundId, table.tableId,
                     table.player1Id, table.player2Id, table.player3Id, table.player4Id,
@@ -515,16 +460,6 @@ namespace MahjongTournamentSuite.NewTournament
                 dbTables.Add(dbTable);
             }
             _db.AddTables(dbTables, dbHands);
-        }
-
-        private void SaveTeams()
-        {
-            List<DBTeam> dbTeams = new List<DBTeam>();
-            for (int i = 1; i <= players.Count / 4; i++)
-            {
-                dbTeams.Add(new DBTeam(_tournament.TournamentId, i, i.ToString()));
-            }
-            _db.AddTeams(dbTeams);
         }
 
         #endregion

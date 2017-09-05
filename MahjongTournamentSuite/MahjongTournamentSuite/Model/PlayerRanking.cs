@@ -7,25 +7,25 @@
         public string PlayerName { get; set; }
         public int PlayerPoints { get; set; }
         public int PlayerScore { get; set; }
-        public int TeamId { get; set; }
+        public int PlayerTeamId { get; set; }
         public string PlayerTeamName { get; set; }
-        public int CountryId { get; set; }
+        public int PlayerCountryId { get; set; }
         public string PlayerCountryName { get; set; }
 
         public PlayerRanking() { }
 
-        public PlayerRanking(int playerId, string playerName, int teamId, 
-            string teamName, int countryId, string countryName)
+        public PlayerRanking(int playerId, string playerName, int playerTeamId, 
+            string playerTeamName, int playerCountryId, string playerCountryName)
         {
             Order = 0;
             PlayerId = playerId;
             PlayerName = playerName;
             PlayerPoints = 0;
             PlayerScore = 0;
-            TeamId = teamId;
-            PlayerTeamName = teamName;
-            CountryId = countryId;
-            PlayerCountryName = countryName;
+            PlayerTeamId = playerTeamId;
+            PlayerTeamName = playerTeamName;
+            PlayerCountryId = playerCountryId;
+            PlayerCountryName = playerCountryName;
         }
     }
 }

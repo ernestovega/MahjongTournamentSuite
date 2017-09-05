@@ -44,6 +44,7 @@
             this.numUpDownPlayers = new System.Windows.Forms.NumericUpDown();
             this.labelPlayers = new System.Windows.Forms.Label();
             this.panelOptions = new System.Windows.Forms.Panel();
+            this.lblTournamentName = new System.Windows.Forms.Label();
             this.panelLoading.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUpDownTriesMax)).BeginInit();
@@ -67,10 +68,10 @@
             this.btnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStart.ForeColor = System.Drawing.Color.White;
             this.btnStart.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnStart.Location = new System.Drawing.Point(32, 293);
+            this.btnStart.Location = new System.Drawing.Point(235, 293);
             this.btnStart.Margin = new System.Windows.Forms.Padding(5);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(221, 35);
+            this.btnStart.Size = new System.Drawing.Size(168, 35);
             this.btnStart.TabIndex = 72;
             this.btnStart.Text = "START";
             this.btnStart.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -89,10 +90,10 @@
             // 
             this.panelLoading.Controls.Add(this.lblLoadingMessage);
             this.panelLoading.Controls.Add(this.pictureBox1);
-            this.panelLoading.Location = new System.Drawing.Point(19, 19);
+            this.panelLoading.Location = new System.Drawing.Point(14, 19);
             this.panelLoading.Margin = new System.Windows.Forms.Padding(5);
             this.panelLoading.Name = "panelLoading";
-            this.panelLoading.Size = new System.Drawing.Size(246, 259);
+            this.panelLoading.Size = new System.Drawing.Size(611, 259);
             this.panelLoading.TabIndex = 77;
             this.panelLoading.Visible = false;
             // 
@@ -105,7 +106,7 @@
             this.lblLoadingMessage.Location = new System.Drawing.Point(13, 229);
             this.lblLoadingMessage.Margin = new System.Windows.Forms.Padding(5);
             this.lblLoadingMessage.Name = "lblLoadingMessage";
-            this.lblLoadingMessage.Size = new System.Drawing.Size(221, 30);
+            this.lblLoadingMessage.Size = new System.Drawing.Size(586, 30);
             this.lblLoadingMessage.TabIndex = 4;
             this.lblLoadingMessage.Text = "Message";
             this.lblLoadingMessage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -118,7 +119,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(13, 0);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(221, 259);
+            this.pictureBox1.Size = new System.Drawing.Size(586, 259);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
@@ -138,7 +139,7 @@
             0,
             0,
             0});
-            this.numUpDownTriesMax.Location = new System.Drawing.Point(112, 225);
+            this.numUpDownTriesMax.Location = new System.Drawing.Point(336, 225);
             this.numUpDownTriesMax.Margin = new System.Windows.Forms.Padding(50, 10, 50, 10);
             this.numUpDownTriesMax.Maximum = new decimal(new int[] {
             100000000,
@@ -170,7 +171,7 @@
             this.lblTriesMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTriesMax.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTriesMax.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblTriesMax.Location = new System.Drawing.Point(42, 224);
+            this.lblTriesMax.Location = new System.Drawing.Point(152, 224);
             this.lblTriesMax.Margin = new System.Windows.Forms.Padding(50, 10, 50, 10);
             this.lblTriesMax.Name = "lblTriesMax";
             this.lblTriesMax.Size = new System.Drawing.Size(64, 16);
@@ -186,7 +187,7 @@
             this.cbTeams.Cursor = System.Windows.Forms.Cursors.Hand;
             this.cbTeams.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbTeams.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.cbTeams.Location = new System.Drawing.Point(201, 178);
+            this.cbTeams.Location = new System.Drawing.Point(425, 178);
             this.cbTeams.Name = "cbTeams";
             this.cbTeams.Size = new System.Drawing.Size(15, 14);
             this.cbTeams.TabIndex = 69;
@@ -196,18 +197,15 @@
             // 
             this.tbTournamentName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbTournamentName.BackColor = System.Drawing.SystemColors.Control;
-            this.tbTournamentName.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbTournamentName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbTournamentName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbTournamentName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tbTournamentName.Location = new System.Drawing.Point(0, 18);
+            this.tbTournamentName.Location = new System.Drawing.Point(240, 25);
             this.tbTournamentName.Margin = new System.Windows.Forms.Padding(0);
             this.tbTournamentName.MaxLength = 250;
             this.tbTournamentName.Multiline = true;
             this.tbTournamentName.Name = "tbTournamentName";
-            this.tbTournamentName.Size = new System.Drawing.Size(256, 46);
+            this.tbTournamentName.Size = new System.Drawing.Size(370, 23);
             this.tbTournamentName.TabIndex = 76;
-            this.tbTournamentName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblTeams
             // 
@@ -216,7 +214,7 @@
             this.lblTeams.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTeams.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblTeams.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblTeams.Location = new System.Drawing.Point(47, 175);
+            this.lblTeams.Location = new System.Drawing.Point(157, 175);
             this.lblTeams.Margin = new System.Windows.Forms.Padding(50, 10, 50, 10);
             this.lblTeams.Name = "lblTeams";
             this.lblTeams.Size = new System.Drawing.Size(58, 16);
@@ -230,7 +228,7 @@
             this.lblRounds.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRounds.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.lblRounds.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblRounds.Location = new System.Drawing.Point(48, 128);
+            this.lblRounds.Location = new System.Drawing.Point(158, 128);
             this.lblRounds.Margin = new System.Windows.Forms.Padding(50, 10, 50, 10);
             this.lblRounds.Name = "lblRounds";
             this.lblRounds.Size = new System.Drawing.Size(55, 16);
@@ -246,7 +244,7 @@
             this.numUpDownRounds.Cursor = System.Windows.Forms.Cursors.Hand;
             this.numUpDownRounds.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numUpDownRounds.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.numUpDownRounds.Location = new System.Drawing.Point(145, 129);
+            this.numUpDownRounds.Location = new System.Drawing.Point(369, 129);
             this.numUpDownRounds.Margin = new System.Windows.Forms.Padding(50, 10, 50, 10);
             this.numUpDownRounds.Maximum = new decimal(new int[] {
             20,
@@ -283,7 +281,7 @@
             0,
             0,
             0});
-            this.numUpDownPlayers.Location = new System.Drawing.Point(145, 79);
+            this.numUpDownPlayers.Location = new System.Drawing.Point(369, 79);
             this.numUpDownPlayers.Margin = new System.Windows.Forms.Padding(50, 10, 50, 10);
             this.numUpDownPlayers.Maximum = new decimal(new int[] {
             1000,
@@ -313,7 +311,7 @@
             this.labelPlayers.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelPlayers.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.labelPlayers.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.labelPlayers.Location = new System.Drawing.Point(49, 78);
+            this.labelPlayers.Location = new System.Drawing.Point(159, 78);
             this.labelPlayers.Margin = new System.Windows.Forms.Padding(50, 50, 50, 10);
             this.labelPlayers.Name = "labelPlayers";
             this.labelPlayers.Size = new System.Drawing.Size(54, 16);
@@ -323,6 +321,7 @@
             // panelOptions
             // 
             this.panelOptions.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.panelOptions.Controls.Add(this.lblTournamentName);
             this.panelOptions.Controls.Add(this.labelPlayers);
             this.panelOptions.Controls.Add(this.numUpDownPlayers);
             this.panelOptions.Controls.Add(this.numUpDownRounds);
@@ -336,8 +335,22 @@
             this.panelOptions.Location = new System.Drawing.Point(14, 14);
             this.panelOptions.Margin = new System.Windows.Forms.Padding(5);
             this.panelOptions.Name = "panelOptions";
-            this.panelOptions.Size = new System.Drawing.Size(256, 269);
+            this.panelOptions.Size = new System.Drawing.Size(610, 269);
             this.panelOptions.TabIndex = 78;
+            // 
+            // lblTournamentName
+            // 
+            this.lblTournamentName.AutoSize = true;
+            this.lblTournamentName.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lblTournamentName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTournamentName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.lblTournamentName.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblTournamentName.Location = new System.Drawing.Point(96, 28);
+            this.lblTournamentName.Margin = new System.Windows.Forms.Padding(50, 50, 50, 10);
+            this.lblTournamentName.Name = "lblTournamentName";
+            this.lblTournamentName.Size = new System.Drawing.Size(117, 16);
+            this.lblTournamentName.TabIndex = 77;
+            this.lblTournamentName.Text = "Tournament name";
             // 
             // NewTournamentForm
             // 
@@ -347,7 +360,7 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(284, 342);
+            this.ClientSize = new System.Drawing.Size(638, 342);
             this.Controls.Add(this.panelLoading);
             this.Controls.Add(this.panelOptions);
             this.Controls.Add(this.btnStart);
@@ -389,5 +402,6 @@
         private System.Windows.Forms.CheckBox cbTeams;
         private System.Windows.Forms.Label lblTriesMax;
         private System.Windows.Forms.NumericUpDown numUpDownTriesMax;
+        private System.Windows.Forms.Label lblTournamentName;
     }
 }

@@ -464,7 +464,7 @@ namespace MahjongTournamentSuite.TournamentManager
             foreach (DBTeam team in _teams)
             {
                 TeamRanking teamRanking = new TeamRanking(team.TeamId, team.TeamName);
-                List<PlayerRanking> teamPlayersRankings = _playersRankings.FindAll(x => x.TeamId == team.TeamId);
+                List<PlayerRanking> teamPlayersRankings = _playersRankings.FindAll(x => x.PlayerTeamId == team.TeamId);
 
                 foreach (PlayerRanking pr in teamPlayersRankings)
                 {
@@ -484,16 +484,16 @@ namespace MahjongTournamentSuite.TournamentManager
             foreach (PlayerRanking playerRanking in _playersRankings)
             {
                 ChickenHandRanking playerChickenHandRanking = new ChickenHandRanking(playerRanking.PlayerId, playerRanking.PlayerName,
-                    playerRanking.PlayerPoints, playerRanking.PlayerScore, playerRanking.CountryId, playerRanking.PlayerCountryName);
+                    playerRanking.PlayerPoints, playerRanking.PlayerScore, playerRanking.PlayerCountryId, playerRanking.PlayerCountryName);
 
                 int numChickenHands = _hands.Count(x => x.IsChickenHand && int.Parse(x.PlayerWinnerId) == playerRanking.PlayerId);
                 if (numChickenHands > 0)
                 {
-                    playerChickenHandRanking.NumChickenHands = numChickenHands;
+                    playerChickenHandRanking.PlayerNumChickenHands = numChickenHands;
                     _chickenHandsRankings.Add(playerChickenHandRanking);
                 }
             }
-            _chickenHandsRankings = _chickenHandsRankings.OrderByDescending(x => x.NumChickenHands)
+            _chickenHandsRankings = _chickenHandsRankings.OrderByDescending(x => x.PlayerNumChickenHands)
                 .ThenByDescending(x => x.PlayerPoints).ThenByDescending(x => x.PlayerScore).ToList();
             for (int i = 0; i < _chickenHandsRankings.Count; i++)
                 _chickenHandsRankings[i].Order = i + 1;
@@ -720,7 +720,7 @@ namespace MahjongTournamentSuite.TournamentManager
                     MyConstants.HTML_OPEN_TD, chickenHandRanking.PlayerName, MyConstants.HTML_CLOSE_TD);
 
                 htmlChickenHandsRanking = string.Format("{0}\n{1}{2}{3}{4}{5}", htmlChickenHandsRanking,
-                    MyConstants.HTML_OPEN_TD, MyConstants.HTML_OPEN_STRONG, chickenHandRanking.NumChickenHands,
+                    MyConstants.HTML_OPEN_TD, MyConstants.HTML_OPEN_STRONG, chickenHandRanking.PlayerNumChickenHands,
                     MyConstants.HTML_CLOSE_STRONG, MyConstants.HTML_CLOSE_TD);
 
                 htmlChickenHandsRanking = string.Format("{0}\n{1}{2}{3}{4}{5}", htmlChickenHandsRanking,
@@ -732,7 +732,7 @@ namespace MahjongTournamentSuite.TournamentManager
                     MyConstants.HTML_CLOSE_STRONG, MyConstants.HTML_CLOSE_TD);
 
                 htmlChickenHandsRanking = string.Format("{0}\n{1}{2}{3}", htmlChickenHandsRanking,
-                    MyConstants.HTML_OPEN_TD, chickenHandRanking.CountryName, MyConstants.HTML_CLOSE_TD);
+                    MyConstants.HTML_OPEN_TD, chickenHandRanking.PlayerCountryName, MyConstants.HTML_CLOSE_TD);
 
                 htmlChickenHandsRanking = string.Format("{0}\n{1}", htmlChickenHandsRanking, MyConstants.HTML_CLOSE_TR);
             }

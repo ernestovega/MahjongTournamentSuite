@@ -22,10 +22,10 @@ namespace MahjongTournamentSuite.Ranking
         private const string COLUMN_PLAYER_RANKING_PLAYER_NAME = "PlayerName";
         private const string COLUMN_PLAYER_RANKING_PLAYER_POINTS = "PlayerPoints";
         private const string COLUMN_PLAYER_RANKING_PLAYER_SCORE = "PlayerScore";
-        private const string COLUMN_PLAYER_RANKING_TEAM_ID = "TeamId";
-        private const string COLUMN_PLAYER_RANKING_TEAM_NAME = "TeamName";
-        private const string COLUMN_PLAYER_RANKING_COUNTRY_ID = "CountryId";
-        private const string COLUMN_PLAYER_RANKING_COUNTRY_NAME = "CountryName";
+        private const string COLUMN_PLAYER_RANKING_TEAM_ID = "PlayerTeamId";
+        private const string COLUMN_PLAYER_RANKING_TEAM_NAME = "PlayerTeamName";
+        private const string COLUMN_PLAYER_RANKING_COUNTRY_ID = "PlayerCountryId";
+        private const string COLUMN_PLAYER_RANKING_COUNTRY_NAME = "PlayerCountryName";
 
         private const string COLUMN_TEAM_RANKING_ORDER = "Order";
         private const string COLUMN_TEAM_RANKING_TEAM_ID = "TeamId";
@@ -36,11 +36,11 @@ namespace MahjongTournamentSuite.Ranking
         private const string COLUMN_PLAYER_CHICKEN_HAND_RANKING_ORDER = "Order";
         private const string COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_ID = "PlayerId";
         private const string COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_NAME = "PlayerName";
-        private const string COLUMN_PLAYER_CHICKEN_HAND_RANKING_NUM_CHICKEN_HANDS = "NumChickenHands";
+        private const string COLUMN_PLAYER_CHICKEN_HAND_RANKING_NUM_CHICKEN_HANDS = "PlayerNumChickenHands";
         private const string COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_POINTS = "PlayerPoints";
         private const string COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_SCORE = "PlayerScore";
-        private const string COLUMN_PLAYER_CHICKEN_HAND_RANKING_COUNTRY_ID = "CountryId";
-        private const string COLUMN_PLAYER_CHICKEN_HAND_RANKING_COUNTRY_NAME = "CountryName";
+        private const string COLUMN_PLAYER_CHICKEN_HAND_RANKING_COUNTRY_ID = "PlayerCountryId";
+        private const string COLUMN_PLAYER_CHICKEN_HAND_RANKING_COUNTRY_NAME = "PlayerCountryName";
 
         #endregion
 

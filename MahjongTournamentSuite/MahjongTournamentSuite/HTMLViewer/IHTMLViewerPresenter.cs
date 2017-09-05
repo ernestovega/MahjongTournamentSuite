@@ -16,7 +16,5 @@ namespace MahjongTournamentSuite.HTMLViewer
         void CopyTeamsClicked();
 
         void CopyChickenHandsClicked();
-
-        void CopyAllClicked();
     }
 }

@@ -46,11 +46,6 @@ namespace MahjongTournamentSuite.HTMLViewer
             _presenter.CopyChickenHandsClicked();
         }
 
-        private void btnCopyAll_Click(object sender, EventArgs e)
-        {
-            _presenter.CopyAllClicked();
-        }
-
         #endregion
 
         #region IHTMLViewerForm implementation
@@ -73,16 +68,19 @@ namespace MahjongTournamentSuite.HTMLViewer
         public void SelectPlayersHTMLText()
         {
             tbPlayers.SelectAll();
+            tbPlayers.Focus();
         }
 
         public void SelectTeamsHTMLText()
         {
             tbTeams.SelectAll();
+            tbTeams.Focus();
         }
 
         public void SelectChickenHandsHTMLText()
         {
             tbChickenHands.SelectAll();
+            tbChickenHands.Focus();
         }
 
         public void DisableTeamsControls()

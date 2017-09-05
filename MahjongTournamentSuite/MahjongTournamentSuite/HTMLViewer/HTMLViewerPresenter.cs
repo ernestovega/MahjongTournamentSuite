@@ -32,6 +32,7 @@ namespace MahjongTournamentSuite.HTMLViewer
             else
                 _form.DisableTeamsControls();
             _form.SetChickenHandsRankingHTMLText(_htmlRankings.PlayersChickenHandsRanking);
+            CopyPlayersClicked();
         }
 
         public void CopyPlayersClicked()
@@ -53,32 +54,6 @@ namespace MahjongTournamentSuite.HTMLViewer
             Clipboard.Clear();
             Clipboard.SetText(_htmlRankings.PlayersChickenHandsRanking);
             _form.SelectChickenHandsHTMLText();
-        }
-
-        public void CopyAllClicked()
-        {
-            string textToCopy;
-
-            if (_htmlRankings.IsTeams)
-            {
-                textToCopy = string.Format("{0}\n\n\n{1}\n\n\n{2}",
-                    _htmlRankings.PlayersRanking,
-                    _htmlRankings.TeamsRanking,
-                    _htmlRankings.PlayersChickenHandsRanking);
-
-                _form.SelectPlayersHTMLText();
-                _form.SelectTeamsHTMLText();
-                _form.SelectChickenHandsHTMLText();
-            }
-            else
-            {
-                textToCopy = string.Format("{0}\n\n\n{1}",
-                    _htmlRankings.PlayersRanking,
-                    _htmlRankings.PlayersChickenHandsRanking);
-
-                _form.SelectPlayersHTMLText();
-                _form.SelectChickenHandsHTMLText();
-            }
         }
 
         #endregion
