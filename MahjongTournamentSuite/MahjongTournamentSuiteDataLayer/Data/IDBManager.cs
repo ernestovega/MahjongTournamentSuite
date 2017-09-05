@@ -45,6 +45,8 @@ namespace MahjongTournamentSuiteDataLayer.Data
 
         int GetCountryId(string countryName);
 
+        string GetCountryImageUrl(int countryId);
+
         void UpdateTeamName(int tournamentId, int teamId, string newName);
 
         void UpdatePlayerName(int tournamentId, int playerId, string newName);

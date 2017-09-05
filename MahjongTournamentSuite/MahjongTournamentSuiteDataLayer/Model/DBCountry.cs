@@ -9,12 +9,15 @@ namespace MahjongTournamentSuiteDataLayer.Model
 
         public string CountryName { get; set; }
 
+        public string CountryImageUrl { get; set; }
+
         public DBCountry() { }
 
-        public DBCountry(int countryId, string name)
+        public DBCountry(int countryId, string name, string countryImageUrl)
         {
             CountryId = countryId;
             CountryName = name;
+            CountryImageUrl = countryImageUrl;
         }
     }
 }

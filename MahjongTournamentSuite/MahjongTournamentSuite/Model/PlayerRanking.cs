@@ -11,11 +11,13 @@
         public string PlayerTeamName { get; set; }
         public int PlayerCountryId { get; set; }
         public string PlayerCountryName { get; set; }
+        public string PlayerCountryImageUrl { get; set; }
 
         public PlayerRanking() { }
 
         public PlayerRanking(int playerId, string playerName, int playerTeamId, 
-            string playerTeamName, int playerCountryId, string playerCountryName)
+            string playerTeamName, int playerCountryId, string playerCountryName,
+            string playerCountryImageUrl)
         {
             Order = 0;
             PlayerId = playerId;
@@ -26,6 +28,7 @@
             PlayerTeamName = playerTeamName;
             PlayerCountryId = playerCountryId;
             PlayerCountryName = playerCountryName;
+            PlayerCountryImageUrl = playerCountryImageUrl;
         }
     }
 }

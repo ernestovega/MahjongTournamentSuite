@@ -362,7 +362,7 @@ namespace MahjongTournamentSuite.TournamentManager
 
         private string getPlayerCountryName(int countryId)
         {
-            return _db.GetCountryName(countryId);
+            return _db.GetCountryImageUrl(countryId);
         }
 
         private void UnselectTeams()
@@ -421,8 +421,9 @@ namespace MahjongTournamentSuite.TournamentManager
                 if (_tournament.IsTeams)
                     teamName = _teams.Find(x => x.TeamId == player.PlayerTeamId).TeamName;
                 string countryName = _db.GetCountryName(player.PlayerCountryId);
+                string countryImageUrl = _db.GetCountryImageUrl(player.PlayerCountryId);
                 PlayerRanking playerRanking = new PlayerRanking(player.PlayerId, player.PlayerName,
-                    player.PlayerTeamId, teamName, player.PlayerCountryId, countryName);
+                    player.PlayerTeamId, teamName, player.PlayerCountryId, countryName, countryImageUrl);
 
                 List<DBTable> playerTables = _tables.FindAll(x =>
                 player.PlayerId == x.Player1Id || player.PlayerId == x.Player2Id ||
@@ -654,8 +655,8 @@ namespace MahjongTournamentSuite.TournamentManager
                 htmlPlayersRanking = string.Format("{0}\n{1}{2}{3}", htmlPlayersRanking,
                     MyConstants.HTML_OPEN_TD, playerRanking.PlayerTeamName, MyConstants.HTML_CLOSE_TD);
 
-                htmlPlayersRanking = string.Format("{0}\n{1}{2}{3}", htmlPlayersRanking,
-                    MyConstants.HTML_OPEN_TD, playerRanking.PlayerCountryName, MyConstants.HTML_CLOSE_TD);
+                htmlPlayersRanking = string.Format("{0}\n{1}<img class=\"alignnone size-full wp-image-665 aligncenter\" src=\"{2}\" alt=\"{3}\" width=\"32\" height=\"32\"/>{4}", htmlPlayersRanking,
+                    MyConstants.HTML_OPEN_TD, playerRanking.PlayerCountryImageUrl, playerRanking.PlayerCountryName, MyConstants.HTML_CLOSE_TD);
 
                 htmlPlayersRanking = string.Format("{0}\n{1}", htmlPlayersRanking, MyConstants.HTML_CLOSE_TR);
             }

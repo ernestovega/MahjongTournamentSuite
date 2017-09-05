@@ -34,7 +34,6 @@
             this.btnCopyPlayers = new System.Windows.Forms.Button();
             this.btnCopyTeams = new System.Windows.Forms.Button();
             this.btnCopyChickenHands = new System.Windows.Forms.Button();
-            this.btnCopyAll = new System.Windows.Forms.Button();
             this.lblPlayers = new System.Windows.Forms.Label();
             this.lblTeams = new System.Windows.Forms.Label();
             this.lblChickenHands = new System.Windows.Forms.Label();
@@ -110,13 +109,6 @@
             this.btnCopyChickenHands.UseVisualStyleBackColor = true;
             this.btnCopyChickenHands.Click += new System.EventHandler(this.btnCopyChickenHands_Click);
             // 
-            // btnCopyAll
-            // 
-            this.btnCopyAll.Location = new System.Drawing.Point(0, 0);
-            this.btnCopyAll.Name = "btnCopyAll";
-            this.btnCopyAll.Size = new System.Drawing.Size(75, 23);
-            this.btnCopyAll.TabIndex = 10;
-            // 
             // lblPlayers
             // 
             this.lblPlayers.AutoSize = true;
@@ -152,7 +144,6 @@
             this.Controls.Add(this.lblChickenHands);
             this.Controls.Add(this.lblTeams);
             this.Controls.Add(this.lblPlayers);
-            this.Controls.Add(this.btnCopyAll);
             this.Controls.Add(this.btnCopyChickenHands);
             this.Controls.Add(this.btnCopyTeams);
             this.Controls.Add(this.btnCopyPlayers);
@@ -178,7 +169,6 @@
         private System.Windows.Forms.Button btnCopyPlayers;
         private System.Windows.Forms.Button btnCopyTeams;
         private System.Windows.Forms.Button btnCopyChickenHands;
-        private System.Windows.Forms.Button btnCopyAll;
         private System.Windows.Forms.Label lblPlayers;
         private System.Windows.Forms.Label lblTeams;
         private System.Windows.Forms.Label lblChickenHands;

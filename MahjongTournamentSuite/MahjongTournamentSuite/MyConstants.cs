@@ -25,14 +25,14 @@ namespace MahjongTournamentSuite.Resources
         public static readonly string HTML_OPEN_TBODY = "<tbody>";
         public static readonly string HTML_OPEN_COLGROUP = "<colgroup>";
         public static readonly string HTML_OPEN_TR = "<tr>";
-        public static readonly string HTML_OPEN_TD = "<td style=\"text-align: center;\">";
+        public static readonly string HTML_OPEN_TD = "<td style=\"text-align: center; height: 32px;\">";
         public static readonly string HTML_OPEN_STRONG = "<strong>";
         public static readonly string HTML_COL_ORDER = "<col width=\"60\"/>";
         public static readonly string HTML_COL_NAME = "<col width=\"350\"/>";
         public static readonly string HTML_COL_POINTS = "<col width=\"60\"/>";
         public static readonly string HTML_COL_SCORE = "<col width=\"60\"/>";
-        public static readonly string HTML_COL_TEAM = "<col width=\"290\"/>";
-        public static readonly string HTML_COL_COUNTRY = "<col width=\"90\"/>";
+        public static readonly string HTML_COL_TEAM = "<col width=\"320\"/>";
+        public static readonly string HTML_COL_COUNTRY = "<col width=\"60\"/>";
         public static readonly string HTML_CLOSE_COLGROUP = "</colgroup>";
         public static readonly string HTML_CLOSE_TR = "</tr>";
         public static readonly string HTML_CLOSE_STRONG = "</strong>";
