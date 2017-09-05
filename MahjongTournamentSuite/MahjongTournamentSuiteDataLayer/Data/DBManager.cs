@@ -197,10 +197,10 @@ namespace MahjongTournamentSuiteDataLayer.Data
         {
             DBTable dbTable = _db.Tables.ToList()
                 .Find(x => x.TableTournamentId == table.TableTournamentId && x.TableId == table.TableId);
-            dbTable.PlayerEastTotalScore = table.PlayerEastTotalScore;
-            dbTable.PlayerSouthTotalScore = table.PlayerSouthTotalScore;
-            dbTable.PlayerWestTotalScore = table.PlayerWestTotalScore;
-            dbTable.PlayerNorthTotalScore = table.PlayerNorthTotalScore;
+            dbTable.PlayerEastScore = table.PlayerEastScore;
+            dbTable.PlayerSouthScore = table.PlayerSouthScore;
+            dbTable.PlayerWestScore = table.PlayerWestScore;
+            dbTable.PlayerNorthScore = table.PlayerNorthScore;
             _db.SaveChanges();
         }
 

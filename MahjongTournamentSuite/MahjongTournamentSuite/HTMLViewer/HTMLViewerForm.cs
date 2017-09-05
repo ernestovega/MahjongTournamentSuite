@@ -70,6 +70,21 @@ namespace MahjongTournamentSuite.HTMLViewer
             tbChickenHands.Text = playersChickenHandsRanking;
         }
 
+        public void SelectPlayersHTMLText()
+        {
+            tbPlayers.SelectAll();
+        }
+
+        public void SelectTeamsHTMLText()
+        {
+            tbTeams.SelectAll();
+        }
+
+        public void SelectChickenHandsHTMLText()
+        {
+            tbChickenHands.SelectAll();
+        }
+
         public void DisableTeamsControls()
         {
             tbTeams.Enabled = false;

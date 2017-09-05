@@ -30,13 +30,13 @@ namespace MahjongTournamentSuiteDataLayer.Model
 
         public string PlayerNorthId { get; set; }
 
-        public string PlayerEastTotalScore { get; set; }
+        public string PlayerEastScore { get; set; }
 
-        public string PlayerSouthTotalScore { get; set; }
+        public string PlayerSouthScore { get; set; }
 
-        public string PlayerWestTotalScore { get; set; }
+        public string PlayerWestScore { get; set; }
 
-        public string PlayerNorthTotalScore { get; set; }
+        public string PlayerNorthScore { get; set; }
 
         public string PlayerEastPoints { get; set; }
 
@@ -62,14 +62,41 @@ namespace MahjongTournamentSuiteDataLayer.Model
             PlayerSouthId = string.Empty;
             PlayerWestId = string.Empty;
             PlayerNorthId = string.Empty;
-            PlayerEastTotalScore = string.Empty;
-            PlayerSouthTotalScore = string.Empty;
-            PlayerWestTotalScore = string.Empty;
-            PlayerNorthTotalScore = string.Empty;
+            PlayerEastScore = string.Empty;
+            PlayerSouthScore = string.Empty;
+            PlayerWestScore = string.Empty;
+            PlayerNorthScore = string.Empty;
             PlayerEastPoints = string.Empty;
             PlayerSouthPoints = string.Empty;
             PlayerWestPoints = string.Empty;
             PlayerNorthPoints = string.Empty;
+        }
+
+        public DBTable(int tournamentId, int roundId, int id,
+            int player1Id, int player2Id, int player3Id, int player4Id,
+            string playerEastId, string playerSouthId, string playerWestId, string playerNorthId,
+            string playerEastScore, string playerSouthScore, string playerWestScore, string playerNorthScore,
+            string playerEastPoints, string playerSouthPoints, string playerWestPoints, string playerNorthPoints)
+        {
+            TableTournamentId = tournamentId;
+            TableRoundId = roundId;
+            TableId = id;
+            Player1Id = player1Id;
+            Player2Id = player2Id;
+            Player3Id = player3Id;
+            Player4Id = player4Id;
+            PlayerEastId = playerEastId;
+            PlayerSouthId = playerSouthId;
+            PlayerWestId = playerWestId;
+            PlayerNorthId = playerNorthId;
+            PlayerEastScore = playerEastScore;
+            PlayerSouthScore = playerSouthScore;
+            PlayerWestScore = playerWestScore;
+            PlayerNorthScore = playerNorthScore;
+            PlayerEastPoints = playerEastPoints;
+            PlayerSouthPoints = playerSouthPoints;
+            PlayerWestPoints = playerWestPoints;
+            PlayerNorthPoints = playerNorthPoints;
         }
     }
 }

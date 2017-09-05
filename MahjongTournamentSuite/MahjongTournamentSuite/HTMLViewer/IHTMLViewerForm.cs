@@ -8,6 +8,12 @@
 
         void SetChickenHandsRankingHTMLText(string playersChickenHandsRanking);
 
+        void SelectPlayersHTMLText();
+
+        void SelectTeamsHTMLText();
+
+        void SelectChickenHandsHTMLText();
+
         void DisableTeamsControls();
     }
 }

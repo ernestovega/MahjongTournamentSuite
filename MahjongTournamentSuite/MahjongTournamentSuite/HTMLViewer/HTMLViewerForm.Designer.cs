@@ -45,13 +45,12 @@
             this.tbPlayers.BackColor = System.Drawing.Color.White;
             this.tbPlayers.Location = new System.Drawing.Point(12, 25);
             this.tbPlayers.MaxLength = 500000;
-            this.tbPlayers.MinimumSize = new System.Drawing.Size(0, 40);
+            this.tbPlayers.MinimumSize = new System.Drawing.Size(4, 40);
             this.tbPlayers.Multiline = true;
             this.tbPlayers.Name = "tbPlayers";
             this.tbPlayers.ReadOnly = true;
             this.tbPlayers.Size = new System.Drawing.Size(430, 142);
             this.tbPlayers.TabIndex = 0;
-            this.tbPlayers.WordWrap = false;
             // 
             // tbTeams
             // 
@@ -63,7 +62,6 @@
             this.tbTeams.ReadOnly = true;
             this.tbTeams.Size = new System.Drawing.Size(430, 142);
             this.tbTeams.TabIndex = 1;
-            this.tbTeams.WordWrap = false;
             // 
             // tbChickenHands
             // 
@@ -75,7 +73,6 @@
             this.tbChickenHands.ReadOnly = true;
             this.tbChickenHands.Size = new System.Drawing.Size(430, 142);
             this.tbChickenHands.TabIndex = 2;
-            this.tbChickenHands.WordWrap = false;
             // 
             // btnCopyPlayers
             // 

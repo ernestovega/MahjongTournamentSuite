@@ -34,22 +34,28 @@ namespace MahjongTournamentSuite.HTMLViewer
             _form.SetChickenHandsRankingHTMLText(_htmlRankings.PlayersChickenHandsRanking);
         }
 
-        public void CopyAllClicked()
+        public void CopyPlayersClicked()
         {
+            Clipboard.Clear();
             Clipboard.SetText(_htmlRankings.PlayersRanking);
+            _form.SelectPlayersHTMLText();
+        }
+
+        public void CopyTeamsClicked()
+        {
+            Clipboard.Clear();
+            Clipboard.SetText(_htmlRankings.TeamsRanking);
+            _form.SelectTeamsHTMLText();
         }
 
         public void CopyChickenHandsClicked()
         {
-            Clipboard.SetText(_htmlRankings.TeamsRanking);
-        }
-
-        public void CopyPlayersClicked()
-        {
+            Clipboard.Clear();
             Clipboard.SetText(_htmlRankings.PlayersChickenHandsRanking);
+            _form.SelectChickenHandsHTMLText();
         }
 
-        public void CopyTeamsClicked()
+        public void CopyAllClicked()
         {
             string textToCopy;
 
@@ -59,15 +65,20 @@ namespace MahjongTournamentSuite.HTMLViewer
                     _htmlRankings.PlayersRanking,
                     _htmlRankings.TeamsRanking,
                     _htmlRankings.PlayersChickenHandsRanking);
+
+                _form.SelectPlayersHTMLText();
+                _form.SelectTeamsHTMLText();
+                _form.SelectChickenHandsHTMLText();
             }
             else
             {
                 textToCopy = string.Format("{0}\n\n\n{1}",
                     _htmlRankings.PlayersRanking,
                     _htmlRankings.PlayersChickenHandsRanking);
-            }
 
-            Clipboard.SetText(textToCopy);
+                _form.SelectPlayersHTMLText();
+                _form.SelectChickenHandsHTMLText();
+            }
         }
 
         #endregion

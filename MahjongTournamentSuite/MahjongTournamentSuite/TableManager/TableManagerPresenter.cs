@@ -88,12 +88,12 @@ namespace MahjongTournamentSuite.TableManager
             if (int.TryParse(newScore, out validValue))
             {
                 string sValidValue = validValue.ToString();
-                _table.PlayerEastTotalScore = sValidValue;
+                _table.PlayerEastScore = sValidValue;
                 ValidateAndSaveAndFillTotalsScoresAndPoints();
                 return validValue.ToString();
             }
             _form.PlayKoSound();
-            return _table.PlayerEastTotalScore;
+            return _table.PlayerEastScore;
         }
 
         public string TotalScoreSouthPlayerChanged(string newScore)
@@ -102,12 +102,12 @@ namespace MahjongTournamentSuite.TableManager
             if (int.TryParse(newScore, out validValue))
             {
                 string sValidValue = validValue.ToString();
-                _table.PlayerSouthTotalScore = sValidValue;
+                _table.PlayerSouthScore = sValidValue;
                 ValidateAndSaveAndFillTotalsScoresAndPoints();
                 return validValue.ToString();
             }
             _form.PlayKoSound();
-            return _table.PlayerSouthTotalScore;
+            return _table.PlayerSouthScore;
         }
 
         public string TotalScoreWestPlayerChanged(string newScore)
@@ -116,12 +116,12 @@ namespace MahjongTournamentSuite.TableManager
             if (int.TryParse(newScore, out validValue))
             {
                 string sValidValue = validValue.ToString();
-                _table.PlayerWestTotalScore = sValidValue;
+                _table.PlayerWestScore = sValidValue;
                 ValidateAndSaveAndFillTotalsScoresAndPoints();
                 return validValue.ToString();
             }
             _form.PlayKoSound();
-            return _table.PlayerWestTotalScore;
+            return _table.PlayerWestScore;
         }
 
         public string TotalScoreNorthPlayerChanged(string newScore)
@@ -130,12 +130,12 @@ namespace MahjongTournamentSuite.TableManager
             if (int.TryParse(newScore, out validValue))
             {
                 string sValidValue = validValue.ToString();
-                _table.PlayerNorthTotalScore = sValidValue;
+                _table.PlayerNorthScore = sValidValue;
                 ValidateAndSaveAndFillTotalsScoresAndPoints();
                 return sValidValue;
             }
             _form.PlayKoSound();
-            return _table.PlayerNorthTotalScore;
+            return _table.PlayerNorthScore;
         }
 
         public string PlayerWinnerIdChanged(int handId, string newValue)
@@ -470,10 +470,10 @@ namespace MahjongTournamentSuite.TableManager
 
         private bool IsAllTotalScoresFilled()
         {
-            return !_table.PlayerEastTotalScore.Equals(string.Empty) &&
-                !_table.PlayerSouthTotalScore.Equals(string.Empty) &&
-                !_table.PlayerWestTotalScore.Equals(string.Empty) &&
-                !_table.PlayerNorthTotalScore.Equals(string.Empty);
+            return !_table.PlayerEastScore.Equals(string.Empty) &&
+                !_table.PlayerSouthScore.Equals(string.Empty) &&
+                !_table.PlayerWestScore.Equals(string.Empty) &&
+                !_table.PlayerNorthScore.Equals(string.Empty);
         }
         
         private void CalculateAndFillAllHandsScoresAndPlayersTotalsAndPoints()
@@ -650,10 +650,10 @@ namespace MahjongTournamentSuite.TableManager
                 if (!dgvHand.PlayerNorthPenalty.Equals(string.Empty))
                     northTotalScore += int.Parse(dgvHand.PlayerNorthPenalty);
             }
-            _table.PlayerEastTotalScore = eastTotalScore.ToString();
-            _table.PlayerSouthTotalScore = southTotalScore.ToString();
-            _table.PlayerWestTotalScore = westTotalScore.ToString();
-            _table.PlayerNorthTotalScore = northTotalScore.ToString();
+            _table.PlayerEastScore = eastTotalScore.ToString();
+            _table.PlayerSouthScore = southTotalScore.ToString();
+            _table.PlayerWestScore = westTotalScore.ToString();
+            _table.PlayerNorthScore = northTotalScore.ToString();
             ValidateAndSaveAndFillTotalsScoresAndPoints();
         }
 
@@ -670,17 +670,17 @@ namespace MahjongTournamentSuite.TableManager
         private void FillAllPlayersTotalScores()
         {
             _form.FillAllTotalScoreTextBoxes(
-                _table.PlayerEastTotalScore, _table.PlayerSouthTotalScore,
-                _table.PlayerWestTotalScore, _table.PlayerNorthTotalScore);
+                _table.PlayerEastScore, _table.PlayerSouthScore,
+                _table.PlayerWestScore, _table.PlayerNorthScore);
         }
 
         private void CalculateAndSaveAndFillAllPlayersPoints()
         {
             List<PlayerTablePoints> ptp = new List<PlayerTablePoints>(4);
-            ptp.Add(new PlayerTablePoints(Seats.EAST, int.Parse(_table.PlayerEastTotalScore)));
-            ptp.Add(new PlayerTablePoints(Seats.SOUTH, int.Parse(_table.PlayerSouthTotalScore)));
-            ptp.Add(new PlayerTablePoints(Seats.WEST, int.Parse(_table.PlayerWestTotalScore)));
-            ptp.Add(new PlayerTablePoints(Seats.NORTH, int.Parse(_table.PlayerNorthTotalScore)));
+            ptp.Add(new PlayerTablePoints(Seats.EAST, int.Parse(_table.PlayerEastScore)));
+            ptp.Add(new PlayerTablePoints(Seats.SOUTH, int.Parse(_table.PlayerSouthScore)));
+            ptp.Add(new PlayerTablePoints(Seats.WEST, int.Parse(_table.PlayerWestScore)));
+            ptp.Add(new PlayerTablePoints(Seats.NORTH, int.Parse(_table.PlayerNorthScore)));
             ptp.Sort((x, y) => -1 * x.Score.CompareTo(y.Score));
 
             if(ptp[0].Score == ptp[1].Score && ptp[1].Score == ptp[2].Score && ptp[2].Score == ptp[3].Score)

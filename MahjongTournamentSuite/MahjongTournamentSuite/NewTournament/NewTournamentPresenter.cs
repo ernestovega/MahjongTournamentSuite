@@ -134,9 +134,13 @@ namespace MahjongTournamentSuite.NewTournament
 
             SaveTournament();
             SavePlayers();
-            SaveTablesAndHands();
-            if(_isTeamsChecked)
+            if (_isTeamsChecked)
                 SaveTeams();
+#if DEBUG
+            SaveTablesAndHandsWithFakeData();  
+#else              
+            SaveTablesAndHands();
+#endif
         }
 
         public void RunWorkerCompleted(bool isCancelled)
@@ -474,8 +478,30 @@ namespace MahjongTournamentSuite.NewTournament
             {
                 dbTables.Add(new DBTable(_tournament.TournamentId, table.roundId, table.tableId,
                     table.player1Id, table.player2Id, table.player3Id, table.player4Id));
+
                 for (int i = 1; i <= NUM_TABLE_HANDS; i++)
                     dbHands.Add(new DBHand(_tournament.TournamentId, table.roundId, table.tableId, i));
+            }
+            _db.AddTables(dbTables, dbHands);
+        }
+
+        private void SaveTablesAndHandsWithFakeData()
+        {
+            List<DBTable> dbTables = new List<DBTable>();
+            List<DBHand> dbHands = new List<DBHand>();
+            foreach (TableWithAll table in tablesWithAll)
+            {
+                DBTable dbTable = new DBTable(_tournament.TournamentId, table.roundId, table.tableId,
+                    table.player1Id, table.player2Id, table.player3Id, table.player4Id,
+                    );
+
+                for (int i = 1; i <= NUM_TABLE_HANDS; i++)
+                {
+                    dbHands.Add(new DBHand(_tournament.TournamentId, table.roundId, table.tableId, i,
+                        ));
+                }
+
+                dbTables.Add(dbTable);
             }
             _db.AddTables(dbTables, dbHands);
         }
