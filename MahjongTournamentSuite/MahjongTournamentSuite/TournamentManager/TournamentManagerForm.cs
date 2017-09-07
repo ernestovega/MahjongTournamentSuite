@@ -13,6 +13,7 @@ using MahjongTournamentSuiteDataLayer.Model;
 using MahjongTournamentSuite.Ranking;
 using MahjongTournamentSuite.HTMLViewer;
 using MahjongTournamentSuite.ManagePlayers;
+using MahjongTournamentSuite.TeamsManager;
 
 namespace MahjongTournamentSuite.TournamentManager
 {
@@ -101,7 +102,7 @@ namespace MahjongTournamentSuite.TournamentManager
 
         private void btnTeams_Click(object sender, EventArgs e)
         {
-            _presenter.ButtonTeamsClicked();
+            new TeamsManagerForm(_tournamentId).ShowDialog();
         }
 
         private void btnPlayers_Click(object sender, EventArgs e)
@@ -144,74 +145,23 @@ namespace MahjongTournamentSuite.TournamentManager
 
         private void dgv_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.RowIndex > -1)
-            {
-                if (dgv.Columns[e.ColumnIndex].Name.Equals(DBPlayer.COLUMN_PLAYERS_NAME)
-                    || dgv.Columns[e.ColumnIndex].Name.Equals(DBTeam.COLUMN_TEAMS_NAME))
-                    dgv.BeginEdit(true);
-                else if (dgv.Columns[e.ColumnIndex].Name.Equals(DBPlayer.COLUMN_PLAYERS_TEAM_NAME))
-                {
-                    using (var teamSelectorForm = new TeamSelectorForm(_tournamentId))
-                    {
-                        if (teamSelectorForm.ShowDialog() == DialogResult.OK)
-                        {
-                            int playerId = (int)dgv.Rows[e.RowIndex].Cells[DBPlayer.COLUMN_PLAYERS_ID].Value;
-                            int teamId = _presenter.SaveNewPlayerTeam(playerId, teamSelectorForm.ReturnValue);
-                            if (teamId > 0)
-                            {
-                                dgv.Rows[e.RowIndex].Cells[DBPlayer.COLUMN_PLAYERS_TEAM].Value = teamId;
-                                dgv.Rows[e.RowIndex].Cells[DBPlayer.COLUMN_PLAYERS_TEAM_NAME].Value = teamSelectorForm.ReturnValue;
-                            }
-                        }
-                    }
-                }
-                else if (dgv.Columns[e.ColumnIndex].Name.Equals(DBPlayer.COLUMN_PLAYERS_COUNTRY_NAME))
-                {
-                    using (var countrySelectorForm = new CountrySelectorForm())
-                    {
-                        if (countrySelectorForm.ShowDialog() == DialogResult.OK)
-                        {
-                            int playerId = (int)dgv.Rows[e.RowIndex].Cells[DBPlayer.COLUMN_PLAYERS_ID].Value;
-                            int countryId = _presenter.SaveNewPlayerCountry(playerId, countrySelectorForm.ReturnValue);
-                            if (countryId > 0)
-                            {
-                                dgv.Rows[e.RowIndex].Cells[DBPlayer.COLUMN_PLAYERS_COUNTRY].Value = countryId;
-                                dgv.Rows[e.RowIndex].Cells[DBPlayer.COLUMN_PLAYERS_COUNTRY_NAME].Value = countrySelectorForm.ReturnValue;
-                            }
-                        }
-                    }
-                }
-            }
+            if (e.RowIndex > -1 && dgv.Columns[e.ColumnIndex].Name.Equals(DBTeam.COLUMN_TEAMS_NAME))
+                dgv.BeginEdit(true);
         }
 
         private void dgv_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if (e.RowIndex > -1)
+            if (e.RowIndex > -1 && dgv.Columns[e.ColumnIndex].Name.Equals(DBTeam.COLUMN_TEAMS_NAME))
             {
-                if (dgv.Columns[e.ColumnIndex].Name.Equals(DBTeam.COLUMN_TEAMS_NAME))
+                string previousValue = (string)dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                string newValue = ((string)e.FormattedValue).Trim();
+                if (newValue.Length > 0 && !newValue.Equals(previousValue))
                 {
-                    string previousValue = (string)dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-                    string newValue = ((string)e.FormattedValue).Trim();
-                    if (newValue.Length > 0 && !newValue.Equals(previousValue))
-                    {
-                        int teamId = (int)dgv.Rows[e.RowIndex].Cells[DBTeam.COLUMN_TEAMS_ID].Value;
-                        _presenter.TeamNameChanged(teamId, newValue);
-                    }
-                    else
-                        DGVCancelEdit();
+                    int teamId = (int)dgv.Rows[e.RowIndex].Cells[DBTeam.COLUMN_TEAMS_ID].Value;
+                    _presenter.TeamNameChanged(teamId, newValue);
                 }
-                else if(dgv.Columns[e.ColumnIndex].Name.Equals(DBPlayer.COLUMN_PLAYERS_NAME))
-                {
-                    string previousValue = (string)dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-                    string newValue = ((string)e.FormattedValue).Trim();
-                    if (newValue.Length > 0 && !newValue.Equals(previousValue))
-                    {
-                        int playerId = (int)dgv.Rows[e.RowIndex].Cells[DBPlayer.COLUMN_PLAYERS_ID].Value;
-                        _presenter.PlayerNameChanged(playerId, newValue);
-                    }
-                    else
-                        DGVCancelEdit();
-                }
+                else
+                    DGVCancelEdit();
             }
         }
 

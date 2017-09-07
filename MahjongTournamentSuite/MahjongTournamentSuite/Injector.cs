@@ -10,6 +10,7 @@ using MahjongTournamentSuiteDataLayer.Data;
 using MahjongTournamentSuite.CountryManager;
 using MahjongTournamentSuite.ManagePlayers;
 using MahjongTournamentSuite.PlayersManager;
+using MahjongTournamentSuite.TeamsManager;
 
 namespace MahjongTournamentSuite
 {
@@ -78,6 +79,11 @@ namespace MahjongTournamentSuite
             PlayersManagerForm playersManagerForm)
         {
             return new PlayersManagerPresenter(playersManagerForm);
+        }
+
+        internal static ITeamsManagerPresenter provideTeamsManagerPresenter(TeamsManagerForm teamsManagerForm)
+        {
+            return new TeamsManagerPresenter(teamsManagerForm);
         }
     }
 }

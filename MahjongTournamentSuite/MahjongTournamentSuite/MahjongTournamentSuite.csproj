@@ -66,6 +66,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TeamsManager\ITeamsManagerForm.cs" />
+    <Compile Include="TeamsManager\ITeamsManagerPresenter.cs" />
+    <Compile Include="TeamsManager\TeamsManagerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TeamsManager\TeamsManagerForm.Designer.cs">
+      <DependentUpon>TeamsManagerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TeamsManager\TeamsManagerPresenter.cs" />
     <Compile Include="PlayersManager\PlayersManagerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -190,6 +199,9 @@
       <DependentUpon>TournamentManagerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="TournamentManager\TournamentManagerPresenter.cs" />
+    <EmbeddedResource Include="TeamsManager\TeamsManagerForm.resx">
+      <DependentUpon>TeamsManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PlayersManager\PlayersManagerForm.resx">
       <DependentUpon>PlayersManagerForm.cs</DependentUpon>
     </EmbeddedResource>
