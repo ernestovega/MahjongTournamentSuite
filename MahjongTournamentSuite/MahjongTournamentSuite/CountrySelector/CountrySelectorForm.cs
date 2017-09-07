@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MahjongTournamentSuite.CountryManager;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -27,9 +28,11 @@ namespace MahjongTournamentSuite.CountrySelector
 
         private void CountrySelectorForm_Load(object sender, EventArgs e)
         {
-            _presenter.LoadForm();
+            Cursor = Cursors.WaitCursor;
             CancelButton = btnCancel;
             AcceptButton = btnOk;
+            _presenter.LoadForm();
+            Cursor = Cursors.Default;
         }
 
         private void lbCountries_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -56,6 +59,14 @@ namespace MahjongTournamentSuite.CountrySelector
         public void FillLbCountries(List<string> countries)
         {
             lbCountries.DataSource = countries;
+
+            int heightIncrement = (countries.Count * lbCountries.ItemHeight) - lbCountries.Height;
+            if (Height + heightIncrement > 600)
+                Height = 600;
+            else
+                Height += heightIncrement;
+
+            lbCountries.SelectedIndex = 0;
         }
 
         #endregion

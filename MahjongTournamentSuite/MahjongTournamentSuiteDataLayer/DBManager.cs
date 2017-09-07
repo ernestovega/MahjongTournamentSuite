@@ -350,13 +350,11 @@ namespace MahjongTournamentSuiteDataLayer.Data
 
         public List<string> GetCountriesNamesWichHaveImageUrl()
         {
-            EnsureThereAreCountries();
             return _db.Countries.ToList().FindAll(x => !x.CountryImageUrl.Equals(string.Empty)).Select(x => x.CountryName).ToList();
         }
 
         public string GetCountryName(int countryId)
         {
-            EnsureThereAreCountries();
             DBCountry country = _db.Countries.ToList().Find(x => x.CountryId == countryId);
             if (country == null)
                 return "";
@@ -366,7 +364,6 @@ namespace MahjongTournamentSuiteDataLayer.Data
 
         public int GetCountryId(string countryName)
         {
-            EnsureThereAreCountries();
             DBCountry country = _db.Countries.ToList().Find(x => x.CountryName == countryName);
             if (country == null)
                 return 0;
@@ -376,7 +373,6 @@ namespace MahjongTournamentSuiteDataLayer.Data
 
         public string GetCountryImageUrl(int countryId)
         {
-            EnsureThereAreCountries();
             DBCountry country = _db.Countries.ToList().Find(x => x.CountryId == countryId);
             if (country == null)
                 return "";

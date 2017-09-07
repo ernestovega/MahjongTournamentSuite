@@ -86,7 +86,13 @@ namespace MahjongTournamentSuite.PlayersManager
 
         public int SaveNewPlayerCountry(int playerId, string newCountryName)
         {
-            throw new NotImplementedException();
+            int countryId = GetCountryId(newCountryName);
+            if (countryId > 0)
+            {
+                _db.UpdatePlayerCountry(_tournament.TournamentId, playerId, countryId);
+                return countryId;
+            }
+            return 0;
         }
 
         #endregion

@@ -25,7 +25,7 @@ namespace MahjongTournamentSuite.TeamSelector
 
         #region ITeamSelectorPresenter implementation
 
-        public void LoadTeams(int tournamentId)
+        public void LoadForm(int tournamentId)
         {
             _teamsNames = _db.GetTeamsNames(tournamentId);
             _form.FillLbTeams(_teamsNames);

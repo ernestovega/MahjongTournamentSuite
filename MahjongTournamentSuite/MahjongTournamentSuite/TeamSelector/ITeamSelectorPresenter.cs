@@ -2,6 +2,6 @@
 {
     interface ITeamSelectorPresenter
     {
-        void LoadTeams(int tournamentId);
+        void LoadForm(int tournamentId);
     }
 }

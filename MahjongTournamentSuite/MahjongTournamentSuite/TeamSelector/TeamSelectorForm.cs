@@ -30,9 +30,11 @@ namespace MahjongTournamentSuite.TeamSelector
 
         private void TeamSelectorForm_Load(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             CancelButton = btnCancel;
             AcceptButton = btnOk;
-            _presenter.LoadTeams(_tournamentId);
+            _presenter.LoadForm(_tournamentId);
+            Cursor = Cursors.Default;
         }
 
         private void lbTeams_MouseDoubleClick(object sender, MouseEventArgs e)
