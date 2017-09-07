@@ -18,6 +18,7 @@ namespace MahjongTournamentSuite.CountrySelector
         public CountrySelectorForm()
         {
             InitializeComponent();
+            _presenter = Injector.provideCountrySelectorPresenter(this);
         }
 
         #endregion
@@ -26,8 +27,7 @@ namespace MahjongTournamentSuite.CountrySelector
 
         private void CountrySelectorForm_Load(object sender, EventArgs e)
         {
-            _presenter = Injector.provideCountrySelectorPresenter(this);
-            _presenter.LoadCountries();
+            _presenter.LoadForm();
             CancelButton = btnCancel;
             AcceptButton = btnOk;
         }

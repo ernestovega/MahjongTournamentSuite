@@ -47,6 +47,22 @@
             this.btnExportExcel = new System.Windows.Forms.Button();
             this.btnExportHTML = new System.Windows.Forms.Button();
             this.panelMainButtons = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoEMA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
@@ -55,6 +71,12 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.panelMainButtons.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnRankings
@@ -191,7 +213,7 @@
             this.dgv.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgv.RowTemplate.Height = 32;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(980, 614);
+            this.dgv.Size = new System.Drawing.Size(980, 613);
             this.dgv.TabIndex = 66;
             this.dgv.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgv_CellFormatting);
             this.dgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_CellMouseClick);
@@ -313,8 +335,8 @@
             this.splitContainer1.Panel2.Controls.Add(this.lblTitleTables);
             this.splitContainer1.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.splitContainer1.Panel2MinSize = 200;
-            this.splitContainer1.Size = new System.Drawing.Size(980, 623);
-            this.splitContainer1.SplitterDistance = 121;
+            this.splitContainer1.Size = new System.Drawing.Size(980, 622);
+            this.splitContainer1.SplitterDistance = 120;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 70;
             this.splitContainer1.Visible = false;
@@ -337,7 +359,7 @@
             this.lblSeparator.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSeparator.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblSeparator.Location = new System.Drawing.Point(0, 119);
+            this.lblSeparator.Location = new System.Drawing.Point(0, 118);
             this.lblSeparator.Margin = new System.Windows.Forms.Padding(0);
             this.lblSeparator.Name = "lblSeparator";
             this.lblSeparator.Size = new System.Drawing.Size(980, 2);
@@ -425,13 +447,392 @@
             // 
             // panelMainButtons
             // 
+            this.panelMainButtons.Controls.Add(this.panel2);
             this.panelMainButtons.Controls.Add(this.btnTeams);
+            this.panelMainButtons.Controls.Add(this.pictureBox4);
             this.panelMainButtons.Controls.Add(this.btnRounds);
             this.panelMainButtons.Controls.Add(this.btnPlayers);
+            this.panelMainButtons.Controls.Add(this.button7);
+            this.panelMainButtons.Controls.Add(this.pictureBox3);
+            this.panelMainButtons.Controls.Add(this.button6);
             this.panelMainButtons.Location = new System.Drawing.Point(392, 14);
             this.panelMainButtons.Name = "panelMainButtons";
             this.panelMainButtons.Size = new System.Drawing.Size(224, 64);
             this.panelMainButtons.TabIndex = 73;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox1.ErrorImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.ErrorImage")));
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
+            this.pictureBox1.Location = new System.Drawing.Point(14, 14);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(5);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(64, 64);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 51;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.imgLogoMM_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(76)))));
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button1.Image = global::MahjongTournamentSuite.Properties.Resources.export_excel;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.button1.Location = new System.Drawing.Point(108, 14);
+            this.button1.Margin = new System.Windows.Forms.Padding(25, 0, 5, 0);
+            this.button1.Name = "button1";
+            this.button1.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.button1.Size = new System.Drawing.Size(68, 64);
+            this.button1.TabIndex = 72;
+            this.button1.Text = "Excel";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.btnExportExcel_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.Transparent;
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
+            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(76)))));
+            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.button2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button2.Image = global::MahjongTournamentSuite.Properties.Resources.export_html;
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.button2.Location = new System.Drawing.Point(186, 14);
+            this.button2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.button2.Name = "button2";
+            this.button2.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.button2.Size = new System.Drawing.Size(68, 64);
+            this.button2.TabIndex = 72;
+            this.button2.Text = "HTML";
+            this.button2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.btnExportHTML_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox2.ErrorImage = global::MahjongTournamentSuite.Properties.Resources.EMALogo;
+            this.pictureBox2.Image = global::MahjongTournamentSuite.Properties.Resources.EMALogo;
+            this.pictureBox2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.pictureBox2.InitialImage = global::MahjongTournamentSuite.Properties.Resources.EMALogo;
+            this.pictureBox2.Location = new System.Drawing.Point(930, 14);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(5);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(64, 64);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 65;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Click += new System.EventHandler(this.imgLogoEMA_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.button3);
+            this.panel1.Controls.Add(this.button4);
+            this.panel1.Controls.Add(this.button5);
+            this.panel1.Location = new System.Drawing.Point(392, 14);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(224, 64);
+            this.panel1.TabIndex = 73;
+            // 
+            // button3
+            // 
+            this.button3.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.button3.BackColor = System.Drawing.Color.Transparent;
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button3.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
+            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(76)))));
+            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.button3.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button3.Image = global::MahjongTournamentSuite.Properties.Resources.teams;
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.button3.Location = new System.Drawing.Point(0, 0);
+            this.button3.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
+            this.button3.Name = "button3";
+            this.button3.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.button3.Size = new System.Drawing.Size(68, 64);
+            this.button3.TabIndex = 71;
+            this.button3.Text = "Teams";
+            this.button3.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Visible = false;
+            this.button3.Click += new System.EventHandler(this.btnTeams_Click);
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.Transparent;
+            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button4.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
+            this.button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(76)))));
+            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.button4.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button4.Image = global::MahjongTournamentSuite.Properties.Resources.gong_big;
+            this.button4.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.button4.Location = new System.Drawing.Point(156, 0);
+            this.button4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.button4.Name = "button4";
+            this.button4.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.button4.Size = new System.Drawing.Size(68, 64);
+            this.button4.TabIndex = 69;
+            this.button4.Text = "Rounds";
+            this.button4.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.btnRounds_Click);
+            // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.Transparent;
+            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button5.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.button5.FlatAppearance.BorderSize = 0;
+            this.button5.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
+            this.button5.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(76)))));
+            this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.button5.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button5.Image = global::MahjongTournamentSuite.Properties.Resources.players;
+            this.button5.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.button5.Location = new System.Drawing.Point(78, 0);
+            this.button5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.button5.Name = "button5";
+            this.button5.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.button5.Size = new System.Drawing.Size(68, 64);
+            this.button5.TabIndex = 70;
+            this.button5.Text = "Players";
+            this.button5.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.btnPlayers_Click);
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox3.ErrorImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.ErrorImage")));
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.pictureBox3.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.InitialImage")));
+            this.pictureBox3.Location = new System.Drawing.Point(-378, 0);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(5);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(64, 64);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 51;
+            this.pictureBox3.TabStop = false;
+            this.pictureBox3.Click += new System.EventHandler(this.imgLogoMM_Click);
+            // 
+            // button6
+            // 
+            this.button6.BackColor = System.Drawing.Color.Transparent;
+            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button6.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button6.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.button6.FlatAppearance.BorderSize = 0;
+            this.button6.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
+            this.button6.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(76)))));
+            this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.button6.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button6.Image = global::MahjongTournamentSuite.Properties.Resources.export_excel;
+            this.button6.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.button6.Location = new System.Drawing.Point(-284, 0);
+            this.button6.Margin = new System.Windows.Forms.Padding(25, 0, 5, 0);
+            this.button6.Name = "button6";
+            this.button6.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.button6.Size = new System.Drawing.Size(68, 64);
+            this.button6.TabIndex = 72;
+            this.button6.Text = "Excel";
+            this.button6.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.btnExportExcel_Click);
+            // 
+            // button7
+            // 
+            this.button7.BackColor = System.Drawing.Color.Transparent;
+            this.button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button7.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button7.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.button7.FlatAppearance.BorderSize = 0;
+            this.button7.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
+            this.button7.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(76)))));
+            this.button7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.button7.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button7.Image = global::MahjongTournamentSuite.Properties.Resources.export_html;
+            this.button7.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.button7.Location = new System.Drawing.Point(-206, 0);
+            this.button7.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.button7.Name = "button7";
+            this.button7.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.button7.Size = new System.Drawing.Size(68, 64);
+            this.button7.TabIndex = 72;
+            this.button7.Text = "HTML";
+            this.button7.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button7.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.btnExportHTML_Click);
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pictureBox4.ErrorImage = global::MahjongTournamentSuite.Properties.Resources.EMALogo;
+            this.pictureBox4.Image = global::MahjongTournamentSuite.Properties.Resources.EMALogo;
+            this.pictureBox4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.pictureBox4.InitialImage = global::MahjongTournamentSuite.Properties.Resources.EMALogo;
+            this.pictureBox4.Location = new System.Drawing.Point(538, 0);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(5);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(64, 64);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 65;
+            this.pictureBox4.TabStop = false;
+            this.pictureBox4.Click += new System.EventHandler(this.imgLogoEMA_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.button8);
+            this.panel2.Controls.Add(this.button9);
+            this.panel2.Controls.Add(this.button10);
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(224, 64);
+            this.panel2.TabIndex = 73;
+            // 
+            // button8
+            // 
+            this.button8.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.button8.BackColor = System.Drawing.Color.Transparent;
+            this.button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button8.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button8.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.button8.FlatAppearance.BorderSize = 0;
+            this.button8.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
+            this.button8.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(76)))));
+            this.button8.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.button8.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button8.Image = global::MahjongTournamentSuite.Properties.Resources.teams;
+            this.button8.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.button8.Location = new System.Drawing.Point(0, 0);
+            this.button8.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
+            this.button8.Name = "button8";
+            this.button8.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.button8.Size = new System.Drawing.Size(68, 64);
+            this.button8.TabIndex = 71;
+            this.button8.Text = "Teams";
+            this.button8.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button8.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button8.UseVisualStyleBackColor = false;
+            this.button8.Visible = false;
+            this.button8.Click += new System.EventHandler(this.btnTeams_Click);
+            // 
+            // button9
+            // 
+            this.button9.BackColor = System.Drawing.Color.Transparent;
+            this.button9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button9.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button9.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.button9.FlatAppearance.BorderSize = 0;
+            this.button9.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
+            this.button9.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(76)))));
+            this.button9.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.button9.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button9.Image = global::MahjongTournamentSuite.Properties.Resources.gong_big;
+            this.button9.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.button9.Location = new System.Drawing.Point(156, 0);
+            this.button9.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.button9.Name = "button9";
+            this.button9.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.button9.Size = new System.Drawing.Size(68, 64);
+            this.button9.TabIndex = 69;
+            this.button9.Text = "Rounds";
+            this.button9.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button9.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button9.UseVisualStyleBackColor = false;
+            this.button9.Click += new System.EventHandler(this.btnRounds_Click);
+            // 
+            // button10
+            // 
+            this.button10.BackColor = System.Drawing.Color.Transparent;
+            this.button10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button10.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button10.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.button10.FlatAppearance.BorderSize = 0;
+            this.button10.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
+            this.button10.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(76)))));
+            this.button10.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.button10.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button10.Image = global::MahjongTournamentSuite.Properties.Resources.players;
+            this.button10.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button10.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.button10.Location = new System.Drawing.Point(78, 0);
+            this.button10.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.button10.Name = "button10";
+            this.button10.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.button10.Size = new System.Drawing.Size(68, 64);
+            this.button10.TabIndex = 70;
+            this.button10.Text = "Players";
+            this.button10.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button10.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button10.UseVisualStyleBackColor = false;
+            this.button10.Click += new System.EventHandler(this.btnPlayers_Click);
             // 
             // TournamentManagerForm
             // 
@@ -439,11 +840,16 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1008, 748);
+            this.ClientSize = new System.Drawing.Size(1008, 747);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelMainButtons);
+            this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.imgLogoEMA);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnExportHTML);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnExportExcel);
             this.Controls.Add(this.imgLogoMM);
             this.Controls.Add(this.btnTimer);
@@ -468,6 +874,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.panelMainButtons.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -489,5 +901,21 @@
         private System.Windows.Forms.Button btnExportExcel;
         private System.Windows.Forms.Button btnExportHTML;
         private System.Windows.Forms.Panel panelMainButtons;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
     }
 }

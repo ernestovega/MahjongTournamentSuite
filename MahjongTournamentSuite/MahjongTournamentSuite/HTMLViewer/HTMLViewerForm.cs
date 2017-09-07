@@ -18,8 +18,8 @@ namespace MahjongTournamentSuite.HTMLViewer
         public HTMLViewerForm(HTMLRankings htmlRankings)
         {
             InitializeComponent();
-            _htmlRankings = htmlRankings;
             _presenter = Injector.provideHTMLViewerPresenter(this);
+            _htmlRankings = htmlRankings;
         }
 
         #endregion

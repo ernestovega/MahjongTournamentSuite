@@ -47,9 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\DBContext.cs" />
-    <Compile Include="Data\DBManager.cs" />
-    <Compile Include="Data\IDBManager.cs" />
+    <Compile Include="DBContext.cs" />
+    <Compile Include="DBManager.cs" />
+    <Compile Include="IDBManager.cs" />
     <Compile Include="Model\DBCountry.cs" />
     <Compile Include="Model\DBHand.cs" />
     <Compile Include="Model\DBPlayer.cs" />

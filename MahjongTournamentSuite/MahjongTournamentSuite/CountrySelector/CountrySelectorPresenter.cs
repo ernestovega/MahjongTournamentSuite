@@ -25,9 +25,9 @@ namespace MahjongTournamentSuite.CountrySelector
 
         #region ICountrySelectorPresenter implementation
 
-        public void LoadCountries()
+        public void LoadForm()
         {
-            _countriesNames = _db.GetCountriesNames();
+            _countriesNames = _db.GetCountriesNamesWichHaveImageUrl();
             _form.FillLbCountries(_countriesNames);
         }
 

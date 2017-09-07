@@ -20,6 +20,7 @@ namespace MahjongTournamentSuite.TeamSelector
         public TeamSelectorForm(int tournamentId)
         {
             InitializeComponent();
+            _presenter = Injector.provideTeamSelectorPresenter(this);
             _tournamentId = tournamentId;
         }
 
@@ -29,7 +30,6 @@ namespace MahjongTournamentSuite.TeamSelector
 
         private void TeamSelectorForm_Load(object sender, EventArgs e)
         {
-            _presenter = Injector.provideTeamSelectorPresenter(this);
             CancelButton = btnCancel;
             AcceptButton = btnOk;
             _presenter.LoadTeams(_tournamentId);

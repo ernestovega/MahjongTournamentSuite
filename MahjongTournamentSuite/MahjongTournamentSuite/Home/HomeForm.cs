@@ -32,6 +32,7 @@ namespace MahjongTournamentSuite.Home
         public HomeForm()
         {
             InitializeComponent();
+            _presenter = Injector.provideHomePresenter(this);
         }
         
         #endregion
@@ -42,7 +43,6 @@ namespace MahjongTournamentSuite.Home
         {
             Cursor = Cursors.WaitCursor;
             CenterMainButtons();
-            _presenter = Injector.provideHomePresenter(this);
             _presenter.LoadTournaments();
             Cursor = Cursors.Default;
         }

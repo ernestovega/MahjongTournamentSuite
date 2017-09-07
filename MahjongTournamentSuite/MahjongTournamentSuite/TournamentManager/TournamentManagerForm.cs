@@ -41,6 +41,7 @@ namespace MahjongTournamentSuite.TournamentManager
         public TournamentManagerForm(int tournamentId)
         {
             InitializeComponent();
+            _presenter = Injector.provideTournamentManagerPresenter(this);
             _tournamentId = tournamentId;
         }
 
@@ -52,7 +53,6 @@ namespace MahjongTournamentSuite.TournamentManager
         {
             ShowWaitCursor();
             CenterMainButtons();
-            _presenter = Injector.provideTournamentManagerPresenter(this);
             _presenter.LoadTournament(_tournamentId);
             ShowDefaultCursor();
         }
@@ -143,7 +143,7 @@ namespace MahjongTournamentSuite.TournamentManager
 
         private void dgv_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            if (e.RowIndex > -1)
             {
                 if (dgv.Columns[e.ColumnIndex].Name.Equals(DBPlayer.COLUMN_PLAYERS_NAME)
                     || dgv.Columns[e.ColumnIndex].Name.Equals(DBTeam.COLUMN_TEAMS_NAME))

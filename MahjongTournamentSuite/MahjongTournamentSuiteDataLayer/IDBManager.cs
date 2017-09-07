@@ -36,7 +36,7 @@ namespace MahjongTournamentSuiteDataLayer.Data
         List<DBTeam> GetTournamentTeams(int tournamentId);
 
         List<string> GetTeamsNames(int tournamentId);
-
+        void UpdateCountryImageURL(int countryId, string newValue);
         string GetTeamName(int tournamentId, int teamId);
 
         int GetTeamId(int tournamentId, string teamName);
@@ -57,9 +57,15 @@ namespace MahjongTournamentSuiteDataLayer.Data
 
         #endregion
 
+        #region Countries Manager
+
+        List<DBCountry> GetCountries();
+        
+        #endregion
+
         #region Countries Selector
 
-        List<string> GetCountriesNames();
+        List<string> GetCountriesNamesWichHaveImageUrl();
 
         #endregion
 

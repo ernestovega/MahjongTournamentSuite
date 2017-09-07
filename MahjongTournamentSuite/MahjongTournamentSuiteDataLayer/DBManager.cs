@@ -342,10 +342,16 @@ namespace MahjongTournamentSuiteDataLayer.Data
 
         #region Countries
 
-        public List<string> GetCountriesNames()
+        public List<DBCountry> GetCountries()
         {
             EnsureThereAreCountries();
-            return _db.Countries.Select(x => x.CountryName).ToList();
+            return _db.Countries.OrderBy(x => x.CountryName).ToList();
+        }
+
+        public List<string> GetCountriesNamesWichHaveImageUrl()
+        {
+            EnsureThereAreCountries();
+            return _db.Countries.ToList().FindAll(x => !x.CountryImageUrl.Equals(string.Empty)).Select(x => x.CountryName).ToList();
         }
 
         public string GetCountryName(int countryId)
@@ -376,6 +382,12 @@ namespace MahjongTournamentSuiteDataLayer.Data
                 return "";
             else
                 return country.CountryImageUrl;
+        }
+
+        public void UpdateCountryImageURL(int countryId, string newValue)
+        {
+            _db.Countries.ToList().Find(x => x.CountryId == countryId).CountryImageUrl = newValue;
+            _db.SaveChanges();
         }
 
         private void EnsureThereAreCountries()

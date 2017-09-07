@@ -109,11 +109,11 @@
     <Compile Include="HTMLViewer\IHTMLViewerForm.cs" />
     <Compile Include="HTMLViewer\IHTMLViewerPresenter.cs" />
     <Compile Include="Injector.cs" />
-    <Compile Include="CountryManager\ManageCountriesForm.cs">
+    <Compile Include="CountryManager\CountryManagerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CountryManager\ManageCountriesForm.Designer.cs">
-      <DependentUpon>ManageCountriesForm.cs</DependentUpon>
+    <Compile Include="CountryManager\CountryManagerForm.Designer.cs">
+      <DependentUpon>CountryManagerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\ChickenHandRanking.cs" />
     <Compile Include="Model\HTMLRankings.cs" />
@@ -190,8 +190,8 @@
       <DependentUpon>TournamentManagerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="TournamentManager\TournamentManagerPresenter.cs" />
-    <EmbeddedResource Include="CountryManager\ManageCountriesForm.resx">
-      <DependentUpon>ManageCountriesForm.cs</DependentUpon>
+    <EmbeddedResource Include="CountryManager\CountryManagerForm.resx">
+      <DependentUpon>CountryManagerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CountrySelector\CountrySelectorForm.resx">
       <DependentUpon>CountrySelectorForm.cs</DependentUpon>

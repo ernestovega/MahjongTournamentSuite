@@ -35,6 +35,7 @@ namespace MahjongTournamentSuite.TableManager
         public TableManagerForm(int tournamentId, int roundId, int tableId)
         {
             InitializeComponent();
+            _presenter = Injector.provideTableManagerPresenter(this);
             _tournamentId = tournamentId;
             _roundId = roundId;
             _tableId = tableId;
@@ -49,7 +50,6 @@ namespace MahjongTournamentSuite.TableManager
         private void TableManagerForm_Load(object sender, EventArgs e)
         {
             ShowWaitCursor();
-            _presenter = Injector.provideTableManagerPresenter(this);
             _presenter.LoadForm(_tournamentId, _roundId, _tableId);
             ShowDefaultCursor();
         }

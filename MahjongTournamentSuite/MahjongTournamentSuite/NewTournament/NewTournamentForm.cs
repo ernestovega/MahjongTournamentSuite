@@ -27,6 +27,7 @@ namespace MahjongTournamentSuite.NewTournament
         public NewTournamentForm()
         {
             InitializeComponent();
+            _presenter = Injector.provideNewTournamentPresenter(this);
         }
 
         #endregion
@@ -37,7 +38,6 @@ namespace MahjongTournamentSuite.NewTournament
         {
             Cursor = Cursors.WaitCursor;
             tbTournamentName.Text = TOURNAMENT_NAME_TEMPLATE_TEXT;
-            _presenter = Injector.provideNewTournamentPresenter(this);
             ActiveControl = tbTournamentName;
             tbTournamentName.SelectAll();
             Cursor = Cursors.Default;

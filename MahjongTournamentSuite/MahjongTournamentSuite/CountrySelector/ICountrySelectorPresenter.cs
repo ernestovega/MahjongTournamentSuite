@@ -2,6 +2,6 @@
 {
     interface ICountrySelectorPresenter
     {
-        void LoadCountries();
+        void LoadForm();
     }
 }
