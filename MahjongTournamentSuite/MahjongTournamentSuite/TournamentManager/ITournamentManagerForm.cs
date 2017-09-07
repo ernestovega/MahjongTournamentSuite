@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using MahjongTournamentSuite.Model;
-using MahjongTournamentSuiteDataLayer.Model;
+﻿using MahjongTournamentSuite.Model;
 
 namespace MahjongTournamentSuite.TournamentManager
 {
@@ -8,94 +6,30 @@ namespace MahjongTournamentSuite.TournamentManager
     {
         void CenterMainButtons();
 
-        void AddRoundsSubButtons(int numRounds);
+        void AddRoundsButtons(int numRounds);
+        
+        void AddTablesButtons(int roundId, int numTables);
+        
+        void RemoveRoundsButtons();
 
-        void FillDGVWithTeams(List<DBTeam> teams);
-
-        void FillDGVWithPlayers(List<DGVPlayer> players, bool isTeams);
-
-        void MarkWrongTeamsPlayers(List<WrongTeam> wrongTeams);
-
-        void CleanWrongTeamsPlayers();
-
-        void AddRoundTablesButtons(int roundId, int numTables);
+        void RemoveTablesButtons();
 
         void GoToTableManager(int roundId, int tableId);
 
         void GoToRankings(Rankings rankings);
 
         void GoToHTMLViewer(HTMLRankings htmlRankings);
-
-        void SelectExportExcelButton();
-
-        void UnselectExportExcelButton();
-
-        void SelectExportHTMLButton();
-
-        void UnselectExportHTMLButton();
-
-        void SelectTeamsButton();
-
-        void UnselectTeamsButton();
-
-        void SelectPlayersButton();
-
-        void UnselectPlayersButton();
-
-        void SelectRoundsButton();
-
-        void UnselectRoundsButton();
-
+        
         void SelectRoundButton(int roundId);
 
         void UnselectRoundButton(int roundId);
 
-        void SelectRoundTableButton(int TableId);
+        void SelectTableButton(int TableId);
 
         void UnselectTableButton(int TableId);
 
         void ShowButtonTeams();
 
         void HideButtonTeams();
-
-        void ShowButtonPlayers();
-
-        void HideButtonPlayers();
-
-        void ShowButtonRounds();
-
-        void HideButtonRounds();
-
-        void ShowWaitCursor();
-
-        void ShowDefaultCursor();
-
-        void ShowDGV();
-
-        void HideDGV();
-
-        void ShowButtonPlayersBorder();
-
-        void HideButtonPlayersBorder();
-
-        void EmptyPanelRoundsButtons();
-
-        void EmptyPanelRoundTablesButtons();
-
-        void ShowRoundsButtonsAndTablesPanel();
-
-        void HideRoundsButtonsAndTablesPanel();
-
-        void DGVCancelEdit();
-
-        void ShowMessageTeamNameInUse(string usedName, int ownerTeamId);
-
-        void ShowMessagePlayerNameInUse(string newName, int ownerPlayerId);
-
-        void ShowMessageCountryError();
-
-        void ShowMessageTeamError();
-
-        void ShowWrongNumberOfPlayersPerTeamMessage(List<WrongTeam> wrongTeamNames);
     }
 }

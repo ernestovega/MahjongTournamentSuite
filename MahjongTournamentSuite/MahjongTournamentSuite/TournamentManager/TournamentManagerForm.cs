@@ -6,10 +6,7 @@ using MahjongTournamentSuite.Model;
 using System.Drawing;
 using MahjongTournamentSuite.Home;
 using MahjongTournamentSuite.TableManager;
-using MahjongTournamentSuite.CountrySelector;
-using MahjongTournamentSuite.TeamSelector;
 using MahjongTournamentSuite.Resources;
-using MahjongTournamentSuiteDataLayer.Model;
 using MahjongTournamentSuite.Ranking;
 using MahjongTournamentSuite.HTMLViewer;
 using MahjongTournamentSuite.ManagePlayers;
@@ -61,8 +58,10 @@ namespace MahjongTournamentSuite.TournamentManager
 
         private void TournamentManagerForm_Resize(object sender, EventArgs e)
         {
-            if(_presenter != null)
+            ShowWaitCursor();
+            if (_presenter != null)
                 _presenter.OnFormResized();
+            ShowDefaultCursor();
         }
 
         private void TournamentManagerForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -92,27 +91,30 @@ namespace MahjongTournamentSuite.TournamentManager
 
         private void btnExportExcel_Click(object sender, EventArgs e)
         {
-            _presenter.ExportTournamentToExcel();
+            ShowWaitCursor();
+            _presenter.ExportTournamentToExcelClicked();
+            ShowDefaultCursor();
         }
 
         private void btnExportHTML_Click(object sender, EventArgs e)
         {
-            _presenter.ExportRankingsToHTML();
+            ShowWaitCursor();
+            _presenter.ExportRankingsToHTMLClicked();
+            ShowDefaultCursor();
         }
 
         private void btnTeams_Click(object sender, EventArgs e)
         {
+            ShowWaitCursor();
             new TeamsManagerForm(_tournamentId).ShowDialog();
+            ShowDefaultCursor();
         }
 
         private void btnPlayers_Click(object sender, EventArgs e)
         {
+            ShowWaitCursor();
             new PlayersManagerForm(_tournamentId).ShowDialog();
-        }
-
-        private void btnRounds_Click(object sender, EventArgs e)
-        {
-            _presenter.ButtonRoundsClicked();
+            ShowDefaultCursor();
         }
 
         private void btnTimer_Click(object sender, EventArgs e)
@@ -130,151 +132,17 @@ namespace MahjongTournamentSuite.TournamentManager
             ShowDefaultCursor();
         }
 
-        private void dgv_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (dgv.CurrentCell != null &&
-                dgv.CurrentCell.RowIndex == e.RowIndex &&
-                dgv.CurrentCell.ColumnIndex == e.ColumnIndex)
-            {
-                e.CellStyle.SelectionBackColor =
-                    dgv.CurrentCell.ReadOnly ?
-                    MyConstants.GREEN_MM_DARKEST :
-                    MyConstants.GREEN_MM_DARKER;
-            }
-        }
-
-        private void dgv_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            if (e.RowIndex > -1 && dgv.Columns[e.ColumnIndex].Name.Equals(DBTeam.COLUMN_TEAMS_NAME))
-                dgv.BeginEdit(true);
-        }
-
-        private void dgv_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
-        {
-            if (e.RowIndex > -1 && dgv.Columns[e.ColumnIndex].Name.Equals(DBTeam.COLUMN_TEAMS_NAME))
-            {
-                string previousValue = (string)dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-                string newValue = ((string)e.FormattedValue).Trim();
-                if (newValue.Length > 0 && !newValue.Equals(previousValue))
-                {
-                    int teamId = (int)dgv.Rows[e.RowIndex].Cells[DBTeam.COLUMN_TEAMS_ID].Value;
-                    _presenter.TeamNameChanged(teamId, newValue);
-                }
-                else
-                    DGVCancelEdit();
-            }
-        }
-
-        private void dgv_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex > -1 && dgv.Columns[e.ColumnIndex].Name.Equals(DBPlayer.COLUMN_PLAYERS_TEAM_NAME))
-                _presenter.PlayerTeamChanged();
-        }
-
         #endregion
 
         #region ITournamentManagerForm
-
-        public void FillDGVWithTeams(List<DBTeam> teams)
-        {
-            SortableBindingList<DBTeam> sortableTeams = new SortableBindingList<DBTeam>(teams);
-            if(dgv.DataSource != null)
-                dgv.DataSource = null;
-            dgv.DataSource = sortableTeams;
-
-            //Visible
-            dgv.Columns[DBTeam.COLUMN_TEAMS_TOURNAMENT_ID].Visible = false;
-            //ReadOnly
-            dgv.Columns[DBTeam.COLUMN_TEAMS_ID].ReadOnly = true;
-            //Readonly columns BackColor
-            dgv.Columns[DBTeam.COLUMN_TEAMS_ID].DefaultCellStyle.BackColor = SystemColors.ControlLight;
-            //Readonly columns ForeColor
-            dgv.Columns[DBTeam.COLUMN_TEAMS_ID].DefaultCellStyle.ForeColor = SystemColors.GrayText;
-            //HeaderText
-            dgv.Columns[DBTeam.COLUMN_TEAMS_ID].HeaderText = "Team Id";
-            dgv.Columns[DBTeam.COLUMN_TEAMS_NAME].HeaderText = "Team Name";
-            //AutoSizeMode
-            dgv.Columns[DBTeam.COLUMN_TEAMS_ID].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dgv.Columns[DBTeam.COLUMN_TEAMS_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-        }
-
-        public void FillDGVWithPlayers(List<DGVPlayer> players, bool isTeams)
-        {
-            SortableBindingList<DGVPlayer> sortablePlayers = new SortableBindingList<DGVPlayer>(players);
-            if(dgv.DataSource != null)
-                dgv.DataSource = null;
-            dgv.DataSource = sortablePlayers;
-
-            //Visible
-            dgv.Columns[DBPlayer.COLUMN_PLAYERS_TOURNAMENT_ID].Visible = false;
-            dgv.Columns[DBPlayer.COLUMN_PLAYERS_TEAM].Visible = false;
-            dgv.Columns[DBPlayer.COLUMN_PLAYERS_COUNTRY].Visible = false;
-            //ReadOnly
-            dgv.Columns[DBPlayer.COLUMN_PLAYERS_ID].ReadOnly = true;
-            dgv.Columns[DBPlayer.COLUMN_PLAYERS_TEAM_NAME].ReadOnly = true;
-            dgv.Columns[DBPlayer.COLUMN_PLAYERS_COUNTRY_NAME].ReadOnly = true;
-            //Readonly Columns BackColor
-            dgv.Columns[DBPlayer.COLUMN_PLAYERS_ID].DefaultCellStyle.BackColor = SystemColors.ControlLight;
-            //Readonly Columns ForeColor
-            dgv.Columns[DBPlayer.COLUMN_PLAYERS_ID].DefaultCellStyle.ForeColor = SystemColors.GrayText;
-            //HeaderText
-            dgv.Columns[DBPlayer.COLUMN_PLAYERS_ID].HeaderText = "Player Id";
-            dgv.Columns[DBPlayer.COLUMN_PLAYERS_NAME].HeaderText = "Player Name";
-            dgv.Columns[DBPlayer.COLUMN_PLAYERS_COUNTRY_NAME].HeaderText = "Player Country";
-            //AutoSizeMode
-            dgv.Columns[DBPlayer.COLUMN_PLAYERS_ID].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dgv.Columns[DBPlayer.COLUMN_PLAYERS_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgv.Columns[DBPlayer.COLUMN_PLAYERS_COUNTRY_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            //DisplayIndex
-            dgv.Columns[DBPlayer.COLUMN_PLAYERS_ID].DisplayIndex = 0;
-            dgv.Columns[DBPlayer.COLUMN_PLAYERS_NAME].DisplayIndex = 1;
-            if (isTeams)
-            {
-                dgv.Columns[DBPlayer.COLUMN_PLAYERS_TEAM_NAME].ReadOnly = true;
-                dgv.Columns[DBPlayer.COLUMN_PLAYERS_TEAM_NAME].HeaderText = "Player Team";
-                dgv.Columns[DBPlayer.COLUMN_PLAYERS_TEAM_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                dgv.Columns[DBPlayer.COLUMN_PLAYERS_TEAM_NAME].DisplayIndex = 2;
-                dgv.Columns[DBPlayer.COLUMN_PLAYERS_COUNTRY_NAME].DisplayIndex = 3;
-            }
-            else
-            {
-                dgv.Columns[DBPlayer.COLUMN_PLAYERS_TEAM_NAME].Visible = false;
-                dgv.Columns[DBPlayer.COLUMN_PLAYERS_COUNTRY_NAME].DisplayIndex = 2;
-            }
-        }
-
-        public void MarkWrongTeamsPlayers(List<WrongTeam> wrongTeams)
-        {
-            if (wrongTeams.Count > 0)
-            {
-                foreach (DataGridViewRow row in dgv.Rows)
-                {
-                    int currentRowTeamId = (int)row.Cells[DBPlayer.COLUMN_PLAYERS_TEAM].Value;
-                    WrongTeam wrongTeam = wrongTeams.Find(x => x.TeamId == currentRowTeamId);
-                    if(wrongTeam != null)
-                    {
-                        row.Cells[DBPlayer.COLUMN_PLAYERS_TEAM_NAME].ErrorText =
-                            string.Format("{0} players in this team", wrongTeam.NumPlayers);
-                    }
-                }
-            }
-        }
-
-        public void CleanWrongTeamsPlayers()
-        {
-            foreach (DataGridViewRow row in dgv.Rows)
-            {
-                row.Cells[DBPlayer.COLUMN_PLAYERS_TEAM_NAME].ErrorText = string.Empty;
-            }
-        }
-
+        
         public void CenterMainButtons()
         {
             panelMainButtons.Location =
                 new Point((Width - panelMainButtons.Width) / 2, panelMainButtons.Location.Y);
         }
 
-        public void AddRoundsSubButtons(int numRounds)
+        public void AddRoundsButtons(int numRounds)
         {
             int numButtonsHorizontal = (splitContainer1.Width - (MARGIN_SIZE * 3)) / (BUTTON_SIDE + MARGIN_SIZE);
 
@@ -316,7 +184,7 @@ namespace MahjongTournamentSuite.TournamentManager
                 + SEPARATOR_EXTRA_MARGIN_BOTTOM + TITLE_ROUNDS_HEIGHT;
         }
 
-        public void AddRoundTablesButtons(int roundId, int numTables)
+        public void AddTablesButtons(int roundId, int numTables)
         {
             //Calculamos el punto de comienzo para centrar los botones
             int neededWidth;
@@ -341,7 +209,7 @@ namespace MahjongTournamentSuite.TournamentManager
                 button.Click += delegate
                 {
                     ShowWaitCursor();
-                    _presenter.ButtonRoundTableClicked((int)button.Tag);
+                    _presenter.ButtonTableClicked((int)button.Tag);
                     ShowDefaultCursor();
                 };
 
@@ -365,6 +233,30 @@ namespace MahjongTournamentSuite.TournamentManager
             }
         }
 
+        public void RemoveRoundsButtons()
+        {
+            List<Control> panelTournamentControls = new List<Control>();
+            foreach (Control control in splitContainer1.Panel1.Controls)
+            {
+                if (control.GetType() == typeof(Button))
+                    panelTournamentControls.Add(control);
+            }
+            foreach (Control control in panelTournamentControls)
+                splitContainer1.Panel1.Controls.Remove(control);
+        }
+
+        public void RemoveTablesButtons()
+        {
+            List<Control> panelTournamentControls = new List<Control>();
+            foreach (Control control in splitContainer1.Panel2.Controls)
+            {
+                if (control.GetType() == typeof(Button))
+                    panelTournamentControls.Add(control);
+            }
+            foreach (Control control in panelTournamentControls)
+                splitContainer1.Panel2.Controls.Remove(control);
+        }
+
         public void GoToTableManager(int roundId, int tableId)
         {
             new TableManagerForm(_tournamentId, roundId, tableId).ShowDialog();
@@ -381,66 +273,9 @@ namespace MahjongTournamentSuite.TournamentManager
 
         public void GoToHTMLViewer(HTMLRankings htmlRankings)
         {
-            HTMLViewerForm htmlViewerForm = new HTMLViewerForm(htmlRankings);
-            htmlViewerForm.FormClosed += new FormClosedEventHandler(HTMLViewerForm_FormClosed);
-            htmlViewerForm.ShowDialog();
+            new HTMLViewerForm(htmlRankings).ShowDialog();
         }
-
-        void HTMLViewerForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            _presenter.HTMLViewerFormClosed();
-        }
-
-        public void SelectExportExcelButton()
-        {
-            MakeButtonSelected(btnExportExcel, Properties.Resources.export_excel_white);
-        }
-
-        public void UnselectExportExcelButton()
-        {
-            MakeButtonUnselected(btnExportExcel, Properties.Resources.export_excel);
-        }
-
-        public void SelectExportHTMLButton()
-        {
-            MakeButtonSelected(btnExportHTML, Properties.Resources.export_html_white);
-        }
-
-        public void UnselectExportHTMLButton()
-        {
-            MakeButtonUnselected(btnExportHTML, Properties.Resources.export_html);
-        }
-
-        public void SelectTeamsButton()
-        {
-            MakeButtonSelected(btnTeams, Properties.Resources.teams_white);
-        }
-
-        public void UnselectTeamsButton()
-        {
-            MakeButtonUnselected(btnTeams, Properties.Resources.teams);
-        }
-
-        public void SelectPlayersButton()
-        {
-            MakeButtonSelected(btnPlayers, Properties.Resources.players_white);
-        }
-
-        public void UnselectPlayersButton()
-        {
-            MakeButtonUnselected(btnPlayers, Properties.Resources.players);
-        }
-
-        public void SelectRoundsButton()
-        {
-            MakeButtonSelected(btnRounds, Properties.Resources.gong_big_white);
-        }
-
-        public void UnselectRoundsButton()
-        {
-            MakeButtonUnselected(btnRounds, Properties.Resources.gong_big);
-        }
-
+        
         public void SelectRoundButton(int roundId)
         {
             foreach (Control control in splitContainer1.Panel1.Controls)
@@ -459,7 +294,7 @@ namespace MahjongTournamentSuite.TournamentManager
             }
         }
 
-        public void SelectRoundTableButton(int tableId)
+        public void SelectTableButton(int tableId)
         {
             foreach (Control control in splitContainer1.Panel2.Controls)
             {
@@ -486,27 +321,7 @@ namespace MahjongTournamentSuite.TournamentManager
         {
             btnTeams.Visible = false;
         }
-
-        public void ShowButtonPlayers()
-        {
-            btnPlayers.Visible = true;
-        }
-
-        public void HideButtonPlayers()
-        {
-            btnPlayers.Visible = false;
-        }
-
-        public void ShowButtonRounds()
-        {
-            btnRounds.Visible = true;
-        }
-
-        public void HideButtonRounds()
-        {
-            btnRounds.Visible = false;
-        }
-
+        
         public void ShowWaitCursor()
         {
             Cursor = Cursors.WaitCursor;
@@ -516,102 +331,7 @@ namespace MahjongTournamentSuite.TournamentManager
         {
             Cursor = Cursors.Default;
         }
-
-        public void ShowDGV()
-        {
-            dgv.Visible = true;
-        }
-
-        public void HideDGV()
-        {
-            dgv.Visible = false;
-        }
-
-        public void ShowButtonPlayersBorder()
-        {
-            btnPlayers.FlatAppearance.BorderSize = 1;
-        }
-
-        public void HideButtonPlayersBorder()
-        {
-            btnPlayers.FlatAppearance.BorderSize = 0;
-        }
-
-        public void EmptyPanelRoundsButtons()
-        {
-            List<Control> panelTournamentControls = new List<Control>();
-            foreach (Control control in splitContainer1.Panel1.Controls)
-            {
-                if(control.GetType() == typeof(Button))
-                    panelTournamentControls.Add(control);
-            }
-            foreach (Control control in panelTournamentControls)
-                splitContainer1.Panel1.Controls.Remove(control);
-        }
-
-        public void EmptyPanelRoundTablesButtons()
-        {
-            List<Control> panelTournamentControls = new List<Control>();
-            foreach (Control control in splitContainer1.Panel2.Controls)
-            {
-                if (control.GetType() == typeof(Button))
-                    panelTournamentControls.Add(control);
-            }
-            foreach (Control control in panelTournamentControls)
-                splitContainer1.Panel2.Controls.Remove(control);
-        }
-
-        public void ShowRoundsButtonsAndTablesPanel()
-        {
-            splitContainer1.Visible = true;
-        }
-
-        public void HideRoundsButtonsAndTablesPanel()
-        {
-            splitContainer1.Visible = false;
-        }
-
-        public void DGVCancelEdit()
-        {
-            dgv.CancelEdit();
-        }
-
-        public void ShowWrongNumberOfPlayersPerTeamMessage(List<WrongTeam> wrongTeams)
-        {
-            string message = string.Empty;
-            foreach (WrongTeam wrongTeam in wrongTeams)
-            {
-                if (message != string.Empty)
-                    message += "\n";
-                message = string.Format("{0}The team \"{1}\" have {2} players.",
-                    message, wrongTeam.TeamName, wrongTeam.NumPlayers);
-            }
-            string caption = "Wrong team number of players";
-            if(wrongTeams.Count > 1)
-                caption = "Wrong teams number of players";
-            MessageBox.Show(message, caption);
-        }
-
-        public void ShowMessageTeamNameInUse(string usedName, int ownerTeamId)
-        {
-            MessageBox.Show(string.Format("\"{0}\" is in use by the team {1}", usedName, ownerTeamId), "Name in use");
-        }
-
-        public void ShowMessagePlayerNameInUse(string usedName, int ownerPlayerId)
-        {
-            MessageBox.Show(string.Format("\"{0}\" is in use by the player {1}", usedName, ownerPlayerId), "Name in use");
-        }
-
-        public void ShowMessageCountryError()
-        {
-            MessageBox.Show("Something went wrong with the country selection.", "Ups!");
-        }
-
-        public void ShowMessageTeamError()
-        {
-            MessageBox.Show("Something went wrong with the team selection.", "Ups!");
-        }
-
+        
         #endregion
 
         #region Private

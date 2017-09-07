@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HTMLViewerForm));
             this.tbPlayers = new System.Windows.Forms.TextBox();
             this.tbTeams = new System.Windows.Forms.TextBox();
             this.tbChickenHands = new System.Windows.Forms.TextBox();
@@ -150,6 +151,7 @@
             this.Controls.Add(this.tbChickenHands);
             this.Controls.Add(this.tbTeams);
             this.Controls.Add(this.tbPlayers);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "HTMLViewerForm";
