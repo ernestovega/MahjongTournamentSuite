@@ -1,13 +1,11 @@
-﻿using MahjongTournamentSuite.CountryManager;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 using MahjongTournamentSuiteDataLayer.Model;
-using System;
 using System.Collections.Generic;
 using MahjongTournamentSuite.Model;
 using System.Drawing;
 using MahjongTournamentSuite.Resources;
 
-namespace MahjongTournamentSuite.ManageCountries
+namespace MahjongTournamentSuite.CountryManager
 {
     public partial class CountryManagerForm : Form, ICountryManagerForm
     {

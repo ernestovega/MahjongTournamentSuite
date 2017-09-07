@@ -1,5 +1,4 @@
-﻿using System;
-using MahjongTournamentSuite.CountrySelector;
+﻿using MahjongTournamentSuite.CountrySelector;
 using MahjongTournamentSuite.Home;
 using MahjongTournamentSuite.HTMLViewer;
 using MahjongTournamentSuite.NewTournament;
@@ -9,8 +8,8 @@ using MahjongTournamentSuite.TeamSelector;
 using MahjongTournamentSuite.TournamentManager;
 using MahjongTournamentSuiteDataLayer.Data;
 using MahjongTournamentSuite.CountryManager;
-using MahjongTournamentSuite.ManageCountries;
-using MahjongTournamentSuite.TemplateTableManager;
+using MahjongTournamentSuite.ManagePlayers;
+using MahjongTournamentSuite.PlayersManager;
 
 namespace MahjongTournamentSuite
 {
@@ -75,10 +74,10 @@ namespace MahjongTournamentSuite
             return new CountryManagerPresenter(countryManagerForm);
         }
 
-        internal static ITemplateTableManagerPresenter provideTemplateTableManagerPresenter(
-            TemplateTableManagerForm templateTableManagerForm)
+        internal static IPlayersManagerPresenter providePlayersManagerPresenter(
+            PlayersManagerForm playersManagerForm)
         {
-            return new TemplateTableManagerPresenter(templateTableManagerForm);
+            return new PlayersManagerPresenter(playersManagerForm);
         }
     }
 }

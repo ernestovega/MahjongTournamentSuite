@@ -1,4 +1,4 @@
-﻿using MahjongTournamentSuite.ManageCountries;
+﻿using MahjongTournamentSuite.CountryManager;
 using MahjongTournamentSuite.Model;
 using MahjongTournamentSuite.NewTournament;
 using MahjongTournamentSuite.TournamentManager;

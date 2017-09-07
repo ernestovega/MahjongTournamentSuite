@@ -12,6 +12,7 @@ using MahjongTournamentSuite.Resources;
 using MahjongTournamentSuiteDataLayer.Model;
 using MahjongTournamentSuite.Ranking;
 using MahjongTournamentSuite.HTMLViewer;
+using MahjongTournamentSuite.ManagePlayers;
 
 namespace MahjongTournamentSuite.TournamentManager
 {
@@ -105,7 +106,7 @@ namespace MahjongTournamentSuite.TournamentManager
 
         private void btnPlayers_Click(object sender, EventArgs e)
         {
-            _presenter.ButtonPlayersClicked();
+            new PlayersManagerForm(_tournamentId).ShowDialog();
         }
 
         private void btnRounds_Click(object sender, EventArgs e)

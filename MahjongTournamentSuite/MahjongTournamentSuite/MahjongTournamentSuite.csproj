@@ -66,6 +66,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PlayersManager\PlayersManagerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PlayersManager\PlayersManagerForm.Designer.cs">
+      <DependentUpon>PlayersManagerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PlayersManager\PlayersManagerPresenter.cs" />
+    <Compile Include="PlayersManager\IPlayersManagerForm.cs" />
+    <Compile Include="PlayersManager\IPlayersManagerPresenter.cs" />
     <Compile Include="CountryManager\CountryManagerPresenter.cs" />
     <Compile Include="CountryManager\ICountryManagerForm.cs" />
     <Compile Include="CountryManager\ICountryManagerPresenter.cs" />
@@ -80,15 +89,6 @@
     <Compile Include="CountrySelector\ICountrySelectorPresenter.cs" />
     <Compile Include="CustomViews\CustomProgressBar.cs">
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="TemplateTableManager\TemplateTableManagerPresenter.cs" />
-    <Compile Include="TemplateTableManager\ITemplateTableManagerForm.cs" />
-    <Compile Include="TemplateTableManager\ITemplateTableManagerPresenter.cs" />
-    <Compile Include="TemplateTableManager\TemplateTableManagerForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TemplateTableManager\TemplateTableManagerForm.Designer.cs">
-      <DependentUpon>TemplateTableManagerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Home\HomeForm.cs">
       <SubType>Form</SubType>
@@ -190,14 +190,14 @@
       <DependentUpon>TournamentManagerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="TournamentManager\TournamentManagerPresenter.cs" />
+    <EmbeddedResource Include="PlayersManager\PlayersManagerForm.resx">
+      <DependentUpon>PlayersManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CountryManager\CountryManagerForm.resx">
       <DependentUpon>CountryManagerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CountrySelector\CountrySelectorForm.resx">
       <DependentUpon>CountrySelectorForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TemplateTableManager\TemplateTableManagerForm.resx">
-      <DependentUpon>TemplateTableManagerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Home\HomeForm.resx">
       <DependentUpon>HomeForm.cs</DependentUpon>
