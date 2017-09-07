@@ -5,13 +5,23 @@ namespace MahjongTournamentSuiteDataLayer.Model
 {
     public class DBTeam
     {
-        [Key, Column(Order = 0)]
-        public int TeamTournamentId { get; set; }
+        #region Constants
 
-        [Key, Column(Order = 1)]
-        public int TeamId { get; set; }
+        public static readonly string COLUMN_TEAMS_TOURNAMENT_ID = "TeamTournamentId";
+        public static readonly string COLUMN_TEAMS_ID = "TeamId";
+        public static readonly string COLUMN_TEAMS_NAME = "TeamName";
 
+        #endregion
+
+        #region Properties
+
+        [Key, Column(Order = 0)] public int TeamTournamentId { get; set; }
+        [Key, Column(Order = 1)] public int TeamId { get; set; }
         public string TeamName { get; set; }
+
+        #endregion
+
+        #region Constructors
 
         public DBTeam() { }
 
@@ -21,5 +31,7 @@ namespace MahjongTournamentSuiteDataLayer.Model
             TeamId = id;
             TeamName = name;
         }
+
+        #endregion
     }
 }

@@ -27,18 +27,6 @@ namespace MahjongTournamentSuite.TournamentManager
         private const int NUM_TABLES_BUTTONS_HORIZONTAL = 10;
         private const int SEPARATOR_EXTRA_MARGIN_BOTTOM = 12;
 
-        private const string COLUMN_TEAMS_TOURNAMENT_ID = "TeamTournamentId";
-        private const string COLUMN_TEAMS_ID = "TeamId";
-        private const string COLUMN_TEAMS_NAME = "TeamName";
-
-        private const string COLUMN_PLAYERS_TOURNAMENT_ID = "PlayerTournamentId";
-        private const string COLUMN_PLAYERS_ID = "PlayerId";
-        private const string COLUMN_PLAYERS_NAME = "PlayerName";
-        private const string COLUMN_PLAYERS_TEAM = "PlayerTeamId";
-        private const string COLUMN_PLAYERS_COUNTRY = "PlayerCountryId";
-        private const string COLUMN_PLAYERS_TEAM_NAME = "PlayerTeamName";
-        private const string COLUMN_PLAYERS_COUNTRY_NAME = "PlayerCountryName";
-
         #endregion
 
         #region Fields
@@ -157,37 +145,37 @@ namespace MahjongTournamentSuite.TournamentManager
         {
             if (e.RowIndex >= 0)
             {
-                if (dgv.Columns[e.ColumnIndex].Name.Equals(COLUMN_PLAYERS_NAME)
-                    || dgv.Columns[e.ColumnIndex].Name.Equals(COLUMN_TEAMS_NAME))
+                if (dgv.Columns[e.ColumnIndex].Name.Equals(DBPlayer.COLUMN_PLAYERS_NAME)
+                    || dgv.Columns[e.ColumnIndex].Name.Equals(DBTeam.COLUMN_TEAMS_NAME))
                     dgv.BeginEdit(true);
-                else if (dgv.Columns[e.ColumnIndex].Name.Equals(COLUMN_PLAYERS_TEAM_NAME))
+                else if (dgv.Columns[e.ColumnIndex].Name.Equals(DBPlayer.COLUMN_PLAYERS_TEAM_NAME))
                 {
                     using (var teamSelectorForm = new TeamSelectorForm(_tournamentId))
                     {
                         if (teamSelectorForm.ShowDialog() == DialogResult.OK)
                         {
-                            int playerId = (int)dgv.Rows[e.RowIndex].Cells[COLUMN_PLAYERS_ID].Value;
+                            int playerId = (int)dgv.Rows[e.RowIndex].Cells[DBPlayer.COLUMN_PLAYERS_ID].Value;
                             int teamId = _presenter.SaveNewPlayerTeam(playerId, teamSelectorForm.ReturnValue);
                             if (teamId > 0)
                             {
-                                dgv.Rows[e.RowIndex].Cells[COLUMN_PLAYERS_TEAM].Value = teamId;
-                                dgv.Rows[e.RowIndex].Cells[COLUMN_PLAYERS_TEAM_NAME].Value = teamSelectorForm.ReturnValue;
+                                dgv.Rows[e.RowIndex].Cells[DBPlayer.COLUMN_PLAYERS_TEAM].Value = teamId;
+                                dgv.Rows[e.RowIndex].Cells[DBPlayer.COLUMN_PLAYERS_TEAM_NAME].Value = teamSelectorForm.ReturnValue;
                             }
                         }
                     }
                 }
-                else if (dgv.Columns[e.ColumnIndex].Name.Equals(COLUMN_PLAYERS_COUNTRY_NAME))
+                else if (dgv.Columns[e.ColumnIndex].Name.Equals(DBPlayer.COLUMN_PLAYERS_COUNTRY_NAME))
                 {
                     using (var countrySelectorForm = new CountrySelectorForm())
                     {
                         if (countrySelectorForm.ShowDialog() == DialogResult.OK)
                         {
-                            int playerId = (int)dgv.Rows[e.RowIndex].Cells[COLUMN_PLAYERS_ID].Value;
+                            int playerId = (int)dgv.Rows[e.RowIndex].Cells[DBPlayer.COLUMN_PLAYERS_ID].Value;
                             int countryId = _presenter.SaveNewPlayerCountry(playerId, countrySelectorForm.ReturnValue);
                             if (countryId > 0)
                             {
-                                dgv.Rows[e.RowIndex].Cells[COLUMN_PLAYERS_COUNTRY].Value = countryId;
-                                dgv.Rows[e.RowIndex].Cells[COLUMN_PLAYERS_COUNTRY_NAME].Value = countrySelectorForm.ReturnValue;
+                                dgv.Rows[e.RowIndex].Cells[DBPlayer.COLUMN_PLAYERS_COUNTRY].Value = countryId;
+                                dgv.Rows[e.RowIndex].Cells[DBPlayer.COLUMN_PLAYERS_COUNTRY_NAME].Value = countrySelectorForm.ReturnValue;
                             }
                         }
                     }
@@ -199,25 +187,25 @@ namespace MahjongTournamentSuite.TournamentManager
         {
             if (e.RowIndex > -1)
             {
-                if (dgv.Columns[e.ColumnIndex].Name.Equals(COLUMN_TEAMS_NAME))
+                if (dgv.Columns[e.ColumnIndex].Name.Equals(DBTeam.COLUMN_TEAMS_NAME))
                 {
                     string previousValue = (string)dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
                     string newValue = ((string)e.FormattedValue).Trim();
                     if (newValue.Length > 0 && !newValue.Equals(previousValue))
                     {
-                        int teamId = (int)dgv.Rows[e.RowIndex].Cells[COLUMN_TEAMS_ID].Value;
+                        int teamId = (int)dgv.Rows[e.RowIndex].Cells[DBTeam.COLUMN_TEAMS_ID].Value;
                         _presenter.TeamNameChanged(teamId, newValue);
                     }
                     else
                         DGVCancelEdit();
                 }
-                else if(dgv.Columns[e.ColumnIndex].Name.Equals(COLUMN_PLAYERS_NAME))
+                else if(dgv.Columns[e.ColumnIndex].Name.Equals(DBPlayer.COLUMN_PLAYERS_NAME))
                 {
                     string previousValue = (string)dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
                     string newValue = ((string)e.FormattedValue).Trim();
                     if (newValue.Length > 0 && !newValue.Equals(previousValue))
                     {
-                        int playerId = (int)dgv.Rows[e.RowIndex].Cells[COLUMN_PLAYERS_ID].Value;
+                        int playerId = (int)dgv.Rows[e.RowIndex].Cells[DBPlayer.COLUMN_PLAYERS_ID].Value;
                         _presenter.PlayerNameChanged(playerId, newValue);
                     }
                     else
@@ -228,7 +216,7 @@ namespace MahjongTournamentSuite.TournamentManager
 
         private void dgv_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex > -1 && dgv.Columns[e.ColumnIndex].Name.Equals(COLUMN_PLAYERS_TEAM_NAME))
+            if (e.RowIndex > -1 && dgv.Columns[e.ColumnIndex].Name.Equals(DBPlayer.COLUMN_PLAYERS_TEAM_NAME))
                 _presenter.PlayerTeamChanged();
         }
 
@@ -244,19 +232,19 @@ namespace MahjongTournamentSuite.TournamentManager
             dgv.DataSource = sortableTeams;
 
             //Visible
-            dgv.Columns[COLUMN_TEAMS_TOURNAMENT_ID].Visible = false;
+            dgv.Columns[DBTeam.COLUMN_TEAMS_TOURNAMENT_ID].Visible = false;
             //ReadOnly
-            dgv.Columns[COLUMN_TEAMS_ID].ReadOnly = true;
+            dgv.Columns[DBTeam.COLUMN_TEAMS_ID].ReadOnly = true;
             //Readonly columns BackColor
-            dgv.Columns[COLUMN_TEAMS_ID].DefaultCellStyle.BackColor = SystemColors.ControlLight;
+            dgv.Columns[DBTeam.COLUMN_TEAMS_ID].DefaultCellStyle.BackColor = SystemColors.ControlLight;
             //Readonly columns ForeColor
-            dgv.Columns[COLUMN_TEAMS_ID].DefaultCellStyle.ForeColor = SystemColors.GrayText;
+            dgv.Columns[DBTeam.COLUMN_TEAMS_ID].DefaultCellStyle.ForeColor = SystemColors.GrayText;
             //HeaderText
-            dgv.Columns[COLUMN_TEAMS_ID].HeaderText = "Team Id";
-            dgv.Columns[COLUMN_TEAMS_NAME].HeaderText = "Team Name";
+            dgv.Columns[DBTeam.COLUMN_TEAMS_ID].HeaderText = "Team Id";
+            dgv.Columns[DBTeam.COLUMN_TEAMS_NAME].HeaderText = "Team Name";
             //AutoSizeMode
-            dgv.Columns[COLUMN_TEAMS_ID].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dgv.Columns[COLUMN_TEAMS_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgv.Columns[DBTeam.COLUMN_TEAMS_ID].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgv.Columns[DBTeam.COLUMN_TEAMS_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
         public void FillDGVWithPlayers(List<DGVPlayer> players, bool isTeams)
@@ -267,40 +255,40 @@ namespace MahjongTournamentSuite.TournamentManager
             dgv.DataSource = sortablePlayers;
 
             //Visible
-            dgv.Columns[COLUMN_PLAYERS_TOURNAMENT_ID].Visible = false;
-            dgv.Columns[COLUMN_PLAYERS_TEAM].Visible = false;
-            dgv.Columns[COLUMN_PLAYERS_COUNTRY].Visible = false;
+            dgv.Columns[DBPlayer.COLUMN_PLAYERS_TOURNAMENT_ID].Visible = false;
+            dgv.Columns[DBPlayer.COLUMN_PLAYERS_TEAM].Visible = false;
+            dgv.Columns[DBPlayer.COLUMN_PLAYERS_COUNTRY].Visible = false;
             //ReadOnly
-            dgv.Columns[COLUMN_PLAYERS_ID].ReadOnly = true;
-            dgv.Columns[COLUMN_PLAYERS_TEAM_NAME].ReadOnly = true;
-            dgv.Columns[COLUMN_PLAYERS_COUNTRY_NAME].ReadOnly = true;
+            dgv.Columns[DBPlayer.COLUMN_PLAYERS_ID].ReadOnly = true;
+            dgv.Columns[DBPlayer.COLUMN_PLAYERS_TEAM_NAME].ReadOnly = true;
+            dgv.Columns[DBPlayer.COLUMN_PLAYERS_COUNTRY_NAME].ReadOnly = true;
             //Readonly Columns BackColor
-            dgv.Columns[COLUMN_PLAYERS_ID].DefaultCellStyle.BackColor = SystemColors.ControlLight;
+            dgv.Columns[DBPlayer.COLUMN_PLAYERS_ID].DefaultCellStyle.BackColor = SystemColors.ControlLight;
             //Readonly Columns ForeColor
-            dgv.Columns[COLUMN_PLAYERS_ID].DefaultCellStyle.ForeColor = SystemColors.GrayText;
+            dgv.Columns[DBPlayer.COLUMN_PLAYERS_ID].DefaultCellStyle.ForeColor = SystemColors.GrayText;
             //HeaderText
-            dgv.Columns[COLUMN_PLAYERS_ID].HeaderText = "Player Id";
-            dgv.Columns[COLUMN_PLAYERS_NAME].HeaderText = "Player Name";
-            dgv.Columns[COLUMN_PLAYERS_COUNTRY_NAME].HeaderText = "Player Country";
+            dgv.Columns[DBPlayer.COLUMN_PLAYERS_ID].HeaderText = "Player Id";
+            dgv.Columns[DBPlayer.COLUMN_PLAYERS_NAME].HeaderText = "Player Name";
+            dgv.Columns[DBPlayer.COLUMN_PLAYERS_COUNTRY_NAME].HeaderText = "Player Country";
             //AutoSizeMode
-            dgv.Columns[COLUMN_PLAYERS_ID].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dgv.Columns[COLUMN_PLAYERS_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgv.Columns[COLUMN_PLAYERS_COUNTRY_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgv.Columns[DBPlayer.COLUMN_PLAYERS_ID].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgv.Columns[DBPlayer.COLUMN_PLAYERS_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgv.Columns[DBPlayer.COLUMN_PLAYERS_COUNTRY_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             //DisplayIndex
-            dgv.Columns[COLUMN_PLAYERS_ID].DisplayIndex = 0;
-            dgv.Columns[COLUMN_PLAYERS_NAME].DisplayIndex = 1;
+            dgv.Columns[DBPlayer.COLUMN_PLAYERS_ID].DisplayIndex = 0;
+            dgv.Columns[DBPlayer.COLUMN_PLAYERS_NAME].DisplayIndex = 1;
             if (isTeams)
             {
-                dgv.Columns[COLUMN_PLAYERS_TEAM_NAME].ReadOnly = true;
-                dgv.Columns[COLUMN_PLAYERS_TEAM_NAME].HeaderText = "Player Team";
-                dgv.Columns[COLUMN_PLAYERS_TEAM_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                dgv.Columns[COLUMN_PLAYERS_TEAM_NAME].DisplayIndex = 2;
-                dgv.Columns[COLUMN_PLAYERS_COUNTRY_NAME].DisplayIndex = 3;
+                dgv.Columns[DBPlayer.COLUMN_PLAYERS_TEAM_NAME].ReadOnly = true;
+                dgv.Columns[DBPlayer.COLUMN_PLAYERS_TEAM_NAME].HeaderText = "Player Team";
+                dgv.Columns[DBPlayer.COLUMN_PLAYERS_TEAM_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dgv.Columns[DBPlayer.COLUMN_PLAYERS_TEAM_NAME].DisplayIndex = 2;
+                dgv.Columns[DBPlayer.COLUMN_PLAYERS_COUNTRY_NAME].DisplayIndex = 3;
             }
             else
             {
-                dgv.Columns[COLUMN_PLAYERS_TEAM_NAME].Visible = false;
-                dgv.Columns[COLUMN_PLAYERS_COUNTRY_NAME].DisplayIndex = 2;
+                dgv.Columns[DBPlayer.COLUMN_PLAYERS_TEAM_NAME].Visible = false;
+                dgv.Columns[DBPlayer.COLUMN_PLAYERS_COUNTRY_NAME].DisplayIndex = 2;
             }
         }
 
@@ -310,11 +298,11 @@ namespace MahjongTournamentSuite.TournamentManager
             {
                 foreach (DataGridViewRow row in dgv.Rows)
                 {
-                    int currentRowTeamId = (int)row.Cells[COLUMN_PLAYERS_TEAM].Value;
+                    int currentRowTeamId = (int)row.Cells[DBPlayer.COLUMN_PLAYERS_TEAM].Value;
                     WrongTeam wrongTeam = wrongTeams.Find(x => x.TeamId == currentRowTeamId);
                     if(wrongTeam != null)
                     {
-                        row.Cells[COLUMN_PLAYERS_TEAM_NAME].ErrorText =
+                        row.Cells[DBPlayer.COLUMN_PLAYERS_TEAM_NAME].ErrorText =
                             string.Format("{0} players in this team", wrongTeam.NumPlayers);
                     }
                 }
@@ -325,7 +313,7 @@ namespace MahjongTournamentSuite.TournamentManager
         {
             foreach (DataGridViewRow row in dgv.Rows)
             {
-                row.Cells[COLUMN_PLAYERS_TEAM_NAME].ErrorText = string.Empty;
+                row.Cells[DBPlayer.COLUMN_PLAYERS_TEAM_NAME].ErrorText = string.Empty;
             }
         }
 

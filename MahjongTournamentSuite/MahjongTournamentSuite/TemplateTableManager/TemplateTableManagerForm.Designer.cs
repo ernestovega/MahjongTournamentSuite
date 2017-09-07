@@ -1,6 +1,6 @@
-﻿namespace MahjongTournamentSuite.ManageCountries
+﻿namespace MahjongTournamentSuite.TemplateTableManager
 {
-    partial class ManageCountriesForm
+    partial class TemplateTableManagerForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,9 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // TemplateTableManagerForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "ManageCountriesForm";
+            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Name = "TemplateTableManagerForm";
+            this.Text = "Mahjong Tournament Suite - Template Table Manager";
+            this.Load += new System.EventHandler(this.TemplateTableManagerForm_Load);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

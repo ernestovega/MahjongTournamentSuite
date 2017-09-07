@@ -14,11 +14,7 @@ namespace MahjongTournamentSuite.Resources
         public static readonly Color RED_CANCEL = Color.FromArgb(224, 0, 0);
 
         #endregion
-
-        #region DGVS COLUMNS NAMES
-
-        #endregion
-
+        
         #region HTML TAGS
 
         public static readonly string HTML_OPEN_TABLE = "<table dir=\"ltr\" style=\"text-align: center;\" border=\"1\" cellspacing=\"0\" cellpadding=\"0\">";

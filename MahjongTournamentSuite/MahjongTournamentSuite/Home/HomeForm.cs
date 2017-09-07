@@ -1,7 +1,6 @@
 ﻿using MahjongTournamentSuite.ManageCountries;
 using MahjongTournamentSuite.Model;
 using MahjongTournamentSuite.NewTournament;
-using MahjongTournamentSuite.Resources;
 using MahjongTournamentSuite.TournamentManager;
 using MahjongTournamentSuiteDataLayer.Model;
 using Microsoft.VisualBasic;
@@ -16,14 +15,8 @@ namespace MahjongTournamentSuite.Home
     public partial class HomeForm : Form, IHomeForm
     {
         #region Constants
-        
-        private static readonly string COLUMN_ID = "TournamentId";
-        private static readonly string COLUMN_DATE = "CreationDate";
-        private static readonly string COLUMN_NAME = "TournamentName";
-        private static readonly string COLUMN_PLAYERS = "NumPlayers";
-        private static readonly string COLUMN_ROUNDS = "NumRounds";
-        private static readonly string COLUMN_IS_TEAMS = "IsTeams";
-        private static readonly string COLUMN_IS_TEAMS_IMAGES = "Teams";
+
+        private readonly string COLUMN_IS_TEAMS_IMAGES = "Teams";
 
         #endregion
 
@@ -88,7 +81,7 @@ namespace MahjongTournamentSuite.Home
         private void btnCountries_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            new ManageCountriesForm().ShowDialog();
+            new CountryManagerForm().ShowDialog();
             Cursor = Cursors.Default;
         }
 
@@ -153,7 +146,7 @@ namespace MahjongTournamentSuite.Home
             if (dgv.Columns[e.ColumnIndex].Name.Equals(COLUMN_IS_TEAMS_IMAGES))
             {
                 DataGridViewCheckBoxCell cellIsTeams = 
-                    (DataGridViewCheckBoxCell)dgv.Rows[e.RowIndex].Cells[COLUMN_IS_TEAMS];
+                    (DataGridViewCheckBoxCell)dgv.Rows[e.RowIndex].Cells[DBTournament.COLUMN_IS_TEAMS];
                 if (cellIsTeams.Value != null)
                 {
                     if ((bool)cellIsTeams.Value)
@@ -178,7 +171,7 @@ namespace MahjongTournamentSuite.Home
 
         private void dgvTournaments_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.RowIndex >= 0 && dgv.Columns[e.ColumnIndex].Name.Equals(COLUMN_NAME))
+            if (e.RowIndex >= 0 && dgv.Columns[e.ColumnIndex].Name.Equals(DBTournament.COLUMN_NAME))
                 dgv.BeginEdit(true);
         }
 
@@ -190,7 +183,7 @@ namespace MahjongTournamentSuite.Home
 
         private void dgvTournaments_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if (e.RowIndex >= 0 && dgv.Columns[e.ColumnIndex].Name.Equals(COLUMN_NAME))
+            if (e.RowIndex >= 0 && dgv.Columns[e.ColumnIndex].Name.Equals(DBTournament.COLUMN_NAME))
             {
                 int tournamentId = GetSelectedTournamentId(e.RowIndex);
                 string previousValue = (string)dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
@@ -227,31 +220,31 @@ namespace MahjongTournamentSuite.Home
                 dgv.Columns.Add(imgColumn);
             }
             //Visible
-            dgv.Columns[COLUMN_ID].Visible = false;
-            dgv.Columns[COLUMN_IS_TEAMS].Visible = false;
+            dgv.Columns[DBTournament.COLUMN_ID].Visible = false;
+            dgv.Columns[DBTournament.COLUMN_IS_TEAMS].Visible = false;
             //ReadOnly
-            dgv.Columns[COLUMN_DATE].ReadOnly = true;
-            dgv.Columns[COLUMN_PLAYERS].ReadOnly = true;
-            dgv.Columns[COLUMN_ROUNDS].ReadOnly = true;
+            dgv.Columns[DBTournament.COLUMN_DATE].ReadOnly = true;
+            dgv.Columns[DBTournament.COLUMN_PLAYERS].ReadOnly = true;
+            dgv.Columns[DBTournament.COLUMN_ROUNDS].ReadOnly = true;
             dgv.Columns[COLUMN_IS_TEAMS_IMAGES].ReadOnly = true;
             //Readonly Columns BackColor
-            dgv.Columns[COLUMN_DATE].DefaultCellStyle.BackColor = SystemColors.ControlLight;
-            dgv.Columns[COLUMN_PLAYERS].DefaultCellStyle.BackColor = SystemColors.ControlLight;
-            dgv.Columns[COLUMN_ROUNDS].DefaultCellStyle.BackColor = SystemColors.ControlLight;
+            dgv.Columns[DBTournament.COLUMN_DATE].DefaultCellStyle.BackColor = SystemColors.ControlLight;
+            dgv.Columns[DBTournament.COLUMN_PLAYERS].DefaultCellStyle.BackColor = SystemColors.ControlLight;
+            dgv.Columns[DBTournament.COLUMN_ROUNDS].DefaultCellStyle.BackColor = SystemColors.ControlLight;
             dgv.Columns[COLUMN_IS_TEAMS_IMAGES].DefaultCellStyle.BackColor = SystemColors.ControlLight;
             //Readonly Columns ForeColor
-            dgv.Columns[COLUMN_DATE].DefaultCellStyle.ForeColor = SystemColors.GrayText;
-            dgv.Columns[COLUMN_PLAYERS].DefaultCellStyle.ForeColor = SystemColors.GrayText;
-            dgv.Columns[COLUMN_ROUNDS].DefaultCellStyle.ForeColor = SystemColors.GrayText;
+            dgv.Columns[DBTournament.COLUMN_DATE].DefaultCellStyle.ForeColor = SystemColors.GrayText;
+            dgv.Columns[DBTournament.COLUMN_PLAYERS].DefaultCellStyle.ForeColor = SystemColors.GrayText;
+            dgv.Columns[DBTournament.COLUMN_ROUNDS].DefaultCellStyle.ForeColor = SystemColors.GrayText;
             dgv.Columns[COLUMN_IS_TEAMS_IMAGES].DefaultCellStyle.ForeColor = SystemColors.GrayText;
             //HeaderText
-            dgv.Columns[COLUMN_DATE].HeaderText = "Creation date";
-            dgv.Columns[COLUMN_NAME].HeaderText = "Tournament name";
-            dgv.Columns[COLUMN_PLAYERS].HeaderText = "Players";
-            dgv.Columns[COLUMN_ROUNDS].HeaderText = "Rounds";
+            dgv.Columns[DBTournament.COLUMN_DATE].HeaderText = "Creation date";
+            dgv.Columns[DBTournament.COLUMN_NAME].HeaderText = "Tournament name";
+            dgv.Columns[DBTournament.COLUMN_PLAYERS].HeaderText = "Players";
+            dgv.Columns[DBTournament.COLUMN_ROUNDS].HeaderText = "Rounds";
             dgv.Columns[COLUMN_IS_TEAMS_IMAGES].HeaderText = "Teams";
             //AutoSizeMode
-            dgv.Columns[COLUMN_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgv.Columns[DBTournament.COLUMN_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             //SortMode
             foreach (DataGridViewColumn column in dgv.Columns)
                 column.SortMode = DataGridViewColumnSortMode.Automatic;
@@ -261,7 +254,7 @@ namespace MahjongTournamentSuite.Home
         {
             DataGridViewRow row = GetCurrentSelectedRow();
             if (row != null)
-                return (int)row.Cells[COLUMN_ID].Value;
+                return (int)row.Cells[DBTournament.COLUMN_ID].Value;
             else
                 return -1;
         }
@@ -271,7 +264,7 @@ namespace MahjongTournamentSuite.Home
             DataGridViewRow row = GetCurrentSelectedRow();
             if (row != null)
             {
-                return (string)row.Cells[COLUMN_NAME].Value;
+                return (string)row.Cells[DBTournament.COLUMN_NAME].Value;
             }
             return "";
         }
@@ -315,7 +308,7 @@ namespace MahjongTournamentSuite.Home
 
         private int GetSelectedTournamentId(int rowIndex)
         {
-            return (int)dgv.Rows[rowIndex].Cells[COLUMN_ID].Value;
+            return (int)dgv.Rows[rowIndex].Cells[DBTournament.COLUMN_ID].Value;
         }
 
         #endregion

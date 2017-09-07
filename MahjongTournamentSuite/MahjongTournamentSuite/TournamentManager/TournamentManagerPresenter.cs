@@ -728,7 +728,7 @@ namespace MahjongTournamentSuite.TournamentManager
 
         private string GenerateChickenHandsHTMLRanking()
         {
-            string htmlChickenHandsRanking = string.Format("{0}{1}{2}{3}{4}{5}{6}\n{7}", MyConstants.HTML_OPEN_TABLE,
+            string htmlChickenHandsRanking = string.Format("{0}{1}{2}{3}{4}{5}{6}{7}\n{8}{9}", MyConstants.HTML_OPEN_TABLE,
                    MyConstants.HTML_OPEN_COLGROUP, MyConstants.HTML_COL_ORDER, MyConstants.HTML_COL_NAME,
                    MyConstants.HTML_COL_POINTS, MyConstants.HTML_COL_POINTS, MyConstants.HTML_COL_SCORE,
                    MyConstants.HTML_COL_COUNTRY, MyConstants.HTML_CLOSE_COLGROUP, MyConstants.HTML_OPEN_TBODY);

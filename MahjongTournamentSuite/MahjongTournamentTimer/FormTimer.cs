@@ -12,9 +12,9 @@ namespace MahjongTournamentTimer
         private const int HT_CAPTION = 0x2;
 
         [DllImportAttribute("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        private static extern long SendMessage(IntPtr hWnd, long Msg, long wParam, long lParam);
         [DllImportAttribute("user32.dll")]
-        public static extern bool ReleaseCapture();
+        private static extern bool ReleaseCapture();
 
         private const int DEFAULT_MAXTIME = 7200;
         private const int DEFAULT_MINIMIZED_FONTSIZE = 240;

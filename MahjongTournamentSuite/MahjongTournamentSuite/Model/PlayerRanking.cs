@@ -2,6 +2,22 @@
 {
     public class PlayerRanking
     {
+        #region Constants
+
+        public static readonly string COLUMN_PLAYER_RANKING_ORDER = "Order";
+        public static readonly string COLUMN_PLAYER_RANKING_PLAYER_ID = "PlayerId";
+        public static readonly string COLUMN_PLAYER_RANKING_PLAYER_NAME = "PlayerName";
+        public static readonly string COLUMN_PLAYER_RANKING_PLAYER_POINTS = "PlayerPoints";
+        public static readonly string COLUMN_PLAYER_RANKING_PLAYER_SCORE = "PlayerScore";
+        public static readonly string COLUMN_PLAYER_RANKING_TEAM_ID = "PlayerTeamId";
+        public static readonly string COLUMN_PLAYER_RANKING_TEAM_NAME = "PlayerTeamName";
+        public static readonly string COLUMN_PLAYER_RANKING_COUNTRY_ID = "PlayerCountryId";
+        public static readonly string COLUMN_PLAYER_RANKING_COUNTRY_NAME = "PlayerCountryName";
+
+        #endregion
+
+        #region Properties
+
         public int Order { get; set; }
         public int PlayerId { get; set; }
         public string PlayerName { get; set; }
@@ -12,6 +28,10 @@
         public int PlayerCountryId { get; set; }
         public string PlayerCountryName { get; set; }
         public string PlayerCountryImageUrl { get; set; }
+
+        #endregion
+
+        #region Constructors
 
         public PlayerRanking() { }
 
@@ -30,5 +50,7 @@
             PlayerCountryName = playerCountryName;
             PlayerCountryImageUrl = playerCountryImageUrl;
         }
+
+        #endregion
     }
 }

@@ -8,6 +8,9 @@ using MahjongTournamentSuite.TableManager;
 using MahjongTournamentSuite.TeamSelector;
 using MahjongTournamentSuite.TournamentManager;
 using MahjongTournamentSuiteDataLayer.Data;
+using MahjongTournamentSuite.CountryManager;
+using MahjongTournamentSuite.ManageCountries;
+using MahjongTournamentSuite.TemplateTableManager;
 
 namespace MahjongTournamentSuite
 {
@@ -64,6 +67,18 @@ namespace MahjongTournamentSuite
             HTMLViewerForm htmlViewerForm)
         {
             return new HTMLViewerPresenter(htmlViewerForm);
+        }
+
+        internal static ICountryManagerPresenter provideCountryManagerPresenter(
+            CountryManagerForm countryManagerForm)
+        {
+            return new CountryManagerPresenter(countryManagerForm);
+        }
+
+        internal static ITemplateTableManagerPresenter provideTemplateTableManagerPresenter(
+            TemplateTableManagerForm templateTableManagerForm)
+        {
+            return new TemplateTableManagerPresenter(templateTableManagerForm);
         }
     }
 }

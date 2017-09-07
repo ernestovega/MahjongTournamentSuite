@@ -3,48 +3,36 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MahjongTournamentSuiteDataLayer.Model
 {
-    public class DBTable {
+    public class DBTable
+    {
+        #region Properties
 
         [Key, Column(Order = 0)]
         public int TableTournamentId { get; set; }
-
         [Key, Column(Order = 1)]
         public int TableRoundId { get; set; }
-
         [Key, Column(Order = 2)]
         public int TableId { get; set; }
-
         public int Player1Id { get; set; }
-
         public int Player2Id { get; set; }
-
         public int Player3Id { get; set; }
-
         public int Player4Id { get; set; }
-
         public string PlayerEastId { get; set; }
-
         public string PlayerSouthId { get; set; }
-
         public string PlayerWestId { get; set; }
-
         public string PlayerNorthId { get; set; }
-
         public string PlayerEastScore { get; set; }
-
         public string PlayerSouthScore { get; set; }
-
         public string PlayerWestScore { get; set; }
-
         public string PlayerNorthScore { get; set; }
-
         public string PlayerEastPoints { get; set; }
-
         public string PlayerSouthPoints { get; set; }
-
         public string PlayerWestPoints { get; set; }
-
         public string PlayerNorthPoints { get; set; }
+
+        #endregion
+
+        #region Constructors
 
         public DBTable() {}
 
@@ -98,5 +86,7 @@ namespace MahjongTournamentSuiteDataLayer.Model
             PlayerWestPoints = playerWestPoints;
             PlayerNorthPoints = playerNorthPoints;
         }
+
+        #endregion
     }
 }

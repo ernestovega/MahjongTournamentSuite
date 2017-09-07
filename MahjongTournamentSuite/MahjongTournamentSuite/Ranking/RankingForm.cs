@@ -13,34 +13,9 @@ namespace MahjongTournamentSuite.Ranking
         private const int WM_NCLBUTTONDOWN = 0xA1;
         private const int HT_CAPTION = 0x2;
         [DllImportAttribute("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        private static extern long SendMessage(IntPtr hWnd, long Msg, long wParam, long lParam);
         [DllImportAttribute("user32.dll")]
-        public static extern bool ReleaseCapture();
-
-        private const string COLUMN_PLAYER_RANKING_ORDER = "Order";
-        private const string COLUMN_PLAYER_RANKING_PLAYER_ID = "PlayerId";
-        private const string COLUMN_PLAYER_RANKING_PLAYER_NAME = "PlayerName";
-        private const string COLUMN_PLAYER_RANKING_PLAYER_POINTS = "PlayerPoints";
-        private const string COLUMN_PLAYER_RANKING_PLAYER_SCORE = "PlayerScore";
-        private const string COLUMN_PLAYER_RANKING_TEAM_ID = "PlayerTeamId";
-        private const string COLUMN_PLAYER_RANKING_TEAM_NAME = "PlayerTeamName";
-        private const string COLUMN_PLAYER_RANKING_COUNTRY_ID = "PlayerCountryId";
-        private const string COLUMN_PLAYER_RANKING_COUNTRY_NAME = "PlayerCountryName";
-
-        private const string COLUMN_TEAM_RANKING_ORDER = "Order";
-        private const string COLUMN_TEAM_RANKING_TEAM_ID = "TeamId";
-        private const string COLUMN_TEAM_RANKING_TEAM_NAME = "TeamName";
-        private const string COLUMN_TEAM_RANKING_TEAM_POINTS = "TeamPoints";
-        private const string COLUMN_TEAM_RANKING_TEAM_SCORE = "TeamScore";
-
-        private const string COLUMN_PLAYER_CHICKEN_HAND_RANKING_ORDER = "Order";
-        private const string COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_ID = "PlayerId";
-        private const string COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_NAME = "PlayerName";
-        private const string COLUMN_PLAYER_CHICKEN_HAND_RANKING_NUM_CHICKEN_HANDS = "PlayerNumChickenHands";
-        private const string COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_POINTS = "PlayerPoints";
-        private const string COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_SCORE = "PlayerScore";
-        private const string COLUMN_PLAYER_CHICKEN_HAND_RANKING_COUNTRY_ID = "PlayerCountryId";
-        private const string COLUMN_PLAYER_CHICKEN_HAND_RANKING_COUNTRY_NAME = "PlayerCountryName";
+        private static extern bool ReleaseCapture();
 
         #endregion
 
@@ -171,55 +146,55 @@ namespace MahjongTournamentSuite.Ranking
             dgv.DataSource = playersRankingsRange;
 
             //Visible
-            dgv.Columns[COLUMN_PLAYER_RANKING_ORDER].Visible = true;
-            dgv.Columns[COLUMN_PLAYER_RANKING_PLAYER_ID].Visible = false;
-            dgv.Columns[COLUMN_PLAYER_RANKING_PLAYER_NAME].Visible = true;
-            dgv.Columns[COLUMN_PLAYER_RANKING_PLAYER_POINTS].Visible = true;
-            dgv.Columns[COLUMN_PLAYER_RANKING_PLAYER_SCORE].Visible = true;
-            dgv.Columns[COLUMN_PLAYER_RANKING_TEAM_ID].Visible = false;
-            dgv.Columns[COLUMN_PLAYER_RANKING_TEAM_NAME].Visible = isTeams;
-            dgv.Columns[COLUMN_PLAYER_RANKING_COUNTRY_ID].Visible = false;
-            dgv.Columns[COLUMN_PLAYER_RANKING_COUNTRY_NAME].Visible = true;
+            dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_ORDER].Visible = true;
+            dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_PLAYER_ID].Visible = false;
+            dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_PLAYER_NAME].Visible = true;
+            dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_PLAYER_POINTS].Visible = true;
+            dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_PLAYER_SCORE].Visible = true;
+            dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_TEAM_ID].Visible = false;
+            dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_TEAM_NAME].Visible = isTeams;
+            dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_COUNTRY_ID].Visible = false;
+            dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_COUNTRY_NAME].Visible = true;
             //HeaderText
-            dgv.Columns[COLUMN_PLAYER_RANKING_ORDER].HeaderText = "#";
-            dgv.Columns[COLUMN_PLAYER_RANKING_PLAYER_NAME].HeaderText = "Player name";
-            dgv.Columns[COLUMN_PLAYER_RANKING_PLAYER_POINTS].HeaderText = "Points";
-            dgv.Columns[COLUMN_PLAYER_RANKING_PLAYER_SCORE].HeaderText = "Score";
+            dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_ORDER].HeaderText = "#";
+            dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_PLAYER_NAME].HeaderText = "Player name";
+            dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_PLAYER_POINTS].HeaderText = "Points";
+            dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_PLAYER_SCORE].HeaderText = "Score";
             if(isTeams)
-                dgv.Columns[COLUMN_PLAYER_RANKING_TEAM_NAME].HeaderText = "Team";
-            dgv.Columns[COLUMN_PLAYER_RANKING_COUNTRY_NAME].HeaderText = "Country";
+                dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_TEAM_NAME].HeaderText = "Team";
+            dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_COUNTRY_NAME].HeaderText = "Country";
             //AutoSizeMode
-            dgv.Columns[COLUMN_PLAYER_RANKING_ORDER].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            //dgv.Columns[COLUMN_PLAYER_RANKING_PLAYER_POINTS].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            //dgv.Columns[COLUMN_PLAYER_RANKING_PLAYER_SCORE].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_ORDER].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            //dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_PLAYER_POINTS].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            //dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_PLAYER_SCORE].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             //if (isTeams)
-            //    dgv.Columns[COLUMN_PLAYER_RANKING_TEAM_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            //dgv.Columns[COLUMN_PLAYER_RANKING_COUNTRY_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            //    dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_TEAM_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            //dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_COUNTRY_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             //Padding
-            //dgv.Columns[COLUMN_PLAYER_RANKING_PLAYER_POINTS].DefaultCellStyle.Padding = new Padding(25, 0, 25, 0);
-            //dgv.Columns[COLUMN_PLAYER_RANKING_PLAYER_SCORE].DefaultCellStyle.Padding = new Padding(25, 0, 25, 0);
+            //dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_PLAYER_POINTS].DefaultCellStyle.Padding = new Padding(25, 0, 25, 0);
+            //dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_PLAYER_SCORE].DefaultCellStyle.Padding = new Padding(25, 0, 25, 0);
             //DisplayIndex
-            dgv.Columns[COLUMN_PLAYER_RANKING_ORDER].DisplayIndex = 0;
-            dgv.Columns[COLUMN_PLAYER_RANKING_PLAYER_NAME].DisplayIndex = 1;
-            dgv.Columns[COLUMN_PLAYER_RANKING_PLAYER_POINTS].DisplayIndex = 2;
-            dgv.Columns[COLUMN_PLAYER_RANKING_PLAYER_SCORE].DisplayIndex = 3;
+            dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_ORDER].DisplayIndex = 0;
+            dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_PLAYER_NAME].DisplayIndex = 1;
+            dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_PLAYER_POINTS].DisplayIndex = 2;
+            dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_PLAYER_SCORE].DisplayIndex = 3;
             if (isTeams)
             {
-                dgv.Columns[COLUMN_PLAYER_RANKING_TEAM_NAME].DisplayIndex = 4;
-                dgv.Columns[COLUMN_PLAYER_RANKING_COUNTRY_NAME].DisplayIndex = 5;
+                dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_TEAM_NAME].DisplayIndex = 4;
+                dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_COUNTRY_NAME].DisplayIndex = 5;
             }
             else
-                dgv.Columns[COLUMN_PLAYER_RANKING_COUNTRY_NAME].DisplayIndex = 4;
+                dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_COUNTRY_NAME].DisplayIndex = 4;
             //Sortable
-            dgv.Columns[COLUMN_PLAYER_RANKING_ORDER].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dgv.Columns[COLUMN_PLAYER_RANKING_PLAYER_ID].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dgv.Columns[COLUMN_PLAYER_RANKING_PLAYER_NAME].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dgv.Columns[COLUMN_PLAYER_RANKING_PLAYER_POINTS].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dgv.Columns[COLUMN_PLAYER_RANKING_PLAYER_SCORE].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dgv.Columns[COLUMN_PLAYER_RANKING_TEAM_ID].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dgv.Columns[COLUMN_PLAYER_RANKING_TEAM_NAME].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dgv.Columns[COLUMN_PLAYER_RANKING_COUNTRY_ID].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dgv.Columns[COLUMN_PLAYER_RANKING_COUNTRY_NAME].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_ORDER].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_PLAYER_ID].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_PLAYER_NAME].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_PLAYER_POINTS].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_PLAYER_SCORE].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_TEAM_ID].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_TEAM_NAME].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_COUNTRY_ID].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_COUNTRY_NAME].SortMode = DataGridViewColumnSortMode.NotSortable;
         }
 
         private void FillDGVTeams(List<TeamRanking> teamsRankingsRange)
@@ -229,29 +204,29 @@ namespace MahjongTournamentSuite.Ranking
             dgv.DataSource = teamsRankingsRange;
 
             //Visible
-            dgv.Columns[COLUMN_TEAM_RANKING_ORDER].Visible = true;
-            dgv.Columns[COLUMN_TEAM_RANKING_TEAM_ID].Visible = false;
-            dgv.Columns[COLUMN_TEAM_RANKING_TEAM_NAME].Visible = true;
-            dgv.Columns[COLUMN_TEAM_RANKING_TEAM_POINTS].Visible = true;
-            dgv.Columns[COLUMN_TEAM_RANKING_TEAM_SCORE].Visible = true;
+            dgv.Columns[TeamRanking.COLUMN_TEAM_RANKING_ORDER].Visible = true;
+            dgv.Columns[TeamRanking.COLUMN_TEAM_RANKING_TEAM_ID].Visible = false;
+            dgv.Columns[TeamRanking.COLUMN_TEAM_RANKING_TEAM_NAME].Visible = true;
+            dgv.Columns[TeamRanking.COLUMN_TEAM_RANKING_TEAM_POINTS].Visible = true;
+            dgv.Columns[TeamRanking.COLUMN_TEAM_RANKING_TEAM_SCORE].Visible = true;
             //HeaderText
-            dgv.Columns[COLUMN_TEAM_RANKING_ORDER].HeaderText = "#";
-            dgv.Columns[COLUMN_TEAM_RANKING_TEAM_NAME].HeaderText = "Team name";
-            dgv.Columns[COLUMN_TEAM_RANKING_TEAM_POINTS].HeaderText = "Points";
-            dgv.Columns[COLUMN_TEAM_RANKING_TEAM_SCORE].HeaderText = "Score";
+            dgv.Columns[TeamRanking.COLUMN_TEAM_RANKING_ORDER].HeaderText = "#";
+            dgv.Columns[TeamRanking.COLUMN_TEAM_RANKING_TEAM_NAME].HeaderText = "Team name";
+            dgv.Columns[TeamRanking.COLUMN_TEAM_RANKING_TEAM_POINTS].HeaderText = "Points";
+            dgv.Columns[TeamRanking.COLUMN_TEAM_RANKING_TEAM_SCORE].HeaderText = "Score";
             ////AutoSizeMode
-            dgv.Columns[COLUMN_TEAM_RANKING_ORDER].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgv.Columns[TeamRanking.COLUMN_TEAM_RANKING_ORDER].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             //DisplayIndex
-            dgv.Columns[COLUMN_TEAM_RANKING_ORDER].DisplayIndex = 0;
-            dgv.Columns[COLUMN_TEAM_RANKING_TEAM_NAME].DisplayIndex = 1;
-            dgv.Columns[COLUMN_TEAM_RANKING_TEAM_POINTS].DisplayIndex = 2;
-            dgv.Columns[COLUMN_TEAM_RANKING_TEAM_SCORE].DisplayIndex = 3;
+            dgv.Columns[TeamRanking.COLUMN_TEAM_RANKING_ORDER].DisplayIndex = 0;
+            dgv.Columns[TeamRanking.COLUMN_TEAM_RANKING_TEAM_NAME].DisplayIndex = 1;
+            dgv.Columns[TeamRanking.COLUMN_TEAM_RANKING_TEAM_POINTS].DisplayIndex = 2;
+            dgv.Columns[TeamRanking.COLUMN_TEAM_RANKING_TEAM_SCORE].DisplayIndex = 3;
             //Sortable
-            dgv.Columns[COLUMN_TEAM_RANKING_ORDER].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dgv.Columns[COLUMN_TEAM_RANKING_TEAM_ID].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dgv.Columns[COLUMN_TEAM_RANKING_TEAM_NAME].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dgv.Columns[COLUMN_TEAM_RANKING_TEAM_POINTS].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dgv.Columns[COLUMN_TEAM_RANKING_TEAM_SCORE].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns[TeamRanking.COLUMN_TEAM_RANKING_ORDER].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns[TeamRanking.COLUMN_TEAM_RANKING_TEAM_ID].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns[TeamRanking.COLUMN_TEAM_RANKING_TEAM_NAME].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns[TeamRanking.COLUMN_TEAM_RANKING_TEAM_POINTS].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns[TeamRanking.COLUMN_TEAM_RANKING_TEAM_SCORE].SortMode = DataGridViewColumnSortMode.NotSortable;
         }
 
         private void FillDGVPlayersChickenHands(List<ChickenHandRanking> playersChickenHandsRankingsRange)
@@ -261,47 +236,47 @@ namespace MahjongTournamentSuite.Ranking
             dgv.DataSource = playersChickenHandsRankingsRange;
 
             //Visible
-            dgv.Columns[COLUMN_PLAYER_CHICKEN_HAND_RANKING_ORDER].Visible = true;
-            dgv.Columns[COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_ID].Visible = false;
-            dgv.Columns[COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_NAME].Visible = true;
-            dgv.Columns[COLUMN_PLAYER_CHICKEN_HAND_RANKING_NUM_CHICKEN_HANDS].Visible = true;
-            dgv.Columns[COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_POINTS].Visible = true;
-            dgv.Columns[COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_SCORE].Visible = true;
-            dgv.Columns[COLUMN_PLAYER_CHICKEN_HAND_RANKING_COUNTRY_ID].Visible = false;
-            dgv.Columns[COLUMN_PLAYER_CHICKEN_HAND_RANKING_COUNTRY_NAME].Visible = true;
+            dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_ORDER].Visible = true;
+            dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_ID].Visible = false;
+            dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_NAME].Visible = true;
+            dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_NUM_CHICKEN_HANDS].Visible = true;
+            dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_POINTS].Visible = true;
+            dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_SCORE].Visible = true;
+            dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_COUNTRY_ID].Visible = false;
+            dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_COUNTRY_NAME].Visible = true;
             //HeaderText             
-            dgv.Columns[COLUMN_PLAYER_CHICKEN_HAND_RANKING_ORDER].HeaderText = "#";
-            dgv.Columns[COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_NAME].HeaderText = "Player name";
-            dgv.Columns[COLUMN_PLAYER_CHICKEN_HAND_RANKING_NUM_CHICKEN_HANDS].HeaderText = "Chicken hands";
-            dgv.Columns[COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_POINTS].HeaderText = "Points";
-            dgv.Columns[COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_SCORE].HeaderText = "Score";
-            dgv.Columns[COLUMN_PLAYER_CHICKEN_HAND_RANKING_COUNTRY_NAME].HeaderText = "Country";
+            dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_ORDER].HeaderText = "#";
+            dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_NAME].HeaderText = "Player name";
+            dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_NUM_CHICKEN_HANDS].HeaderText = "Chicken hands";
+            dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_POINTS].HeaderText = "Points";
+            dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_SCORE].HeaderText = "Score";
+            dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_COUNTRY_NAME].HeaderText = "Country";
             //AutoSizeMode
-            dgv.Columns[COLUMN_PLAYER_CHICKEN_HAND_RANKING_ORDER].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            //dgv.Columns[COLUMN_PLAYER_CHICKEN_HAND_RANKING_NUM_CHICKEN_HANDS].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            //dgv.Columns[COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_POINTS].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            //dgv.Columns[COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_SCORE].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            //dgv.Columns[COLUMN_PLAYER_CHICKEN_HAND_RANKING_COUNTRY_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_ORDER].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            //dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_NUM_CHICKEN_HANDS].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            //dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_POINTS].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            //dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_SCORE].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            //dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_COUNTRY_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             //Padding
-            dgv.Columns[COLUMN_PLAYER_CHICKEN_HAND_RANKING_NUM_CHICKEN_HANDS].DefaultCellStyle.Padding = new Padding(25, 0, 25, 0);
-            dgv.Columns[COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_POINTS].DefaultCellStyle.Padding = new Padding(25, 0, 25, 0);
-            dgv.Columns[COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_SCORE].DefaultCellStyle.Padding = new Padding(25, 0, 25, 0);
+            dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_NUM_CHICKEN_HANDS].DefaultCellStyle.Padding = new Padding(25, 0, 25, 0);
+            dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_POINTS].DefaultCellStyle.Padding = new Padding(25, 0, 25, 0);
+            dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_SCORE].DefaultCellStyle.Padding = new Padding(25, 0, 25, 0);
             //DisplayIndex
-            dgv.Columns[COLUMN_PLAYER_CHICKEN_HAND_RANKING_ORDER].DisplayIndex = 0;
-            dgv.Columns[COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_NAME].DisplayIndex = 1;
-            dgv.Columns[COLUMN_PLAYER_CHICKEN_HAND_RANKING_NUM_CHICKEN_HANDS].DisplayIndex = 2;
-            dgv.Columns[COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_POINTS].DisplayIndex = 3;
-            dgv.Columns[COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_SCORE].DisplayIndex = 4;
-            dgv.Columns[COLUMN_PLAYER_CHICKEN_HAND_RANKING_COUNTRY_NAME].DisplayIndex = 5;
+            dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_ORDER].DisplayIndex = 0;
+            dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_NAME].DisplayIndex = 1;
+            dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_NUM_CHICKEN_HANDS].DisplayIndex = 2;
+            dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_POINTS].DisplayIndex = 3;
+            dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_SCORE].DisplayIndex = 4;
+            dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_COUNTRY_NAME].DisplayIndex = 5;
             //Sortable
-            dgv.Columns[COLUMN_PLAYER_CHICKEN_HAND_RANKING_ORDER].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dgv.Columns[COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_ID].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dgv.Columns[COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_NAME].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dgv.Columns[COLUMN_PLAYER_CHICKEN_HAND_RANKING_NUM_CHICKEN_HANDS].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dgv.Columns[COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_POINTS].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dgv.Columns[COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_SCORE].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dgv.Columns[COLUMN_PLAYER_CHICKEN_HAND_RANKING_COUNTRY_ID].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dgv.Columns[COLUMN_PLAYER_CHICKEN_HAND_RANKING_COUNTRY_NAME].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_ORDER].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_ID].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_NAME].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_NUM_CHICKEN_HANDS].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_POINTS].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_SCORE].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_COUNTRY_ID].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_COUNTRY_NAME].SortMode = DataGridViewColumnSortMode.NotSortable;
         }                            
 
         private void CalculateAndSetDefaultRowHeightToFillScreen()
