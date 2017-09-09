@@ -10,6 +10,6 @@
 
         void PlayerTeamChanged();
 
-        int SaveNewPlayerCountry(int playerId, string newCountryName);
+        void SaveNewPlayerCountry(int playerId, string newCountryName);
     }
 }

@@ -5,8 +5,7 @@ namespace MahjongTournamentSuiteDataLayer.Model
     public class DBCountry
     {
         #region Constants
-
-        public static readonly string COLUMN_COUNTRY_ID = "CountryId";
+        
         public static readonly string COLUMN_COUNTRY_NAME = "CountryName";
         public static readonly string COLUMN_COUNTRY_IMAGE_URL = "CountryImageUrl";
 
@@ -15,7 +14,6 @@ namespace MahjongTournamentSuiteDataLayer.Model
         #region Properties
 
         [Key]
-        public int CountryId { get; set; }
         public string CountryName { get; set; }
         public string CountryImageUrl { get; set; }
 
@@ -25,9 +23,8 @@ namespace MahjongTournamentSuiteDataLayer.Model
 
         public DBCountry() { }
 
-        public DBCountry(int countryId, string name, string countryImageUrl)
+        public DBCountry(string name, string countryImageUrl)
         {
-            CountryId = countryId;
             CountryName = name;
             CountryImageUrl = countryImageUrl;
         }

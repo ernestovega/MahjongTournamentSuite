@@ -11,7 +11,6 @@ namespace MahjongTournamentSuiteDataLayer.Model
         public static readonly string COLUMN_PLAYERS_ID = "PlayerId";
         public static readonly string COLUMN_PLAYERS_NAME = "PlayerName";
         public static readonly string COLUMN_PLAYERS_TEAM = "PlayerTeamId";
-        public static readonly string COLUMN_PLAYERS_COUNTRY = "PlayerCountryId";
         public static readonly string COLUMN_PLAYERS_TEAM_NAME = "PlayerTeamName";
         public static readonly string COLUMN_PLAYERS_COUNTRY_NAME = "PlayerCountryName";
 
@@ -25,7 +24,7 @@ namespace MahjongTournamentSuiteDataLayer.Model
         public int PlayerId { get; set; }
         public string PlayerName { get; set; }
         public int PlayerTeamId { get; set; }
-        public int PlayerCountryId { get; set; }
+        public string PlayerCountryName { get; set; }
 
         #endregion
 
@@ -33,13 +32,13 @@ namespace MahjongTournamentSuiteDataLayer.Model
 
         public DBPlayer() { }
 
-        public DBPlayer(int tournamentId, int id, string name, int teamId, int countryId)
+        public DBPlayer(int tournamentId, int id, string name, int teamId, string countryName)
         {
             PlayerTournamentId = tournamentId;
             PlayerId = id;
             PlayerName = name;
             PlayerTeamId = teamId;
-            PlayerCountryId = countryId;
+            PlayerCountryName = countryName;
         }
 
         #endregion

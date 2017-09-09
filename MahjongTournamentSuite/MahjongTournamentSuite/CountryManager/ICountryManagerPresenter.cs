@@ -4,6 +4,6 @@
     {
         void LoadForm();
 
-        void CountryImageURLChanged(int countryId, string newValue);
+        void CountryImageURLChanged(string countryName, string newValue);
     }
 }

@@ -5,16 +5,13 @@ namespace MahjongTournamentSuite.Model
     public class DGVPlayer : DBPlayer
     {
         public string PlayerTeamName { get; set; }
-        
-        public string PlayerCountryName { get; set; }
 
         public DGVPlayer() {}
 
-        public DGVPlayer(DBPlayer dbPlayer, string teamName, string countryName) : 
-            base(dbPlayer.PlayerTournamentId, dbPlayer.PlayerId, dbPlayer.PlayerName, dbPlayer.PlayerTeamId, dbPlayer.PlayerCountryId)
+        public DGVPlayer(DBPlayer dbPlayer, string teamName) : 
+            base(dbPlayer.PlayerTournamentId, dbPlayer.PlayerId, dbPlayer.PlayerName, dbPlayer.PlayerTeamId, dbPlayer.PlayerCountryName)
         {
             PlayerTeamName = teamName;
-            PlayerCountryName = countryName;
         }
     }
 }

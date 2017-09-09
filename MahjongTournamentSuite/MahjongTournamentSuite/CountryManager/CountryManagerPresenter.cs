@@ -32,9 +32,9 @@ namespace MahjongTournamentSuite.CountryManager
             _form.FillDGV(_countries);
         }
 
-        public void CountryImageURLChanged(int countryId, string newValue)
+        public void CountryImageURLChanged(string countryName, string newValue)
         {
-            _db.UpdateCountryImageURL(countryId, newValue);
+            _db.UpdateCountryImageURL(countryName, newValue);
         }
 
         #endregion

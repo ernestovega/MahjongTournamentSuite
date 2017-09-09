@@ -46,20 +46,15 @@ namespace MahjongTournamentSuite.CountryManager
             dgv.DataSource = sortableCountries;
             
             //ReadOnly
-            dgv.Columns[DBCountry.COLUMN_COUNTRY_ID].ReadOnly = true;
             dgv.Columns[DBCountry.COLUMN_COUNTRY_NAME].ReadOnly = true;
             //Readonly columns BackColor
-            dgv.Columns[DBCountry.COLUMN_COUNTRY_ID].DefaultCellStyle.BackColor = SystemColors.ControlLight;
             dgv.Columns[DBCountry.COLUMN_COUNTRY_NAME].DefaultCellStyle.BackColor = SystemColors.ControlLight;
             //Readonly columns ForeColor
-            dgv.Columns[DBCountry.COLUMN_COUNTRY_ID].DefaultCellStyle.ForeColor = SystemColors.GrayText;
             dgv.Columns[DBCountry.COLUMN_COUNTRY_NAME].DefaultCellStyle.ForeColor = SystemColors.GrayText;
             //HeaderText
-            dgv.Columns[DBCountry.COLUMN_COUNTRY_ID].HeaderText = "Country Id";
             dgv.Columns[DBCountry.COLUMN_COUNTRY_NAME].HeaderText = "Country Name";
-            dgv.Columns[DBCountry.COLUMN_COUNTRY_IMAGE_URL].HeaderText = "Country Image URL";
+            dgv.Columns[DBCountry.COLUMN_COUNTRY_IMAGE_URL].HeaderText = "Country Image URL for HTML Exporting";
             //AutoSizeMode
-            dgv.Columns[DBCountry.COLUMN_COUNTRY_ID].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dgv.Columns[DBCountry.COLUMN_COUNTRY_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
         }
 
@@ -95,8 +90,8 @@ namespace MahjongTournamentSuite.CountryManager
                 string newValue = ((string)e.FormattedValue).Trim();
                 if (newValue.Length > 0 && !newValue.Equals(previousValue))
                 {
-                    int countryId = (int)dgv.Rows[e.RowIndex].Cells[DBCountry.COLUMN_COUNTRY_ID].Value;
-                    _presenter.CountryImageURLChanged(countryId, newValue);
+                    string countryName = (string)dgv.Rows[e.RowIndex].Cells[DBCountry.COLUMN_COUNTRY_NAME].Value;
+                    _presenter.CountryImageURLChanged(countryName, newValue);
                 }
                 else
                     DGVCancelEdit();

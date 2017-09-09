@@ -42,7 +42,7 @@ namespace MahjongTournamentSuite.PlayersManager
             List<DGVPlayer> dgvPlayers = new List<DGVPlayer>(_players.Count);
             foreach (DBPlayer player in _players)
             {
-                dgvPlayers.Add(new DGVPlayer(player, getPlayerTeamName(player.PlayerTeamId), getPlayerCountryName(player.PlayerCountryId)));
+                dgvPlayers.Add(new DGVPlayer(player, getPlayerTeamName(player.PlayerTeamId)));
             }
 
             _form.FillDGV(dgvPlayers, _tournament.IsTeams);
@@ -84,15 +84,9 @@ namespace MahjongTournamentSuite.PlayersManager
                 _form.CleanWrongTeamsPlayers();
         }
 
-        public int SaveNewPlayerCountry(int playerId, string newCountryName)
+        public void SaveNewPlayerCountry(int playerId, string newCountryName)
         {
-            int countryId = GetCountryId(newCountryName);
-            if (countryId > 0)
-            {
-                _db.UpdatePlayerCountry(_tournament.TournamentId, playerId, countryId);
-                return countryId;
-            }
-            return 0;
+            _db.UpdatePlayerCountry(_tournament.TournamentId, playerId, newCountryName);
         }
 
         #endregion
@@ -105,11 +99,6 @@ namespace MahjongTournamentSuite.PlayersManager
                 return _teams.Find(x => x.TeamId == teamId).TeamName;
             else
                 return "";
-        }
-
-        private string getPlayerCountryName(int countryId)
-        {
-            return _db.GetCountryName(countryId);
         }
         
         private int GetOwnerPlayerNameId(string newName)
@@ -126,15 +115,6 @@ namespace MahjongTournamentSuite.PlayersManager
         {
             DBTeam team = _teams.Find(x => x.TeamName == newTeamName);
             return team == null ? 0 : team.TeamId;
-        }
-
-        public int GetCountryId(string countryName)
-        {
-            DBCountry country = _countries.Find(x => x.CountryName == countryName);
-            if (country == null)
-                return 0;
-            else
-                return country.CountryId;
         }
 
         private List<WrongTeam> GetWrongTeams()
