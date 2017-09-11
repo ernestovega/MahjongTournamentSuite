@@ -11,8 +11,8 @@
         public static readonly string COLUMN_PLAYER_RANKING_PLAYER_SCORE = "PlayerScore";
         public static readonly string COLUMN_PLAYER_RANKING_TEAM_ID = "PlayerTeamId";
         public static readonly string COLUMN_PLAYER_RANKING_TEAM_NAME = "PlayerTeamName";
-        public static readonly string COLUMN_PLAYER_RANKING_COUNTRY_ID = "PlayerCountryId";
         public static readonly string COLUMN_PLAYER_RANKING_COUNTRY_NAME = "PlayerCountryName";
+        public static readonly string COLUMN_PLAYER_RANKING_COUNTRY_IMAGE_URL = "PlayerCountryImageUrl";
 
         #endregion
 
@@ -25,7 +25,6 @@
         public int PlayerScore { get; set; }
         public int PlayerTeamId { get; set; }
         public string PlayerTeamName { get; set; }
-        public int PlayerCountryId { get; set; }
         public string PlayerCountryName { get; set; }
         public string PlayerCountryImageUrl { get; set; }
 
@@ -36,7 +35,7 @@
         public PlayerRanking() { }
 
         public PlayerRanking(int playerId, string playerName, int playerTeamId, 
-            string playerTeamName, int playerCountryId, string playerCountryName,
+            string playerTeamName, string playerCountryName,
             string playerCountryImageUrl)
         {
             Order = 0;
@@ -46,7 +45,6 @@
             PlayerScore = 0;
             PlayerTeamId = playerTeamId;
             PlayerTeamName = playerTeamName;
-            PlayerCountryId = playerCountryId;
             PlayerCountryName = playerCountryName;
             PlayerCountryImageUrl = playerCountryImageUrl;
         }

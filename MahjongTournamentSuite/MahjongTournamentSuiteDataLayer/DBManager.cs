@@ -153,11 +153,11 @@ namespace MahjongTournamentSuiteDataLayer.Data
             _db.SaveChanges();
         }
 
-        public void UpdatePlayerCountry(int tournamentId, int playerId, int countryId)
+        public void UpdatePlayerCountry(int tournamentId, int playerId, string countryName)
         {
             _db.Players.ToList()
                 .Find(x => x.PlayerTournamentId == tournamentId && x.PlayerId == playerId)
-                .PlayerCountryId = countryId;
+                .PlayerCountryName.Equals(countryName);
             _db.SaveChanges();
         }
 

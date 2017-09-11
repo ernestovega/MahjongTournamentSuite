@@ -390,7 +390,7 @@ namespace MahjongTournamentSuite.NewTournament
             List<DBPlayer> dbPlayers = new List<DBPlayer>();
             foreach (Player player in _players)
             {
-                dbPlayers.Add(new DBPlayer(_tournament.TournamentId, player.Id, string.Format("Player {0}", player.Id), int.Parse(player.Team), 0));
+                dbPlayers.Add(new DBPlayer(_tournament.TournamentId, player.Id, string.Format("Player {0}", player.Id), int.Parse(player.Team), string.Empty));
             }
             _db.AddPlayers(dbPlayers);
         }
@@ -400,7 +400,7 @@ namespace MahjongTournamentSuite.NewTournament
             List<DBPlayer> dbPlayers = new List<DBPlayer>();
             foreach (Player player in _players)
             {
-                dbPlayers.Add(new DBPlayer(_tournament.TournamentId, player.Id, string.Format("Player {0}", player.Id), int.Parse(player.Team), random.Next(1, 252)));
+                dbPlayers.Add(new DBPlayer(_tournament.TournamentId, player.Id, string.Format("Player {0}", player.Id), int.Parse(player.Team), "Spain"));
             }
             _db.AddPlayers(dbPlayers);
         }

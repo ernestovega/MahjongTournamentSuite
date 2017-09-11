@@ -156,10 +156,9 @@ namespace MahjongTournamentSuite.TournamentManager
                 string teamName = string.Empty;
                 if (_tournament.IsTeams)
                     teamName = _teams.Find(x => x.TeamId == player.PlayerTeamId).TeamName;
-                string countryName = _db.GetCountryName(player.PlayerCountryId);
-                string countryImageUrl = _db.GetCountryImageUrl(player.PlayerCountryId);
+                string countryImageUrl = _db.GetCountryImageUrl(player.PlayerCountryName);
                 PlayerRanking playerRanking = new PlayerRanking(player.PlayerId, player.PlayerName,
-                    player.PlayerTeamId, teamName, player.PlayerCountryId, countryName, countryImageUrl);
+                    player.PlayerTeamId, teamName, player.PlayerCountryName, countryImageUrl);
 
                 List<DBTable> playerTables = _tables.FindAll(x =>
                 player.PlayerId == x.Player1Id || player.PlayerId == x.Player2Id ||
@@ -221,7 +220,7 @@ namespace MahjongTournamentSuite.TournamentManager
             foreach (PlayerRanking playerRanking in _playersRankings)
             {
                 ChickenHandRanking playerChickenHandRanking = new ChickenHandRanking(playerRanking.PlayerId, playerRanking.PlayerName,
-                    playerRanking.PlayerPoints, playerRanking.PlayerScore, playerRanking.PlayerCountryId, playerRanking.PlayerCountryName);
+                    playerRanking.PlayerPoints, playerRanking.PlayerScore, playerRanking.PlayerCountryName);
 
                 int numChickenHands = _hands.Count(x => x.IsChickenHand && int.Parse(x.PlayerWinnerId) == playerRanking.PlayerId);
                 if (numChickenHands > 0)

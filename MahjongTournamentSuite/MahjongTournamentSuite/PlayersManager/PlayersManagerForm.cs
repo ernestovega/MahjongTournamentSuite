@@ -82,10 +82,9 @@ namespace MahjongTournamentSuite.ManagePlayers
                         if (countrySelectorForm.ShowDialog() == DialogResult.OK)
                         {
                             int playerId = (int)dgv.Rows[e.RowIndex].Cells[DBPlayer.COLUMN_PLAYERS_ID].Value;
-                            int countryId = _presenter.SaveNewPlayerCountry(playerId, countrySelectorForm.ReturnValue);
-                            if (countryId > 0)
+                            if (countrySelectorForm.ReturnValue != null && !countrySelectorForm.ReturnValue.Equals(string.Empty))
                             {
-                                dgv.Rows[e.RowIndex].Cells[DBPlayer.COLUMN_PLAYERS_COUNTRY].Value = countryId;
+                                _presenter.SaveNewPlayerCountry(playerId, countrySelectorForm.ReturnValue);
                                 dgv.Rows[e.RowIndex].Cells[DBPlayer.COLUMN_PLAYERS_COUNTRY_NAME].Value = countrySelectorForm.ReturnValue;
                             }
                         }
@@ -143,7 +142,6 @@ namespace MahjongTournamentSuite.ManagePlayers
             //Visible
             dgv.Columns[DBPlayer.COLUMN_PLAYERS_TOURNAMENT_ID].Visible = false;
             dgv.Columns[DBPlayer.COLUMN_PLAYERS_TEAM].Visible = false;
-            dgv.Columns[DBPlayer.COLUMN_PLAYERS_COUNTRY].Visible = false;
             //ReadOnly
             dgv.Columns[DBPlayer.COLUMN_PLAYERS_ID].ReadOnly = true;
             dgv.Columns[DBPlayer.COLUMN_PLAYERS_TEAM_NAME].ReadOnly = true;
