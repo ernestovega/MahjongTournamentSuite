@@ -31,62 +31,24 @@ namespace MahjongTournamentSuite.HTMLViewer
             _presenter.LoadForm(_htmlRankings);
         }
 
-        private void btnCopyPlayers_Click(object sender, EventArgs e)
+        private void btnCopyHtml_Click(object sender, EventArgs e)
         {
-            _presenter.CopyPlayersClicked();
-        }
-
-        private void btnCopyTeams_Click(object sender, EventArgs e)
-        {
-            _presenter.CopyTeamsClicked();
-        }
-
-        private void btnCopyChickenHands_Click(object sender, EventArgs e)
-        {
-            _presenter.CopyChickenHandsClicked();
+            _presenter.CopyHtmlClicked();
         }
 
         #endregion
 
         #region IHTMLViewerForm implementation
 
-        public void SetPlayersRankingHTMLText(string playersRanking)
+        public void SetRankingHTMLText(string htmlRanking)
         {
-            tbPlayers.Text = playersRanking;
+            tbHtml.Text = htmlRanking;
         }
 
-        public void SetTeamsRankingHTMLText(string teamsRanking)
+        public void SelectHTMLText()
         {
-            tbTeams.Text = teamsRanking;
-        }
-
-        public void SetChickenHandsRankingHTMLText(string playersChickenHandsRanking)
-        {
-            tbChickenHands.Text = playersChickenHandsRanking;
-        }
-
-        public void SelectPlayersHTMLText()
-        {
-            tbPlayers.SelectAll();
-            tbPlayers.Focus();
-        }
-
-        public void SelectTeamsHTMLText()
-        {
-            tbTeams.SelectAll();
-            tbTeams.Focus();
-        }
-
-        public void SelectChickenHandsHTMLText()
-        {
-            tbChickenHands.SelectAll();
-            tbChickenHands.Focus();
-        }
-
-        public void DisableTeamsControls()
-        {
-            tbTeams.Enabled = false;
-            btnCopyTeams.Enabled = false;
+            tbHtml.SelectAll();
+            tbHtml.Focus();
         }
 
         #endregion

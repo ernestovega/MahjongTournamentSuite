@@ -14,24 +14,52 @@ namespace MahjongTournamentSuite.Resources
         public static readonly Color RED_CANCEL = Color.FromArgb(224, 0, 0);
 
         #endregion
-        
-        #region HTML TAGS
 
-        public static readonly string HTML_OPEN_TABLE = "<table dir=\"ltr\" style=\"text-align: center;\" border=\"1\" cellspacing=\"0\" cellpadding=\"0\">";
+        #region HTML TAGS
+        public static readonly string HTML_PLAYERS_TABLE_TITLE = "</br></br><span class=\"titulo-enlaces cf size-large\" width=\"1024\"><h2 style=\"width: 1024px\"><i class=\"fa fa-user verde-chino size-large\" style=\"margin-right:10px; \" width=\"1024\"></i>Players</h2></span></br></br>";
+        public static readonly string HTML_TEAMS_TABLE_TITLE = "</br></br><span class=\"titulo-enlaces cf size-large\" width=\"700\"> <h2 style=\"width: 700px\"> <i class=\"fa fa-users verde-chino size-large\" style=\"margin right:10px; \" width=\"700\"> </i>Teams</h2></span></br></br>";
+        public static readonly string HTML_CHICKEN_HANDS_TABLE_TITLE = "</br></br><span class=\"titulo-enlaces cf size-large\" width=\"850\"> <h2 style=\"width: 850px\"> <i class=\"fa fa-magic verde-chino size-large\" style=\"margin-right:10px; \" width=\"850\"> </i>Chicken Hands</h2></span></br></br>";
+
+        public static readonly string HTML_OPEN_TABLE_PLAYERS = "<table dir=\"ltr\" class=\"alignnone size-large\" style=\"text-align: center;\" width=\"1024\" border=\"1\" cellspacing=\"0\" cellpadding=\"0\">";
+        public static readonly string HTML_OPEN_TABLE_TEAMS = "<table dir=\"ltr\" class=\"alignnone size-large\" style=\"text-align: center;\" width=\"700\" border=\"1\" cellspacing=\"0\" cellpadding=\"0\">";
+        public static readonly string HTML_OPEN_TABLE_CHICKEN_HANDS = "<table dir=\"ltr\" class=\"alignnone size-large\" style=\"text-align: center;\" width=\"850\" border=\"1\" cellspacing=\"0\" cellpadding=\"0\">";
         public static readonly string HTML_OPEN_TBODY = "<tbody>";
         public static readonly string HTML_OPEN_COLGROUP = "<colgroup>";
-        public static readonly string HTML_OPEN_TR = "<tr>";
-        public static readonly string HTML_OPEN_TD = "<td style=\"text-align: center; height: 32px;\">";
-        public static readonly string HTML_OPEN_STRONG = "<strong>";
+        public static readonly string HTML_PLAYERS_HEADERS_TR = "<tr>"
+			+ "<th style=\"text-align: center; min-height: 42px; font-weight: bold;\">#</td>"
+			+ "<th style=\"text-align: center; min-height: 42px; font-weight: bold;\">Name</td>"
+			+ "<th style=\"text-align: center; min-height: 42px; font-weight: bold;\">Points</td>"
+			+ "<th style=\"text-align: center; min-height: 42px; font-weight: bold;\">Score</td>"
+			+ "<th style=\"text-align: center; min-height: 42px; font-weight: bold;\">Team</td>"
+			+ "<th style=\"text-align: center; min-height: 42px; font-weight: bold;\">Country</td>"
+		    + "</tr>";
+        public static readonly string HTML_TEAMS_HEADERS_TR = "<tr>"
+            + "<th style=\"text-align: center; min-height: 42px; font-weight: bold;\">#</td>"
+            + "<th style=\"text-align: center; min-height: 42px; font-weight: bold;\">Name</td>"
+            + "<th style=\"text-align: center; min-height: 42px; font-weight: bold;\">Points</td>"
+            + "<th style=\"text-align: center; min-height: 42px; font-weight: bold;\">Score</td>"
+            + "</tr>";
+        public static readonly string HTML_CHICKEN_HANDS_HEADERS_TR = "<tr>"
+            + "<th style=\"text-align: center; min-height: 42px; font-weight: bold;\">#</td>"
+            + "<th style=\"text-align: center; min-height: 42px; font-weight: bold;\">Name</td>"
+            + "<th style=\"text-align: center; min-height: 42px; font-weight: bold;\">Chicken hands</td>"
+            + "<th style=\"text-align: center; min-height: 42px; font-weight: bold;\">Points</td>"
+            + "<th style=\"text-align: center; min-height: 42px; font-weight: bold;\">Score</td>"
+            + "<th style=\"text-align: center; min-height: 42px; font-weight: bold;\">Country</td>"
+            + "</tr>";
+        public static readonly string HTML_OPEN_TR_HEADER_BOTTOM_SEPARATOR = "<tr style=\"height: 16px;\"/>";
+        public static readonly string HTML_OPEN_TR = "<tr style=\"min-height: 42px;\">";
+        public static readonly string HTML_OPEN_TR_TEAMS = "<tr style=\"height: 42px;\">";
+        public static readonly string HTML_OPEN_TD = "<td style=\"text-align: center; min-height: 42px;\">";
+        public static readonly string HTML_OPEN_TD_BOLD = "<td style=\"text-align: center; min-height: 42px; font-weight: bold;\">";
         public static readonly string HTML_COL_ORDER = "<col width=\"60\"/>";
-        public static readonly string HTML_COL_NAME = "<col width=\"350\"/>";
-        public static readonly string HTML_COL_POINTS = "<col width=\"60\"/>";
-        public static readonly string HTML_COL_SCORE = "<col width=\"60\"/>";
-        public static readonly string HTML_COL_TEAM = "<col width=\"320\"/>";
-        public static readonly string HTML_COL_COUNTRY = "<col width=\"60\"/>";
+        public static readonly string HTML_COL_NAME = "<col width=\"374\"/>";
+        public static readonly string HTML_COL_POINTS = "<col width=\"80\"/>";
+        public static readonly string HTML_COL_SCORE = "<col width=\"80\"/>";
+        public static readonly string HTML_COL_TEAM = "<col width=\"350\"/>";
+        public static readonly string HTML_COL_COUNTRY = "<col width=\"80\"/>";
         public static readonly string HTML_CLOSE_COLGROUP = "</colgroup>";
         public static readonly string HTML_CLOSE_TR = "</tr>";
-        public static readonly string HTML_CLOSE_STRONG = "</strong>";
         public static readonly string HTML_CLOSE_TD = "</td>";
         public static readonly string HTML_CLOSE_TBODY = "</tbody>";
         public static readonly string HTML_CLOSE_TABLE = "</table>";

@@ -2,18 +2,8 @@
 {
     interface IHTMLViewerForm
     {
-        void SetPlayersRankingHTMLText(string playersRanking);
+        void SetRankingHTMLText(string playersRanking);
 
-        void SetTeamsRankingHTMLText(string teamsRanking);
-
-        void SetChickenHandsRankingHTMLText(string playersChickenHandsRanking);
-
-        void SelectPlayersHTMLText();
-
-        void SelectTeamsHTMLText();
-
-        void SelectChickenHandsHTMLText();
-
-        void DisableTeamsControls();
+        void SelectHTMLText();
     }
 }

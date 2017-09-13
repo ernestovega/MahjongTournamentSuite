@@ -11,10 +11,6 @@ namespace MahjongTournamentSuite.HTMLViewer
     {
         void LoadForm(HTMLRankings htmlRankings);
 
-        void CopyPlayersClicked();
-
-        void CopyTeamsClicked();
-
-        void CopyChickenHandsClicked();
+        void CopyHtmlClicked();
     }
 }
