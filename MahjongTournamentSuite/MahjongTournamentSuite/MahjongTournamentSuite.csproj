@@ -66,6 +66,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Resources\flags\CountryFlags.cs" />
     <Compile Include="TeamsManager\ITeamsManagerForm.cs" />
     <Compile Include="TeamsManager\ITeamsManagerPresenter.cs" />
     <Compile Include="TeamsManager\TeamsManagerForm.cs">
@@ -487,6 +488,7 @@
     <Content Include="Resources\flags\Ukraine.png" />
     <Content Include="Resources\flags\United Arab Emirates.png" />
     <Content Include="Resources\flags\United Kingdom.png" />
+    <Content Include="Resources\flags\United States.png" />
     <Content Include="Resources\flags\Uruguay.png" />
     <Content Include="Resources\flags\Uzbekistan.png" />
     <Content Include="Resources\flags\Vanuatu.png" />

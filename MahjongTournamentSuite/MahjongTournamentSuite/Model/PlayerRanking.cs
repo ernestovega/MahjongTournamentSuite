@@ -1,4 +1,6 @@
-﻿namespace MahjongTournamentSuite.Model
+﻿using System.Drawing;
+
+namespace MahjongTournamentSuite.Model
 {
     public class PlayerRanking
     {
@@ -13,6 +15,7 @@
         public static readonly string COLUMN_PLAYER_RANKING_TEAM_NAME = "PlayerTeamName";
         public static readonly string COLUMN_PLAYER_RANKING_COUNTRY_NAME = "PlayerCountryName";
         public static readonly string COLUMN_PLAYER_RANKING_COUNTRY_IMAGE_URL = "PlayerCountryImageUrl";
+        public static readonly string COLUMN_PLAYER_RANKING_COUNTRY_FLAG_IMAGE = "PlayerCountryFlagImage";
 
         #endregion
 
@@ -27,6 +30,7 @@
         public string PlayerTeamName { get; set; }
         public string PlayerCountryName { get; set; }
         public string PlayerCountryImageUrl { get; set; }
+        public Image PlayerCountryFlagImage { get; set; }
 
         #endregion
 
@@ -36,7 +40,7 @@
 
         public PlayerRanking(int playerId, string playerName, int playerTeamId, 
             string playerTeamName, string playerCountryName,
-            string playerCountryImageUrl)
+            string playerCountryImageUrl, Image playerCountryFlagImage)
         {
             Order = 0;
             PlayerId = playerId;
@@ -47,6 +51,7 @@
             PlayerTeamName = playerTeamName;
             PlayerCountryName = playerCountryName;
             PlayerCountryImageUrl = playerCountryImageUrl;
+            PlayerCountryFlagImage = playerCountryFlagImage;
         }
 
         #endregion

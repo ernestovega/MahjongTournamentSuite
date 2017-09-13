@@ -5,6 +5,7 @@ using MahjongTournamentSuiteDataLayer.Model;
 using MahjongTournamentSuiteDataLayer.Data;
 using System.Linq;
 using MahjongTournamentSuite.Resources;
+using MahjongTournamentSuite.Resources.flags;
 
 namespace MahjongTournamentSuite.TournamentManager
 {
@@ -158,7 +159,8 @@ namespace MahjongTournamentSuite.TournamentManager
                     teamName = _teams.Find(x => x.TeamId == player.PlayerTeamId).TeamName;
                 string countryImageUrl = _db.GetCountryImageUrl(player.PlayerCountryName);
                 PlayerRanking playerRanking = new PlayerRanking(player.PlayerId, player.PlayerName,
-                    player.PlayerTeamId, teamName, player.PlayerCountryName, countryImageUrl);
+                    player.PlayerTeamId, teamName, player.PlayerCountryName, countryImageUrl, 
+                    CountryFlags.GetFlagImage(player.PlayerCountryName));
 
                 List<DBTable> playerTables = _tables.FindAll(x =>
                 player.PlayerId == x.Player1Id || player.PlayerId == x.Player2Id ||
@@ -219,8 +221,10 @@ namespace MahjongTournamentSuite.TournamentManager
             _chickenHandsRankings = new List<ChickenHandRanking>();
             foreach (PlayerRanking playerRanking in _playersRankings)
             {
-                ChickenHandRanking playerChickenHandRanking = new ChickenHandRanking(playerRanking.PlayerId, playerRanking.PlayerName,
-                    playerRanking.PlayerPoints, playerRanking.PlayerScore, playerRanking.PlayerCountryName);
+                ChickenHandRanking playerChickenHandRanking = new ChickenHandRanking(playerRanking.PlayerId, 
+                    playerRanking.PlayerName, playerRanking.PlayerPoints, playerRanking.PlayerScore, 
+                    playerRanking.PlayerCountryName, playerRanking.PlayerCountryImageUrl, 
+                    playerRanking.PlayerCountryFlagImage);
 
                 int numChickenHands = _hands.Count(x => x.IsChickenHand && int.Parse(x.PlayerWinnerId) == playerRanking.PlayerId);
                 if (numChickenHands > 0)
