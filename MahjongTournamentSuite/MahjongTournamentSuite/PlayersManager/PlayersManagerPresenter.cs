@@ -3,6 +3,8 @@ using MahjongTournamentSuiteDataLayer.Model;
 using System.Collections.Generic;
 using System;
 using MahjongTournamentSuite.Model;
+using MahjongTournamentSuite.Resources.flags;
+using System.Drawing;
 
 namespace MahjongTournamentSuite.PlayersManager
 {
@@ -42,7 +44,8 @@ namespace MahjongTournamentSuite.PlayersManager
             List<DGVPlayer> dgvPlayers = new List<DGVPlayer>(_players.Count);
             foreach (DBPlayer player in _players)
             {
-                dgvPlayers.Add(new DGVPlayer(player, getPlayerTeamName(player.PlayerTeamId)));
+                dgvPlayers.Add(new DGVPlayer(player, getPlayerTeamName(player.PlayerTeamId), 
+                    CountryFlags.GetFlagImage(player.PlayerCountryName)));
             }
 
             _form.FillDGV(dgvPlayers, _tournament.IsTeams);

@@ -14,8 +14,8 @@ namespace MahjongTournamentSuite.Model
         public static readonly string COLUMN_PLAYER_RANKING_TEAM_ID = "PlayerTeamId";
         public static readonly string COLUMN_PLAYER_RANKING_TEAM_NAME = "PlayerTeamName";
         public static readonly string COLUMN_PLAYER_RANKING_COUNTRY_NAME = "PlayerCountryName";
-        public static readonly string COLUMN_PLAYER_RANKING_COUNTRY_IMAGE_URL = "PlayerCountryImageUrl";
-        public static readonly string COLUMN_PLAYER_RANKING_COUNTRY_FLAG_IMAGE = "PlayerCountryFlagImage";
+        public static readonly string COLUMN_PLAYER_RANKING_COUNTRY_HTML_FLAG_URL = "PlayerCountryHtmlFlagUrl";
+        public static readonly string COLUMN_PLAYER_RANKING_COUNTRY_FLAG = "PlayerCountryFlag";
 
         #endregion
 
@@ -29,8 +29,8 @@ namespace MahjongTournamentSuite.Model
         public int PlayerTeamId { get; set; }
         public string PlayerTeamName { get; set; }
         public string PlayerCountryName { get; set; }
-        public string PlayerCountryImageUrl { get; set; }
-        public Image PlayerCountryFlagImage { get; set; }
+        public string PlayerCountryHtmlFlagUrl { get; set; }
+        public Image PlayerCountryFlag { get; set; }
 
         #endregion
 
@@ -40,7 +40,7 @@ namespace MahjongTournamentSuite.Model
 
         public PlayerRanking(int playerId, string playerName, int playerTeamId, 
             string playerTeamName, string playerCountryName,
-            string playerCountryImageUrl, Image playerCountryFlagImage)
+            string playerCountryHtmlFlagUrl, Image playerCountryFlagImage)
         {
             Order = 0;
             PlayerId = playerId;
@@ -50,8 +50,8 @@ namespace MahjongTournamentSuite.Model
             PlayerTeamId = playerTeamId;
             PlayerTeamName = playerTeamName;
             PlayerCountryName = playerCountryName;
-            PlayerCountryImageUrl = playerCountryImageUrl;
-            PlayerCountryFlagImage = playerCountryFlagImage;
+            PlayerCountryHtmlFlagUrl = playerCountryHtmlFlagUrl;
+            PlayerCountryFlag = playerCountryFlagImage;
         }
 
         #endregion

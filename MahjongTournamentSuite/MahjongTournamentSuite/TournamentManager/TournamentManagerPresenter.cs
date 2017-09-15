@@ -223,8 +223,8 @@ namespace MahjongTournamentSuite.TournamentManager
             {
                 ChickenHandRanking playerChickenHandRanking = new ChickenHandRanking(playerRanking.PlayerId, 
                     playerRanking.PlayerName, playerRanking.PlayerPoints, playerRanking.PlayerScore, 
-                    playerRanking.PlayerCountryName, playerRanking.PlayerCountryImageUrl, 
-                    playerRanking.PlayerCountryFlagImage);
+                    playerRanking.PlayerCountryName, playerRanking.PlayerCountryHtmlFlagUrl, 
+                    playerRanking.PlayerCountryFlag);
 
                 int numChickenHands = _hands.Count(x => x.IsChickenHand && int.Parse(x.PlayerWinnerId) == playerRanking.PlayerId);
                 if (numChickenHands > 0)
@@ -395,7 +395,7 @@ namespace MahjongTournamentSuite.TournamentManager
                     MyConstants.HTML_OPEN_TD, playerRanking.PlayerTeamName, MyConstants.HTML_CLOSE_TD);
 
                 htmlPlayersRanking = string.Format("{0}\n{1}<img class=\"alignnone size-full wp-image-665 aligncenter\" src=\"{2}\" alt=\"{3}\" width=\"32\" height=\"32\"/>{4}", htmlPlayersRanking,
-                    MyConstants.HTML_OPEN_TD, playerRanking.PlayerCountryImageUrl, playerRanking.PlayerCountryName, MyConstants.HTML_CLOSE_TD);
+                    MyConstants.HTML_OPEN_TD, playerRanking.PlayerCountryHtmlFlagUrl, playerRanking.PlayerCountryName, MyConstants.HTML_CLOSE_TD);
 
                 htmlPlayersRanking = string.Format("{0}\n{1}", htmlPlayersRanking, MyConstants.HTML_CLOSE_TR);
             }
@@ -470,7 +470,7 @@ namespace MahjongTournamentSuite.TournamentManager
                     MyConstants.HTML_OPEN_TD, chickenHandRanking.PlayerScore, MyConstants.HTML_CLOSE_TD);
 
                 htmlChickenHandsRanking = string.Format("{0}\n{1}<img class=\"alignnone size-full wp-image-665 aligncenter\" src=\"{2}\" alt=\"{3}\" width=\"32\" height=\"32\"/>{4}", htmlChickenHandsRanking,
-                    MyConstants.HTML_OPEN_TD, chickenHandRanking.PlayerCountryImageUrl, chickenHandRanking.PlayerCountryName, MyConstants.HTML_CLOSE_TD);
+                    MyConstants.HTML_OPEN_TD, chickenHandRanking.PlayerCountryHtmlFlagUrl, chickenHandRanking.PlayerCountryName, MyConstants.HTML_CLOSE_TD);
 
                 htmlChickenHandsRanking = string.Format("{0}\n{1}", htmlChickenHandsRanking, MyConstants.HTML_CLOSE_TR);
             }

@@ -11,7 +11,6 @@ namespace MahjongTournamentSuiteDataLayer.Model
         public static readonly string COLUMN_PLAYERS_ID = "PlayerId";
         public static readonly string COLUMN_PLAYERS_NAME = "PlayerName";
         public static readonly string COLUMN_PLAYERS_TEAM = "PlayerTeamId";
-        public static readonly string COLUMN_PLAYERS_TEAM_NAME = "PlayerTeamName";
         public static readonly string COLUMN_PLAYERS_COUNTRY_NAME = "PlayerCountryName";
 
         #endregion
