@@ -36,7 +36,6 @@
             // tbHtml
             // 
             this.tbHtml.BackColor = System.Drawing.Color.White;
-            this.tbHtml.Enabled = false;
             this.tbHtml.Location = new System.Drawing.Point(12, 14);
             this.tbHtml.Margin = new System.Windows.Forms.Padding(5);
             this.tbHtml.MaxLength = 500000;

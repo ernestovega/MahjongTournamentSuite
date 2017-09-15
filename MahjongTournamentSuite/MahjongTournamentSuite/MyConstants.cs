@@ -16,9 +16,9 @@ namespace MahjongTournamentSuite.Resources
         #endregion
 
         #region HTML TAGS
-        public static readonly string HTML_PLAYERS_TABLE_TITLE = "</br></br><span class=\"titulo-enlaces cf size-large\" width=\"1024\"><h2 style=\"width: 1024px\"><i class=\"fa fa-user verde-chino size-large\" style=\"margin-right:10px; \" width=\"1024\"></i>Players</h2></span></br></br>";
-        public static readonly string HTML_TEAMS_TABLE_TITLE = "</br></br><span class=\"titulo-enlaces cf size-large\" width=\"700\"> <h2 style=\"width: 700px\"> <i class=\"fa fa-users verde-chino size-large\" style=\"margin right:10px; \" width=\"700\"> </i>Teams</h2></span></br></br>";
-        public static readonly string HTML_CHICKEN_HANDS_TABLE_TITLE = "</br></br><span class=\"titulo-enlaces cf size-large\" width=\"850\"> <h2 style=\"width: 850px\"> <i class=\"fa fa-magic verde-chino size-large\" style=\"margin-right:10px; \" width=\"850\"> </i>Chicken Hands</h2></span></br></br>";
+        public static readonly string HTML_PLAYERS_TABLE_TITLE = "</br></br><span class=\"titulo-enlaces cf size-large\" width=\"1024\"><h2 style=\"width: 1024px\">      <img src=\"http://www.mahjongmadrid.com/wp-content/uploads/2017/09/players_32_2.png\" style=\"margin-right:10px;\"/>Players</h2></span></br></br>";
+        public static readonly string HTML_TEAMS_TABLE_TITLE = "</br></br><span class=\"titulo-enlaces cf size-large\" width=\"700\"> <h2 style=\"width: 700px\">         <img src=\"http://www.mahjongmadrid.com/wp-content/uploads/2017/09/teams_32_2.png\" style=\"margin-right:10px;\"/>Teams</h2></span></br></br>";
+        public static readonly string HTML_CHICKEN_HANDS_TABLE_TITLE = "</br></br><span class=\"titulo-enlaces cf size-large\" width=\"850\"> <h2 style=\"width: 850px\"> <img src=\"http://www.mahjongmadrid.com/wp-content/uploads/2017/09/chicken_32_2.png\" style=\"margin-right:10px;\"/>Chicken Hands</h2></span></br></br>";
 
         public static readonly string HTML_OPEN_TABLE_PLAYERS = "<table dir=\"ltr\" class=\"alignnone size-large\" style=\"text-align: center;\" width=\"1024\" border=\"1\" cellspacing=\"0\" cellpadding=\"0\">";
         public static readonly string HTML_OPEN_TABLE_TEAMS = "<table dir=\"ltr\" class=\"alignnone size-large\" style=\"text-align: center;\" width=\"700\" border=\"1\" cellspacing=\"0\" cellpadding=\"0\">";
