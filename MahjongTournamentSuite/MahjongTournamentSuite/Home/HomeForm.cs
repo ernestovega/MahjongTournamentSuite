@@ -175,6 +175,17 @@ namespace MahjongTournamentSuite.Home
                 dgv.BeginEdit(true);
         }
 
+        private void dgv_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Return && dgv.SelectedCells[0].RowIndex >= 0)
+            {
+                if (dgv.SelectedCells[0].OwningColumn.Name.Equals(DBTournament.COLUMN_NAME))
+                    dgv.BeginEdit(true);
+                else
+                    btnResume_Click(null, null);
+            }
+        }
+
         private void dgv_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if(e.RowIndex >= 0)
