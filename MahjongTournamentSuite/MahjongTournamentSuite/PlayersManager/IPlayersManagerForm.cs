@@ -13,8 +13,13 @@ namespace MahjongTournamentSuite.PlayersManager
         void ShowMessagePlayerNameInUse(string newName, int ownerPlayerId);
 
         void ShowMessageTeamError();
+
         void MarkWrongTeamsPlayers(List<WrongTeam> wrongTeams);
+
         void ShowWrongNumberOfPlayersPerTeamMessage(List<WrongTeam> wrongTeams);
+
         void CleanWrongTeamsPlayers();
+
+        void PlayKoSound();
     }
 }

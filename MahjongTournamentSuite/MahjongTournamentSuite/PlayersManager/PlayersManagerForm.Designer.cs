@@ -96,6 +96,7 @@
             this.Name = "PlayersManagerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mahjong Tournament Suite - Players Manager";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PlayersManagerForm_FormClosing);
             this.Load += new System.EventHandler(this.PlayersManagerForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.ResumeLayout(false);

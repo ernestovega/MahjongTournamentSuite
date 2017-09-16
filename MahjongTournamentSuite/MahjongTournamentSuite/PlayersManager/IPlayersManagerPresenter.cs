@@ -8,8 +8,9 @@
 
         int SaveNewPlayerTeam(int playerId, string newTeamName);
 
-        void PlayerTeamChanged();
+        void CheckWrongPlayersTeams();
 
         void SaveNewPlayerCountry(int playerId, string newCountryName);
+        bool IsWrongPlayersTeams();
     }
 }

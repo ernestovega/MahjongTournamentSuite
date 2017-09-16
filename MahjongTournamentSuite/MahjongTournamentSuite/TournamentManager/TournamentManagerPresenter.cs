@@ -44,12 +44,18 @@ namespace MahjongTournamentSuite.TournamentManager
         {
             _tournament = _db.GetTournament(tournamentId);
             _tables = _db.GetTournamentTables(tournamentId);
-            if(_tournament.IsTeams)
+            if (_tournament.IsTeams)
+            {
+                _players = _db.GetTournamentPlayers(_tournament.TournamentId);
+                _teams = _db.GetTournamentTeams(_tournament.TournamentId);
                 _form.ShowButtonTeams();
-            _form.AddRoundsButtons(_tournament.NumRounds);
-            roundSelected = 1;
-            _form.AddTablesButtons(roundSelected, _tournament.NumPlayers / 4);
-            _form.SelectRoundButton(roundSelected);
+                if (IsWrongPlayersTeams())
+                {
+                    ButtonPlayersClicked();
+                    return;
+                }
+            }
+            GenerateRoundsAndTablesButtons();
         }
 
         public void OnFormResized()
@@ -83,7 +89,31 @@ namespace MahjongTournamentSuite.TournamentManager
                 GenerateTeamsHTMLRanking(), GenerateChickenHandsHTMLRanking(), _tournament.IsTeams);
             _form.GoToHTMLViewer(htmlRankings);
         }
-        
+
+        public void ButtonTeamsClicked()
+        {
+            _form.GoToTeamsManager();
+        }
+
+        public void TeamsManagerFormClosed()
+        {
+            _teams = _db.GetTournamentTeams(_tournament.TournamentId);
+        }
+
+        public void ButtonPlayersClicked()
+        {
+            _form.GoToPlayersManager();
+        }
+
+        public void PlayersManagerFormClosed(bool isWrongTeams)
+        {
+            if(!isWrongTeams)
+                ButtonPlayersClicked();
+            else
+                GenerateRoundsAndTablesButtons();
+
+        }
+
         public void ButtonRoundClicked(int roundId)
         {
             UnselectTable(tableSelected);
@@ -109,11 +139,41 @@ namespace MahjongTournamentSuite.TournamentManager
                 _chickenHandsRankings, _tournament.IsTeams);
             _form.GoToRankings(rankings);
         }
-        
+
         #endregion
 
         #region Private
-        
+
+        private bool IsWrongPlayersTeams()
+        {
+            List<WrongTeam> wrongTeams = GetWrongTeams();
+            return wrongTeams.Count > 0;
+        }
+
+        private List<WrongTeam> GetWrongTeams()
+        {
+            List<WrongTeam> wrongTeams = new List<WrongTeam>();
+            foreach (DBTeam team in _teams)
+            {
+                List<DBPlayer> teamPlayers = _players.FindAll(
+                    x => x.PlayerTournamentId == _tournament.TournamentId
+                    && x.PlayerTeamId == team.TeamId);
+                if (teamPlayers.Count == 0)
+                    wrongTeams.Add(new WrongTeam(team.TeamId, team.TeamName, 0));
+                else if (teamPlayers.Count != 4)
+                    wrongTeams.Add(new WrongTeam(team.TeamId, team.TeamName, teamPlayers.Count));
+            }
+            return wrongTeams;
+        }
+
+        private void GenerateRoundsAndTablesButtons()
+        {
+            _form.AddRoundsButtons(_tournament.NumRounds);
+            roundSelected = 1;
+            _form.AddTablesButtons(roundSelected, _tournament.NumPlayers / 4);
+            _form.SelectRoundButton(roundSelected);
+        }
+
         private void UnselectRound(int roundId)
         {
             if (roundId > 0)

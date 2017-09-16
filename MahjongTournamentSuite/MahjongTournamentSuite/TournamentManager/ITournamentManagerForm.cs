@@ -1,4 +1,5 @@
-﻿using MahjongTournamentSuite.Model;
+﻿using System.Collections.Generic;
+using MahjongTournamentSuite.Model;
 
 namespace MahjongTournamentSuite.TournamentManager
 {
@@ -13,6 +14,10 @@ namespace MahjongTournamentSuite.TournamentManager
         void RemoveRoundsButtons();
 
         void RemoveTablesButtons();
+
+        void GoToTeamsManager();
+
+        void GoToPlayersManager();
 
         void GoToTableManager(int roundId, int tableId);
 
@@ -31,5 +36,7 @@ namespace MahjongTournamentSuite.TournamentManager
         void ShowButtonTeams();
 
         void HideButtonTeams();
+
+        void PlayKoSound();
     }
 }

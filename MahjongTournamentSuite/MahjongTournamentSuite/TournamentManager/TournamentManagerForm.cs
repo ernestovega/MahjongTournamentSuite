@@ -11,6 +11,7 @@ using MahjongTournamentSuite.Ranking;
 using MahjongTournamentSuite.HTMLViewer;
 using MahjongTournamentSuite.ManagePlayers;
 using MahjongTournamentSuite.TeamsManager;
+using System.Media;
 
 namespace MahjongTournamentSuite.TournamentManager
 {
@@ -32,6 +33,7 @@ namespace MahjongTournamentSuite.TournamentManager
 
         private ITournamentManagerPresenter _presenter;
         private int _tournamentId;
+        private PlayersManagerForm _playersManagerForm;
 
         #endregion
 
@@ -106,14 +108,14 @@ namespace MahjongTournamentSuite.TournamentManager
         private void btnTeams_Click(object sender, EventArgs e)
         {
             ShowWaitCursor();
-            new TeamsManagerForm(_tournamentId).ShowDialog();
+            _presenter.ButtonTeamsClicked();
             ShowDefaultCursor();
         }
 
         private void btnPlayers_Click(object sender, EventArgs e)
         {
             ShowWaitCursor();
-            new PlayersManagerForm(_tournamentId).ShowDialog();
+            _presenter.ButtonPlayersClicked();
             ShowDefaultCursor();
         }
 
@@ -257,6 +259,24 @@ namespace MahjongTournamentSuite.TournamentManager
                 splitContainer1.Panel2.Controls.Remove(control);
         }
 
+        public void GoToTeamsManager()
+        {
+            TeamsManagerForm form = new TeamsManagerForm(_tournamentId);
+            form.FormClosed += new FormClosedEventHandler(TeamsManagerForm_FormClosed);
+            form.ShowDialog();
+        }
+
+        public void GoToPlayersManager()
+        {
+            using (var playersManagerForm = new PlayersManagerForm(_tournamentId))
+            {
+                if (playersManagerForm.ShowDialog() == DialogResult.OK)
+                    _presenter.PlayersManagerFormClosed(true);
+                else
+                    _presenter.PlayersManagerFormClosed(false);
+            }
+        }
+
         public void GoToTableManager(int roundId, int tableId)
         {
             new TableManagerForm(_tournamentId, roundId, tableId).ShowDialog();
@@ -331,7 +351,12 @@ namespace MahjongTournamentSuite.TournamentManager
         {
             Cursor = Cursors.Default;
         }
-        
+
+        public void PlayKoSound()
+        {
+            SystemSounds.Exclamation.Play();
+        }
+
         #endregion
 
         #region Private
@@ -355,6 +380,13 @@ namespace MahjongTournamentSuite.TournamentManager
             newButton.TextImageRelation = TextImageRelation.ImageAboveText;
             newButton.UseVisualStyleBackColor = false;
             return newButton;
+        }
+
+        private void TeamsManagerForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            ShowWaitCursor();
+            _presenter.TeamsManagerFormClosed();
+            ShowDefaultCursor();
         }
 
         private static void MakeButtonSelected(Button button, Image image)

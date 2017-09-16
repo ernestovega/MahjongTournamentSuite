@@ -49,18 +49,20 @@ namespace MahjongTournamentSuite.PlayersManager
             }
 
             _form.FillDGV(dgvPlayers, _tournament.IsTeams);
+            CheckWrongPlayersTeams();
         }
 
         public void PlayerNameChanged(int playerId, string newPlayerName)
         {
             int ownerPlayerId = GetOwnerPlayerNameId(newPlayerName);
             if (ownerPlayerId == 0)
-                _db.UpdatePlayerName(_tournament.TournamentId, playerId, newPlayerName);
-            else
             {
-                _form.DGVCancelEdit();
-                _form.ShowMessagePlayerNameInUse(newPlayerName, ownerPlayerId);
+                _db.UpdatePlayerName(_tournament.TournamentId, playerId, newPlayerName);
+                return;
             }
+            _form.PlayKoSound();
+            _form.DGVCancelEdit();
+            _form.ShowMessagePlayerNameInUse(newPlayerName, ownerPlayerId);            
         }
 
         public int SaveNewPlayerTeam(int playerId, string newTeamName)
@@ -71,25 +73,32 @@ namespace MahjongTournamentSuite.PlayersManager
                 _db.UpdatePlayerTeam(_tournament.TournamentId, playerId, newTeamId);
                 return newTeamId;
             }
+            _form.PlayKoSound();
             _form.ShowMessageTeamError();
             return 0;
         }
 
-        public void PlayerTeamChanged()
+        public void CheckWrongPlayersTeams()
         {
             List<WrongTeam> wrongTeams = GetWrongTeams();
             if (wrongTeams.Count > 0)
             {
+                _form.PlayKoSound();
                 _form.MarkWrongTeamsPlayers(wrongTeams);
                 _form.ShowWrongNumberOfPlayersPerTeamMessage(wrongTeams);
+                return;
             }
-            else
-                _form.CleanWrongTeamsPlayers();
+            _form.CleanWrongTeamsPlayers();
         }
 
         public void SaveNewPlayerCountry(int playerId, string newCountryName)
         {
             _db.UpdatePlayerCountry(_tournament.TournamentId, playerId, newCountryName);
+        }
+
+        public bool IsWrongPlayersTeams()
+        {
+            return GetWrongTeams().Count > 0;
         }
 
         #endregion

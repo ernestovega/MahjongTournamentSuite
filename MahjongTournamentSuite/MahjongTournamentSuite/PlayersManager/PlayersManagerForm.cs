@@ -9,6 +9,7 @@ using MahjongTournamentSuite.Model;
 using System.Drawing;
 using System;
 using MahjongTournamentSuite.Resources.flags;
+using System.Media;
 
 namespace MahjongTournamentSuite.ManagePlayers
 {
@@ -122,7 +123,7 @@ namespace MahjongTournamentSuite.ManagePlayers
             if (e.RowIndex > -1 && dgv.Columns[e.ColumnIndex].Name.Equals(DGVPlayer.COLUMN_PLAYERS_TEAM_NAME))
             {
                 Cursor = Cursors.WaitCursor;
-                _presenter.PlayerTeamChanged();
+                _presenter.CheckWrongPlayersTeams();
                 Cursor = Cursors.Default;
             }
         }
@@ -233,6 +234,20 @@ namespace MahjongTournamentSuite.ManagePlayers
             }
         }
 
+        public void PlayKoSound()
+        {
+            SystemSounds.Exclamation.Play();
+        }
+
         #endregion
+
+        private void PlayersManagerForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (_presenter.IsWrongPlayersTeams())
+                DialogResult = DialogResult.Cancel;
+            else
+                DialogResult = DialogResult.OK;
+
+        }
     }
 }
