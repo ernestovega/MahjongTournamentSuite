@@ -38,24 +38,35 @@ namespace MahjongTournamentSuite.CountryManager
 
         #region ICountryManagerForm implementation
 
-        public void FillDGV(List<DBCountry> countries)
+        public void FillDGV(List<DGVCountry> dgvCountries)
         {
-            SortableBindingList<DBCountry> sortableCountries = new SortableBindingList<DBCountry>(countries);
+            SortableBindingList<DGVCountry> sortableDgvCountries = new SortableBindingList<DGVCountry>(dgvCountries);
             if (dgv.DataSource != null)
                 dgv.DataSource = null;
-            dgv.DataSource = sortableCountries;
+            dgv.DataSource = sortableDgvCountries;
             
             //ReadOnly
             dgv.Columns[DBCountry.COLUMN_COUNTRY_NAME].ReadOnly = true;
+            dgv.Columns[DGVCountry.COLUMN_COUNTRY_COUNTRY_FLAG].ReadOnly = true;
             //Readonly columns BackColor
             dgv.Columns[DBCountry.COLUMN_COUNTRY_NAME].DefaultCellStyle.BackColor = SystemColors.ControlLight;
+            dgv.Columns[DGVCountry.COLUMN_COUNTRY_COUNTRY_FLAG].DefaultCellStyle.BackColor = SystemColors.ControlLight;
             //Readonly columns ForeColor
             dgv.Columns[DBCountry.COLUMN_COUNTRY_NAME].DefaultCellStyle.ForeColor = SystemColors.GrayText;
+            dgv.Columns[DGVCountry.COLUMN_COUNTRY_COUNTRY_FLAG].DefaultCellStyle.ForeColor = SystemColors.GrayText;
             //HeaderText
             dgv.Columns[DBCountry.COLUMN_COUNTRY_NAME].HeaderText = "Country Name";
-            dgv.Columns[DBCountry.COLUMN_COUNTRY_IMAGE_URL].HeaderText = "Country Image URL for HTML Exporting";
+            dgv.Columns[DBCountry.COLUMN_COUNTRY_IMAGE_URL].HeaderText = "Image URL for HTML Exporting";
+            dgv.Columns[DGVCountry.COLUMN_COUNTRY_COUNTRY_FLAG].HeaderText = "Flag";
             //AutoSizeMode
             dgv.Columns[DBCountry.COLUMN_COUNTRY_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgv.Columns[DGVCountry.COLUMN_COUNTRY_COUNTRY_FLAG].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            //Column Flags Image Layout
+            ((DataGridViewImageColumn)dgv.Columns[DGVCountry.COLUMN_COUNTRY_COUNTRY_FLAG]).ImageLayout = DataGridViewImageCellLayout.Zoom;
+            //DisplayIndex
+            dgv.Columns[DBCountry.COLUMN_COUNTRY_NAME].DisplayIndex = 0;
+            dgv.Columns[DGVCountry.COLUMN_COUNTRY_COUNTRY_FLAG].DisplayIndex = 1;
+            dgv.Columns[DBCountry.COLUMN_COUNTRY_IMAGE_URL].DisplayIndex = 2;
         }
 
         #endregion 

@@ -66,6 +66,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\DGVCountry.cs" />
     <Compile Include="Resources\flags\CountryFlags.cs" />
     <Compile Include="TeamsManager\ITeamsManagerForm.cs" />
     <Compile Include="TeamsManager\ITeamsManagerPresenter.cs" />

@@ -1,6 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.Drawing;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace MahjongTournamentSuiteDataLayer.Model
 {
@@ -9,7 +7,7 @@ namespace MahjongTournamentSuiteDataLayer.Model
         #region Constants
         
         public static readonly string COLUMN_COUNTRY_NAME = "CountryName";
-        public static readonly string COLUMN_COUNTRY_IMAGE_URL = "CountryImageUrl";
+        public static readonly string COLUMN_COUNTRY_IMAGE_URL = "CountryHtmlImageUrl";
 
         #endregion
 
@@ -17,7 +15,7 @@ namespace MahjongTournamentSuiteDataLayer.Model
 
         [Key]
         public string CountryName { get; set; }
-        public string CountryImageUrl { get; set; }
+        public string CountryHtmlImageUrl { get; set; }
 
         #endregion
 
@@ -25,10 +23,10 @@ namespace MahjongTournamentSuiteDataLayer.Model
 
         public DBCountry() { }
 
-        public DBCountry(string name, string countryImageUrl)
+        public DBCountry(string name, string countryHtmlImageUrl)
         {
             CountryName = name;
-            CountryImageUrl = countryImageUrl;
+            CountryHtmlImageUrl = countryHtmlImageUrl;
         }
 
         #endregion

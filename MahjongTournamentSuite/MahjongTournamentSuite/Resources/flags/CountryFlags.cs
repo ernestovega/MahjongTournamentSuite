@@ -6,7 +6,7 @@ namespace MahjongTournamentSuite.Resources.flags
     {
         public static Image GetFlagImage(string playerCountryName)
         {
-            switch(playerCountryName)
+            switch(playerCountryName.Replace(" ", "_"))
             {
                 case "Andorra":
                     return Properties.Resources.Andorra;
