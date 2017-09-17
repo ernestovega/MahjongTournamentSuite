@@ -14,5 +14,11 @@ namespace MahjongTournamentSuite.Ranking
         void FillDGVPlayersChickenHandsFromThread(List<ChickenHandRanking> playersChickenHandsRankingsRange);
 
         void CloseFormFromThread();
+
+        void ShowButtonSecondsDown();
+
+        void HideButtonSecondsDown();
+
+        void SetSecondsLabel(string seconds);
     }
 }

@@ -36,6 +36,9 @@
             this.lblRankingTitle = new System.Windows.Forms.Label();
             this.pbIconTitle = new System.Windows.Forms.PictureBox();
             this.dgv = new System.Windows.Forms.DataGridView();
+            this.btnSecondsDown = new System.Windows.Forms.Button();
+            this.btnSecondsUp = new System.Windows.Forms.Button();
+            this.lblSeconds = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconTitle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
@@ -133,29 +136,30 @@
             this.dgv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgv.BackgroundColor = System.Drawing.Color.White;
             this.dgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgv.CausesValidation = false;
             this.dgv.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dgv.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv.ColumnHeadersHeight = 52;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(32, 0, 32, 0);
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv.Enabled = false;
             this.dgv.EnableHeadersVisualStyles = false;
@@ -179,6 +183,52 @@
             this.dgv.Size = new System.Drawing.Size(956, 638);
             this.dgv.TabIndex = 67;
             // 
+            // btnSecondsDown
+            // 
+            this.btnSecondsDown.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSecondsDown.BackgroundImage")));
+            this.btnSecondsDown.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSecondsDown.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnSecondsDown.FlatAppearance.BorderSize = 0;
+            this.btnSecondsDown.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnSecondsDown.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnSecondsDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSecondsDown.Location = new System.Drawing.Point(19, 39);
+            this.btnSecondsDown.Margin = new System.Windows.Forms.Padding(0);
+            this.btnSecondsDown.Name = "btnSecondsDown";
+            this.btnSecondsDown.Size = new System.Drawing.Size(24, 24);
+            this.btnSecondsDown.TabIndex = 78;
+            this.btnSecondsDown.UseVisualStyleBackColor = true;
+            this.btnSecondsDown.Click += new System.EventHandler(this.btnSecondsDown_Click);
+            // 
+            // btnSecondsUp
+            // 
+            this.btnSecondsUp.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSecondsUp.BackgroundImage")));
+            this.btnSecondsUp.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSecondsUp.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnSecondsUp.FlatAppearance.BorderSize = 0;
+            this.btnSecondsUp.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnSecondsUp.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnSecondsUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSecondsUp.Location = new System.Drawing.Point(19, 19);
+            this.btnSecondsUp.Margin = new System.Windows.Forms.Padding(0);
+            this.btnSecondsUp.Name = "btnSecondsUp";
+            this.btnSecondsUp.Size = new System.Drawing.Size(24, 24);
+            this.btnSecondsUp.TabIndex = 77;
+            this.btnSecondsUp.UseVisualStyleBackColor = true;
+            this.btnSecondsUp.Click += new System.EventHandler(this.btnSecondsUp_Click);
+            // 
+            // lblSeconds
+            // 
+            this.lblSeconds.AutoSize = true;
+            this.lblSeconds.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
+            this.lblSeconds.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.lblSeconds.Location = new System.Drawing.Point(44, 23);
+            this.lblSeconds.Margin = new System.Windows.Forms.Padding(0);
+            this.lblSeconds.Name = "lblSeconds";
+            this.lblSeconds.Size = new System.Drawing.Size(35, 37);
+            this.lblSeconds.TabIndex = 76;
+            this.lblSeconds.Text = "7";
+            // 
             // RankingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -186,6 +236,9 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1024, 768);
+            this.Controls.Add(this.btnSecondsDown);
+            this.Controls.Add(this.btnSecondsUp);
+            this.Controls.Add(this.lblSeconds);
             this.Controls.Add(this.lblRankingTitle);
             this.Controls.Add(this.pbIconTitle);
             this.Controls.Add(this.btnMaximize);
@@ -197,8 +250,7 @@
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(1024, 768);
             this.Name = "RankingForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RankingForm_FormClosing);
             this.Load += new System.EventHandler(this.RankingForm_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.RankingForm_MouseDown);
@@ -216,6 +268,9 @@
         private System.Windows.Forms.Label lblRankingTitle;
         private System.Windows.Forms.PictureBox pbIconTitle;
         private System.Windows.Forms.DataGridView dgv;
+        private System.Windows.Forms.Button btnSecondsDown;
+        private System.Windows.Forms.Button btnSecondsUp;
+        private System.Windows.Forms.Label lblSeconds;
     }
 }
 

@@ -11,5 +11,9 @@ namespace MahjongTournamentSuite.Ranking
         void StopShowRankingThread();
 
         void AbortShowRankingThreadIfAlive();
+
+        void IncrementShowingTimeInOneSecond();
+
+        void DecrementShowingTimeInOneSecond();
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using MahjongTournamentSuite.Model;
 using System.Runtime.InteropServices;
+using System.Drawing;
 
 namespace MahjongTournamentSuite.Ranking
 {
@@ -46,6 +47,16 @@ namespace MahjongTournamentSuite.Ranking
             _presenter.LoadData(_rankings);
             _presenter.StartShowRankingThread();
             ShowDefaultCursor();
+        }
+
+        private void btnSecondsUp_Click(object sender, EventArgs e)
+        {
+            _presenter.IncrementShowingTimeInOneSecond();
+        }
+
+        private void btnSecondsDown_Click(object sender, EventArgs e)
+        {
+            _presenter.DecrementShowingTimeInOneSecond();
         }
 
         private void btnMaximize_Click(object sender, EventArgs e)
@@ -135,6 +146,21 @@ namespace MahjongTournamentSuite.Ranking
             }));
         }
 
+        public void ShowButtonSecondsDown()
+        {
+            btnSecondsDown.Visible = true;
+        }
+
+        public void HideButtonSecondsDown()
+        {
+            btnSecondsDown.Visible = false;
+        }
+
+        public void SetSecondsLabel(string seconds)
+        {
+            lblSeconds.Text = seconds;
+        }
+
         #endregion
 
         #region Private
@@ -164,11 +190,11 @@ namespace MahjongTournamentSuite.Ranking
             if(isTeams)
                 dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_TEAM_NAME].HeaderText = "Team";
             dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_COUNTRY_FLAG].HeaderText = "Country";
-            //AutoSizeMode
-            dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_ORDER].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_COUNTRY_FLAG].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             //Column Flags Image Layout
             ((DataGridViewImageColumn)dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_COUNTRY_FLAG]).ImageLayout = DataGridViewImageCellLayout.Zoom;
+            //Column Flags Header&Cell Content Alignment
+            dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_COUNTRY_FLAG].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_COUNTRY_FLAG].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             //DisplayIndex
             dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_ORDER].DisplayIndex = 0;
             dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_PLAYER_NAME].DisplayIndex = 1;
@@ -190,6 +216,8 @@ namespace MahjongTournamentSuite.Ranking
             dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_TEAM_ID].SortMode = DataGridViewColumnSortMode.NotSortable;
             dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_TEAM_NAME].SortMode = DataGridViewColumnSortMode.NotSortable;
             dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_COUNTRY_FLAG].SortMode = DataGridViewColumnSortMode.NotSortable;
+
+            CenterDGV();
         }
 
         private void FillDGVTeams(List<TeamRanking> teamsRankingsRange)
@@ -209,8 +237,6 @@ namespace MahjongTournamentSuite.Ranking
             dgv.Columns[TeamRanking.COLUMN_TEAM_RANKING_TEAM_NAME].HeaderText = "Team name";
             dgv.Columns[TeamRanking.COLUMN_TEAM_RANKING_TEAM_POINTS].HeaderText = "Points";
             dgv.Columns[TeamRanking.COLUMN_TEAM_RANKING_TEAM_SCORE].HeaderText = "Score";
-            ////AutoSizeMode
-            dgv.Columns[TeamRanking.COLUMN_TEAM_RANKING_ORDER].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             //DisplayIndex
             dgv.Columns[TeamRanking.COLUMN_TEAM_RANKING_ORDER].DisplayIndex = 0;
             dgv.Columns[TeamRanking.COLUMN_TEAM_RANKING_TEAM_NAME].DisplayIndex = 1;
@@ -222,6 +248,8 @@ namespace MahjongTournamentSuite.Ranking
             dgv.Columns[TeamRanking.COLUMN_TEAM_RANKING_TEAM_NAME].SortMode = DataGridViewColumnSortMode.NotSortable;
             dgv.Columns[TeamRanking.COLUMN_TEAM_RANKING_TEAM_POINTS].SortMode = DataGridViewColumnSortMode.NotSortable;
             dgv.Columns[TeamRanking.COLUMN_TEAM_RANKING_TEAM_SCORE].SortMode = DataGridViewColumnSortMode.NotSortable;
+
+            CenterDGV();
         }
 
         private void FillDGVPlayersChickenHands(List<ChickenHandRanking> playersChickenHandsRankingsRange)
@@ -247,11 +275,11 @@ namespace MahjongTournamentSuite.Ranking
             dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_POINTS].HeaderText = "Points";
             dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_SCORE].HeaderText = "Score";
             dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_COUNTRY_FLAG].HeaderText = "Country";
-            //AutoSizeMode
-            dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_ORDER].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_COUNTRY_FLAG].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             //Column Flags Image Layout
             ((DataGridViewImageColumn)dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_COUNTRY_FLAG]).ImageLayout = DataGridViewImageCellLayout.Zoom;
+            //Column Flags Header&Cell Content Alignment
+            dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_COUNTRY_FLAG].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_COUNTRY_FLAG].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             //Padding
             dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_NUM_CHICKEN_HANDS].DefaultCellStyle.Padding = new Padding(25, 0, 25, 0);
             dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_POINTS].DefaultCellStyle.Padding = new Padding(25, 0, 25, 0);
@@ -272,7 +300,16 @@ namespace MahjongTournamentSuite.Ranking
             dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_POINTS].SortMode = DataGridViewColumnSortMode.NotSortable;
             dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_SCORE].SortMode = DataGridViewColumnSortMode.NotSortable;
             dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_COUNTRY_FLAG].SortMode = DataGridViewColumnSortMode.NotSortable;
-        }                            
+
+            CenterDGV();
+        }
+
+        private void CenterDGV()
+        {
+            var totalWidth = dgv.Columns.GetColumnsWidth(DataGridViewElementStates.Visible) + dgv.RowHeadersWidth;
+            dgv.ClientSize = new Size(totalWidth, dgv.ClientSize.Height);
+            dgv.Location = new Point((Width - totalWidth) / 2, dgv.Location.Y);
+        }
 
         private void CalculateAndSetDefaultRowHeightToFillScreen()
         {
