@@ -34,14 +34,6 @@ namespace MahjongTournamentSuiteDataLayer.Data
                 x => x.TournamentId == tournamentId);
         }
 
-        public int GetExistingMaxTournamentId()
-        {
-            if (_db.Tournaments.Count() == 0)
-                return 0;
-            else
-                return _db.Tournaments.Max(x => x.TournamentId);
-        }
-
         public string GetTournamentName(int tournamentId)
         {
             return _db.Tournaments.ToList().Find(
@@ -153,11 +145,11 @@ namespace MahjongTournamentSuiteDataLayer.Data
             _db.SaveChanges();
         }
 
-        public void UpdatePlayerCountry(int tournamentId, int playerId, string countryName)
+        public void UpdatePlayerCountry(int tournamentId, int playerId, string newCountryName)
         {
             _db.Players.ToList()
                 .Find(x => x.PlayerTournamentId == tournamentId && x.PlayerId == playerId)
-                .PlayerCountryName.Equals(countryName);
+                .PlayerCountryName = newCountryName;
             _db.SaveChanges();
         }
 
@@ -374,6 +366,7 @@ namespace MahjongTournamentSuiteDataLayer.Data
 
             if (_db.Countries.Count() == 0)
             {
+                _db.Countries.Add(new DBCountry("No Country", string.Empty));
                 _db.Countries.Add(new DBCountry("Andorra", string.Empty));
                 _db.Countries.Add(new DBCountry("United Arab Emirates", string.Empty));
                 _db.Countries.Add(new DBCountry("Afghanistan", string.Empty));

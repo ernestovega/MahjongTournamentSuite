@@ -19,8 +19,6 @@
         void ButtonRoundClicked(int roundId);
 
         void ButtonTableClicked(int tableId);
-        
-        void ExportTournamentToExcelClicked();
 
         void ExportRankingsToHTMLClicked();
     }

@@ -32,9 +32,8 @@ namespace MahjongTournamentSuiteDataLayer.Model
 
         public DBTournament() {}
 
-        public DBTournament(int id, DateTime creationDate, int numPlayers, int numRounds, bool isTeams, string name)
+        public DBTournament(DateTime creationDate, int numPlayers, int numRounds, bool isTeams, string name)
         {
-            TournamentId = id;
             CreationDate = creationDate;
             TournamentName = name;
             NumPlayers = numPlayers;

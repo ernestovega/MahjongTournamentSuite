@@ -9,8 +9,6 @@ namespace MahjongTournamentSuiteDataLayer.Data
 
         bool ExistTournament(string tournamentName);
 
-        int GetExistingMaxTournamentId();
-
         void AddTournament(DBTournament tournament);
 
         void DeleteTournament(int tournamentId);
@@ -51,7 +49,7 @@ namespace MahjongTournamentSuiteDataLayer.Data
 
         void UpdatePlayerTeam(int tournamentId, int playerId, int countryId);
 
-        void UpdatePlayerCountry(int tournamentId, int playerId, string countryName);
+        void UpdatePlayerCountry(int tournamentId, int playerId, string newCountryName);
 
         #endregion
 

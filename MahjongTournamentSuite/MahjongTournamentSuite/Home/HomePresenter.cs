@@ -30,7 +30,7 @@ namespace MahjongTournamentSuite.Home
         public void LoadTournaments()
         {
             _tournaments = _db.GetTournaments();
-            ResumeAndDeleteButtonsEnabling();
+            EnableButtonsResumeAndDelete();
             _form.FillDGVTournaments(_tournaments);
         }
 
@@ -45,7 +45,7 @@ namespace MahjongTournamentSuite.Home
             {
                 _db.DeleteTournament(tournamentId);
                 _tournaments = _db.GetTournaments();
-                ResumeAndDeleteButtonsEnabling();
+                EnableButtonsResumeAndDelete();
                 _form.FillDGVTournaments(_tournaments);
             }
         }
@@ -64,7 +64,7 @@ namespace MahjongTournamentSuite.Home
 
         #region Private
 
-        private void ResumeAndDeleteButtonsEnabling()
+        private void EnableButtonsResumeAndDelete()
         {
             if (_tournaments.Count > 0)
                 _form.EnableResumeAndDeleteButton();

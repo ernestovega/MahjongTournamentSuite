@@ -425,6 +425,7 @@
     <Content Include="Resources\flags\North Korea.png" />
     <Content Include="Resources\flags\Northern Mariana Islands.png" />
     <Content Include="Resources\flags\Norway.png" />
+    <Content Include="Resources\flags\No_Country.png" />
     <Content Include="Resources\flags\Oman.png" />
     <Content Include="Resources\flags\Pakistan.png" />
     <Content Include="Resources\flags\Palau.png" />

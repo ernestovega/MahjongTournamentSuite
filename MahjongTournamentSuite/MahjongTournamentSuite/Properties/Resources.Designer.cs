@@ -1793,6 +1793,16 @@ namespace MahjongTournamentSuite.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap No_Country {
+            get {
+                object obj = ResourceManager.GetObject("No_Country", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap no_white {
             get {
                 object obj = ResourceManager.GetObject("no_white", resourceCulture);

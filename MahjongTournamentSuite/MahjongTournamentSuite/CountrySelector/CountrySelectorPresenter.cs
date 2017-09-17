@@ -27,7 +27,9 @@ namespace MahjongTournamentSuite.CountrySelector
 
         public void LoadForm()
         {
-            _countriesNames = _db.GetCountriesNamesWichHaveImageUrl();
+            _countriesNames = new List<string>();
+            _countriesNames.Add("No country");
+            _countriesNames.AddRange(_db.GetCountriesNamesWichHaveImageUrl());
             _form.FillLbCountries(_countriesNames);
         }
 

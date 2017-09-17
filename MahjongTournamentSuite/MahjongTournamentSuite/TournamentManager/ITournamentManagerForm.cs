@@ -1,12 +1,9 @@
-﻿using System.Collections.Generic;
-using MahjongTournamentSuite.Model;
+﻿using MahjongTournamentSuite.Model;
 
 namespace MahjongTournamentSuite.TournamentManager
 {
     interface ITournamentManagerForm
     {
-        void CenterMainButtons();
-
         void AddRoundsButtons(int numRounds);
         
         void AddTablesButtons(int roundId, int numTables);

@@ -1,6 +1,5 @@
 ﻿using MahjongTournamentSuite.Model;
 using System.Collections.Generic;
-using System;
 using MahjongTournamentSuiteDataLayer.Model;
 using MahjongTournamentSuiteDataLayer.Data;
 using System.Linq;
@@ -60,7 +59,6 @@ namespace MahjongTournamentSuite.TournamentManager
 
         public void OnFormResized()
         {
-            _form.CenterMainButtons();
             _form.RemoveRoundsButtons();
             _form.AddRoundsButtons(_tournament.NumRounds);
             _form.RemoveTablesButtons();
@@ -68,18 +66,6 @@ namespace MahjongTournamentSuite.TournamentManager
             _form.SelectRoundButton(roundSelected);
             if(tableSelected > 0)
                 _form.SelectTableButton(tableSelected);
-        }
-
-        public void ExportTournamentToExcelClicked()
-        {
-            //GenerateTablesWhitAll();
-            //GenerateSTablesWithNames();
-            //GenerateSTablesWithIds();
-            //GenerateTablesByPlayer();
-            //GenerateRivalsByPlayer();
-
-            //ExportTournament();
-            //ExportScoreTables();
         }
 
         public void ExportRankingsToHTMLClicked()
@@ -298,128 +284,6 @@ namespace MahjongTournamentSuite.TournamentManager
             for (int i = 0; i < _chickenHandsRankings.Count; i++)
                 _chickenHandsRankings[i].Order = i + 1;
         }
-
-        #endregion
-
-        #region Excel export
-
-        //private void GenerateTablesWhitAll()
-        //{
-        //    for (currentRound = 1; currentRound <= numRounds; currentRound++)
-        //    {
-        //        for (currentTable = 1; currentTable <= players.Count / 4; currentTable++)
-        //        {
-        //            TableWithAll tableWithAll = new TableWithAll();
-        //            tableWithAll.roundId = currentRound;
-        //            tableWithAll.tableId = currentTable;
-        //            for (currentTablePlayer = 1; currentTablePlayer <= 4; currentTablePlayer++)
-        //            {
-        //                switch (currentTablePlayer)
-        //                {
-        //                    case 1:
-        //                        int player1Id = tablePlayers.Find(x => x.round == currentRound &&
-        //                        x.table == currentTable && x.player == currentTablePlayer).playerId;
-        //                        Player player = players.Find(x => x.id == player1Id);
-        //                        tableWithAll.player1Name = player.name;
-        //                        tableWithAll.player1Team = player.team;
-        //                        tableWithAll.player1Id = player.id;
-        //                        break;
-        //                    case 2:
-        //                        int player2Id = tablePlayers.Find(x => x.round == currentRound &&
-        //                        x.table == currentTable && x.player == currentTablePlayer).playerId;
-        //                        Player player2 = players.Find(x => x.id == player2Id);
-        //                        tableWithAll.player2Name = player2.name;
-        //                        tableWithAll.player2Team = player2.team;
-        //                        tableWithAll.player2Id = player2.id;
-        //                        break;
-        //                    case 3:
-        //                        int player3Id = tablePlayers.Find(x => x.round == currentRound &&
-        //                        x.table == currentTable && x.player == currentTablePlayer).playerId;
-        //                        Player player3 = players.Find(x => x.id == player3Id);
-        //                        tableWithAll.player3Name = player3.name;
-        //                        tableWithAll.player3Team = player3.team;
-        //                        tableWithAll.player3Id = player3.id;
-        //                        break;
-        //                    case 4:
-        //                        int player4Id = tablePlayers.Find(x => x.round == currentRound &&
-        //                        x.table == currentTable && x.player == currentTablePlayer).playerId;
-        //                        Player player4 = players.Find(x => x.id == player4Id);
-        //                        tableWithAll.player4Name = player4.name;
-        //                        tableWithAll.player4Team = player4.team;
-        //                        tableWithAll.player4Id = player4.id;
-        //                        break;
-        //                }
-        //            }
-        //            tablesWithAll.Add(tableWithAll);
-        //        }
-        //    }
-        //}
-
-        //private void GenerateTablesByPlayer()
-        //{
-        //    foreach (Player p in players)
-        //    {
-        //        tablesByPlayer.AddRange(
-        //            tablesWithAll.FindAll(x =>
-        //                x.player1Name.Equals(p.name) ||
-        //                x.player2Name.Equals(p.name) ||
-        //                x.player3Name.Equals(p.name) ||
-        //                x.player4Name.Equals(p.name)));
-        //    }
-        //}
-
-        //private void GenerateRivalsByPlayer()
-        //{
-        //    foreach (Player p in players)
-        //    {
-        //        List<TableWithAll> thisPlayerTables = tablesWithAll.FindAll(x =>
-        //                x.player1Name.Equals(p.name) ||
-        //                x.player2Name.Equals(p.name) ||
-        //                x.player3Name.Equals(p.name) ||
-        //                x.player4Name.Equals(p.name));
-        //        List<string> thisPlayerRivals = new List<string>();
-        //        foreach (TableWithAll twa in thisPlayerTables)
-        //        {
-        //            if (!twa.player1Name.Equals(p.name))
-        //                thisPlayerRivals.Add(twa.player1Name);
-        //            if (!twa.player2Name.Equals(p.name))
-        //                thisPlayerRivals.Add(twa.player2Name);
-        //            if (!twa.player3Name.Equals(p.name))
-        //                thisPlayerRivals.Add(twa.player3Name);
-        //            if (!twa.player4Name.Equals(p.name))
-        //                thisPlayerRivals.Add(twa.player4Name);
-        //        }
-        //        rivalsByPlayer.Add(new Rivals(p.name, thisPlayerRivals.ToArray()));
-        //    }
-        //}
-
-        //private void GenerateSTablesWithNames()
-        //{
-        //    foreach (TableWithAll t in tablesWithAll)
-        //    {
-        //        sTablesNames.Add(new string[] {
-        //            t.roundId.ToString(),
-        //            t.tableId.ToString(),
-        //            t.player1Name.ToString(),
-        //            t.player2Name.ToString(),
-        //            t.player3Name.ToString(),
-        //            t.player4Name.ToString(), });
-        //    }
-        //}
-
-        //private void GenerateSTablesWithIds()
-        //{
-        //    foreach (TableWithAll t in tablesWithAll)
-        //    {
-        //        sTablesIds.Add(new string[] {
-        //            t.roundId.ToString(),
-        //            t.tableId.ToString(),
-        //            t.player1Id.ToString(),
-        //            t.player2Id.ToString(),
-        //            t.player3Id.ToString(),
-        //            t.player4Id.ToString(), });
-        //    }
-        //}
 
         #endregion
 

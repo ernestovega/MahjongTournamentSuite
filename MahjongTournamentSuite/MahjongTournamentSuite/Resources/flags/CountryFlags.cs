@@ -471,7 +471,7 @@ namespace MahjongTournamentSuite.Resources.flags
                 case "Zimbabwe":
                     return Properties.Resources.Zimbabwe;
                 default:
-                    return null;
+                    return Properties.Resources.No_Country;
             }
         }
     }

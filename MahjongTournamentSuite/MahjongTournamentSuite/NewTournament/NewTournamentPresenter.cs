@@ -125,13 +125,10 @@ namespace MahjongTournamentSuite.NewTournament
             SaveTournament();
             if (_isTeamsChecked)
                 SaveTeams();
-#if DEBUG
-            SavePlayersWithFakeData();
-            SaveTablesAndHandsWithFakeData();
-#else
+            //SavePlayersWithFakeData();
+            //SaveTablesAndHandsWithFakeData();
             SavePlayers();
             SaveTablesAndHands();
-#endif
         }
 
         public void RunWorkerCompleted(bool isCancelled)
@@ -380,8 +377,7 @@ namespace MahjongTournamentSuite.NewTournament
 
         private void SaveTournament()
         {
-            int tournamentId = _db.GetExistingMaxTournamentId() + 1;
-            _tournament = new DBTournament(tournamentId, DateTime.Now, _players.Count, _numRounds, _isTeamsChecked, _tournamentName);
+            _tournament = new DBTournament(DateTime.Now, _players.Count, _numRounds, _isTeamsChecked, _tournamentName);
             _db.AddTournament(_tournament);
         }
 
@@ -390,7 +386,7 @@ namespace MahjongTournamentSuite.NewTournament
             List<DBPlayer> dbPlayers = new List<DBPlayer>();
             foreach (Player player in _players)
             {
-                dbPlayers.Add(new DBPlayer(_tournament.TournamentId, player.Id, string.Format("Player {0}", player.Id), int.Parse(player.Team), string.Empty));
+                dbPlayers.Add(new DBPlayer(_tournament.TournamentId, player.Id, string.Format("Player {0}", player.Id), int.Parse(player.Team), "No Country"));
             }
             _db.AddPlayers(dbPlayers);
         }

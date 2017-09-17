@@ -53,7 +53,6 @@ namespace MahjongTournamentSuite.TournamentManager
         private void TournamentManagerForm_Load(object sender, EventArgs e)
         {
             ShowWaitCursor();
-            CenterMainButtons();
             _presenter.LoadTournament(_tournamentId);
             ShowDefaultCursor();
         }
@@ -88,13 +87,6 @@ namespace MahjongTournamentSuite.TournamentManager
             ShowWaitCursor();
             ProcessStartInfo sInfo = new ProcessStartInfo("http://mahjong-europe.org/portal/");
             Process.Start(sInfo);
-            ShowDefaultCursor();
-        }
-
-        private void btnExportExcel_Click(object sender, EventArgs e)
-        {
-            ShowWaitCursor();
-            _presenter.ExportTournamentToExcelClicked();
             ShowDefaultCursor();
         }
 
@@ -137,12 +129,6 @@ namespace MahjongTournamentSuite.TournamentManager
         #endregion
 
         #region ITournamentManagerForm
-        
-        public void CenterMainButtons()
-        {
-            panelMainButtons.Location =
-                new Point((Width - panelMainButtons.Width) / 2, panelMainButtons.Location.Y);
-        }
 
         public void AddRoundsButtons(int numRounds)
         {
