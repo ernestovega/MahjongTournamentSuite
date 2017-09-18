@@ -52,7 +52,7 @@ namespace MahjongTournamentSuite.ManagePlayers
                 DialogResult = DialogResult.OK;
 
         }
-
+        
         private void dgv_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (dgv.CurrentCell != null &&
@@ -66,6 +66,23 @@ namespace MahjongTournamentSuite.ManagePlayers
             }
         }
 
+        private void dgv_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter && dgv.CurrentCell != null && dgv.CurrentRow.Index >= 0)
+            {
+                if (dgv.CurrentCell.OwningColumn.Name.Equals(DGVPlayer.COLUMN_PLAYERS_TEAM_NAME))
+                {
+                    ShowTeamsSelector(dgv.CurrentRow.Index);
+                    e.SuppressKeyPress = true;
+                }
+                else if (dgv.CurrentCell.OwningColumn.Name.Equals(DGVPlayer.COLUMN_PLAYERS_COUNTRY_FLAG))
+                {
+                    ShowCountriesSelector(dgv.CurrentRow.Index);
+                    e.SuppressKeyPress = true;
+                }
+            }
+        }
+
         private void dgv_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.RowIndex > -1)
@@ -73,38 +90,9 @@ namespace MahjongTournamentSuite.ManagePlayers
                 if (dgv.Columns[e.ColumnIndex].Name.Equals(DBPlayer.COLUMN_PLAYERS_NAME))
                     dgv.BeginEdit(true);
                 else if (dgv.Columns[e.ColumnIndex].Name.Equals(DGVPlayer.COLUMN_PLAYERS_TEAM_NAME))
-                {
-                    using (var teamSelectorForm = new TeamSelectorForm(_tournamentId))
-                    {
-                        if (teamSelectorForm.ShowDialog() == DialogResult.OK)
-                        {
-                            int playerId = (int)dgv.Rows[e.RowIndex].Cells[DBPlayer.COLUMN_PLAYERS_ID].Value;
-                            int teamId = _presenter.SaveNewPlayerTeam(playerId, teamSelectorForm.ReturnValue);
-                            if (teamId > 0)
-                            {
-                                dgv.Rows[e.RowIndex].Cells[DBPlayer.COLUMN_PLAYERS_TEAM].Value = teamId;
-                                dgv.Rows[e.RowIndex].Cells[DGVPlayer.COLUMN_PLAYERS_TEAM_NAME].Value = teamSelectorForm.ReturnValue;
-                            }
-                        }
-                    }
-                }
+                    ShowTeamsSelector(e.RowIndex);
                 else if (dgv.Columns[e.ColumnIndex].Name.Equals(DGVPlayer.COLUMN_PLAYERS_COUNTRY_FLAG))
-                {
-                    using (var countrySelectorForm = new CountrySelectorForm())
-                    {
-                        if (countrySelectorForm.ShowDialog() == DialogResult.OK)
-                        {
-                            int playerId = (int)dgv.Rows[e.RowIndex].Cells[DBPlayer.COLUMN_PLAYERS_ID].Value;
-                            if (countrySelectorForm.ReturnValue != null && !countrySelectorForm.ReturnValue.Equals(string.Empty))
-                            {
-                                _presenter.SaveNewPlayerCountry(playerId, countrySelectorForm.ReturnValue);
-                                dgv.Rows[e.RowIndex].Cells[DBPlayer.COLUMN_PLAYERS_COUNTRY_NAME].Value = countrySelectorForm.ReturnValue;
-                                dgv.Rows[e.RowIndex].Cells[DGVPlayer.COLUMN_PLAYERS_COUNTRY_FLAG].Value = 
-                                    CountryFlags.GetFlagImage(countrySelectorForm.ReturnValue);
-                            }
-                        }
-                    }
-                }
+                    ShowCountriesSelector(e.RowIndex);
             }
         }
 
@@ -248,6 +236,45 @@ namespace MahjongTournamentSuite.ManagePlayers
         public void PlayKoSound()
         {
             SystemSounds.Exclamation.Play();
+        }
+
+        #endregion
+
+        #region Private
+
+        private void ShowTeamsSelector(int rowIndex)
+        {
+            using (var teamSelectorForm = new TeamSelectorForm(_tournamentId))
+            {
+                if (teamSelectorForm.ShowDialog() == DialogResult.OK)
+                {
+                    int playerId = (int)dgv.Rows[rowIndex].Cells[DBPlayer.COLUMN_PLAYERS_ID].Value;
+                    int teamId = _presenter.SaveNewPlayerTeam(playerId, teamSelectorForm.ReturnValue);
+                    if (teamId > 0)
+                    {
+                        dgv.Rows[rowIndex].Cells[DBPlayer.COLUMN_PLAYERS_TEAM].Value = teamId;
+                        dgv.Rows[rowIndex].Cells[DGVPlayer.COLUMN_PLAYERS_TEAM_NAME].Value = teamSelectorForm.ReturnValue;
+                    }
+                }
+            }
+        }
+
+        private void ShowCountriesSelector(int rowIndex)
+        {
+            using (var countrySelectorForm = new CountrySelectorForm())
+            {
+                if (countrySelectorForm.ShowDialog() == DialogResult.OK)
+                {
+                    int playerId = (int)dgv.Rows[rowIndex].Cells[DBPlayer.COLUMN_PLAYERS_ID].Value;
+                    if (countrySelectorForm.ReturnValue != null && !countrySelectorForm.ReturnValue.Equals(string.Empty))
+                    {
+                        _presenter.SaveNewPlayerCountry(playerId, countrySelectorForm.ReturnValue);
+                        dgv.Rows[rowIndex].Cells[DBPlayer.COLUMN_PLAYERS_COUNTRY_NAME].Value = countrySelectorForm.ReturnValue;
+                        dgv.Rows[rowIndex].Cells[DGVPlayer.COLUMN_PLAYERS_COUNTRY_FLAG].Value =
+                            CountryFlags.GetFlagImage(countrySelectorForm.ReturnValue);
+                    }
+                }
+            }
         }
 
         #endregion

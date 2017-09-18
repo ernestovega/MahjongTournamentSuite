@@ -177,7 +177,7 @@ namespace MahjongTournamentSuite.Home
 
         private void dgv_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == (char)Keys.Return && dgv.SelectedCells[0].RowIndex >= 0)
+            if (e.KeyChar == (char)Keys.Enter && dgv.SelectedCells[0].RowIndex >= 0)
             {
                 if (dgv.SelectedCells[0].OwningColumn.Name.Equals(DBTournament.COLUMN_NAME))
                     dgv.BeginEdit(true);
