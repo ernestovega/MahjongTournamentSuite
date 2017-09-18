@@ -316,7 +316,7 @@ namespace MahjongTournamentSuite.TournamentManager
                 if (control.Tag != null && (int)control.Tag == tableId)
                     MakeButtonSelected((Button)control, 
                         _presenter.IsTableCompleted(tableId) ?
-                        Properties.Resources.table_ok : Properties.Resources.table);
+                        Properties.Resources.table_ok_white : Properties.Resources.table);
             }
         }
 
@@ -325,7 +325,9 @@ namespace MahjongTournamentSuite.TournamentManager
             foreach (Control control in splitContainer1.Panel2.Controls)
             {
                 if (control.Tag != null && (int)control.Tag == tableId)
-                    MakeButtonUnselected((Button)control, Properties.Resources.table);
+                    MakeButtonUnselected((Button)control,
+                        _presenter.IsTableCompleted(tableId) ?
+                        Properties.Resources.table_ok : Properties.Resources.table);
             }
         }
 

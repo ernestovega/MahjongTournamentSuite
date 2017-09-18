@@ -58,6 +58,14 @@
     <Compile Include="Model\DBTournament.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\Countries.sql" />
+    <Content Include="Scripts\MMC16_Hands.sql" />
+    <Content Include="Scripts\MMC16_Players.sql" />
+    <Content Include="Scripts\MMC16_Tables.sql" />
+    <Content Include="Scripts\MMC16_Teams.sql" />
+    <Content Include="Scripts\MMC16_Tournament.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

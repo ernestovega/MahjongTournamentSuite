@@ -22,7 +22,7 @@
 
         void ExportRankingsToHTMLClicked();
 
-        bool IsRoundCompleted(object roundId);
+        bool IsRoundCompleted(bool roundId);
 
         bool IsTableCompleted(int tableId);
     }

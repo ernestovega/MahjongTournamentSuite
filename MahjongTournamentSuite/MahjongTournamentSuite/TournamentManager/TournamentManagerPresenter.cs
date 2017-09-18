@@ -127,7 +127,7 @@ namespace MahjongTournamentSuite.TournamentManager
             _form.GoToRankings(rankings);
         }
 
-        public bool IsRoundCompleted(object roundId)
+        public bool IsRoundCompleted(bool roundId)
         {
             _tables = _db.GetTournamentTables(_tournament.TournamentId);
             List<DBTable> roundTables = _tables.FindAll(x => x.TableRoundId == roundSelected);
