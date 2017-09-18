@@ -311,6 +311,12 @@ namespace MahjongTournamentSuite.TableManager
             return returnValue;
         }
 
+        public void IsCompletedCheckedChanged(bool isChecked)
+        {
+            _table.IsCompleted = isChecked;
+            _db.UpdateTableIsCompleted(_table);
+        }
+
         #endregion
 
         #region Private

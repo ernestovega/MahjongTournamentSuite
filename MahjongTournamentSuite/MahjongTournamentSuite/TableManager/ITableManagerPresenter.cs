@@ -35,5 +35,7 @@
         string PlayerWestPenalytChanged(int handId, string newValue);
 
         string PlayerNorthPenalytChanged(int handId, string newValue);
+
+        void IsCompletedCheckedChanged(bool isChecked);
     }
 }

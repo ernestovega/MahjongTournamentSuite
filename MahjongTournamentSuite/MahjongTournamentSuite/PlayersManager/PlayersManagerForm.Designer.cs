@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlayersManagerForm));
             this.dgv = new System.Windows.Forms.DataGridView();
+            this.lblStub = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
             // 
@@ -83,12 +84,21 @@
             this.dgv.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgv_CellValidating);
             this.dgv.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellValueChanged);
             // 
+            // lblStub
+            // 
+            this.lblStub.AutoSize = true;
+            this.lblStub.Location = new System.Drawing.Point(0, 0);
+            this.lblStub.Name = "lblStub";
+            this.lblStub.Size = new System.Drawing.Size(0, 13);
+            this.lblStub.TabIndex = 77;
+            // 
             // PlayersManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1008, 747);
+            this.Controls.Add(this.lblStub);
             this.Controls.Add(this.dgv);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -100,11 +110,13 @@
             this.Load += new System.EventHandler(this.PlayersManagerForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.DataGridView dgv;
+        private System.Windows.Forms.Label lblStub;
     }
 }

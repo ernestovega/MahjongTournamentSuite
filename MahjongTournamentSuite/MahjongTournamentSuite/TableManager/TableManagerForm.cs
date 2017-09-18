@@ -79,7 +79,12 @@ namespace MahjongTournamentSuite.TableManager
         }
         #endregion
 
-        #region Combos SelectionChangeCommitted
+        private void cbCompleted_CheckedChanged(object sender, EventArgs e)
+        {
+            _presenter.IsCompletedCheckedChanged(cbCompleted.Checked);
+        }
+
+        #region Combos
         private void comboEastPlayer_SelectionChangeCommitted(object sender, EventArgs e)
         {
             ShowWaitCursor();

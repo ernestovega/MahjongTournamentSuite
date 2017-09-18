@@ -42,6 +42,17 @@ namespace MahjongTournamentSuite.ManagePlayers
             Cursor = Cursors.Default;
         }
 
+        private void PlayersManagerForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            lblStub.Focus();//Para guardar los cambios que no se hayan guardado.
+
+            if (_presenter.IsWrongPlayersTeams())
+                DialogResult = DialogResult.Cancel;
+            else
+                DialogResult = DialogResult.OK;
+
+        }
+
         private void dgv_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (dgv.CurrentCell != null &&
@@ -240,14 +251,5 @@ namespace MahjongTournamentSuite.ManagePlayers
         }
 
         #endregion
-
-        private void PlayersManagerForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (_presenter.IsWrongPlayersTeams())
-                DialogResult = DialogResult.Cancel;
-            else
-                DialogResult = DialogResult.OK;
-
-        }
     }
 }

@@ -146,8 +146,9 @@ namespace MahjongTournamentSuite.TournamentManager
                 Button btnRound = GetNewButton();
                 btnRound.Tag = i;
                 btnRound.Text = string.Format("\n{0}", i);
-                btnRound.Image = Properties.Resources.gong;
                 btnRound.Location = buttonStartPoint;
+                btnRound.Image = _presenter.IsRoundCompleted(i) ?
+                    Properties.Resources.gong_ok : Properties.Resources.gong;
                 btnRound.Click += delegate
                 {
                     ShowWaitCursor();
@@ -172,7 +173,7 @@ namespace MahjongTournamentSuite.TournamentManager
                 + SEPARATOR_EXTRA_MARGIN_BOTTOM + TITLE_ROUNDS_HEIGHT;
         }
 
-        public void AddTablesButtons(int roundId, int numTables)
+        public void AddTablesButtons(int numTables)
         {
             //Calculamos el punto de comienzo para centrar los botones
             int neededWidth;
@@ -190,10 +191,11 @@ namespace MahjongTournamentSuite.TournamentManager
                 Button button = GetNewButton();
                 button.Tag = i;
                 button.Text = string.Format("\n{0}", i);
-                button.Image = Properties.Resources.table;
                 button.Width = BUTTON_SIDE;
                 button.Height = BUTTON_SIDE;
                 button.Location = buttonStartPoint;
+                button.Image = _presenter.IsTableCompleted(i) ? 
+                    Properties.Resources.table_ok : Properties.Resources.table;
                 button.Click += delegate
                 {
                     ShowWaitCursor();
@@ -201,7 +203,8 @@ namespace MahjongTournamentSuite.TournamentManager
                     ShowDefaultCursor();
                 };
 
-                splitContainer1.Panel2.Controls.Add(button);
+
+                    splitContainer1.Panel2.Controls.Add(button);
 
 
                 if (i < numTables)
@@ -287,7 +290,11 @@ namespace MahjongTournamentSuite.TournamentManager
             foreach (Control control in splitContainer1.Panel1.Controls)
             {
                 if (control.Tag != null && (int)control.Tag == roundId)
-                    MakeButtonSelected((Button)control, Properties.Resources.gong_white);
+                {
+                    MakeButtonSelected((Button)control,
+                        _presenter.IsRoundCompleted(roundId) ?
+                        Properties.Resources.gong_ok_white : Properties.Resources.gong_white);
+                }
             }
         }
 
@@ -296,7 +303,9 @@ namespace MahjongTournamentSuite.TournamentManager
             foreach (Control control in splitContainer1.Panel1.Controls)
             {
                 if (control.Tag != null && (int)control.Tag == roundId)
-                    MakeButtonUnselected((Button)control, Properties.Resources.gong);
+                    MakeButtonUnselected((Button)control,
+                        _presenter.IsRoundCompleted(roundId) ?
+                        Properties.Resources.gong_ok : Properties.Resources.gong);
             }
         }
 
@@ -305,7 +314,9 @@ namespace MahjongTournamentSuite.TournamentManager
             foreach (Control control in splitContainer1.Panel2.Controls)
             {
                 if (control.Tag != null && (int)control.Tag == tableId)
-                    MakeButtonSelected((Button)control, Properties.Resources.table_white);
+                    MakeButtonSelected((Button)control, 
+                        _presenter.IsTableCompleted(tableId) ?
+                        Properties.Resources.table_ok : Properties.Resources.table);
             }
         }
 

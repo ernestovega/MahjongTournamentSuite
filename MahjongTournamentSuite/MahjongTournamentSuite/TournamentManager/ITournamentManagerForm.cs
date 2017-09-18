@@ -6,7 +6,7 @@ namespace MahjongTournamentSuite.TournamentManager
     {
         void AddRoundsButtons(int numRounds);
         
-        void AddTablesButtons(int roundId, int numTables);
+        void AddTablesButtons(int numTables);
         
         void RemoveRoundsButtons();
 

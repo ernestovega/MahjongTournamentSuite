@@ -1013,6 +1013,26 @@ namespace MahjongTournamentSuite.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap gong_ok {
+            get {
+                object obj = ResourceManager.GetObject("gong_ok", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap gong_ok_white {
+            get {
+                object obj = ResourceManager.GetObject("gong_ok_white", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap gong_white {
             get {
                 object obj = ResourceManager.GetObject("gong_white", resourceCulture);
@@ -2406,6 +2426,26 @@ namespace MahjongTournamentSuite.Properties {
         public static System.Drawing.Bitmap table {
             get {
                 object obj = ResourceManager.GetObject("table", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap table_ok {
+            get {
+                object obj = ResourceManager.GetObject("table_ok", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap table_ok_white {
+            get {
+                object obj = ResourceManager.GetObject("table_ok_white", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

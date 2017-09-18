@@ -67,6 +67,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\DGVCountry.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\flags\CountryFlags.cs" />
     <Compile Include="TeamsManager\ITeamsManagerForm.cs" />
     <Compile Include="TeamsManager\ITeamsManagerPresenter.cs" />
@@ -129,11 +134,6 @@
     <Compile Include="Model\ChickenHandRanking.cs" />
     <Compile Include="Model\HTMLRankings.cs" />
     <Compile Include="Model\Rankings.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Ranking\IRankingForm.cs" />
     <Compile Include="Ranking\IRankingPresenter.cs" />
     <Compile Include="Ranking\RankingForm.cs">
@@ -504,6 +504,8 @@
     <Content Include="Resources\gong.png" />
     <Content Include="Resources\gong_big.png" />
     <Content Include="Resources\gong_big_white.png" />
+    <Content Include="Resources\gong_ok.png" />
+    <Content Include="Resources\gong_ok_white.png" />
     <Content Include="Resources\gong_white.png" />
     <Content Include="Resources\import.png" />
     <Content Include="Resources\maximize.png" />
@@ -517,15 +519,16 @@
     <Content Include="Resources\players_big.png" />
     <Content Include="Resources\players_white.png" />
     <Content Include="Resources\sur.png" />
+    <Content Include="Resources\table_ok.png" />
+    <Content Include="Resources\table_ok_white.png" />
     <Content Include="Resources\table_white.png" />
     <Content Include="Resources\teams.png" />
     <Content Include="Resources\teams_big.png" />
     <Content Include="Resources\teams_white.png" />
     <Content Include="Resources\yes.png" />
     <Content Include="Resources\yes_white.png" />
-    <None Include="Resources\table32.png" />
+    <None Include="Resources\table.png" />
     <None Include="Resources\timer.png" />
-    <None Include="Resources\table64.png" />
     <None Include="Resources\remove.png" />
     <None Include="Resources\play.png" />
     <None Include="Resources\ranking.png" />

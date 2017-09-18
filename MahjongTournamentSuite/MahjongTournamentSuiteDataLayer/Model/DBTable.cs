@@ -29,6 +29,7 @@ namespace MahjongTournamentSuiteDataLayer.Model
         public string PlayerSouthPoints { get; set; }
         public string PlayerWestPoints { get; set; }
         public string PlayerNorthPoints { get; set; }
+        public bool IsCompleted { get; set; }
 
         #endregion
 
@@ -58,13 +59,15 @@ namespace MahjongTournamentSuiteDataLayer.Model
             PlayerSouthPoints = string.Empty;
             PlayerWestPoints = string.Empty;
             PlayerNorthPoints = string.Empty;
+            IsCompleted = false;
         }
 
         public DBTable(int tournamentId, int roundId, int id,
             int player1Id, int player2Id, int player3Id, int player4Id,
             string playerEastId, string playerSouthId, string playerWestId, string playerNorthId,
             string playerEastScore, string playerSouthScore, string playerWestScore, string playerNorthScore,
-            string playerEastPoints, string playerSouthPoints, string playerWestPoints, string playerNorthPoints)
+            string playerEastPoints, string playerSouthPoints, string playerWestPoints, string playerNorthPoints,
+            bool isCompleted)
         {
             TableTournamentId = tournamentId;
             TableRoundId = roundId;
@@ -85,6 +88,7 @@ namespace MahjongTournamentSuiteDataLayer.Model
             PlayerSouthPoints = playerSouthPoints;
             PlayerWestPoints = playerWestPoints;
             PlayerNorthPoints = playerNorthPoints;
+            IsCompleted = isCompleted;
         }
 
         #endregion

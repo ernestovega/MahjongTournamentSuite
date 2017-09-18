@@ -21,5 +21,9 @@
         void ButtonTableClicked(int tableId);
 
         void ExportRankingsToHTMLClicked();
+
+        bool IsRoundCompleted(object roundId);
+
+        bool IsTableCompleted(int tableId);
     }
 }

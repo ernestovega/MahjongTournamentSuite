@@ -435,7 +435,7 @@ namespace MahjongTournamentSuite.NewTournament
                 DBTable dbTable = new DBTable(_tournament.TournamentId, table.roundId, table.tableId,
                     table.player1Id, table.player2Id, table.player3Id, table.player4Id,
                     table.player1Id.ToString(), table.player2Id.ToString(), table.player3Id.ToString(), table.player4Id.ToString(),
-                    "107", "13", "-115", "-5", "4", "2", "0", "1");
+                    "107", "13", "-115", "-5", "4", "2", "0", "1", true);
 
                 dbHands.Add(new DBHand(_tournament.TournamentId, table.roundId, table.tableId, 1,  table.player1Id.ToString(), table.player4Id.ToString(), "9",  true,   "0", "0", "0", "0"));
                 dbHands.Add(new DBHand(_tournament.TournamentId, table.roundId, table.tableId, 2,  table.player1Id.ToString(), table.player2Id.ToString(), "25", false,  "0", "0", "0", "0"));

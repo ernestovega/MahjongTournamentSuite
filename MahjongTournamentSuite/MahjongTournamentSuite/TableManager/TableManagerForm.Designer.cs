@@ -72,6 +72,8 @@
             this.lblTitleTotalScorePlayerNorth = new System.Windows.Forms.Label();
             this.lblTitleTotalPointsPlayerNorth = new System.Windows.Forms.Label();
             this.panelTotals = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.cbCompleted = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoEMA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -89,7 +91,7 @@
             this.lblRoundId.AutoSize = true;
             this.lblRoundId.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.lblRoundId.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblRoundId.Location = new System.Drawing.Point(207, 36);
+            this.lblRoundId.Location = new System.Drawing.Point(207, 25);
             this.lblRoundId.Margin = new System.Windows.Forms.Padding(0);
             this.lblRoundId.Name = "lblRoundId";
             this.lblRoundId.Size = new System.Drawing.Size(20, 24);
@@ -102,7 +104,7 @@
             this.lblTableId.AutoSize = true;
             this.lblTableId.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.lblTableId.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblTableId.Location = new System.Drawing.Point(342, 36);
+            this.lblTableId.Location = new System.Drawing.Point(198, 57);
             this.lblTableId.Margin = new System.Windows.Forms.Padding(0);
             this.lblTableId.Name = "lblTableId";
             this.lblTableId.Size = new System.Drawing.Size(20, 24);
@@ -293,7 +295,7 @@
             this.pictureBox1.ErrorImage = global::MahjongTournamentSuite.Properties.Resources.gong;
             this.pictureBox1.Image = global::MahjongTournamentSuite.Properties.Resources.gong;
             this.pictureBox1.InitialImage = global::MahjongTournamentSuite.Properties.Resources.gong;
-            this.pictureBox1.Location = new System.Drawing.Point(108, 25);
+            this.pictureBox1.Location = new System.Drawing.Point(108, 14);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(32, 32);
@@ -304,10 +306,10 @@
             // pictureBox2
             // 
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBox2.ErrorImage = global::MahjongTournamentSuite.Properties.Resources.table;
-            this.pictureBox2.Image = global::MahjongTournamentSuite.Properties.Resources.table;
-            this.pictureBox2.InitialImage = global::MahjongTournamentSuite.Properties.Resources.table;
-            this.pictureBox2.Location = new System.Drawing.Point(252, 25);
+            this.pictureBox2.ErrorImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.ErrorImage")));
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.InitialImage")));
+            this.pictureBox2.Location = new System.Drawing.Point(108, 46);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(25, 5, 5, 5);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(32, 32);
@@ -380,7 +382,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(140, 36);
+            this.label1.Location = new System.Drawing.Point(140, 25);
             this.label1.Margin = new System.Windows.Forms.Padding(0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 24);
@@ -393,7 +395,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(284, 36);
+            this.label2.Location = new System.Drawing.Point(140, 57);
             this.label2.Margin = new System.Windows.Forms.Padding(0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(58, 24);
@@ -406,9 +408,10 @@
             this.lblTournamentName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTournamentName.Font = new System.Drawing.Font("Microsoft Sans Serif", 21F, System.Drawing.FontStyle.Bold);
             this.lblTournamentName.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblTournamentName.Location = new System.Drawing.Point(384, 13);
+            this.lblTournamentName.Location = new System.Drawing.Point(386, 13);
+            this.lblTournamentName.Margin = new System.Windows.Forms.Padding(25, 0, 3, 0);
             this.lblTournamentName.Name = "lblTournamentName";
-            this.lblTournamentName.Size = new System.Drawing.Size(518, 65);
+            this.lblTournamentName.Size = new System.Drawing.Size(516, 65);
             this.lblTournamentName.TabIndex = 27;
             this.lblTournamentName.Text = "Tournament Name";
             this.lblTournamentName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -706,6 +709,29 @@
             this.panelTotals.TabIndex = 98;
             this.panelTotals.Visible = false;
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label9.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label9.Location = new System.Drawing.Point(266, 31);
+            this.label9.Margin = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(95, 20);
+            this.label9.TabIndex = 99;
+            this.label9.Text = "Completed?";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // cbCompleted
+            // 
+            this.cbCompleted.AutoSize = true;
+            this.cbCompleted.Location = new System.Drawing.Point(304, 59);
+            this.cbCompleted.Name = "cbCompleted";
+            this.cbCompleted.Size = new System.Drawing.Size(15, 14);
+            this.cbCompleted.TabIndex = 100;
+            this.cbCompleted.UseVisualStyleBackColor = true;
+            this.cbCompleted.CheckedChanged += new System.EventHandler(this.cbCompleted_CheckedChanged);
+            // 
             // TableManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -713,6 +739,8 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1008, 693);
+            this.Controls.Add(this.cbCompleted);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.panelTotals);
             this.Controls.Add(this.dgv);
             this.Controls.Add(this.label2);
@@ -807,5 +835,7 @@
         private System.Windows.Forms.Label lblTitleTotalScorePlayerNorth;
         private System.Windows.Forms.Label lblTitleTotalPointsPlayerNorth;
         private System.Windows.Forms.Panel panelTotals;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.CheckBox cbCompleted;
     }
 }

@@ -36,6 +36,12 @@ namespace MahjongTournamentSuite.TeamsManager
             Cursor = Cursors.Default;
         }
 
+        private void TeamsManagerForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //Para guardar los cambios que no se hayan guardado.
+            lblStub.Focus();
+        }
+
         private void dgv_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (dgv.CurrentCell != null &&

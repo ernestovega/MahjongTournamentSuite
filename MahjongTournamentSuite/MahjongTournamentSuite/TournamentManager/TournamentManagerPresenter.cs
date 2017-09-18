@@ -5,6 +5,7 @@ using MahjongTournamentSuiteDataLayer.Data;
 using System.Linq;
 using MahjongTournamentSuite.Resources;
 using MahjongTournamentSuite.Resources.flags;
+using System;
 
 namespace MahjongTournamentSuite.TournamentManager
 {
@@ -62,7 +63,7 @@ namespace MahjongTournamentSuite.TournamentManager
             _form.RemoveRoundsButtons();
             _form.AddRoundsButtons(_tournament.NumRounds);
             _form.RemoveTablesButtons();
-            _form.AddTablesButtons(roundSelected, _tournament.NumPlayers / 4);
+            _form.AddTablesButtons(_tournament.NumPlayers / 4);
             _form.SelectRoundButton(roundSelected);
             if(tableSelected > 0)
                 _form.SelectTableButton(tableSelected);
@@ -107,7 +108,7 @@ namespace MahjongTournamentSuite.TournamentManager
             roundSelected = roundId;
             _form.SelectRoundButton(roundId);
             _form.RemoveTablesButtons();
-            _form.AddTablesButtons(roundId, _tournament.NumPlayers / 4);
+            _form.AddTablesButtons(_tournament.NumPlayers / 4);
         }
 
         public void ButtonTableClicked(int tableId)
@@ -126,9 +127,27 @@ namespace MahjongTournamentSuite.TournamentManager
             _form.GoToRankings(rankings);
         }
 
+        public bool IsRoundCompleted(object roundId)
+        {
+            _tables = _db.GetTournamentTables(_tournament.TournamentId);
+            List<DBTable> roundTables = _tables.FindAll(x => x.TableRoundId == roundSelected);
+            foreach (DBTable table in roundTables)
+            {
+                if (!table.IsCompleted)
+                    return false;
+            }
+            return true;
+        }
+
+        public bool IsTableCompleted(int tableId)
+        {
+            _tables = _db.GetTournamentTables(_tournament.TournamentId);
+            return _tables.Find(x => x.TableRoundId == roundSelected && x.TableId == tableId).IsCompleted;
+        }
+
         #endregion
 
-        #region Private
+            #region Private
 
         private bool IsWrongPlayersTeams()
         {
@@ -156,7 +175,7 @@ namespace MahjongTournamentSuite.TournamentManager
         {
             _form.AddRoundsButtons(_tournament.NumRounds);
             roundSelected = 1;
-            _form.AddTablesButtons(roundSelected, _tournament.NumPlayers / 4);
+            _form.AddTablesButtons(_tournament.NumPlayers / 4);
             _form.SelectRoundButton(roundSelected);
         }
 

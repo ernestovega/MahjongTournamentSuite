@@ -97,6 +97,7 @@ namespace MahjongTournamentSuiteDataLayer.Data
 
         void UpdateHandPlayerNorthPenalty(DBHand hand, string newPlayerNorthPenaltyValue);
 
+        void UpdateTableIsCompleted(DBTable table);
 
         #endregion
 

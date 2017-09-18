@@ -34,7 +34,55 @@ namespace MahjongTournamentSuite.CountryManager
             Cursor = Cursors.Default;
         }
 
-        #endregion 
+        private void CountryManagerForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //Para guardar los cambios que nos e hayan guardado.
+            lblStub.Focus();
+        }
+
+        private void dgv_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dgv.CurrentCell != null &&
+                dgv.CurrentCell.RowIndex == e.RowIndex &&
+                dgv.CurrentCell.ColumnIndex == e.ColumnIndex)
+            {
+                e.CellStyle.SelectionBackColor =
+                    dgv.CurrentCell.ReadOnly ?
+                    MyConstants.GREEN_MM_DARKEST :
+                    MyConstants.GREEN_MM_DARKER;
+            }
+        }
+
+        private void dgv_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex > -1 && dgv.Columns[e.ColumnIndex].Name.Equals(DBCountry.COLUMN_COUNTRY_IMAGE_URL))
+                dgv.BeginEdit(true);
+        }
+
+        private void dgv_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (e.RowIndex > -1 && dgv.Columns[e.ColumnIndex].Name.Equals(DBCountry.COLUMN_COUNTRY_IMAGE_URL))
+            {
+                Cursor = Cursors.WaitCursor;
+                string previousValue = (string)dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                string newValue = ((string)e.FormattedValue).Trim();
+                if (!newValue.Equals(previousValue))
+                {
+                    string countryName = (string)dgv.Rows[e.RowIndex].Cells[DBCountry.COLUMN_COUNTRY_NAME].Value;
+                    _presenter.CountryImageURLChanged(countryName, newValue);
+                }
+                else
+                    DGVCancelEdit();
+                Cursor = Cursors.Default;
+            }
+        }
+
+        public void DGVCancelEdit()
+        {
+            dgv.CancelEdit();
+        }
+
+        #endregion
 
         #region ICountryManagerForm implementation
 
@@ -71,54 +119,8 @@ namespace MahjongTournamentSuite.CountryManager
 
         #endregion 
 
-        #region Events
-
-        private void dgv_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (dgv.CurrentCell != null &&
-                dgv.CurrentCell.RowIndex == e.RowIndex &&
-                dgv.CurrentCell.ColumnIndex == e.ColumnIndex)
-            {
-                e.CellStyle.SelectionBackColor =
-                    dgv.CurrentCell.ReadOnly ?
-                    MyConstants.GREEN_MM_DARKEST :
-                    MyConstants.GREEN_MM_DARKER;
-            }
-        }
-
-        private void dgv_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            if (e.RowIndex > -1 && dgv.Columns[e.ColumnIndex].Name.Equals(DBCountry.COLUMN_COUNTRY_IMAGE_URL))
-                dgv.BeginEdit(true);
-        }
-
-        private void dgv_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
-        {
-            if (e.RowIndex > -1 && dgv.Columns[e.ColumnIndex].Name.Equals(DBCountry.COLUMN_COUNTRY_IMAGE_URL))
-            {
-                Cursor = Cursors.WaitCursor;
-                string previousValue = (string)dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-                string newValue = ((string)e.FormattedValue).Trim();
-                if (newValue.Length > 0 && !newValue.Equals(previousValue))
-                {
-                    string countryName = (string)dgv.Rows[e.RowIndex].Cells[DBCountry.COLUMN_COUNTRY_NAME].Value;
-                    _presenter.CountryImageURLChanged(countryName, newValue);
-                }
-                else
-                    DGVCancelEdit();
-                Cursor = Cursors.Default;
-            }
-        }
-
-        public void DGVCancelEdit()
-        {
-            dgv.CancelEdit();
-        }
-
-        #endregion
-        
         #region Private
-        
+
         #endregion
     }
 }

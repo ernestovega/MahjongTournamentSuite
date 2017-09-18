@@ -207,6 +207,14 @@ namespace MahjongTournamentSuiteDataLayer.Data
             _db.SaveChanges();
         }
 
+        public void UpdateTableIsCompleted(DBTable table)
+        {
+            DBTable dbTable = _db.Tables.ToList()
+                .Find(x => x.TableTournamentId == table.TableTournamentId && x.TableId == table.TableId);
+            dbTable.IsCompleted = table.IsCompleted;
+            _db.SaveChanges();
+        }
+
         #endregion
 
         #region Hands
