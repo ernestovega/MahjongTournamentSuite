@@ -42,6 +42,8 @@
             this.btnPause = new System.Windows.Forms.Button();
             this.btnPlay = new System.Windows.Forms.Button();
             this.flowLayoutPanelTitle = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblLiveRankingUrl = new System.Windows.Forms.Label();
+            this.lblProgress = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconTitle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.flowLayoutPanelTitle.SuspendLayout();
@@ -160,7 +162,7 @@
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(32, 0, 32, 0);
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(8, 0, 8, 0);
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
@@ -168,7 +170,7 @@
             this.dgv.Enabled = false;
             this.dgv.EnableHeadersVisualStyles = false;
             this.dgv.GridColor = System.Drawing.Color.White;
-            this.dgv.Location = new System.Drawing.Point(34, 92);
+            this.dgv.Location = new System.Drawing.Point(3, 92);
             this.dgv.Margin = new System.Windows.Forms.Padding(25);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
@@ -184,7 +186,7 @@
             this.dgv.ShowCellToolTips = false;
             this.dgv.ShowEditingIcon = false;
             this.dgv.ShowRowErrors = false;
-            this.dgv.Size = new System.Drawing.Size(956, 642);
+            this.dgv.Size = new System.Drawing.Size(1018, 607);
             this.dgv.TabIndex = 67;
             // 
             // btnSecondsDown
@@ -243,7 +245,7 @@
             this.btnPause.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnPause.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btnPause.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPause.Location = new System.Drawing.Point(911, 16);
+            this.btnPause.Location = new System.Drawing.Point(777, 17);
             this.btnPause.Margin = new System.Windows.Forms.Padding(0);
             this.btnPause.Name = "btnPause";
             this.btnPause.Size = new System.Drawing.Size(50, 50);
@@ -262,7 +264,7 @@
             this.btnPlay.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnPlay.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btnPlay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPlay.Location = new System.Drawing.Point(911, 16);
+            this.btnPlay.Location = new System.Drawing.Point(777, 17);
             this.btnPlay.Margin = new System.Windows.Forms.Padding(0);
             this.btnPlay.Name = "btnPlay";
             this.btnPlay.Size = new System.Drawing.Size(50, 50);
@@ -277,11 +279,38 @@
             this.flowLayoutPanelTitle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.flowLayoutPanelTitle.Controls.Add(this.pbIconTitle);
             this.flowLayoutPanelTitle.Controls.Add(this.lblRankingTitle);
-            this.flowLayoutPanelTitle.Location = new System.Drawing.Point(306, 9);
+            this.flowLayoutPanelTitle.Location = new System.Drawing.Point(387, 9);
             this.flowLayoutPanelTitle.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanelTitle.Name = "flowLayoutPanelTitle";
-            this.flowLayoutPanelTitle.Size = new System.Drawing.Size(424, 74);
+            this.flowLayoutPanelTitle.Size = new System.Drawing.Size(253, 74);
             this.flowLayoutPanelTitle.TabIndex = 81;
+            // 
+            // lblLiveRankingUrl
+            // 
+            this.lblLiveRankingUrl.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.lblLiveRankingUrl.AutoSize = true;
+            this.lblLiveRankingUrl.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblLiveRankingUrl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblLiveRankingUrl.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLiveRankingUrl.Location = new System.Drawing.Point(266, 726);
+            this.lblLiveRankingUrl.Name = "lblLiveRankingUrl";
+            this.lblLiveRankingUrl.Size = new System.Drawing.Size(481, 23);
+            this.lblLiveRankingUrl.TabIndex = 82;
+            this.lblLiveRankingUrl.Text = "WWW.MAHJONGMADRID.COM/9THSOMCLIVERANKING";
+            this.lblLiveRankingUrl.Click += new System.EventHandler(this.lblLiveRankingUrl_Click);
+            // 
+            // lblProgress
+            // 
+            this.lblProgress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblProgress.AutoSize = true;
+            this.lblProgress.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F);
+            this.lblProgress.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblProgress.Location = new System.Drawing.Point(9, 715);
+            this.lblProgress.Margin = new System.Windows.Forms.Padding(0);
+            this.lblProgress.Name = "lblProgress";
+            this.lblProgress.Size = new System.Drawing.Size(41, 44);
+            this.lblProgress.TabIndex = 83;
+            this.lblProgress.Text = "7";
             // 
             // RankingForm
             // 
@@ -290,6 +319,8 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1024, 768);
+            this.Controls.Add(this.lblProgress);
+            this.Controls.Add(this.lblLiveRankingUrl);
             this.Controls.Add(this.flowLayoutPanelTitle);
             this.Controls.Add(this.btnPause);
             this.Controls.Add(this.btnPlay);
@@ -330,6 +361,8 @@
         private System.Windows.Forms.Button btnPause;
         private System.Windows.Forms.Button btnPlay;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelTitle;
+        private System.Windows.Forms.Label lblLiveRankingUrl;
+        private System.Windows.Forms.Label lblProgress;
     }
 }
 

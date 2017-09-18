@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using MahjongTournamentSuite.Model;
 using System.Runtime.InteropServices;
 using System.Drawing;
+using System.Diagnostics;
 
 namespace MahjongTournamentSuite.Ranking
 {
@@ -45,8 +46,56 @@ namespace MahjongTournamentSuite.Ranking
         {
             ShowWaitCursor();
             CenterPanelTitle();
+            CenterLabelUrlLiveRanking();
             _presenter.LoadData(_rankings);
             ShowDefaultCursor();
+        }
+
+        private void RankingForm_Resize(object sender, EventArgs e)
+        {
+            if (dgv.DataSource != null)
+            {
+                CalculateAndSetDefaultRowHeightToFillScreen();
+                CenterPanelTitle();
+                CenterDGV();
+                CenterLabelUrlLiveRanking();
+            }
+        }
+
+        private void RankingForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
+        private void btnMaximize_Click(object sender, EventArgs e)
+        {
+            Padding newPadding;
+
+            if (WindowState != FormWindowState.Maximized)
+            {
+                WindowState = FormWindowState.Maximized;
+                newPadding = new Padding(8, 0, 8, 0);
+            }
+            else
+            {
+                WindowState = FormWindowState.Normal;
+                newPadding = new Padding(32, 0, 32, 0);
+            }
+
+            dgv.DefaultCellStyle.Padding = newPadding;
+
+            //foreach (DataGridViewRow row in dgv.Rows)
+            //{
+            //    if (row.Index >= 0)
+            //    {
+            //        foreach (DataGridViewCell cell in row.Cells)
+            //            cell.Style.Padding = newPadding;
+            //    }
+            //}
         }
 
         private void btnSecondsUp_Click(object sender, EventArgs e)
@@ -69,33 +118,18 @@ namespace MahjongTournamentSuite.Ranking
             _presenter.PauseClicked();
         }
 
-        private void btnMaximize_Click(object sender, EventArgs e)
-        {
-            if (WindowState != FormWindowState.Maximized)
-                WindowState = FormWindowState.Maximized;
-            else
-                WindowState = FormWindowState.Normal;
-        }
-
         private void btnClose_Click(object sender, System.EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
             _presenter.StopShowRankingThread();
         }
 
-        private void RankingForm_MouseDown(object sender, MouseEventArgs e)
+        private void lblLiveRankingUrl_Click(object sender, EventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
-            {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
-            }
-        }
-
-        private void RankingForm_Resize(object sender, EventArgs e)
-        {
-            if (dgv.DataSource != null)
-                CalculateAndSetDefaultRowHeightToFillScreen();
+            ShowWaitCursor();
+            ProcessStartInfo sInfo = new ProcessStartInfo("http://www.mahjongmadrid.com/9thsomcliveranking");
+            Process.Start(sInfo);
+            ShowDefaultCursor();
         }
 
         #endregion
@@ -140,7 +174,7 @@ namespace MahjongTournamentSuite.Ranking
             }));
         }
 
-        public void CloseFormFromThread()
+        public void CloseForm()
         {
             Close();
             ShowDefaultCursor();
@@ -149,6 +183,14 @@ namespace MahjongTournamentSuite.Ranking
         public void SetSecondsLabel(string seconds)
         {
             lblSeconds.Text = seconds;
+        }
+
+        public void UpdateProgressFromThread(string leftTime)
+        {
+            Invoke(new MethodInvoker(() =>
+            {
+                lblProgress.Text = leftTime;
+            }));
         }
 
         public void ShowButtonSecondsDown()
@@ -215,7 +257,7 @@ namespace MahjongTournamentSuite.Ranking
             ((DataGridViewImageColumn)dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_COUNTRY_FLAG]).ImageLayout = DataGridViewImageCellLayout.Zoom;
             //Column Flags Header&Cell Content Alignment
             dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_COUNTRY_FLAG].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_COUNTRY_FLAG].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_COUNTRY_FLAG].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             //DisplayIndex
             dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_ORDER].DisplayIndex = 0;
             dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_PLAYER_NAME].DisplayIndex = 1;
@@ -239,6 +281,7 @@ namespace MahjongTournamentSuite.Ranking
             dgv.Columns[PlayerRanking.COLUMN_PLAYER_RANKING_COUNTRY_FLAG].SortMode = DataGridViewColumnSortMode.NotSortable;
 
             CenterDGV();
+            CalculateAndSetDefaultRowHeightToFillScreen();
         }
 
         private void FillDGVTeams(List<TeamRanking> teamsRankingsRange)
@@ -272,6 +315,7 @@ namespace MahjongTournamentSuite.Ranking
             dgv.Columns[TeamRanking.COLUMN_TEAM_RANKING_TEAM_SCORE].SortMode = DataGridViewColumnSortMode.NotSortable;
 
             CenterDGV();
+            CalculateAndSetDefaultRowHeightToFillScreen();
         }
 
         private void FillDGVPlayersChickenHands(List<ChickenHandRanking> playersChickenHandsRankingsRange)
@@ -302,7 +346,7 @@ namespace MahjongTournamentSuite.Ranking
             ((DataGridViewImageColumn)dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_COUNTRY_FLAG]).ImageLayout = DataGridViewImageCellLayout.Zoom;
             //Column Flags Header&Cell Content Alignment
             dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_COUNTRY_FLAG].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_COUNTRY_FLAG].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_COUNTRY_FLAG].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             //Padding
             dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_NUM_CHICKEN_HANDS].DefaultCellStyle.Padding = new Padding(25, 0, 25, 0);
             dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_POINTS].DefaultCellStyle.Padding = new Padding(25, 0, 25, 0);
@@ -325,12 +369,19 @@ namespace MahjongTournamentSuite.Ranking
             dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_COUNTRY_FLAG].SortMode = DataGridViewColumnSortMode.NotSortable;
 
             CenterDGV();
+            CalculateAndSetDefaultRowHeightToFillScreen();
         }
 
         private void CenterPanelTitle()
         {
             flowLayoutPanelTitle.Location = 
                 new Point((Width - flowLayoutPanelTitle.Width) / 2, flowLayoutPanelTitle.Location.Y);
+        }
+
+        private void CenterLabelUrlLiveRanking()
+        {
+            lblLiveRankingUrl.Location =
+                new Point((Width - lblLiveRankingUrl.Width) / 2, lblLiveRankingUrl.Location.Y);
         }
 
         private void CenterDGV()
@@ -342,10 +393,16 @@ namespace MahjongTournamentSuite.Ranking
 
         private void CalculateAndSetDefaultRowHeightToFillScreen()
         {
-            int rowsTotalSpace = dgv.Height - dgv.ColumnHeadersHeight;
+            float fontSize = (dgv.ClientSize.Height / _numRowsPerScreen) / 1.5f;
+            dgv.DefaultCellStyle.Font = new Font("Microsoft Sans Serif", fontSize, FontStyle.Bold, GraphicsUnit.Pixel);
+
+            int rowsTotalSpace = dgv.ClientSize.Height - dgv.ColumnHeadersHeight;
             int newRowHeight = rowsTotalSpace / _numRowsPerScreen;
             dgv.RowTemplate.Height = newRowHeight;
-            dgv.Refresh();
+            foreach (DataGridViewRow row in dgv.Rows)
+                row.Height = newRowHeight;
+
+            dgv.ScrollBars = ScrollBars.None;
         }
 
         private void ShowWaitCursor()

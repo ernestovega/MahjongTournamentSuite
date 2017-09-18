@@ -172,13 +172,15 @@ namespace MahjongTournamentSuiteDataLayer.Data
 
         public DBTable GetTable(int tournamentId, int roundId, int tableId)
         {
-            return _db.Tables.ToList().Find(x => x.TableTournamentId == tournamentId && x.TableRoundId == roundId && x.TableId == tableId);
+            return _db.Tables.ToList().Find(x => x.TableTournamentId == tournamentId && 
+                x.TableRoundId == roundId && x.TableId == tableId);
         }
 
         public void UpdateTableAllPlayersPositions(DBTable table)
         {
             DBTable dbTable = _db.Tables.ToList()
-                .Find(x => x.TableTournamentId == table.TableTournamentId && x.TableId == table.TableId);
+                .Find(x => x.TableTournamentId == table.TableTournamentId &&
+                    x.TableRoundId == table.TableRoundId && x.TableId == table.TableId);
             dbTable.PlayerEastId = table.PlayerEastId;
             dbTable.PlayerSouthId = table.PlayerSouthId;
             dbTable.PlayerWestId = table.PlayerWestId;
@@ -189,7 +191,8 @@ namespace MahjongTournamentSuiteDataLayer.Data
         public void UpdateTableAllPlayersTotalScores(DBTable table)
         {
             DBTable dbTable = _db.Tables.ToList()
-                .Find(x => x.TableTournamentId == table.TableTournamentId && x.TableId == table.TableId);
+                .Find(x => x.TableTournamentId == table.TableTournamentId &&
+                    x.TableRoundId == table.TableRoundId && x.TableId == table.TableId);
             dbTable.PlayerEastScore = table.PlayerEastScore;
             dbTable.PlayerSouthScore = table.PlayerSouthScore;
             dbTable.PlayerWestScore = table.PlayerWestScore;
@@ -200,7 +203,8 @@ namespace MahjongTournamentSuiteDataLayer.Data
         public void UpdateTableAllPlayersPoints(DBTable table)
         {
             DBTable dbTable = _db.Tables.ToList()
-                .Find(x => x.TableTournamentId == table.TableTournamentId && x.TableId == table.TableId);
+                .Find(x => x.TableTournamentId == table.TableTournamentId &&
+                    x.TableRoundId == table.TableRoundId && x.TableId == table.TableId);
             dbTable.PlayerEastPoints = table.PlayerEastPoints;
             dbTable.PlayerSouthPoints = table.PlayerSouthPoints;
             dbTable.PlayerWestPoints = table.PlayerWestPoints;

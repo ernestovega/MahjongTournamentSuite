@@ -12,8 +12,8 @@ namespace MahjongTournamentSuite.Ranking
     {
         #region Constants
 
-        public const int DEFAULT_NUM_ROWS_PER_SCREEN = 20;
-        private static readonly int MAX_PAGE_SHOW_TIME = 7; //Seconds
+        public const int DEFAULT_NUM_ROWS_PER_SCREEN = 24;
+        private static readonly int MAX_PAGE_SHOW_TIME = 7;
 
         #endregion
 
@@ -64,7 +64,7 @@ namespace MahjongTournamentSuite.Ranking
             // Wait for the thread to exit
             _showRankingThread.Join();
 
-            _form.CloseFormFromThread();
+            _form.CloseForm();
         }
 
         public void IncrementShowingTimeInOneSecond()
@@ -116,6 +116,7 @@ namespace MahjongTournamentSuite.Ranking
 
                 _pauseEvent.WaitOne(Timeout.Infinite);
 
+                #region Show
                 if (showTeams)
                 {
                     if (_rankings.IsTeams)
@@ -187,16 +188,22 @@ namespace MahjongTournamentSuite.Ranking
                         rowsRange = _numRowsPerScreen;
                     }
                 }
+                #endregion
             }
         }
 
         private void SleepRankingPage()
         {
-            for (int i = 100; i < _showTime * 1000; i = i + 100)
+            for (int i = 0; i <= _showTime; i++)
             {
+                _form.UpdateProgressFromThread((_showTime - i).ToString());
+
+                Thread.Sleep(990);
+
+                _pauseEvent.WaitOne(Timeout.Infinite);
+
                 if (_shutdownEvent.WaitOne(0))
-                    return;
-                Thread.Sleep(i);
+                    break;
             }
         }
 
