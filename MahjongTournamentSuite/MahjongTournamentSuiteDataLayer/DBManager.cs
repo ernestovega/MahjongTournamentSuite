@@ -8,6 +8,7 @@ namespace MahjongTournamentSuiteDataLayer.Data
 {
     public class DBManager : IDBManager
     {
+
         #region Fields
 
         TournamentSuiteDB _db = new TournamentSuiteDB();
@@ -210,9 +211,17 @@ namespace MahjongTournamentSuiteDataLayer.Data
         public void UpdateTableIsCompleted(DBTable table)
         {
             DBTable dbTable = _db.Tables.ToList()
-                .Find(x => x.TableTournamentId == table.TableTournamentId && x.TableId == table.TableId);
+                .Find(x => x.TableTournamentId == table.TableTournamentId && 
+                    x.TableRoundId == table.TableRoundId && x.TableId == table.TableId);
             dbTable.IsCompleted = table.IsCompleted;
             _db.SaveChanges();
+        }
+
+        public void RefreshTable(int tournamentId, int roundId, int tableId)
+        {
+            DBTable table = _db.Tables.ToList().Find(x => x.TableTournamentId == tournamentId &&
+                x.TableRoundId == roundId && x.TableId == tableId);
+            _db.Entry(table).Reload();
         }
 
         #endregion

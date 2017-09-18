@@ -22,9 +22,10 @@ namespace MahjongTournamentSuite.Ranking
         private IDBManager _db;
         private IRankingForm _form;
         private Rankings _rankings;
-        private Thread _showerThread;
+        private ManualResetEvent _shutdownEvent = new ManualResetEvent(false);
+        private ManualResetEvent _pauseEvent = new ManualResetEvent(true);
+        private Thread _showRankingThread;
         private int _numRowsPerScreen;
-        private bool _stopShow = false;
         private int _showTime = MAX_PAGE_SHOW_TIME;
 
         #endregion
@@ -47,23 +48,23 @@ namespace MahjongTournamentSuite.Ranking
             _numRowsPerScreen = _rankings.PlayersRankings.Count < DEFAULT_NUM_ROWS_PER_SCREEN ? 
                 _rankings.PlayersRankings.Count : DEFAULT_NUM_ROWS_PER_SCREEN;
             _form.SetNumRowsPerScreen(_numRowsPerScreen);
-            _showerThread = new Thread(new ThreadStart(ShowRankings));
-        }
-
-        public void StartShowRankingThread()
-        {
-            _showerThread.Start();
+            _showRankingThread = new Thread(ShowRankings);
+            _showRankingThread.Start();
+            _pauseEvent.Reset();
         }
 
         public void StopShowRankingThread()
         {
-            _stopShow = true;
-        }
+            // Signal the shutdown event
+            _shutdownEvent.Set();
 
-        public void AbortShowRankingThreadIfAlive()
-        {
-            if(_showerThread.IsAlive)
-                _showerThread.Abort();
+            // Make sure to resume any paused threads
+            _pauseEvent.Set();
+
+            // Wait for the thread to exit
+            _showRankingThread.Join();
+
+            _form.CloseFormFromThread();
         }
 
         public void IncrementShowingTimeInOneSecond()
@@ -83,6 +84,20 @@ namespace MahjongTournamentSuite.Ranking
                 _form.HideButtonSecondsDown();
         }
 
+        public void PlayClicked()
+        {
+            _pauseEvent.Set();
+            _form.HideButtonPlay();
+            _form.ShowButtonPause();
+        }
+
+        public void PauseClicked()
+        {
+            _pauseEvent.Reset();
+            _form.HideButtonPause();
+            _form.ShowButtonPlay();
+        }
+
         #endregion
 
         #region Private
@@ -94,8 +109,13 @@ namespace MahjongTournamentSuite.Ranking
             int startIndex = 0;
             int rowsRange = _numRowsPerScreen;
 
-            while (!_stopShow)
+            while (true)
             {
+                if (_shutdownEvent.WaitOne(0))
+                    break;
+
+                _pauseEvent.WaitOne(Timeout.Infinite);
+
                 if (showTeams)
                 {
                     if (_rankings.IsTeams)
@@ -104,7 +124,7 @@ namespace MahjongTournamentSuite.Ranking
                             rowsRange -= (startIndex + rowsRange) - _rankings.TeamsRankings.Count;
 
                         _form.FillDGVTeamsFromThread(_rankings.TeamsRankings.GetRange(startIndex, rowsRange));
-                        SleepRanking();
+                        SleepRankingPage();
 
                         if ((startIndex + _numRowsPerScreen) < _rankings.TeamsRankings.Count)
                             startIndex += _numRowsPerScreen;
@@ -130,7 +150,7 @@ namespace MahjongTournamentSuite.Ranking
                         rowsRange -= (startIndex + rowsRange) - _rankings.PlayersRankings.Count;
 
                     _form.FillDGVPlayersFromThread(_rankings.PlayersRankings.GetRange(startIndex, rowsRange), _rankings.IsTeams);
-                    SleepRanking();
+                    SleepRankingPage();
 
                     if ((startIndex + _numRowsPerScreen) < _rankings.PlayersRankings.Count)
                         startIndex += _numRowsPerScreen;
@@ -149,7 +169,7 @@ namespace MahjongTournamentSuite.Ranking
                             rowsRange -= (startIndex + rowsRange) - _rankings.PlayersChickenHandsRankings.Count;
 
                         _form.FillDGVPlayersChickenHandsFromThread(_rankings.PlayersChickenHandsRankings.GetRange(startIndex, rowsRange));
-                        SleepRanking();
+                        SleepRankingPage();
 
                         if ((startIndex + _numRowsPerScreen) < _rankings.PlayersChickenHandsRankings.Count)
                             startIndex += _numRowsPerScreen;
@@ -168,17 +188,15 @@ namespace MahjongTournamentSuite.Ranking
                     }
                 }
             }
-            _form.CloseFormFromThread();
-            return;
         }
 
-        private void SleepRanking()
+        private void SleepRankingPage()
         {
-            for (int i = 0; i < _showTime * 2; i++)
+            for (int i = 100; i < _showTime * 1000; i = i + 100)
             {
-                Thread.Sleep(500); //0.5 seconds
-                if (_stopShow)
-                    break;
+                if (_shutdownEvent.WaitOne(0))
+                    return;
+                Thread.Sleep(i);
             }
         }
 

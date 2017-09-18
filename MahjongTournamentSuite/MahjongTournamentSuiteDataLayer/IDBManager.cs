@@ -51,6 +51,8 @@ namespace MahjongTournamentSuiteDataLayer.Data
 
         void UpdatePlayerCountry(int tournamentId, int playerId, string newCountryName);
 
+        void RefreshTable(int tournamentId, int roundId, int tableId);
+
         #endregion
 
         #region Countries Manager

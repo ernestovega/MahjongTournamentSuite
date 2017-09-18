@@ -518,6 +518,7 @@
     <Content Include="Resources\players.png" />
     <Content Include="Resources\players_big.png" />
     <Content Include="Resources\players_white.png" />
+    <Content Include="Resources\ranking_big.png" />
     <Content Include="Resources\sur.png" />
     <Content Include="Resources\table_ok.png" />
     <Content Include="Resources\table_ok_white.png" />

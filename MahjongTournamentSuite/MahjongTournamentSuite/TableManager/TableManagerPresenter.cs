@@ -48,6 +48,7 @@ namespace MahjongTournamentSuite.TableManager
             _form.SetTournamentName(_db.GetTournamentName(tournamentId));
             _form.SetRoundId(roundId);
             _form.SetTableId(tableId);
+            _form.SetIsCompleted(_table.IsCompleted);
             FillCombosPlayers();
             FillDataGridHandsWithoutScores();
             if(FillPlayerHeaders(false))

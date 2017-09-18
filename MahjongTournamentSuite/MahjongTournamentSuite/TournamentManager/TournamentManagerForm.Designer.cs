@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TournamentManagerForm));
             this.imgLogoMM = new System.Windows.Forms.PictureBox();
             this.imgLogoEMA = new System.Windows.Forms.PictureBox();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.lblTitleRounds = new System.Windows.Forms.Label();
             this.lblSeparator = new System.Windows.Forms.Label();
             this.lblTitleTables = new System.Windows.Forms.Label();
@@ -43,10 +43,10 @@
             this.btnTimer = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoEMA)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
+            this.splitContainer.Panel1.SuspendLayout();
+            this.splitContainer.Panel2.SuspendLayout();
+            this.splitContainer.SuspendLayout();
             this.SuspendLayout();
             // 
             // imgLogoMM
@@ -86,37 +86,37 @@
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.splitContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.IsSplitterFixed = true;
-            this.splitContainer1.Location = new System.Drawing.Point(14, 111);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(5);
-            this.splitContainer1.MinimumSize = new System.Drawing.Size(980, 282);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.splitContainer.IsSplitterFixed = true;
+            this.splitContainer.Location = new System.Drawing.Point(14, 111);
+            this.splitContainer.Margin = new System.Windows.Forms.Padding(5);
+            this.splitContainer.MinimumSize = new System.Drawing.Size(980, 282);
+            this.splitContainer.Name = "splitContainer1";
+            this.splitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.AutoScroll = true;
-            this.splitContainer1.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.splitContainer1.Panel1.Controls.Add(this.lblTitleRounds);
-            this.splitContainer1.Panel1.Controls.Add(this.lblSeparator);
-            this.splitContainer1.Panel1.Margin = new System.Windows.Forms.Padding(0, 5, 0, 5);
-            this.splitContainer1.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.splitContainer1.Panel1MinSize = 99;
+            this.splitContainer.Panel1.AutoScroll = true;
+            this.splitContainer.Panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.splitContainer.Panel1.Controls.Add(this.lblTitleRounds);
+            this.splitContainer.Panel1.Controls.Add(this.lblSeparator);
+            this.splitContainer.Panel1.Margin = new System.Windows.Forms.Padding(0, 5, 0, 5);
+            this.splitContainer.Panel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.splitContainer.Panel1MinSize = 99;
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.AutoScroll = true;
-            this.splitContainer1.Panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.splitContainer1.Panel2.Controls.Add(this.lblTitleTables);
-            this.splitContainer1.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.splitContainer1.Panel2MinSize = 200;
-            this.splitContainer1.Size = new System.Drawing.Size(980, 622);
-            this.splitContainer1.SplitterDistance = 120;
-            this.splitContainer1.SplitterWidth = 1;
-            this.splitContainer1.TabIndex = 70;
+            this.splitContainer.Panel2.AutoScroll = true;
+            this.splitContainer.Panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.splitContainer.Panel2.Controls.Add(this.lblTitleTables);
+            this.splitContainer.Panel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.splitContainer.Panel2MinSize = 200;
+            this.splitContainer.Size = new System.Drawing.Size(980, 622);
+            this.splitContainer.SplitterDistance = 120;
+            this.splitContainer.SplitterWidth = 1;
+            this.splitContainer.TabIndex = 70;
             // 
             // lblTitleRounds
             // 
@@ -325,7 +325,7 @@
             this.Controls.Add(this.imgLogoMM);
             this.Controls.Add(this.btnTimer);
             this.Controls.Add(this.btnRankings);
-            this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.splitContainer);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -338,10 +338,10 @@
             this.Resize += new System.EventHandler(this.TournamentManagerForm_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoEMA)).EndInit();
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
+            this.splitContainer.Panel1.ResumeLayout(false);
+            this.splitContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
+            this.splitContainer.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -349,7 +349,7 @@
         #endregion
         private System.Windows.Forms.PictureBox imgLogoMM;
         private System.Windows.Forms.PictureBox imgLogoEMA;
-        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.SplitContainer splitContainer;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblSeparator;
         private System.Windows.Forms.Label lblTitleRounds;

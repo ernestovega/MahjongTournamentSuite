@@ -20,7 +20,7 @@ namespace MahjongTournamentSuite.TournamentManager
         private List<DBPlayer> _players;
         private List<DBTable> _tables;
         private List<DBHand> _hands;
-        private int roundSelected = 0;
+        private int roundSelected = 1;
         private int tableSelected = 0;
         private List<PlayerRanking> _playersRankings; 
         private List<TeamRanking> _teamsRankings;
@@ -98,7 +98,14 @@ namespace MahjongTournamentSuite.TournamentManager
                 ButtonPlayersClicked();
             else
                 GenerateRoundsAndTablesButtons();
+        }
 
+        public void TableManagerFormClosed()
+        {
+            _db.RefreshTable(_tournament.TournamentId, roundSelected, tableSelected);
+            _tables = _db.GetTournamentTables(_tournament.TournamentId);
+            _form.SelectRoundButton(roundSelected);
+            _form.SelectTableButton(tableSelected);
         }
 
         public void ButtonRoundClicked(int roundId)
@@ -115,7 +122,6 @@ namespace MahjongTournamentSuite.TournamentManager
         {
             UnselectTable(tableSelected);
             tableSelected = tableId;
-            _form.SelectTableButton(tableId);
             _form.GoToTableManager(roundSelected, tableId);
         }
 
@@ -127,9 +133,8 @@ namespace MahjongTournamentSuite.TournamentManager
             _form.GoToRankings(rankings);
         }
 
-        public bool IsRoundCompleted(bool roundId)
+        public bool IsRoundCompleted(int roundId)
         {
-            _tables = _db.GetTournamentTables(_tournament.TournamentId);
             List<DBTable> roundTables = _tables.FindAll(x => x.TableRoundId == roundSelected);
             foreach (DBTable table in roundTables)
             {
@@ -141,13 +146,12 @@ namespace MahjongTournamentSuite.TournamentManager
 
         public bool IsTableCompleted(int tableId)
         {
-            _tables = _db.GetTournamentTables(_tournament.TournamentId);
             return _tables.Find(x => x.TableRoundId == roundSelected && x.TableId == tableId).IsCompleted;
         }
 
         #endregion
 
-            #region Private
+        #region Private
 
         private bool IsWrongPlayersTeams()
         {
@@ -173,8 +177,8 @@ namespace MahjongTournamentSuite.TournamentManager
 
         private void GenerateRoundsAndTablesButtons()
         {
+            _tables = _db.GetTournamentTables(_tournament.TournamentId);
             _form.AddRoundsButtons(_tournament.NumRounds);
-            roundSelected = 1;
             _form.AddTablesButtons(_tournament.NumPlayers / 4);
             _form.SelectRoundButton(roundSelected);
         }

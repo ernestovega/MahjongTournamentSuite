@@ -20,5 +20,9 @@ namespace MahjongTournamentSuite.Ranking
         void HideButtonSecondsDown();
 
         void SetSecondsLabel(string seconds);
+        void ShowButtonPlay();
+        void HideButtonPlay();
+        void ShowButtonPause();
+        void HideButtonPause();
     }
 }

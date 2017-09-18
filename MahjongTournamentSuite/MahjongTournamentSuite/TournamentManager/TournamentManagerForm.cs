@@ -132,13 +132,13 @@ namespace MahjongTournamentSuite.TournamentManager
 
         public void AddRoundsButtons(int numRounds)
         {
-            int numButtonsHorizontal = (splitContainer1.Width - (MARGIN_SIZE * 3)) / (BUTTON_SIDE + MARGIN_SIZE);
+            int numButtonsHorizontal = (splitContainer.Width - (MARGIN_SIZE * 3)) / (BUTTON_SIDE + MARGIN_SIZE);
 
             Point buttonStartPoint = new Point(MARGIN_SIZE, TITLE_ROUNDS_HEIGHT + MARGIN_SIZE);
             if (numButtonsHorizontal >= numRounds)
             {
                 int neededWidth = ((numRounds * BUTTON_SIDE) + ((numRounds + 1) * MARGIN_SIZE));
-                buttonStartPoint.X = (splitContainer1.Width - neededWidth) / 2;
+                buttonStartPoint.X = (splitContainer.Width - neededWidth) / 2;
             }
             int rowsCount = 0;
             for (int i = 1; i <= numRounds; i++)
@@ -156,7 +156,7 @@ namespace MahjongTournamentSuite.TournamentManager
                     ShowDefaultCursor();
                 };
 
-                splitContainer1.Panel1.Controls.Add(btnRound);
+                splitContainer.Panel1.Controls.Add(btnRound);
 
                 int numButtonsInActualRow = i - (rowsCount * numButtonsHorizontal);
                 if (numButtonsInActualRow == numButtonsHorizontal)
@@ -169,7 +169,7 @@ namespace MahjongTournamentSuite.TournamentManager
                     buttonStartPoint.X += BUTTON_SIDE + MARGIN_SIZE;
             }
             //Fijamos el tamaño vertical del contenedor para evitar el scroll
-            splitContainer1.SplitterDistance = ((rowsCount + 1) * BUTTON_SIDE) + ((rowsCount + 2) * MARGIN_SIZE) 
+            splitContainer.SplitterDistance = ((rowsCount + 1) * BUTTON_SIDE) + ((rowsCount + 2) * MARGIN_SIZE) 
                 + SEPARATOR_EXTRA_MARGIN_BOTTOM + TITLE_ROUNDS_HEIGHT;
         }
 
@@ -182,7 +182,7 @@ namespace MahjongTournamentSuite.TournamentManager
             else
                 neededWidth = ((NUM_TABLES_BUTTONS_HORIZONTAL * BUTTON_SIDE) + ((NUM_TABLES_BUTTONS_HORIZONTAL + 1) * TABLES_MARGIN_SIZE));
 
-            int initPoint = (splitContainer1.Width - neededWidth) / 2;
+            int initPoint = (splitContainer.Width - neededWidth) / 2;
             Point buttonStartPoint = new Point(initPoint, TITLE_TABLES_HEIGHT + TABLES_MARGIN_SIZE);
 
             int rowsCount = 0;
@@ -203,10 +203,8 @@ namespace MahjongTournamentSuite.TournamentManager
                     ShowDefaultCursor();
                 };
 
-
-                    splitContainer1.Panel2.Controls.Add(button);
-
-
+                splitContainer.Panel2.Controls.Add(button);
+                
                 if (i < numTables)
                 {
                     int numButtonsInActualRow = i - (rowsCount * NUM_TABLES_BUTTONS_HORIZONTAL);
@@ -227,25 +225,25 @@ namespace MahjongTournamentSuite.TournamentManager
         public void RemoveRoundsButtons()
         {
             List<Control> panelTournamentControls = new List<Control>();
-            foreach (Control control in splitContainer1.Panel1.Controls)
+            foreach (Control control in splitContainer.Panel1.Controls)
             {
                 if (control.GetType() == typeof(Button))
                     panelTournamentControls.Add(control);
             }
             foreach (Control control in panelTournamentControls)
-                splitContainer1.Panel1.Controls.Remove(control);
+                splitContainer.Panel1.Controls.Remove(control);
         }
 
         public void RemoveTablesButtons()
         {
             List<Control> panelTournamentControls = new List<Control>();
-            foreach (Control control in splitContainer1.Panel2.Controls)
+            foreach (Control control in splitContainer.Panel2.Controls)
             {
                 if (control.GetType() == typeof(Button))
                     panelTournamentControls.Add(control);
             }
             foreach (Control control in panelTournamentControls)
-                splitContainer1.Panel2.Controls.Remove(control);
+                splitContainer.Panel2.Controls.Remove(control);
         }
 
         public void GoToTeamsManager()
@@ -268,7 +266,16 @@ namespace MahjongTournamentSuite.TournamentManager
 
         public void GoToTableManager(int roundId, int tableId)
         {
-            new TableManagerForm(_tournamentId, roundId, tableId).ShowDialog();
+            TableManagerForm form = new TableManagerForm(_tournamentId, roundId, tableId);
+            form.FormClosed += new FormClosedEventHandler(TableManagerForm_FormClosed);
+            form.ShowDialog();
+        }
+
+        private void TableManagerForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            ShowWaitCursor();
+            _presenter.TableManagerFormClosed();
+            ShowDefaultCursor();
         }
 
         public void GoToRankings(Rankings rankings)
@@ -284,10 +291,10 @@ namespace MahjongTournamentSuite.TournamentManager
         {
             new HTMLViewerForm(htmlRankings).ShowDialog();
         }
-        
+
         public void SelectRoundButton(int roundId)
         {
-            foreach (Control control in splitContainer1.Panel1.Controls)
+            foreach (Control control in splitContainer.Panel1.Controls)
             {
                 if (control.Tag != null && (int)control.Tag == roundId)
                 {
@@ -300,7 +307,7 @@ namespace MahjongTournamentSuite.TournamentManager
 
         public void UnselectRoundButton(int roundId)
         {
-            foreach (Control control in splitContainer1.Panel1.Controls)
+            foreach (Control control in splitContainer.Panel1.Controls)
             {
                 if (control.Tag != null && (int)control.Tag == roundId)
                     MakeButtonUnselected((Button)control,
@@ -311,7 +318,7 @@ namespace MahjongTournamentSuite.TournamentManager
 
         public void SelectTableButton(int tableId)
         {
-            foreach (Control control in splitContainer1.Panel2.Controls)
+            foreach (Control control in splitContainer.Panel2.Controls)
             {
                 if (control.Tag != null && (int)control.Tag == tableId)
                     MakeButtonSelected((Button)control, 
@@ -322,7 +329,7 @@ namespace MahjongTournamentSuite.TournamentManager
 
         public void UnselectTableButton(int tableId)
         {
-            foreach (Control control in splitContainer1.Panel2.Controls)
+            foreach (Control control in splitContainer.Panel2.Controls)
             {
                 if (control.Tag != null && (int)control.Tag == tableId)
                     MakeButtonUnselected((Button)control,

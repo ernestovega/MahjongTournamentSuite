@@ -44,8 +44,8 @@ namespace MahjongTournamentSuite.Ranking
         private void RankingForm_Load(object sender, EventArgs e)
         {
             ShowWaitCursor();
+            CenterPanelTitle();
             _presenter.LoadData(_rankings);
-            _presenter.StartShowRankingThread();
             ShowDefaultCursor();
         }
 
@@ -57,6 +57,16 @@ namespace MahjongTournamentSuite.Ranking
         private void btnSecondsDown_Click(object sender, EventArgs e)
         {
             _presenter.DecrementShowingTimeInOneSecond();
+        }
+
+        private void btnPlay_Click(object sender, EventArgs e)
+        {
+            _presenter.PlayClicked();
+        }
+
+        private void btnPause_Click(object sender, EventArgs e)
+        {
+            _presenter.PauseClicked();
         }
 
         private void btnMaximize_Click(object sender, EventArgs e)
@@ -86,13 +96,6 @@ namespace MahjongTournamentSuite.Ranking
         {
             if (dgv.DataSource != null)
                 CalculateAndSetDefaultRowHeightToFillScreen();
-        }
-
-        private void RankingForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            ShowWaitCursor();
-            _presenter.AbortShowRankingThreadIfAlive();
-            ShowDefaultCursor();
         }
 
         #endregion
@@ -139,11 +142,13 @@ namespace MahjongTournamentSuite.Ranking
 
         public void CloseFormFromThread()
         {
-            Invoke(new MethodInvoker(() =>
-            {
-                Close();
-                ShowDefaultCursor();
-            }));
+            Close();
+            ShowDefaultCursor();
+        }
+
+        public void SetSecondsLabel(string seconds)
+        {
+            lblSeconds.Text = seconds;
         }
 
         public void ShowButtonSecondsDown()
@@ -156,9 +161,24 @@ namespace MahjongTournamentSuite.Ranking
             btnSecondsDown.Visible = false;
         }
 
-        public void SetSecondsLabel(string seconds)
+        public void ShowButtonPlay()
         {
-            lblSeconds.Text = seconds;
+            btnPlay.Visible = true;
+        }
+
+        public void HideButtonPlay()
+        {
+            btnPlay.Visible = false;
+        }
+
+        public void ShowButtonPause()
+        {
+            btnPause.Visible = true;
+        }
+
+        public void HideButtonPause()
+        {
+            btnPause.Visible = false;
         }
 
         #endregion
@@ -169,6 +189,7 @@ namespace MahjongTournamentSuite.Ranking
         {
             pbIconTitle.Image = Properties.Resources.players_big;
             lblRankingTitle.Text = "PLAYERS RANKING";
+            CenterPanelTitle();
             dgv.DataSource = playersRankingsRange;
 
             //Visible
@@ -224,6 +245,7 @@ namespace MahjongTournamentSuite.Ranking
         {
             pbIconTitle.Image = Properties.Resources.teams_big;
             lblRankingTitle.Text = "TEAMS RANKING";
+            CenterPanelTitle();
             dgv.DataSource = teamsRankingsRange;
 
             //Visible
@@ -256,6 +278,7 @@ namespace MahjongTournamentSuite.Ranking
         {
             pbIconTitle.Image = Properties.Resources.chicken_big;
             lblRankingTitle.Text = "CHICKEN HAND RANKING";
+            CenterPanelTitle();
             dgv.DataSource = playersChickenHandsRankingsRange;
 
             //Visible
@@ -302,6 +325,12 @@ namespace MahjongTournamentSuite.Ranking
             dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_COUNTRY_FLAG].SortMode = DataGridViewColumnSortMode.NotSortable;
 
             CenterDGV();
+        }
+
+        private void CenterPanelTitle()
+        {
+            flowLayoutPanelTitle.Location = 
+                new Point((Width - flowLayoutPanelTitle.Width) / 2, flowLayoutPanelTitle.Location.Y);
         }
 
         private void CenterDGV()

@@ -39,8 +39,12 @@
             this.btnSecondsDown = new System.Windows.Forms.Button();
             this.btnSecondsUp = new System.Windows.Forms.Button();
             this.lblSeconds = new System.Windows.Forms.Label();
+            this.btnPause = new System.Windows.Forms.Button();
+            this.btnPlay = new System.Windows.Forms.Button();
+            this.flowLayoutPanelTitle = new System.Windows.Forms.FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconTitle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
+            this.flowLayoutPanelTitle.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnClose
@@ -97,14 +101,14 @@
             // 
             // lblRankingTitle
             // 
-            this.lblRankingTitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lblRankingTitle.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblRankingTitle.AutoSize = true;
             this.lblRankingTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblRankingTitle.Font = new System.Drawing.Font("Gang of Three", 28F, System.Drawing.FontStyle.Bold);
             this.lblRankingTitle.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblRankingTitle.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.lblRankingTitle.Location = new System.Drawing.Point(361, 29);
-            this.lblRankingTitle.Margin = new System.Windows.Forms.Padding(25, 25, 25, 0);
+            this.lblRankingTitle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblRankingTitle.Location = new System.Drawing.Point(79, 16);
+            this.lblRankingTitle.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.lblRankingTitle.Name = "lblRankingTitle";
             this.lblRankingTitle.Size = new System.Drawing.Size(174, 42);
             this.lblRankingTitle.TabIndex = 70;
@@ -116,10 +120,10 @@
             this.pbIconTitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pbIconTitle.BackColor = System.Drawing.Color.Transparent;
             this.pbIconTitle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pbIconTitle.ErrorImage = global::MahjongTournamentSuite.Properties.Resources.ranking;
-            this.pbIconTitle.Image = global::MahjongTournamentSuite.Properties.Resources.chicken_big;
-            this.pbIconTitle.InitialImage = global::MahjongTournamentSuite.Properties.Resources.ranking;
-            this.pbIconTitle.Location = new System.Drawing.Point(293, 19);
+            this.pbIconTitle.ErrorImage = global::MahjongTournamentSuite.Properties.Resources.ranking_big;
+            this.pbIconTitle.Image = global::MahjongTournamentSuite.Properties.Resources.ranking_big;
+            this.pbIconTitle.InitialImage = global::MahjongTournamentSuite.Properties.Resources.ranking_big;
+            this.pbIconTitle.Location = new System.Drawing.Point(5, 5);
             this.pbIconTitle.Margin = new System.Windows.Forms.Padding(5);
             this.pbIconTitle.Name = "pbIconTitle";
             this.pbIconTitle.Size = new System.Drawing.Size(64, 64);
@@ -164,7 +168,7 @@
             this.dgv.Enabled = false;
             this.dgv.EnableHeadersVisualStyles = false;
             this.dgv.GridColor = System.Drawing.Color.White;
-            this.dgv.Location = new System.Drawing.Point(34, 96);
+            this.dgv.Location = new System.Drawing.Point(34, 92);
             this.dgv.Margin = new System.Windows.Forms.Padding(25);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
@@ -180,7 +184,7 @@
             this.dgv.ShowCellToolTips = false;
             this.dgv.ShowEditingIcon = false;
             this.dgv.ShowRowErrors = false;
-            this.dgv.Size = new System.Drawing.Size(956, 638);
+            this.dgv.Size = new System.Drawing.Size(956, 642);
             this.dgv.TabIndex = 67;
             // 
             // btnSecondsDown
@@ -192,7 +196,7 @@
             this.btnSecondsDown.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnSecondsDown.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btnSecondsDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSecondsDown.Location = new System.Drawing.Point(19, 39);
+            this.btnSecondsDown.Location = new System.Drawing.Point(19, 40);
             this.btnSecondsDown.Margin = new System.Windows.Forms.Padding(0);
             this.btnSecondsDown.Name = "btnSecondsDown";
             this.btnSecondsDown.Size = new System.Drawing.Size(24, 24);
@@ -209,7 +213,7 @@
             this.btnSecondsUp.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnSecondsUp.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btnSecondsUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSecondsUp.Location = new System.Drawing.Point(19, 19);
+            this.btnSecondsUp.Location = new System.Drawing.Point(19, 20);
             this.btnSecondsUp.Margin = new System.Windows.Forms.Padding(0);
             this.btnSecondsUp.Name = "btnSecondsUp";
             this.btnSecondsUp.Size = new System.Drawing.Size(24, 24);
@@ -220,14 +224,64 @@
             // lblSeconds
             // 
             this.lblSeconds.AutoSize = true;
-            this.lblSeconds.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
+            this.lblSeconds.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F);
             this.lblSeconds.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.lblSeconds.Location = new System.Drawing.Point(44, 23);
+            this.lblSeconds.Location = new System.Drawing.Point(44, 18);
             this.lblSeconds.Margin = new System.Windows.Forms.Padding(0);
             this.lblSeconds.Name = "lblSeconds";
-            this.lblSeconds.Size = new System.Drawing.Size(35, 37);
+            this.lblSeconds.Size = new System.Drawing.Size(41, 44);
             this.lblSeconds.TabIndex = 76;
             this.lblSeconds.Text = "7";
+            // 
+            // btnPause
+            // 
+            this.btnPause.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPause.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPause.BackgroundImage")));
+            this.btnPause.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPause.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnPause.FlatAppearance.BorderSize = 0;
+            this.btnPause.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnPause.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnPause.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPause.Location = new System.Drawing.Point(911, 16);
+            this.btnPause.Margin = new System.Windows.Forms.Padding(0);
+            this.btnPause.Name = "btnPause";
+            this.btnPause.Size = new System.Drawing.Size(50, 50);
+            this.btnPause.TabIndex = 80;
+            this.btnPause.UseVisualStyleBackColor = true;
+            this.btnPause.Visible = false;
+            this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
+            // 
+            // btnPlay
+            // 
+            this.btnPlay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPlay.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPlay.BackgroundImage")));
+            this.btnPlay.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPlay.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnPlay.FlatAppearance.BorderSize = 0;
+            this.btnPlay.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnPlay.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnPlay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPlay.Location = new System.Drawing.Point(911, 16);
+            this.btnPlay.Margin = new System.Windows.Forms.Padding(0);
+            this.btnPlay.Name = "btnPlay";
+            this.btnPlay.Size = new System.Drawing.Size(50, 50);
+            this.btnPlay.TabIndex = 79;
+            this.btnPlay.UseVisualStyleBackColor = true;
+            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
+            // 
+            // flowLayoutPanelTitle
+            // 
+            this.flowLayoutPanelTitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.flowLayoutPanelTitle.AutoSize = true;
+            this.flowLayoutPanelTitle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.flowLayoutPanelTitle.Controls.Add(this.pbIconTitle);
+            this.flowLayoutPanelTitle.Controls.Add(this.lblRankingTitle);
+            this.flowLayoutPanelTitle.Location = new System.Drawing.Point(306, 9);
+            this.flowLayoutPanelTitle.Margin = new System.Windows.Forms.Padding(0);
+            this.flowLayoutPanelTitle.Name = "flowLayoutPanelTitle";
+            this.flowLayoutPanelTitle.Size = new System.Drawing.Size(424, 74);
+            this.flowLayoutPanelTitle.TabIndex = 81;
             // 
             // RankingForm
             // 
@@ -236,11 +290,12 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1024, 768);
+            this.Controls.Add(this.flowLayoutPanelTitle);
+            this.Controls.Add(this.btnPause);
+            this.Controls.Add(this.btnPlay);
             this.Controls.Add(this.btnSecondsDown);
             this.Controls.Add(this.btnSecondsUp);
             this.Controls.Add(this.lblSeconds);
-            this.Controls.Add(this.lblRankingTitle);
-            this.Controls.Add(this.pbIconTitle);
             this.Controls.Add(this.btnMaximize);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.dgv);
@@ -250,13 +305,14 @@
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(1024, 768);
             this.Name = "RankingForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RankingForm_FormClosing);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.RankingForm_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.RankingForm_MouseDown);
             this.Resize += new System.EventHandler(this.RankingForm_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.pbIconTitle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
+            this.flowLayoutPanelTitle.ResumeLayout(false);
+            this.flowLayoutPanelTitle.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -271,6 +327,9 @@
         private System.Windows.Forms.Button btnSecondsDown;
         private System.Windows.Forms.Button btnSecondsUp;
         private System.Windows.Forms.Label lblSeconds;
+        private System.Windows.Forms.Button btnPause;
+        private System.Windows.Forms.Button btnPlay;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelTitle;
     }
 }
 

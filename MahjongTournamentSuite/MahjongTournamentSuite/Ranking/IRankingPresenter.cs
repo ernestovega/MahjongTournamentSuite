@@ -6,14 +6,14 @@ namespace MahjongTournamentSuite.Ranking
     {
         void LoadData(Rankings rankings);
 
-        void StartShowRankingThread();
-
         void StopShowRankingThread();
-
-        void AbortShowRankingThreadIfAlive();
 
         void IncrementShowingTimeInOneSecond();
 
         void DecrementShowingTimeInOneSecond();
+
+        void PlayClicked();
+
+        void PauseClicked();
     }
 }

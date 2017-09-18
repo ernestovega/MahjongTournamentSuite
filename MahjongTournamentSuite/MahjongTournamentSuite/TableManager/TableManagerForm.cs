@@ -339,6 +339,11 @@ namespace MahjongTournamentSuite.TableManager
             lblTableId.Text = tableId.ToString();
         }
 
+        public void SetIsCompleted(bool isCompleted)
+        {
+            cbCompleted.Checked = isCompleted;
+        }
+
         public void FillCombosPlayers(List<ComboItem> playersList)
         {
             comboEastPlayer.DataSource = playersList;
