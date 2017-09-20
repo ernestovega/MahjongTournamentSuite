@@ -3,6 +3,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using MahjongTournamentSuite.Model;
 
 namespace MahjongTournamentSuite.PlayersTables
 {
@@ -95,14 +96,9 @@ namespace MahjongTournamentSuite.PlayersTables
             }
         }
 
-        public void ShowMessageBoxTablesPlayer(int playerId, List<int> tablesPlayer)
+        public void ShowPlayerTables(PlayerTables playerTables)
         {
-            string message = string.Empty;
-
-            foreach (int tableId in tablesPlayer)
-                message = string.Format("{0}{1}\n", message, tableId);
-
-            MessageBox.Show(message, string.Format("Player {0} tables", playerId));
+            new PlayerTablesForm(playerTables).ShowDialog();
         }
 
         #endregion

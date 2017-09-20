@@ -67,13 +67,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\DGVCountry.cs" />
+    <Compile Include="Model\DGVPlayerTable.cs" />
+    <Compile Include="Model\PlayerTables.cs" />
     <Compile Include="PlayersTables\IPlayersTablesForm.cs" />
     <Compile Include="PlayersTables\IPlayersTablesPresenter.cs" />
-    <Compile Include="PlayersTables\PlayerstablesForm.cs">
+    <Compile Include="PlayersTables\PlayersTablesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PlayersTables\PlayerstablesForm.Designer.cs">
-      <DependentUpon>PlayerstablesForm.cs</DependentUpon>
+    <Compile Include="PlayersTables\PlayersTablesForm.Designer.cs">
+      <DependentUpon>PlayersTablesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="PlayersTables\PlayersTablesPresenter.cs" />
     <Compile Include="PlayersTables\PlayerTablesForm.cs">
@@ -216,8 +218,8 @@
       <DependentUpon>TournamentManagerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="TournamentManager\TournamentManagerPresenter.cs" />
-    <EmbeddedResource Include="PlayersTables\PlayerstablesForm.resx">
-      <DependentUpon>PlayerstablesForm.cs</DependentUpon>
+    <EmbeddedResource Include="PlayersTables\PlayersTablesForm.resx">
+      <DependentUpon>PlayersTablesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PlayersTables\PlayerTablesForm.resx">
       <DependentUpon>PlayerTablesForm.cs</DependentUpon>

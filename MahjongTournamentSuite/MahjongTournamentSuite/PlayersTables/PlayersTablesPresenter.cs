@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using MahjongTournamentSuiteDataLayer.Data;
 using System;
+using MahjongTournamentSuite.Model;
 
 namespace MahjongTournamentSuite.PlayersTables
 {
@@ -39,15 +40,18 @@ namespace MahjongTournamentSuite.PlayersTables
 
         public void ButtonPlayerClicked(int playerId)
         {
-            List<int> tablesPlayer = new List<int>(_tournament.NumRounds);
+            List<DGVPlayerTable> dgvPlayerTables = new List<DGVPlayerTable>(_tournament.NumRounds);
             for (int i = 1; i <= _tournament.NumRounds; i++)
             {
-                tablesPlayer.Add(_tables.Find(x => x.TableRoundId == i &&
+                int tableId = _tables.Find(x => x.TableRoundId == i &&
                     (x.Player1Id == playerId || x.Player2Id == playerId ||
                     x.Player3Id == playerId || x.Player4Id == playerId))
-                    .TableId);
+                    .TableId;
+                dgvPlayerTables.Add(new DGVPlayerTable(i, tableId));
             }
-            _form.ShowMessageBoxTablesPlayer(playerId, tablesPlayer);
+            string playerName = _players.Find(x => x.PlayerId == playerId).PlayerName;
+
+            _form.ShowPlayerTables(new PlayerTables(playerId, playerName, dgvPlayerTables));
         }
 
         #endregion

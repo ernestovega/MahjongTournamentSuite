@@ -1,4 +1,5 @@
 ﻿
+using MahjongTournamentSuite.Model;
 using System.Collections.Generic;
 
 namespace MahjongTournamentSuite.PlayersTables
@@ -7,6 +8,6 @@ namespace MahjongTournamentSuite.PlayersTables
     {
         void GeneratePlayersButtons(int numPlayers);
 
-        void ShowMessageBoxTablesPlayer(int playerId, List<int> tablesPlayer);
+        void ShowPlayerTables(PlayerTables playerTables);
     }
 }
