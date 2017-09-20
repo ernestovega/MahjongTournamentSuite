@@ -1,6 +1,6 @@
-﻿namespace MahjongTournamentSuite.CountryManager
+﻿namespace MahjongTournamentSuite.PlayersTables
 {
-    partial class CountryManagerForm
+    partial class PlayerTablesForm
     {
         /// <summary>
         /// Required designer variable.
@@ -30,9 +30,10 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CountryManagerForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlayerTablesForm));
             this.dgv = new System.Windows.Forms.DataGridView();
-            this.lblStub = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.lblPlayerId = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,7 +69,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv.GridColor = System.Drawing.SystemColors.Control;
-            this.dgv.Location = new System.Drawing.Point(14, 14);
+            this.dgv.Location = new System.Drawing.Point(14, 42);
             this.dgv.Margin = new System.Windows.Forms.Padding(5);
             this.dgv.MultiSelect = false;
             this.dgv.Name = "dgv";
@@ -77,37 +78,50 @@
             this.dgv.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgv.RowTemplate.Height = 32;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(980, 719);
-            this.dgv.TabIndex = 76;
-            this.dgv.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgv_CellFormatting);
-            this.dgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_CellMouseClick);
-            this.dgv.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgv_CellValidating);
+            this.dgv.Size = new System.Drawing.Size(256, 206);
+            this.dgv.TabIndex = 77;
             // 
-            // lblStub
+            // lblTitle
             // 
-            this.lblStub.AutoSize = true;
-            this.lblStub.Location = new System.Drawing.Point(0, 0);
-            this.lblStub.Name = "lblStub";
-            this.lblStub.Size = new System.Drawing.Size(0, 13);
-            this.lblStub.TabIndex = 77;
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lblTitle.Location = new System.Drawing.Point(14, 14);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(5, 5, 0, 5);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(101, 17);
+            this.lblTitle.TabIndex = 78;
+            this.lblTitle.Text = "Mesas jugador";
             // 
-            // CountryManagerForm
+            // lblPlayerId
+            // 
+            this.lblPlayerId.AutoSize = true;
+            this.lblPlayerId.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lblPlayerId.Location = new System.Drawing.Point(115, 14);
+            this.lblPlayerId.Margin = new System.Windows.Forms.Padding(0);
+            this.lblPlayerId.Name = "lblPlayerId";
+            this.lblPlayerId.Size = new System.Drawing.Size(16, 17);
+            this.lblPlayerId.TabIndex = 79;
+            this.lblPlayerId.Text = "1";
+            // 
+            // PlayerTablesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1008, 748);
-            this.Controls.Add(this.lblStub);
+            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Controls.Add(this.lblPlayerId);
+            this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.dgv);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(1024, 786);
-            this.Name = "CountryManagerForm";
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(300, 300);
+            this.Name = "PlayerTablesForm";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Mahjong Tournament Suite - Countries Manager";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CountryManagerForm_FormClosing);
-            this.Load += new System.EventHandler(this.CountryManagerForm_Load);
+            this.Text = "Mahjong Tournament Suite - Player Tables";
+            this.Load += new System.EventHandler(this.PlayerTablesForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -117,6 +131,7 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgv;
-        private System.Windows.Forms.Label lblStub;
+        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Label lblPlayerId;
     }
 }

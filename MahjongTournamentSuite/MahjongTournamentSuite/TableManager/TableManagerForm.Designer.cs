@@ -772,6 +772,7 @@
             this.MaximizeBox = false;
             this.MinimumSize = new System.Drawing.Size(1024, 688);
             this.Name = "TableManagerForm";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mahjong Tournament Suite - Table Manager";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

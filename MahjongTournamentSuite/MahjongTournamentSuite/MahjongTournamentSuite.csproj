@@ -76,6 +76,12 @@
       <DependentUpon>PlayerstablesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="PlayersTables\PlayersTablesPresenter.cs" />
+    <Compile Include="PlayersTables\PlayerTablesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PlayersTables\PlayerTablesForm.Designer.cs">
+      <DependentUpon>PlayerTablesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -212,6 +218,9 @@
     <Compile Include="TournamentManager\TournamentManagerPresenter.cs" />
     <EmbeddedResource Include="PlayersTables\PlayerstablesForm.resx">
       <DependentUpon>PlayerstablesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlayersTables\PlayerTablesForm.resx">
+      <DependentUpon>PlayerTablesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TeamsManager\TeamsManagerForm.resx">
       <DependentUpon>TeamsManagerForm.cs</DependentUpon>

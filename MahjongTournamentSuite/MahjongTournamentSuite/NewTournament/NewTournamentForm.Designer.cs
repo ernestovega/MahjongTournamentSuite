@@ -372,6 +372,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "NewTournamentForm";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mahjong Tournament Suite - New Tournament";
             this.Load += new System.EventHandler(this.NewTournamentForm_Load);
