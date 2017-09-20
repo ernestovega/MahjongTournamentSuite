@@ -20,7 +20,7 @@
 
         void ButtonTableClicked(int tableId);
 
-        void ExportRankingsToHTMLClicked();
+        void PlayersTablesClicked();
 
         bool IsRoundCompleted(int roundId);
 

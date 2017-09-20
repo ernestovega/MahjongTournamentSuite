@@ -35,5 +35,6 @@ namespace MahjongTournamentSuite.TournamentManager
         void HideButtonTeams();
 
         void PlayKoSound();
+        void GoToPlayersTables(int tournamentId);
     }
 }

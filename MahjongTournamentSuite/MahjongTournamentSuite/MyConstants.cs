@@ -50,8 +50,8 @@ namespace MahjongTournamentSuite.Resources
         public static readonly string HTML_OPEN_TR_HEADER_BOTTOM_SEPARATOR = "<tr style=\"height: 16px;\"/>";
         public static readonly string HTML_OPEN_TR = "<tr style=\"min-height: 42px;\">";
         public static readonly string HTML_OPEN_TR_TEAMS = "<tr style=\"height: 42px;\">";
-        public static readonly string HTML_OPEN_TD = "<td style=\"text-align: center; min-height: 42px;\">";
-        public static readonly string HTML_OPEN_TD_BOLD = "<td style=\"text-align: center; min-height: 42px; font-weight: bold;\">";
+        public static readonly string HTML_OPEN_TD = "<td style=\"text-align: center; min-height: 42px; font-size: 18pt;\">";
+        public static readonly string HTML_OPEN_TD_BOLD = "<td style=\"text-align: center; min-height: 42px; font-size: 18pt; font-weight: bold;\">";
         public static readonly string HTML_COL_ORDER = "<col width=\"60\"/>";
         public static readonly string HTML_COL_NAME = "<col width=\"374\"/>";
         public static readonly string HTML_COL_POINTS = "<col width=\"80\"/>";

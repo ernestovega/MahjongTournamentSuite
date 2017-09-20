@@ -5,7 +5,7 @@ namespace MahjongTournamentSuite.HTMLViewer
 {
     class HTMLViewerPresenter : IHTMLViewerPresenter
     {
-        #region FIELDS
+        #region Fields
 
         private IHTMLViewerForm _form;
         private HTMLRankings _htmlRankings;

@@ -12,6 +12,7 @@ using MahjongTournamentSuite.HTMLViewer;
 using MahjongTournamentSuite.ManagePlayers;
 using MahjongTournamentSuite.TeamsManager;
 using System.Media;
+using MahjongTournamentSuite.PlayersTables;
 
 namespace MahjongTournamentSuite.TournamentManager
 {
@@ -90,13 +91,6 @@ namespace MahjongTournamentSuite.TournamentManager
             ShowDefaultCursor();
         }
 
-        private void btnExportHTML_Click(object sender, EventArgs e)
-        {
-            ShowWaitCursor();
-            _presenter.ExportRankingsToHTMLClicked();
-            ShowDefaultCursor();
-        }
-
         private void btnTeams_Click(object sender, EventArgs e)
         {
             ShowWaitCursor();
@@ -111,11 +105,17 @@ namespace MahjongTournamentSuite.TournamentManager
             ShowDefaultCursor();
         }
 
-        private void btnTimer_Click(object sender, EventArgs e)
+        private void btnPlayersTables_Click(object sender, EventArgs e)
         {
             ShowWaitCursor();
-            var mahjongTournamentTimer = new MahjongTournamentTimer.Program();
-            Process.Start(mahjongTournamentTimer.returnExecutablePath());
+            _presenter.PlayersTablesClicked();
+            ShowDefaultCursor();
+        }
+
+        private void btnExportHTML_Click(object sender, EventArgs e)
+        {
+            ShowWaitCursor();
+            _presenter.PlayersTablesClicked();
             ShowDefaultCursor();
         }
 
@@ -123,6 +123,14 @@ namespace MahjongTournamentSuite.TournamentManager
         {
             ShowWaitCursor();
             _presenter.ShowRankingsClicked();
+            ShowDefaultCursor();
+        }
+
+        private void btnTimer_Click(object sender, EventArgs e)
+        {
+            ShowWaitCursor();
+            var mahjongTournamentTimer = new MahjongTournamentTimer.Program();
+            Process.Start(mahjongTournamentTimer.returnExecutablePath());
             ShowDefaultCursor();
         }
 
@@ -290,6 +298,11 @@ namespace MahjongTournamentSuite.TournamentManager
         public void GoToHTMLViewer(HTMLRankings htmlRankings)
         {
             new HTMLViewerForm(htmlRankings).ShowDialog();
+        }
+
+        public void GoToPlayersTables(int tournamentId)
+        {
+            new PlayersTablesForm(tournamentId).ShowDialog();
         }
 
         public void SelectRoundButton(int roundId)
