@@ -74,6 +74,16 @@ namespace MahjongTournamentSuite.TournamentManager
             _form.GoToPlayersTables(_tournament.TournamentId);
         }
 
+        public void ExportHtmlClicked()
+        {
+            GenerateRankings();
+            _form.GoToHTMLViewer(new HTMLRankings(
+                GeneratePlayersHTMLRanking(), 
+                GenerateTeamsHTMLRanking(), 
+                GenerateChickenHandsHTMLRanking(), 
+                _tournament.IsTeams));
+        }
+
         public void ButtonTeamsClicked()
         {
             _form.GoToTeamsManager();

@@ -115,7 +115,7 @@ namespace MahjongTournamentSuite.TournamentManager
         private void btnExportHTML_Click(object sender, EventArgs e)
         {
             ShowWaitCursor();
-            _presenter.PlayersTablesClicked();
+            _presenter.ExportHtmlClicked();
             ShowDefaultCursor();
         }
 

@@ -21,6 +21,8 @@ namespace MahjongTournamentSuite.TournamentManager
         void GoToRankings(Rankings rankings);
 
         void GoToHTMLViewer(HTMLRankings htmlRankings);
+
+        void GoToPlayersTables(int tournamentId);
         
         void SelectRoundButton(int roundId);
 
@@ -35,6 +37,5 @@ namespace MahjongTournamentSuite.TournamentManager
         void HideButtonTeams();
 
         void PlayKoSound();
-        void GoToPlayersTables(int tournamentId);
     }
 }

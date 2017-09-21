@@ -5,8 +5,6 @@
         void LoadTournament(int tournamentId);
 
         void OnFormResized();
-        
-        void ShowRankingsClicked();
 
         void ButtonTeamsClicked();
 
@@ -22,9 +20,14 @@
 
         void PlayersTablesClicked();
 
+        void ExportHtmlClicked();
+        
+        void ShowRankingsClicked();
+
         bool IsRoundCompleted(int roundId);
 
         bool IsTableCompleted(int tableId);
+
         void TableManagerFormClosed();
     }
 }
