@@ -59,6 +59,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\9thSOMC_DBHands.sql" />
+    <Content Include="Scripts\9thSOMC_DBPlayers.sql" />
+    <Content Include="Scripts\9thSOMC_DBTables.sql" />
+    <Content Include="Scripts\9thSOMC_DBTeams.sql" />
+    <Content Include="Scripts\9thSOMC_DBTournaments.sql" />
     <Content Include="Scripts\Countries.sql" />
     <Content Include="Scripts\MMC16_Hands.sql" />
     <Content Include="Scripts\MMC16_Players.sql" />
