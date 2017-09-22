@@ -24,7 +24,7 @@ namespace MahjongTournamentSuite.Model
         public int Order { get; set; }
         public int PlayerId { get; set; }
         public string PlayerName { get; set; }
-        public int PlayerPoints { get; set; }
+        public float PlayerPoints { get; set; }
         public int PlayerScore { get; set; }
         public int PlayerTeamId { get; set; }
         public string PlayerTeamName { get; set; }

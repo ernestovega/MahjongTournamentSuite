@@ -17,7 +17,7 @@
         public int Order { get; set; }
         public int TeamId { get; set; }
         public string TeamName { get; set; }
-        public int TeamPoints { get; set; }
+        public float TeamPoints { get; set; }
         public int TeamScore { get; set; }
 
         #endregion

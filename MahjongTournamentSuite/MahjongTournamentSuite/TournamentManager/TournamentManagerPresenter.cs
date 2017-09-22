@@ -246,22 +246,22 @@ namespace MahjongTournamentSuite.TournamentManager
                 {
                     if (player.PlayerId.ToString().Equals(table.PlayerEastId))
                     {
-                        playerRanking.PlayerPoints += table.PlayerEastPoints.Equals(string.Empty) ? 0 : int.Parse(table.PlayerEastPoints);
+                        playerRanking.PlayerPoints += table.PlayerEastPoints.Equals(string.Empty) ? 0 : float.Parse(table.PlayerEastPoints);
                         playerRanking.PlayerScore += table.PlayerEastScore.Equals(string.Empty) ? 0 : int.Parse(table.PlayerEastScore);
                     }
                     else if (player.PlayerId.ToString().Equals(table.PlayerSouthId))
                     {
-                        playerRanking.PlayerPoints += table.PlayerSouthPoints.Equals(string.Empty) ? 0 : int.Parse(table.PlayerSouthPoints);
+                        playerRanking.PlayerPoints += table.PlayerSouthPoints.Equals(string.Empty) ? 0 : float.Parse(table.PlayerSouthPoints);
                         playerRanking.PlayerScore += table.PlayerSouthScore.Equals(string.Empty) ? 0 : int.Parse(table.PlayerSouthScore);
                     }
                     else if (player.PlayerId.ToString().Equals(table.PlayerWestId))
                     {
-                        playerRanking.PlayerPoints += table.PlayerWestPoints.Equals(string.Empty) ? 0 : int.Parse(table.PlayerWestPoints);
+                        playerRanking.PlayerPoints += table.PlayerWestPoints.Equals(string.Empty) ? 0 : float.Parse(table.PlayerWestPoints);
                         playerRanking.PlayerScore += table.PlayerWestScore.Equals(string.Empty) ? 0 : int.Parse(table.PlayerWestScore);
                     }
                     else
                     {
-                        playerRanking.PlayerPoints += table.PlayerNorthPoints.Equals(string.Empty) ? 0 : int.Parse(table.PlayerNorthPoints);
+                        playerRanking.PlayerPoints += table.PlayerNorthPoints.Equals(string.Empty) ? 0 : float.Parse(table.PlayerNorthPoints);
                         playerRanking.PlayerScore += table.PlayerNorthScore.Equals(string.Empty) ? 0 : int.Parse(table.PlayerNorthScore);
                     }
                 }

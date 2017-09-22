@@ -24,7 +24,7 @@ namespace MahjongTournamentSuite.Model
         public int PlayerId { get; set; }
         public string PlayerName { get; set; }
         public int PlayerNumChickenHands { get; set; }
-        public int PlayerPoints { get; set; }
+        public float PlayerPoints { get; set; }
         public int PlayerScore { get; set; }
         public string PlayerCountryName { get; set; }
         public string PlayerCountryHtmlFlagUrl { get; set; }
@@ -36,7 +36,7 @@ namespace MahjongTournamentSuite.Model
 
         public ChickenHandRanking() { }
 
-        public ChickenHandRanking(int playerId, string playerName, int playerPoints, int playerScore,
+        public ChickenHandRanking(int playerId, string playerName, float playerPoints, int playerScore,
             string playerCountryName, string playerCountryHtmlFlagUrl, Image playerCountryFlagImage)
         {
             Order = 0;
