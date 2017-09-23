@@ -62,7 +62,7 @@ namespace MahjongTournamentSuite.TournamentManager
         {
             ShowWaitCursor();
             if (_presenter != null)
-                _presenter.OnFormResized();
+                _presenter.OnFormResized(_tournamentId);
             ShowDefaultCursor();
         }
 

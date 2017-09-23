@@ -393,7 +393,7 @@ namespace MahjongTournamentSuite.Ranking
 
         private void CalculateAndSetDefaultRowHeightToFillScreen()
         {
-            float fontSize = (dgv.ClientSize.Height / _numRowsPerScreen) / 1.5f;
+            float fontSize = (dgv.ClientSize.Height / _numRowsPerScreen) / 1.4f;
             dgv.DefaultCellStyle.Font = new Font("Microsoft Sans Serif", fontSize, FontStyle.Bold, GraphicsUnit.Pixel);
 
             int rowsTotalSpace = dgv.ClientSize.Height - dgv.ColumnHeadersHeight;

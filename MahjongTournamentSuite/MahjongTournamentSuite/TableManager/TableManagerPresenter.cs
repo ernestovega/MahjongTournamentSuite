@@ -642,20 +642,20 @@ namespace MahjongTournamentSuite.TableManager
             {
                 if(!dgvHand.PlayerEastScore.Equals(string.Empty))
                     eastTotalScore += int.Parse(dgvHand.PlayerEastScore);
-                if (!dgvHand.PlayerEastPenalty.Equals(string.Empty))
-                    eastTotalScore += int.Parse(dgvHand.PlayerEastPenalty);
+                //if (!dgvHand.PlayerEastPenalty.Equals(string.Empty))
+                //    eastTotalScore += int.Parse(dgvHand.PlayerEastPenalty);
                 if (!dgvHand.PlayerSouthScore.Equals(string.Empty))
                     southTotalScore += int.Parse(dgvHand.PlayerSouthScore);
-                if (!dgvHand.PlayerSouthPenalty.Equals(string.Empty))
-                    southTotalScore += int.Parse(dgvHand.PlayerSouthPenalty);
+                //if (!dgvHand.PlayerSouthPenalty.Equals(string.Empty))
+                //    southTotalScore += int.Parse(dgvHand.PlayerSouthPenalty);
                 if (!dgvHand.PlayerWestScore.Equals(string.Empty))
                     westTotalScore += int.Parse(dgvHand.PlayerWestScore);
-                if (!dgvHand.PlayerWestPenalty.Equals(string.Empty))
-                    westTotalScore += int.Parse(dgvHand.PlayerWestPenalty);
+                //if (!dgvHand.PlayerWestPenalty.Equals(string.Empty))
+                //    westTotalScore += int.Parse(dgvHand.PlayerWestPenalty);
                 if (!dgvHand.PlayerNorthScore.Equals(string.Empty))
                     northTotalScore += int.Parse(dgvHand.PlayerNorthScore);
-                if (!dgvHand.PlayerNorthPenalty.Equals(string.Empty))
-                    northTotalScore += int.Parse(dgvHand.PlayerNorthPenalty);
+                //if (!dgvHand.PlayerNorthPenalty.Equals(string.Empty))
+                //    northTotalScore += int.Parse(dgvHand.PlayerNorthPenalty);
             }
             _table.PlayerEastScore = eastTotalScore.ToString();
             _table.PlayerSouthScore = southTotalScore.ToString();
@@ -692,16 +692,16 @@ namespace MahjongTournamentSuite.TableManager
 
             if(ptp[0].Score == ptp[1].Score && ptp[1].Score == ptp[2].Score && ptp[2].Score == ptp[3].Score)
             {
-                ptp[0].Points = "1.75";
-                ptp[1].Points = "1.75";
-                ptp[2].Points = "1.75";
-                ptp[3].Points = "1.75";
+                ptp[0].Points = "1,75";
+                ptp[1].Points = "1,75";
+                ptp[2].Points = "1,75";
+                ptp[3].Points = "1,75";
             }
             else if(ptp[0].Score == ptp[1].Score && ptp[1].Score == ptp[2].Score)
             {
-                ptp[0].Points = "2.33";
-                ptp[1].Points = "2.33";
-                ptp[2].Points = "2.33";
+                ptp[0].Points = "2,33";
+                ptp[1].Points = "2,33";
+                ptp[2].Points = "2,33";
                 ptp[3].Points = "0";
             }
             else if (ptp[1].Score == ptp[2].Score && ptp[2].Score == ptp[3].Score)
@@ -721,23 +721,23 @@ namespace MahjongTournamentSuite.TableManager
                     {
                         ptp[0].Points = "3";
                         ptp[1].Points = "3";
-                        ptp[2].Points = "0.5";
-                        ptp[3].Points = "0.5";
+                        ptp[2].Points = "0,5";
+                        ptp[3].Points = "0,5";
                     }
             }
             else if(ptp[1].Score == ptp[2].Score)
             {
                 ptp[0].Points = "4";
-                ptp[1].Points = "1.5";
-                ptp[2].Points = "1.5";
+                ptp[1].Points = "1,5";
+                ptp[2].Points = "1,5";
                 ptp[3].Points = "0";
             }
             else if(ptp[2].Score == ptp[3].Score)
             {
                 ptp[0].Points = "4";
                 ptp[1].Points = "2";
-                ptp[2].Points = "0.5";
-                ptp[3].Points = "0.5";
+                ptp[2].Points = "0,5";
+                ptp[3].Points = "0,5";
             }
             else
             {

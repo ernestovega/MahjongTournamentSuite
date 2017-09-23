@@ -25,6 +25,7 @@ namespace MahjongTournamentSuite.TournamentManager
         private List<PlayerRanking> _playersRankings; 
         private List<TeamRanking> _teamsRankings;
         private List<ChickenHandRanking> _chickenHandsRankings;
+        private int _tournamentId;
 
         #endregion
 
@@ -42,6 +43,7 @@ namespace MahjongTournamentSuite.TournamentManager
 
         public void LoadTournament(int tournamentId)
         {
+            _tournamentId = tournamentId;
             _tournament = _db.GetTournament(tournamentId);
             _tables = _db.GetTournamentTables(tournamentId);
             if (_tournament.IsTeams)
@@ -58,8 +60,12 @@ namespace MahjongTournamentSuite.TournamentManager
             GenerateRoundsAndTablesButtons();
         }
 
-        public void OnFormResized()
+        public void OnFormResized(int tournamentId)
         {
+            if (_tournament == null) {
+                LoadTournament(tournamentId);
+                return;
+            }
             _form.RemoveRoundsButtons();
             _form.AddRoundsButtons(_tournament.NumRounds);
             _form.RemoveTablesButtons();

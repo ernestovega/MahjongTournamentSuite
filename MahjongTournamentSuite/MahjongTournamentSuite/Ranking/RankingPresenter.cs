@@ -164,7 +164,7 @@ namespace MahjongTournamentSuite.Ranking
                 }
                 else
                 {
-                    if (_rankings.PlayersChickenHandsRankings.Count > 0)
+                    if (false)//_rankings.PlayersChickenHandsRankings.Count > 0)
                     {
                         if ((startIndex + rowsRange) > _rankings.PlayersChickenHandsRankings.Count)
                             rowsRange -= (startIndex + rowsRange) - _rankings.PlayersChickenHandsRankings.Count;

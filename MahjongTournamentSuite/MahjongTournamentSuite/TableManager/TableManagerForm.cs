@@ -238,6 +238,8 @@ namespace MahjongTournamentSuite.TableManager
                     ShowWaitCursor();
                     int handId = GetSelectedHandId(e.RowIndex);
                     string newValue = (string)dgv.Rows[e.RowIndex].Cells[DBHand.COLUMN_PLAYER_WINNER_ID].Value;
+                    if (newValue == null)
+                        newValue = string.Empty;
                     DGVCancelEdit();
                     string returnedValue = _presenter.PlayerWinnerIdChanged(handId, newValue);
                     dgv.Rows[e.RowIndex].Cells[DBHand.COLUMN_PLAYER_WINNER_ID].Value = returnedValue;
@@ -250,6 +252,8 @@ namespace MahjongTournamentSuite.TableManager
                     ShowWaitCursor();
                     int handId = GetSelectedHandId(e.RowIndex);
                     string newValue = (string)dgv.Rows[e.RowIndex].Cells[DBHand.COLUMN_PLAYER_LOOSER_ID].Value;
+                    if (newValue == null)
+                        newValue = string.Empty;
                     DGVCancelEdit();
                     dgv.Rows[e.RowIndex].Cells[DBHand.COLUMN_PLAYER_LOOSER_ID].Value =
                         _presenter.PlayerLooserIdChanged(handId, newValue);
@@ -262,6 +266,8 @@ namespace MahjongTournamentSuite.TableManager
                     ShowWaitCursor();
                     int handId = GetSelectedHandId(e.RowIndex);
                     string newValue = (string)dgv.Rows[e.RowIndex].Cells[DBHand.COLUMN_HAND_SCORE].Value;
+                    if (newValue == null)
+                        newValue = string.Empty;
                     DGVCancelEdit();
                     dgv.Rows[e.RowIndex].Cells[DBHand.COLUMN_HAND_SCORE].Value = 
                         _presenter.HandScoreChanged(handId, newValue);
@@ -274,6 +280,8 @@ namespace MahjongTournamentSuite.TableManager
                     ShowWaitCursor();
                     int handId = GetSelectedHandId(e.RowIndex);
                     string newValue = (string)dgv.Rows[e.RowIndex].Cells[DBHand.COLUMN_PLAYER_EAST_PENALTY].Value;
+                    if (newValue == null)
+                        newValue = string.Empty;
                     DGVCancelEdit();
                     dgv.Rows[e.RowIndex].Cells[DBHand.COLUMN_PLAYER_EAST_PENALTY].Value =
                         _presenter.PlayerEastPenalytChanged(handId, newValue);
@@ -286,6 +294,8 @@ namespace MahjongTournamentSuite.TableManager
                     ShowWaitCursor();
                     int handId = GetSelectedHandId(e.RowIndex);
                     string newValue = (string)dgv.Rows[e.RowIndex].Cells[DBHand.COLUMN_PLAYER_SOUTH_PENALTY].Value;
+                    if (newValue == null)
+                        newValue = string.Empty;
                     DGVCancelEdit();
                     dgv.Rows[e.RowIndex].Cells[DBHand.COLUMN_PLAYER_SOUTH_PENALTY].Value =
                         _presenter.PlayerSouthPenalytChanged(handId, newValue);
@@ -298,6 +308,8 @@ namespace MahjongTournamentSuite.TableManager
                     ShowWaitCursor();
                     int handId = GetSelectedHandId(e.RowIndex);
                     string newValue = (string)dgv.Rows[e.RowIndex].Cells[DBHand.COLUMN_PLAYER_WEST_PENALTY].Value;
+                    if (newValue == null)
+                        newValue = string.Empty;
                     DGVCancelEdit();
                     dgv.Rows[e.RowIndex].Cells[DBHand.COLUMN_PLAYER_WEST_PENALTY].Value =
                         _presenter.PlayerWestPenalytChanged(handId, newValue);
@@ -310,6 +322,8 @@ namespace MahjongTournamentSuite.TableManager
                     ShowWaitCursor();
                     int handId = GetSelectedHandId(e.RowIndex);
                     string newValue = (string)dgv.Rows[e.RowIndex].Cells[DBHand.COLUMN_PLAYER_NORTH_PENALTY].Value;
+                    if (newValue == null)
+                        newValue = string.Empty;
                     DGVCancelEdit();
                     dgv.Rows[e.RowIndex].Cells[DBHand.COLUMN_PLAYER_NORTH_PENALTY].Value =
                         _presenter.PlayerNorthPenalytChanged(handId, newValue);

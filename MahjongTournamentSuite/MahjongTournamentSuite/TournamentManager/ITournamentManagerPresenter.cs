@@ -4,7 +4,7 @@
     {
         void LoadTournament(int tournamentId);
 
-        void OnFormResized();
+        void OnFormResized(int tournamentId);
 
         void ButtonTeamsClicked();
 
