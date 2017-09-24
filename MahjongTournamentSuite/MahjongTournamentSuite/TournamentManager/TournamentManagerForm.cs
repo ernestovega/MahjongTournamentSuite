@@ -75,22 +75,6 @@ namespace MahjongTournamentSuite.TournamentManager
 
         #region Events
 
-        private void imgLogoMM_Click(object sender, EventArgs e)
-        {
-            ShowWaitCursor();
-            ProcessStartInfo sInfo = new ProcessStartInfo("http://www.mahjongmadrid.com/");
-            Process.Start(sInfo);
-            ShowDefaultCursor();
-        }
-
-        private void imgLogoEMA_Click(object sender, EventArgs e)
-        {
-            ShowWaitCursor();
-            ProcessStartInfo sInfo = new ProcessStartInfo("http://mahjong-europe.org/portal/");
-            Process.Start(sInfo);
-            ShowDefaultCursor();
-        }
-
         private void btnTeams_Click(object sender, EventArgs e)
         {
             ShowWaitCursor();
@@ -112,10 +96,10 @@ namespace MahjongTournamentSuite.TournamentManager
             ShowDefaultCursor();
         }
 
-        private void btnExportHTML_Click(object sender, EventArgs e)
+        private void btnEmaReport_Click(object sender, EventArgs e)
         {
             ShowWaitCursor();
-            _presenter.ExportHtmlClicked();
+            new EmaReportForm(_tournamentId).ShowDialog();
             ShowDefaultCursor();
         }
 

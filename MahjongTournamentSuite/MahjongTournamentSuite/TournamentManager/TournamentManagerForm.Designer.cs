@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TournamentManagerForm));
-            this.imgLogoMM = new System.Windows.Forms.PictureBox();
-            this.imgLogoEMA = new System.Windows.Forms.PictureBox();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.lblTitleRounds = new System.Windows.Forms.Label();
             this.lblSeparator = new System.Windows.Forms.Label();
@@ -42,48 +40,12 @@
             this.btnRankings = new System.Windows.Forms.Button();
             this.btnTimer = new System.Windows.Forms.Button();
             this.btnPlayersTables = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imgLogoEMA)).BeginInit();
+            this.btnEmaReport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
             this.splitContainer.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // imgLogoMM
-            // 
-            this.imgLogoMM.BackColor = System.Drawing.Color.Transparent;
-            this.imgLogoMM.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.imgLogoMM.ErrorImage = ((System.Drawing.Image)(resources.GetObject("imgLogoMM.ErrorImage")));
-            this.imgLogoMM.Image = ((System.Drawing.Image)(resources.GetObject("imgLogoMM.Image")));
-            this.imgLogoMM.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.imgLogoMM.InitialImage = ((System.Drawing.Image)(resources.GetObject("imgLogoMM.InitialImage")));
-            this.imgLogoMM.Location = new System.Drawing.Point(14, 14);
-            this.imgLogoMM.Margin = new System.Windows.Forms.Padding(5);
-            this.imgLogoMM.Name = "imgLogoMM";
-            this.imgLogoMM.Size = new System.Drawing.Size(64, 64);
-            this.imgLogoMM.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.imgLogoMM.TabIndex = 51;
-            this.imgLogoMM.TabStop = false;
-            this.imgLogoMM.Click += new System.EventHandler(this.imgLogoMM_Click);
-            // 
-            // imgLogoEMA
-            // 
-            this.imgLogoEMA.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.imgLogoEMA.BackColor = System.Drawing.Color.Transparent;
-            this.imgLogoEMA.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.imgLogoEMA.ErrorImage = global::MahjongTournamentSuite.Properties.Resources.EMALogo;
-            this.imgLogoEMA.Image = global::MahjongTournamentSuite.Properties.Resources.EMALogo;
-            this.imgLogoEMA.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.imgLogoEMA.InitialImage = global::MahjongTournamentSuite.Properties.Resources.EMALogo;
-            this.imgLogoEMA.Location = new System.Drawing.Point(930, 14);
-            this.imgLogoEMA.Margin = new System.Windows.Forms.Padding(5);
-            this.imgLogoEMA.Name = "imgLogoEMA";
-            this.imgLogoEMA.Size = new System.Drawing.Size(64, 64);
-            this.imgLogoEMA.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.imgLogoEMA.TabIndex = 65;
-            this.imgLogoEMA.TabStop = false;
-            this.imgLogoEMA.Click += new System.EventHandler(this.imgLogoEMA_Click);
             // 
             // splitContainer
             // 
@@ -158,14 +120,10 @@
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label1.Location = new System.Drawing.Point(14, 98);
-            this.label1.Margin = new System.Windows.Forms.Padding(5, 15, 5, 15);
+            this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(980, 2);
-            this.label1.TabIndex = 71;
+            this.label1.Size = new System.Drawing.Size(100, 23);
+            this.label1.TabIndex = 74;
             // 
             // btnPlayers
             // 
@@ -184,11 +142,11 @@
             this.btnPlayers.Image = global::MahjongTournamentSuite.Properties.Resources.players;
             this.btnPlayers.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnPlayers.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnPlayers.Location = new System.Drawing.Point(234, 14);
+            this.btnPlayers.Location = new System.Drawing.Point(140, 14);
             this.btnPlayers.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnPlayers.Name = "btnPlayers";
             this.btnPlayers.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.btnPlayers.Size = new System.Drawing.Size(120, 64);
+            this.btnPlayers.Size = new System.Drawing.Size(120, 60);
             this.btnPlayers.TabIndex = 70;
             this.btnPlayers.Text = "Manage Players";
             this.btnPlayers.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -213,11 +171,11 @@
             this.btnTeams.Image = global::MahjongTournamentSuite.Properties.Resources.teams;
             this.btnTeams.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnTeams.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnTeams.Location = new System.Drawing.Point(108, 14);
+            this.btnTeams.Location = new System.Drawing.Point(14, 14);
             this.btnTeams.Margin = new System.Windows.Forms.Padding(25, 0, 5, 0);
             this.btnTeams.Name = "btnTeams";
             this.btnTeams.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.btnTeams.Size = new System.Drawing.Size(116, 64);
+            this.btnTeams.Size = new System.Drawing.Size(116, 60);
             this.btnTeams.TabIndex = 71;
             this.btnTeams.Text = "Manage Teams";
             this.btnTeams.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -228,7 +186,7 @@
             // 
             // btnExportHTML
             // 
-            this.btnExportHTML.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExportHTML.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnExportHTML.AutoSize = true;
             this.btnExportHTML.BackColor = System.Drawing.Color.Transparent;
             this.btnExportHTML.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
@@ -244,21 +202,21 @@
             this.btnExportHTML.Image = global::MahjongTournamentSuite.Properties.Resources.export_html;
             this.btnExportHTML.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnExportHTML.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnExportHTML.Location = new System.Drawing.Point(566, 14);
+            this.btnExportHTML.Location = new System.Drawing.Point(599, 14);
             this.btnExportHTML.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnExportHTML.Name = "btnExportHTML";
             this.btnExportHTML.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.btnExportHTML.Size = new System.Drawing.Size(112, 64);
+            this.btnExportHTML.Size = new System.Drawing.Size(112, 60);
             this.btnExportHTML.TabIndex = 72;
             this.btnExportHTML.Text = "Html Ranking";
             this.btnExportHTML.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnExportHTML.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExportHTML.UseVisualStyleBackColor = false;
-            this.btnExportHTML.Click += new System.EventHandler(this.btnExportHTML_Click);
+            this.btnExportHTML.Click += new System.EventHandler(this.btnEmaReport_Click);
             // 
             // btnRankings
             // 
-            this.btnRankings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRankings.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnRankings.AutoSize = true;
             this.btnRankings.BackColor = System.Drawing.Color.Transparent;
             this.btnRankings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
@@ -274,11 +232,11 @@
             this.btnRankings.Image = ((System.Drawing.Image)(resources.GetObject("btnRankings.Image")));
             this.btnRankings.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnRankings.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnRankings.Location = new System.Drawing.Point(688, 14);
+            this.btnRankings.Location = new System.Drawing.Point(480, 14);
             this.btnRankings.Margin = new System.Windows.Forms.Padding(5);
             this.btnRankings.Name = "btnRankings";
             this.btnRankings.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.btnRankings.Size = new System.Drawing.Size(109, 64);
+            this.btnRankings.Size = new System.Drawing.Size(109, 60);
             this.btnRankings.TabIndex = 14;
             this.btnRankings.Text = "Show Ranking";
             this.btnRankings.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -304,11 +262,11 @@
             this.btnTimer.Image = ((System.Drawing.Image)(resources.GetObject("btnTimer.Image")));
             this.btnTimer.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnTimer.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnTimer.Location = new System.Drawing.Point(807, 14);
+            this.btnTimer.Location = new System.Drawing.Point(901, 14);
             this.btnTimer.Margin = new System.Windows.Forms.Padding(5, 5, 25, 5);
             this.btnTimer.Name = "btnTimer";
             this.btnTimer.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.btnTimer.Size = new System.Drawing.Size(93, 64);
+            this.btnTimer.Size = new System.Drawing.Size(93, 60);
             this.btnTimer.TabIndex = 25;
             this.btnTimer.Text = "Show Timer";
             this.btnTimer.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -334,17 +292,47 @@
             this.btnPlayersTables.Image = global::MahjongTournamentSuite.Properties.Resources.players_tables;
             this.btnPlayersTables.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnPlayersTables.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnPlayersTables.Location = new System.Drawing.Point(445, 14);
+            this.btnPlayersTables.Location = new System.Drawing.Point(270, 14);
             this.btnPlayersTables.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnPlayersTables.Name = "btnPlayersTables";
             this.btnPlayersTables.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
-            this.btnPlayersTables.Size = new System.Drawing.Size(111, 64);
+            this.btnPlayersTables.Size = new System.Drawing.Size(111, 60);
             this.btnPlayersTables.TabIndex = 73;
             this.btnPlayersTables.Text = "Players Tables";
             this.btnPlayersTables.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnPlayersTables.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnPlayersTables.UseVisualStyleBackColor = false;
             this.btnPlayersTables.Click += new System.EventHandler(this.btnPlayersTables_Click);
+            // 
+            // btnEmaReport
+            // 
+            this.btnEmaReport.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnEmaReport.AutoSize = true;
+            this.btnEmaReport.BackColor = System.Drawing.Color.Transparent;
+            this.btnEmaReport.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnEmaReport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEmaReport.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.btnEmaReport.FlatAppearance.BorderSize = 0;
+            this.btnEmaReport.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
+            this.btnEmaReport.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(76)))));
+            this.btnEmaReport.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            this.btnEmaReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEmaReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.btnEmaReport.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnEmaReport.Image = global::MahjongTournamentSuite.Properties.Resources.export_ema;
+            this.btnEmaReport.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnEmaReport.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnEmaReport.Location = new System.Drawing.Point(721, 14);
+            this.btnEmaReport.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.btnEmaReport.Name = "btnEmaReport";
+            this.btnEmaReport.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.btnEmaReport.Size = new System.Drawing.Size(112, 60);
+            this.btnEmaReport.TabIndex = 75;
+            this.btnEmaReport.Text = "EMA Report";
+            this.btnEmaReport.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnEmaReport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnEmaReport.UseVisualStyleBackColor = false;
+            this.btnEmaReport.Click += new System.EventHandler(this.btnEmaReport_Click);
             // 
             // TournamentManagerForm
             // 
@@ -353,13 +341,12 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1008, 747);
+            this.Controls.Add(this.btnEmaReport);
             this.Controls.Add(this.btnPlayersTables);
             this.Controls.Add(this.btnTeams);
             this.Controls.Add(this.btnPlayers);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.imgLogoEMA);
             this.Controls.Add(this.btnExportHTML);
-            this.Controls.Add(this.imgLogoMM);
             this.Controls.Add(this.btnTimer);
             this.Controls.Add(this.btnRankings);
             this.Controls.Add(this.splitContainer);
@@ -373,8 +360,6 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.TournamentManagerForm_FormClosed);
             this.Load += new System.EventHandler(this.TournamentManagerForm_Load);
             this.Resize += new System.EventHandler(this.TournamentManagerForm_Resize);
-            ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.imgLogoEMA)).EndInit();
             this.splitContainer.Panel1.ResumeLayout(false);
             this.splitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
@@ -385,8 +370,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.PictureBox imgLogoMM;
-        private System.Windows.Forms.PictureBox imgLogoEMA;
         private System.Windows.Forms.SplitContainer splitContainer;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblSeparator;
@@ -394,9 +377,10 @@
         private System.Windows.Forms.Label lblTitleTables;
         private System.Windows.Forms.Button btnPlayers;
         private System.Windows.Forms.Button btnTeams;
-        private System.Windows.Forms.Button btnExportHTML;
         private System.Windows.Forms.Button btnRankings;
+        private System.Windows.Forms.Button btnExportHTML;
         private System.Windows.Forms.Button btnTimer;
         private System.Windows.Forms.Button btnPlayersTables;
+        private System.Windows.Forms.Button btnEmaReport;
     }
 }

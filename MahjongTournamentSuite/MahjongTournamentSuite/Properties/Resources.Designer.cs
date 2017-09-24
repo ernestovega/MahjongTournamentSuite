@@ -813,9 +813,9 @@ namespace MahjongTournamentSuite.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap export_excel {
+        public static System.Drawing.Bitmap export_ema {
             get {
-                object obj = ResourceManager.GetObject("export_excel", resourceCulture);
+                object obj = ResourceManager.GetObject("export_ema", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -823,9 +823,9 @@ namespace MahjongTournamentSuite.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        public static System.Drawing.Bitmap export_excel_white {
+        public static System.Drawing.Bitmap export_ema_white {
             get {
-                object obj = ResourceManager.GetObject("export_excel_white", resourceCulture);
+                object obj = ResourceManager.GetObject("export_ema_white", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1166,16 +1166,6 @@ namespace MahjongTournamentSuite.Properties {
         public static System.Drawing.Bitmap Iceland {
             get {
                 object obj = ResourceManager.GetObject("Iceland", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        public static System.Drawing.Bitmap import {
-            get {
-                object obj = ResourceManager.GetObject("import", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

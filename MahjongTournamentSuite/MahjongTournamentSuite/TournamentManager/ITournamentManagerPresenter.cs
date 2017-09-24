@@ -20,7 +20,7 @@
 
         void PlayersTablesClicked();
 
-        void ExportHtmlClicked();
+        void EmaReportClicked();
         
         void ShowRankingsClicked();
 

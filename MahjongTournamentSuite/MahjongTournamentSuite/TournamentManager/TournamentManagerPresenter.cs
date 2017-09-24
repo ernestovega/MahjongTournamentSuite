@@ -80,14 +80,10 @@ namespace MahjongTournamentSuite.TournamentManager
             _form.GoToPlayersTables(_tournament.TournamentId);
         }
 
-        public void ExportHtmlClicked()
+        public void EmaReportClicked()
         {
             GenerateRankings();
-            _form.GoToHTMLViewer(new HTMLRankings(
-                GeneratePlayersHTMLRanking(), 
-                GenerateTeamsHTMLRanking(), 
-                GenerateChickenHandsHTMLRanking(), 
-                _tournament.IsTeams));
+            _form.GoToEmaReportForm(_tournamentId);
         }
 
         public void ButtonTeamsClicked()

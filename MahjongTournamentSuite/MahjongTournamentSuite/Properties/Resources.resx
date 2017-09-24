@@ -199,14 +199,8 @@
   <data name="countries" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\countries.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="export_excel" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\export_excel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="export_html" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\export_html.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="import" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\import.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="players_big" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\players_big.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -219,9 +213,6 @@
   </data>
   <data name="countries_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\countries_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="export_excel_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\export_excel_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="export_html_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\export_html_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -945,5 +936,11 @@
   </data>
   <data name="players_tables" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resources\players_tables.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="export_ema" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\export_ema.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="export_ema_white" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\export_ema_white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

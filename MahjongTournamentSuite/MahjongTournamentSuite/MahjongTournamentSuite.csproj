@@ -287,8 +287,8 @@
     <Content Include="Resources\countries_white.png" />
     <Content Include="Resources\EMALogo.png" />
     <Content Include="Resources\este.png" />
-    <Content Include="Resources\export_excel.png" />
-    <Content Include="Resources\export_excel_white.png" />
+    <Content Include="Resources\export_ema.png" />
+    <Content Include="Resources\export_ema_white.png" />
     <Content Include="Resources\export_html.png" />
     <Content Include="Resources\export_html_white.png" />
     <Content Include="Resources\favicon.ico" />
@@ -530,7 +530,6 @@
     <Content Include="Resources\gong_ok.png" />
     <Content Include="Resources\gong_ok_white.png" />
     <Content Include="Resources\gong_white.png" />
-    <Content Include="Resources\import.png" />
     <Content Include="Resources\maximize.png" />
     <Content Include="Resources\MMLoading.gif" />
     <Content Include="Resources\MMLogo.png" />
