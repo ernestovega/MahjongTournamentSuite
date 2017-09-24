@@ -97,6 +97,7 @@ namespace MahjongTournamentSuite.TournamentManager
 
         public void TeamsManagerFormClosed()
         {
+            _db.RefreshTeams(_tournament.TournamentId);
             _teams = _db.GetTournamentTeams(_tournament.TournamentId);
         }
 
@@ -107,10 +108,13 @@ namespace MahjongTournamentSuite.TournamentManager
 
         public void PlayersManagerFormClosed(bool isWrongTeams)
         {
-            if(!isWrongTeams)
+            if (!isWrongTeams)
                 ButtonPlayersClicked();
             else
+            {
+                _db.RefreshPlayers(_tournament.TournamentId);
                 GenerateRoundsAndTablesButtons();
+            }
         }
 
         public void TableManagerFormClosed()

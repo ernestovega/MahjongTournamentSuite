@@ -154,6 +154,13 @@ namespace MahjongTournamentSuiteDataLayer.Data
             _db.SaveChanges();
         }
 
+        public void RefreshPlayers(int tournamentId)
+        {
+            List<DBTeam> teams = _db.Teams.ToList().FindAll(x => x.TeamTournamentId == tournamentId);
+            foreach (DBTeam team in teams)
+                _db.Entry(team).Reload();
+        }
+
         #endregion
 
         #region Table
@@ -223,8 +230,8 @@ namespace MahjongTournamentSuiteDataLayer.Data
 
         public void RefreshTable(int tournamentId, int roundId, int tableId)
         {
-            DBTable table = _db.Tables.ToList().Find(x => x.TableTournamentId == tournamentId &&
-                x.TableRoundId == roundId && x.TableId == tableId);
+            DBTable table = _db.Tables.ToList().Find(x => x.TableTournamentId == tournamentId
+            && x.TableRoundId == roundId && x.TableId == tableId);
             _db.Entry(table).Reload();
         }
 
@@ -349,6 +356,11 @@ namespace MahjongTournamentSuiteDataLayer.Data
         {
             _db.Teams.ToList().Find(x => x.TeamTournamentId == tournamentId && x.TeamId == teamId).TeamName = newName;
             _db.SaveChanges();
+        }
+
+        public void RefreshTeams(int tournamentId)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

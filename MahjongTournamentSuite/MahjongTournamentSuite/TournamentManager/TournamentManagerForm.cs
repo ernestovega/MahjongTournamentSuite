@@ -261,6 +261,13 @@ namespace MahjongTournamentSuite.TournamentManager
             form.ShowDialog();
         }
 
+        private void TeamsManagerForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            ShowWaitCursor();
+            _presenter.TeamsManagerFormClosed();
+            ShowDefaultCursor();
+        }
+
         public void GoToPlayersManager()
         {
             using (var playersManagerForm = new PlayersManagerForm(_tournamentId))
@@ -399,13 +406,6 @@ namespace MahjongTournamentSuite.TournamentManager
             newButton.TextImageRelation = TextImageRelation.ImageAboveText;
             newButton.UseVisualStyleBackColor = false;
             return newButton;
-        }
-
-        private void TeamsManagerForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            ShowWaitCursor();
-            _presenter.TeamsManagerFormClosed();
-            ShowDefaultCursor();
         }
 
         private static void MakeButtonSelected(Button button, Image image)

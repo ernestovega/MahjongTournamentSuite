@@ -106,8 +106,9 @@ namespace MahjongTournamentSuiteDataLayer.Data
         #region Ranking
 
         List<DBTable> GetTournamentTables(int tournamentId);
-
+        void RefreshTeams(int tournamentId);
         List<DBHand> GetTournamentHands(int tournamentId);
+        void RefreshPlayers(int tournamentId);
 
         #endregion
     }
