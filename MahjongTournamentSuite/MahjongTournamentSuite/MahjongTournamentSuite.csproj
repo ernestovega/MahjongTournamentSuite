@@ -66,6 +66,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\DGVPlayerEma.cs" />
+    <Compile Include="EmaReport\EmaReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmaReport\EmaReportForm.Designer.cs">
+      <DependentUpon>EmaReportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmaReport\EmaReportPresenter.cs" />
+    <Compile Include="EmaReport\IEmaReportForm.cs" />
+    <Compile Include="EmaReport\IEmaReportPresenter.cs" />
     <Compile Include="Model\DGVCountry.cs" />
     <Compile Include="Model\DGVPlayerTable.cs" />
     <Compile Include="Model\PlayerTables.cs" />
@@ -218,6 +228,9 @@
       <DependentUpon>TournamentManagerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="TournamentManager\TournamentManagerPresenter.cs" />
+    <EmbeddedResource Include="EmaReport\EmaReportForm.resx">
+      <DependentUpon>EmaReportForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PlayersTables\PlayersTablesForm.resx">
       <DependentUpon>PlayersTablesForm.cs</DependentUpon>
     </EmbeddedResource>

@@ -8,11 +8,10 @@ using MahjongTournamentSuite.TeamSelector;
 using MahjongTournamentSuite.TournamentManager;
 using MahjongTournamentSuiteDataLayer.Data;
 using MahjongTournamentSuite.CountryManager;
-using MahjongTournamentSuite.ManagePlayers;
 using MahjongTournamentSuite.PlayersManager;
 using MahjongTournamentSuite.TeamsManager;
 using MahjongTournamentSuite.PlayersTables;
-using System;
+using MahjongTournamentSuite.EmaReport;
 
 namespace MahjongTournamentSuite
 {
@@ -24,73 +23,78 @@ namespace MahjongTournamentSuite
         }
 
         internal static IHomePresenter provideHomePresenter(
-            HomeForm homeForm)
+            IHomeForm homeForm)
         {
             return new HomePresenter(homeForm);
         }
 
         internal static INewTournamentPresenter provideNewTournamentPresenter(
-            NewTournamentForm newTournamentForm)
+            INewTournamentForm newTournamentForm)
         {
             return new NewTournamentPresenter(newTournamentForm);
         }
 
         internal static ITournamentManagerPresenter provideTournamentManagerPresenter(
-            TournamentManagerForm tournamentManagerForm)
+            ITournamentManagerForm tournamentManagerForm)
         {
             return new TournamentManagerPresenter(tournamentManagerForm);
         }
 
         internal static ITeamSelectorPresenter provideTeamSelectorPresenter(
-            TeamSelectorForm teamSelectorForm)
+            ITeamSelectorForm teamSelectorForm)
         {
             return new TeamSelectorPresenter(teamSelectorForm);
         }
 
         internal static ICountrySelectorPresenter provideCountrySelectorPresenter(
-            CountrySelectorForm countrySelectorForm)
+            ICountrySelectorForm countrySelectorForm)
         {
             return new CountrySelectorPresenter(countrySelectorForm);
         }
 
         internal static ITableManagerPresenter provideTableManagerPresenter(
-            TableManagerForm tableManagerForm)
+            ITableManagerForm tableManagerForm)
         {
             return new TableManagerPresenter(tableManagerForm);
         }
 
         internal static IRankingPresenter provideRankingPresenter(
-            RankingForm rankingForm)
+            IRankingForm rankingForm)
         {
             return new RankingPresenter(rankingForm);
         }
 
         internal static IHTMLViewerPresenter provideHTMLViewerPresenter(
-            HTMLViewerForm htmlViewerForm)
+            IHTMLViewerForm htmlViewerForm)
         {
             return new HTMLViewerPresenter(htmlViewerForm);
         }
 
         internal static ICountryManagerPresenter provideCountryManagerPresenter(
-            CountryManagerForm countryManagerForm)
+            ICountryManagerForm countryManagerForm)
         {
             return new CountryManagerPresenter(countryManagerForm);
         }
 
         internal static IPlayersManagerPresenter providePlayersManagerPresenter(
-            PlayersManagerForm playersManagerForm)
+            IPlayersManagerForm playersManagerForm)
         {
             return new PlayersManagerPresenter(playersManagerForm);
         }
 
-        internal static ITeamsManagerPresenter provideTeamsManagerPresenter(TeamsManagerForm teamsManagerForm)
+        internal static ITeamsManagerPresenter provideTeamsManagerPresenter(ITeamsManagerForm teamsManagerForm)
         {
             return new TeamsManagerPresenter(teamsManagerForm);
         }
 
-        internal static IPlayersTablesPresenter providePlayersTablesPresenter(PlayersTablesForm playersTablesForm)
+        internal static IPlayersTablesPresenter providePlayersTablesPresenter(IPlayersTablesForm playersTablesForm)
         {
             return new PlayersTablesPresenter(playersTablesForm);
+        }
+
+        internal static IEmaReportPresenter provideEmaReportPresenter(IEmaReportForm emaReportForm)
+        {
+            return new EmaReportPresenter(emaReportForm);
         }
     }
 }

@@ -11,6 +11,7 @@ using MahjongTournamentSuite.Ranking;
 using MahjongTournamentSuite.HTMLViewer;
 using MahjongTournamentSuite.ManagePlayers;
 using MahjongTournamentSuite.TeamsManager;
+using MahjongTournamentSuite.EmaReport;
 using System.Media;
 using MahjongTournamentSuite.PlayersTables;
 

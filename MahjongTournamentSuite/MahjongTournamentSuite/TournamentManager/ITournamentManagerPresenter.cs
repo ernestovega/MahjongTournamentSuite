@@ -19,8 +19,6 @@
         void ButtonTableClicked(int tableId);
 
         void PlayersTablesClicked();
-
-        void EmaReportClicked();
         
         void ShowRankingsClicked();
 
