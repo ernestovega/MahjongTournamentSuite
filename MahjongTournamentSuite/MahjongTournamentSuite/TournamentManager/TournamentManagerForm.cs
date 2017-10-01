@@ -100,7 +100,7 @@ namespace MahjongTournamentSuite.TournamentManager
         private void btnEmaReport_Click(object sender, EventArgs e)
         {
             ShowWaitCursor();
-            new EmaReportForm(_tournamentId).ShowDialog();
+            _presenter.EmaReportClicked();
             ShowDefaultCursor();
         }
 
@@ -295,6 +295,11 @@ namespace MahjongTournamentSuite.TournamentManager
         public void GoToPlayersTables(int tournamentId)
         {
             new PlayersTablesForm(tournamentId).ShowDialog();
+        }
+
+        public void GoToEmaReport(List<DGVPlayerEma> dgvEmaPlayers)
+        {
+            new EmaReportForm(dgvEmaPlayers).ShowDialog();
         }
 
         public void SelectRoundButton(int roundId)

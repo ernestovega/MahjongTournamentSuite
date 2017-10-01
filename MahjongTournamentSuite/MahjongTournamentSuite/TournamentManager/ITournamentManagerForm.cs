@@ -1,4 +1,6 @@
-﻿using MahjongTournamentSuite.Model;
+﻿using MahjongTournamentSuite.EmaReport;
+using MahjongTournamentSuite.Model;
+using System.Collections.Generic;
 
 namespace MahjongTournamentSuite.TournamentManager
 {
@@ -23,7 +25,9 @@ namespace MahjongTournamentSuite.TournamentManager
         void GoToHTMLViewer(HTMLRankings htmlRankings);
 
         void GoToPlayersTables(int tournamentId);
-        
+
+        void GoToEmaReport(List<DGVPlayerEma> dgvEmaPlayers);
+
         void SelectRoundButton(int roundId);
 
         void UnselectRoundButton(int roundId);

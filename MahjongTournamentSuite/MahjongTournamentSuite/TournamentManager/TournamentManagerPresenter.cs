@@ -6,6 +6,7 @@ using System.Linq;
 using MahjongTournamentSuite.Resources;
 using MahjongTournamentSuite.Resources.flags;
 using System;
+using MahjongTournamentSuite.EmaReport;
 
 namespace MahjongTournamentSuite.TournamentManager
 {
@@ -26,6 +27,7 @@ namespace MahjongTournamentSuite.TournamentManager
         private List<TeamRanking> _teamsRankings;
         private List<ChickenHandRanking> _chickenHandsRankings;
         private int _tournamentId;
+        private Rankings _rankings;
 
         #endregion
 
@@ -134,10 +136,19 @@ namespace MahjongTournamentSuite.TournamentManager
 
         public void ShowRankingsClicked()
         {
-            GenerateRankings();
-            Rankings rankings = new Rankings(_playersRankings, _teamsRankings, 
-                _chickenHandsRankings, _tournament.IsTeams);
-            _form.GoToRankings(rankings);
+            _rankings = GenerateRankings();
+            _form.GoToRankings(_rankings);
+        }
+
+        public void EmaReportClicked()
+        {
+            //GenerateRankings();
+            //List<DGVPlayerEma> dgvEmaPlayers = new List<DGVPlayerEma>(_players.Count);
+            //foreach (var item in _players)
+            //{
+
+            //}
+            //_form.GoToEmaReport(dgvEmaPlayers);
         }
 
         public bool IsRoundCompleted(int roundId)
@@ -210,19 +221,19 @@ namespace MahjongTournamentSuite.TournamentManager
 
         #region Rankings
 
-        private void GenerateRankings()
+        private Rankings GenerateRankings()
         {
-            _players = _db.GetTournamentPlayers(_tournament.TournamentId);
-            _hands = _db.GetTournamentHands(_tournament.TournamentId);
-            if (_tournament.IsTeams)
-                _teams = _db.GetTournamentTeams(_tournament.TournamentId);
-            _tables = _db.GetTournamentTables(_tournament.TournamentId);
-            _hands = _db.GetTournamentHands(_tournament.TournamentId);
+            _players = _db.GetTournamentPlayers(_tournamentId);
+            _hands = _db.GetTournamentHands(_tournamentId);
+            if (_tournament.IsTeams) _teams = _db.GetTournamentTeams(_tournamentId);
+            _tables = _db.GetTournamentTables(_tournamentId);
+            _hands = _db.GetTournamentHands(_tournamentId);
 
             CalculateAndSortPlayersScores();
-            if (_tournament.IsTeams)
-                CalculateAndSortTeamsScores();
+            if (_tournament.IsTeams) CalculateAndSortTeamsScores();
             CalculateAndSortPlayersChickenHands();
+            return new Rankings(_playersRankings, _teamsRankings,
+                 _chickenHandsRankings, _tournament.IsTeams);
         }
 
         private void CalculateAndSortPlayersScores()

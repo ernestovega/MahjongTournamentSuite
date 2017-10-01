@@ -1,7 +1,9 @@
-﻿namespace MahjongTournamentSuite.EmaReport
+﻿using System.Collections.Generic;
+
+namespace MahjongTournamentSuite.EmaReport
 {
     interface IEmaReportPresenter
     {
-        void LoadForm(int tournamentId);
+        void LoadForm(List<DGVPlayerEma> dgvEmaPlayers);
     }
 }
