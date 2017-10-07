@@ -1,8 +1,8 @@
 ﻿using System.Windows.Forms;
 using MahjongTournamentSuite.Resources;
-using MahjongTournamentSuiteDataLayer.Model;
+using MahjongTournamentSuite._Data.DataModel;
 using System.Collections.Generic;
-using MahjongTournamentSuite.Model;
+using MahjongTournamentSuite.ViewModel;
 using System.Drawing;
 
 namespace MahjongTournamentSuite.TeamsManager
@@ -11,7 +11,7 @@ namespace MahjongTournamentSuite.TeamsManager
     {
         #region Fields
 
-        private ITeamsManagerPresenter _presenter;
+        private ITeamsManagerController _controller;
         private int _tournamentId;
 
         #endregion
@@ -21,7 +21,7 @@ namespace MahjongTournamentSuite.TeamsManager
         public TeamsManagerForm(int tournamentId)
         {
             InitializeComponent();
-            _presenter = Injector.provideTeamsManagerPresenter(this);
+            _controller = Injector.provideTeamsManagerController(this);
             _tournamentId = tournamentId;
         }
 
@@ -32,7 +32,7 @@ namespace MahjongTournamentSuite.TeamsManager
         private void TeamsManagerForm_Load(object sender, System.EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            _presenter.LoadForm(_tournamentId);
+            _controller.LoadForm(_tournamentId);
             Cursor = Cursors.Default;
         }
 
@@ -50,28 +50,28 @@ namespace MahjongTournamentSuite.TeamsManager
             {
                 e.CellStyle.SelectionBackColor =
                     dgv.CurrentCell.ReadOnly ?
-                    MyConstants.GREEN_MM_DARKEST :
-                    MyConstants.GREEN_MM_DARKER;
+                    Constants.GREEN_MM_DARKEST :
+                    Constants.GREEN_MM_DARKER;
             }
         }
 
         private void dgv_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.RowIndex > -1 && dgv.Columns[e.ColumnIndex].Name.Equals(DBTeam.COLUMN_TEAMS_NAME))
+            if (e.RowIndex > -1 && dgv.Columns[e.ColumnIndex].Name.Equals(VTeam.COLUMN_TEAMS_NAME))
                 dgv.BeginEdit(true);
         }
 
         private void dgv_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if (e.RowIndex > -1 && dgv.Columns[e.ColumnIndex].Name.Equals(DBTeam.COLUMN_TEAMS_NAME))
+            if (e.RowIndex > -1 && dgv.Columns[e.ColumnIndex].Name.Equals(VTeam.COLUMN_TEAMS_NAME))
             {
                 Cursor = Cursors.WaitCursor;
                 string previousValue = (string)dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
                 string newValue = ((string)e.FormattedValue).Trim();
                 if (newValue.Length > 0 && !newValue.Equals(previousValue))
                 {
-                    int teamId = (int)dgv.Rows[e.RowIndex].Cells[DBTeam.COLUMN_TEAMS_ID].Value;
-                    _presenter.TeamNameChanged(teamId, newValue);
+                    int teamId = (int)dgv.Rows[e.RowIndex].Cells[VTeam.COLUMN_TEAMS_ID].Value;
+                    _controller.TeamNameChanged(teamId, newValue);
                 }
                 else
                     DGVCancelEdit();
@@ -83,27 +83,27 @@ namespace MahjongTournamentSuite.TeamsManager
 
         #region ITeamsManagerForm implementation
 
-        public void FillDGV(List<DBTeam> teams)
+        public void FillDGV(List<VTeam> teams)
         {
-            SortableBindingList<DBTeam> sortableTeams = new SortableBindingList<DBTeam>(teams);
+            SortableBindingList<VTeam> sortableTeams = new SortableBindingList<VTeam>(teams);
             if (dgv.DataSource != null)
                 dgv.DataSource = null;
             dgv.DataSource = sortableTeams;
 
             //Visible
-            dgv.Columns[DBTeam.COLUMN_TEAMS_TOURNAMENT_ID].Visible = false;
+            dgv.Columns[VTeam.COLUMN_TEAMS_TOURNAMENT_ID].Visible = false;
             //ReadOnly
-            dgv.Columns[DBTeam.COLUMN_TEAMS_ID].ReadOnly = true;
+            dgv.Columns[VTeam.COLUMN_TEAMS_ID].ReadOnly = true;
             //Readonly columns BackColor
-            dgv.Columns[DBTeam.COLUMN_TEAMS_ID].DefaultCellStyle.BackColor = SystemColors.ControlLight;
+            dgv.Columns[VTeam.COLUMN_TEAMS_ID].DefaultCellStyle.BackColor = SystemColors.ControlLight;
             //Readonly columns ForeColor
-            dgv.Columns[DBTeam.COLUMN_TEAMS_ID].DefaultCellStyle.ForeColor = SystemColors.GrayText;
+            dgv.Columns[VTeam.COLUMN_TEAMS_ID].DefaultCellStyle.ForeColor = SystemColors.GrayText;
             //HeaderText
-            dgv.Columns[DBTeam.COLUMN_TEAMS_ID].HeaderText = "Team Id";
-            dgv.Columns[DBTeam.COLUMN_TEAMS_NAME].HeaderText = "Team Name";
+            dgv.Columns[VTeam.COLUMN_TEAMS_ID].HeaderText = "Team Id";
+            dgv.Columns[VTeam.COLUMN_TEAMS_NAME].HeaderText = "Team Name";
             //AutoSizeMode
-            dgv.Columns[DBTeam.COLUMN_TEAMS_ID].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dgv.Columns[DBTeam.COLUMN_TEAMS_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgv.Columns[VTeam.COLUMN_TEAMS_ID].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgv.Columns[VTeam.COLUMN_TEAMS_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
         public void ShowMessageTeamNameInUse(string usedName, int ownerTeamId)

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using MahjongTournamentSuiteDataLayer.Model;
-using MahjongTournamentSuite.Model;
+using MahjongTournamentSuite._Data.DataModel;
+using MahjongTournamentSuite.ViewModel;
 
 namespace MahjongTournamentSuite.PlayersManager
 {

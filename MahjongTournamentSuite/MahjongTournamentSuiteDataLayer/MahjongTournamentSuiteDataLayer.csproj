@@ -49,7 +49,7 @@
   <ItemGroup>
     <Compile Include="DBContext.cs" />
     <Compile Include="DBManager.cs" />
-    <Compile Include="IDBManager.cs" />
+    <Compile Include="Interfaces\INewTournamentDataManager.cs" />
     <Compile Include="Model\DBCountry.cs" />
     <Compile Include="Model\DBHand.cs" />
     <Compile Include="Model\DBPlayer.cs" />

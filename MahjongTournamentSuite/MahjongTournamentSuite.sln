@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MahjongTournamentSuite", "M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MahjongTournamentTimer", "MahjongTournamentTimer\MahjongTournamentTimer.csproj", "{6898DB2E-A09D-4F94-A8B2-1E14F19C2ED3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MahjongTournamentSuiteDataLayer", "MahjongTournamentSuiteDataLayer\MahjongTournamentSuiteDataLayer.csproj", "{7073B9DE-15B0-40DC-9A07-1DF5DE69D857}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{6898DB2E-A09D-4F94-A8B2-1E14F19C2ED3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6898DB2E-A09D-4F94-A8B2-1E14F19C2ED3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6898DB2E-A09D-4F94-A8B2-1E14F19C2ED3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7073B9DE-15B0-40DC-9A07-1DF5DE69D857}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7073B9DE-15B0-40DC-9A07-1DF5DE69D857}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7073B9DE-15B0-40DC-9A07-1DF5DE69D857}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7073B9DE-15B0-40DC-9A07-1DF5DE69D857}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

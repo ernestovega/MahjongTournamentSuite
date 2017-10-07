@@ -1,4 +1,4 @@
-﻿using MahjongTournamentSuite.Model;
+﻿using MahjongTournamentSuite.ViewModel;
 using System.Windows.Forms;
 using System;
 
@@ -8,7 +8,7 @@ namespace MahjongTournamentSuite.HTMLViewer
     {
         #region FIELDS
 
-        private IHTMLViewerPresenter _presenter;
+        private IHTMLViewerController _controller;
         private HTMLRankings _htmlRankings;
 
         #endregion
@@ -18,7 +18,7 @@ namespace MahjongTournamentSuite.HTMLViewer
         public HTMLViewerForm(HTMLRankings htmlRankings)
         {
             InitializeComponent();
-            _presenter = Injector.provideHTMLViewerPresenter(this);
+            _controller = Injector.provideHTMLViewerController(this);
             _htmlRankings = htmlRankings;
         }
 
@@ -28,12 +28,12 @@ namespace MahjongTournamentSuite.HTMLViewer
 
         private void HTMLViewerForm_Load(object sender, System.EventArgs e)
         {
-            _presenter.LoadForm(_htmlRankings);
+            _controller.LoadForm(_htmlRankings);
         }
 
         private void btnCopyHtml_Click(object sender, EventArgs e)
         {
-            _presenter.CopyHtmlClicked();
+            _controller.CopyHtmlClicked();
         }
 
         #endregion

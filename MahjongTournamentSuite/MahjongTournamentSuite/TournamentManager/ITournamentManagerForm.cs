@@ -1,5 +1,5 @@
 ﻿using MahjongTournamentSuite.EmaReport;
-using MahjongTournamentSuite.Model;
+using MahjongTournamentSuite.ViewModel;
 using System.Collections.Generic;
 
 namespace MahjongTournamentSuite.TournamentManager

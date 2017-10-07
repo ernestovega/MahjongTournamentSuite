@@ -8,7 +8,7 @@ namespace MahjongTournamentSuite.TeamSelector
     {
         #region Fields
 
-        private ITeamSelectorPresenter _presenter;
+        private ITeamSelectorController _controller;
         private int _tournamentId;
 
         public string ReturnValue { get; set; }
@@ -20,7 +20,7 @@ namespace MahjongTournamentSuite.TeamSelector
         public TeamSelectorForm(int tournamentId)
         {
             InitializeComponent();
-            _presenter = Injector.provideTeamSelectorPresenter(this);
+            _controller = Injector.provideTeamSelectorController(this);
             _tournamentId = tournamentId;
         }
 
@@ -33,7 +33,7 @@ namespace MahjongTournamentSuite.TeamSelector
             Cursor = Cursors.WaitCursor;
             CancelButton = btnCancel;
             AcceptButton = btnOk;
-            _presenter.LoadForm(_tournamentId);
+            _controller.LoadForm(_tournamentId);
             Cursor = Cursors.Default;
         }
 

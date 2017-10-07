@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using MahjongTournamentSuite.Model;
+using MahjongTournamentSuite.ViewModel;
 using System.Runtime.InteropServices;
 using System.Drawing;
 using System.Diagnostics;
@@ -23,9 +23,9 @@ namespace MahjongTournamentSuite.Ranking
 
         #region Fields
 
-        private IRankingPresenter _presenter;
+        private IRankingController _controller;
         private Rankings _rankings;
-        private int _numRowsPerScreen = RankingPresenter.DEFAULT_NUM_ROWS_PER_SCREEN;
+        private int _numRowsPerScreen = RankingController.DEFAULT_NUM_ROWS_PER_SCREEN;
 
         #endregion
 
@@ -34,7 +34,7 @@ namespace MahjongTournamentSuite.Ranking
         public RankingForm(Rankings rankings)
         {
             InitializeComponent();
-            _presenter = Injector.provideRankingPresenter(this);
+            _controller = Injector.provideRankingController(this);
             _rankings = rankings;
         }
 
@@ -47,7 +47,7 @@ namespace MahjongTournamentSuite.Ranking
             ShowWaitCursor();
             CenterPanelTitle();
             CenterLabelUrlLiveRanking();
-            _presenter.LoadData(_rankings);
+            _controller.LoadData(_rankings);
             ShowDefaultCursor();
         }
 
@@ -100,28 +100,28 @@ namespace MahjongTournamentSuite.Ranking
 
         private void btnSecondsUp_Click(object sender, EventArgs e)
         {
-            _presenter.IncrementShowingTimeInOneSecond();
+            _controller.IncrementShowingTimeInOneSecond();
         }
 
         private void btnSecondsDown_Click(object sender, EventArgs e)
         {
-            _presenter.DecrementShowingTimeInOneSecond();
+            _controller.DecrementShowingTimeInOneSecond();
         }
 
         private void btnPlay_Click(object sender, EventArgs e)
         {
-            _presenter.PlayClicked();
+            _controller.PlayClicked();
         }
 
         private void btnPause_Click(object sender, EventArgs e)
         {
-            _presenter.PauseClicked();
+            _controller.PauseClicked();
         }
 
         private void btnClose_Click(object sender, System.EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            _presenter.StopShowRankingThread();
+            _controller.StopShowRankingThread();
         }
 
         private void lblLiveRankingUrl_Click(object sender, EventArgs e)

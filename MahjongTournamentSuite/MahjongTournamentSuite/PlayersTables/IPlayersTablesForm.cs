@@ -1,5 +1,5 @@
 ﻿
-using MahjongTournamentSuite.Model;
+using MahjongTournamentSuite.ViewModel;
 using System.Collections.Generic;
 
 namespace MahjongTournamentSuite.PlayersTables

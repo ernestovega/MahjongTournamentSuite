@@ -1,9 +1,6 @@
-﻿using MahjongTournamentSuite.Home;
-using MahjongTournamentSuite.Resources;
+﻿using MahjongTournamentSuite.Resources;
 using System;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace MahjongTournamentSuite.NewTournament
@@ -18,7 +15,7 @@ namespace MahjongTournamentSuite.NewTournament
 
         #region Fields
 
-        private INewTournamentPresenter _presenter;
+        private INewTournamentController _controller;
 
         #endregion
 
@@ -27,7 +24,7 @@ namespace MahjongTournamentSuite.NewTournament
         public NewTournamentForm()
         {
             InitializeComponent();
-            _presenter = Injector.provideNewTournamentPresenter(this);
+            _controller = Injector.provideNewTournamentController(this);
         }
 
         #endregion
@@ -45,12 +42,12 @@ namespace MahjongTournamentSuite.NewTournament
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            _presenter.StartClicked(tbTournamentName.Text);
+            _controller.StartClicked(tbTournamentName.Text);
         }
 
         private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            _presenter.BackgroundWorkerDoWork(sender as BackgroundWorker, e);
+            _controller.BackgroundWorkerDoWork(sender as BackgroundWorker, e);
         }
 
         private void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -60,7 +57,7 @@ namespace MahjongTournamentSuite.NewTournament
 
         private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            _presenter.RunWorkerCompleted(e.Cancelled);
+            _controller.RunWorkerCompleted(e.Cancelled);
         }
 
         #endregion
@@ -109,8 +106,8 @@ namespace MahjongTournamentSuite.NewTournament
 
         public void EnableViews()
         {
-            btnStart.BackColor = MyConstants.GREEN_MM;
-            btnStart.FlatAppearance.MouseOverBackColor = MyConstants.GREEN_MM_DARKER;
+            btnStart.BackColor = Constants.GREEN_MM;
+            btnStart.FlatAppearance.MouseOverBackColor = Constants.GREEN_MM_DARKER;
             btnStart.Text = "Start";
             panelLoading.Visible = false;
             panelOptions.Visible = true;
@@ -121,8 +118,8 @@ namespace MahjongTournamentSuite.NewTournament
         public void DisableViews()
         {
             btnStart.Text = "Stop";
-            btnStart.BackColor = MyConstants.GRAY_DISABLED;
-            btnStart.FlatAppearance.MouseOverBackColor = MyConstants.RED_CANCEL;
+            btnStart.BackColor = Constants.GRAY_DISABLED;
+            btnStart.FlatAppearance.MouseOverBackColor = Constants.RED_CANCEL;
             panelOptions.Visible = false;
             panelLoading.Visible = true;
             Cursor = Cursors.WaitCursor;

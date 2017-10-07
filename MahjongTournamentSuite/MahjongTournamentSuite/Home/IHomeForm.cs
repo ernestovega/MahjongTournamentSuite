@@ -1,5 +1,5 @@
-﻿using MahjongTournamentSuiteDataLayer.Model;
-using MahjongTournamentSuite.Model;
+﻿using MahjongTournamentSuite._Data.DataModel;
+using MahjongTournamentSuite.ViewModel;
 using System.Collections.Generic;
 
 namespace MahjongTournamentSuite.Home
@@ -9,7 +9,7 @@ namespace MahjongTournamentSuite.Home
 
         void CenterMainButtons();
 
-        void FillDGVTournaments(List<DBTournament> tournaments);
+        void FillDGVTournaments(List<VTournament> tournaments);
 
         string GetCurrentTournamentName();
 

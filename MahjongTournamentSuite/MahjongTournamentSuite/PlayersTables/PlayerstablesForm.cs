@@ -3,7 +3,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Collections.Generic;
-using MahjongTournamentSuite.Model;
+using MahjongTournamentSuite.ViewModel;
 
 namespace MahjongTournamentSuite.PlayersTables
 {
@@ -19,7 +19,7 @@ namespace MahjongTournamentSuite.PlayersTables
 
         #region Fields
 
-        private IPlayersTablesPresenter _presenter;
+        private IPlayersTablesController _controller;
         private int _tournamentId;
 
         #endregion
@@ -29,7 +29,7 @@ namespace MahjongTournamentSuite.PlayersTables
         public PlayersTablesForm(int tournamentId)
         {
             InitializeComponent();
-            _presenter = Injector.providePlayersTablesPresenter(this);
+            _controller = Injector.providePlayersTablesController(this);
             _tournamentId = tournamentId;
         }
 
@@ -40,7 +40,7 @@ namespace MahjongTournamentSuite.PlayersTables
         private void PlayerstablesForm_Load(object sender, System.EventArgs e)
         {
             ShowWaitCursor();
-            _presenter.LoadForm(_tournamentId);
+            _controller.LoadForm(_tournamentId);
             ShowDefaultCursor();
         }
 
@@ -73,7 +73,7 @@ namespace MahjongTournamentSuite.PlayersTables
                 button.Click += delegate
                 {
                     ShowWaitCursor();
-                    _presenter.ButtonPlayerClicked((int)button.Tag);
+                    _controller.ButtonPlayerClicked((int)button.Tag);
                     ShowDefaultCursor();
                 };
 
@@ -113,8 +113,8 @@ namespace MahjongTournamentSuite.PlayersTables
             newButton.Height = BUTTON_SIDE;
             newButton.FlatStyle = FlatStyle.Flat;
             newButton.FlatAppearance.BorderSize = 0;
-            newButton.FlatAppearance.MouseDownBackColor = MyConstants.GREEN_MM_DARK;
-            newButton.FlatAppearance.MouseOverBackColor = MyConstants.GREEN_MM;
+            newButton.FlatAppearance.MouseDownBackColor = Constants.GREEN_MM_DARK;
+            newButton.FlatAppearance.MouseOverBackColor = Constants.GREEN_MM;
             newButton.BackgroundImageLayout = ImageLayout.None;
             newButton.Cursor = Cursors.Hand;
             newButton.Font = new Font(newButton.Font.Name, newButton.Font.Size, FontStyle.Bold);
@@ -128,7 +128,7 @@ namespace MahjongTournamentSuite.PlayersTables
 
         private static void MakeButtonSelected(Button button, Image image)
         {
-            button.BackColor = MyConstants.GREEN_MM;
+            button.BackColor = Constants.GREEN_MM;
             button.ForeColor = Color.White;
             button.Image = image;
         }

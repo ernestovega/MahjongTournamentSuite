@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
-using MahjongTournamentSuiteDataLayer.Model;
+using MahjongTournamentSuite._Data.DataModel;
 
 namespace MahjongTournamentSuite.TeamsManager
 {
     interface ITeamsManagerForm
     {
-        void FillDGV(List<DBTeam> _teams);
+        void FillDGV(List<VTeam> _teams);
 
         void ShowMessageTeamNameInUse(string newName, int ownerTeamId);
 

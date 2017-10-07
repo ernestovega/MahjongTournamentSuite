@@ -6,7 +6,7 @@ using MahjongTournamentSuiteDataLayer.Model;
 
 namespace MahjongTournamentSuiteDataLayer.Data
 {
-    public class DBManager : IDBManager
+    public class DBManager : IDBManagers
     {
 
         #region Fields

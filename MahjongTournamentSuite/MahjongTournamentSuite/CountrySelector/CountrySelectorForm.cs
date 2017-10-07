@@ -8,7 +8,7 @@ namespace MahjongTournamentSuite.CountrySelector
     {
         #region Fields
 
-        private ICountrySelectorPresenter _presenter;
+        private ICountrySelectorController _controller;
         public string ReturnValue { get; set; }
 
         #endregion
@@ -18,7 +18,7 @@ namespace MahjongTournamentSuite.CountrySelector
         public CountrySelectorForm()
         {
             InitializeComponent();
-            _presenter = Injector.provideCountrySelectorPresenter(this);
+            _controller = Injector.provideCountrySelectorController(this);
         }
 
         #endregion
@@ -30,7 +30,7 @@ namespace MahjongTournamentSuite.CountrySelector
             Cursor = Cursors.WaitCursor;
             CancelButton = btnCancel;
             AcceptButton = btnOk;
-            _presenter.LoadForm();
+            _controller.LoadForm();
             Cursor = Cursors.Default;
         }
 

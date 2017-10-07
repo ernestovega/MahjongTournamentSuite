@@ -51,6 +51,14 @@
     <StartupObject>MahjongTournamentSuite.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -66,28 +74,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\DGVPlayerEma.cs" />
+    <Compile Include="CountryManager\ICountryManagerDataManager.cs" />
+    <Compile Include="CountrySelector\ICountrySelectorDataManager.cs" />
+    <Compile Include="Home\IHomeDataManager.cs" />
+    <Compile Include="ViewModel\VCountry.cs" />
+    <Compile Include="ViewModel\VHand.cs" />
+    <Compile Include="ViewModel\VPlayer.cs" />
+    <Compile Include="ViewModel\VTable.cs" />
+    <Compile Include="ViewModel\VTeam.cs" />
+    <Compile Include="ViewModel\VTournament.cs" />
+    <Compile Include="ViewModel\DGVPlayerEma.cs" />
     <Compile Include="EmaReport\EmaReportForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="EmaReport\EmaReportForm.Designer.cs">
       <DependentUpon>EmaReportForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="EmaReport\EmaReportPresenter.cs" />
+    <Compile Include="EmaReport\EmaReportController.cs" />
     <Compile Include="EmaReport\IEmaReportForm.cs" />
-    <Compile Include="EmaReport\IEmaReportPresenter.cs" />
-    <Compile Include="Model\DGVCountry.cs" />
-    <Compile Include="Model\DGVPlayerTable.cs" />
-    <Compile Include="Model\PlayerTables.cs" />
+    <Compile Include="EmaReport\IEmaReportController.cs" />
+    <Compile Include="ViewModel\DGVCountry.cs" />
+    <Compile Include="ViewModel\DGVPlayerTable.cs" />
+    <Compile Include="ViewModel\PlayerTables.cs" />
+    <Compile Include="NewTournament\INewTournamentDataManager.cs" />
+    <Compile Include="PlayersManager\IPlayersManagerDataManager.cs" />
+    <Compile Include="PlayersTables\IPlayersTablesDataManager.cs" />
     <Compile Include="PlayersTables\IPlayersTablesForm.cs" />
-    <Compile Include="PlayersTables\IPlayersTablesPresenter.cs" />
+    <Compile Include="PlayersTables\IPlayersTablesController.cs" />
     <Compile Include="PlayersTables\PlayersTablesForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PlayersTables\PlayersTablesForm.Designer.cs">
       <DependentUpon>PlayersTablesForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PlayersTables\PlayersTablesPresenter.cs" />
+    <Compile Include="PlayersTables\PlayersTablesController.cs" />
     <Compile Include="PlayersTables\PlayerTablesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,36 +120,39 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\flags\CountryFlags.cs" />
+    <Compile Include="TableManager\ITableManagerDataManager.cs" />
+    <Compile Include="TeamSelector\ITeamSelectorDataManager.cs" />
+    <Compile Include="TeamsManager\ITeamsManagerDataManager.cs" />
     <Compile Include="TeamsManager\ITeamsManagerForm.cs" />
-    <Compile Include="TeamsManager\ITeamsManagerPresenter.cs" />
+    <Compile Include="TeamsManager\ITeamsManagerController.cs" />
     <Compile Include="TeamsManager\TeamsManagerForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="TeamsManager\TeamsManagerForm.Designer.cs">
       <DependentUpon>TeamsManagerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TeamsManager\TeamsManagerPresenter.cs" />
+    <Compile Include="TeamsManager\TeamsManagerController.cs" />
     <Compile Include="PlayersManager\PlayersManagerForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PlayersManager\PlayersManagerForm.Designer.cs">
       <DependentUpon>PlayersManagerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PlayersManager\PlayersManagerPresenter.cs" />
+    <Compile Include="PlayersManager\PlayersManagerController.cs" />
     <Compile Include="PlayersManager\IPlayersManagerForm.cs" />
-    <Compile Include="PlayersManager\IPlayersManagerPresenter.cs" />
-    <Compile Include="CountryManager\CountryManagerPresenter.cs" />
+    <Compile Include="PlayersManager\IPlayersManagerController.cs" />
+    <Compile Include="CountryManager\CountryManagerController.cs" />
     <Compile Include="CountryManager\ICountryManagerForm.cs" />
-    <Compile Include="CountryManager\ICountryManagerPresenter.cs" />
+    <Compile Include="CountryManager\ICountryManagerController.cs" />
     <Compile Include="CountrySelector\CountrySelectorForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CountrySelector\CountrySelectorForm.Designer.cs">
       <DependentUpon>CountrySelectorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CountrySelector\CountrySelectorPresenter.cs" />
+    <Compile Include="CountrySelector\CountrySelectorController.cs" />
     <Compile Include="CountrySelector\ICountrySelectorForm.cs" />
-    <Compile Include="CountrySelector\ICountrySelectorPresenter.cs" />
+    <Compile Include="CountrySelector\ICountrySelectorController.cs" />
     <Compile Include="CustomViews\CustomProgressBar.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -139,18 +162,18 @@
     <Compile Include="Home\HomeForm.Designer.cs">
       <DependentUpon>HomeForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Home\HomePresenter.cs" />
+    <Compile Include="Home\HomeController.cs" />
     <Compile Include="Home\IHomeForm.cs" />
-    <Compile Include="Home\IHomePresenter.cs" />
+    <Compile Include="Home\IHomeController.cs" />
     <Compile Include="HTMLViewer\HTMLViewerForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="HTMLViewer\HTMLViewerForm.Designer.cs">
       <DependentUpon>HTMLViewerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="HTMLViewer\HTMLViewerPresenter.cs" />
+    <Compile Include="HTMLViewer\HTMLViewerController.cs" />
     <Compile Include="HTMLViewer\IHTMLViewerForm.cs" />
-    <Compile Include="HTMLViewer\IHTMLViewerPresenter.cs" />
+    <Compile Include="HTMLViewer\IHTMLViewerController.cs" />
     <Compile Include="Injector.cs" />
     <Compile Include="CountryManager\CountryManagerForm.cs">
       <SubType>Form</SubType>
@@ -158,76 +181,92 @@
     <Compile Include="CountryManager\CountryManagerForm.Designer.cs">
       <DependentUpon>CountryManagerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\ChickenHandRanking.cs" />
-    <Compile Include="Model\HTMLRankings.cs" />
-    <Compile Include="Model\Rankings.cs" />
+    <Compile Include="ViewModel\ChickenHandRanking.cs" />
+    <Compile Include="ViewModel\HTMLRankings.cs" />
+    <Compile Include="ViewModel\Rankings.cs" />
     <Compile Include="Ranking\IRankingForm.cs" />
-    <Compile Include="Ranking\IRankingPresenter.cs" />
+    <Compile Include="Ranking\IRankingController.cs" />
     <Compile Include="Ranking\RankingForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Ranking\RankingForm.Designer.cs">
       <DependentUpon>RankingForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ranking\RankingPresenter.cs" />
-    <Compile Include="Model\ComboItem.cs" />
-    <Compile Include="Model\DGVPlayer.cs" />
-    <Compile Include="Model\Player.cs" />
-    <Compile Include="Model\PlayerRanking.cs" />
-    <Compile Include="Model\PropertyComparer.cs" />
-    <Compile Include="Model\Rivals.cs" />
-    <Compile Include="Model\SortableBindingList.cs" />
-    <Compile Include="Model\TableWithAll.cs" />
-    <Compile Include="Model\TablePlayer.cs" />
-    <Compile Include="Model\TeamRanking.cs" />
-    <Compile Include="Model\WrongTeam.cs" />
+    <Compile Include="Ranking\RankingController.cs" />
+    <Compile Include="ViewModel\ComboItem.cs" />
+    <Compile Include="ViewModel\DGVPlayer.cs" />
+    <Compile Include="ViewModel\Player.cs" />
+    <Compile Include="ViewModel\PlayerRanking.cs" />
+    <Compile Include="ViewModel\PropertyComparer.cs" />
+    <Compile Include="ViewModel\Rivals.cs" />
+    <Compile Include="ViewModel\SortableBindingList.cs" />
+    <Compile Include="ViewModel\TableWithAll.cs" />
+    <Compile Include="ViewModel\TablePlayer.cs" />
+    <Compile Include="ViewModel\TeamRanking.cs" />
+    <Compile Include="ViewModel\WrongTeam.cs" />
     <Compile Include="NewTournament\INewTournamentForm.cs" />
-    <Compile Include="NewTournament\INewTournamentPresenter.cs" />
+    <Compile Include="NewTournament\INewTournamentController.cs" />
     <Compile Include="NewTournament\NewTournamentForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="NewTournament\NewTournamentForm.Designer.cs">
       <DependentUpon>NewTournamentForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="NewTournament\NewTournamentPresenter.cs" />
+    <Compile Include="NewTournament\NewTournamentController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Model\DGVHand.cs" />
-    <Compile Include="MyConstants.cs" />
-    <Compile Include="Splash\SplashForm.cs">
+    <Compile Include="ViewModel\DGVHand.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Home\SplashForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Splash\SplashForm.Designer.cs">
+    <Compile Include="Home\SplashForm.Designer.cs">
       <DependentUpon>SplashForm.cs</DependentUpon>
     </Compile>
     <Compile Include="TableManager\ITableManagerForm.cs" />
-    <Compile Include="TableManager\ITableManagerPresenter.cs" />
-    <Compile Include="Model\PlayerTotalScore.cs" />
+    <Compile Include="TableManager\ITableManagerController.cs" />
+    <Compile Include="ViewModel\PlayerTotalScore.cs" />
     <Compile Include="TableManager\TableManagerForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="TableManager\TableManagerForm.Designer.cs">
       <DependentUpon>TableManagerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TableManager\TableManagerPresenter.cs" />
+    <Compile Include="TableManager\TableManagerController.cs" />
     <Compile Include="TeamSelector\ITeamSelectorForm.cs" />
-    <Compile Include="TeamSelector\ITeamSelectorPresenter.cs" />
+    <Compile Include="TeamSelector\ITeamSelectorController.cs" />
     <Compile Include="TeamSelector\TeamSelectorForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="TeamSelector\TeamSelectorForm.Designer.cs">
       <DependentUpon>TeamSelectorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TeamSelector\TeamSelectorPresenter.cs" />
+    <Compile Include="TeamSelector\TeamSelectorController.cs" />
+    <Compile Include="TournamentManager\ITournamentManagerDataManager.cs" />
     <Compile Include="TournamentManager\ITournamentManagerForm.cs" />
-    <Compile Include="TournamentManager\ITournamentManagerPresenter.cs" />
+    <Compile Include="TournamentManager\ITournamentManagerController.cs" />
     <Compile Include="TournamentManager\TournamentManagerForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="TournamentManager\TournamentManagerForm.Designer.cs">
       <DependentUpon>TournamentManagerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TournamentManager\TournamentManagerPresenter.cs" />
+    <Compile Include="TournamentManager\TournamentManagerController.cs" />
+    <Compile Include="_Data\DBContext.cs" />
+    <Compile Include="_Data\DBManager.cs" />
+    <Compile Include="_Data\IDBManager.cs" />
+    <Compile Include="_Data\Mappers\PlayerMapper.cs" />
+    <Compile Include="_Data\Mappers\TableMapper.cs" />
+    <Compile Include="_Data\Mappers\TeamMapper.cs" />
+    <Compile Include="_Data\Mappers\CountryMapper.cs" />
+    <Compile Include="_Data\Mappers\HandMapper.cs" />
+    <Compile Include="_Data\Mappers\TournamentMapper.cs" />
+    <Compile Include="_Data\DataModel\DBCountry.cs" />
+    <Compile Include="_Data\DataModel\DBHand.cs" />
+    <Compile Include="_Data\DataModel\DBPlayer.cs" />
+    <Compile Include="_Data\DataModel\DBTable.cs" />
+    <Compile Include="_Data\DataModel\DBTeam.cs" />
+    <Compile Include="_Data\DataModel\DBTournament.cs" />
     <EmbeddedResource Include="EmaReport\EmaReportForm.resx">
       <DependentUpon>EmaReportForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -266,7 +305,7 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Splash\SplashForm.resx">
+    <EmbeddedResource Include="Home\SplashForm.resx">
       <DependentUpon>SplashForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TableManager\TableManagerForm.resx">
@@ -564,6 +603,17 @@
     <Content Include="Resources\teams_white.png" />
     <Content Include="Resources\yes.png" />
     <Content Include="Resources\yes_white.png" />
+    <Content Include="_Data\Scripts\9thSOMC_DBHands.sql" />
+    <Content Include="_Data\Scripts\9thSOMC_DBPlayers.sql" />
+    <Content Include="_Data\Scripts\9thSOMC_DBTables.sql" />
+    <Content Include="_Data\Scripts\9thSOMC_DBTeams.sql" />
+    <Content Include="_Data\Scripts\9thSOMC_DBTournaments.sql" />
+    <Content Include="_Data\Scripts\Countries.sql" />
+    <Content Include="_Data\Scripts\MMC16_Hands.sql" />
+    <Content Include="_Data\Scripts\MMC16_Players.sql" />
+    <Content Include="_Data\Scripts\MMC16_Tables.sql" />
+    <Content Include="_Data\Scripts\MMC16_Teams.sql" />
+    <Content Include="_Data\Scripts\MMC16_Tournament.sql" />
     <None Include="Resources\table.png" />
     <None Include="Resources\timer.png" />
     <None Include="Resources\remove.png" />
@@ -572,10 +622,6 @@
     <None Include="Resources\add.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MahjongTournamentSuiteDataLayer\MahjongTournamentSuiteDataLayer.csproj">
-      <Project>{7073b9de-15b0-40dc-9a07-1df5de69d857}</Project>
-      <Name>MahjongTournamentSuiteDataLayer</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MahjongTournamentTimer\MahjongTournamentTimer.csproj">
       <Project>{6898db2e-a09d-4f94-a8b2-1e14f19c2ed3}</Project>
       <Name>MahjongTournamentTimer</Name>
@@ -604,7 +650,10 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Splash\" />
+    <Folder Include="_Common\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

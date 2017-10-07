@@ -26,8 +26,8 @@ namespace MahjongTournamentSuite.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=MahjongTournamentSuiteDataLaye" +
-            "r.Data.DBContext+TournamentSuiteDB;Integrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=MahjongTournamentSuite.Data.Da" +
+            "ta.DBContext+TournamentSuiteDB;Integrated Security=True")]
         public string TournamentSuiteDBConnectionString {
             get {
                 return ((string)(this["TournamentSuiteDBConnectionString"]));

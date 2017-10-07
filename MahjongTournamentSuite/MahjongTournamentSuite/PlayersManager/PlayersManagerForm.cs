@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using MahjongTournamentSuite.Resources;
 using MahjongTournamentSuite.PlayersManager;
-using MahjongTournamentSuiteDataLayer.Model;
+using MahjongTournamentSuite._Data.DataModel;
 using MahjongTournamentSuite.TeamSelector;
 using MahjongTournamentSuite.CountrySelector;
-using MahjongTournamentSuite.Model;
+using MahjongTournamentSuite.ViewModel;
 using System.Drawing;
 using System;
 using MahjongTournamentSuite.Resources.flags;
@@ -17,7 +17,7 @@ namespace MahjongTournamentSuite.ManagePlayers
     {
         #region Fields
 
-        private IPlayersManagerPresenter _presenter;
+        private IPlayersManagerController _controller;
         private int _tournamentId;
 
         #endregion
@@ -27,7 +27,7 @@ namespace MahjongTournamentSuite.ManagePlayers
         public PlayersManagerForm(int tournamentId)
         {
             InitializeComponent();
-            _presenter = Injector.providePlayersManagerPresenter(this);
+            _controller = Injector.providePlayersManagerController(this);
             _tournamentId = tournamentId;
         }
 
@@ -38,7 +38,7 @@ namespace MahjongTournamentSuite.ManagePlayers
         private void PlayersManagerForm_Load(object sender, System.EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            _presenter.LoadForm(_tournamentId);
+            _controller.LoadForm(_tournamentId);
             Cursor = Cursors.Default;
         }
 
@@ -46,7 +46,7 @@ namespace MahjongTournamentSuite.ManagePlayers
         {
             lblStub.Focus();//Para guardar los cambios que no se hayan guardado.
 
-            if (_presenter.IsWrongPlayersTeams())
+            if (_controller.IsWrongPlayersTeams())
                 DialogResult = DialogResult.Cancel;
             else
                 DialogResult = DialogResult.OK;
@@ -61,8 +61,8 @@ namespace MahjongTournamentSuite.ManagePlayers
             {
                 e.CellStyle.SelectionBackColor =
                     dgv.CurrentCell.ReadOnly ?
-                    MyConstants.GREEN_MM_DARKEST :
-                    MyConstants.GREEN_MM_DARKER;
+                    Constants.GREEN_MM_DARKEST :
+                    Constants.GREEN_MM_DARKER;
             }
         }
 
@@ -87,7 +87,7 @@ namespace MahjongTournamentSuite.ManagePlayers
         {
             if (e.RowIndex > -1)
             {
-                if (dgv.Columns[e.ColumnIndex].Name.Equals(DBPlayer.COLUMN_PLAYERS_NAME))
+                if (dgv.Columns[e.ColumnIndex].Name.Equals(VPlayer.COLUMN_PLAYERS_NAME))
                     dgv.BeginEdit(true);
                 else if (dgv.Columns[e.ColumnIndex].Name.Equals(DGVPlayer.COLUMN_PLAYERS_TEAM_NAME))
                     ShowTeamsSelector(e.RowIndex);
@@ -100,15 +100,15 @@ namespace MahjongTournamentSuite.ManagePlayers
         {
             if (e.RowIndex > -1)
             {
-                if (dgv.Columns[e.ColumnIndex].Name.Equals(DBPlayer.COLUMN_PLAYERS_NAME))
+                if (dgv.Columns[e.ColumnIndex].Name.Equals(VPlayer.COLUMN_PLAYERS_NAME))
                 {
                     Cursor = Cursors.WaitCursor;
                     string previousValue = (string)dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
                     string newValue = ((string)e.FormattedValue).Trim();
                     if (newValue.Length > 0 && !newValue.Equals(previousValue))
                     {
-                        int playerId = (int)dgv.Rows[e.RowIndex].Cells[DBPlayer.COLUMN_PLAYERS_ID].Value;
-                        _presenter.PlayerNameChanged(playerId, newValue);
+                        int playerId = (int)dgv.Rows[e.RowIndex].Cells[VPlayer.COLUMN_PLAYERS_ID].Value;
+                        _controller.PlayerNameChanged(playerId, newValue);
                     }
                     else
                         DGVCancelEdit();
@@ -122,7 +122,7 @@ namespace MahjongTournamentSuite.ManagePlayers
             if (e.RowIndex > -1 && dgv.Columns[e.ColumnIndex].Name.Equals(DGVPlayer.COLUMN_PLAYERS_TEAM_NAME))
             {
                 Cursor = Cursors.WaitCursor;
-                _presenter.CheckWrongPlayersTeams();
+                _controller.CheckWrongPlayersTeams();
                 Cursor = Cursors.Default;
             }
         }
@@ -139,29 +139,29 @@ namespace MahjongTournamentSuite.ManagePlayers
             dgv.DataSource = sortablePlayers;
 
             //Visible
-            dgv.Columns[DBPlayer.COLUMN_PLAYERS_TOURNAMENT_ID].Visible = false;
-            dgv.Columns[DBPlayer.COLUMN_PLAYERS_TEAM].Visible = false;
-            dgv.Columns[DBPlayer.COLUMN_PLAYERS_COUNTRY_NAME].Visible = false;
+            dgv.Columns[VPlayer.COLUMN_PLAYERS_TOURNAMENT_ID].Visible = false;
+            dgv.Columns[VPlayer.COLUMN_PLAYERS_TEAM].Visible = false;
+            dgv.Columns[VPlayer.COLUMN_PLAYERS_COUNTRY_NAME].Visible = false;
             //ReadOnly
-            dgv.Columns[DBPlayer.COLUMN_PLAYERS_ID].ReadOnly = true;
+            dgv.Columns[VPlayer.COLUMN_PLAYERS_ID].ReadOnly = true;
             dgv.Columns[DGVPlayer.COLUMN_PLAYERS_TEAM_NAME].ReadOnly = true;
             dgv.Columns[DGVPlayer.COLUMN_PLAYERS_COUNTRY_FLAG].ReadOnly = true;
             //No editable Columns BackColor
-            dgv.Columns[DBPlayer.COLUMN_PLAYERS_ID].DefaultCellStyle.BackColor = SystemColors.ControlLight;
+            dgv.Columns[VPlayer.COLUMN_PLAYERS_ID].DefaultCellStyle.BackColor = SystemColors.ControlLight;
             //No editable Columns ForeColor
-            dgv.Columns[DBPlayer.COLUMN_PLAYERS_ID].DefaultCellStyle.ForeColor = SystemColors.GrayText;
+            dgv.Columns[VPlayer.COLUMN_PLAYERS_ID].DefaultCellStyle.ForeColor = SystemColors.GrayText;
             //HeaderText
-            dgv.Columns[DBPlayer.COLUMN_PLAYERS_ID].HeaderText = "Player Id";
-            dgv.Columns[DBPlayer.COLUMN_PLAYERS_NAME].HeaderText = "Player Name";
+            dgv.Columns[VPlayer.COLUMN_PLAYERS_ID].HeaderText = "Player Id";
+            dgv.Columns[VPlayer.COLUMN_PLAYERS_NAME].HeaderText = "Player Name";
             dgv.Columns[DGVPlayer.COLUMN_PLAYERS_COUNTRY_FLAG].HeaderText = "Player Country";
             //AutoSizeMode
-            dgv.Columns[DBPlayer.COLUMN_PLAYERS_ID].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgv.Columns[VPlayer.COLUMN_PLAYERS_ID].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dgv.Columns[DGVPlayer.COLUMN_PLAYERS_COUNTRY_FLAG].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             //Column Flags Image Layout
             ((DataGridViewImageColumn)dgv.Columns[DGVPlayer.COLUMN_PLAYERS_COUNTRY_FLAG]).ImageLayout = DataGridViewImageCellLayout.Zoom;
             //DisplayIndex
-            dgv.Columns[DBPlayer.COLUMN_PLAYERS_ID].DisplayIndex = 0;
-            dgv.Columns[DBPlayer.COLUMN_PLAYERS_NAME].DisplayIndex = 1;
+            dgv.Columns[VPlayer.COLUMN_PLAYERS_ID].DisplayIndex = 0;
+            dgv.Columns[VPlayer.COLUMN_PLAYERS_NAME].DisplayIndex = 1;
             if (isTeams)
             {
                 dgv.Columns[DGVPlayer.COLUMN_PLAYERS_TEAM_NAME].ReadOnly = true;
@@ -198,7 +198,7 @@ namespace MahjongTournamentSuite.ManagePlayers
             {
                 foreach (DataGridViewRow row in dgv.Rows)
                 {
-                    int currentRowTeamId = (int)row.Cells[DBPlayer.COLUMN_PLAYERS_TEAM].Value;
+                    int currentRowTeamId = (int)row.Cells[VPlayer.COLUMN_PLAYERS_TEAM].Value;
                     WrongTeam wrongTeam = wrongTeams.Find(x => x.TeamId == currentRowTeamId);
                     if (wrongTeam != null)
                     {
@@ -248,11 +248,11 @@ namespace MahjongTournamentSuite.ManagePlayers
             {
                 if (teamSelectorForm.ShowDialog() == DialogResult.OK)
                 {
-                    int playerId = (int)dgv.Rows[rowIndex].Cells[DBPlayer.COLUMN_PLAYERS_ID].Value;
-                    int teamId = _presenter.SaveNewPlayerTeam(playerId, teamSelectorForm.ReturnValue);
+                    int playerId = (int)dgv.Rows[rowIndex].Cells[VPlayer.COLUMN_PLAYERS_ID].Value;
+                    int teamId = _controller.SaveNewPlayerTeam(playerId, teamSelectorForm.ReturnValue);
                     if (teamId > 0)
                     {
-                        dgv.Rows[rowIndex].Cells[DBPlayer.COLUMN_PLAYERS_TEAM].Value = teamId;
+                        dgv.Rows[rowIndex].Cells[VPlayer.COLUMN_PLAYERS_TEAM].Value = teamId;
                         dgv.Rows[rowIndex].Cells[DGVPlayer.COLUMN_PLAYERS_TEAM_NAME].Value = teamSelectorForm.ReturnValue;
                     }
                 }
@@ -265,11 +265,11 @@ namespace MahjongTournamentSuite.ManagePlayers
             {
                 if (countrySelectorForm.ShowDialog() == DialogResult.OK)
                 {
-                    int playerId = (int)dgv.Rows[rowIndex].Cells[DBPlayer.COLUMN_PLAYERS_ID].Value;
+                    int playerId = (int)dgv.Rows[rowIndex].Cells[VPlayer.COLUMN_PLAYERS_ID].Value;
                     if (countrySelectorForm.ReturnValue != null && !countrySelectorForm.ReturnValue.Equals(string.Empty))
                     {
-                        _presenter.SaveNewPlayerCountry(playerId, countrySelectorForm.ReturnValue);
-                        dgv.Rows[rowIndex].Cells[DBPlayer.COLUMN_PLAYERS_COUNTRY_NAME].Value = countrySelectorForm.ReturnValue;
+                        _controller.SaveNewPlayerCountry(playerId, countrySelectorForm.ReturnValue);
+                        dgv.Rows[rowIndex].Cells[VPlayer.COLUMN_PLAYERS_COUNTRY_NAME].Value = countrySelectorForm.ReturnValue;
                         dgv.Rows[rowIndex].Cells[DGVPlayer.COLUMN_PLAYERS_COUNTRY_FLAG].Value =
                             CountryFlags.GetFlagImage(countrySelectorForm.ReturnValue);
                     }

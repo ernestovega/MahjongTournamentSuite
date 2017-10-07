@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
-using MahjongTournamentSuiteDataLayer.Model;
+using MahjongTournamentSuite._Data.DataModel;
 using System.Collections.Generic;
-using MahjongTournamentSuite.Model;
+using MahjongTournamentSuite.ViewModel;
 using System.Drawing;
 using MahjongTournamentSuite.Resources;
 
@@ -11,7 +11,7 @@ namespace MahjongTournamentSuite.CountryManager
     {
         #region Fields
 
-        private ICountryManagerPresenter _presenter;
+        private ICountryManagerController _controller;
 
         #endregion
 
@@ -20,7 +20,7 @@ namespace MahjongTournamentSuite.CountryManager
         public CountryManagerForm()
         {
             InitializeComponent();
-            _presenter = Injector.provideCountryManagerPresenter(this);
+            _controller = Injector.provideCountryManagerController(this);
         }
 
         #endregion
@@ -30,7 +30,7 @@ namespace MahjongTournamentSuite.CountryManager
         private void CountryManagerForm_Load(object sender, System.EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            _presenter.LoadForm();
+            _controller.LoadForm();
             Cursor = Cursors.Default;
         }
 
@@ -48,28 +48,28 @@ namespace MahjongTournamentSuite.CountryManager
             {
                 e.CellStyle.SelectionBackColor =
                     dgv.CurrentCell.ReadOnly ?
-                    MyConstants.GREEN_MM_DARKEST :
-                    MyConstants.GREEN_MM_DARKER;
+                    Constants.GREEN_MM_DARKEST :
+                    Constants.GREEN_MM_DARKER;
             }
         }
 
         private void dgv_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.RowIndex > -1 && dgv.Columns[e.ColumnIndex].Name.Equals(DBCountry.COLUMN_COUNTRY_IMAGE_URL))
+            if (e.RowIndex > -1 && dgv.Columns[e.ColumnIndex].Name.Equals(VCountry.COLUMN_COUNTRY_IMAGE_URL))
                 dgv.BeginEdit(true);
         }
 
         private void dgv_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if (e.RowIndex > -1 && dgv.Columns[e.ColumnIndex].Name.Equals(DBCountry.COLUMN_COUNTRY_IMAGE_URL))
+            if (e.RowIndex > -1 && dgv.Columns[e.ColumnIndex].Name.Equals(VCountry.COLUMN_COUNTRY_IMAGE_URL))
             {
                 Cursor = Cursors.WaitCursor;
                 string previousValue = (string)dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
                 string newValue = ((string)e.FormattedValue).Trim();
                 if (!newValue.Equals(previousValue))
                 {
-                    string countryName = (string)dgv.Rows[e.RowIndex].Cells[DBCountry.COLUMN_COUNTRY_NAME].Value;
-                    _presenter.CountryImageURLChanged(countryName, newValue);
+                    string countryName = (string)dgv.Rows[e.RowIndex].Cells[VCountry.COLUMN_COUNTRY_NAME].Value;
+                    _controller.CountryImageURLChanged(countryName, newValue);
                 }
                 else
                     DGVCancelEdit();
@@ -94,27 +94,27 @@ namespace MahjongTournamentSuite.CountryManager
             dgv.DataSource = sortableDgvCountries;
             
             //ReadOnly
-            dgv.Columns[DBCountry.COLUMN_COUNTRY_NAME].ReadOnly = true;
+            dgv.Columns[VCountry.COLUMN_COUNTRY_NAME].ReadOnly = true;
             dgv.Columns[DGVCountry.COLUMN_COUNTRY_COUNTRY_FLAG].ReadOnly = true;
             //Readonly columns BackColor
-            dgv.Columns[DBCountry.COLUMN_COUNTRY_NAME].DefaultCellStyle.BackColor = SystemColors.ControlLight;
+            dgv.Columns[VCountry.COLUMN_COUNTRY_NAME].DefaultCellStyle.BackColor = SystemColors.ControlLight;
             dgv.Columns[DGVCountry.COLUMN_COUNTRY_COUNTRY_FLAG].DefaultCellStyle.BackColor = SystemColors.ControlLight;
             //Readonly columns ForeColor
-            dgv.Columns[DBCountry.COLUMN_COUNTRY_NAME].DefaultCellStyle.ForeColor = SystemColors.GrayText;
+            dgv.Columns[VCountry.COLUMN_COUNTRY_NAME].DefaultCellStyle.ForeColor = SystemColors.GrayText;
             dgv.Columns[DGVCountry.COLUMN_COUNTRY_COUNTRY_FLAG].DefaultCellStyle.ForeColor = SystemColors.GrayText;
             //HeaderText
-            dgv.Columns[DBCountry.COLUMN_COUNTRY_NAME].HeaderText = "Country Name";
-            dgv.Columns[DBCountry.COLUMN_COUNTRY_IMAGE_URL].HeaderText = "Image URL for HTML Exporting";
+            dgv.Columns[VCountry.COLUMN_COUNTRY_NAME].HeaderText = "Country Name";
+            dgv.Columns[VCountry.COLUMN_COUNTRY_IMAGE_URL].HeaderText = "Image URL for HTML Exporting";
             dgv.Columns[DGVCountry.COLUMN_COUNTRY_COUNTRY_FLAG].HeaderText = "Flag";
             //AutoSizeMode
-            dgv.Columns[DBCountry.COLUMN_COUNTRY_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgv.Columns[VCountry.COLUMN_COUNTRY_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dgv.Columns[DGVCountry.COLUMN_COUNTRY_COUNTRY_FLAG].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             //Column Flags Image Layout
             ((DataGridViewImageColumn)dgv.Columns[DGVCountry.COLUMN_COUNTRY_COUNTRY_FLAG]).ImageLayout = DataGridViewImageCellLayout.Zoom;
             //DisplayIndex
-            dgv.Columns[DBCountry.COLUMN_COUNTRY_NAME].DisplayIndex = 0;
+            dgv.Columns[VCountry.COLUMN_COUNTRY_NAME].DisplayIndex = 0;
             dgv.Columns[DGVCountry.COLUMN_COUNTRY_COUNTRY_FLAG].DisplayIndex = 1;
-            dgv.Columns[DBCountry.COLUMN_COUNTRY_IMAGE_URL].DisplayIndex = 2;
+            dgv.Columns[VCountry.COLUMN_COUNTRY_IMAGE_URL].DisplayIndex = 2;
         }
 
         #endregion 

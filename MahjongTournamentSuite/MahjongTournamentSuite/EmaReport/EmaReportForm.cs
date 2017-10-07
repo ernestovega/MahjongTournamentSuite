@@ -7,19 +7,19 @@ namespace MahjongTournamentSuite.EmaReport
 {
     public partial class EmaReportForm : Form, IEmaReportForm
     {
-        private IEmaReportPresenter _presenter;
+        private IEmaReportController _controller;
         private List<DGVPlayerEma> _dgvEmaPlayers;
 
         public EmaReportForm(List<DGVPlayerEma> dgvEmaPlayers)
         {
             InitializeComponent();
-            _presenter = Injector.provideEmaReportPresenter(this);
+            _controller = Injector.provideEmaReportController(this);
             _dgvEmaPlayers = dgvEmaPlayers;
         }
 
         private void EmaReportForm_Load(object sender, System.EventArgs e)
         {
-            _presenter.LoadForm(_dgvEmaPlayers);
+            _controller.LoadForm(_dgvEmaPlayers);
         }
 
         public void LoadDgv(List<DGVPlayerEma> dgvEmaPlayers)

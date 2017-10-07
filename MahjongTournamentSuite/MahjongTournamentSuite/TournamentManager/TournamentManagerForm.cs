@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Forms;
-using MahjongTournamentSuite.Model;
+using MahjongTournamentSuite.ViewModel;
 using System.Drawing;
 using MahjongTournamentSuite.Home;
 using MahjongTournamentSuite.TableManager;
@@ -33,7 +33,7 @@ namespace MahjongTournamentSuite.TournamentManager
 
         #region Fields
 
-        private ITournamentManagerPresenter _presenter;
+        private ITournamentManagerController _controller;
         private int _tournamentId;
         private PlayersManagerForm _playersManagerForm;
 
@@ -44,7 +44,7 @@ namespace MahjongTournamentSuite.TournamentManager
         public TournamentManagerForm(int tournamentId)
         {
             InitializeComponent();
-            _presenter = Injector.provideTournamentManagerPresenter(this);
+            _controller = Injector.provideTournamentManagerController(this);
             _tournamentId = tournamentId;
         }
 
@@ -55,15 +55,15 @@ namespace MahjongTournamentSuite.TournamentManager
         private void TournamentManagerForm_Load(object sender, EventArgs e)
         {
             ShowWaitCursor();
-            _presenter.LoadTournament(_tournamentId);
+            _controller.LoadTournament(_tournamentId);
             ShowDefaultCursor();
         }
 
         private void TournamentManagerForm_Resize(object sender, EventArgs e)
         {
             ShowWaitCursor();
-            if (_presenter != null)
-                _presenter.OnFormResized(_tournamentId);
+            if (_controller != null)
+                _controller.OnFormResized(_tournamentId);
             ShowDefaultCursor();
         }
 
@@ -79,35 +79,35 @@ namespace MahjongTournamentSuite.TournamentManager
         private void btnTeams_Click(object sender, EventArgs e)
         {
             ShowWaitCursor();
-            _presenter.ButtonTeamsClicked();
+            _controller.ButtonTeamsClicked();
             ShowDefaultCursor();
         }
 
         private void btnPlayers_Click(object sender, EventArgs e)
         {
             ShowWaitCursor();
-            _presenter.ButtonPlayersClicked();
+            _controller.ButtonPlayersClicked();
             ShowDefaultCursor();
         }
 
         private void btnPlayersTables_Click(object sender, EventArgs e)
         {
             ShowWaitCursor();
-            _presenter.PlayersTablesClicked();
+            _controller.PlayersTablesClicked();
             ShowDefaultCursor();
         }
 
         private void btnEmaReport_Click(object sender, EventArgs e)
         {
             ShowWaitCursor();
-            _presenter.EmaReportClicked();
+            _controller.EmaReportClicked();
             ShowDefaultCursor();
         }
 
         private void btnRankings_Click(object sender, EventArgs e)
         {
             ShowWaitCursor();
-            _presenter.ShowRankingsClicked();
+            _controller.ShowRankingsClicked();
             ShowDefaultCursor();
         }
 
@@ -140,12 +140,12 @@ namespace MahjongTournamentSuite.TournamentManager
                 btnRound.Tag = i;
                 btnRound.Text = string.Format("\n{0}", i);
                 btnRound.Location = buttonStartPoint;
-                btnRound.Image = _presenter.IsRoundCompleted(i) ?
+                btnRound.Image = _controller.IsRoundCompleted(i) ?
                     Properties.Resources.gong_ok : Properties.Resources.gong;
                 btnRound.Click += delegate
                 {
                     ShowWaitCursor();
-                    _presenter.ButtonRoundClicked((int)btnRound.Tag);
+                    _controller.ButtonRoundClicked((int)btnRound.Tag);
                     ShowDefaultCursor();
                 };
 
@@ -187,12 +187,12 @@ namespace MahjongTournamentSuite.TournamentManager
                 button.Width = BUTTON_SIDE;
                 button.Height = BUTTON_SIDE;
                 button.Location = buttonStartPoint;
-                button.Image = _presenter.IsTableCompleted(i) ? 
+                button.Image = _controller.IsTableCompleted(i) ? 
                     Properties.Resources.table_ok : Properties.Resources.table;
                 button.Click += delegate
                 {
                     ShowWaitCursor();
-                    _presenter.ButtonTableClicked((int)button.Tag);
+                    _controller.ButtonTableClicked((int)button.Tag);
                     ShowDefaultCursor();
                 };
 
@@ -249,7 +249,7 @@ namespace MahjongTournamentSuite.TournamentManager
         private void TeamsManagerForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             ShowWaitCursor();
-            _presenter.TeamsManagerFormClosed();
+            _controller.TeamsManagerFormClosed();
             ShowDefaultCursor();
         }
 
@@ -258,9 +258,9 @@ namespace MahjongTournamentSuite.TournamentManager
             using (var playersManagerForm = new PlayersManagerForm(_tournamentId))
             {
                 if (playersManagerForm.ShowDialog() == DialogResult.OK)
-                    _presenter.PlayersManagerFormClosed(true);
+                    _controller.PlayersManagerFormClosed(true);
                 else
-                    _presenter.PlayersManagerFormClosed(false);
+                    _controller.PlayersManagerFormClosed(false);
             }
         }
 
@@ -274,7 +274,7 @@ namespace MahjongTournamentSuite.TournamentManager
         private void TableManagerForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             ShowWaitCursor();
-            _presenter.TableManagerFormClosed();
+            _controller.TableManagerFormClosed();
             ShowDefaultCursor();
         }
 
@@ -309,7 +309,7 @@ namespace MahjongTournamentSuite.TournamentManager
                 if (control.Tag != null && (int)control.Tag == roundId)
                 {
                     MakeButtonSelected((Button)control,
-                        _presenter.IsRoundCompleted(roundId) ?
+                        _controller.IsRoundCompleted(roundId) ?
                         Properties.Resources.gong_ok_white : Properties.Resources.gong_white);
                 }
             }
@@ -321,7 +321,7 @@ namespace MahjongTournamentSuite.TournamentManager
             {
                 if (control.Tag != null && (int)control.Tag == roundId)
                     MakeButtonUnselected((Button)control,
-                        _presenter.IsRoundCompleted(roundId) ?
+                        _controller.IsRoundCompleted(roundId) ?
                         Properties.Resources.gong_ok : Properties.Resources.gong);
             }
         }
@@ -332,7 +332,7 @@ namespace MahjongTournamentSuite.TournamentManager
             {
                 if (control.Tag != null && (int)control.Tag == tableId)
                     MakeButtonSelected((Button)control, 
-                        _presenter.IsTableCompleted(tableId) ?
+                        _controller.IsTableCompleted(tableId) ?
                         Properties.Resources.table_ok_white : Properties.Resources.table);
             }
         }
@@ -343,7 +343,7 @@ namespace MahjongTournamentSuite.TournamentManager
             {
                 if (control.Tag != null && (int)control.Tag == tableId)
                     MakeButtonUnselected((Button)control,
-                        _presenter.IsTableCompleted(tableId) ?
+                        _controller.IsTableCompleted(tableId) ?
                         Properties.Resources.table_ok : Properties.Resources.table);
             }
         }
@@ -385,8 +385,8 @@ namespace MahjongTournamentSuite.TournamentManager
             newButton.Height = BUTTON_SIDE;
             newButton.FlatStyle = FlatStyle.Flat;
             newButton.FlatAppearance.BorderSize = 0;
-            newButton.FlatAppearance.MouseDownBackColor = MyConstants.GREEN_MM_DARK;
-            newButton.FlatAppearance.MouseOverBackColor = MyConstants.GREEN_MM;
+            newButton.FlatAppearance.MouseDownBackColor = Constants.GREEN_MM_DARK;
+            newButton.FlatAppearance.MouseOverBackColor = Constants.GREEN_MM;
             newButton.BackgroundImageLayout = ImageLayout.None;
             newButton.Cursor = Cursors.Hand;
             newButton.Font = new Font(newButton.Font.Name, newButton.Font.Size, FontStyle.Bold);
@@ -400,7 +400,7 @@ namespace MahjongTournamentSuite.TournamentManager
 
         private static void MakeButtonSelected(Button button, Image image)
         {
-            button.BackColor = MyConstants.GREEN_MM;
+            button.BackColor = Constants.GREEN_MM;
             button.ForeColor = Color.White;
             button.Image = image;
         }

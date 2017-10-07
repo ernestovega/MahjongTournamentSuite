@@ -1,5 +1,4 @@
 ﻿using MahjongTournamentSuite.Home;
-using MahjongTournamentSuite.Splash;
 using System;
 using System.Threading;
 using System.Windows.Forms;

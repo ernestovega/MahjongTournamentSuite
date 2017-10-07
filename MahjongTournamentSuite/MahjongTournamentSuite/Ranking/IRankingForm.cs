@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using MahjongTournamentSuite.Model;
+using MahjongTournamentSuite.ViewModel;
 
 namespace MahjongTournamentSuite.Ranking
 {
