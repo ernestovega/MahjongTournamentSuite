@@ -56,7 +56,7 @@ namespace MahjongTournamentSuite.NewTournament
             {
                 if (tournamentName.Length > 0)
                 {
-                    if(_data.ExistTournament(tournamentName))
+                    if(_data.ExistTournamentByName(tournamentName))
                     {
                         _form.ShowMessageExistingTournamentName();
                         return;
@@ -383,7 +383,7 @@ namespace MahjongTournamentSuite.NewTournament
 
         private void SaveTournament()
         {
-            _tournament = new VTournament(DateTime.Now, _tournamentName, _players.Count, _numRounds, _isTeamsChecked);
+            _tournament = new VTournament(_data.GetIdForNewTournament(), DateTime.Now, _tournamentName, _players.Count, _numRounds, _isTeamsChecked);
             _data.AddTournament(_tournament);
         }
 

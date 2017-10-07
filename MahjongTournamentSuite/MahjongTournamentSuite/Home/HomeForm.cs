@@ -129,7 +129,13 @@ namespace MahjongTournamentSuite.Home
             /* BUG FIX: Cuando arrancamos la aplicación y no hay campeonatos, al crear uno, se muestra una
              * segunda fila vacía. No entiendo por qué es, pero con esto parace que se oculta sin efectos colaterales. */
             if (dgv.RowCount > _numTournaments)
-                dgv.Rows[dgv.RowCount - 1].Visible = false;
+            {
+                try
+                {
+                    dgv.Rows[dgv.RowCount - 1].Visible = false;
+                }
+                catch (Exception ex) {}
+            }
         }
         
         private void dgv_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)

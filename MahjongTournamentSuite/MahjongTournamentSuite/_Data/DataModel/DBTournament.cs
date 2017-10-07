@@ -6,7 +6,7 @@ namespace MahjongTournamentSuite._Data.DataModel
 {
     public class DBTournament
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int TournamentId { get; set; }
         public DateTime CreationDate { get; set; }
         public string TournamentName { get; set; }

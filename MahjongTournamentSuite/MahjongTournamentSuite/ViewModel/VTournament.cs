@@ -31,15 +31,6 @@ namespace MahjongTournamentSuite._Data.DataModel
 
         public VTournament() { }
 
-        public VTournament(DateTime creationDate, string tournamentName, int numPlayers, int numRounds, bool isTeams)
-        {
-            CreationDate = creationDate;
-            TournamentName = tournamentName;
-            NumPlayers = numPlayers;
-            NumRounds = numRounds;
-            IsTeams = isTeams;
-        }
-
         public VTournament(int tournamentId, DateTime creationDate, string tournamentName, int numPlayers, int numRounds, bool isTeams)
         {
             TournamentId = tournamentId;
