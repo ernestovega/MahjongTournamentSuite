@@ -150,7 +150,7 @@ namespace MahjongTournamentSuite.NewTournament
                 if (_countTries >= _numTriesMax)
                     _form.ShowReachedTriesMessage(_numTriesMax);
                 else if (_tournament.TournamentId > 0)
-                    _form.CloseForm();
+                    _form.CloseFormReturningValue(_tournament.TournamentId);
                 else
                     _form.ShowSomethingWentWrongMessage();
             }            

@@ -74,6 +74,8 @@
             this.panelTotals = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
             this.cbCompleted = new System.Windows.Forms.CheckBox();
+            this.cbTotalsOnly = new System.Windows.Forms.CheckBox();
+            this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoEMA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -126,7 +128,7 @@
             this.comboWestPlayer.MaxDropDownItems = 4;
             this.comboWestPlayer.Name = "comboWestPlayer";
             this.comboWestPlayer.Size = new System.Drawing.Size(236, 28);
-            this.comboWestPlayer.TabIndex = 36;
+            this.comboWestPlayer.TabIndex = 5;
             this.comboWestPlayer.SelectionChangeCommitted += new System.EventHandler(this.comboWestPlayer_SelectionChangeCommitted);
             // 
             // comboNorthPlayer
@@ -143,7 +145,7 @@
             this.comboNorthPlayer.MaxDropDownItems = 4;
             this.comboNorthPlayer.Name = "comboNorthPlayer";
             this.comboNorthPlayer.Size = new System.Drawing.Size(236, 28);
-            this.comboNorthPlayer.TabIndex = 37;
+            this.comboNorthPlayer.TabIndex = 6;
             this.comboNorthPlayer.SelectionChangeCommitted += new System.EventHandler(this.comboNorthPlayer_SelectionChangeCommitted);
             // 
             // comboSouthPlayer
@@ -160,7 +162,7 @@
             this.comboSouthPlayer.MaxDropDownItems = 4;
             this.comboSouthPlayer.Name = "comboSouthPlayer";
             this.comboSouthPlayer.Size = new System.Drawing.Size(236, 28);
-            this.comboSouthPlayer.TabIndex = 38;
+            this.comboSouthPlayer.TabIndex = 4;
             this.comboSouthPlayer.SelectionChangeCommitted += new System.EventHandler(this.comboSouthPlayer_SelectionChangeCommitted);
             // 
             // comboEastPlayer
@@ -177,7 +179,7 @@
             this.comboEastPlayer.MaxDropDownItems = 4;
             this.comboEastPlayer.Name = "comboEastPlayer";
             this.comboEastPlayer.Size = new System.Drawing.Size(236, 28);
-            this.comboEastPlayer.TabIndex = 39;
+            this.comboEastPlayer.TabIndex = 3;
             this.comboEastPlayer.SelectionChangeCommitted += new System.EventHandler(this.comboEastPlayer_SelectionChangeCommitted);
             // 
             // label6
@@ -460,7 +462,7 @@
             this.dgv.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv.Size = new System.Drawing.Size(980, 438);
-            this.dgv.TabIndex = 26;
+            this.dgv.TabIndex = 11;
             this.dgv.Visible = false;
             this.dgv.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellEndEdit);
             this.dgv.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgv_CellFormatting);
@@ -516,7 +518,7 @@
             this.tbEastPlayerTotalScore.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.tbEastPlayerTotalScore.Name = "tbEastPlayerTotalScore";
             this.tbEastPlayerTotalScore.Size = new System.Drawing.Size(86, 26);
-            this.tbEastPlayerTotalScore.TabIndex = 85;
+            this.tbEastPlayerTotalScore.TabIndex = 7;
             this.tbEastPlayerTotalScore.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbEastPlayerTotalScore.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbEastPlayerTotalScore_KeyPress);
             this.tbEastPlayerTotalScore.Leave += new System.EventHandler(this.tbEastPlayerTotalScore_Leave);
@@ -529,7 +531,7 @@
             this.tbSouthPlayerTotalScore.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.tbSouthPlayerTotalScore.Name = "tbSouthPlayerTotalScore";
             this.tbSouthPlayerTotalScore.Size = new System.Drawing.Size(86, 26);
-            this.tbSouthPlayerTotalScore.TabIndex = 89;
+            this.tbSouthPlayerTotalScore.TabIndex = 8;
             this.tbSouthPlayerTotalScore.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbSouthPlayerTotalScore.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbSouthPlayerTotalScore_KeyPress);
             this.tbSouthPlayerTotalScore.Leave += new System.EventHandler(this.tbSouthPlayerTotalScore_Leave);
@@ -583,7 +585,7 @@
             this.tbWestPlayerTotalScore.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.tbWestPlayerTotalScore.Name = "tbWestPlayerTotalScore";
             this.tbWestPlayerTotalScore.Size = new System.Drawing.Size(86, 26);
-            this.tbWestPlayerTotalScore.TabIndex = 93;
+            this.tbWestPlayerTotalScore.TabIndex = 9;
             this.tbWestPlayerTotalScore.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbWestPlayerTotalScore.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbWestPlayerTotalScore_KeyPress);
             this.tbWestPlayerTotalScore.Leave += new System.EventHandler(this.tbWestPlayerTotalScore_Leave);
@@ -637,7 +639,7 @@
             this.tbNorthPlayerTotalScore.Margin = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.tbNorthPlayerTotalScore.Name = "tbNorthPlayerTotalScore";
             this.tbNorthPlayerTotalScore.Size = new System.Drawing.Size(86, 26);
-            this.tbNorthPlayerTotalScore.TabIndex = 97;
+            this.tbNorthPlayerTotalScore.TabIndex = 10;
             this.tbNorthPlayerTotalScore.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbNorthPlayerTotalScore.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbNorthPlayerTotalScore_KeyPress);
             this.tbNorthPlayerTotalScore.Leave += new System.EventHandler(this.tbNorthPlayerTotalScore_Leave);
@@ -714,23 +716,45 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label9.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label9.Location = new System.Drawing.Point(266, 31);
+            this.label9.Location = new System.Drawing.Point(252, 26);
             this.label9.Margin = new System.Windows.Forms.Padding(25, 0, 0, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(95, 20);
+            this.label9.Size = new System.Drawing.Size(86, 20);
             this.label9.TabIndex = 99;
-            this.label9.Text = "Completed?";
+            this.label9.Text = "Completed";
             this.label9.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // cbCompleted
             // 
             this.cbCompleted.AutoSize = true;
-            this.cbCompleted.Location = new System.Drawing.Point(304, 59);
+            this.cbCompleted.Location = new System.Drawing.Point(343, 31);
             this.cbCompleted.Name = "cbCompleted";
             this.cbCompleted.Size = new System.Drawing.Size(15, 14);
-            this.cbCompleted.TabIndex = 100;
+            this.cbCompleted.TabIndex = 1;
             this.cbCompleted.UseVisualStyleBackColor = true;
             this.cbCompleted.CheckedChanged += new System.EventHandler(this.cbCompleted_CheckedChanged);
+            // 
+            // cbTotalsOnly
+            // 
+            this.cbTotalsOnly.AutoSize = true;
+            this.cbTotalsOnly.Location = new System.Drawing.Point(343, 63);
+            this.cbTotalsOnly.Name = "cbTotalsOnly";
+            this.cbTotalsOnly.Size = new System.Drawing.Size(15, 14);
+            this.cbTotalsOnly.TabIndex = 2;
+            this.cbTotalsOnly.UseVisualStyleBackColor = true;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.label10.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label10.Location = new System.Drawing.Point(252, 58);
+            this.label10.Margin = new System.Windows.Forms.Padding(25, 0, 0, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(87, 20);
+            this.label10.TabIndex = 101;
+            this.label10.Text = "Totals Only";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // TableManagerForm
             // 
@@ -739,6 +763,8 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1008, 693);
+            this.Controls.Add(this.cbTotalsOnly);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.cbCompleted);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.panelTotals);
@@ -838,5 +864,7 @@
         private System.Windows.Forms.Panel panelTotals;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.CheckBox cbCompleted;
+        private System.Windows.Forms.CheckBox cbTotalsOnly;
+        private System.Windows.Forms.Label label10;
     }
 }

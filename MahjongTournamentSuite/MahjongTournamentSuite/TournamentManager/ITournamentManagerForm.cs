@@ -41,5 +41,9 @@ namespace MahjongTournamentSuite.TournamentManager
         void HideButtonTeams();
 
         void PlayKoSound();
+
+        void SetTournamentName(string tournamentName);
+
+        void CenterMainButtons();
     }
 }

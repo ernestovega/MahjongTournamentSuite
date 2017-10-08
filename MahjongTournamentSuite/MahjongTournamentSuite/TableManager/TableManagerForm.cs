@@ -12,15 +12,6 @@ namespace MahjongTournamentSuite.TableManager
 {
     partial class TableManagerForm : Form, ITableManagerForm
     {
-        #region Constants
-
-        public static readonly string COLUMN_PLAYER_EAST_SCORE = "PlayerEastScore";
-        public static readonly string COLUMN_PLAYER_SOUTH_SCORE = "PlayerSouthScore";
-        public static readonly string COLUMN_PLAYER_WEST_SCORE = "PlayerWestScore";
-        public static readonly string COLUMN_PLAYER_NORTH_SCORE = "PlayerNorthScore";
-
-        #endregion
-
         #region Fields
 
         private ITableManagerController _controller;
@@ -52,6 +43,16 @@ namespace MahjongTournamentSuite.TableManager
             ShowWaitCursor();
             _controller.LoadForm(_tournamentId, _roundId, _tableId);
             ShowDefaultCursor();
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (dgv.IsCurrentCellInEditMode && keyData == Keys.Enter)
+            {
+                dgvCellEnterPressed();
+                return true;
+            }
+            return false;
         }
 
         private void TableManagerForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -218,14 +219,11 @@ namespace MahjongTournamentSuite.TableManager
                 }
             }
         }
-
+        
         private void dgv_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == (char)Keys.Space && dgv.CurrentCell != null 
-                && dgv.CurrentCell.RowIndex >= 0 
-                && dgv.CurrentCell.OwningColumn.Name.Equals(VHand.COLUMN_IS_CHICKEN_HAND))
-                CellIsChickenHandChanged(dgv.CurrentCell.RowIndex,
-                    dgv.CurrentCell.ColumnIndex);
+            if (e.KeyChar == (char)Keys.Space)
+                dgvSpacePressed();
         }
 
         private void dgv_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -394,10 +392,10 @@ namespace MahjongTournamentSuite.TableManager
             //Column ReadOnly
             dgv.Columns[VHand.COLUMN_HAND_ID].ReadOnly = true;
             dgv.Columns[VHand.COLUMN_IS_CHICKEN_HAND].ReadOnly = true;
-            dgv.Columns[COLUMN_PLAYER_EAST_SCORE].ReadOnly = true;
-            dgv.Columns[COLUMN_PLAYER_SOUTH_SCORE].ReadOnly = true;
-            dgv.Columns[COLUMN_PLAYER_WEST_SCORE].ReadOnly = true;
-            dgv.Columns[COLUMN_PLAYER_NORTH_SCORE].ReadOnly = true;
+            dgv.Columns[DGVHand.COLUMN_PLAYER_EAST_SCORE].ReadOnly = true;
+            dgv.Columns[DGVHand.COLUMN_PLAYER_SOUTH_SCORE].ReadOnly = true;
+            dgv.Columns[DGVHand.COLUMN_PLAYER_WEST_SCORE].ReadOnly = true;
+            dgv.Columns[DGVHand.COLUMN_PLAYER_NORTH_SCORE].ReadOnly = true;
             //Column Header text
             dgv.Columns[VHand.COLUMN_HAND_ID].HeaderText = "Hand";
             dgv.Columns[VHand.COLUMN_PLAYER_WINNER_ID].HeaderText = "Winner Id";
@@ -414,13 +412,13 @@ namespace MahjongTournamentSuite.TableManager
             dgv.Columns[VHand.COLUMN_PLAYER_LOOSER_ID].DisplayIndex = 2;
             dgv.Columns[VHand.COLUMN_HAND_SCORE].DisplayIndex = 3;
             dgv.Columns[VHand.COLUMN_IS_CHICKEN_HAND].DisplayIndex = 4;
-            dgv.Columns[COLUMN_PLAYER_EAST_SCORE].DisplayIndex = 5;
+            dgv.Columns[DGVHand.COLUMN_PLAYER_EAST_SCORE].DisplayIndex = 5;
             dgv.Columns[VHand.COLUMN_PLAYER_EAST_PENALTY].DisplayIndex = 6;
-            dgv.Columns[COLUMN_PLAYER_SOUTH_SCORE].DisplayIndex = 7;
+            dgv.Columns[DGVHand.COLUMN_PLAYER_SOUTH_SCORE].DisplayIndex = 7;
             dgv.Columns[VHand.COLUMN_PLAYER_SOUTH_PENALTY].DisplayIndex = 8;
-            dgv.Columns[COLUMN_PLAYER_WEST_SCORE].DisplayIndex = 9;
+            dgv.Columns[DGVHand.COLUMN_PLAYER_WEST_SCORE].DisplayIndex = 9;
             dgv.Columns[VHand.COLUMN_PLAYER_WEST_PENALTY].DisplayIndex = 10;
-            dgv.Columns[COLUMN_PLAYER_NORTH_SCORE].DisplayIndex = 11;
+            dgv.Columns[DGVHand.COLUMN_PLAYER_NORTH_SCORE].DisplayIndex = 11;
             dgv.Columns[VHand.COLUMN_PLAYER_NORTH_PENALTY].DisplayIndex = 12;
             //Sortable
             dgv.Columns[VHand.COLUMN_HAND_ID].SortMode = DataGridViewColumnSortMode.NotSortable;
@@ -428,37 +426,37 @@ namespace MahjongTournamentSuite.TableManager
             dgv.Columns[VHand.COLUMN_PLAYER_LOOSER_ID].SortMode = DataGridViewColumnSortMode.NotSortable;
             dgv.Columns[VHand.COLUMN_HAND_SCORE].SortMode = DataGridViewColumnSortMode.NotSortable;
             dgv.Columns[VHand.COLUMN_IS_CHICKEN_HAND].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dgv.Columns[COLUMN_PLAYER_EAST_SCORE].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns[DGVHand.COLUMN_PLAYER_EAST_SCORE].SortMode = DataGridViewColumnSortMode.NotSortable;
             dgv.Columns[VHand.COLUMN_PLAYER_EAST_PENALTY].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dgv.Columns[COLUMN_PLAYER_SOUTH_SCORE].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns[DGVHand.COLUMN_PLAYER_SOUTH_SCORE].SortMode = DataGridViewColumnSortMode.NotSortable;
             dgv.Columns[VHand.COLUMN_PLAYER_SOUTH_PENALTY].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dgv.Columns[COLUMN_PLAYER_WEST_SCORE].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns[DGVHand.COLUMN_PLAYER_WEST_SCORE].SortMode = DataGridViewColumnSortMode.NotSortable;
             dgv.Columns[VHand.COLUMN_PLAYER_WEST_PENALTY].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dgv.Columns[COLUMN_PLAYER_NORTH_SCORE].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns[DGVHand.COLUMN_PLAYER_NORTH_SCORE].SortMode = DataGridViewColumnSortMode.NotSortable;
             dgv.Columns[VHand.COLUMN_PLAYER_NORTH_PENALTY].SortMode = DataGridViewColumnSortMode.NotSortable;
             //AutoSizeMode
             dgv.Columns[VHand.COLUMN_HAND_ID].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
             dgv.Columns[VHand.COLUMN_IS_CHICKEN_HAND].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-            dgv.Columns[COLUMN_PLAYER_EAST_SCORE].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-            dgv.Columns[COLUMN_PLAYER_SOUTH_SCORE].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-            dgv.Columns[COLUMN_PLAYER_WEST_SCORE].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
-            dgv.Columns[COLUMN_PLAYER_NORTH_SCORE].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            dgv.Columns[DGVHand.COLUMN_PLAYER_EAST_SCORE].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            dgv.Columns[DGVHand.COLUMN_PLAYER_SOUTH_SCORE].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            dgv.Columns[DGVHand.COLUMN_PLAYER_WEST_SCORE].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            dgv.Columns[DGVHand.COLUMN_PLAYER_NORTH_SCORE].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
             dgv.Columns[VHand.COLUMN_PLAYER_EAST_PENALTY].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
             dgv.Columns[VHand.COLUMN_PLAYER_SOUTH_PENALTY].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
             dgv.Columns[VHand.COLUMN_PLAYER_WEST_PENALTY].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
             dgv.Columns[VHand.COLUMN_PLAYER_NORTH_PENALTY].AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
             //Readonly columns BackColor
             dgv.Columns[VHand.COLUMN_HAND_ID].DefaultCellStyle.BackColor = SystemColors.ControlLight;
-            dgv.Columns[COLUMN_PLAYER_EAST_SCORE].DefaultCellStyle.BackColor = SystemColors.ControlLight;
-            dgv.Columns[COLUMN_PLAYER_SOUTH_SCORE].DefaultCellStyle.BackColor = SystemColors.ControlLight;
-            dgv.Columns[COLUMN_PLAYER_WEST_SCORE].DefaultCellStyle.BackColor = SystemColors.ControlLight;
-            dgv.Columns[COLUMN_PLAYER_NORTH_SCORE].DefaultCellStyle.BackColor = SystemColors.ControlLight;
+            dgv.Columns[DGVHand.COLUMN_PLAYER_EAST_SCORE].DefaultCellStyle.BackColor = SystemColors.ControlLight;
+            dgv.Columns[DGVHand.COLUMN_PLAYER_SOUTH_SCORE].DefaultCellStyle.BackColor = SystemColors.ControlLight;
+            dgv.Columns[DGVHand.COLUMN_PLAYER_WEST_SCORE].DefaultCellStyle.BackColor = SystemColors.ControlLight;
+            dgv.Columns[DGVHand.COLUMN_PLAYER_NORTH_SCORE].DefaultCellStyle.BackColor = SystemColors.ControlLight;
             //Readonly columns ForeColor
             dgv.Columns[VHand.COLUMN_HAND_ID].DefaultCellStyle.ForeColor = SystemColors.GrayText;
-            dgv.Columns[COLUMN_PLAYER_EAST_SCORE].DefaultCellStyle.ForeColor = SystemColors.GrayText;
-            dgv.Columns[COLUMN_PLAYER_SOUTH_SCORE].DefaultCellStyle.ForeColor = SystemColors.GrayText;
-            dgv.Columns[COLUMN_PLAYER_WEST_SCORE].DefaultCellStyle.ForeColor = SystemColors.GrayText;
-            dgv.Columns[COLUMN_PLAYER_NORTH_SCORE].DefaultCellStyle.ForeColor = SystemColors.GrayText;
+            dgv.Columns[DGVHand.COLUMN_PLAYER_EAST_SCORE].DefaultCellStyle.ForeColor = SystemColors.GrayText;
+            dgv.Columns[DGVHand.COLUMN_PLAYER_SOUTH_SCORE].DefaultCellStyle.ForeColor = SystemColors.GrayText;
+            dgv.Columns[DGVHand.COLUMN_PLAYER_WEST_SCORE].DefaultCellStyle.ForeColor = SystemColors.GrayText;
+            dgv.Columns[DGVHand.COLUMN_PLAYER_NORTH_SCORE].DefaultCellStyle.ForeColor = SystemColors.GrayText;
         }
         
         public void FillHandPlayersScoresCells(DGVHand dgvHand)
@@ -489,22 +487,22 @@ namespace MahjongTournamentSuite.TableManager
 
         public void SetEastPlayerHeader(string selectedText)
         {
-            dgv.Columns[COLUMN_PLAYER_EAST_SCORE].HeaderText = selectedText;
+            dgv.Columns[DGVHand.COLUMN_PLAYER_EAST_SCORE].HeaderText = selectedText;
         }
 
         public void SetSouthPlayerHeader(string selectedText)
         {
-            dgv.Columns[COLUMN_PLAYER_SOUTH_SCORE].HeaderText = selectedText;
+            dgv.Columns[DGVHand.COLUMN_PLAYER_SOUTH_SCORE].HeaderText = selectedText;
         }
 
         public void SetWestPlayerHeader(string selectedText)
         {
-            dgv.Columns[COLUMN_PLAYER_WEST_SCORE].HeaderText = selectedText;
+            dgv.Columns[DGVHand.COLUMN_PLAYER_WEST_SCORE].HeaderText = selectedText;
         }
 
         public void SetNorthPlayerHeader(string selectedText)
         {
-            dgv.Columns[COLUMN_PLAYER_NORTH_SCORE].HeaderText = selectedText;
+            dgv.Columns[DGVHand.COLUMN_PLAYER_NORTH_SCORE].HeaderText = selectedText;
         }
 
         public void DGVCancelEdit()
@@ -610,6 +608,63 @@ namespace MahjongTournamentSuite.TableManager
 
         #region Private
 
+        private void dgvCellEnterPressed()
+        {
+            if (dgv.CurrentCell.OwningColumn.Name == VHand.COLUMN_PLAYER_WINNER_ID)
+            {
+                dgv.CurrentCell = dgv.Rows[dgv.CurrentCell.RowIndex].Cells[VHand.COLUMN_PLAYER_LOOSER_ID];
+                dgv.BeginEdit(true);
+            }
+            else if (dgv.CurrentCell.OwningColumn.Name == VHand.COLUMN_PLAYER_LOOSER_ID)
+            {
+                dgv.CurrentCell = dgv.Rows[dgv.CurrentCell.RowIndex].Cells[VHand.COLUMN_HAND_SCORE];
+                dgv.BeginEdit(true);
+            }
+            else if (dgv.CurrentCell.OwningColumn.Name == VHand.COLUMN_HAND_SCORE)
+            {
+                if (dgv.CurrentCell.RowIndex == dgv.RowCount - 1)
+                    cbCompleted.Focus();
+                else
+                {
+                    dgv.CurrentCell = dgv.Rows[dgv.CurrentCell.RowIndex + 1].Cells[VHand.COLUMN_PLAYER_WINNER_ID];
+                    dgv.BeginEdit(true);
+                }
+            }
+            else if (dgv.CurrentCell.OwningColumn.Name == VHand.COLUMN_PLAYER_EAST_PENALTY)
+            {
+                dgv.CurrentCell = dgv.Rows[dgv.CurrentCell.RowIndex].Cells[VHand.COLUMN_PLAYER_SOUTH_PENALTY];
+                dgv.BeginEdit(true);
+            }
+            else if (dgv.CurrentCell.OwningColumn.Name == VHand.COLUMN_PLAYER_SOUTH_PENALTY)
+            {
+                dgv.CurrentCell = dgv.Rows[dgv.CurrentCell.RowIndex].Cells[VHand.COLUMN_PLAYER_WEST_PENALTY];
+                dgv.BeginEdit(true);
+            }
+            else if (dgv.CurrentCell.OwningColumn.Name == VHand.COLUMN_PLAYER_WEST_PENALTY)
+            {
+                dgv.CurrentCell = dgv.Rows[dgv.CurrentCell.RowIndex].Cells[VHand.COLUMN_PLAYER_NORTH_PENALTY];
+                dgv.BeginEdit(true);
+            }
+            else if (dgv.CurrentCell.OwningColumn.Name == VHand.COLUMN_PLAYER_NORTH_PENALTY)
+            {
+                if (dgv.CurrentCell.RowIndex == dgv.RowCount - 1)
+                    cbCompleted.Focus();
+                else
+                {
+                    dgv.CurrentCell = dgv.Rows[dgv.CurrentCell.RowIndex + 1].Cells[VHand.COLUMN_PLAYER_WINNER_ID];
+                    dgv.BeginEdit(true);
+                }
+            }
+        }
+
+        private void dgvSpacePressed()
+        {
+            if (dgv.CurrentCell != null && dgv.CurrentCell.RowIndex >= 0
+                && dgv.CurrentCell.OwningColumn.Name.Equals(VHand.COLUMN_IS_CHICKEN_HAND))
+                CellIsChickenHandChanged(dgv.CurrentCell.RowIndex,
+                    dgv.CurrentCell.ColumnIndex);
+        }
+
         private void CellIsChickenHandChanged(int rowIndex, int colIndex)
         {
             ShowWaitCursor();
@@ -627,22 +682,22 @@ namespace MahjongTournamentSuite.TableManager
 
         private void SetEastPlayerHandScoreCell(int handId, string value)
         {
-            dgv.Rows[handId - 1].Cells[COLUMN_PLAYER_EAST_SCORE].Value = value;
+            dgv.Rows[handId - 1].Cells[DGVHand.COLUMN_PLAYER_EAST_SCORE].Value = value;
         }
 
         private void SetSouthPlayerHandScoreCell(int handId, string value)
         {
-            dgv.Rows[handId - 1].Cells[COLUMN_PLAYER_SOUTH_SCORE].Value = value;
+            dgv.Rows[handId - 1].Cells[DGVHand.COLUMN_PLAYER_SOUTH_SCORE].Value = value;
         }
 
         private void SetWestPlayerHandScoreCell(int handId, string value)
         {
-            dgv.Rows[handId - 1].Cells[COLUMN_PLAYER_WEST_SCORE].Value = value;
+            dgv.Rows[handId - 1].Cells[DGVHand.COLUMN_PLAYER_WEST_SCORE].Value = value;
         }
 
         private void SetNorthPlayerHandScoreCell(int handId, string value) 
         {
-            dgv.Rows[handId - 1].Cells[COLUMN_PLAYER_NORTH_SCORE].Value = value;
+            dgv.Rows[handId - 1].Cells[DGVHand.COLUMN_PLAYER_NORTH_SCORE].Value = value;
         }
 
         private void SetEastPlayerTotalScoreTextBox(string value)

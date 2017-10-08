@@ -72,7 +72,7 @@
             this.btnStart.Margin = new System.Windows.Forms.Padding(5);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(168, 35);
-            this.btnStart.TabIndex = 72;
+            this.btnStart.TabIndex = 6;
             this.btnStart.Text = "START";
             this.btnStart.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnStart.UseVisualStyleBackColor = false;
@@ -154,7 +154,7 @@
             this.numUpDownTriesMax.Name = "numUpDownTriesMax";
             this.numUpDownTriesMax.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.numUpDownTriesMax.Size = new System.Drawing.Size(104, 18);
-            this.numUpDownTriesMax.TabIndex = 71;
+            this.numUpDownTriesMax.TabIndex = 5;
             this.numUpDownTriesMax.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numUpDownTriesMax.ThousandsSeparator = true;
             this.numUpDownTriesMax.Value = new decimal(new int[] {
@@ -162,6 +162,7 @@
             0,
             0,
             0});
+            this.numUpDownTriesMax.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbTournamentName_KeyPress);
             // 
             // lblTriesMax
             // 
@@ -190,8 +191,9 @@
             this.cbTeams.Location = new System.Drawing.Point(425, 178);
             this.cbTeams.Name = "cbTeams";
             this.cbTeams.Size = new System.Drawing.Size(15, 14);
-            this.cbTeams.TabIndex = 69;
+            this.cbTeams.TabIndex = 4;
             this.cbTeams.UseVisualStyleBackColor = true;
+            this.cbTeams.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbTournamentName_KeyPress);
             // 
             // tbTournamentName
             // 
@@ -205,7 +207,8 @@
             this.tbTournamentName.Multiline = true;
             this.tbTournamentName.Name = "tbTournamentName";
             this.tbTournamentName.Size = new System.Drawing.Size(370, 23);
-            this.tbTournamentName.TabIndex = 76;
+            this.tbTournamentName.TabIndex = 1;
+            this.tbTournamentName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbTournamentName_KeyPress);
             // 
             // lblTeams
             // 
@@ -258,7 +261,7 @@
             0});
             this.numUpDownRounds.Name = "numUpDownRounds";
             this.numUpDownRounds.Size = new System.Drawing.Size(71, 18);
-            this.numUpDownRounds.TabIndex = 66;
+            this.numUpDownRounds.TabIndex = 3;
             this.numUpDownRounds.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numUpDownRounds.ThousandsSeparator = true;
             this.numUpDownRounds.Value = new decimal(new int[] {
@@ -266,6 +269,7 @@
             0,
             0,
             0});
+            this.numUpDownRounds.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbTournamentName_KeyPress);
             // 
             // numUpDownPlayers
             // 
@@ -295,7 +299,7 @@
             0});
             this.numUpDownPlayers.Name = "numUpDownPlayers";
             this.numUpDownPlayers.Size = new System.Drawing.Size(71, 18);
-            this.numUpDownPlayers.TabIndex = 65;
+            this.numUpDownPlayers.TabIndex = 2;
             this.numUpDownPlayers.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numUpDownPlayers.ThousandsSeparator = true;
             this.numUpDownPlayers.Value = new decimal(new int[] {
@@ -303,6 +307,7 @@
             0,
             0,
             0});
+            this.numUpDownPlayers.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbTournamentName_KeyPress);
             // 
             // labelPlayers
             // 

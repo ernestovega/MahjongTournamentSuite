@@ -17,6 +17,8 @@ namespace MahjongTournamentSuite.NewTournament
 
         private INewTournamentController _controller;
 
+        public int ReturnValue { get; set; }
+
         #endregion
 
         #region Constructor
@@ -25,6 +27,7 @@ namespace MahjongTournamentSuite.NewTournament
         {
             InitializeComponent();
             _controller = Injector.provideNewTournamentController(this);
+            DialogResult = DialogResult.Cancel;
         }
 
         #endregion
@@ -43,6 +46,12 @@ namespace MahjongTournamentSuite.NewTournament
         private void btnStart_Click(object sender, EventArgs e)
         {
             _controller.StartClicked(tbTournamentName.Text);
+        }
+
+        private void tbTournamentName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+                btnStart.PerformClick();
         }
 
         private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -135,8 +144,7 @@ namespace MahjongTournamentSuite.NewTournament
             MessageBox.Show(this, "There is another Tournament with the same name yet.");
         }
 
-        public bool ShowWrongPlayersNumberMessage(int wrongNumPlayers, 
-            int goodNumPlayers)
+        public bool ShowWrongPlayersNumberMessage(int wrongNumPlayers, int goodNumPlayers)
         {
             DialogResult dialogResult = MessageBox.Show(this, 
                 string.Format("{0} is not multiple of 4.\nDo you want to change it to {1}?", wrongNumPlayers, goodNumPlayers),
@@ -170,8 +178,10 @@ namespace MahjongTournamentSuite.NewTournament
                 lblLoadingMessage.Text = string.Format("Tries: {0}", tries);
         }
 
-        public void CloseForm()
+        public void CloseFormReturningValue(int tournamentId)
         {
+            ReturnValue = tournamentId;
+            DialogResult = DialogResult.OK;
             Close();
         }
 

@@ -4,6 +4,7 @@ using MahjongTournamentSuite._Data.DataModel;
 using System.Linq;
 using MahjongTournamentSuite.Resources;
 using MahjongTournamentSuite.Resources.flags;
+using System;
 
 namespace MahjongTournamentSuite.TournamentManager
 {
@@ -42,8 +43,10 @@ namespace MahjongTournamentSuite.TournamentManager
 
         public void LoadTournament(int tournamentId)
         {
+            _form.CenterMainButtons();
             _tournamentId = tournamentId;
             _tournament = _data.GetTournament(tournamentId);
+            _form.SetTournamentName(_tournament.TournamentName);
             _tables = _data.GetTournamentTables(tournamentId);
             if (_tournament.IsTeams)
             {
@@ -61,10 +64,7 @@ namespace MahjongTournamentSuite.TournamentManager
 
         public void OnFormResized(int tournamentId)
         {
-            if (_tournament == null) {
-                LoadTournament(tournamentId);
-                return;
-            }
+            _form.CenterMainButtons();
             _form.RemoveRoundsButtons();
             _form.AddRoundsButtons(_tournament.NumRounds);
             _form.RemoveTablesButtons();
@@ -162,6 +162,11 @@ namespace MahjongTournamentSuite.TournamentManager
         public bool IsTableCompleted(int tableId)
         {
             return _tables.Find(x => x.TableRoundId == roundSelected && x.TableId == tableId).IsCompleted;
+        }
+
+        public int GetNumRounds()
+        {
+            return _tournament.NumRounds;
         }
 
         #endregion

@@ -27,6 +27,9 @@
         bool IsTableCompleted(int tableId);
 
         void TableManagerFormClosed();
+
         void EmaReportClicked();
+
+        int GetNumRounds();
     }
 }

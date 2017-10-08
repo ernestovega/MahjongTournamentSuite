@@ -85,26 +85,23 @@ namespace MahjongTournamentSuite.Home
             Cursor = Cursors.Default;
         }
 
-        public void btnNew_Click(object sender, EventArgs e)
+        private void btnNew_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            NewTournamentForm newTournamentForm = new NewTournamentForm();
-            newTournamentForm.FormClosed += new FormClosedEventHandler(NewTournamentForm_FormClosed);
-            newTournamentForm.ShowDialog();
+            using (var newTournamentForm = new NewTournamentForm())
+            {
+                _controller.LoadTournaments();
+                if (newTournamentForm.ShowDialog() == DialogResult.OK)
+                    GoToTournamentManager(newTournamentForm.ReturnValue);
+            }
             Cursor = Cursors.Default;
         }
 
-        void NewTournamentForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            _controller.LoadTournaments();
-        }
-
-        public void btnResume_Click(object sender, EventArgs e)
+        private void btnResume_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
             int tournamentId = GetCurrentTournamentId();
-            new TournamentManagerForm(tournamentId).Show();
-            Close();
+            GoToTournamentManager(tournamentId);
             Cursor = Cursors.Default;
         }
 
@@ -181,14 +178,16 @@ namespace MahjongTournamentSuite.Home
                 dgv.BeginEdit(true);
         }
 
-        private void dgv_KeyPress(object sender, KeyPressEventArgs e)
+        private void dgv_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyChar == (char)Keys.Enter && dgv.SelectedCells[0].RowIndex >= 0)
+            if (e.KeyCode == Keys.Enter && dgv.SelectedCells[0].RowIndex >= 0)
             {
                 if (dgv.SelectedCells[0].OwningColumn.Name.Equals(VTournament.COLUMN_NAME))
                     dgv.BeginEdit(true);
                 else
                     btnResume_Click(null, null);
+
+                e.SuppressKeyPress = true;
             }
         }
 
@@ -326,6 +325,12 @@ namespace MahjongTournamentSuite.Home
         private int GetSelectedTournamentId(int rowIndex)
         {
             return (int)dgv.Rows[rowIndex].Cells[VTournament.COLUMN_ID].Value;
+        }
+
+        private void GoToTournamentManager(int tournamentId)
+        {
+            new TournamentManagerForm(tournamentId).Show();
+            Close();
         }
 
         #endregion

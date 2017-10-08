@@ -4,6 +4,11 @@ namespace MahjongTournamentSuite.TableManager
 {
     internal class DGVHand : VHand
     {
+        public static readonly string COLUMN_PLAYER_EAST_SCORE = "PlayerEastScore";
+        public static readonly string COLUMN_PLAYER_SOUTH_SCORE = "PlayerSouthScore";
+        public static readonly string COLUMN_PLAYER_WEST_SCORE = "PlayerWestScore";
+        public static readonly string COLUMN_PLAYER_NORTH_SCORE = "PlayerNorthScore";
+
         public string PlayerEastScore { get; set; }
 
         public string PlayerSouthScore { get; set; }

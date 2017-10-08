@@ -57,9 +57,10 @@ namespace MahjongTournamentSuite.TournamentManager
             ShowWaitCursor();
             _controller.LoadTournament(_tournamentId);
             ShowDefaultCursor();
+            btnTeams.Focus();
         }
 
-        private void TournamentManagerForm_Resize(object sender, EventArgs e)
+        private void TournamentManagerForm_SizeChanged(object sender, EventArgs e)
         {
             ShowWaitCursor();
             if (_controller != null)
@@ -127,7 +128,7 @@ namespace MahjongTournamentSuite.TournamentManager
         {
             int numButtonsHorizontal = (splitContainer.Width - (MARGIN_SIZE * 3)) / (BUTTON_SIDE + MARGIN_SIZE);
 
-            Point buttonStartPoint = new Point(MARGIN_SIZE, TITLE_ROUNDS_HEIGHT + MARGIN_SIZE);
+            Point buttonStartPoint = new Point(MARGIN_SIZE, TITLE_ROUNDS_HEIGHT + TABLES_MARGIN_SIZE);
             if (numButtonsHorizontal >= numRounds)
             {
                 int neededWidth = ((numRounds * BUTTON_SIDE) + ((numRounds + 1) * MARGIN_SIZE));
@@ -138,6 +139,7 @@ namespace MahjongTournamentSuite.TournamentManager
             {
                 Button btnRound = GetNewButton();
                 btnRound.Tag = i;
+                btnRound.TabIndex = i + 7;
                 btnRound.Text = string.Format("\n{0}", i);
                 btnRound.Location = buttonStartPoint;
                 btnRound.Image = _controller.IsRoundCompleted(i) ?
@@ -183,6 +185,7 @@ namespace MahjongTournamentSuite.TournamentManager
             {
                 Button button = GetNewButton();
                 button.Tag = i;
+                button.TabIndex = i + 7 + _controller.GetNumRounds();
                 button.Text = string.Format("\n{0}", i);
                 button.Width = BUTTON_SIDE;
                 button.Height = BUTTON_SIDE;
@@ -371,6 +374,17 @@ namespace MahjongTournamentSuite.TournamentManager
         public void PlayKoSound()
         {
             SystemSounds.Exclamation.Play();
+        }
+
+        public void SetTournamentName(string tournamentName)
+        {
+            lblTournamentName.Text = tournamentName;
+        }
+
+        public void CenterMainButtons()
+        {
+            int newX = (Size.Width - flowLayoutPanelButtons.Size.Width) / 2;
+            flowLayoutPanelButtons.Location = new Point(newX, flowLayoutPanelButtons.Location.Y);
         }
 
         #endregion

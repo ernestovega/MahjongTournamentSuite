@@ -41,6 +41,8 @@
             this.btnTimer = new System.Windows.Forms.Button();
             this.btnCountries = new System.Windows.Forms.Button();
             this.panelMainButtons = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoEMA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
@@ -63,7 +65,7 @@
             this.btnNew.Image = ((System.Drawing.Image)(resources.GetObject("btnNew.Image")));
             this.btnNew.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnNew.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnNew.Location = new System.Drawing.Point(0, 0);
+            this.btnNew.Location = new System.Drawing.Point(98, 0);
             this.btnNew.Margin = new System.Windows.Forms.Padding(5);
             this.btnNew.Name = "btnNew";
             this.btnNew.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
@@ -91,7 +93,7 @@
             this.btnResume.Image = ((System.Drawing.Image)(resources.GetObject("btnResume.Image")));
             this.btnResume.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnResume.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnResume.Location = new System.Drawing.Point(78, 0);
+            this.btnResume.Location = new System.Drawing.Point(176, 0);
             this.btnResume.Margin = new System.Windows.Forms.Padding(5);
             this.btnResume.Name = "btnResume";
             this.btnResume.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
@@ -119,7 +121,7 @@
             this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
             this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnDelete.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnDelete.Location = new System.Drawing.Point(156, 0);
+            this.btnDelete.Location = new System.Drawing.Point(254, 0);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(5);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
@@ -215,7 +217,7 @@
             this.dgv.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_CellMouseDoubleClick);
             this.dgv.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvTournaments_CellValidating);
             this.dgv.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgv_RowsAdded);
-            this.dgv.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgv_KeyPress);
+            this.dgv.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgv_KeyDown);
             // 
             // label1
             // 
@@ -230,7 +232,6 @@
             // 
             // btnTimer
             // 
-            this.btnTimer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnTimer.BackColor = System.Drawing.Color.Transparent;
             this.btnTimer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btnTimer.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -245,7 +246,7 @@
             this.btnTimer.Image = ((System.Drawing.Image)(resources.GetObject("btnTimer.Image")));
             this.btnTimer.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnTimer.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnTimer.Location = new System.Drawing.Point(832, 14);
+            this.btnTimer.Location = new System.Drawing.Point(344, 0);
             this.btnTimer.Margin = new System.Windows.Forms.Padding(5, 5, 25, 5);
             this.btnTimer.Name = "btnTimer";
             this.btnTimer.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
@@ -273,7 +274,7 @@
             this.btnCountries.Image = global::MahjongTournamentSuite.Properties.Resources.countries;
             this.btnCountries.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnCountries.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCountries.Location = new System.Drawing.Point(108, 14);
+            this.btnCountries.Location = new System.Drawing.Point(0, 0);
             this.btnCountries.Margin = new System.Windows.Forms.Padding(25, 5, 5, 5);
             this.btnCountries.Name = "btnCountries";
             this.btnCountries.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
@@ -288,13 +289,35 @@
             // panelMainButtons
             // 
             this.panelMainButtons.BackColor = System.Drawing.Color.Transparent;
+            this.panelMainButtons.Controls.Add(this.label3);
+            this.panelMainButtons.Controls.Add(this.btnCountries);
+            this.panelMainButtons.Controls.Add(this.label2);
             this.panelMainButtons.Controls.Add(this.btnDelete);
             this.panelMainButtons.Controls.Add(this.btnResume);
+            this.panelMainButtons.Controls.Add(this.btnTimer);
             this.panelMainButtons.Controls.Add(this.btnNew);
-            this.panelMainButtons.Location = new System.Drawing.Point(392, 14);
+            this.panelMainButtons.Location = new System.Drawing.Point(297, 16);
             this.panelMainButtons.Name = "panelMainButtons";
-            this.panelMainButtons.Size = new System.Drawing.Size(224, 64);
+            this.panelMainButtons.Size = new System.Drawing.Size(412, 64);
             this.panelMainButtons.TabIndex = 82;
+            // 
+            // label3
+            // 
+            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label3.Location = new System.Drawing.Point(86, 0);
+            this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(2, 64);
+            this.label3.TabIndex = 83;
+            // 
+            // label2
+            // 
+            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label2.Location = new System.Drawing.Point(332, 0);
+            this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(2, 64);
+            this.label2.TabIndex = 84;
             // 
             // HomeForm
             // 
@@ -305,8 +328,6 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1008, 748);
             this.Controls.Add(this.panelMainButtons);
-            this.Controls.Add(this.btnCountries);
-            this.Controls.Add(this.btnTimer);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgv);
             this.Controls.Add(this.imgLogoMM);
@@ -339,5 +360,7 @@
         private System.Windows.Forms.Button btnTimer;
         private System.Windows.Forms.Button btnCountries;
         private System.Windows.Forms.Panel panelMainButtons;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
     }
 }
