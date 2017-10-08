@@ -57,7 +57,6 @@ namespace MahjongTournamentSuite.TournamentManager
             ShowWaitCursor();
             _controller.LoadTournament(_tournamentId);
             ShowDefaultCursor();
-            btnTeams.Focus();
         }
 
         private void TournamentManagerForm_SizeChanged(object sender, EventArgs e)

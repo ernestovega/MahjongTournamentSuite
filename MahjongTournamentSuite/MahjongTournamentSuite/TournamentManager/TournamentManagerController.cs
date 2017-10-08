@@ -26,6 +26,7 @@ namespace MahjongTournamentSuite.TournamentManager
         private List<ChickenHandRanking> _chickenHandsRankings;
         private int _tournamentId;
         private Rankings _rankings;
+        private bool loadCompleted;
 
         #endregion
 
@@ -60,18 +61,22 @@ namespace MahjongTournamentSuite.TournamentManager
                 }
             }
             GenerateRoundsAndTablesButtons();
+            loadCompleted = true;
         }
 
         public void OnFormResized(int tournamentId)
         {
-            _form.CenterMainButtons();
-            _form.RemoveRoundsButtons();
-            _form.AddRoundsButtons(_tournament.NumRounds);
-            _form.RemoveTablesButtons();
-            _form.AddTablesButtons(_tournament.NumPlayers / 4);
-            _form.SelectRoundButton(roundSelected);
-            if(tableSelected > 0)
-                _form.SelectTableButton(tableSelected);
+            if (loadCompleted)
+            {
+                _form.CenterMainButtons();
+                _form.RemoveRoundsButtons();
+                _form.AddRoundsButtons(_tournament.NumRounds);
+                _form.RemoveTablesButtons();
+                _form.AddTablesButtons(_tournament.NumPlayers / 4);
+                _form.SelectRoundButton(roundSelected);
+                if (tableSelected > 0)
+                    _form.SelectTableButton(tableSelected);
+            }
         }
 
         public void PlayersTablesClicked()
@@ -150,7 +155,7 @@ namespace MahjongTournamentSuite.TournamentManager
 
         public bool IsRoundCompleted(int roundId)
         {
-            List<VTable> roundTables = _tables.FindAll(x => x.TableRoundId == roundSelected);
+            List<VTable> roundTables = _tables.FindAll(x => x.TableRoundId == roundId);
             foreach (VTable table in roundTables)
             {
                 if (!table.IsCompleted)
