@@ -36,7 +36,8 @@ namespace MahjongTableSuite._Data.Mappers
                 dbTable.PlayerSouthPoints,
                 dbTable.PlayerWestPoints,
                 dbTable.PlayerNorthPoints,
-                dbTable.IsCompleted);
+                dbTable.IsCompleted,
+                dbTable.UseTotalsOnly);
         }
 
         public static List<DBTable> GetDataModel(List<VTable> vTables)
@@ -70,7 +71,8 @@ namespace MahjongTableSuite._Data.Mappers
                 vTable.PlayerSouthPoints,
                 vTable.PlayerWestPoints,
                 vTable.PlayerNorthPoints,
-                vTable.IsCompleted);
+                vTable.IsCompleted,
+                vTable.UseTotalsOnly);
         }
     }
 }

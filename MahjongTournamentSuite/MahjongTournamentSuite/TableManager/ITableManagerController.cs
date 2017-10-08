@@ -37,5 +37,7 @@
         string PlayerNorthPenalytChanged(int handId, string newValue);
 
         void IsCompletedCheckedChanged(bool isChecked);
+
+        void UseTotalsOnlyCheckedChanged(bool isChecked);
     }
 }

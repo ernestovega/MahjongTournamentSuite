@@ -244,6 +244,15 @@ namespace MahjongTournamentSuite._Data
             _db.SaveChanges();
         }
 
+        public void UpdateTableUseTotalsOnly(VTable vTable)
+        {
+            DBTable dbTable = _db.Tables.ToList()
+                .Find(x => x.TableTournamentId == vTable.TableTournamentId &&
+                    x.TableRoundId == vTable.TableRoundId && x.TableId == vTable.TableId);
+            dbTable.UseTotalsOnly = vTable.UseTotalsOnly;
+            _db.SaveChanges();
+        }
+
         public void RefreshTable(int tournamentId, int roundId, int tableId)
         {
             DBTable table = _db.Tables.ToList().Find(x => x.TableTournamentId == tournamentId

@@ -85,6 +85,11 @@ namespace MahjongTournamentSuite.TableManager
             _controller.IsCompletedCheckedChanged(cbCompleted.Checked);
         }
 
+        private void cbUseTotalsOnly_CheckedChanged(object sender, EventArgs e)
+        {
+            _controller.UseTotalsOnlyCheckedChanged(cbUseTotalsOnly.Checked);
+        }
+
         #region Combos
         private void comboEastPlayer_SelectionChangeCommitted(object sender, EventArgs e)
         {
@@ -354,6 +359,11 @@ namespace MahjongTournamentSuite.TableManager
         public void SetIsCompleted(bool isCompleted)
         {
             cbCompleted.Checked = isCompleted;
+        }
+
+        public void SetUseTotalsOnly(bool useTotalsOnly)
+        {
+            cbUseTotalsOnly.Checked = useTotalsOnly;
         }
 
         public void FillCombosPlayers(List<ComboItem> playersList)

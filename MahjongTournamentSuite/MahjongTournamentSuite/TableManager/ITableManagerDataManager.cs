@@ -30,7 +30,9 @@ namespace MahjongTournamentSuite.TableManager
         void UpdateHandPlayerNorthPenalty(VHand hand);
 
         void UpdateTableIsCompleted(VTable table);
-        
+
+        void UpdateTableUseTotalsOnly(VTable table);
+
         void UpdateTableAllPlayersPositions(VTable table);
 
         void UpdateTableAllPlayersTotalScores(VTable table);

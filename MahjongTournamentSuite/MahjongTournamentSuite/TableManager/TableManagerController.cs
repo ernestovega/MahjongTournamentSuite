@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using static MahjongTournamentSuite.TableManager.PlayerTablePoints;
 using MahjongTournamentSuite._Data.DataModel;
 using static MahjongTournamentSuite._Data.DataModel.VHand;
+using System;
 
 namespace MahjongTournamentSuite.TableManager
 {
@@ -47,6 +48,7 @@ namespace MahjongTournamentSuite.TableManager
             _form.SetRoundId(roundId);
             _form.SetTableId(tableId);
             _form.SetIsCompleted(_table.IsCompleted);
+            _form.SetUseTotalsOnly(_table.UseTotalsOnly);
             FillCombosPlayers();
             FillDataGridHandsWithoutScores();
             if(FillPlayerHeaders(false))
@@ -322,6 +324,12 @@ namespace MahjongTournamentSuite.TableManager
         {
             _table.IsCompleted = isChecked;
             _data.UpdateTableIsCompleted(_table);
+        }
+
+        public void UseTotalsOnlyCheckedChanged(bool isChecked)
+        {
+            _table.UseTotalsOnly = isChecked;
+            _data.UpdateTableUseTotalsOnly(_table);
         }
 
         #endregion

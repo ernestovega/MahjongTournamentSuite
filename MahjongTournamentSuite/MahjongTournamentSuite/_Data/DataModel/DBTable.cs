@@ -28,8 +28,7 @@ namespace MahjongTournamentSuite._Data.DataModel
         public string PlayerWestPoints { get; set; }
         public string PlayerNorthPoints { get; set; }
         public bool IsCompleted { get; set; }
-
-
+        public bool UseTotalsOnly { get; set; }
 
         public DBTable() {}
         
@@ -38,7 +37,7 @@ namespace MahjongTournamentSuite._Data.DataModel
             string playerEastId, string playerSouthId, string playerWestId, string playerNorthId,
             string playerEastScore, string playerSouthScore, string playerWestScore, string playerNorthScore,
             string playerEastPoints, string playerSouthPoints, string playerWestPoints, string playerNorthPoints,
-            bool isCompleted)
+            bool isCompleted, bool useTotalsOnly)
         {
             TableTournamentId = tournamentId;
             TableRoundId = roundId;
@@ -60,6 +59,7 @@ namespace MahjongTournamentSuite._Data.DataModel
             PlayerWestPoints = playerWestPoints;
             PlayerNorthPoints = playerNorthPoints;
             IsCompleted = isCompleted;
+            UseTotalsOnly = useTotalsOnly;
         }
     }
 }
