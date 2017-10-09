@@ -58,7 +58,7 @@ namespace MahjongTournamentSuite._Data.DataModel
             PlayerWestPoints = string.Empty;
             PlayerNorthPoints = string.Empty;
             IsCompleted = false;
-            UseTotalsOnly = true;
+            UseTotalsOnly = false;
         }
 
         public VTable(int tournamentId, int roundId, int id,

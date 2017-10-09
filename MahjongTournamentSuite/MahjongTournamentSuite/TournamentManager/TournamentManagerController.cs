@@ -169,6 +169,11 @@ namespace MahjongTournamentSuite.TournamentManager
             return _tables.Find(x => x.TableRoundId == roundSelected && x.TableId == tableId).IsCompleted;
         }
 
+        public bool IsTableUsingTotalsOnly(int tableId)
+        {
+            return _tables.Find(x => x.TableRoundId == roundSelected && x.TableId == tableId).UseTotalsOnly;
+        }
+        
         public int GetNumRounds()
         {
             return _tournament.NumRounds;

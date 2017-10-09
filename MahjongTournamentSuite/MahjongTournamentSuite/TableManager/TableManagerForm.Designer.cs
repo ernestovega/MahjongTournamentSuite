@@ -73,7 +73,7 @@
             this.lblTitleTotalPointsPlayerNorth = new System.Windows.Forms.Label();
             this.panelTotals = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
-            this.cbCompleted = new System.Windows.Forms.CheckBox();
+            this.cbIsCompleted = new System.Windows.Forms.CheckBox();
             this.cbUseTotalsOnly = new System.Windows.Forms.CheckBox();
             this.label10 = new System.Windows.Forms.Label();
             this.lblStub = new System.Windows.Forms.Label();
@@ -722,13 +722,13 @@
             // 
             // cbCompleted
             // 
-            this.cbCompleted.AutoSize = true;
-            this.cbCompleted.Location = new System.Drawing.Point(361, 29);
-            this.cbCompleted.Name = "cbCompleted";
-            this.cbCompleted.Size = new System.Drawing.Size(15, 14);
-            this.cbCompleted.TabIndex = 1;
-            this.cbCompleted.UseVisualStyleBackColor = true;
-            this.cbCompleted.CheckedChanged += new System.EventHandler(this.cbCompleted_CheckedChanged);
+            this.cbIsCompleted.AutoSize = true;
+            this.cbIsCompleted.Location = new System.Drawing.Point(361, 29);
+            this.cbIsCompleted.Name = "cbCompleted";
+            this.cbIsCompleted.Size = new System.Drawing.Size(15, 14);
+            this.cbIsCompleted.TabIndex = 1;
+            this.cbIsCompleted.UseVisualStyleBackColor = true;
+            this.cbIsCompleted.CheckedChanged += new System.EventHandler(this.cbCompleted_CheckedChanged);
             // 
             // cbUseTotalsOnly
             // 
@@ -772,7 +772,7 @@
             this.Controls.Add(this.lblStub);
             this.Controls.Add(this.cbUseTotalsOnly);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.cbCompleted);
+            this.Controls.Add(this.cbIsCompleted);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.panelTotals);
             this.Controls.Add(this.dgv);
@@ -870,7 +870,7 @@
         private System.Windows.Forms.Label lblTitleTotalPointsPlayerNorth;
         private System.Windows.Forms.Panel panelTotals;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.CheckBox cbCompleted;
+        private System.Windows.Forms.CheckBox cbIsCompleted;
         private System.Windows.Forms.CheckBox cbUseTotalsOnly;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label lblStub;

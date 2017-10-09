@@ -88,7 +88,7 @@ namespace MahjongTournamentSuite.TableManager
         #region CheckBoxes
         private void cbCompleted_CheckedChanged(object sender, EventArgs e)
         {
-            _controller.IsCompletedCheckedChanged(cbCompleted.Checked);
+            _controller.IsCompletedCheckedChanged(cbIsCompleted.Checked);
         }
 
         private void cbUseTotalsOnly_CheckedChanged(object sender, EventArgs e)
@@ -317,7 +317,7 @@ namespace MahjongTournamentSuite.TableManager
 
         public void SetIsCompleted(bool isCompleted)
         {
-            cbCompleted.Checked = isCompleted;
+            cbIsCompleted.Checked = isCompleted;
         }
 
         public void SetUseTotalsOnly(bool useTotalsOnly)
@@ -518,6 +518,26 @@ namespace MahjongTournamentSuite.TableManager
             tbNorthPlayerTotalScore.Enabled = false;
         }
 
+        public void EnableIsCompleted()
+        {
+            cbIsCompleted.Enabled = true;
+        }
+
+        public void DisableIsCompleted()
+        {
+            cbIsCompleted.Enabled = false;
+        }
+
+        public void EnableUseTotalsOnly()
+        {
+            cbUseTotalsOnly.Enabled = true;
+        }
+
+        public void DisableUseTotalsOnly()
+        {
+            cbUseTotalsOnly.Enabled = false;
+        }
+
         public void ShowWaitCursor()
         {
             Cursor = Cursors.WaitCursor;
@@ -560,14 +580,19 @@ namespace MahjongTournamentSuite.TableManager
             MessageBox.Show("Chicken hand need to have Winner, Looser and Hand Score.", "Wrong Chicken hand");
         }
 
-        public void ShowMessageChickenHandNeedWinnerAtLeastInTotalScoresOnlyMode()
+        public void ShowMessageChickenHandNeedWinnerAtLeastInUseTotalsOnlyMode()
         {
-            MessageBox.Show("In Total Scores Only Mode, Chicken hand must have a Winner or Winner & Looser & Hand points.", "Wrong Chicken hand");
+            MessageBox.Show("In \"Use Totals Only\" mode, Chicken hand must have only the winner or all the fields(winner, looser and hand points).", "Wrong Chicken hand");
         }
 
         public void ShowMessageInvalidChickenHandValue()
         {
             MessageBox.Show("Chicken hand can´t be higher than 16 points.", "Wrong Chicken hand");
+        }
+
+        public void ShowMessageCantCompleteTableWithUseTotalsOnlyChecked()
+        {
+            MessageBox.Show("You can´t complete a table if \"Use Totals Only\" mode is enabled.", "Use Totals Only mode enabled");
         }
 
         public void CleanTotalPoints()

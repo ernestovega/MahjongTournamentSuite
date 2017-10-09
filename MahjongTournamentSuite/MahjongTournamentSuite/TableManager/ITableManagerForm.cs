@@ -55,12 +55,23 @@ namespace MahjongTournamentSuite.TableManager
 
         void ShowMessageChickenHandNeedWinnerLooserAndScore();
 
-        void ShowMessageChickenHandNeedWinnerAtLeastInTotalScoresOnlyMode();
+        void ShowMessageChickenHandNeedWinnerAtLeastInUseTotalsOnlyMode();
 
         void ShowMessageInvalidChickenHandValue();
 
+        void ShowMessageCantCompleteTableWithUseTotalsOnlyChecked();
+
         void SetIsCompleted(bool isCompleted);
 
+        void EnableUseTotalsOnly();
+
+        void DisableUseTotalsOnly();
+
         void SetUseTotalsOnly(bool useTotalsOnly);
+
+        void EnableIsCompleted();
+
+        void DisableIsCompleted();
+
     }
 }

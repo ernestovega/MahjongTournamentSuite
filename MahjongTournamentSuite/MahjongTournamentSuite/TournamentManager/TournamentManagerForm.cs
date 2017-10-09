@@ -189,8 +189,18 @@ namespace MahjongTournamentSuite.TournamentManager
                 button.Width = BUTTON_SIDE;
                 button.Height = BUTTON_SIDE;
                 button.Location = buttonStartPoint;
-                button.Image = _controller.IsTableCompleted(i) ? 
-                    Properties.Resources.table_ok : Properties.Resources.table;
+                Image icon;
+                if (_controller.IsTableCompleted(i))
+                    icon = Properties.Resources.table_ok;
+                else
+                {
+                    if (_controller.IsTableUsingTotalsOnly(i))
+                        icon = Properties.Resources.table_totalsonly;
+                    else
+                        icon = Properties.Resources.table;
+                }
+                button.Image = icon;
+
                 button.Click += delegate
                 {
                     ShowWaitCursor();
@@ -310,9 +320,13 @@ namespace MahjongTournamentSuite.TournamentManager
             {
                 if (control.Tag != null && (int)control.Tag == roundId)
                 {
-                    MakeButtonSelected((Button)control,
-                        _controller.IsRoundCompleted(roundId) ?
-                        Properties.Resources.gong_ok_white : Properties.Resources.gong_white);
+                    Image icon;
+                    if (_controller.IsRoundCompleted(roundId))
+                        icon = Properties.Resources.gong_ok_white;
+                    else
+                        icon = Properties.Resources.gong_white;
+
+                    MakeButtonSelected((Button)control, icon);
                 }
             }
         }
@@ -322,9 +336,15 @@ namespace MahjongTournamentSuite.TournamentManager
             foreach (Control control in splitContainer.Panel1.Controls)
             {
                 if (control.Tag != null && (int)control.Tag == roundId)
-                    MakeButtonUnselected((Button)control,
-                        _controller.IsRoundCompleted(roundId) ?
-                        Properties.Resources.gong_ok : Properties.Resources.gong);
+                {
+                    Image icon;
+                    if (_controller.IsRoundCompleted(roundId))
+                        icon = Properties.Resources.gong_ok;
+                    else
+                        icon = Properties.Resources.gong;
+
+                    MakeButtonUnselected((Button)control, icon);
+                }
             }
         }
 
@@ -333,9 +353,20 @@ namespace MahjongTournamentSuite.TournamentManager
             foreach (Control control in splitContainer.Panel2.Controls)
             {
                 if (control.Tag != null && (int)control.Tag == tableId)
-                    MakeButtonSelected((Button)control, 
-                        _controller.IsTableCompleted(tableId) ?
-                        Properties.Resources.table_ok_white : Properties.Resources.table);
+                {
+                    Image icon;
+                    if (_controller.IsTableCompleted(tableId))
+                        icon = Properties.Resources.table_ok_white;
+                    else
+                    {
+                        if (_controller.IsTableUsingTotalsOnly(tableId))
+                            icon = Properties.Resources.table_totalsonly_white;
+                        else
+                            icon = Properties.Resources.table_white;
+                    }
+
+                    MakeButtonSelected((Button)control, icon);
+                }
             }
         }
 
@@ -344,9 +375,20 @@ namespace MahjongTournamentSuite.TournamentManager
             foreach (Control control in splitContainer.Panel2.Controls)
             {
                 if (control.Tag != null && (int)control.Tag == tableId)
-                    MakeButtonUnselected((Button)control,
-                        _controller.IsTableCompleted(tableId) ?
-                        Properties.Resources.table_ok : Properties.Resources.table);
+                {
+                    Image icon;
+                    if (_controller.IsTableCompleted(tableId))
+                        icon = Properties.Resources.table_ok;
+                    else
+                    {
+                        if (_controller.IsTableUsingTotalsOnly(tableId))
+                            icon = Properties.Resources.table_totalsonly;
+                        else
+                            icon = Properties.Resources.table;
+                    }
+
+                    MakeButtonUnselected((Button)control, icon);
+                }
             }
         }
 

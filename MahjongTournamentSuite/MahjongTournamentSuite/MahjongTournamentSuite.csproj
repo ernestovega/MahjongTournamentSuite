@@ -597,6 +597,8 @@
     <Content Include="Resources\sur.png" />
     <Content Include="Resources\table_ok.png" />
     <Content Include="Resources\table_ok_white.png" />
+    <Content Include="Resources\table_totalsonly.png" />
+    <Content Include="Resources\table_totalsonly_white.png" />
     <Content Include="Resources\table_white.png" />
     <Content Include="Resources\teams.png" />
     <Content Include="Resources\teams_big.png" />

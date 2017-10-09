@@ -26,6 +26,8 @@
 
         bool IsTableCompleted(int tableId);
 
+        bool IsTableUsingTotalsOnly(int tableId);
+
         void TableManagerFormClosed();
 
         void EmaReportClicked();

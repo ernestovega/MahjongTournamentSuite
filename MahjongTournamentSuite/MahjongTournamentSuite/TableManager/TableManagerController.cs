@@ -48,8 +48,15 @@ namespace MahjongTournamentSuite.TableManager
             _form.SetTournamentName(_data.GetTournamentName(tournamentId));
             _form.SetRoundId(roundId);
             _form.SetTableId(tableId);
-            _form.SetIsCompleted(_table.IsCompleted);
-            _form.SetUseTotalsOnly(_table.UseTotalsOnly);
+            if (_table.UseTotalsOnly)
+                SetUseTotalsOnly();
+            else if(_table.IsCompleted)
+                SetIsCompleted();
+            else
+            {
+                _form.EnableIsCompleted();
+                _form.EnableUseTotalsOnly();
+            }
             FillCombosPlayers();
             FillDataGridHandsWithoutScores();
             if(FillPlayerHeaders(false))
@@ -296,7 +303,7 @@ namespace MahjongTournamentSuite.TableManager
                         (!hand.PlayerLooserId.Equals(string.Empty) || !hand.HandScore.Equals(string.Empty)))
                     {
                         _form.PlayKoSound();
-                        _form.ShowMessageChickenHandNeedWinnerAtLeastInTotalScoresOnlyMode();
+                        _form.ShowMessageChickenHandNeedWinnerAtLeastInUseTotalsOnlyMode();
                         returnValue = false;
                     }
                     else
@@ -357,12 +364,22 @@ namespace MahjongTournamentSuite.TableManager
 
         public void IsCompletedCheckedChanged(bool isChecked)
         {
+            if (isChecked)
+                SetIsCompleted();
+            else
+                _form.EnableUseTotalsOnly();
+
             _table.IsCompleted = isChecked;
             _data.UpdateTableIsCompleted(_table);
         }
 
         public void UseTotalsOnlyCheckedChanged(bool isChecked)
         {
+            if (isChecked)
+                SetUseTotalsOnly();
+            else
+                _form.EnableIsCompleted();
+
             _table.UseTotalsOnly = isChecked;
             _data.UpdateTableUseTotalsOnly(_table);
             CalculateAndFillAllHandsScoresAndPlayersTotalsAndPoints();
@@ -371,6 +388,22 @@ namespace MahjongTournamentSuite.TableManager
         #endregion
 
         #region Private
+
+        private void SetIsCompleted()
+        {
+            _form.SetIsCompleted(true);
+            _form.SetUseTotalsOnly(false);
+            _form.EnableIsCompleted();
+            _form.DisableUseTotalsOnly();
+        }
+
+        private void SetUseTotalsOnly()
+        {
+            _form.SetIsCompleted(false);
+            _form.SetUseTotalsOnly(true);
+            _form.DisableIsCompleted();
+            _form.EnableUseTotalsOnly();
+        }
 
         private void FillDataGridHandsWithoutScores()
         {

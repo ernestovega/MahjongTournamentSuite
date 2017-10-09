@@ -2463,6 +2463,26 @@ namespace MahjongTournamentSuite.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap table_totalsonly {
+            get {
+                object obj = ResourceManager.GetObject("table_totalsonly", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap table_totalsonly_white {
+            get {
+                object obj = ResourceManager.GetObject("table_totalsonly_white", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap table_white {
             get {
                 object obj = ResourceManager.GetObject("table_white", resourceCulture);
