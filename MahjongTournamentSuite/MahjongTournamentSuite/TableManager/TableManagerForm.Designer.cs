@@ -76,6 +76,7 @@
             this.cbCompleted = new System.Windows.Forms.CheckBox();
             this.cbUseTotalsOnly = new System.Windows.Forms.CheckBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.lblStub = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoMM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imgLogoEMA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -467,7 +468,6 @@
             this.dgv.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellEndEdit);
             this.dgv.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgv_CellFormatting);
             this.dgv.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_CellMouseClick);
-            this.dgv.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dgv_KeyPress);
             // 
             // lblTitleTotalPointsPlayerEast
             // 
@@ -520,7 +520,6 @@
             this.tbEastPlayerTotalScore.Size = new System.Drawing.Size(86, 26);
             this.tbEastPlayerTotalScore.TabIndex = 7;
             this.tbEastPlayerTotalScore.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbEastPlayerTotalScore.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbEastPlayerTotalScore_KeyPress);
             this.tbEastPlayerTotalScore.Leave += new System.EventHandler(this.tbEastPlayerTotalScore_Leave);
             // 
             // tbSouthPlayerTotalScore
@@ -533,7 +532,6 @@
             this.tbSouthPlayerTotalScore.Size = new System.Drawing.Size(86, 26);
             this.tbSouthPlayerTotalScore.TabIndex = 8;
             this.tbSouthPlayerTotalScore.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbSouthPlayerTotalScore.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbSouthPlayerTotalScore_KeyPress);
             this.tbSouthPlayerTotalScore.Leave += new System.EventHandler(this.tbSouthPlayerTotalScore_Leave);
             // 
             // tbSouthPlayerTotalPoints
@@ -587,7 +585,6 @@
             this.tbWestPlayerTotalScore.Size = new System.Drawing.Size(86, 26);
             this.tbWestPlayerTotalScore.TabIndex = 9;
             this.tbWestPlayerTotalScore.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbWestPlayerTotalScore.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbWestPlayerTotalScore_KeyPress);
             this.tbWestPlayerTotalScore.Leave += new System.EventHandler(this.tbWestPlayerTotalScore_Leave);
             // 
             // tbWestPlayerTotalPoints
@@ -641,7 +638,6 @@
             this.tbNorthPlayerTotalScore.Size = new System.Drawing.Size(86, 26);
             this.tbNorthPlayerTotalScore.TabIndex = 10;
             this.tbNorthPlayerTotalScore.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbNorthPlayerTotalScore.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbNorthPlayerTotalScore_KeyPress);
             this.tbNorthPlayerTotalScore.Leave += new System.EventHandler(this.tbNorthPlayerTotalScore_Leave);
             // 
             // tbNorthPlayerTotalPoints
@@ -757,6 +753,15 @@
             this.label10.Text = "Use Totals Only";
             this.label10.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // lblStub
+            // 
+            this.lblStub.AutoSize = true;
+            this.lblStub.BackColor = System.Drawing.Color.Transparent;
+            this.lblStub.Location = new System.Drawing.Point(6, 9);
+            this.lblStub.Name = "lblStub";
+            this.lblStub.Size = new System.Drawing.Size(0, 13);
+            this.lblStub.TabIndex = 0;
+            // 
             // TableManagerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -764,6 +769,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1008, 693);
+            this.Controls.Add(this.lblStub);
             this.Controls.Add(this.cbUseTotalsOnly);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.cbCompleted);
@@ -867,5 +873,6 @@
         private System.Windows.Forms.CheckBox cbCompleted;
         private System.Windows.Forms.CheckBox cbUseTotalsOnly;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblStub;
     }
 }

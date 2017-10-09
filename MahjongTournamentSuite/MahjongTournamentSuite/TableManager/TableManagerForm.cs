@@ -47,12 +47,16 @@ namespace MahjongTournamentSuite.TableManager
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            if (dgv.IsCurrentCellInEditMode && keyData == Keys.Enter)
-            {
-                dgvCellEnterPressed();
-                return true;
-            }
-            return false;
+            if (keyData == Keys.Enter)
+                return EnterPressedBehaviour();
+            else if (keyData == Keys.Tab)
+                return TabPressedBehaviour();
+            else if (keyData == Keys.Space)
+                return SpacePressedBehaviour();
+            else if (keyData == Keys.Delete)
+                return SuprPressedBehaviour();
+            else
+                return false;
         }
 
         private void TableManagerForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -60,6 +64,7 @@ namespace MahjongTournamentSuite.TableManager
             //Quitamos el foco el DGV para forzar el evento CellEndEdit y que se guarden los datos.
             lblTournamentName.Focus();
         }
+
         #endregion
 
         #region Logos Click
@@ -80,6 +85,7 @@ namespace MahjongTournamentSuite.TableManager
         }
         #endregion
 
+        #region CheckBoxes
         private void cbCompleted_CheckedChanged(object sender, EventArgs e)
         {
             _controller.IsCompletedCheckedChanged(cbCompleted.Checked);
@@ -89,6 +95,7 @@ namespace MahjongTournamentSuite.TableManager
         {
             _controller.UseTotalsOnlyCheckedChanged(cbUseTotalsOnly.Checked);
         }
+        #endregion
 
         #region Combos
         private void comboEastPlayer_SelectionChangeCommitted(object sender, EventArgs e)
@@ -117,48 +124,6 @@ namespace MahjongTournamentSuite.TableManager
             ShowWaitCursor();
             _controller.NameNorthPlayerChanged(((ComboItem)comboNorthPlayer.SelectedItem).Value);
             ShowDefaultCursor();
-        }
-        #endregion
-
-        #region TotalScores KeyPress
-        private void tbEastPlayerTotalScore_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Return)
-            {
-                ShowWaitCursor();
-                tbEastPlayerTotalScore_Leave(null, null);
-                ShowDefaultCursor();
-            }
-        }
-
-        private void tbSouthPlayerTotalScore_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Return)
-            {
-                ShowWaitCursor();
-                tbSouthPlayerTotalScore_Leave(null, null);
-                ShowDefaultCursor();
-            }
-        }
-
-        private void tbWestPlayerTotalScore_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Return)
-            {
-                ShowWaitCursor();
-                tbWestPlayerTotalScore_Leave(null, null);
-                ShowDefaultCursor();
-            }
-        }
-
-        private void tbNorthPlayerTotalScore_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Return)
-            {
-                ShowWaitCursor();
-                tbNorthPlayerTotalScore_Leave(null, null);
-                ShowDefaultCursor();
-            }
         }
         #endregion
 
@@ -225,12 +190,6 @@ namespace MahjongTournamentSuite.TableManager
             }
         }
         
-        private void dgv_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.Space)
-                dgvSpacePressed();
-        }
-
         private void dgv_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -601,6 +560,16 @@ namespace MahjongTournamentSuite.TableManager
             MessageBox.Show("Chicken hand need to have Winner, Looser and Hand Score.", "Wrong Chicken hand");
         }
 
+        public void ShowMessageChickenHandNeedWinnerAtLeastInTotalScoresOnlyMode()
+        {
+            MessageBox.Show("In Total Scores Only Mode, Chicken hand must have a Winner or Winner & Looser & Hand points.", "Wrong Chicken hand");
+        }
+
+        public void ShowMessageInvalidChickenHandValue()
+        {
+            MessageBox.Show("Chicken hand can´t be higher than 16 points.", "Wrong Chicken hand");
+        }
+
         public void CleanTotalPoints()
         {
             tbEastPlayerTotalPoints.Text = string.Empty;
@@ -618,62 +587,180 @@ namespace MahjongTournamentSuite.TableManager
 
         #region Private
 
-        private void dgvCellEnterPressed()
+        private bool EnterPressedBehaviour()
         {
-            if (dgv.CurrentCell.OwningColumn.Name == VHand.COLUMN_PLAYER_WINNER_ID)
+            #region TEXTBOX EAST TOTAL SCORE
+            if (tbEastPlayerTotalScore.Focused)
             {
-                dgv.CurrentCell = dgv.Rows[dgv.CurrentCell.RowIndex].Cells[VHand.COLUMN_PLAYER_LOOSER_ID];
-                dgv.BeginEdit(true);
+                tbSouthPlayerTotalScore.Focus();
+                return true;
             }
-            else if (dgv.CurrentCell.OwningColumn.Name == VHand.COLUMN_PLAYER_LOOSER_ID)
+            #endregion
+            #region TEXTBOX SOUTH TOTAL SCORE
+            else if (tbSouthPlayerTotalScore.Focused)
             {
-                dgv.CurrentCell = dgv.Rows[dgv.CurrentCell.RowIndex].Cells[VHand.COLUMN_HAND_SCORE];
-                dgv.BeginEdit(true);
+                tbWestPlayerTotalScore.Focus();
+                return true;
             }
-            else if (dgv.CurrentCell.OwningColumn.Name == VHand.COLUMN_HAND_SCORE)
+            #endregion
+            #region TEXTBOX WEST TOTAL SCORE
+            else if (tbWestPlayerTotalScore.Focused)
             {
-                if (dgv.CurrentCell.RowIndex == dgv.RowCount - 1)
-                    cbCompleted.Focus();
-                else
+                tbNorthPlayerTotalScore.Focus();
+                return true;
+            }
+            #endregion
+            #region TEXTBOX NORTH TOTAL SCORE
+            else if (tbNorthPlayerTotalScore.Focused)
+            {
+                lblStub.Focus();
+                return true;
+            }
+            #endregion
+            else if (dgv.Visible && dgv.CurrentCell != null && dgv.CurrentCell.RowIndex >= 0)
+            {
+                #region DGV CELL WINNER
+                if (dgv.CurrentCell.OwningColumn.Name == VHand.COLUMN_PLAYER_WINNER_ID)
                 {
-                    dgv.CurrentCell = dgv.Rows[dgv.CurrentCell.RowIndex + 1].Cells[VHand.COLUMN_PLAYER_WINNER_ID];
+                    dgv.CurrentCell = dgv.Rows[dgv.CurrentCell.RowIndex].Cells[VHand.COLUMN_PLAYER_LOOSER_ID];
                     dgv.BeginEdit(true);
+                    return true;
                 }
-            }
-            else if (dgv.CurrentCell.OwningColumn.Name == VHand.COLUMN_PLAYER_EAST_PENALTY)
-            {
-                dgv.CurrentCell = dgv.Rows[dgv.CurrentCell.RowIndex].Cells[VHand.COLUMN_PLAYER_SOUTH_PENALTY];
-                dgv.BeginEdit(true);
-            }
-            else if (dgv.CurrentCell.OwningColumn.Name == VHand.COLUMN_PLAYER_SOUTH_PENALTY)
-            {
-                dgv.CurrentCell = dgv.Rows[dgv.CurrentCell.RowIndex].Cells[VHand.COLUMN_PLAYER_WEST_PENALTY];
-                dgv.BeginEdit(true);
-            }
-            else if (dgv.CurrentCell.OwningColumn.Name == VHand.COLUMN_PLAYER_WEST_PENALTY)
-            {
-                dgv.CurrentCell = dgv.Rows[dgv.CurrentCell.RowIndex].Cells[VHand.COLUMN_PLAYER_NORTH_PENALTY];
-                dgv.BeginEdit(true);
-            }
-            else if (dgv.CurrentCell.OwningColumn.Name == VHand.COLUMN_PLAYER_NORTH_PENALTY)
-            {
-                if (dgv.CurrentCell.RowIndex == dgv.RowCount - 1)
-                    cbCompleted.Focus();
-                else
+                #endregion
+                #region DGV CELL LOOSER
+                else if (dgv.CurrentCell.OwningColumn.Name == VHand.COLUMN_PLAYER_LOOSER_ID)
                 {
-                    dgv.CurrentCell = dgv.Rows[dgv.CurrentCell.RowIndex + 1].Cells[VHand.COLUMN_PLAYER_WINNER_ID];
+                    dgv.CurrentCell = dgv.Rows[dgv.CurrentCell.RowIndex].Cells[VHand.COLUMN_HAND_SCORE];
                     dgv.BeginEdit(true);
+                    return true;
                 }
+                #endregion
+                #region DGV CELL HAND SCORE
+                else if (dgv.CurrentCell.OwningColumn.Name == VHand.COLUMN_HAND_SCORE)
+                {
+                    FocusNextRowWinnerCellOrStub();
+                    return true;
+                }
+                #endregion
+                #region DGV CELL EAST PENALTY
+                else if (dgv.CurrentCell.OwningColumn.Name == VHand.COLUMN_PLAYER_EAST_PENALTY)
+                {
+                    dgv.CurrentCell = dgv.Rows[dgv.CurrentCell.RowIndex].Cells[VHand.COLUMN_PLAYER_SOUTH_PENALTY];
+                    dgv.BeginEdit(true);
+                    return true;
+                }
+                #endregion
+                #region DGV CELL IS CHICKEN HAND
+                else if (dgv.CurrentCell.OwningColumn.Name == VHand.COLUMN_IS_CHICKEN_HAND)
+                {
+                    FocusNextRowWinnerCellOrStub();
+                    return true;
+                }
+                #endregion
+                #region DGV CELL SOUTH PENALTY
+                else if (dgv.CurrentCell.OwningColumn.Name == VHand.COLUMN_PLAYER_SOUTH_PENALTY)
+                {
+                    dgv.CurrentCell = dgv.Rows[dgv.CurrentCell.RowIndex].Cells[VHand.COLUMN_PLAYER_WEST_PENALTY];
+                    dgv.BeginEdit(true);
+                    return true;
+                }
+                #endregion
+                #region DGV CELL WEST PENALTY
+                else if (dgv.CurrentCell.OwningColumn.Name == VHand.COLUMN_PLAYER_WEST_PENALTY)
+                {
+                    dgv.CurrentCell = dgv.Rows[dgv.CurrentCell.RowIndex].Cells[VHand.COLUMN_PLAYER_NORTH_PENALTY];
+                    dgv.BeginEdit(true);
+                    return true;
+                }
+                #endregion
+                #region DGV CELL NORTH PENALTY
+                else if (dgv.CurrentCell.OwningColumn.Name == VHand.COLUMN_PLAYER_NORTH_PENALTY)
+                {
+                    FocusNextRowWinnerCellOrStub();
+                    return true;
+                }
+                #endregion
+            }
+            return false;
+        }
+
+        private void FocusNextRowWinnerCellOrStub()
+        {
+            if (dgv.CurrentCell.RowIndex == dgv.RowCount - 1)
+                lblStub.Focus();
+            else
+            {
+                dgv.CurrentCell = dgv.Rows[dgv.CurrentCell.RowIndex + 1].Cells[VHand.COLUMN_PLAYER_WINNER_ID];
+                dgv.BeginEdit(true);
             }
         }
 
-        private void dgvSpacePressed()
+        private bool TabPressedBehaviour()
         {
-            if (dgv.CurrentCell != null && dgv.CurrentCell.RowIndex >= 0
-                && dgv.CurrentCell.OwningColumn.Name.Equals(VHand.COLUMN_IS_CHICKEN_HAND))
-                CellIsChickenHandChanged(dgv.CurrentCell.RowIndex,
-                    dgv.CurrentCell.ColumnIndex);
+            if (comboNorthPlayer.Focused)
+            {
+                if (cbUseTotalsOnly.Checked)
+                    tbEastPlayerTotalScore.Focus();
+                else if (dgv.Visible)
+                {
+                    dgv.Focus();
+                    dgv.CurrentCell = dgv.Rows[0].Cells[VHand.COLUMN_PLAYER_WINNER_ID];
+                }
+                else
+                    lblStub.Focus();
+
+                return true;
+            }
+            else if (tbNorthPlayerTotalScore.Focused)
+            {
+                if (dgv.Visible)
+                {
+                    dgv.Focus();
+                    dgv.CurrentCell = dgv.Rows[0].Cells[VHand.COLUMN_PLAYER_WINNER_ID];
+                }
+                else
+                    lblStub.Focus();
+
+                return true;
+            }
+            else
+                return false;
         }
+
+        private bool SpacePressedBehaviour()
+        {
+            if (dgv.Visible && dgv.CurrentCell != null && dgv.CurrentCell.RowIndex >= 0
+                && dgv.CurrentCell.OwningColumn.Name.Equals(VHand.COLUMN_IS_CHICKEN_HAND))
+            {
+                CellIsChickenHandChanged(dgv.CurrentCell.RowIndex, dgv.CurrentCell.ColumnIndex);
+                return true;
+            }
+            return false;
+        }
+
+        private bool SuprPressedBehaviour()
+        {
+            if (dgv.Visible && dgv.CurrentCell != null && dgv.CurrentCell.RowIndex >= 0)
+            {
+                #region DGV CELL WINNER
+                if (dgv.CurrentCell.OwningColumn.Name == VHand.COLUMN_PLAYER_WINNER_ID ||
+                    dgv.CurrentCell.OwningColumn.Name == VHand.COLUMN_PLAYER_LOOSER_ID ||
+                    dgv.CurrentCell.OwningColumn.Name == VHand.COLUMN_HAND_SCORE ||
+                    dgv.CurrentCell.OwningColumn.Name == VHand.COLUMN_PLAYER_EAST_PENALTY ||
+                    dgv.CurrentCell.OwningColumn.Name == VHand.COLUMN_IS_CHICKEN_HAND ||
+                    dgv.CurrentCell.OwningColumn.Name == VHand.COLUMN_PLAYER_SOUTH_PENALTY ||
+                    dgv.CurrentCell.OwningColumn.Name == VHand.COLUMN_PLAYER_WEST_PENALTY ||
+                    dgv.CurrentCell.OwningColumn.Name == VHand.COLUMN_PLAYER_NORTH_PENALTY)
+                {
+                    dgv.BeginEdit(true);
+                    dgv.CurrentCell.Value = string.Empty;
+                    EnterPressedBehaviour();
+                    return true;
+                }
+                #endregion
+            }
+            return false;
+        }            
 
         private void CellIsChickenHandChanged(int rowIndex, int colIndex)
         {

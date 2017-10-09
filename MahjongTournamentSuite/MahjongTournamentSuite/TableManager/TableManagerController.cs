@@ -13,6 +13,7 @@ namespace MahjongTournamentSuite.TableManager
 
         private readonly int MCR_MIN_POINTS = 8;
         private const int NUM_LOOSER_PLAYERS = 3;
+        private const int MAX_CHICKEN_HAND_VALUE = 16;
 
         #endregion
 
@@ -198,7 +199,7 @@ namespace MahjongTournamentSuite.TableManager
                     returnValue = string.Empty;
                 }
                 else if (validValue > 0 && IsACurrentTablePlayerId(validValue) &&
-                !hand.PlayerLooserId.Equals(validValue.ToString()))
+                !hand.PlayerWinnerId.Equals(validValue.ToString()))
                     returnValue = validValue.ToString();
                 else
                 {
@@ -230,12 +231,23 @@ namespace MahjongTournamentSuite.TableManager
             }
             else if (int.TryParse(newValue, out validValue)) {
                 if (validValue >= MCR_MIN_POINTS)
-                    returnValue = validValue.ToString();
+                {
+                    if (!hand.IsChickenHand)
+                        returnValue = validValue.ToString();
+                    else if(validValue <= MAX_CHICKEN_HAND_VALUE)
+                        returnValue = validValue.ToString();
+                    else
+                    {
+                        _form.PlayKoSound();
+                        _form.ShowMessageInvalidChickenHandValue();
+                        returnValue = hand.HandScore;
+                    }
+                }
                 else if (validValue == 0 &&
                     hand.PlayerWinnerId.Equals(string.Empty) &&
                     hand.PlayerLooserId.Equals(string.Empty))
                 {
-                    if(hand.IsChickenHand)
+                    if (hand.IsChickenHand)
                         UncheckChickenHandAndNotifyUser(hand);
                     returnValue = validValue.ToString();
                 }
@@ -250,12 +262,13 @@ namespace MahjongTournamentSuite.TableManager
                 _form.PlayKoSound();
                 returnValue = hand.HandScore;
             }
+
             hand.HandScore = returnValue;
             _data.UpdateHandScore(_hands.Find(x => x.HandId == handId));
             CalculateAndFillAllHandsScoresAndPlayersTotalsAndPoints();
             return returnValue;
         }
-
+        
         public bool IsChickenHandChanged(int handId)
         {
             VHand hand = _hands.Find(x => x.HandId == handId);
@@ -264,10 +277,31 @@ namespace MahjongTournamentSuite.TableManager
                 returnValue = false;
             else
             {
-                if (!hand.HandScore.Equals(string.Empty) &&
-                    !hand.PlayerWinnerId.Equals(string.Empty) &&
-                    !hand.PlayerLooserId.Equals(string.Empty))
-                    returnValue = true;
+                if (!hand.PlayerWinnerId.Equals(string.Empty) &&
+                    !hand.PlayerLooserId.Equals(string.Empty) &&
+                    !hand.HandScore.Equals(string.Empty))
+                {
+                    if (int.Parse(hand.HandScore) <= MAX_CHICKEN_HAND_VALUE)
+                        returnValue = true;
+                    else
+                    {
+                        _form.PlayKoSound();
+                        _form.ShowMessageInvalidChickenHandValue();
+                        returnValue = false;
+                    }
+                }
+                else if (_table.UseTotalsOnly)
+                {
+                    if (hand.PlayerWinnerId.Equals(string.Empty) ||
+                        (!hand.PlayerLooserId.Equals(string.Empty) || !hand.HandScore.Equals(string.Empty)))
+                    {
+                        _form.PlayKoSound();
+                        _form.ShowMessageChickenHandNeedWinnerAtLeastInTotalScoresOnlyMode();
+                        returnValue = false;
+                    }
+                    else
+                        returnValue = true;
+                }
                 else
                 {
                     _form.PlayKoSound();
@@ -275,6 +309,7 @@ namespace MahjongTournamentSuite.TableManager
                     returnValue = false;
                 }
             }
+
             hand.IsChickenHand = returnValue;
             _data.UpdateHandIsChickenHand(_hands.Find(x => x.HandId == handId));
             return returnValue;
@@ -330,6 +365,7 @@ namespace MahjongTournamentSuite.TableManager
         {
             _table.UseTotalsOnly = isChecked;
             _data.UpdateTableUseTotalsOnly(_table);
+            CalculateAndFillAllHandsScoresAndPlayersTotalsAndPoints();
         }
 
         #endregion
@@ -499,7 +535,7 @@ namespace MahjongTournamentSuite.TableManager
         
         private void CalculateAndFillAllHandsScoresAndPlayersTotalsAndPoints()
         {
-            if (!IsFilledAnyHand())
+            if (_table.UseTotalsOnly || !IsFilledAnyHand())
             {
                 _form.EnableTotalScoresTextBoxes();
                 FillAllPlayersTotalScores();
@@ -545,7 +581,7 @@ namespace MahjongTournamentSuite.TableManager
                     }
                 }
                 CalculateAndSaveAndFillAllPlayersTotalScoresAndPoints();
-            } 
+            }
         }
 
         private bool IsFilledAnyHand()
