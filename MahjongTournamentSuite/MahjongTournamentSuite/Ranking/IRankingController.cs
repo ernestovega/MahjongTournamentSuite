@@ -8,9 +8,13 @@ namespace MahjongTournamentSuite.Ranking
 
         void StopShowRankingThread();
 
-        void IncrementShowingTimeInOneSecond();
+        void IncrementShowingTime();
 
-        void DecrementShowingTimeInOneSecond();
+        void DecrementShowingTime();
+
+        void IncrementShowingRows();
+
+        void DecrementShowingRows();
 
         void PlayClicked();
 

@@ -100,12 +100,22 @@ namespace MahjongTournamentSuite.Ranking
 
         private void btnSecondsUp_Click(object sender, EventArgs e)
         {
-            _controller.IncrementShowingTimeInOneSecond();
+            _controller.IncrementShowingTime();
         }
 
         private void btnSecondsDown_Click(object sender, EventArgs e)
         {
-            _controller.DecrementShowingTimeInOneSecond();
+            _controller.DecrementShowingTime();
+        }
+
+        private void btnRowsUp_Click(object sender, EventArgs e)
+        {
+            _controller.IncrementShowingRows();
+        }
+
+        private void btnRowsDown_Click(object sender, EventArgs e)
+        {
+            _controller.DecrementShowingRows();
         }
 
         private void btnPlay_Click(object sender, EventArgs e)
@@ -180,9 +190,14 @@ namespace MahjongTournamentSuite.Ranking
             ShowDefaultCursor();
         }
 
-        public void SetSecondsLabel(string seconds)
+        public void SetNumSecondsLabel(string numSeconds)
         {
-            lblSeconds.Text = seconds;
+            lblNumSeconds.Text = numSeconds;
+        }
+
+        public void SetNumRowsLabel(string numRows)
+        {
+            lblNumRows.Text = numRows;
         }
 
         public void UpdateProgressFromThread(string leftTime)
@@ -201,6 +216,26 @@ namespace MahjongTournamentSuite.Ranking
         public void HideButtonSecondsDown()
         {
             btnSecondsDown.Visible = false;
+        }
+
+        public void ShowButtonRowsDown()
+        {
+            btnRowsDown.Visible = true;
+        }
+
+        public void HideButtonRowsDown()
+        {
+            btnRowsDown.Visible = false;
+        }
+
+        public void ShowButtonRowsUp()
+        {
+            btnRowsUp.Visible = true;
+        }
+
+        public void HideButtonRowsUp()
+        {
+            btnRowsUp.Visible = false;
         }
 
         public void ShowButtonPlay()

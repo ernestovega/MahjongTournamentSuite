@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RankingForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnMaximize = new System.Windows.Forms.Button();
             this.lblRankingTitle = new System.Windows.Forms.Label();
@@ -38,12 +38,17 @@
             this.dgv = new System.Windows.Forms.DataGridView();
             this.btnSecondsDown = new System.Windows.Forms.Button();
             this.btnSecondsUp = new System.Windows.Forms.Button();
-            this.lblSeconds = new System.Windows.Forms.Label();
+            this.lblNumSeconds = new System.Windows.Forms.Label();
             this.btnPause = new System.Windows.Forms.Button();
             this.btnPlay = new System.Windows.Forms.Button();
             this.flowLayoutPanelTitle = new System.Windows.Forms.FlowLayoutPanel();
             this.lblLiveRankingUrl = new System.Windows.Forms.Label();
             this.lblProgress = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnRowsDown = new System.Windows.Forms.Button();
+            this.btnRowsUp = new System.Windows.Forms.Button();
+            this.lblNumRows = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbIconTitle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.flowLayoutPanelTitle.SuspendLayout();
@@ -148,25 +153,25 @@
             this.dgv.CausesValidation = false;
             this.dgv.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dgv.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgv.ColumnHeadersHeight = 52;
             this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(8, 0, 8, 0);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(8, 0, 8, 0);
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgv.Enabled = false;
             this.dgv.EnableHeadersVisualStyles = false;
             this.dgv.GridColor = System.Drawing.Color.White;
@@ -198,7 +203,7 @@
             this.btnSecondsDown.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnSecondsDown.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btnSecondsDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSecondsDown.Location = new System.Drawing.Point(19, 40);
+            this.btnSecondsDown.Location = new System.Drawing.Point(50, 58);
             this.btnSecondsDown.Margin = new System.Windows.Forms.Padding(0);
             this.btnSecondsDown.Name = "btnSecondsDown";
             this.btnSecondsDown.Size = new System.Drawing.Size(24, 24);
@@ -215,7 +220,7 @@
             this.btnSecondsUp.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnSecondsUp.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btnSecondsUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSecondsUp.Location = new System.Drawing.Point(19, 20);
+            this.btnSecondsUp.Location = new System.Drawing.Point(50, 38);
             this.btnSecondsUp.Margin = new System.Windows.Forms.Padding(0);
             this.btnSecondsUp.Name = "btnSecondsUp";
             this.btnSecondsUp.Size = new System.Drawing.Size(24, 24);
@@ -223,17 +228,17 @@
             this.btnSecondsUp.UseVisualStyleBackColor = true;
             this.btnSecondsUp.Click += new System.EventHandler(this.btnSecondsUp_Click);
             // 
-            // lblSeconds
+            // lblNumSeconds
             // 
-            this.lblSeconds.AutoSize = true;
-            this.lblSeconds.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F);
-            this.lblSeconds.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.lblSeconds.Location = new System.Drawing.Point(44, 18);
-            this.lblSeconds.Margin = new System.Windows.Forms.Padding(0);
-            this.lblSeconds.Name = "lblSeconds";
-            this.lblSeconds.Size = new System.Drawing.Size(41, 44);
-            this.lblSeconds.TabIndex = 76;
-            this.lblSeconds.Text = "7";
+            this.lblNumSeconds.AutoSize = true;
+            this.lblNumSeconds.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F);
+            this.lblNumSeconds.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.lblNumSeconds.Location = new System.Drawing.Point(75, 36);
+            this.lblNumSeconds.Margin = new System.Windows.Forms.Padding(0);
+            this.lblNumSeconds.Name = "lblNumSeconds";
+            this.lblNumSeconds.Size = new System.Drawing.Size(41, 44);
+            this.lblNumSeconds.TabIndex = 76;
+            this.lblNumSeconds.Text = "7";
             // 
             // btnPause
             // 
@@ -282,7 +287,7 @@
             this.flowLayoutPanelTitle.Location = new System.Drawing.Point(387, 9);
             this.flowLayoutPanelTitle.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanelTitle.Name = "flowLayoutPanelTitle";
-            this.flowLayoutPanelTitle.Size = new System.Drawing.Size(253, 74);
+            this.flowLayoutPanelTitle.Size = new System.Drawing.Size(294, 74);
             this.flowLayoutPanelTitle.TabIndex = 81;
             // 
             // lblLiveRankingUrl
@@ -312,6 +317,74 @@
             this.lblProgress.TabIndex = 83;
             this.lblProgress.Text = "7";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label1.Location = new System.Drawing.Point(51, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(81, 16);
+            this.label1.TabIndex = 76;
+            this.label1.Text = "SECONDS";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.label2.Location = new System.Drawing.Point(196, 16);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(54, 16);
+            this.label2.TabIndex = 84;
+            this.label2.Text = "ROWS";
+            // 
+            // btnRowsDown
+            // 
+            this.btnRowsDown.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRowsDown.BackgroundImage")));
+            this.btnRowsDown.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRowsDown.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnRowsDown.FlatAppearance.BorderSize = 0;
+            this.btnRowsDown.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnRowsDown.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnRowsDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRowsDown.Location = new System.Drawing.Point(182, 58);
+            this.btnRowsDown.Margin = new System.Windows.Forms.Padding(0);
+            this.btnRowsDown.Name = "btnRowsDown";
+            this.btnRowsDown.Size = new System.Drawing.Size(24, 24);
+            this.btnRowsDown.TabIndex = 87;
+            this.btnRowsDown.UseVisualStyleBackColor = true;
+            this.btnRowsDown.Click += new System.EventHandler(this.btnRowsDown_Click);
+            // 
+            // btnRowsUp
+            // 
+            this.btnRowsUp.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRowsUp.BackgroundImage")));
+            this.btnRowsUp.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRowsUp.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnRowsUp.FlatAppearance.BorderSize = 0;
+            this.btnRowsUp.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnRowsUp.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnRowsUp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRowsUp.Location = new System.Drawing.Point(182, 38);
+            this.btnRowsUp.Margin = new System.Windows.Forms.Padding(0);
+            this.btnRowsUp.Name = "btnRowsUp";
+            this.btnRowsUp.Size = new System.Drawing.Size(24, 24);
+            this.btnRowsUp.TabIndex = 86;
+            this.btnRowsUp.UseVisualStyleBackColor = true;
+            this.btnRowsUp.Click += new System.EventHandler(this.btnRowsUp_Click);
+            // 
+            // lblNumRows
+            // 
+            this.lblNumRows.AutoSize = true;
+            this.lblNumRows.Font = new System.Drawing.Font("Microsoft Sans Serif", 28F);
+            this.lblNumRows.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.lblNumRows.Location = new System.Drawing.Point(207, 36);
+            this.lblNumRows.Margin = new System.Windows.Forms.Padding(0);
+            this.lblNumRows.Name = "lblNumRows";
+            this.lblNumRows.Size = new System.Drawing.Size(62, 44);
+            this.lblNumRows.TabIndex = 85;
+            this.lblNumRows.Text = "20";
+            // 
             // RankingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -319,14 +392,19 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1024, 768);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.btnRowsDown);
+            this.Controls.Add(this.btnRowsUp);
+            this.Controls.Add(this.lblNumRows);
             this.Controls.Add(this.lblProgress);
             this.Controls.Add(this.lblLiveRankingUrl);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.flowLayoutPanelTitle);
             this.Controls.Add(this.btnPause);
             this.Controls.Add(this.btnPlay);
             this.Controls.Add(this.btnSecondsDown);
             this.Controls.Add(this.btnSecondsUp);
-            this.Controls.Add(this.lblSeconds);
+            this.Controls.Add(this.lblNumSeconds);
             this.Controls.Add(this.btnMaximize);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.dgv);
@@ -357,12 +435,17 @@
         private System.Windows.Forms.DataGridView dgv;
         private System.Windows.Forms.Button btnSecondsDown;
         private System.Windows.Forms.Button btnSecondsUp;
-        private System.Windows.Forms.Label lblSeconds;
+        private System.Windows.Forms.Label lblNumSeconds;
         private System.Windows.Forms.Button btnPause;
         private System.Windows.Forms.Button btnPlay;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelTitle;
         private System.Windows.Forms.Label lblLiveRankingUrl;
         private System.Windows.Forms.Label lblProgress;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnRowsDown;
+        private System.Windows.Forms.Button btnRowsUp;
+        private System.Windows.Forms.Label lblNumRows;
     }
 }
 
