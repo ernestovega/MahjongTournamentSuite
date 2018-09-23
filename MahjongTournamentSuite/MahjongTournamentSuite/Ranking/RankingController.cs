@@ -81,7 +81,8 @@ namespace MahjongTournamentSuite.Ranking
         {
             _numRowsPerScreen++;
             _form.SetNumRowsLabel(_numRowsPerScreen.ToString());
-            if (_numRowsPerScreen == 9)
+            _form.SetNumRowsPerScreen(_numRowsPerScreen);
+            if (_numRowsPerScreen == 11)
                 _form.ShowButtonRowsDown();
 
         }
@@ -90,7 +91,8 @@ namespace MahjongTournamentSuite.Ranking
         {
             _numRowsPerScreen--;
             _form.SetNumRowsLabel(_numRowsPerScreen.ToString());
-            if (_numRowsPerScreen == 8)
+            _form.SetNumRowsPerScreen(_numRowsPerScreen);
+            if (_numRowsPerScreen == 10)
                 _form.HideButtonRowsDown();
         }
 
@@ -98,7 +100,7 @@ namespace MahjongTournamentSuite.Ranking
         {
             _pauseEvent.Set();
             _form.HideButtonPlay();
-            _form.ShowButtonPause();
+            //_form.ShowButtonPause();
             _form.HideButtonRowsUp();
             _form.HideButtonRowsDown();
         }
