@@ -7,6 +7,9 @@ namespace MahjongTournamentSuite._Data
     {
         /**
          * https://msdn.microsoft.com/en-us/library/jj193542(v=vs.113).aspx
+         * 
+         * (localdb)\MSSQLLocalDB
+         *
          */
 
         public class TournamentSuiteDB : DbContext

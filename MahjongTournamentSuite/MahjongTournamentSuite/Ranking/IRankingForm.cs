@@ -15,13 +15,23 @@ namespace MahjongTournamentSuite.Ranking
 
         void CloseForm();
 
-        void SetSecondsLabel(string seconds);
+        void SetNumSecondsLabel(string numSeconds);
+
+        void SetNumRowsLabel(string numRows);
 
         void UpdateProgressFromThread(string leftTime);
 
         void ShowButtonSecondsDown();
 
         void HideButtonSecondsDown();
+
+        void ShowButtonRowsUp();
+
+        void HideButtonRowsUp();
+
+        void ShowButtonRowsDown();
+
+        void HideButtonRowsDown();
 
         void ShowButtonPlay();
 
