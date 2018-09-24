@@ -118,8 +118,9 @@ namespace MahjongTournamentSuite.Ranking
 
         private void ShowRankings()
         {
-            bool showTeams = true;
-            bool showPlayers = false;
+            bool showPlayers = true;
+            bool showTeams = false;
+            bool showChickenHand = false;
             int startIndex = 0;
             int rowsRange;
 
@@ -131,7 +132,31 @@ namespace MahjongTournamentSuite.Ranking
                 _pauseEvent.WaitOne(Timeout.Infinite);
 
                 #region Show
-                if (showTeams)
+                if (showPlayers)
+                {
+                    rowsRange = _numRowsPerScreen;
+                    if ((startIndex + rowsRange) > _rankings.PlayersRankings.Count)
+                        rowsRange -= (startIndex + rowsRange) - _rankings.PlayersRankings.Count;
+
+                    if (_shutdownEvent.WaitOne(0))
+                        break;
+
+                    _pauseEvent.WaitOne(Timeout.Infinite);
+
+                    _form.FillDGVPlayersFromThread(_rankings.PlayersRankings.GetRange(startIndex, rowsRange), _rankings.IsTeams);
+                    SleepRankingPage();
+
+                    if ((startIndex + _numRowsPerScreen) < _rankings.PlayersRankings.Count)
+                        startIndex += _numRowsPerScreen;
+                    else
+                    {
+                        showPlayers = false;
+                        showTeams = true;
+                        startIndex = 0;
+                        rowsRange = _numRowsPerScreen;
+                    }
+                }
+                else if (showTeams)
                 {
                     if (_rankings.IsTeams)
                     {
@@ -160,35 +185,12 @@ namespace MahjongTournamentSuite.Ranking
                     else
                     {
                         showTeams = false;
-                        showPlayers = true;
+                        showChickenHand = true;
                         startIndex = 0;
                         rowsRange = _numRowsPerScreen;
                     }
                 }
-                else if (showPlayers)
-                {
-                    rowsRange = _numRowsPerScreen;
-                    if ((startIndex + rowsRange) > _rankings.PlayersRankings.Count)
-                        rowsRange -= (startIndex + rowsRange) - _rankings.PlayersRankings.Count;
-
-                    if (_shutdownEvent.WaitOne(0))
-                        break;
-
-                    _pauseEvent.WaitOne(Timeout.Infinite);
-
-                    _form.FillDGVPlayersFromThread(_rankings.PlayersRankings.GetRange(startIndex, rowsRange), _rankings.IsTeams);
-                    SleepRankingPage();
-
-                    if ((startIndex + _numRowsPerScreen) < _rankings.PlayersRankings.Count)
-                        startIndex += _numRowsPerScreen;
-                    else
-                    {
-                        showPlayers = false;
-                        startIndex = 0;
-                        rowsRange = _numRowsPerScreen;
-                    }
-                }
-                else
+                else if (showChickenHand)
                 {
                     if (_rankings.PlayersChickenHandsRankings.Count > 0)
                     {
@@ -215,13 +217,38 @@ namespace MahjongTournamentSuite.Ranking
                     }
                     else
                     {
-                        showTeams = true;
+                        showChickenHand = false;
                         startIndex = 0;
                         rowsRange = _numRowsPerScreen;
                     }
                 }
-                #endregion
-            }
+                else
+                {
+                    if (_rankings.PlayersBestHandsRankings.Count > 0)
+                    {
+                        rowsRange = _rankings.PlayersBestHandsRankings.Count < _numRowsPerScreen ? 
+                            _rankings.PlayersBestHandsRankings.Count : _numRowsPerScreen;
+
+                        if (_shutdownEvent.WaitOne(0))
+                            break;
+
+                        _pauseEvent.WaitOne(Timeout.Infinite);
+
+                        _form.FillDGVPlayersBestHandsFromThread(_rankings.PlayersBestHandsRankings);
+                        SleepRankingPage();
+
+                        showTeams = true;
+                        startIndex = 0;
+                        rowsRange = _numRowsPerScreen;
+                    }
+                    else
+                    {
+                        showPlayers = true;
+                        startIndex = 0;
+                        rowsRange = _numRowsPerScreen;
+                    }
+                    #endregion
+                }
         }
 
         private void SleepRankingPage()
