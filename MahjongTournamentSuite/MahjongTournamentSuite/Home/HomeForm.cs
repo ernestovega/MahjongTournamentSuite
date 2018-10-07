@@ -131,7 +131,7 @@ namespace MahjongTournamentSuite.Home
                 {
                     dgv.Rows[dgv.RowCount - 1].Visible = false;
                 }
-                catch (Exception ex) {}
+                catch (Exception ignored) {}
             }
         }
         

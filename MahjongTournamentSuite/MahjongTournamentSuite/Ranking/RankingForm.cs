@@ -184,6 +184,16 @@ namespace MahjongTournamentSuite.Ranking
             }));
         }
 
+        public void FillDGVPlayersBestHandsFromThread(List<BestHandRanking> playersBestHandsRankingsRange)
+        {
+            Invoke(new MethodInvoker(() =>
+            {
+                ShowWaitCursor();
+                FillDGVPlayersBestHands(playersBestHandsRankingsRange);
+                ShowDefaultCursor();
+            }));
+        }
+
         public void CloseForm()
         {
             Close();
@@ -265,7 +275,7 @@ namespace MahjongTournamentSuite.Ranking
         private void FillDGVPlayers(List<PlayerRanking> playersRankingsRange, bool isTeams)
         {
             pbIconTitle.Image = Properties.Resources.players_big;
-            lblRankingTitle.Text = "PLAYERS RANKING";
+            lblRankingTitle.Text = "PLAYERS";
             CenterPanelTitle();
             dgv.DataSource = playersRankingsRange;
 
@@ -322,7 +332,7 @@ namespace MahjongTournamentSuite.Ranking
         private void FillDGVTeams(List<TeamRanking> teamsRankingsRange)
         {
             pbIconTitle.Image = Properties.Resources.teams_big;
-            lblRankingTitle.Text = "TEAMS RANKING";
+            lblRankingTitle.Text = "TEAMS";
             CenterPanelTitle();
             dgv.DataSource = teamsRankingsRange;
 
@@ -356,7 +366,7 @@ namespace MahjongTournamentSuite.Ranking
         private void FillDGVPlayersChickenHands(List<ChickenHandRanking> playersChickenHandsRankingsRange)
         {
             pbIconTitle.Image = Properties.Resources.chicken_big;
-            lblRankingTitle.Text = "CHICKEN HAND RANKING";
+            lblRankingTitle.Text = "CHICKEN HANDS";
             CenterPanelTitle();
             dgv.DataSource = playersChickenHandsRankingsRange;
 
@@ -402,6 +412,60 @@ namespace MahjongTournamentSuite.Ranking
             dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_POINTS].SortMode = DataGridViewColumnSortMode.NotSortable;
             dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_PLAYER_SCORE].SortMode = DataGridViewColumnSortMode.NotSortable;
             dgv.Columns[ChickenHandRanking.COLUMN_PLAYER_CHICKEN_HAND_RANKING_COUNTRY_FLAG].SortMode = DataGridViewColumnSortMode.NotSortable;
+
+            CenterDGV();
+            CalculateAndSetDefaultRowHeightToFillScreen();
+        }
+
+        public void FillDGVPlayersBestHands(List<BestHandRanking> playersBestHandsRankingsRange)
+        {
+            pbIconTitle.Image = Properties.Resources.chicken_big;
+            lblRankingTitle.Text = "BEST HANDS";
+            CenterPanelTitle();
+            dgv.DataSource = playersBestHandsRankingsRange;
+
+            //Visible
+            dgv.Columns[BestHandRanking.COLUMN_PLAYER_BEST_HAND_RANKING_ORDER].Visible = true;
+            dgv.Columns[BestHandRanking.COLUMN_PLAYER_BEST_HAND_RANKING_PLAYER_ID].Visible = false;
+            dgv.Columns[BestHandRanking.COLUMN_PLAYER_BEST_HAND_RANKING_PLAYER_NAME].Visible = true;
+            dgv.Columns[BestHandRanking.COLUMN_PLAYER_BEST_HAND_RANKING_BEST_HAND_VALUE].Visible = true;
+            dgv.Columns[BestHandRanking.COLUMN_PLAYER_BEST_HAND_RANKING_PLAYER_POINTS].Visible = true;
+            dgv.Columns[BestHandRanking.COLUMN_PLAYER_BEST_HAND_RANKING_PLAYER_SCORE].Visible = true;
+            dgv.Columns[BestHandRanking.COLUMN_PLAYER_BEST_HAND_RANKING_COUNTRY_NAME].Visible = false;
+            dgv.Columns[BestHandRanking.COLUMN_PLAYER_BEST_HAND_RANKING_COUNTRY_HTML_FLAG_URL].Visible = false;
+            dgv.Columns[BestHandRanking.COLUMN_PLAYER_BEST_HAND_RANKING_COUNTRY_FLAG].Visible = true;
+            //HeaderText             
+            dgv.Columns[BestHandRanking.COLUMN_PLAYER_BEST_HAND_RANKING_ORDER].HeaderText = "#";
+            dgv.Columns[BestHandRanking.COLUMN_PLAYER_BEST_HAND_RANKING_PLAYER_NAME].HeaderText = "Player name";
+            dgv.Columns[BestHandRanking.COLUMN_PLAYER_BEST_HAND_RANKING_BEST_HAND_VALUE].HeaderText = "Best hand";
+            dgv.Columns[BestHandRanking.COLUMN_PLAYER_BEST_HAND_RANKING_PLAYER_POINTS].HeaderText = "Points";
+            dgv.Columns[BestHandRanking.COLUMN_PLAYER_BEST_HAND_RANKING_PLAYER_SCORE].HeaderText = "Score";
+            dgv.Columns[BestHandRanking.COLUMN_PLAYER_BEST_HAND_RANKING_COUNTRY_FLAG].HeaderText = "Country";
+            //Column Flags Image Layout
+            ((DataGridViewImageColumn)dgv.Columns[BestHandRanking.COLUMN_PLAYER_BEST_HAND_RANKING_COUNTRY_FLAG]).ImageLayout = DataGridViewImageCellLayout.Zoom;
+            //Column Flags Header&Cell Content Alignment
+            dgv.Columns[BestHandRanking.COLUMN_PLAYER_BEST_HAND_RANKING_COUNTRY_FLAG].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dgv.Columns[BestHandRanking.COLUMN_PLAYER_BEST_HAND_RANKING_COUNTRY_FLAG].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            //Padding
+            dgv.Columns[BestHandRanking.COLUMN_PLAYER_BEST_HAND_RANKING_BEST_HAND_VALUE].DefaultCellStyle.Padding = new Padding(25, 0, 25, 0);
+            dgv.Columns[BestHandRanking.COLUMN_PLAYER_BEST_HAND_RANKING_PLAYER_POINTS].DefaultCellStyle.Padding = new Padding(25, 0, 25, 0);
+            dgv.Columns[BestHandRanking.COLUMN_PLAYER_BEST_HAND_RANKING_PLAYER_SCORE].DefaultCellStyle.Padding = new Padding(25, 0, 25, 0);
+            dgv.Columns[BestHandRanking.COLUMN_PLAYER_BEST_HAND_RANKING_COUNTRY_FLAG].DefaultCellStyle.Padding = new Padding(25, 0, 25, 0);
+            //DisplayIndex
+            dgv.Columns[BestHandRanking.COLUMN_PLAYER_BEST_HAND_RANKING_ORDER].DisplayIndex = 0;
+            dgv.Columns[BestHandRanking.COLUMN_PLAYER_BEST_HAND_RANKING_PLAYER_NAME].DisplayIndex = 1;
+            dgv.Columns[BestHandRanking.COLUMN_PLAYER_BEST_HAND_RANKING_BEST_HAND_VALUE].DisplayIndex = 2;
+            dgv.Columns[BestHandRanking.COLUMN_PLAYER_BEST_HAND_RANKING_PLAYER_POINTS].DisplayIndex = 3;
+            dgv.Columns[BestHandRanking.COLUMN_PLAYER_BEST_HAND_RANKING_PLAYER_SCORE].DisplayIndex = 4;
+            dgv.Columns[BestHandRanking.COLUMN_PLAYER_BEST_HAND_RANKING_COUNTRY_FLAG].DisplayIndex = 5;
+            //Sortable
+            dgv.Columns[BestHandRanking.COLUMN_PLAYER_BEST_HAND_RANKING_ORDER].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns[BestHandRanking.COLUMN_PLAYER_BEST_HAND_RANKING_PLAYER_ID].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns[BestHandRanking.COLUMN_PLAYER_BEST_HAND_RANKING_PLAYER_NAME].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns[BestHandRanking.COLUMN_PLAYER_BEST_HAND_RANKING_BEST_HAND_VALUE].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns[BestHandRanking.COLUMN_PLAYER_BEST_HAND_RANKING_PLAYER_POINTS].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns[BestHandRanking.COLUMN_PLAYER_BEST_HAND_RANKING_PLAYER_SCORE].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgv.Columns[BestHandRanking.COLUMN_PLAYER_BEST_HAND_RANKING_COUNTRY_FLAG].SortMode = DataGridViewColumnSortMode.NotSortable;
 
             CenterDGV();
             CalculateAndSetDefaultRowHeightToFillScreen();
