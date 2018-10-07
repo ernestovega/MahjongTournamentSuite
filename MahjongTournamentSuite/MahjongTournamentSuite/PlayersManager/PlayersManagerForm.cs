@@ -49,7 +49,6 @@ namespace MahjongTournamentSuite.ManagePlayers
                 DialogResult = DialogResult.Cancel;
             else
                 DialogResult = DialogResult.OK;
-
         }
         
         private void dgv_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)

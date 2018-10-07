@@ -269,9 +269,9 @@ namespace MahjongTournamentSuite.TournamentManager
             using (var playersManagerForm = new PlayersManagerForm(_tournamentId))
             {
                 if (playersManagerForm.ShowDialog() == DialogResult.OK)
-                    _controller.PlayersManagerFormClosed(true);
-                else
                     _controller.PlayersManagerFormClosed(false);
+                else
+                    _controller.PlayersManagerFormClosed(true);
             }
         }
 

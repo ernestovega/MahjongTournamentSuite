@@ -104,7 +104,7 @@ namespace MahjongTournamentSuite.TournamentManager
 
         public void PlayersManagerFormClosed(bool isWrongTeams)
         {
-            if (!isWrongTeams)
+            if (isWrongTeams)
                 ButtonPlayersClicked();
             else
             {

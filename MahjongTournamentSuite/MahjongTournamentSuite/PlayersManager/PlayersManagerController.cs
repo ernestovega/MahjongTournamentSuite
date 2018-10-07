@@ -35,8 +35,7 @@ namespace MahjongTournamentSuite.PlayersManager
         {
             _tournament = _data.GetTournament(tournamentId);
             _players = _data.GetTournamentPlayers(tournamentId);
-            if (_tournament.IsTeams)
-                _teams = _data.GetTournamentTeams(tournamentId);
+            _teams = _tournament.IsTeams ? _data.GetTournamentTeams(tournamentId) : new List<VTeam>();
             _countries = _data.GetCountries();
 
             List<DGVPlayer> dgvPlayers = new List<DGVPlayer>(_players.Count);
@@ -96,7 +95,7 @@ namespace MahjongTournamentSuite.PlayersManager
 
         public bool IsWrongPlayersTeams()
         {
-            return GetWrongTeams().Count > 0;
+            return _tournament.IsTeams && GetWrongTeams().Count > 0;
         }
 
         #endregion
@@ -129,6 +128,7 @@ namespace MahjongTournamentSuite.PlayersManager
 
         private List<WrongTeam> GetWrongTeams()
         {
+            _players = _data.GetTournamentPlayers(_tournament.TournamentId);
             List<WrongTeam> wrongTeams = new List<WrongTeam>();
             foreach (VTeam team in _teams)
             {

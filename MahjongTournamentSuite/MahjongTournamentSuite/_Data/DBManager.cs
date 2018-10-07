@@ -170,9 +170,9 @@ namespace MahjongTournamentSuite._Data
 
         public void RefreshPlayers(int tournamentId)
         {
-            List<DBTeam> teams = _db.Teams.ToList().FindAll(x => x.TeamTournamentId == tournamentId);
-            foreach (DBTeam team in teams)
-                _db.Entry(team).Reload();
+            List<DBPlayer> players = _db.Players.ToList().FindAll(x => x.PlayerTournamentId == tournamentId);
+            foreach (DBPlayer player in players)
+                _db.Entry(player).Reload();
         }
 
         #endregion
@@ -370,7 +370,9 @@ namespace MahjongTournamentSuite._Data
 
         public void RefreshTeams(int tournamentId)
         {
-            throw new NotImplementedException();
+            List<DBTeam> teams = _db.Teams.ToList().FindAll(x => x.TeamTournamentId == tournamentId);
+            foreach (DBTeam team in teams)
+                _db.Entry(team).Reload();
         }
 
         #endregion
