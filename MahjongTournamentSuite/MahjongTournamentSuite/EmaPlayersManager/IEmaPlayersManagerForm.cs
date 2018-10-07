@@ -10,7 +10,7 @@ namespace MahjongTournamentSuite.EmaPlayersManager
 
         void DGVCancelEdit();
 
-        void ShowMessagePlayerNameInUse(string newName, int ownerPlayerId);
+        void ShowMessagePlayerEmaNumberInUse(string emaNumberInUse);
 
         void PlayKoSound();
     }

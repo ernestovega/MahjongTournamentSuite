@@ -81,7 +81,35 @@ namespace MahjongTournamentSuite.EmaPlayersManager
         {
             if (e.RowIndex > -1)
             {
-                if (dgv.Columns[e.ColumnIndex].Name.Equals(VEmaPlayer.COLUMN_EMA_PLAYER_NAME))
+                if (dgv.Columns[e.ColumnIndex].Name.Equals(VEmaPlayer.COLUMN_EMA_PLAYER_EMA_NUMBER))
+                {
+                    Cursor = Cursors.WaitCursor;
+                    string previousValue = (string)dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                    string newValue = ((string)e.FormattedValue).Trim();
+                    if (newValue.Length > 0 && !newValue.Equals(previousValue))
+                    {
+                        string emaPlayerEmaNumber = (string)dgv.Rows[e.RowIndex].Cells[VEmaPlayer.COLUMN_EMA_PLAYER_EMA_NUMBER].Value;
+                        _controller.EmaPlayerEmaNumberChanged(emaPlayerEmaNumber, newValue);
+                    }
+                    else
+                        DGVCancelEdit();
+                    Cursor = Cursors.Default;
+                }
+                else if (dgv.Columns[e.ColumnIndex].Name.Equals(VEmaPlayer.COLUMN_EMA_PLAYER_LAST_NAME))
+                {
+                    Cursor = Cursors.WaitCursor;
+                    string previousValue = (string)dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                    string newValue = ((string)e.FormattedValue).Trim();
+                    if (newValue.Length > 0 && !newValue.Equals(previousValue))
+                    {
+                        string emaPlayerEmaNumber = (string)dgv.Rows[e.RowIndex].Cells[VEmaPlayer.COLUMN_EMA_PLAYER_EMA_NUMBER].Value;
+                        _controller.EmaPlayerLastNameChanged(emaPlayerEmaNumber, newValue);
+                    }
+                    else
+                        DGVCancelEdit();
+                    Cursor = Cursors.Default;
+                }
+                else if (dgv.Columns[e.ColumnIndex].Name.Equals(VEmaPlayer.COLUMN_EMA_PLAYER_NAME))
                 {
                     Cursor = Cursors.WaitCursor;
                     string previousValue = (string)dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
@@ -137,9 +165,9 @@ namespace MahjongTournamentSuite.EmaPlayersManager
             dgv.CancelEdit();
         }
 
-        public void ShowMessagePlayerNameInUse(string usedName, int ownerPlayerId)
+        public void ShowMessagePlayerEmaNumberInUse(string usedEmaNumber)
         {
-            MessageBox.Show(string.Format("\"{0}\" is in use by the player {1}", usedName, ownerPlayerId), "Name in use");
+            MessageBox.Show(string.Format("Ema Number: {0} is in use by other player", usedEmaNumber), "Ema Number in use");
         }
 
         public void PlayKoSound()

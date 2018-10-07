@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using MahjongTournamentSuite.Resources.flags;
 using MahjongTournamentSuite.EmaReport;
+using System;
 
 namespace MahjongTournamentSuite.EmaPlayersManager
 {
@@ -45,7 +46,25 @@ namespace MahjongTournamentSuite.EmaPlayersManager
 
         public void EmaPlayerEmaNumberChanged(string oldEmaNumber, string newEmaNumber)
         {
-            _data.UpdateEmaPlayerEmaNumber(oldEmaNumber, newEmaNumber);
+            string ownerPlayerEmaNumberEmaNumber = GetOwnerPlayerEmaNumberEmaNumber(newEmaNumber);
+            if (ownerPlayerEmaNumberEmaNumber.Equals(string.Empty))
+            {
+                _data.UpdateEmaPlayerEmaNumber(oldEmaNumber, newEmaNumber);
+                return;
+            }
+            _form.PlayKoSound();
+            _form.DGVCancelEdit();
+            _form.ShowMessagePlayerEmaNumberInUse(newEmaNumber);
+        }
+
+        private string GetOwnerPlayerEmaNumberEmaNumber(string newEmaNumber)
+        {
+            VEmaPlayer ownerEmaPlayer = _emaPlayers.Find(x => x.EmaPlayerEmaNumber.Equals(newEmaNumber,
+                StringComparison.InvariantCulture));
+            if (ownerEmaPlayer == null)
+                return string.Empty;
+            else
+                return ownerEmaPlayer.EmaPlayerEmaNumber;
         }
 
         public void EmaPlayerLastNameChanged(string emaPlayerEmaNumber, string newLastName)

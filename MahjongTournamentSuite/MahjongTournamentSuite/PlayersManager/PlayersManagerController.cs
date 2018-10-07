@@ -60,7 +60,7 @@ namespace MahjongTournamentSuite.PlayersManager
             }
             _form.PlayKoSound();
             _form.DGVCancelEdit();
-            _form.ShowMessagePlayerNameInUse(newPlayerName, ownerPlayerId);            
+            _form.ShowMessagePlayerNameInUse(newPlayerName, ownerPlayerId);
         }
 
         public int SaveNewPlayerTeam(int playerId, string newTeamName)
