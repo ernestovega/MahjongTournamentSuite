@@ -11,6 +11,7 @@
         void CheckWrongPlayersTeams();
 
         void SaveNewPlayerCountry(int playerId, string newCountryName);
+
         bool IsWrongPlayersTeams();
     }
 }

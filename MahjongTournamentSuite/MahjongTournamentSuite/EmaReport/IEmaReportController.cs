@@ -4,6 +4,6 @@ namespace MahjongTournamentSuite.EmaReport
 {
     interface IEmaReportController
     {
-        void LoadForm(List<DGVPlayerEma> dgvEmaPlayers);
+        void LoadForm(List<DGVEmaPlayer> dgvEmaPlayers);
     }
 }

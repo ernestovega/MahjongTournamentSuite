@@ -77,14 +77,25 @@
     <Compile Include="CountryManager\ICountryManagerDataManager.cs" />
     <Compile Include="CountrySelector\ICountrySelectorDataManager.cs" />
     <Compile Include="Home\IHomeDataManager.cs" />
+    <Compile Include="EmaPlayersManager\IEmaPlayersManagerController.cs" />
+    <Compile Include="EmaPlayersManager\IEmaPlayersManagerDataManager.cs" />
+    <Compile Include="EmaPlayersManager\IEmaPlayersManagerForm.cs" />
+    <Compile Include="EmaPlayersManager\EmaPlayersManagerController.cs" />
+    <Compile Include="EmaPlayersManager\EmaPlayersManagerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmaPlayersManager\EmaPlayersManagerForm.Designer.cs">
+      <DependentUpon>EmaPlayersManagerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\BestHandRanking.cs" />
     <Compile Include="ViewModel\VCountry.cs" />
     <Compile Include="ViewModel\VHand.cs" />
+    <Compile Include="ViewModel\VEmaPlayer.cs" />
     <Compile Include="ViewModel\VPlayer.cs" />
     <Compile Include="ViewModel\VTable.cs" />
     <Compile Include="ViewModel\VTeam.cs" />
     <Compile Include="ViewModel\VTournament.cs" />
-    <Compile Include="ViewModel\DGVPlayerEma.cs" />
+    <Compile Include="ViewModel\DGVEmaPlayer.cs" />
     <Compile Include="EmaReport\EmaReportForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -253,9 +264,11 @@
       <DependentUpon>TournamentManagerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="TournamentManager\TournamentManagerController.cs" />
+    <Compile Include="_Data\DataModel\DBEmaPlayer.cs" />
     <Compile Include="_Data\DBContext.cs" />
     <Compile Include="_Data\DBManager.cs" />
     <Compile Include="_Data\IDBManager.cs" />
+    <Compile Include="_Data\Mappers\EmaPlayerMapper.cs" />
     <Compile Include="_Data\Mappers\PlayerMapper.cs" />
     <Compile Include="_Data\Mappers\TableMapper.cs" />
     <Compile Include="_Data\Mappers\TeamMapper.cs" />
@@ -270,6 +283,9 @@
     <Compile Include="_Data\DataModel\DBTournament.cs" />
     <EmbeddedResource Include="EmaReport\EmaReportForm.resx">
       <DependentUpon>EmaReportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmaPlayersManager\EmaPlayersManagerForm.resx">
+      <DependentUpon>EmaPlayersManagerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PlayersTables\PlayersTablesForm.resx">
       <DependentUpon>PlayersTablesForm.cs</DependentUpon>

@@ -7,7 +7,6 @@ using MahjongTournamentSuite.TeamSelector;
 using MahjongTournamentSuite.CountrySelector;
 using MahjongTournamentSuite.ViewModel;
 using System.Drawing;
-using System;
 using MahjongTournamentSuite.Resources.flags;
 using System.Media;
 
@@ -261,7 +260,7 @@ namespace MahjongTournamentSuite.ManagePlayers
 
         private void ShowCountriesSelector(int rowIndex)
         {
-            using (var countrySelectorForm = new CountrySelectorForm())
+            using (var countrySelectorForm = new CountrySelectorForm(true))
             {
                 if (countrySelectorForm.ShowDialog() == DialogResult.OK)
                 {

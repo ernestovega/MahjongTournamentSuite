@@ -13,8 +13,6 @@ namespace MahjongTournamentSuite._Data.DataModel
         public int PlayerTeamId { get; set; }
         public string PlayerCountryName { get; set; }
 
-
-
         public DBPlayer() { }
 
         public DBPlayer(int tournamentId, int id, string name, int teamId, string countryName)

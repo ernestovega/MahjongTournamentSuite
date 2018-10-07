@@ -2,6 +2,6 @@
 {
     interface ICountrySelectorController
     {
-        void LoadForm();
+        void LoadForm(bool loadOnlyWhichHaveHtmlFlag);
     }
 }

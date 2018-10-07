@@ -35,7 +35,6 @@ namespace MahjongTournamentSuite.TournamentManager
 
         private ITournamentManagerController _controller;
         private int _tournamentId;
-        private PlayersManagerForm _playersManagerForm;
 
         #endregion
 
@@ -309,7 +308,7 @@ namespace MahjongTournamentSuite.TournamentManager
             new PlayersTablesForm(tournamentId).ShowDialog();
         }
 
-        public void GoToEmaReport(List<DGVPlayerEma> dgvEmaPlayers)
+        public void GoToEmaReport(List<DGVEmaPlayer> dgvEmaPlayers)
         {
             new EmaReportForm(dgvEmaPlayers).ShowDialog();
         }

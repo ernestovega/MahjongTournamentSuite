@@ -24,11 +24,12 @@ namespace MahjongTournamentSuite.CountrySelector
 
         #region ICountrySelectorController implementation
 
-        public void LoadForm()
+        public void LoadForm(bool loadOnlyWhichHaveHtmlFlag)
         {
             _countriesNames = new List<string>();
             _countriesNames.Add("No country");
-            _countriesNames.AddRange(_data.GetCountriesNamesWichHaveImageUrl());
+            _countriesNames.AddRange(loadOnlyWhichHaveHtmlFlag ? 
+                _data.GetCountriesNamesWichHaveImageUrl() : _data.GetCountriesNames());
             _form.FillLbCountries(_countriesNames);
         }
 

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
+using MahjongTournamentSuite.EmaPlayersManager;
 
 namespace MahjongTournamentSuite.Home
 {
@@ -42,18 +43,8 @@ namespace MahjongTournamentSuite.Home
         private void HomeForm_Load(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            CenterMainButtons();
             _controller.LoadTournaments();
             Cursor = Cursors.Default;
-        }
-
-        private void HomeForm_Resize(object sender, EventArgs e)
-        {
-            Cursor = Cursors.WaitCursor;
-            if (_controller != null)
-                _controller.OnFormResized();
-            Cursor = Cursors.Default;
-
         }
 
         private void HomeForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -75,6 +66,13 @@ namespace MahjongTournamentSuite.Home
             Cursor = Cursors.WaitCursor;
             ProcessStartInfo sInfo = new ProcessStartInfo("http://mahjong-europe.org/portal/");
             Process.Start(sInfo);
+            Cursor = Cursors.Default;
+        }
+
+        private void btnEmaPlayers_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            new EmaPlayersManagerForm().ShowDialog();
             Cursor = Cursors.Default;
         }
 
@@ -214,12 +212,6 @@ namespace MahjongTournamentSuite.Home
         #endregion
 
         #region IHomeForm implementation
-
-        public void CenterMainButtons()
-        {
-            panelMainButtons.Location =
-                new Point((Width - panelMainButtons.Width) / 2, panelMainButtons.Location.Y);
-        }
 
         public void FillDGVTournaments(List<VTournament> tournaments)
         {

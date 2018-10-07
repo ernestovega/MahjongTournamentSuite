@@ -5,5 +5,6 @@ namespace MahjongTournamentSuite.CountrySelector
     public interface ICountrySelectorDataManager
     {
         List<string> GetCountriesNamesWichHaveImageUrl();
+        List<string> GetCountriesNames();
     }
 }

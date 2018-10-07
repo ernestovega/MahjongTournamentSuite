@@ -13,9 +13,9 @@ namespace MahjongTournamentSuite.ViewModel
 
         public DGVPlayer() {}
 
-        public DGVPlayer(VPlayer dbPlayer, string teamName, Image playerCountryFlag) : 
-            base(dbPlayer.PlayerTournamentId, dbPlayer.PlayerId, dbPlayer.PlayerName, 
-                dbPlayer.PlayerTeamId, dbPlayer.PlayerCountryName)
+        public DGVPlayer(VPlayer vPlayer, string teamName, Image playerCountryFlag) : 
+            base(vPlayer.PlayerTournamentId, vPlayer.PlayerId, vPlayer.PlayerName, 
+                vPlayer.PlayerTeamId, vPlayer.PlayerCountryName)
         {
             PlayerTeamName = teamName;
             PlayerCountryFlag = playerCountryFlag;

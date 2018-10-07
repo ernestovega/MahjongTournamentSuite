@@ -12,6 +12,7 @@ using MahjongTournamentSuite.TeamsManager;
 using MahjongTournamentSuite.PlayersTables;
 using MahjongTournamentSuite.EmaReport;
 using MahjongTournamentSuite._Data;
+using MahjongTournamentSuite.EmaPlayersManager;
 
 namespace MahjongTournamentSuite
 {
@@ -76,8 +77,7 @@ namespace MahjongTournamentSuite
             return new CountryManagerController(countryManagerForm);
         }
 
-        internal static IPlayersManagerController providePlayersManagerController(
-            IPlayersManagerForm playersManagerForm)
+        internal static IPlayersManagerController providePlayersManagerController(IPlayersManagerForm playersManagerForm)
         {
             return new PlayersManagerController(playersManagerForm);
         }
@@ -95,6 +95,11 @@ namespace MahjongTournamentSuite
         internal static IEmaReportController provideEmaReportController(IEmaReportForm emaReportForm)
         {
             return new EmaReportController(emaReportForm);
+        }
+
+        internal static IEmaPlayersManagerController provideEmaPlayersManagerController(IEmaPlayersManagerForm emaPlayersManagerForm)
+        {
+            return new EmaPlayersManagerController(emaPlayersManagerForm);
         }
     }
 }
