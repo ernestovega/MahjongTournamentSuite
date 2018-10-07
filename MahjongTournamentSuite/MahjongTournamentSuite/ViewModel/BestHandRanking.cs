@@ -36,13 +36,13 @@ namespace MahjongTournamentSuite.ViewModel
 
         public BestHandRanking() { }
 
-        public BestHandRanking(int playerId, string playerName, float playerPoints, int playerScore,
+        public BestHandRanking(int playerId, string playerName, int playerBestHandValue, float playerPoints, int playerScore,
             string playerCountryName, string playerCountryHtmlFlagUrl, Image playerCountryFlagImage)
         {
             Order = 0;
             PlayerId = playerId;
             PlayerName = playerName;
-            PlayerBestHandValue = 0;
+            PlayerBestHandValue = playerBestHandValue;
             PlayerPoints = playerPoints;
             PlayerScore = playerScore;
             PlayerCountryName = playerCountryName;

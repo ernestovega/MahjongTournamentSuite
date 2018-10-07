@@ -13,7 +13,8 @@ namespace MahjongTournamentSuite.ViewModel
         public Rankings() {}
 
         public Rankings(List<PlayerRanking> playersRankings, List<TeamRanking> teamsRankings, 
-            List<ChickenHandRanking> playersChickenHandsRankings, bool isTeams)
+            List<ChickenHandRanking> playersChickenHandsRankings, List<BestHandRanking> playersBestHandsRankings, 
+            bool isTeams)
         {
             PlayersRankings = playersRankings;
             TeamsRankings = teamsRankings;

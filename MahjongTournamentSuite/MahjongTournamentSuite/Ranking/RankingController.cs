@@ -121,6 +121,7 @@ namespace MahjongTournamentSuite.Ranking
             bool showPlayers = true;
             bool showTeams = false;
             bool showChickenHand = false;
+            bool showBestHand = false;
             int startIndex = 0;
             int rowsRange;
 
@@ -177,7 +178,7 @@ namespace MahjongTournamentSuite.Ranking
                         else
                         {
                             showTeams = false;
-                            showPlayers = true;
+                            showChickenHand = true;
                             startIndex = 0;
                             rowsRange = _numRowsPerScreen;
                         }
@@ -210,7 +211,8 @@ namespace MahjongTournamentSuite.Ranking
                             startIndex += _numRowsPerScreen;
                         else
                         {
-                            showTeams = true;
+                            showChickenHand = false;
+                            showBestHand = true;
                             startIndex = 0;
                             rowsRange = _numRowsPerScreen;
                         }
@@ -218,15 +220,16 @@ namespace MahjongTournamentSuite.Ranking
                     else
                     {
                         showChickenHand = false;
+                        showBestHand = true;
                         startIndex = 0;
                         rowsRange = _numRowsPerScreen;
                     }
                 }
-                else
+                else if (showBestHand)
                 {
                     if (_rankings.PlayersBestHandsRankings.Count > 0)
                     {
-                        rowsRange = _rankings.PlayersBestHandsRankings.Count < _numRowsPerScreen ? 
+                        rowsRange = _rankings.PlayersBestHandsRankings.Count < _numRowsPerScreen ?
                             _rankings.PlayersBestHandsRankings.Count : _numRowsPerScreen;
 
                         if (_shutdownEvent.WaitOne(0))
@@ -237,18 +240,21 @@ namespace MahjongTournamentSuite.Ranking
                         _form.FillDGVPlayersBestHandsFromThread(_rankings.PlayersBestHandsRankings);
                         SleepRankingPage();
 
-                        showTeams = true;
+                        showBestHand = false;
+                        showPlayers = true;
                         startIndex = 0;
                         rowsRange = _numRowsPerScreen;
                     }
                     else
                     {
+                        showBestHand = false;
                         showPlayers = true;
                         startIndex = 0;
                         rowsRange = _numRowsPerScreen;
                     }
                     #endregion
                 }
+            }
         }
 
         private void SleepRankingPage()

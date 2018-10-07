@@ -184,6 +184,16 @@ namespace MahjongTournamentSuite.Ranking
             }));
         }
 
+        public void FillDGVPlayersBestHandsFromThread(List<BestHandRanking> playersBestHandsRankingsRange)
+        {
+            Invoke(new MethodInvoker(() =>
+            {
+                ShowWaitCursor();
+                FillDGVPlayersBestHands(playersBestHandsRankingsRange);
+                ShowDefaultCursor();
+            }));
+        }
+
         public void CloseForm()
         {
             Close();
@@ -265,7 +275,7 @@ namespace MahjongTournamentSuite.Ranking
         private void FillDGVPlayers(List<PlayerRanking> playersRankingsRange, bool isTeams)
         {
             pbIconTitle.Image = Properties.Resources.players_big;
-            lblRankingTitle.Text = "PLAYERS RANKING";
+            lblRankingTitle.Text = "PLAYERS";
             CenterPanelTitle();
             dgv.DataSource = playersRankingsRange;
 
@@ -322,7 +332,7 @@ namespace MahjongTournamentSuite.Ranking
         private void FillDGVTeams(List<TeamRanking> teamsRankingsRange)
         {
             pbIconTitle.Image = Properties.Resources.teams_big;
-            lblRankingTitle.Text = "TEAMS RANKING";
+            lblRankingTitle.Text = "TEAMS";
             CenterPanelTitle();
             dgv.DataSource = teamsRankingsRange;
 
@@ -356,7 +366,7 @@ namespace MahjongTournamentSuite.Ranking
         private void FillDGVPlayersChickenHands(List<ChickenHandRanking> playersChickenHandsRankingsRange)
         {
             pbIconTitle.Image = Properties.Resources.chicken_big;
-            lblRankingTitle.Text = "CHICKEN HAND RANKING";
+            lblRankingTitle.Text = "CHICKEN HANDS";
             CenterPanelTitle();
             dgv.DataSource = playersChickenHandsRankingsRange;
 
@@ -407,10 +417,10 @@ namespace MahjongTournamentSuite.Ranking
             CalculateAndSetDefaultRowHeightToFillScreen();
         }
 
-        public void FillDGVPlayersBestHandsFromThread(List<BestHandRanking> playersBestHandsRankingsRange)
+        public void FillDGVPlayersBestHands(List<BestHandRanking> playersBestHandsRankingsRange)
         {
             pbIconTitle.Image = Properties.Resources.chicken_big;
-            lblRankingTitle.Text = "BEST HAND RANKING";
+            lblRankingTitle.Text = "BEST HANDS";
             CenterPanelTitle();
             dgv.DataSource = playersBestHandsRankingsRange;
 

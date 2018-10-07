@@ -12,6 +12,7 @@ namespace MahjongTournamentSuite.TournamentManager
     {
         #region Fields
 
+        private readonly int NUM_MAX_BEST_HANDS = 10;
         private ITournamentManagerForm _form;
         private ITournamentManagerDataManager _data;
         private VTournament _tournament;
@@ -24,6 +25,7 @@ namespace MahjongTournamentSuite.TournamentManager
         private List<PlayerRanking> _playersRankings; 
         private List<TeamRanking> _teamsRankings;
         private List<ChickenHandRanking> _chickenHandsRankings;
+        private List<BestHandRanking> _bestHandsRankings;
         private int _tournamentId;
         private Rankings _rankings;
         private bool loadCompleted;
@@ -244,8 +246,8 @@ namespace MahjongTournamentSuite.TournamentManager
             CalculateAndSortPlayersScores();
             if (_tournament.IsTeams) CalculateAndSortTeamsScores();
             CalculateAndSortPlayersChickenHands();
-            return new Rankings(_playersRankings, _teamsRankings,
-                 _chickenHandsRankings, _tournament.IsTeams);
+            CalculateAndSortPlayersBestHands();
+            return new Rankings(_playersRankings, _teamsRankings, _chickenHandsRankings, _bestHandsRankings, _tournament.IsTeams);
         }
 
         private void CalculateAndSortPlayersScores()
@@ -336,6 +338,26 @@ namespace MahjongTournamentSuite.TournamentManager
                 .ThenByDescending(x => x.PlayerPoints).ThenByDescending(x => x.PlayerScore).ToList();
             for (int i = 0; i < _chickenHandsRankings.Count; i++)
                 _chickenHandsRankings[i].Order = i + 1;
+        }
+
+        private void CalculateAndSortPlayersBestHands()
+        {
+            List<VHand> bestHands = _hands.OrderByDescending(x => x.HandScore.Length == 0 ? 0 : int.Parse(x.HandScore))
+                .Take(NUM_MAX_BEST_HANDS).ToList();
+            _bestHandsRankings = new List<BestHandRanking>();
+            foreach (VHand bestHand in bestHands)
+            {
+                VPlayer bestHandPlayer = _players.Find(x => x.PlayerId == int.Parse(bestHand.PlayerWinnerId));
+                PlayerRanking bestHandPlayerRanking = _playersRankings.Find(x => x.PlayerId == int.Parse(bestHand.PlayerWinnerId));
+                BestHandRanking playerBestHandRanking = new BestHandRanking(
+                    bestHandPlayer.PlayerId, bestHandPlayer.PlayerName,
+                    int.Parse(bestHand.HandScore), bestHandPlayerRanking.PlayerPoints, 
+                    bestHandPlayerRanking.PlayerScore, bestHandPlayer.PlayerCountryName, 
+                    bestHandPlayerRanking.PlayerCountryHtmlFlagUrl, bestHandPlayerRanking.PlayerCountryFlag);
+                _bestHandsRankings.Add(playerBestHandRanking);
+            }
+            for (int i = 0; i < NUM_MAX_BEST_HANDS; i++)
+                _bestHandsRankings[i].Order = i + 1;
         }
 
         #endregion
@@ -456,6 +478,46 @@ namespace MahjongTournamentSuite.TournamentManager
                 Constants.HTML_CLOSE_TABLE);
 
             return htmlChickenHandsRanking;
+        }
+
+        private string GenerateBestHandsHTMLRanking()
+        {
+            string htmlBestHandsRanking = string.Format("{0}\n{1}{2}{3}{4}{5}{6}{7}{8}\n{9}\n{10}\n{11}",
+                Constants.HTML_BEST_HANDS_TABLE_TITLE,
+                Constants.HTML_OPEN_TABLE_BEST_HANDS, 
+                Constants.HTML_OPEN_COLGROUP, 
+                Constants.HTML_COL_ORDER,
+                   Constants.HTML_COL_NAME, Constants.HTML_COL_POINTS,
+                   Constants.HTML_COL_SCORE, Constants.HTML_COL_COUNTRY, Constants.HTML_CLOSE_COLGROUP,
+                   Constants.HTML_OPEN_TBODY, Constants.HTML_BEST_HANDS_HEADERS_TR,
+                   Constants.HTML_OPEN_TR_HEADER_BOTTOM_SEPARATOR);
+
+            foreach (BestHandRanking bestHandRanking in _bestHandsRankings)
+            {
+                htmlBestHandsRanking = string.Format("{0}\n{1}", htmlBestHandsRanking, Constants.HTML_OPEN_TR);
+
+                htmlBestHandsRanking = string.Format("{0}\n{1}{2}{3}", htmlBestHandsRanking,
+                    Constants.HTML_OPEN_TD_BOLD, bestHandRanking.Order, Constants.HTML_CLOSE_TD);
+
+                htmlBestHandsRanking = string.Format("{0}\n{1}{2}{3}", htmlBestHandsRanking,
+                    Constants.HTML_OPEN_TD, bestHandRanking.PlayerName, Constants.HTML_CLOSE_TD);
+
+                htmlBestHandsRanking = string.Format("{0}\n{1}{2}{3}", htmlBestHandsRanking,
+                    Constants.HTML_OPEN_TD, bestHandRanking.PlayerPoints, Constants.HTML_CLOSE_TD);
+
+                htmlBestHandsRanking = string.Format("{0}\n{1}{2}{3}", htmlBestHandsRanking,
+                    Constants.HTML_OPEN_TD, bestHandRanking.PlayerScore, Constants.HTML_CLOSE_TD);
+
+                htmlBestHandsRanking = string.Format("{0}\n{1}<img class=\"alignnone size-full wp-image-665 aligncenter\" src=\"{2}\" alt=\"{3}\" width=\"32\" height=\"32\"/>{4}", htmlBestHandsRanking,
+                    Constants.HTML_OPEN_TD, bestHandRanking.PlayerCountryHtmlFlagUrl, bestHandRanking.PlayerCountryName, Constants.HTML_CLOSE_TD);
+
+                htmlBestHandsRanking = string.Format("{0}\n{1}", htmlBestHandsRanking, Constants.HTML_CLOSE_TR);
+            }
+
+            htmlBestHandsRanking = string.Format("{0}\n{1}\n{2}\n\n", htmlBestHandsRanking, Constants.HTML_CLOSE_TBODY,
+                Constants.HTML_CLOSE_TABLE);
+
+            return htmlBestHandsRanking;
         }
 
         #endregion
