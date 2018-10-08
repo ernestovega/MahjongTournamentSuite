@@ -13,6 +13,7 @@ using MahjongTournamentSuite.PlayersTables;
 using MahjongTournamentSuite.EmaReport;
 using MahjongTournamentSuite._Data;
 using MahjongTournamentSuite.EmaPlayersManager;
+using MahjongTournamentSuite.EmaPlayersSelector;
 
 namespace MahjongTournamentSuite
 {
@@ -100,6 +101,11 @@ namespace MahjongTournamentSuite
         internal static IEmaPlayersManagerController provideEmaPlayersManagerController(IEmaPlayersManagerForm emaPlayersManagerForm)
         {
             return new EmaPlayersManagerController(emaPlayersManagerForm);
+        }
+
+        internal static IEmaPlayersSelectorController provideEmaPlayersSelectorController(IEmaPlayersSelectorForm emaPlayersSelectorForm)
+        {
+            return new EmaPlayersSelectorController(emaPlayersSelectorForm);
         }
     }
 }

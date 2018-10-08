@@ -2,6 +2,7 @@
 using MahjongTournamentSuite.CountryManager;
 using MahjongTournamentSuite.CountrySelector;
 using MahjongTournamentSuite.EmaPlayersManager;
+using MahjongTournamentSuite.EmaPlayersSelector;
 using MahjongTournamentSuite.Home;
 using MahjongTournamentSuite.PlayersManager;
 using MahjongTournamentSuite.PlayersTables;
@@ -18,6 +19,7 @@ namespace MahjongTournamentSuite._Data
         ICountryManagerDataManager,
         IPlayersManagerDataManager,
         IEmaPlayersManagerDataManager,
+        IEmaPlayersSelectorDataManager,
         IPlayersTablesDataManager,
         ITableManagerDataManager,
         ICountrySelectorDataManager, 

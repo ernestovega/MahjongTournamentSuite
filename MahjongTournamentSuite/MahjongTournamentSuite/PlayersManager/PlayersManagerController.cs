@@ -88,9 +88,9 @@ namespace MahjongTournamentSuite.PlayersManager
             _form.CleanWrongTeamsPlayers();
         }
 
-        public void SaveNewPlayerCountry(int playerId, string newCountryName)
+        public VEmaPlayer AssignNewEmaPlayer(int playerId, string playerEmaNumber)
         {
-            _data.UpdatePlayerCountry(_tournament.TournamentId, playerId, newCountryName);
+            return _data.AssignNewEmaPlayer(_tournament.TournamentId, playerId, playerEmaNumber);
         }
 
         public bool IsWrongPlayersTeams()

@@ -4,11 +4,12 @@ using MahjongTournamentSuite.Resources;
 using MahjongTournamentSuite.PlayersManager;
 using MahjongTournamentSuite._Data.DataModel;
 using MahjongTournamentSuite.TeamSelector;
-using MahjongTournamentSuite.CountrySelector;
 using MahjongTournamentSuite.ViewModel;
 using System.Drawing;
 using MahjongTournamentSuite.Resources.flags;
 using System.Media;
+using MahjongTournamentSuite.EmaPlayersSelector;
+using System;
 
 namespace MahjongTournamentSuite.ManagePlayers
 {
@@ -73,11 +74,6 @@ namespace MahjongTournamentSuite.ManagePlayers
                     ShowTeamsSelector(dgv.CurrentRow.Index);
                     e.SuppressKeyPress = true;
                 }
-                else if (dgv.CurrentCell.OwningColumn.Name.Equals(DGVPlayer.COLUMN_PLAYERS_COUNTRY_FLAG))
-                {
-                    ShowCountriesSelector(dgv.CurrentRow.Index);
-                    e.SuppressKeyPress = true;
-                }
             }
         }
 
@@ -86,11 +82,9 @@ namespace MahjongTournamentSuite.ManagePlayers
             if (e.RowIndex > -1)
             {
                 if (dgv.Columns[e.ColumnIndex].Name.Equals(VPlayer.COLUMN_PLAYERS_NAME))
-                    dgv.BeginEdit(true);
+                    ShowEmaPlayersSelector(e.RowIndex);
                 else if (dgv.Columns[e.ColumnIndex].Name.Equals(DGVPlayer.COLUMN_PLAYERS_TEAM_NAME))
                     ShowTeamsSelector(e.RowIndex);
-                else if (dgv.Columns[e.ColumnIndex].Name.Equals(DGVPlayer.COLUMN_PLAYERS_COUNTRY_FLAG))
-                    ShowCountriesSelector(e.RowIndex);
             }
         }
 
@@ -140,6 +134,7 @@ namespace MahjongTournamentSuite.ManagePlayers
             dgv.Columns[VPlayer.COLUMN_PLAYERS_TOURNAMENT_ID].Visible = false;
             dgv.Columns[VPlayer.COLUMN_PLAYERS_TEAM].Visible = false;
             dgv.Columns[VPlayer.COLUMN_PLAYERS_COUNTRY_NAME].Visible = false;
+            dgv.Columns[VPlayer.COLUMN_PLAYERS_EMA_NUMBER].Visible = false;
             //ReadOnly
             dgv.Columns[VPlayer.COLUMN_PLAYERS_ID].ReadOnly = true;
             dgv.Columns[DGVPlayer.COLUMN_PLAYERS_TEAM_NAME].ReadOnly = true;
@@ -257,22 +252,31 @@ namespace MahjongTournamentSuite.ManagePlayers
             }
         }
 
-        private void ShowCountriesSelector(int rowIndex)
+        private void ShowEmaPlayersSelector(int rowIndex)
         {
-            using (var countrySelectorForm = new CountrySelectorForm(true))
+            using (var emaPlayersSelectorForm = new EmaPlayersSelectorForm())
             {
-                if (countrySelectorForm.ShowDialog() == DialogResult.OK)
+                if (emaPlayersSelectorForm.ShowDialog() == DialogResult.OK)
                 {
                     int playerId = (int)dgv.Rows[rowIndex].Cells[VPlayer.COLUMN_PLAYERS_ID].Value;
-                    if (countrySelectorForm.ReturnValue != null && !countrySelectorForm.ReturnValue.Equals(string.Empty))
+                    if (emaPlayersSelectorForm.ReturnValue != null && !emaPlayersSelectorForm.ReturnValue.Equals(string.Empty))
                     {
-                        _controller.SaveNewPlayerCountry(playerId, countrySelectorForm.ReturnValue);
-                        dgv.Rows[rowIndex].Cells[VPlayer.COLUMN_PLAYERS_COUNTRY_NAME].Value = countrySelectorForm.ReturnValue;
-                        dgv.Rows[rowIndex].Cells[DGVPlayer.COLUMN_PLAYERS_COUNTRY_FLAG].Value =
-                            CountryFlags.GetFlagImage(countrySelectorForm.ReturnValue);
+                        if (CheckIfPlayerIsAlreadyPresentInTournament(emaPlayersSelectorForm.ReturnValue))
+                        {
+                            VEmaPlayer emaPlayer = _controller.AssignNewEmaPlayer(playerId, emaPlayersSelectorForm.ReturnValue);
+                            string playerName = string.Format("{0}, {1}", emaPlayer.EmaPlayerLastName, emaPlayer.EmaPlayerName);
+                            Image flag = CountryFlags.GetFlagImage(emaPlayer.EmaPlayerCountryName);
+                            dgv.Rows[rowIndex].Cells[VPlayer.COLUMN_PLAYERS_COUNTRY_NAME].Value = playerName;
+                            dgv.Rows[rowIndex].Cells[DGVPlayer.COLUMN_PLAYERS_COUNTRY_FLAG].Value = flag;
+                        }   
                     }
                 }
             }
+        }
+
+        private bool CheckIfPlayerIsAlreadyPresentInTournament(string emaNumber)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

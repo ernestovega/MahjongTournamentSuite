@@ -21,7 +21,8 @@ namespace MahjongPlayerSuite._Data.Mappers
                 dbPlayer.PlayerId,
                 dbPlayer.PlayerName,
                 dbPlayer.PlayerTeamId,
-                dbPlayer.PlayerCountryName);
+                dbPlayer.PlayerCountryName,
+                dbPlayer.PlayerEmaNumber);
         }
 
         public static List<DBPlayer> GetDataModel(List<VPlayer> vPlayers)
@@ -40,7 +41,8 @@ namespace MahjongPlayerSuite._Data.Mappers
                 vPlayer.PlayerId,
                 vPlayer.PlayerName,
                 vPlayer.PlayerTeamId,
-                vPlayer.PlayerCountryName);
+                vPlayer.PlayerCountryName,
+                vPlayer.PlayerEmaNumber);
         }
     }
 }

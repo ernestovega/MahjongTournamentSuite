@@ -75,6 +75,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CountryManager\ICountryManagerDataManager.cs" />
+    <Compile Include="EmaPlayersSelector\EmaPlayersSelectorController.cs" />
+    <Compile Include="EmaPlayersSelector\EmaPlayersSelectorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmaPlayersSelector\EmaPlayersSelectorForm.Designer.cs">
+      <DependentUpon>EmaPlayersSelectorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmaPlayersSelector\IEmaPlayersSelectorController.cs" />
+    <Compile Include="EmaPlayersSelector\IEmaPlayersSelectorDataManager.cs" />
+    <Compile Include="EmaPlayersSelector\IEmaPlayersSelectorForm.cs" />
     <Compile Include="CountrySelector\ICountrySelectorDataManager.cs" />
     <Compile Include="Home\IHomeDataManager.cs" />
     <Compile Include="EmaPlayersManager\IEmaPlayersManagerController.cs" />
@@ -281,6 +291,9 @@
     <Compile Include="_Data\DataModel\DBTable.cs" />
     <Compile Include="_Data\DataModel\DBTeam.cs" />
     <Compile Include="_Data\DataModel\DBTournament.cs" />
+    <EmbeddedResource Include="EmaPlayersSelector\EmaPlayersSelectorForm.resx">
+      <DependentUpon>EmaPlayersSelectorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EmaReport\EmaReportForm.resx">
       <DependentUpon>EmaReportForm.cs</DependentUpon>
     </EmbeddedResource>

@@ -168,6 +168,20 @@ namespace MahjongTournamentSuite._Data
             _db.SaveChanges();
         }
 
+        public VEmaPlayer AssignNewEmaPlayer(int tournamentId, int playerId, string emaNumber)
+        {
+            DBPlayer player = _db.Players.ToList().Find(x => x.PlayerTournamentId == tournamentId && x.PlayerId == playerId);
+            DBEmaPlayer dbEmaPlayer = _db.EmaPlayers.ToList().Find(x => x.EmaPlayerEmaNumber == emaNumber);
+            if (dbEmaPlayer != null)
+            {
+                player.PlayerEmaNumber = dbEmaPlayer.EmaPlayerEmaNumber;
+                player.PlayerName = dbEmaPlayer.EmaPlayerName + " " + dbEmaPlayer.EmaPlayerLastName;
+                player.PlayerCountryName = dbEmaPlayer.EmaPlayerCountryName;
+            }
+            _db.SaveChanges();
+            return EmaPlayerMapper.GetViewModel(dbEmaPlayer);
+        }
+
         public void RefreshPlayers(int tournamentId)
         {
             List<DBPlayer> players = _db.Players.ToList().FindAll(x => x.PlayerTournamentId == tournamentId);
@@ -388,6 +402,7 @@ namespace MahjongTournamentSuite._Data
 
         public List<string> GetCountriesNames()
         {
+            EnsureThereAreCountries();
             return _db.Countries.Select(x => x.CountryName).ToList();
         }
 
@@ -668,6 +683,18 @@ namespace MahjongTournamentSuite._Data
             EnsureThereAreEmaPlayers();
             List<DBEmaPlayer> dbEmaPlayer = _db.EmaPlayers.OrderBy(x => x.EmaPlayerEmaNumber).ToList();
             return EmaPlayerMapper.GetViewModel(dbEmaPlayer);
+        }
+
+        public List<string> GetEmaPlayersNames()
+        {
+            List<VEmaPlayer> emaPlayers = GetEmaPlayers();
+            List<string> emaPlayersNames = new List<string>();
+            foreach(VEmaPlayer emaPlayer in emaPlayers) 
+            {
+                emaPlayersNames.Add(string.Format("{0}-{1},{2}", emaPlayer.EmaPlayerEmaNumber, 
+                    emaPlayer.EmaPlayerLastName, emaPlayer.EmaPlayerName));
+            }
+            return emaPlayersNames;
         }
 
         public void AddEmaPlayer(VEmaPlayer emaPlayer)
