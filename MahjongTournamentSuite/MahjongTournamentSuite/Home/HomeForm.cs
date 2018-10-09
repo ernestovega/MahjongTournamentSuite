@@ -129,7 +129,9 @@ namespace MahjongTournamentSuite.Home
                 {
                     dgv.Rows[dgv.RowCount - 1].Visible = false;
                 }
+#pragma warning disable CS0168 // Variable is declared but never used
                 catch (Exception ignored) {}
+#pragma warning restore CS0168 // Variable is declared but never used
             }
         }
         
@@ -141,8 +143,8 @@ namespace MahjongTournamentSuite.Home
             {
                 e.CellStyle.SelectionBackColor =
                     dgv.CurrentCell.ReadOnly ?
-                    Resources.Constants.GREEN_MM_DARKEST :
-                    Resources.Constants.GREEN_MM_DARKER;
+                    Resources.ColorConstants.GREEN_MM_DARKEST :
+                    Resources.ColorConstants.GREEN_MM_DARKER;
             }
             if (dgv.Columns[e.ColumnIndex].Name.Equals(COLUMN_IS_TEAMS_IMAGES))
             {

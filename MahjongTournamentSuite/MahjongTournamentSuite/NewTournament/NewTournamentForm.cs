@@ -115,8 +115,8 @@ namespace MahjongTournamentSuite.NewTournament
 
         public void EnableViews()
         {
-            btnStart.BackColor = Constants.GREEN_MM;
-            btnStart.FlatAppearance.MouseOverBackColor = Constants.GREEN_MM_DARKER;
+            btnStart.BackColor = ColorConstants.GREEN_MM;
+            btnStart.FlatAppearance.MouseOverBackColor = ColorConstants.GREEN_MM_DARKER;
             btnStart.Text = "Start";
             panelLoading.Visible = false;
             panelOptions.Visible = true;
@@ -127,8 +127,8 @@ namespace MahjongTournamentSuite.NewTournament
         public void DisableViews()
         {
             btnStart.Text = "Stop";
-            btnStart.BackColor = Constants.GRAY_DISABLED;
-            btnStart.FlatAppearance.MouseOverBackColor = Constants.RED_CANCEL;
+            btnStart.BackColor = ColorConstants.GRAY_DISABLED;
+            btnStart.FlatAppearance.MouseOverBackColor = ColorConstants.RED_CANCEL;
             panelOptions.Visible = false;
             panelLoading.Visible = true;
             Cursor = Cursors.WaitCursor;

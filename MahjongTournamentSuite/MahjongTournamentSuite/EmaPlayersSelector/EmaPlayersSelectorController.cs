@@ -1,6 +1,4 @@
-﻿using MahjongTournamentSuite.CountrySelector;
-using System.Collections.Generic;
-using System;
+﻿using System.Collections.Generic;
 
 namespace MahjongTournamentSuite.EmaPlayersSelector
 {
@@ -26,10 +24,11 @@ namespace MahjongTournamentSuite.EmaPlayersSelector
 
         #region ICountrySelectorController implementation
 
-        public void LoadForm()
+        public void LoadForm(int tournamentId)
         {
             _emaPlayersNames = new List<string>();
-            _emaPlayersNames.AddRange(_data.GetEmaPlayersNames());
+            _emaPlayersNames.Add("");
+            _emaPlayersNames.AddRange(_data.GetAvailableEmaPlayersNames(tournamentId));
             _form.FillLbEmaPlayersNames(_emaPlayersNames);
         }
 

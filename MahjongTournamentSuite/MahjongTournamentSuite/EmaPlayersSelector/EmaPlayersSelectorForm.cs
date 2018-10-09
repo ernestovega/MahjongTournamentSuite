@@ -1,5 +1,4 @@
-﻿using MahjongTournamentSuite.CountrySelector;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -10,28 +9,30 @@ namespace MahjongTournamentSuite.EmaPlayersSelector
         #region Fields
 
         private IEmaPlayersSelectorController _controller;
+        private int _tournamentId;
         public string ReturnValue { get; set; }
 
         #endregion
 
         #region Constructor
 
-        public EmaPlayersSelectorForm()
+        public EmaPlayersSelectorForm(int tournamentId)
         {
             InitializeComponent();
             _controller = Injector.provideEmaPlayersSelectorController(this);
+            _tournamentId = tournamentId;
         }
 
         #endregion
 
         #region Events
 
-        private void CountrySelectorForm_Load(object sender, EventArgs e)
+        private void EmaPlayersSelectorForm_Load(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
             CancelButton = btnCancel;
             AcceptButton = btnOk;
-            _controller.LoadForm();
+            _controller.LoadForm(_tournamentId);
             Cursor = Cursors.Default;
         }
 
@@ -54,18 +55,11 @@ namespace MahjongTournamentSuite.EmaPlayersSelector
 
         #endregion
 
-        #region ICountrySelectorForm implementation
+        #region IEmaPlayersSelectorForm implementation
 
         public void FillLbEmaPlayersNames(List<string> emaPlayersNames)
         {
             lbEmaPlayers.DataSource = emaPlayersNames;
-
-            int heightIncrement = (emaPlayersNames.Count * lbEmaPlayers.ItemHeight) - lbEmaPlayers.Height;
-            if (Height + heightIncrement > 600)
-                Height = 600;
-            else
-                Height += heightIncrement;
-
             lbEmaPlayers.SelectedIndex = 0;
         }
 
@@ -75,7 +69,7 @@ namespace MahjongTournamentSuite.EmaPlayersSelector
 
         public void CloseReturningValue()
         {
-            ReturnValue = ((string)lbEmaPlayers.SelectedItem).Split('-')[0];
+            ReturnValue = ((string)lbEmaPlayers.SelectedItem);
             DialogResult = DialogResult.OK;
             Close();
         }

@@ -19,6 +19,7 @@ namespace MahjongTournamentSuite.ManagePlayers
 
         private IPlayersManagerController _controller;
         private int _tournamentId;
+        private int _selectedRowIndex = -1;
 
         #endregion
 
@@ -60,8 +61,8 @@ namespace MahjongTournamentSuite.ManagePlayers
             {
                 e.CellStyle.SelectionBackColor =
                     dgv.CurrentCell.ReadOnly ?
-                    Constants.GREEN_MM_DARKEST :
-                    Constants.GREEN_MM_DARKER;
+                    ColorConstants.GREEN_MM_DARKEST :
+                    ColorConstants.GREEN_MM_DARKER;
             }
         }
 
@@ -69,7 +70,12 @@ namespace MahjongTournamentSuite.ManagePlayers
         {
             if (e.KeyCode == Keys.Enter && dgv.CurrentCell != null && dgv.CurrentRow.Index >= 0)
             {
-                if (dgv.CurrentCell.OwningColumn.Name.Equals(DGVPlayer.COLUMN_PLAYERS_TEAM_NAME))
+                if (dgv.CurrentCell.OwningColumn.Name.Equals(VPlayer.COLUMN_PLAYERS_NAME))
+                {
+                    ShowEmaPlayersSelector(dgv.CurrentRow.Index);
+                    e.SuppressKeyPress = true;
+                }
+                else if (dgv.CurrentCell.OwningColumn.Name.Equals(DGVPlayer.COLUMN_PLAYERS_TEAM_NAME))
                 {
                     ShowTeamsSelector(dgv.CurrentRow.Index);
                     e.SuppressKeyPress = true;
@@ -85,27 +91,6 @@ namespace MahjongTournamentSuite.ManagePlayers
                     ShowEmaPlayersSelector(e.RowIndex);
                 else if (dgv.Columns[e.ColumnIndex].Name.Equals(DGVPlayer.COLUMN_PLAYERS_TEAM_NAME))
                     ShowTeamsSelector(e.RowIndex);
-            }
-        }
-
-        private void dgv_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
-        {
-            if (e.RowIndex > -1)
-            {
-                if (dgv.Columns[e.ColumnIndex].Name.Equals(VPlayer.COLUMN_PLAYERS_NAME))
-                {
-                    Cursor = Cursors.WaitCursor;
-                    string previousValue = (string)dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-                    string newValue = ((string)e.FormattedValue).Trim();
-                    if (newValue.Length > 0 && !newValue.Equals(previousValue))
-                    {
-                        int playerId = (int)dgv.Rows[e.RowIndex].Cells[VPlayer.COLUMN_PLAYERS_ID].Value;
-                        _controller.PlayerNameChanged(playerId, newValue);
-                    }
-                    else
-                        DGVCancelEdit();
-                    Cursor = Cursors.Default;
-                }
             }
         }
 
@@ -167,6 +152,11 @@ namespace MahjongTournamentSuite.ManagePlayers
             {
                 dgv.Columns[DGVPlayer.COLUMN_PLAYERS_TEAM_NAME].Visible = false;
                 dgv.Columns[DGVPlayer.COLUMN_PLAYERS_COUNTRY_FLAG].DisplayIndex = 2;
+            }
+            if(_selectedRowIndex >= 0)
+            {
+                dgv.Rows[_selectedRowIndex].Selected = true;
+                _selectedRowIndex = -1;
             }
         }
 
@@ -254,29 +244,26 @@ namespace MahjongTournamentSuite.ManagePlayers
 
         private void ShowEmaPlayersSelector(int rowIndex)
         {
-            using (var emaPlayersSelectorForm = new EmaPlayersSelectorForm())
+            using (var emaPlayersSelectorForm = new EmaPlayersSelectorForm(_tournamentId))
             {
                 if (emaPlayersSelectorForm.ShowDialog() == DialogResult.OK)
                 {
                     int playerId = (int)dgv.Rows[rowIndex].Cells[VPlayer.COLUMN_PLAYERS_ID].Value;
-                    if (emaPlayersSelectorForm.ReturnValue != null && !emaPlayersSelectorForm.ReturnValue.Equals(string.Empty))
+                    if (emaPlayersSelectorForm.ReturnValue != null)
                     {
-                        if (CheckIfPlayerIsAlreadyPresentInTournament(emaPlayersSelectorForm.ReturnValue))
+                        if (emaPlayersSelectorForm.ReturnValue.Equals(string.Empty))
+                            _controller.UnassignEmaPlayer(playerId);
+                        else
                         {
-                            VEmaPlayer emaPlayer = _controller.AssignNewEmaPlayer(playerId, emaPlayersSelectorForm.ReturnValue);
-                            string playerName = string.Format("{0}, {1}", emaPlayer.EmaPlayerLastName, emaPlayer.EmaPlayerName);
-                            Image flag = CountryFlags.GetFlagImage(emaPlayer.EmaPlayerCountryName);
-                            dgv.Rows[rowIndex].Cells[VPlayer.COLUMN_PLAYERS_COUNTRY_NAME].Value = playerName;
-                            dgv.Rows[rowIndex].Cells[DGVPlayer.COLUMN_PLAYERS_COUNTRY_FLAG].Value = flag;
-                        }   
+                            string returnedItem = emaPlayersSelectorForm.ReturnValue;
+                            string returnedEmaNumber = returnedItem.Substring(returnedItem.IndexOf(" - ")).Replace(" - ", string.Empty);
+                            _controller.AssignNewEmaPlayer(playerId, returnedEmaNumber);
+                        }
+                        _selectedRowIndex = rowIndex;
+                        _controller.LoadForm(_tournamentId);
                     }
                 }
             }
-        }
-
-        private bool CheckIfPlayerIsAlreadyPresentInTournament(string emaNumber)
-        {
-            throw new NotImplementedException();
         }
 
         #endregion

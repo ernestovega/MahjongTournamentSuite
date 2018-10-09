@@ -45,8 +45,8 @@ namespace MahjongTournamentSuite.EmaPlayersManager
             {
                 e.CellStyle.SelectionBackColor =
                     dgv.CurrentCell.ReadOnly ?
-                    Constants.GREEN_MM_DARKEST :
-                    Constants.GREEN_MM_DARKER;
+                    ColorConstants.GREEN_MM_DARKEST :
+                    ColorConstants.GREEN_MM_DARKER;
             }
         }
 
@@ -189,9 +189,6 @@ namespace MahjongTournamentSuite.EmaPlayersManager
                     if (countrySelectorForm.ReturnValue != null && !countrySelectorForm.ReturnValue.Equals(string.Empty))
                     {
                         _controller.EmaPlayerCountryChanged(emaPlayerEmaNumber, countrySelectorForm.ReturnValue);
-                        dgv.Rows[rowIndex].Cells[VEmaPlayer.COLUMN_EMA_PLAYER_COUNTRY_NAME].Value = countrySelectorForm.ReturnValue;
-                        dgv.Rows[rowIndex].Cells[DGVEmaPlayer.COLUMN_EMA_PLAYER_COUNTRY_FLAG].Value =
-                            CountryFlags.GetFlagImage(countrySelectorForm.ReturnValue);
                     }
                 }
             }

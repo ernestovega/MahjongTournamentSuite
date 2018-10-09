@@ -1,6 +1,4 @@
-﻿using MahjongTournamentSuite._Data.DataModel;
-
-namespace MahjongTournamentSuite.PlayersManager
+﻿namespace MahjongTournamentSuite.PlayersManager
 {
     interface IPlayersManagerController
     {
@@ -12,7 +10,9 @@ namespace MahjongTournamentSuite.PlayersManager
 
         void CheckWrongPlayersTeams();
 
-        VEmaPlayer AssignNewEmaPlayer(int playerId, string playerEmaNumber);
+        void AssignNewEmaPlayer(int playerId, string playerEmaNumber);
+
+        void UnassignEmaPlayer(int playerId);
 
         bool IsWrongPlayersTeams();
     }

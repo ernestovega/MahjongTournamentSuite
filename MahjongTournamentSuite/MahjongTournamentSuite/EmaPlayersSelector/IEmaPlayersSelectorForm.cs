@@ -1,7 +1,6 @@
-﻿using MahjongTournamentSuite._Data.DataModel;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace MahjongTournamentSuite.CountrySelector
+namespace MahjongTournamentSuite.EmaPlayersSelector
 {
     interface IEmaPlayersSelectorForm
     {

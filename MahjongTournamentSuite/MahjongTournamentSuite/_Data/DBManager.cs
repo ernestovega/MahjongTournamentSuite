@@ -168,7 +168,7 @@ namespace MahjongTournamentSuite._Data
             _db.SaveChanges();
         }
 
-        public VEmaPlayer AssignNewEmaPlayer(int tournamentId, int playerId, string emaNumber)
+        public void AssignNewEmaPlayer(int tournamentId, int playerId, string emaNumber)
         {
             DBPlayer player = _db.Players.ToList().Find(x => x.PlayerTournamentId == tournamentId && x.PlayerId == playerId);
             DBEmaPlayer dbEmaPlayer = _db.EmaPlayers.ToList().Find(x => x.EmaPlayerEmaNumber == emaNumber);
@@ -179,7 +179,15 @@ namespace MahjongTournamentSuite._Data
                 player.PlayerCountryName = dbEmaPlayer.EmaPlayerCountryName;
             }
             _db.SaveChanges();
-            return EmaPlayerMapper.GetViewModel(dbEmaPlayer);
+        }
+
+        public void UnassignEmaPlayer(int tournamentId, int playerId)
+        {
+            DBPlayer player = _db.Players.ToList().Find(x => x.PlayerTournamentId == tournamentId && x.PlayerId == playerId);
+            player.PlayerEmaNumber = string.Empty;
+            player.PlayerName = string.Format("Player {0}", player.PlayerId);
+            player.PlayerCountryName = string.Empty;
+            _db.SaveChanges();
         }
 
         public void RefreshPlayers(int tournamentId)
@@ -685,14 +693,31 @@ namespace MahjongTournamentSuite._Data
             return EmaPlayerMapper.GetViewModel(dbEmaPlayer);
         }
 
-        public List<string> GetEmaPlayersNames()
+        public List<string> GetAvailableEmaPlayersNames(int tournamentId)
         {
-            List<VEmaPlayer> emaPlayers = GetEmaPlayers();
-            List<string> emaPlayersNames = new List<string>();
-            foreach(VEmaPlayer emaPlayer in emaPlayers) 
+            List<DBEmaPlayer> dbEmaPlayers = _db.EmaPlayers.ToList();
+            List<DBPlayer> dbPlayersInUse = _db.Players.ToList().FindAll(x => x.PlayerTournamentId == tournamentId);
+            List<DBEmaPlayer> dbEmaPlayersInUse = new List<DBEmaPlayer>(dbPlayersInUse.Count);
+            foreach (DBEmaPlayer dbEmaPlayer in dbEmaPlayers)
             {
-                emaPlayersNames.Add(string.Format("{0}-{1},{2}", emaPlayer.EmaPlayerEmaNumber, 
-                    emaPlayer.EmaPlayerLastName, emaPlayer.EmaPlayerName));
+                foreach (DBPlayer dbEmaPlayerInUse in dbPlayersInUse)
+                {
+                    if (dbEmaPlayerInUse.PlayerEmaNumber.Equals(dbEmaPlayer.EmaPlayerEmaNumber))
+                        dbEmaPlayersInUse.Add(dbEmaPlayer);
+                }
+            }
+            foreach (DBEmaPlayer dbEmaPlayerInUse in dbEmaPlayersInUse)
+            {
+                dbEmaPlayers.Remove(dbEmaPlayerInUse);
+            }
+
+            List<string> emaPlayersNames = new List<string>();
+            foreach(DBEmaPlayer dbEmaPlayer in dbEmaPlayers)
+            {
+                emaPlayersNames.Add(string.Format("{0}, {1} - {2}", 
+                    dbEmaPlayer.EmaPlayerLastName,
+                    dbEmaPlayer.EmaPlayerName, 
+                    dbEmaPlayer.EmaPlayerEmaNumber));
             }
             return emaPlayersNames;
         }

@@ -1,7 +1,7 @@
-﻿namespace MahjongTournamentSuite.CountrySelector
+﻿namespace MahjongTournamentSuite.EmaPlayersSelector
 {
     interface IEmaPlayersSelectorController
     {
-        void LoadForm();
+        void LoadForm(int tournamentId);
     }
 }

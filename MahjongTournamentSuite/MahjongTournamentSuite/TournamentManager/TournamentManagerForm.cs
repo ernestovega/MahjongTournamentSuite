@@ -439,8 +439,8 @@ namespace MahjongTournamentSuite.TournamentManager
             newButton.Height = BUTTON_SIDE;
             newButton.FlatStyle = FlatStyle.Flat;
             newButton.FlatAppearance.BorderSize = 0;
-            newButton.FlatAppearance.MouseDownBackColor = Constants.GREEN_MM_DARK;
-            newButton.FlatAppearance.MouseOverBackColor = Constants.GREEN_MM;
+            newButton.FlatAppearance.MouseDownBackColor = ColorConstants.GREEN_MM_DARK;
+            newButton.FlatAppearance.MouseOverBackColor = ColorConstants.GREEN_MM;
             newButton.BackgroundImageLayout = ImageLayout.None;
             newButton.Cursor = Cursors.Hand;
             newButton.Font = new Font(newButton.Font.Name, newButton.Font.Size, FontStyle.Bold);
@@ -454,7 +454,7 @@ namespace MahjongTournamentSuite.TournamentManager
 
         private static void MakeButtonSelected(Button button, Image image)
         {
-            button.BackColor = Constants.GREEN_MM;
+            button.BackColor = ColorConstants.GREEN_MM;
             button.ForeColor = Color.White;
             button.Image = image;
         }

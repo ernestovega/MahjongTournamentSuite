@@ -1,4 +1,6 @@
-﻿namespace MahjongTournamentSuite._Data.DataModel
+﻿using System;
+
+namespace MahjongTournamentSuite._Data.DataModel
 {
     public class VEmaPlayer
     {
@@ -31,6 +33,11 @@
             EmaPlayerLastName = emaPlayerLastName;
             EmaPlayerName = emaPlayerName;
             EmaPlayerCountryName = emaPlayerCountryName;
+        }
+
+        internal string getFullName()
+        {
+            return string.Format("{0}, {1}", EmaPlayerLastName, EmaPlayerName);
         }
 
         #endregion

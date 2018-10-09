@@ -44,10 +44,10 @@
             this.lbEmaPlayers.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbEmaPlayers.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lbEmaPlayers.ItemHeight = 16;
-            this.lbEmaPlayers.Location = new System.Drawing.Point(14, 40);
+            this.lbEmaPlayers.Location = new System.Drawing.Point(14, 38);
             this.lbEmaPlayers.Margin = new System.Windows.Forms.Padding(5);
             this.lbEmaPlayers.Name = "lbEmaPlayers";
-            this.lbEmaPlayers.Size = new System.Drawing.Size(256, 258);
+            this.lbEmaPlayers.Size = new System.Drawing.Size(318, 370);
             this.lbEmaPlayers.Sorted = true;
             this.lbEmaPlayers.TabIndex = 0;
             this.lbEmaPlayers.UseTabStops = false;
@@ -68,10 +68,10 @@
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.White;
             this.btnCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel.Location = new System.Drawing.Point(14, 312);
+            this.btnCancel.Location = new System.Drawing.Point(14, 426);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(5);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(78, 35);
+            this.btnCancel.Size = new System.Drawing.Size(98, 35);
             this.btnCancel.TabIndex = 73;
             this.btnCancel.Text = "CANCEL";
             this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -93,10 +93,10 @@
             this.btnOk.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOk.ForeColor = System.Drawing.Color.White;
             this.btnOk.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnOk.Location = new System.Drawing.Point(102, 312);
+            this.btnOk.Location = new System.Drawing.Point(122, 426);
             this.btnOk.Margin = new System.Windows.Forms.Padding(5);
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(168, 35);
+            this.btnOk.Size = new System.Drawing.Size(210, 35);
             this.btnOk.TabIndex = 74;
             this.btnOk.Text = "OK";
             this.btnOk.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -107,7 +107,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(11, 14);
+            this.label1.Location = new System.Drawing.Point(11, 12);
             this.label1.Margin = new System.Windows.Forms.Padding(5);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(101, 16);
@@ -120,7 +120,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(284, 362);
+            this.ClientSize = new System.Drawing.Size(346, 476);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.btnCancel);
@@ -133,7 +133,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mahjong Tournament Suite - EMA Player Selector";
-            this.Load += new System.EventHandler(this.CountrySelectorForm_Load);
+            this.Load += new System.EventHandler(this.EmaPlayersSelectorForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

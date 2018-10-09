@@ -17,6 +17,8 @@ namespace MahjongTournamentSuite.PlayersManager
 
         void UpdatePlayerTeam(int tournamentId, int playerId, int countryId);
 
-        VEmaPlayer AssignNewEmaPlayer(int tournamentId, int playerId, string emaNumber);
+        void AssignNewEmaPlayer(int tournamentId, int playerId, string emaNumber);
+
+        void UnassignEmaPlayer(int tournamentId, int playerId);
     }
 }
