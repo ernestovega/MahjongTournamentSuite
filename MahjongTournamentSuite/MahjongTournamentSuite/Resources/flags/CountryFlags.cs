@@ -152,6 +152,7 @@ namespace MahjongTournamentSuite.Resources.flags
                     return Properties.Resources.France;
                 case "Gabon":
                     return Properties.Resources.Gabon;
+                case "Great_Britain":
                 case "United_Kingdom":
                     return Properties.Resources.United_Kingdom;
                 case "Grenada":

@@ -165,9 +165,9 @@ namespace MahjongTournamentSuite.TableManager
                 dgv.CurrentCell.ColumnIndex == e.ColumnIndex)
             {
                 e.CellStyle.SelectionBackColor = 
-                    dgv.CurrentCell.ReadOnly ? 
-                    Constants.GREEN_MM_DARKEST : 
-                    Constants.GREEN_MM_DARKER;
+                    dgv.CurrentCell.ReadOnly ?
+                    ColorConstants.GREEN_MM_DARKEST :
+                    ColorConstants.GREEN_MM_DARKER;
             }
         }
 
@@ -560,10 +560,10 @@ namespace MahjongTournamentSuite.TableManager
 
         public void ShowErrorTotalScores()
         {
-            tbEastPlayerTotalScore.ForeColor = Constants.RED_CANCEL;
-            tbSouthPlayerTotalScore.ForeColor = Constants.RED_CANCEL;
-            tbWestPlayerTotalScore.ForeColor = Constants.RED_CANCEL;
-            tbNorthPlayerTotalScore.ForeColor = Constants.RED_CANCEL;
+            tbEastPlayerTotalScore.ForeColor = ColorConstants.RED_CANCEL;
+            tbSouthPlayerTotalScore.ForeColor = ColorConstants.RED_CANCEL;
+            tbWestPlayerTotalScore.ForeColor = ColorConstants.RED_CANCEL;
+            tbNorthPlayerTotalScore.ForeColor = ColorConstants.RED_CANCEL;
         }
 
         public void HideErrorTotalScores()

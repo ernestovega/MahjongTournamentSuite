@@ -5,15 +5,16 @@ namespace MahjongTournamentSuite._Data
 {
     public class DBContext
     {
-        /**
+        /*
          * https://msdn.microsoft.com/en-us/library/jj193542(v=vs.113).aspx
          * 
          * (localdb)\MSSQLLocalDB
-         *
          */
 
         public class TournamentSuiteDB : DbContext
         {
+            public DbSet<DBEmaPlayer> EmaPlayers { get; set; }
+
             public DbSet<DBTournament> Tournaments { get; set; }
 
             public DbSet<DBTeam> Teams { get; set; }

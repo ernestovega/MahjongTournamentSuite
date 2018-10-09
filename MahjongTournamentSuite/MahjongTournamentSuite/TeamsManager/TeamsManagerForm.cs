@@ -50,8 +50,8 @@ namespace MahjongTournamentSuite.TeamsManager
             {
                 e.CellStyle.SelectionBackColor =
                     dgv.CurrentCell.ReadOnly ?
-                    Constants.GREEN_MM_DARKEST :
-                    Constants.GREEN_MM_DARKER;
+                    ColorConstants.GREEN_MM_DARKEST :
+                    ColorConstants.GREEN_MM_DARKER;
             }
         }
 

@@ -10,7 +10,10 @@
 
         void CheckWrongPlayersTeams();
 
-        void SaveNewPlayerCountry(int playerId, string newCountryName);
+        void AssignNewEmaPlayer(int playerId, string playerEmaNumber);
+
+        void UnassignEmaPlayer(int playerId);
+
         bool IsWrongPlayersTeams();
     }
 }

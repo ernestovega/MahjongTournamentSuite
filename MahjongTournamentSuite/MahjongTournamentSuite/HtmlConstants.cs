@@ -1,21 +1,7 @@
-﻿using System.Drawing;
-
-namespace MahjongTournamentSuite.Resources
+﻿namespace MahjongTournamentSuite.Resources
 {
-    public static class Constants
+    public static class HtmlConstants
     {
-        #region Colors
-
-        public static readonly Color GREEN_MM = Color.FromArgb(0, 177, 106);
-        public static readonly Color GREEN_MM_DARK = Color.FromArgb(0, 147, 76);
-        public static readonly Color GREEN_MM_DARKER = Color.FromArgb(0, 117, 46);
-        public static readonly Color GREEN_MM_DARKEST = Color.FromArgb(0, 97, 26);
-        public static readonly Color GRAY_DISABLED = Color.FromArgb(65, 65, 65);
-        public static readonly Color RED_CANCEL = Color.FromArgb(224, 0, 0);
-
-        #endregion
-
-        #region HTML TAGS
         public static readonly string HTML_PLAYERS_TABLE_TITLE = "</br></br><span class=\"titulo-enlaces cf size-large\" width=\"1024\"><h2 style=\"width: 1024px\">      <img src=\"http://www.mahjongmadrid.com/wp-content/uploads/2017/09/players_32_2.png\" style=\"margin-right:10px;\"/>Players</h2></span></br></br>";
         public static readonly string HTML_TEAMS_TABLE_TITLE = "</br></br><span class=\"titulo-enlaces cf size-large\" width=\"700\"> <h2 style=\"width: 700px\">         <img src=\"http://www.mahjongmadrid.com/wp-content/uploads/2017/09/teams_32_2.png\" style=\"margin-right:10px;\"/>Teams</h2></span></br></br>";
         public static readonly string HTML_CHICKEN_HANDS_TABLE_TITLE = "</br></br><span class=\"titulo-enlaces cf size-large\" width=\"850\"> <h2 style=\"width: 850px\"> <img src=\"http://www.mahjongmadrid.com/wp-content/uploads/2017/09/chicken_32_2.png\" style=\"margin-right:10px;\"/>Chicken Hands</h2></span></br></br>";
@@ -72,7 +58,5 @@ namespace MahjongTournamentSuite.Resources
         public static readonly string HTML_CLOSE_TD = "</td>";
         public static readonly string HTML_CLOSE_TBODY = "</tbody>";
         public static readonly string HTML_CLOSE_TABLE = "</table>";
-
-        #endregion
     }
 }

@@ -16,7 +16,6 @@ namespace MahjongTournamentSuite._Data
 
         public DBManager() {}
 
-
         #region Tournaments
 
         public List<VTournament> GetTournaments()
@@ -169,11 +168,33 @@ namespace MahjongTournamentSuite._Data
             _db.SaveChanges();
         }
 
+        public void AssignNewEmaPlayer(int tournamentId, int playerId, string emaNumber)
+        {
+            DBPlayer player = _db.Players.ToList().Find(x => x.PlayerTournamentId == tournamentId && x.PlayerId == playerId);
+            DBEmaPlayer dbEmaPlayer = _db.EmaPlayers.ToList().Find(x => x.EmaPlayerEmaNumber == emaNumber);
+            if (dbEmaPlayer != null)
+            {
+                player.PlayerEmaNumber = dbEmaPlayer.EmaPlayerEmaNumber;
+                player.PlayerName = dbEmaPlayer.EmaPlayerName + " " + dbEmaPlayer.EmaPlayerLastName;
+                player.PlayerCountryName = dbEmaPlayer.EmaPlayerCountryName;
+            }
+            _db.SaveChanges();
+        }
+
+        public void UnassignEmaPlayer(int tournamentId, int playerId)
+        {
+            DBPlayer player = _db.Players.ToList().Find(x => x.PlayerTournamentId == tournamentId && x.PlayerId == playerId);
+            player.PlayerEmaNumber = string.Empty;
+            player.PlayerName = string.Format("Player {0}", player.PlayerId);
+            player.PlayerCountryName = string.Empty;
+            _db.SaveChanges();
+        }
+
         public void RefreshPlayers(int tournamentId)
         {
-            List<DBTeam> teams = _db.Teams.ToList().FindAll(x => x.TeamTournamentId == tournamentId);
-            foreach (DBTeam team in teams)
-                _db.Entry(team).Reload();
+            List<DBPlayer> players = _db.Players.ToList().FindAll(x => x.PlayerTournamentId == tournamentId);
+            foreach (DBPlayer player in players)
+                _db.Entry(player).Reload();
         }
 
         #endregion
@@ -371,7 +392,9 @@ namespace MahjongTournamentSuite._Data
 
         public void RefreshTeams(int tournamentId)
         {
-            throw new NotImplementedException();
+            List<DBTeam> teams = _db.Teams.ToList().FindAll(x => x.TeamTournamentId == tournamentId);
+            foreach (DBTeam team in teams)
+                _db.Entry(team).Reload();
         }
 
         #endregion
@@ -383,6 +406,12 @@ namespace MahjongTournamentSuite._Data
             EnsureThereAreCountries();
             List<DBCountry> dbCountries = _db.Countries.OrderBy(x => x.CountryName).ToList();
             return CountryMapper.GetViewModel(dbCountries);
+        }
+
+        public List<string> GetCountriesNames()
+        {
+            EnsureThereAreCountries();
+            return _db.Countries.Select(x => x.CountryName).ToList();
         }
 
         public List<string> GetCountriesNamesWichHaveImageUrl()
@@ -492,6 +521,7 @@ namespace MahjongTournamentSuite._Data
                 _db.Countries.Add(new DBCountry("Guernsey", string.Empty));
                 _db.Countries.Add(new DBCountry("Ghana", string.Empty));
                 _db.Countries.Add(new DBCountry("Gibraltar", string.Empty));
+                _db.Countries.Add(new DBCountry("Great Britain", string.Empty));
                 _db.Countries.Add(new DBCountry("Greenland", string.Empty));
                 _db.Countries.Add(new DBCountry("Gambia", string.Empty));
                 _db.Countries.Add(new DBCountry("Guinea", string.Empty));
@@ -645,6 +675,636 @@ namespace MahjongTournamentSuite._Data
                 _db.Countries.Add(new DBCountry("South Africa", string.Empty));
                 _db.Countries.Add(new DBCountry("Zambia", string.Empty));
                 _db.Countries.Add(new DBCountry("Zimbabwe", string.Empty));
+
+                _db.SaveChanges();
+            }
+        }
+
+        #endregion
+
+        #endregion
+
+        #region EMA Player
+
+        public List<VEmaPlayer> GetEmaPlayers()
+        {
+            EnsureThereAreEmaPlayers();
+            List<DBEmaPlayer> dbEmaPlayer = _db.EmaPlayers.OrderBy(x => x.EmaPlayerEmaNumber).ToList();
+            return EmaPlayerMapper.GetViewModel(dbEmaPlayer);
+        }
+
+        public List<string> GetAvailableEmaPlayersNames(int tournamentId)
+        {
+            List<DBEmaPlayer> dbEmaPlayers = _db.EmaPlayers.ToList();
+            List<DBPlayer> dbPlayersInUse = _db.Players.ToList().FindAll(x => x.PlayerTournamentId == tournamentId);
+            List<DBEmaPlayer> dbEmaPlayersInUse = new List<DBEmaPlayer>(dbPlayersInUse.Count);
+            foreach (DBEmaPlayer dbEmaPlayer in dbEmaPlayers)
+            {
+                foreach (DBPlayer dbEmaPlayerInUse in dbPlayersInUse)
+                {
+                    if (dbEmaPlayerInUse.PlayerEmaNumber.Equals(dbEmaPlayer.EmaPlayerEmaNumber))
+                        dbEmaPlayersInUse.Add(dbEmaPlayer);
+                }
+            }
+            foreach (DBEmaPlayer dbEmaPlayerInUse in dbEmaPlayersInUse)
+            {
+                dbEmaPlayers.Remove(dbEmaPlayerInUse);
+            }
+
+            List<string> emaPlayersNames = new List<string>();
+            foreach(DBEmaPlayer dbEmaPlayer in dbEmaPlayers)
+            {
+                emaPlayersNames.Add(string.Format("{0}, {1} - {2}", 
+                    dbEmaPlayer.EmaPlayerLastName,
+                    dbEmaPlayer.EmaPlayerName, 
+                    dbEmaPlayer.EmaPlayerEmaNumber));
+            }
+            return emaPlayersNames;
+        }
+
+        public void AddEmaPlayer(VEmaPlayer emaPlayer)
+        {
+            _db.EmaPlayers.Add(EmaPlayerMapper.GetDataModel(emaPlayer));
+            _db.SaveChanges();
+        }
+
+        public void UpdateEmaPlayerEmaNumber(string oldEmaPlayerEmaNumber, string newEmaPlayerEmaNumber)
+        {
+            _db.EmaPlayers.ToList().Find(x => x.EmaPlayerEmaNumber.Equals(oldEmaPlayerEmaNumber)).EmaPlayerEmaNumber = newEmaPlayerEmaNumber;
+            _db.SaveChanges();
+        }
+
+        public void UpdateEmaPlayerName(string emaPlayerEmaNumber, string newName)
+        {
+            _db.EmaPlayers.ToList().Find(x => x.EmaPlayerEmaNumber.Equals(emaPlayerEmaNumber)).EmaPlayerName = newName;
+            _db.SaveChanges();
+        }
+
+        public void UpdateEmaPlayerLastName(string emaPlayerEmaNumber, string newLastName)
+        {
+            _db.EmaPlayers.ToList().Find(x => x.EmaPlayerEmaNumber.Equals(emaPlayerEmaNumber)).EmaPlayerLastName = newLastName;
+            _db.SaveChanges();
+        }
+
+        public void UpdateEmaPlayerCountry(string emaPlayerEmaNumber, string newCountryName)
+        {
+            _db.EmaPlayers.ToList()
+                .Find(x => x.EmaPlayerEmaNumber.Equals(emaPlayerEmaNumber))
+                .EmaPlayerCountryName = newCountryName;
+            _db.SaveChanges();
+        }
+
+        #region Private
+
+        private void EnsureThereAreEmaPlayers()
+        {
+            //http://mahjong-europe.org/ranking/mcr.html
+
+            if (_db.EmaPlayers.Count() == 0)
+            {
+                _db.EmaPlayers.Add(new DBEmaPlayer("1000001", "SCHEICHENBAUER", "Martin", "Austria"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("1000009", "TSCHINKEL", "Norbert", "Austria"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("1000013", "DOPPELHOFER", "Alexander", "Austria"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("1000015", "GLASER", "Ernest", "Austria"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("1000016", "MYSLIVEC", "Otto", "Austria"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("1000022", "ALDRIAN", "Maria", "Austria"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("1000024", "STOLLWITZER", "Margarete", "Austria"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("1000025", "JARITZ", "Gerti", "Austria"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("1000027", "SALLMUTTER", "Gabriele", "Austria"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("1000030", "RIHA", "Eberhard", "Austria"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("1000038", "FRISCHENSCHLAGER", "Elisabeth", "Austria"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("1000039", "POPRAT", "Günter", "Austria"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("1000045", "GINTSBERGER", "Günter", "Austria"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("1000046", "GINTSBERGER", "Elvira", "Austria"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("1000059", "SALLMUTTER", "Doris", "Austria"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("1000060", "DIVJAK", "Felix", "Austria"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("1000061", "DIVJAK", "Romana", "Austria"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("1000069", "RIEGLER", "Helmut", "Austria"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("1000071", "MARESCH", "Edeltraud", "Austria"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("1000073", "KANDORFER", "Heinz", "Austria"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("1000088", "VOLLMANN - GAO", "Qian", "Austria"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("1000092", "ALEXEJEW", "Monika", "Austria"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("1000093", "FELSBERGER", "Hermi", "Austria"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("1000105", "BERNKOPF", "Johanna", "Austria"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("1000108", "TRINKL", "Matthias", "Austria"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("1000109", "RIHA", "Andreas", "Austria"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("1000110", "NEUWIRTH", "Franz", "Austria"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("2010001", "MICHIELS", "Yannick", "Belgium"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("2010014", "VANDERBIST", "Wenda", "Belgium"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("2010016", "MOUS", "Linda", "Belgium"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("2010021", "VAN DAMME", "Peter", "Belgium"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("2010022", "MAES", "Joke", "Belgium"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("2010024", "MICHIELS", "Irma", "Belgium"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("2010025", "KOPMANIS", "Rudy", "Belgium"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("2010028", "DEWOLF", "Marleen", "Belgium"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("2010031", "MOUWEN", "Emma", "Belgium"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("2010033", "VERHEYDEN", "Marieke", "Belgium"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("2010036", "KAM", "Benjamin", "Belgium"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("2010038", "DE ROOCK", "Chris", "Belgium"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("2010039", "DERMOUT", "Jos", "Belgium"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("2010040", "RENSON", "Tijs", "Belgium"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("2010041", "PEVERNAGE", "Hilde", "Belgium"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("2010042", "KEMPER", "Sophie", "Belgium"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("2010043", "WECKHUYZEN", "Tine", "Belgium"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("2010044", "DERMOUT", "Kristien", "Belgium"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("2010045", "MORRENS", "Arnaud", "Belgium"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("2010049", "VERMEERSCH", "Jonas", "Belgium"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("2010050", "VAN HOOF", "Anita", "Belgium"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("2010052", "NAERT", "Lies", "Belgium"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("2010053", "GEUDENS", "Linda", "Belgium"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("3000003", "CHRISTENSEN", "Tina", "Denmark"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("3000005", "STIG NIELSEN", "Jeppe", "Denmark"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("3000022", "LETH", "Henrik", "Denmark"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("3000049", "CHRISTIANSEN", "Freddy", "Denmark"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("3000123", "IVERSEN", "Kim", "Denmark"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("3000126", "THERKELSEN", "Lars", "Denmark"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("3000140", "CHEN KOLD", "Shi Hua", "Denmark"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("3000142", "ASKJæR-FRIIS", "Mikkel", "Denmark"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("3000148", "ROSTVED", "Frank", "Denmark"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("3000149", "BAHIANO STEENHOLM", "Isabel", "Denmark"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("3000176", "NØHR", "Jesper", "Denmark"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("3000192", "LAVALLEE", "Sebastian", "Denmark"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("3000215", "OLSEN", "Ting Fang", "Denmark"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("3000313", "PETERSEN", "Jacob", "Denmark"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4010007", "UGO", "Jean Claude", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4010011", "CHAMPENOIS", "Jean-Luc", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4010015", "DIFERNAND", "Renéta", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4010016", "BONMALAIS", "Eric", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4010020", "ROBERT", "Frédéric", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4010025", "ENAULT", "Gilbert", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4010026", "PAYET", "Olivier", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4010027", "PAYET", "Ghislaine", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4010028", "TSONG CHIN CHUEN", "Marcel", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4010039", "LARINIER", "Pascale", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4010040", "SAUNIE", "Nicolas", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4010052", "BRONES", "Félicia", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4010054", "EBLE", "Philippe", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4010055", "EBLE", "Catherine", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4010061", "TAYLOR", "Christine", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4010066", "PAUSE", "Annick", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4010076", "CADI", "Johanna", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4030003", "AUBERVAL", "Jean Pascal", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4030004", "TAI LEUNG", "Emmanuel", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4030005", "AURE", "David Gérard", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4030006", "AURE", "Suzy", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4030022", "MORISSE", "Jean Michel", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4030023", "GRONDIN", "Frédérique", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4030028", "ORREGIA", "Marie-Josée", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4030045", "DORIS", "Reine-Marie", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4030047", "RODULFO", "Jeannine", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4030048", "RODULFO", "Antoine", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4030062", "JOURDAIN", "David", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4030067", "LAW-THO", "Marie-Claire", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4030074", "BARBET", "Jean Louis", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4030087", "COSTEY", "Jonathan", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4030091", "JANAC", "Wilson Nathanaël", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4030093", "MC DONALD", "James", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4030100", "MORISSE", "Valérie", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4030103", "RIVIERE", "Mickaël", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4030109", "FONTAINE", "Jean-Philippe", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4030124", "BARRET", "Cécile", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4040010", "BOIVIN", "Olivier", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4040017", "SAHAL", "Jérome", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4040026", "MESSI FOUDA", "Benoit", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4040034", "LEGAIE", "Lionel", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4040036", "D ANGELO", "Christiane", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4040047", "BONDOIN", "Sandra", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4040057", "RATSIMANDRESY", "Joel", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4040058", "LEFEBVRE", "Christophe", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4040083", "VIGNAUD", "Hubert", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4040105", "EA", "Anthony", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4040110", "ROBLIN", "Thérèse", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4040170", "RAVEL", "Judith", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4040187", "BARBET", "Jérémie", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4040189", "PETIT", "Frédéric", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4040205", "PFEIFFER", "Ji Li", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4040212", "GAO", "François", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4040217", "LAO", "Bernard", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4040238", "GAUCHER", "Fabien", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4050007", "VILLEPOU", "Caroline", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4050022", "BALAGOUROU", "André", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4060010", "LAM WAN SHUM", "Alfred", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4060011", "LAM WAN SHUM", "Emilie", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4060014", "METRO", "Claudia", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4060017", "BENEGEAN", "Monique", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4060020", "AH-LEUNG", "Liliane", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4060021", "GUERIN", "Michele", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4060022", "AH-PINE", "Monique", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4060023", "CHANE YUM", "Antoine", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4060025", "THIM SIONG", "Régine", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4060026", "POTHIN", "Gilette", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4060027", "LAFON", "Jacqueline", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4060031", "GAUTRON", "Fabienne", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4060033", "GONTHIER", "Françoise", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4060037", "BAS", "Micheline", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4060042", "SANGUY", "Mauricette", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4060049", "PAUGAM", "Colette", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4060050", "MAISTRY", "Saaddyia", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4060051", "ROSTIN", "Christine", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4060061", "BAUD", "Patrick", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4060067", "PERROT", "Brigitte", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4080001", "BOIDIN", "Héléne", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4080002", "BALORIN", "Pascal", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4080004", "ENAULT", "Christian", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4080005", "LETOULLEC", "René", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4080007", "GAUVIN", "Annick", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4080010", "BOYER", "Stéphanie Aline", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4080018", "GIGANT", "Sylvie", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4080019", "BARRATAULT", "Maria", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4080021", "DUBOZ", "Simone", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4090008", "FONGUE", "Simon Bounkéo", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4090016", "RAK", "Agnès", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4090024", "MANZO", "Annie", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4090025", "MANZO", "Bruno", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4090026", "RAK", "Cyrille", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4090035", "DRAUX", "Apolline", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4090041", "DELBOS", "Josianne", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4090045", "BOUVET", "Aymeric", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4090059", "MOREAU", "Mélanie", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4090060", "ARNAUD", "Caroline", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4090071", "VENTURINI", "Patrick", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4090075", "AUBRUN", "Michèle", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4090080", "AGUERRE", "Cédric", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4090083", "SVAY", "Christina", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4090088", "FERRANTE", "Sébastien", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4090090", "BONNEAU", "Anne-Sophie", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4090091", "LARRIGAUDIERE", "Nathalie", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4090093", "GUERIN", "Guillaume", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4090098", "ROYET", "Anne", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4100018", "GIRDARY", "Marie Lucie", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4120026", "MOTHE", "Norbert", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4120060", "HUANG", "Shuyao", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4120070", "DESCAMPS", "Florent", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4130003", "MATHERN", "Claire", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4130004", "GUTSCHE", "Sven-Hendrik", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4130005", "VALOGNES", "Sylvie", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4130015", "TOUSSAINT", "Kevin", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4130019", "LEROY", "Florine", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4130025", "CLAUDEL", "Laurent", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4130026", "LAPLAGNE", "Fanette", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4130027", "HERDIER", "Romain", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4130032", "XANTHOPOULOS", "Catherine", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4130036", "TOUSSAINT", "Florence", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4130055", "XANTHOPOULOS", "Tim", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4130073", "DES ROBERT", "Dominique", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4130092", "SIMON", "Alexandre", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4130106", "DEMICHEL", "Eva", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4140001", "GEFFRIAUD", "Christophe", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4140002", "GEFFRIAUD", "Evi", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4140006", "RICHOMME", "Christophe", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4140034", "TCHERNYCHEV", "Konstantin", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4140040", "HERMIER", "Sarah", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4140049", "HOCHIN", "Michèle", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4140057", "MIALIN", "Monique", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4140059", "CHARRIER", "Françoise", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4160002", "AZOUGAGH", "Aziz", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4180001", "HEDO", "Joëlle", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4180005", "CHEUNG-AH-SEUNG", "Lucile", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4180009", "TECHER", "Daniel", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4210013", "BLOTTIN", "Maeva", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4210015", "ROY", "Olivier", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4210018", "TOUCAS", "Elizabeth", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4210023", "BOISSON", "Véronique", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4240011", "KIEFFER", "Marie", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4240012", "ZINNIGER", "Christophe", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4280001", "TACHE", "Olivier", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4280004", "DUBEDOUT", "Astrid", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4280006", "LE MORVAN", "Éric", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4280011", "CROCCO", "Sébastien", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4290001", "BERTHOMMIER", "Sandra", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4290006", "HUGOT", "Emmanuelle", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4290008", "PARRIAUD", "Jean-François", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4290023", "SANTOS", "Manuel", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4290030", "DE KERGOMMEAUX", "Erwan", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4290031", "DE KERGOMMEAUX", "Loic", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4290032", "EREAU", "Baptiste", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4390003", "VAITILINGOM", "Micheline", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4390007", "HOARAU", "Mathieu", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4390008", "DE PALMAS", "Joël", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4990015", "CLAUDEL", "Thierry", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4990024", "DI DOMENICO", "Annabel", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4990025", "DI DOMENICO", "Corine", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4990036", "AUBRUN", "Daniel", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4990054", "YOU-SEEN", "Vincent", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("4990062", "PFEIFFER", "Matthieu", "France"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("5100016", "JENJAHN", "Monika", "Germany"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("5100017", "GERDES", "Erika", "Germany"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("5100018", "PÜNJER", "Elke", "Germany"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("5100020", "MEIER", "Marion", "Germany"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("5100024", "GERDES", "Friedrich", "Germany"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("5100033", "DUHME", "Stefanie", "Germany"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("5100056", "SCHÄFER", "Heike", "Germany"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("5100057", "SCHÄFER", "Anne", "Germany"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("5100058", "FISCHER", "Dagmar", "Germany"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("5100067", "EICKSCHEN", "Ulla", "Germany"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("5100077", "LUDWIG", "Heidi", "Germany"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("5100078", "LUDWIG", "Heinz", "Germany"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("5100086", "BOHLMANN", "Fred", "Germany"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("5100092", "CAPITO", "Cornelia", "Germany"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("5100100", "MANTEN", "Sabine", "Germany"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("5100101", "DOMANN", "Heiko", "Germany"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("5100124", "BEESE", "Peter", "Germany"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("5100127", "MÜLLER", "Robert", "Germany"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("5100141", "NOLTING", "Bino", "Germany"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("5100142", "BRINKMEIER", "Elke", "Germany"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("5100143", "CHEN", "Wei", "Germany"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("5100153", "HAHN", "Timur", "Germany"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("5100164", "GONG", "Yixin", "Germany"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("5100165", "SCHNIER", "Jürgen", "Germany"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("5900002", "KÖNIG", "Nadine", "Germany"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("5900003", "ZAHRADNIK", "Michael", "Germany"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("5900008", "BANSEMER", "Silke", "Germany"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("5900010", "PEKAU", "Uwe", "Germany"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("6010002", "NYULASI", "Zsolt", "Hungary"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("6010008", "BOGARNÈ NAGY", "Magdolna", "Hungary"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("6010011", "HARGITAI", "Ildikó", "Hungary"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("6010021", "TAKÁCS", "Sándor", "Hungary"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("6010022", "TAKÁCSNÉ LOWINGER", "Klára", "Hungary"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("6010025", "VÁRNAI", "Eszter", "Hungary"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("6010031", "MÁTRAI", "Jánosné", "Hungary"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("6020003", "HALÁSZ", "Pál", "Hungary"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("6020014", "BERI", "Márta Rózsa", "Hungary"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("6020016", "SPRECHER", "Károly", "Hungary"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("6020017", "ELEK", "David", "Hungary"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("6020019", "SZEPESVARI", "Szilvia", "Hungary"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("6020021", "FÓRIZS", "Ilona", "Hungary"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("6990001", "PALCZER-ASCHENBRENNER", "Eti", "Hungary"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("6990017", "NEMETH", "Attila", "Hungary"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("6990025", "VLADAR", "Ferenc", "Hungary"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000001", "GAVELLI", "Luca", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000002", "BAZZOCCHI", "Marco", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000005", "BUSCARINI", "Patrizia", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000006", "NATALI", "Daniela", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000007", "MILANDRI", "Marco", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000008", "VERPELLI", "Andrea", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000009", "RIJOFF", "Stefano", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000011", "PLEBANI", "Angela", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000013", "PROCOPIO", "Stefania", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000014", "BONALDO", "Rosita", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000017", "BOLLINO", "Michele", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000018", "MONTEBELLI", "Marco", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000020", "PIZZI", "Loretta", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000021", "SAVINI", "Elena", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000024", "PORRATI", "Serena", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000033", "UGUCCIONI", "Letizia", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000034", "COMERCI", "Michele", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000035", "FERRUZZI", "Giacomo", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000042", "BASSI", "Vittorio", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000048", "PIANCASTELLI", "Gianfranco", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000052", "LORENZI", "Marco", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000055", "TRANCHINA", "Massimiliano", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000062", "BENINI", "Paride", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000065", "GORI", "Stefania", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000070", "FOSCHI", "Marco", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000071", "ARGENTIERO", "Giusi", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000072", "GATTA", "Bruna", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000075", "FERRI", "Fabrizio", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000078", "ENFI", "Laura", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000080", "GHERARDI", "Augusto", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000082", "PEREGO", "Roger", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000083", "FOSCHI", "Elisa", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000088", "GARRIDO", "Carmelita", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000089", "CIOL", "Maurizio", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000092", "TARONI", "Piero", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000093", "TASSINARI", "Ombretta", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000095", "CALOSCI", "Rossella", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000096", "MARTINI", "Francesco", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000104", "BATTAGLINI", "Francesca", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000107", "SERIO", "Danilo", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000109", "MARTELLI", "Miria", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000111", "PECE", "Franca", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000114", "ROSI", "Alberto", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000115", "IACOLINO", "Giuseppe", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000119", "PEDRINI", "Enrica", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000124", "PEDRINI", "Roberta", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000127", "MORIGI", "Valentina", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000129", "MARINO", "Demetrio", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000130", "VENTURI", "Alberto", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000131", "BAGNOLI", "Maurizio", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000135", "MOZNICH", "Paolo", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000138", "FOLESANI", "Claudia", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000141", "VALENTINO", "Valentina", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000148", "BONCRISTIANO", "Luca", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000150", "BASCHIROTTO", "Nicoletta", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000151", "FERUGLIO", "Elisa", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000152", "CERRA", "Valentina", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000155", "PALMISANO", "Oscar", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000156", "MAMONE", "Laura", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000158", "RENDA", "Andrea", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000160", "MASTRULLO", "Davide", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000163", "CIVAROLI", "Marco", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000170", "SANSEVIERI", "Domenico", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("7000172", "CRAGNOLIN", "Luca", "Italy"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010039", "KÖSTERS", "Anton", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010022", "ONNINK", "Janco", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010025", "CROEZE", "Marianne", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010166", "HOOGLAND", "Ans", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010599", "VAN DE NIEUWENDIJK", "Marjan", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010412", "LINDEN, VAN DER", "Pauline", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010028", "BROERS", "Eveline", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010430", "OORSOUW, VAN", "Anja", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010021", "HEEMSKERK", "Désirée", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010411", "LINDEN, VAN DER", "Ad", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010667", "NIEUWENDIJK", "Twan", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010003", "OORSCHOT, VAN", "Gerda", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010052", "HEIDE, VAN DER", "Yvonne", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010101", "BALKUM, VAN", "Eric", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010526", "SOMMERS", "Olav", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010121", "MEIJER - KAL", "Wil", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010158", "WESTDIJK", "Diana", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010698", "VAN BALKUM", "Luuk", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010168", "GRINSVEN, VAN", "Dimphy", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010305", "VAN WIJK", "Janine", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010727", "OUDSHOOM", "Jacqueline", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010113", "TEUNISSEN", "Eugenie", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010427", "PASTERKAMP", "Martha", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010557", "VAN THIEL", "Martin", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010609", "HOOGLAND", "Jose", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010295", "PUTTEN, VAN DER", "Ria", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010445", "VOS", "Barry", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010518", "BOEKSTAAF", "Dennis", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010594", "OORSOUW, VAN", "Mattheu", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010137", "JONG, DE", "Zeger", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010026", "CROEZE", "Jaap", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010035", "HEIJN", "Berry", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010187", "BRINK, VAN DEN", "Cees", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010173", "KEYL", "Anneke", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010730", "DEIJ - VAN RIJSWIJK", "Menno", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010732", "VAN MOURIK", "Herma", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010162", "MOREL", "Hanneke", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010633", "JONG, DE", "Joke", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010017", "SCHEFFLER", "Chris", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010731", "VAN WIJNGAARDEN", "Sandra", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010598", "VAN DE NIEUWENDIJK", "Oscar", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010580", "BAKKER", "Foppe", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010036", "JANSSEN", "Leni", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010123", "BIE, VAN DER", "Gerard", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010545", "CORNE", "Neil", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010415", "ARINGANENG", "Nino", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010495", "LIENDEN VAN", "Menno", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010656", "DROST", "Vera", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010613", "LIPS", "Marjoleine", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010128", "KAL", "Harry", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010049", "VEGT, VAN DER", "Gert", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010328", "WARBOUT", "Jan", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010219", "GROOT, DE", "Aty", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010689", "LAMMERS", "Ronald", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010126", "WONG-CHUNG", "Rudy", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010083", "SOHANA", "Ma Prem", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010140", "ELFERINK", "Petra", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010171", "CLAESSEN", "Bert", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010206", "ELFERINK", "Leo", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010486", "BAKKER", "Anneke", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010122", "BIE, VAN DER", "Tonny", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010733", "BOL", "Pieter", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010027", "JANSSEN", "Chris", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010344", "PILGRAM", "Jack lien", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010687", "HEYLIGER", "Jessica", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010505", "MEULENDIJK", "Sonja", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010109", "MEIJER", "Jeroen", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010593", "BOOGAART", "Anja", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010650", "DE VRIES", "Jakko", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010376", "MARSIDI", "Ieneke", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010054", "SCHOLTE", "Piet", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010701", "KOSTER", "Ineke", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010470", "BAZUIN", "Cisca", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010665", "BOSKAMP", "Liesbeth", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010621", "SCHOLTEN", "Rik", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010196", "DONK", "Grea", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010271", "MEIJER", "Trees", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010568", "NOLTEN", "Jannie", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010699", "MALLEE", "Annemiek", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010564", "KITSLAAR", "Annet", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010351", "KUIJPERS", "John", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010510", "WEBER", "Mieke", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010538", "HAGMAN", "Annie", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010047", "BROEDER", "Ingrid", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010706", "CRAAIKAMP", "Anna", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010023", "HEEMSKERK", "Yvonne", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010569", "SCHAADERS", "Leny", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("8010120", "SATRIASAPUTRA", "Dewi", "Netherlands"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("9990008", "HENRIËT", "Moa", "Sweden"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("9990009", "ÖSTMAN", "Emelie", "Sweden"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("9990039", "NORÉN", "Marie", "Sweden"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("9990044", "RANEFALL", "Petter", "Sweden"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("9990045", "RIDELL", "Annika", "Sweden"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("9990047", "GERMEYS", "Jasper", "Sweden"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("9990088", "FAHLSTRÖM", "Emma", "Sweden"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("9990095", "HJORT", "Mikael", "Sweden"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("9990099", "AVENEL", "Christophe", "Sweden"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("9990104", "NORÉN", "Caroline", "Sweden"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("9990106", "LANDOLSI", "Sara", "Sweden"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("9990107", "GABOARDI", "Felipe", "Sweden"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("10990007", "MORENO MERINO", "José", "Spain"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("10990012", "FUENTES CARREÑO", "Diana", "Spain"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("10990016", "MAESTRE ROS", "Ivan", "Spain"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("10990017", "TÚNEZ HEREDIA", "Samuel", "Spain"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("10990018", "ESCASO GIL", "Héctor", "Spain"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("10990019", "MARTÍNEZ GARCIA", "David", "Spain"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("10990020", "AMADOR LORENTE", "Eduardo", "Spain"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("10990021", "GARCÍA GARCÍA", "Domingo", "Spain"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("10990022", "VALBUENA MEDINA", "Carmen", "Spain"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("10990024", "TÚNEZ PÉREZ", "Maria del Mar", "Spain"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("10990025", "CASTELLANO RIVAS", "Maria del Pilar", "Spain"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("10990026", "RUBIO RODILLA", "Edgar", "Spain"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("10990027", "AYLLÓN", "Antonio", "Spain"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("10990028", "MARTÍNEZ FERNÁNDEZ", "Alejandro", "Spain"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("10990037", "TÚNEZ HEREDIA", "Katia", "Spain"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("10990039", "VEGA DE LA IGLESIA SORIA", "Ernesto", "Spain"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("10990043", "RÍOS NAVARRO", "Raúl", "Spain"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("10990047", "PASCUAL RAMÍREZ", "Miguel", "Spain"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("10990051", "SAN ANTONIO SERRANO", "Marcos", "Spain"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("10990055", "MORENO PESQUERA", "José Manuel", "Spain"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("10990057", "RUBIO RODRIGUEZ", "Luis Eduardo", "Spain"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("10990058", "CIUDAD GÓMEZ", "David", "Spain"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("10990060", "BALLESTER CARACENA", "Mario", "Spain"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("10990061", "HERMOSIN", "Ezequiel", "Spain"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("10990062", "SANCHEZ FUENTES", "Elvira", "Spain"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("10990063", "RIQUELME SÁNCHEZ", "Abraham Antonio", "Spain"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("10990070", "SOLER RECIO", "David", "Spain"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("11990005", "FRASER", "Ian", "Great Britain"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("11990016", "DUCKWORTH", "John", "Great Britain"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("12990002", "MANUEL MACHADO", "Rui", "Portugal"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990005", "STEPANOV", "Vladimir", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990008", "DANILEVSKAYA", "Alla", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990009", "DULENKO", "Galina", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990012", "NOVIKOV", "Vitaly", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990018", "STEPANOVA", "Anna", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990019", "NETREBINA", "Evgenia", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990021", "CHICHIGINA", "Natalya", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990023", "ANOKHIN", "Pavel", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990025", "BABUSHKIN", "Aleksandr", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990026", "GOPTAREVA", "Tatyana", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990027", "LOGVINOV", "Oleg", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990028", "CHICHIGIN", "Andrey", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990040", "KVASHA", "Ilya", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990042", "MANDJIEV", "Arslan", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990070", "SHPILMAN", "Anna", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990072", "NESTER", "Tatyana", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990075", "BIRUKOV", "Igor", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990078", "TEREKHIN", "Vladimir", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990086", "VERDI", "Anton", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990088", "NECHAEV", "Roman", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990091", "RYZHANINA", "Irina", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990092", "DASHKOVA", "Anna", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990093", "USHAKOVA", "Elena", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990095", "DULENKO", "Fedor", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990103", "VASILIEV", "Sergey", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990104", "HLUDENTSOVA", "Evgeniya", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990107", "BOGATIKOV", "Aleksander", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990108", "CHERNYKH", "Anastasiya", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990114", "PETUHOV", "Mikhail", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990117", "BOGACHKOV", "Dmitry", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990128", "PANINA", "Tamara", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990134", "VERDI", "Elena", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990135", "ARZAMASCEV", "Vladimir", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990174", "KUDRYAVTSEVA", "Anastasiya", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990175", "MYSKIN", "Filipp", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990176", "GOLIKOVA", "Natalia", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990177", "ROMANETSKAYA", "Olga", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990191", "ZOLOTAREVA", "Nadezhda", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990213", "CHICHIGIN", "Viacheslav", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990215", "SHPILMAN", "Aleksei", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990216", "VERIK", "Elena", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990233", "MALAKHOV", "Sergey", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990236", "BYKOV", "Dmitriy", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990251", "LUGANNIKOV", "Denis", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990265", "SOLOVJEV", "Anton", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990268", "BELYALOVA", "Maria", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990273", "KIM", "Evgeniy", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990291", "ZINCHENKO", "Vadim", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990315", "MANIAKHIN", "Petr", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990316", "SAPOROVSKII", "Andrei", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990317", "SIMONOVA", "Svetlana", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990318", "KONSTANTINOVA", "Ekaterina", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990324", "IVANOV", "Andrey", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990325", "TOULINA", "Ekaterina", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990327", "LAVRENIUK", "Irina", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990328", "FILIUSHKINA", "Veronika", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990332", "KIRILLOVA", "Anna", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990352", "SVIDRITSKIY", "Oleg", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990353", "TURLINA", "Elena", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("15990354", "NEPOMNYASHCHIKH", "Anastasiya", "Russia"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("16000001", "FELDER", "Mei Hwa", "Switzerland"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("16000002", "LANG", "Bo", "Switzerland"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("16000005", "HUMBERT", "Luc", "Switzerland"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("16000006", "PETEREIT", "Oliver", "Switzerland"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("16000007", "CHASSOT", "Frédéric", "Switzerland"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("16000008", "CANOVA PUTINIER", "Anna", "Switzerland"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("16000009", "JACQUART", "Nathalie", "Switzerland"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("16000010", "GROUX", "Marie-Hélène", "Switzerland"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("16000011", "HÊCHE", "Gérard", "Switzerland"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("16000016", "MAYR DELACRÉTAZ", "Tanja", "Switzerland"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("16000020", "DELAY", "Patrice", "Switzerland"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("16000021", "HOFMANN", "Marc-Antoine", "Switzerland"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("16000025", "DELACRETAZ", "Sébastien", "Switzerland"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("16000026", "HERNANDEZ", "Esther", "Switzerland"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("16000027", "HUNZIKER", "Aurorita", "Switzerland"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("16000030", "ALONSO BLANCO", "Marcos", "Switzerland"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("16000031", "LEE", "Jun", "Switzerland"));
+                _db.EmaPlayers.Add(new DBEmaPlayer("19000080", "CHABELSKA", "Katarzyna", "Poland"));
+
+
 
                 _db.SaveChanges();
             }

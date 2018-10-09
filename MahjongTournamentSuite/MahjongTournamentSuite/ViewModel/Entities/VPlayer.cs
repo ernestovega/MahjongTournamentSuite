@@ -11,17 +11,19 @@ namespace MahjongTournamentSuite._Data.DataModel
         public static readonly string COLUMN_PLAYERS_ID = "PlayerId";
         public static readonly string COLUMN_PLAYERS_NAME = "PlayerName";
         public static readonly string COLUMN_PLAYERS_TEAM = "PlayerTeamId";
-        public static readonly string COLUMN_PLAYERS_COUNTRY_NAME = "PlayerCountryName";
+        public static readonly string COLUMN_PLAYERS_COUNTRY_NAME = "PlayerCountryName"; 
+        public static readonly string COLUMN_PLAYERS_EMA_NUMBER = "PlayerEmaNumber";
 
         #endregion
 
         #region Properties
-        
+
         public int PlayerTournamentId { get; set; }
         public int PlayerId { get; set; }
         public string PlayerName { get; set; }
         public int PlayerTeamId { get; set; }
         public string PlayerCountryName { get; set; }
+        public string PlayerEmaNumber { get; set; }
 
         #endregion
 
@@ -29,13 +31,14 @@ namespace MahjongTournamentSuite._Data.DataModel
 
         public VPlayer() { }
 
-        public VPlayer(int tournamentId, int id, string name, int teamId, string countryName)
+        public VPlayer(int tournamentId, int id, string name, int teamId, string countryName, string emaNumber)
         {
             PlayerTournamentId = tournamentId;
             PlayerId = id;
             PlayerName = name;
             PlayerTeamId = teamId;
             PlayerCountryName = countryName;
+            PlayerEmaNumber = countryName;
         }
 
         #endregion

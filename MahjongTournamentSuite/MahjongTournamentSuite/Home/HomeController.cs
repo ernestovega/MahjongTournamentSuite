@@ -33,11 +33,6 @@ namespace MahjongTournamentSuite.Home
             _form.FillDGVTournaments(_tournaments);
         }
 
-        public void OnFormResized()
-        {
-            _form.CenterMainButtons();
-        }
-
         public void DeleteClicked(int tournamentId)
         {
             if (tournamentId > -1 && _form.RequestDeleteTournamentConfirmation())

@@ -75,16 +75,38 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CountryManager\ICountryManagerDataManager.cs" />
+    <Compile Include="EmaPlayersSelector\EmaPlayersSelectorController.cs" />
+    <Compile Include="EmaPlayersSelector\EmaPlayersSelectorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmaPlayersSelector\EmaPlayersSelectorForm.Designer.cs">
+      <DependentUpon>EmaPlayersSelectorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmaPlayersSelector\IEmaPlayersSelectorController.cs" />
+    <Compile Include="EmaPlayersSelector\IEmaPlayersSelectorDataManager.cs" />
+    <Compile Include="EmaPlayersSelector\IEmaPlayersSelectorForm.cs" />
     <Compile Include="CountrySelector\ICountrySelectorDataManager.cs" />
     <Compile Include="Home\IHomeDataManager.cs" />
-    <Compile Include="ViewModel\BestHandRanking.cs" />
-    <Compile Include="ViewModel\VCountry.cs" />
-    <Compile Include="ViewModel\VHand.cs" />
-    <Compile Include="ViewModel\VPlayer.cs" />
-    <Compile Include="ViewModel\VTable.cs" />
-    <Compile Include="ViewModel\VTeam.cs" />
-    <Compile Include="ViewModel\VTournament.cs" />
-    <Compile Include="ViewModel\DGVPlayerEma.cs" />
+    <Compile Include="EmaPlayersManager\IEmaPlayersManagerController.cs" />
+    <Compile Include="EmaPlayersManager\IEmaPlayersManagerDataManager.cs" />
+    <Compile Include="EmaPlayersManager\IEmaPlayersManagerForm.cs" />
+    <Compile Include="EmaPlayersManager\EmaPlayersManagerController.cs" />
+    <Compile Include="EmaPlayersManager\EmaPlayersManagerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmaPlayersManager\EmaPlayersManagerForm.Designer.cs">
+      <DependentUpon>EmaPlayersManagerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ColorConstants.cs" />
+    <Compile Include="ViewModel\RankingModel\BestHandRanking.cs" />
+    <Compile Include="ViewModel\Entities\VCountry.cs" />
+    <Compile Include="ViewModel\Entities\VHand.cs" />
+    <Compile Include="ViewModel\Entities\VEmaPlayer.cs" />
+    <Compile Include="ViewModel\Entities\VPlayer.cs" />
+    <Compile Include="ViewModel\Entities\VTable.cs" />
+    <Compile Include="ViewModel\Entities\VTeam.cs" />
+    <Compile Include="ViewModel\Entities\VTournament.cs" />
+    <Compile Include="ViewModel\DataGrivViewModel\DGVEmaPlayer.cs" />
     <Compile Include="EmaReport\EmaReportForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,9 +116,9 @@
     <Compile Include="EmaReport\EmaReportController.cs" />
     <Compile Include="EmaReport\IEmaReportForm.cs" />
     <Compile Include="EmaReport\IEmaReportController.cs" />
-    <Compile Include="ViewModel\DGVCountry.cs" />
-    <Compile Include="ViewModel\DGVPlayerTable.cs" />
-    <Compile Include="ViewModel\PlayerTables.cs" />
+    <Compile Include="ViewModel\DataGrivViewModel\DGVCountry.cs" />
+    <Compile Include="ViewModel\DataGrivViewModel\DGVPlayerTable.cs" />
+    <Compile Include="ViewModel\TournamentCreationModel\PlayerTables.cs" />
     <Compile Include="NewTournament\INewTournamentDataManager.cs" />
     <Compile Include="PlayersManager\IPlayersManagerDataManager.cs" />
     <Compile Include="PlayersTables\IPlayersTablesDataManager.cs" />
@@ -154,7 +176,7 @@
     <Compile Include="CountrySelector\CountrySelectorController.cs" />
     <Compile Include="CountrySelector\ICountrySelectorForm.cs" />
     <Compile Include="CountrySelector\ICountrySelectorController.cs" />
-    <Compile Include="CustomViews\CustomProgressBar.cs">
+    <Compile Include="ViewModel\ViewsModel\CustomProgressBar.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Home\HomeForm.cs">
@@ -182,9 +204,9 @@
     <Compile Include="CountryManager\CountryManagerForm.Designer.cs">
       <DependentUpon>CountryManagerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\ChickenHandRanking.cs" />
-    <Compile Include="ViewModel\HTMLRankings.cs" />
-    <Compile Include="ViewModel\Rankings.cs" />
+    <Compile Include="ViewModel\RankingModel\ChickenHandRanking.cs" />
+    <Compile Include="ViewModel\RankingModel\HTMLRankings.cs" />
+    <Compile Include="ViewModel\RankingModel\Rankings.cs" />
     <Compile Include="Ranking\IRankingForm.cs" />
     <Compile Include="Ranking\IRankingController.cs" />
     <Compile Include="Ranking\RankingForm.cs">
@@ -194,17 +216,17 @@
       <DependentUpon>RankingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Ranking\RankingController.cs" />
-    <Compile Include="ViewModel\ComboItem.cs" />
-    <Compile Include="ViewModel\DGVPlayer.cs" />
-    <Compile Include="ViewModel\Player.cs" />
-    <Compile Include="ViewModel\PlayerRanking.cs" />
-    <Compile Include="ViewModel\PropertyComparer.cs" />
-    <Compile Include="ViewModel\Rivals.cs" />
-    <Compile Include="ViewModel\SortableBindingList.cs" />
-    <Compile Include="ViewModel\TableWithAll.cs" />
-    <Compile Include="ViewModel\TablePlayer.cs" />
-    <Compile Include="ViewModel\TeamRanking.cs" />
-    <Compile Include="ViewModel\WrongTeam.cs" />
+    <Compile Include="ViewModel\ViewsModel\ComboItem.cs" />
+    <Compile Include="ViewModel\DataGrivViewModel\DGVPlayer.cs" />
+    <Compile Include="ViewModel\TournamentCreationModel\Player.cs" />
+    <Compile Include="ViewModel\RankingModel\PlayerRanking.cs" />
+    <Compile Include="ViewModel\DataGrivViewModel\PropertyComparer.cs" />
+    <Compile Include="ViewModel\TournamentCreationModel\Rivals.cs" />
+    <Compile Include="ViewModel\DataGrivViewModel\SortableBindingList.cs" />
+    <Compile Include="ViewModel\TournamentCreationModel\TableWithAll.cs" />
+    <Compile Include="ViewModel\TournamentCreationModel\TablePlayer.cs" />
+    <Compile Include="ViewModel\RankingModel\TeamRanking.cs" />
+    <Compile Include="ViewModel\DataGrivViewModel\WrongTeam.cs" />
     <Compile Include="NewTournament\INewTournamentForm.cs" />
     <Compile Include="NewTournament\INewTournamentController.cs" />
     <Compile Include="NewTournament\NewTournamentForm.cs">
@@ -216,8 +238,8 @@
     <Compile Include="NewTournament\NewTournamentController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModel\DGVHand.cs" />
-    <Compile Include="Constants.cs" />
+    <Compile Include="ViewModel\DataGrivViewModel\DGVHand.cs" />
+    <Compile Include="HtmlConstants.cs" />
     <Compile Include="Home\SplashForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -226,7 +248,7 @@
     </Compile>
     <Compile Include="TableManager\ITableManagerForm.cs" />
     <Compile Include="TableManager\ITableManagerController.cs" />
-    <Compile Include="ViewModel\PlayerTotalScore.cs" />
+    <Compile Include="ViewModel\TournamentCreationModel\PlayerTotalScore.cs" />
     <Compile Include="TableManager\TableManagerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -253,9 +275,11 @@
       <DependentUpon>TournamentManagerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="TournamentManager\TournamentManagerController.cs" />
+    <Compile Include="_Data\DataModel\DBEmaPlayer.cs" />
     <Compile Include="_Data\DBContext.cs" />
     <Compile Include="_Data\DBManager.cs" />
     <Compile Include="_Data\IDBManager.cs" />
+    <Compile Include="_Data\Mappers\EmaPlayerMapper.cs" />
     <Compile Include="_Data\Mappers\PlayerMapper.cs" />
     <Compile Include="_Data\Mappers\TableMapper.cs" />
     <Compile Include="_Data\Mappers\TeamMapper.cs" />
@@ -268,8 +292,14 @@
     <Compile Include="_Data\DataModel\DBTable.cs" />
     <Compile Include="_Data\DataModel\DBTeam.cs" />
     <Compile Include="_Data\DataModel\DBTournament.cs" />
+    <EmbeddedResource Include="EmaPlayersSelector\EmaPlayersSelectorForm.resx">
+      <DependentUpon>EmaPlayersSelectorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EmaReport\EmaReportForm.resx">
       <DependentUpon>EmaReportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmaPlayersManager\EmaPlayersManagerForm.resx">
+      <DependentUpon>EmaPlayersManagerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PlayersTables\PlayersTablesForm.resx">
       <DependentUpon>PlayersTablesForm.cs</DependentUpon>
@@ -653,9 +683,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="_Common\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

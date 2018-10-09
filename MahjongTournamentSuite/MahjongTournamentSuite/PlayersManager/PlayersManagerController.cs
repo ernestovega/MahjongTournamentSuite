@@ -35,8 +35,7 @@ namespace MahjongTournamentSuite.PlayersManager
         {
             _tournament = _data.GetTournament(tournamentId);
             _players = _data.GetTournamentPlayers(tournamentId);
-            if (_tournament.IsTeams)
-                _teams = _data.GetTournamentTeams(tournamentId);
+            _teams = _tournament.IsTeams ? _data.GetTournamentTeams(tournamentId) : new List<VTeam>();
             _countries = _data.GetCountries();
 
             List<DGVPlayer> dgvPlayers = new List<DGVPlayer>(_players.Count);
@@ -60,7 +59,7 @@ namespace MahjongTournamentSuite.PlayersManager
             }
             _form.PlayKoSound();
             _form.DGVCancelEdit();
-            _form.ShowMessagePlayerNameInUse(newPlayerName, ownerPlayerId);            
+            _form.ShowMessagePlayerNameInUse(newPlayerName, ownerPlayerId);
         }
 
         public int SaveNewPlayerTeam(int playerId, string newTeamName)
@@ -89,14 +88,19 @@ namespace MahjongTournamentSuite.PlayersManager
             _form.CleanWrongTeamsPlayers();
         }
 
-        public void SaveNewPlayerCountry(int playerId, string newCountryName)
+        public void AssignNewEmaPlayer(int playerId, string playerEmaNumber)
         {
-            _data.UpdatePlayerCountry(_tournament.TournamentId, playerId, newCountryName);
+            _data.AssignNewEmaPlayer(_tournament.TournamentId, playerId, playerEmaNumber);
+        }
+
+        public void UnassignEmaPlayer(int playerId)
+        {
+            _data.UnassignEmaPlayer(_tournament.TournamentId, playerId);
         }
 
         public bool IsWrongPlayersTeams()
         {
-            return GetWrongTeams().Count > 0;
+            return _tournament.IsTeams && GetWrongTeams().Count > 0;
         }
 
         #endregion
@@ -129,6 +133,7 @@ namespace MahjongTournamentSuite.PlayersManager
 
         private List<WrongTeam> GetWrongTeams()
         {
+            _players = _data.GetTournamentPlayers(_tournament.TournamentId);
             List<WrongTeam> wrongTeams = new List<WrongTeam>();
             foreach (VTeam team in _teams)
             {

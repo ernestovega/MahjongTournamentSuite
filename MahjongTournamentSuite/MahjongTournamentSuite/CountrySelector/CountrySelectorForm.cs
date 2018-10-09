@@ -9,15 +9,17 @@ namespace MahjongTournamentSuite.CountrySelector
         #region Fields
 
         private ICountrySelectorController _controller;
+        private bool loadOnlyWhichHaveHtmlFlag = true;
         public string ReturnValue { get; set; }
 
         #endregion
 
         #region Constructor
 
-        public CountrySelectorForm()
+        public CountrySelectorForm(bool loadOnlyWhichHaveHtmlFlag)
         {
             InitializeComponent();
+            this.loadOnlyWhichHaveHtmlFlag = loadOnlyWhichHaveHtmlFlag;
             _controller = Injector.provideCountrySelectorController(this);
         }
 
@@ -30,7 +32,7 @@ namespace MahjongTournamentSuite.CountrySelector
             Cursor = Cursors.WaitCursor;
             CancelButton = btnCancel;
             AcceptButton = btnOk;
-            _controller.LoadForm();
+            _controller.LoadForm(loadOnlyWhichHaveHtmlFlag);
             Cursor = Cursors.Default;
         }
 
