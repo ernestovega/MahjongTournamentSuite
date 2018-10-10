@@ -7,6 +7,7 @@ using MahjongTournamentSuite._Data.Mappers;
 using MahjongPlayerSuite._Data.Mappers;
 using MahjongTableSuite._Data.Mappers;
 using MahjongTeamSuite._Data.Mappers;
+using MahjongTournamentSuite.TeamsManager;
 
 namespace MahjongTournamentSuite._Data
 {
@@ -170,13 +171,13 @@ namespace MahjongTournamentSuite._Data
 
         public void AssignNewEmaPlayer(int tournamentId, int playerId, string emaNumber)
         {
-            DBPlayer player = _db.Players.ToList().Find(x => x.PlayerTournamentId == tournamentId && x.PlayerId == playerId);
+            DBPlayer dbPlayer = _db.Players.ToList().Find(x => x.PlayerTournamentId == tournamentId && x.PlayerId == playerId);
             DBEmaPlayer dbEmaPlayer = _db.EmaPlayers.ToList().Find(x => x.EmaPlayerEmaNumber == emaNumber);
             if (dbEmaPlayer != null)
             {
-                player.PlayerEmaNumber = dbEmaPlayer.EmaPlayerEmaNumber;
-                player.PlayerName = dbEmaPlayer.EmaPlayerName + " " + dbEmaPlayer.EmaPlayerLastName;
-                player.PlayerCountryName = dbEmaPlayer.EmaPlayerCountryName;
+                dbPlayer.PlayerEmaNumber = dbEmaPlayer.EmaPlayerEmaNumber;
+                dbPlayer.PlayerName = dbEmaPlayer.GetFullName();
+                dbPlayer.PlayerCountryName = dbEmaPlayer.EmaPlayerCountryName;
             }
             _db.SaveChanges();
         }
@@ -187,6 +188,31 @@ namespace MahjongTournamentSuite._Data
             player.PlayerEmaNumber = string.Empty;
             player.PlayerName = string.Format("Player {0}", player.PlayerId);
             player.PlayerCountryName = string.Empty;
+            _db.SaveChanges();
+        }
+
+        public List<string> GetAvailableTeamPlayersNames(int tournamentId, int teamId)
+        {
+            List<DBPlayer> availableTeamPlayers = _db.Players.ToList().FindAll(x => x.PlayerTournamentId == tournamentId && x.PlayerTeamId == 0);
+            List<string> availableTeamPlayersNames = new List<string>(availableTeamPlayers.Count);
+            foreach (DBPlayer dbPlayer in availableTeamPlayers)
+            {
+                availableTeamPlayersNames.Add(string.Format("{0} - {1}", dbPlayer.PlayerName, dbPlayer.PlayerId));
+            }
+            return (availableTeamPlayersNames);
+        }
+
+        public void AssignTeamPlayer(int tournamentId, int teamPlayerId, int teamId)
+        {
+            DBPlayer dbPlayer = _db.Players.ToList().Find(x => x.PlayerTournamentId == tournamentId && x.PlayerId == teamPlayerId);
+            dbPlayer.PlayerTeamId = teamId;
+            _db.SaveChanges();
+        }
+
+        public void UnassignTeamPlayer(int tournamentId, int teamPlayerId)
+        {
+            DBPlayer dbPlayer = _db.Players.ToList().Find(x => x.PlayerTournamentId == tournamentId && x.PlayerId == teamPlayerId);
+            dbPlayer.PlayerTeamId = 0;
             _db.SaveChanges();
         }
 
@@ -377,7 +403,7 @@ namespace MahjongTournamentSuite._Data
             return _db.Teams.ToList().FindAll(x => x.TeamTournamentId == tournamentId)
                 .Select(x => x.TeamName).ToList();
         }
-        
+
         public void AddTeams(List<VTeam> teams)
         {
             _db.Teams.AddRange(TeamMapper.GetDataModel(teams));
@@ -388,6 +414,13 @@ namespace MahjongTournamentSuite._Data
         {
             _db.Teams.ToList().Find(x => x.TeamTournamentId == tournamentId && x.TeamId == teamId).TeamName = newName;
             _db.SaveChanges();
+        }
+
+        public List<VPlayer> GetTeamPlayers(int tournamentId, int teamId)
+        {
+            List<DBPlayer> dbTeamPlayers = _db.Players.ToList().FindAll(
+                x => x.PlayerTournamentId == tournamentId && x.PlayerTeamId == teamId);
+            return PlayerMapper.GetViewModel(dbTeamPlayers);
         }
 
         public void RefreshTeams(int tournamentId)
@@ -695,6 +728,7 @@ namespace MahjongTournamentSuite._Data
 
         public List<string> GetAvailableEmaPlayersNames(int tournamentId)
         {
+            EnsureThereAreEmaPlayers();
             List<DBEmaPlayer> dbEmaPlayers = _db.EmaPlayers.ToList();
             List<DBPlayer> dbPlayersInUse = _db.Players.ToList().FindAll(x => x.PlayerTournamentId == tournamentId);
             List<DBEmaPlayer> dbEmaPlayersInUse = new List<DBEmaPlayer>(dbPlayersInUse.Count);

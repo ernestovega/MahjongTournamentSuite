@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace MahjongTournamentSuite._Data.DataModel
 {
@@ -18,6 +19,11 @@ namespace MahjongTournamentSuite._Data.DataModel
             EmaPlayerLastName = lastName;
             EmaPlayerName = name;
             EmaPlayerCountryName = countryName;
+        }
+
+        public string GetFullName()
+        {
+            return string.Format("{0} {1}", EmaPlayerName, EmaPlayerLastName);
         }
     }
 }

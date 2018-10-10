@@ -4,6 +4,7 @@ using MahjongTournamentSuite._Data.DataModel;
 using System.Collections.Generic;
 using MahjongTournamentSuite.ViewModel;
 using System.Drawing;
+using MahjongTournamentSuite.PlayersSelector;
 
 namespace MahjongTournamentSuite.TeamsManager
 {
@@ -42,35 +43,66 @@ namespace MahjongTournamentSuite.TeamsManager
             lblStub.Focus();
         }
 
-        private void dgv_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void dgvTeams_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (dgv.CurrentCell != null &&
-                dgv.CurrentCell.RowIndex == e.RowIndex &&
-                dgv.CurrentCell.ColumnIndex == e.ColumnIndex)
+            if (dgvTeams.CurrentCell != null &&
+                dgvTeams.CurrentCell.RowIndex == e.RowIndex &&
+                dgvTeams.CurrentCell.ColumnIndex == e.ColumnIndex)
             {
                 e.CellStyle.SelectionBackColor =
-                    dgv.CurrentCell.ReadOnly ?
+                    dgvTeams.CurrentCell.ReadOnly ?
                     ColorConstants.GREEN_MM_DARKEST :
                     ColorConstants.GREEN_MM_DARKER;
             }
         }
 
-        private void dgv_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void dgvTeams_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.RowIndex > -1 && dgv.Columns[e.ColumnIndex].Name.Equals(VTeam.COLUMN_TEAMS_NAME))
-                dgv.BeginEdit(true);
+            if (e.RowIndex > -1)
+            {
+                _controller.LoadTeamPlayers((int)dgvTeams.Rows[e.RowIndex].Cells[VTeam.COLUMN_TEAMS_ID].Value);
+                if (dgvTeams.Columns[e.ColumnIndex].Name.Equals(VTeam.COLUMN_TEAMS_NAME))
+                    dgvTeams.BeginEdit(true);
+            }
         }
 
-        private void dgv_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        private void dgvTeamPlayers_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.RowIndex > -1 && dgv.Columns[e.ColumnIndex].Name.Equals(VTeam.COLUMN_TEAMS_NAME))
+            if (e.RowIndex > -1)
+            {
+                ShowPlayersSelector(e.RowIndex);
+            }
+        }
+        private void ShowPlayersSelector(int rowIndex)
+        {
+            int teamId = (int)dgvTeams.Rows[rowIndex].Cells[VTeam.COLUMN_TEAMS_ID].Value;
+            int teamPlayerId = (int)dgvTeamPlayers.Rows[rowIndex].Cells[DGVTeamPlayer.COLUMN_TEAMPLAYER_ID].Value;
+
+            using (var playersSelectorForm = new PlayersSelectorForm(_tournamentId, teamId))
+            {
+                if (playersSelectorForm.ShowDialog() == DialogResult.OK)
+                {
+                    if (playersSelectorForm.ReturnValue == 0)
+                        _controller.UnassignTeamPlayer(_tournamentId, teamPlayerId);
+                    else
+                    {
+                        _controller.AssignTeamPlayer(_tournamentId, playersSelectorForm.ReturnValue, teamId);
+                    }
+                    //_controller.LoadForm(_tournamentId);
+                }
+            }
+        }
+
+        private void dgvTeams_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (e.RowIndex > -1 && dgvTeams.Columns[e.ColumnIndex].Name.Equals(VTeam.COLUMN_TEAMS_NAME))
             {
                 Cursor = Cursors.WaitCursor;
-                string previousValue = (string)dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                string previousValue = (string)dgvTeams.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
                 string newValue = ((string)e.FormattedValue).Trim();
                 if (newValue.Length > 0 && !newValue.Equals(previousValue))
                 {
-                    int teamId = (int)dgv.Rows[e.RowIndex].Cells[VTeam.COLUMN_TEAMS_ID].Value;
+                    int teamId = (int)dgvTeams.Rows[e.RowIndex].Cells[VTeam.COLUMN_TEAMS_ID].Value;
                     _controller.TeamNameChanged(teamId, newValue);
                 }
                 else
@@ -83,27 +115,44 @@ namespace MahjongTournamentSuite.TeamsManager
 
         #region ITeamsManagerForm implementation
 
-        public void FillDGV(List<VTeam> teams)
+        public void FillDGVTeams(List<VTeam> teams)
         {
             SortableBindingList<VTeam> sortableTeams = new SortableBindingList<VTeam>(teams);
-            if (dgv.DataSource != null)
-                dgv.DataSource = null;
-            dgv.DataSource = sortableTeams;
+            if (dgvTeams.DataSource != null)
+                dgvTeams.DataSource = null;
+            dgvTeams.DataSource = sortableTeams;
 
             //Visible
-            dgv.Columns[VTeam.COLUMN_TEAMS_TOURNAMENT_ID].Visible = false;
+            dgvTeams.Columns[VTeam.COLUMN_TEAMS_TOURNAMENT_ID].Visible = false;
             //ReadOnly
-            dgv.Columns[VTeam.COLUMN_TEAMS_ID].ReadOnly = true;
+            dgvTeams.Columns[VTeam.COLUMN_TEAMS_ID].ReadOnly = true;
             //Readonly columns BackColor
-            dgv.Columns[VTeam.COLUMN_TEAMS_ID].DefaultCellStyle.BackColor = SystemColors.ControlLight;
+            dgvTeams.Columns[VTeam.COLUMN_TEAMS_ID].DefaultCellStyle.BackColor = SystemColors.ControlLight;
             //Readonly columns ForeColor
-            dgv.Columns[VTeam.COLUMN_TEAMS_ID].DefaultCellStyle.ForeColor = SystemColors.GrayText;
+            dgvTeams.Columns[VTeam.COLUMN_TEAMS_ID].DefaultCellStyle.ForeColor = SystemColors.GrayText;
             //HeaderText
-            dgv.Columns[VTeam.COLUMN_TEAMS_ID].HeaderText = "Team Id";
-            dgv.Columns[VTeam.COLUMN_TEAMS_NAME].HeaderText = "Team Name";
+            dgvTeams.Columns[VTeam.COLUMN_TEAMS_ID].HeaderText = "Team Id";
+            dgvTeams.Columns[VTeam.COLUMN_TEAMS_NAME].HeaderText = "Team Name";
             //AutoSizeMode
-            dgv.Columns[VTeam.COLUMN_TEAMS_ID].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dgv.Columns[VTeam.COLUMN_TEAMS_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvTeams.Columns[VTeam.COLUMN_TEAMS_ID].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgvTeams.Columns[VTeam.COLUMN_TEAMS_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            _controller.LoadTeamPlayers((int)dgvTeams.Rows[0].Cells[VTeam.COLUMN_TEAMS_ID].Value);
+        }
+
+        public void FillDGVTeamPlayers(List<DGVTeamPlayer> dgvTeamPlayers)
+        {
+            SortableBindingList<DGVTeamPlayer> sortableTeamPlayersNames = new SortableBindingList<DGVTeamPlayer>(dgvTeamPlayers);
+            if (this.dgvTeamPlayers.DataSource != null)
+                this.dgvTeamPlayers.DataSource = null;
+            this.dgvTeamPlayers.DataSource = sortableTeamPlayersNames;
+
+            //HeaderText
+            this.dgvTeamPlayers.Columns[DGVTeamPlayer.COLUMN_TEAMPLAYER_ID].HeaderText = "Player Id";
+            this.dgvTeamPlayers.Columns[DGVTeamPlayer.COLUMN_TEAMPLAYER_NAME].HeaderText = "Player Name";
+            //AutoSizeMode
+            this.dgvTeamPlayers.Columns[DGVTeamPlayer.COLUMN_TEAMPLAYER_ID].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            this.dgvTeamPlayers.Columns[DGVTeamPlayer.COLUMN_TEAMPLAYER_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
         public void ShowMessageTeamNameInUse(string usedName, int ownerTeamId)
@@ -113,14 +162,8 @@ namespace MahjongTournamentSuite.TeamsManager
 
         public void DGVCancelEdit()
         {
-            dgv.CancelEdit();
+            dgvTeams.CancelEdit();
         }
-
-        #endregion
-
-        #region Private
-
-
 
         #endregion
     }

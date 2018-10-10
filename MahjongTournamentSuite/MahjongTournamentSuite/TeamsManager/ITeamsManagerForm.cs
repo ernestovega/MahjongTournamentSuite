@@ -5,7 +5,9 @@ namespace MahjongTournamentSuite.TeamsManager
 {
     interface ITeamsManagerForm
     {
-        void FillDGV(List<VTeam> _teams);
+        void FillDGVTeams(List<VTeam> teams);
+
+        void FillDGVTeamPlayers(List<DGVTeamPlayer> dgvTeamPlayers);
 
         void ShowMessageTeamNameInUse(string newName, int ownerTeamId);
 
