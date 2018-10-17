@@ -379,6 +379,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\best_hand_icon.png" />
     <Content Include="Resources\chicken_big.png" />
     <Content Include="Resources\countries.png" />
     <Content Include="Resources\countries_white.png" />

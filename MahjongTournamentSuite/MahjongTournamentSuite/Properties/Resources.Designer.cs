@@ -313,6 +313,16 @@ namespace MahjongTournamentSuite.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap best_hand_big {
+            get {
+                object obj = ResourceManager.GetObject("best_hand_big", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap Bhutan {
             get {
                 object obj = ResourceManager.GetObject("Bhutan", resourceCulture);
