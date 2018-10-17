@@ -12,7 +12,7 @@ namespace MahjongTournamentSuite.ViewModel
         public DGVCountry() {}
 
         public DGVCountry(VCountry dbCountry, Image countryFlag) : 
-            base(dbCountry.CountryName, dbCountry.CountryHtmlImageUrl)
+            base(dbCountry.CountryName, dbCountry.CountryShortName, dbCountry.CountryHtmlImageUrl)
         {
             CountryFlag = countryFlag;
         }

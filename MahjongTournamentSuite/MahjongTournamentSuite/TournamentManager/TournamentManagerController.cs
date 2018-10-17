@@ -5,6 +5,7 @@ using System.Linq;
 using MahjongTournamentSuite.Resources;
 using MahjongTournamentSuite.Resources.flags;
 using System;
+using MahjongTournamentSuite.EmaReport;
 
 namespace MahjongTournamentSuite.TournamentManager
 {
@@ -146,13 +147,18 @@ namespace MahjongTournamentSuite.TournamentManager
 
         public void EmaReportClicked()
         {
-            //GenerateRankings();
-            //List<DGVPlayerEma> dgvEmaPlayers = new List<DGVPlayerEma>(_players.Count);
-            //foreach (var item in _players)
-            //{
-
-            //}
-            //_form.GoToEmaReport(dgvEmaPlayers);
+            GenerateRankings();
+            List<DGVEmaReportPlayer> dgvEmaReportPlayers = new List<DGVEmaReportPlayer>(_players.Count);
+            foreach (VPlayer vPlayer in _players)
+            {
+                VEmaPlayer vEmaPlayer = _data.GetEmaPlayer(vPlayer.PlayerEmaNumber);
+                PlayerRanking playerRanking = _playersRankings.Find(x => x.PlayerId == vPlayer.PlayerId);
+                string playerCountryShortName = _data.GetCountryShortName(vEmaPlayer.EmaPlayerCountryName); 
+                dgvEmaReportPlayers.Add(new DGVEmaReportPlayer(vEmaPlayer, (_playersRankings.IndexOf(playerRanking) + 1).ToString(), 
+                    playerRanking.PlayerPoints.ToString(), playerRanking.PlayerScore.ToString(), playerCountryShortName, "YES"));
+            }
+            dgvEmaReportPlayers = dgvEmaReportPlayers.OrderBy(x => int.Parse(x.EmaReportPlayerPlace)).ToList();
+            _form.GoToEmaReport(dgvEmaReportPlayers);
         }
 
         public bool IsRoundCompleted(int roundId)

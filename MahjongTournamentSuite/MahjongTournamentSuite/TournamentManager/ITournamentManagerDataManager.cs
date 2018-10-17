@@ -22,5 +22,9 @@ namespace MahjongTournamentSuite.TournamentManager
         List<VHand> GetTournamentHands(int _tournamentId);
 
         string GetCountryImageUrl(string playerCountryName);
+
+        string GetCountryShortName(string playerCountryName);
+
+        VEmaPlayer GetEmaPlayer(string playerEmaNumber);
     }
 }

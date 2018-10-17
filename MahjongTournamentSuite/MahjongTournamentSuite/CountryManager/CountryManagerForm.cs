@@ -36,7 +36,7 @@ namespace MahjongTournamentSuite.CountryManager
 
         private void CountryManagerForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //Para guardar los cambios que nos e hayan guardado.
+            //Para guardar los cambios que no se hayan guardado.
             lblStub.Focus();
         }
 
@@ -55,7 +55,8 @@ namespace MahjongTournamentSuite.CountryManager
 
         private void dgv_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.RowIndex > -1 && dgv.Columns[e.ColumnIndex].Name.Equals(VCountry.COLUMN_COUNTRY_IMAGE_URL))
+            if (e.RowIndex > -1 && dgv.Columns[e.ColumnIndex].Name.Equals(VCountry.COLUMN_COUNTRY_IMAGE_URL) ||
+                e.RowIndex > -1 && dgv.Columns[e.ColumnIndex].Name.Equals(VCountry.COLUMN_COUNTRY_SHORT_NAME))
                 dgv.BeginEdit(true);
         }
 
@@ -70,6 +71,20 @@ namespace MahjongTournamentSuite.CountryManager
                 {
                     string countryName = (string)dgv.Rows[e.RowIndex].Cells[VCountry.COLUMN_COUNTRY_NAME].Value;
                     _controller.CountryImageURLChanged(countryName, newValue);
+                }
+                else
+                    DGVCancelEdit();
+                Cursor = Cursors.Default;
+            }
+            else if (e.RowIndex > -1 && dgv.Columns[e.ColumnIndex].Name.Equals(VCountry.COLUMN_COUNTRY_SHORT_NAME))
+            {
+                Cursor = Cursors.WaitCursor;
+                string previousValue = (string)dgv.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+                string newValue = ((string)e.FormattedValue).Trim();
+                if (!newValue.Equals(previousValue))
+                {
+                    string countryName = (string)dgv.Rows[e.RowIndex].Cells[VCountry.COLUMN_COUNTRY_NAME].Value;
+                    _controller.CountryShortNameChanged(countryName, newValue);
                 }
                 else
                     DGVCancelEdit();
@@ -104,17 +119,20 @@ namespace MahjongTournamentSuite.CountryManager
             dgv.Columns[DGVCountry.COLUMN_COUNTRY_COUNTRY_FLAG].DefaultCellStyle.ForeColor = SystemColors.GrayText;
             //HeaderText
             dgv.Columns[VCountry.COLUMN_COUNTRY_NAME].HeaderText = "Country Name";
-            dgv.Columns[VCountry.COLUMN_COUNTRY_IMAGE_URL].HeaderText = "Image URL for HTML Exporting";
             dgv.Columns[DGVCountry.COLUMN_COUNTRY_COUNTRY_FLAG].HeaderText = "Flag";
+            dgv.Columns[VCountry.COLUMN_COUNTRY_SHORT_NAME].HeaderText = "Country Name";
+            dgv.Columns[VCountry.COLUMN_COUNTRY_IMAGE_URL].HeaderText = "Image URL for HTML Exporting";
             //AutoSizeMode
             dgv.Columns[VCountry.COLUMN_COUNTRY_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dgv.Columns[DGVCountry.COLUMN_COUNTRY_COUNTRY_FLAG].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dgv.Columns[VCountry.COLUMN_COUNTRY_SHORT_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             //Column Flags Image Layout
             ((DataGridViewImageColumn)dgv.Columns[DGVCountry.COLUMN_COUNTRY_COUNTRY_FLAG]).ImageLayout = DataGridViewImageCellLayout.Zoom;
             //DisplayIndex
             dgv.Columns[VCountry.COLUMN_COUNTRY_NAME].DisplayIndex = 0;
             dgv.Columns[DGVCountry.COLUMN_COUNTRY_COUNTRY_FLAG].DisplayIndex = 1;
-            dgv.Columns[VCountry.COLUMN_COUNTRY_IMAGE_URL].DisplayIndex = 2;
+            dgv.Columns[VCountry.COLUMN_COUNTRY_SHORT_NAME].DisplayIndex = 2;
+            dgv.Columns[VCountry.COLUMN_COUNTRY_IMAGE_URL].DisplayIndex = 3;
         }
 
         #endregion 

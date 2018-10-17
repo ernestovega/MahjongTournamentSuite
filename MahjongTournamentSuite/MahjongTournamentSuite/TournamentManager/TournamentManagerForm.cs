@@ -308,9 +308,9 @@ namespace MahjongTournamentSuite.TournamentManager
             new PlayersTablesForm(tournamentId).ShowDialog();
         }
 
-        public void GoToEmaReport(List<DGVEmaPlayer> dgvEmaPlayers)
+        public void GoToEmaReport(List<DGVEmaReportPlayer> dgvEmaReportPlayers)
         {
-            new EmaReportForm(dgvEmaPlayers).ShowDialog();
+            new EmaReportForm(dgvEmaReportPlayers).ShowDialog();
         }
 
         public void SelectRoundButton(int roundId)
