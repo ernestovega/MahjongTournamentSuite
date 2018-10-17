@@ -75,6 +75,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CountryManager\ICountryManagerDataManager.cs" />
+    <Compile Include="PlayersSelector\PlayersSelectorController.cs" />
+    <Compile Include="PlayersSelector\PlayersSelectorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PlayersSelector\PlayersSelectorForm.Designer.cs">
+      <DependentUpon>PlayersSelectorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PlayersSelector\IPlayersSelectorController.cs" />
+    <Compile Include="PlayersSelector\IPlayersSelectorDataManager.cs" />
+    <Compile Include="PlayersSelector\IPlayersSelectorForm.cs" />
     <Compile Include="EmaPlayersSelector\EmaPlayersSelectorController.cs" />
     <Compile Include="EmaPlayersSelector\EmaPlayersSelectorForm.cs">
       <SubType>Form</SubType>
@@ -98,6 +108,7 @@
       <DependentUpon>EmaPlayersManagerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ColorConstants.cs" />
+    <Compile Include="ViewModel\DataGrivViewModel\DGVTeamPlayer.cs" />
     <Compile Include="ViewModel\RankingModel\BestHandRanking.cs" />
     <Compile Include="ViewModel\Entities\VCountry.cs" />
     <Compile Include="ViewModel\Entities\VHand.cs" />
@@ -292,6 +303,9 @@
     <Compile Include="_Data\DataModel\DBTable.cs" />
     <Compile Include="_Data\DataModel\DBTeam.cs" />
     <Compile Include="_Data\DataModel\DBTournament.cs" />
+    <EmbeddedResource Include="PlayersSelector\PlayersSelectorForm.resx">
+      <DependentUpon>PlayersSelectorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EmaPlayersSelector\EmaPlayersSelectorForm.resx">
       <DependentUpon>EmaPlayersSelectorForm.cs</DependentUpon>
     </EmbeddedResource>

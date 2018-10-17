@@ -83,11 +83,5 @@ namespace MahjongTournamentSuite.EmaPlayersManager
         }
 
         #endregion
-
-        #region Private
-
-
-
-        #endregion
     }
 }
