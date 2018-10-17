@@ -151,6 +151,7 @@ namespace MahjongTournamentSuite.Ranking
             ShowWaitCursor();
             _numRowsPerScreen = numRowsPerScreen;
             CalculateAndSetDefaultRowHeightToFillScreen();
+            lblNumRows.Text = _numRowsPerScreen.ToString();
             ShowDefaultCursor();
         }
 
