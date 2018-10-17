@@ -12,7 +12,7 @@ namespace MahjongTournamentSuite.TournamentManager
     {
         #region Fields
 
-        private readonly int NUM_MAX_BEST_HANDS = 10;
+        private readonly int MAX_NUM_BEST_HANDS = 10;
         private ITournamentManagerForm _form;
         private ITournamentManagerDataManager _data;
         private VTournament _tournament;
@@ -237,9 +237,8 @@ namespace MahjongTournamentSuite.TournamentManager
 
         private Rankings GenerateRankings()
         {
-            _players = _data.GetTournamentPlayers(_tournamentId);
-            _hands = _data.GetTournamentHands(_tournamentId);
             if (_tournament.IsTeams) _teams = _data.GetTournamentTeams(_tournamentId);
+            _players = _data.GetTournamentPlayers(_tournamentId);
             _tables = _data.GetTournamentTables(_tournamentId);
             _hands = _data.GetTournamentHands(_tournamentId);
 
@@ -342,12 +341,15 @@ namespace MahjongTournamentSuite.TournamentManager
 
         private void CalculateAndSortPlayersBestHands()
         {
-            List<VHand> bestHands = _hands.OrderByDescending(x => x.HandScore.Length == 0 ? 0 : int.Parse(x.HandScore))
-                .Take(NUM_MAX_BEST_HANDS).ToList();
+            List<VHand> bestHands = _hands.OrderByDescending(
+                x => x.HandScore.Length == 0 ? 0 : int.Parse(x.HandScore))
+                .ToList().GetRange(0, MAX_NUM_BEST_HANDS);
             _bestHandsRankings = new List<BestHandRanking>();
             foreach (VHand bestHand in bestHands)
             {
-                VPlayer bestHandPlayer = _players.Find(x => x.PlayerId == int.Parse(bestHand.PlayerWinnerId));
+                string playerWinnerId = bestHand.PlayerWinnerId;
+                if (playerWinnerId.Equals(string.Empty)) continue;
+                VPlayer bestHandPlayer = _players.Find(x => x.PlayerId == int.Parse(playerWinnerId));
                 PlayerRanking bestHandPlayerRanking = _playersRankings.Find(x => x.PlayerId == int.Parse(bestHand.PlayerWinnerId));
                 BestHandRanking playerBestHandRanking = new BestHandRanking(
                     bestHandPlayer.PlayerId, bestHandPlayer.PlayerName,
@@ -356,7 +358,7 @@ namespace MahjongTournamentSuite.TournamentManager
                     bestHandPlayerRanking.PlayerCountryHtmlFlagUrl, bestHandPlayerRanking.PlayerCountryFlag);
                 _bestHandsRankings.Add(playerBestHandRanking);
             }
-            for (int i = 0; i < NUM_MAX_BEST_HANDS; i++)
+            for (int i = 0; i < _bestHandsRankings.Count; i++)
                 _bestHandsRankings[i].Order = i + 1;
         }
 

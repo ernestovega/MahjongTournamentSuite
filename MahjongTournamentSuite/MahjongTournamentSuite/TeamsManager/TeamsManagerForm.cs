@@ -73,24 +73,25 @@ namespace MahjongTournamentSuite.TeamsManager
                 ShowPlayersSelector(e.RowIndex);
             }
         }
+
         private void ShowPlayersSelector(int rowIndex)
         {
-            int teamId = (int)dgvTeams.Rows[rowIndex].Cells[VTeam.COLUMN_TEAMS_ID].Value;
-            int teamPlayerId = (int)dgvTeamPlayers.Rows[rowIndex].Cells[DGVTeamPlayer.COLUMN_TEAMPLAYER_ID].Value;
+            int selectedTeamId = (int)dgvTeams.Rows[rowIndex].Cells[VTeam.COLUMN_TEAMS_ID].Value;
+            int selectedTeamPlayerId = (int)dgvTeamPlayers.Rows[rowIndex].Cells[DGVTeamPlayer.COLUMN_TEAMPLAYER_ID].Value;
 
-            using (var playersSelectorForm = new PlayersSelectorForm(_tournamentId, teamId))
-            {
-                if (playersSelectorForm.ShowDialog() == DialogResult.OK)
-                {
-                    if (playersSelectorForm.ReturnValue == 0)
-                        _controller.UnassignTeamPlayer(_tournamentId, teamPlayerId);
-                    else
-                    {
-                        _controller.AssignTeamPlayer(_tournamentId, playersSelectorForm.ReturnValue, teamId);
-                    }
-                    //_controller.LoadForm(_tournamentId);
-                }
-            }
+            //using (var playersSelectorForm = new PlayersSelectorForm(_tournamentId, selectedTeamId, ))
+            //{
+            //    if (playersSelectorForm.ShowDialog() == DialogResult.OK)
+            //    {
+            //        if (playersSelectorForm.ReturnValue == 0)
+            //            _controller.UnassignTeamPlayer(_tournamentId, selectedTeamPlayerId);
+            //        else
+            //        {
+            //            _controller.AssignTeamPlayer(_tournamentId, playersSelectorForm.ReturnValue, selectedTeamId);
+            //        }
+            //        //_controller.LoadForm(_tournamentId);
+            //    }
+            //}
         }
 
         private void dgvTeams_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)

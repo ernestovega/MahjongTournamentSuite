@@ -73,7 +73,7 @@ namespace MahjongTournamentSuite.PlayersSelector
         public void CloseReturningValue()
         {
             string selectedItem = (string)lbPlayers.SelectedItem;
-            if(selectedItem.Length.Equals(string.Empty))
+            if(selectedItem.Equals(string.Empty))
             {
                 ReturnValue = 0;
             }

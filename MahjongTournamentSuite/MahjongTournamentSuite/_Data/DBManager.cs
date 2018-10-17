@@ -193,7 +193,8 @@ namespace MahjongTournamentSuite._Data
 
         public List<string> GetAvailableTeamPlayersNames(int tournamentId, int teamId)
         {
-            List<DBPlayer> availableTeamPlayers = _db.Players.ToList().FindAll(x => x.PlayerTournamentId == tournamentId && x.PlayerTeamId == 0);
+            List<DBPlayer> availableTeamPlayers = _db.Players.ToList().FindAll(
+                x => x.PlayerTournamentId == tournamentId && x.PlayerTeamId != teamId);
             List<string> availableTeamPlayersNames = new List<string>(availableTeamPlayers.Count);
             foreach (DBPlayer dbPlayer in availableTeamPlayers)
             {
@@ -305,6 +306,10 @@ namespace MahjongTournamentSuite._Data
             DBTable table = _db.Tables.ToList().Find(x => x.TableTournamentId == tournamentId
             && x.TableRoundId == roundId && x.TableId == tableId);
             _db.Entry(table).Reload();
+            List<DBHand> hands = _db.Hands.ToList().FindAll(x => x.HandTournamentId == tournamentId 
+            && x.HandRoundId == roundId && x.HandTableId == tableId);
+            foreach (DBHand hand in hands)
+                _db.Entry(hand).Reload();
         }
 
         #endregion
@@ -475,10 +480,10 @@ namespace MahjongTournamentSuite._Data
 
             if (_db.Countries.Count() == 0)
             {
-                _db.Countries.Add(new DBCountry("No Country", string.Empty));
-                _db.Countries.Add(new DBCountry("Andorra", string.Empty));
+                _db.Countries.Add(new DBCountry("No Country",           string.Empty));
+                _db.Countries.Add(new DBCountry("Andorra",              string.Empty));
                 _db.Countries.Add(new DBCountry("United Arab Emirates", string.Empty));
-                _db.Countries.Add(new DBCountry("Afghanistan", string.Empty));
+                _db.Countries.Add(new DBCountry("Afghanistan",          string.Empty));
                 _db.Countries.Add(new DBCountry("Antigua and Barbuda", string.Empty));
                 _db.Countries.Add(new DBCountry("Anguilla", string.Empty));
                 _db.Countries.Add(new DBCountry("Albania", string.Empty));
