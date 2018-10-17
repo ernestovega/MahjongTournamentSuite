@@ -18,6 +18,7 @@ namespace MahjongTournamentSuite._Data.Mappers
         {
             return new VCountry(
                 dbCountry.CountryName,
+                dbCountry.CountryShortName,
                 dbCountry.CountryHtmlImageUrl);
         }
 
@@ -34,6 +35,7 @@ namespace MahjongTournamentSuite._Data.Mappers
         {
             return new DBCountry(
                 vCountry.CountryName,
+                vCountry.CountryShortName,
                 vCountry.CountryHtmlImageUrl);
         }
     }

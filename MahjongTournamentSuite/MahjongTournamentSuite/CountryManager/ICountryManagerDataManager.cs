@@ -5,8 +5,10 @@ namespace MahjongTournamentSuite.CountryManager
 {
     public interface ICountryManagerDataManager
     {
-        List<VCountry> GetCountries();
+        List<VCountry> GetCountries(); 
 
         void UpdateCountryImageURL(string countryName, string newValue);
+
+        void UpdateCountryShortName(string countryName, string newValue);
     }
 }

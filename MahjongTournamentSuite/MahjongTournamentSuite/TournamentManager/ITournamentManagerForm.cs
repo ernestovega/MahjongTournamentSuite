@@ -26,7 +26,7 @@ namespace MahjongTournamentSuite.TournamentManager
 
         void GoToPlayersTables(int tournamentId);
 
-        void GoToEmaReport(List<DGVEmaPlayer> dgvEmaPlayers);
+        void GoToEmaReport(List<DGVEmaReportPlayer> dgvEmaReportPlayers);
 
         void SelectRoundButton(int roundId);
 

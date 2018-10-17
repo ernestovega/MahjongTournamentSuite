@@ -281,13 +281,14 @@
             // 
             this.flowLayoutPanelTitle.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.flowLayoutPanelTitle.AutoSize = true;
+            this.flowLayoutPanelTitle.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.flowLayoutPanelTitle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.flowLayoutPanelTitle.Controls.Add(this.pbIconTitle);
             this.flowLayoutPanelTitle.Controls.Add(this.lblRankingTitle);
             this.flowLayoutPanelTitle.Location = new System.Drawing.Point(387, 9);
             this.flowLayoutPanelTitle.Margin = new System.Windows.Forms.Padding(0);
             this.flowLayoutPanelTitle.Name = "flowLayoutPanelTitle";
-            this.flowLayoutPanelTitle.Size = new System.Drawing.Size(294, 74);
+            this.flowLayoutPanelTitle.Size = new System.Drawing.Size(253, 74);
             this.flowLayoutPanelTitle.TabIndex = 81;
             // 
             // lblLiveRankingUrl

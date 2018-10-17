@@ -5,17 +5,17 @@ namespace MahjongTournamentSuite.EmaReport
     public class EmaReportController : IEmaReportController
     {
         private IEmaReportForm _form;
-        List<DGVEmaPlayer> _dgvEmaPlayers;
+        List<DGVEmaReportPlayer> _dgvEmaReportEmaPlayer;
 
         public EmaReportController(IEmaReportForm form)
         {
             _form = form;
         }
 
-        public void LoadForm(List<DGVEmaPlayer> dgvEmaPlayers)
+        public void LoadForm(List<DGVEmaReportPlayer> dgvEmaReportEmaPlayer)
         {
-            _dgvEmaPlayers = dgvEmaPlayers;
-            _form.LoadDgv(_dgvEmaPlayers);
+            _dgvEmaReportEmaPlayer = dgvEmaReportEmaPlayer;
+            _form.LoadDgv(_dgvEmaReportEmaPlayer);
         }
     }
 }

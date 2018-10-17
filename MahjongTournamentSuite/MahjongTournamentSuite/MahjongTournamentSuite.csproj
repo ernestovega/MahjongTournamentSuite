@@ -108,6 +108,7 @@
       <DependentUpon>EmaPlayersManagerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ColorConstants.cs" />
+    <Compile Include="ViewModel\DataGrivViewModel\DGVEmaReportPlayer.cs" />
     <Compile Include="ViewModel\DataGrivViewModel\DGVTeamPlayer.cs" />
     <Compile Include="ViewModel\RankingModel\BestHandRanking.cs" />
     <Compile Include="ViewModel\Entities\VCountry.cs" />
@@ -379,6 +380,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\best_hand_icon.png" />
     <Content Include="Resources\chicken_big.png" />
     <Content Include="Resources\countries.png" />
     <Content Include="Resources\countries_white.png" />

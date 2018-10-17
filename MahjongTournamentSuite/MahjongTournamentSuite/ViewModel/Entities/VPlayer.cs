@@ -38,7 +38,7 @@ namespace MahjongTournamentSuite._Data.DataModel
             PlayerName = name;
             PlayerTeamId = teamId;
             PlayerCountryName = countryName;
-            PlayerEmaNumber = countryName;
+            PlayerEmaNumber = emaNumber;
         }
 
         #endregion

@@ -151,6 +151,7 @@ namespace MahjongTournamentSuite.Ranking
             ShowWaitCursor();
             _numRowsPerScreen = numRowsPerScreen;
             CalculateAndSetDefaultRowHeightToFillScreen();
+            lblNumRows.Text = _numRowsPerScreen.ToString();
             ShowDefaultCursor();
         }
 
@@ -419,7 +420,7 @@ namespace MahjongTournamentSuite.Ranking
 
         public void FillDGVPlayersBestHands(List<BestHandRanking> playersBestHandsRankingsRange)
         {
-            pbIconTitle.Image = Properties.Resources.chicken_big;
+            pbIconTitle.Image = Properties.Resources.best_hand_big;
             lblRankingTitle.Text = "BEST HANDS";
             CenterPanelTitle();
             dgv.DataSource = playersBestHandsRankingsRange;

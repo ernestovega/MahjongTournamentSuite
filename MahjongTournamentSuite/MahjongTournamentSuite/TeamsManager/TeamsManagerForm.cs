@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using MahjongTournamentSuite.ViewModel;
 using System.Drawing;
 using MahjongTournamentSuite.PlayersSelector;
+using System;
 
 namespace MahjongTournamentSuite.TeamsManager
 {
@@ -61,37 +62,10 @@ namespace MahjongTournamentSuite.TeamsManager
             if (e.RowIndex > -1)
             {
                 _controller.LoadTeamPlayers((int)dgvTeams.Rows[e.RowIndex].Cells[VTeam.COLUMN_TEAMS_ID].Value);
+                setTeamPlayersTitle(e.RowIndex);
                 if (dgvTeams.Columns[e.ColumnIndex].Name.Equals(VTeam.COLUMN_TEAMS_NAME))
                     dgvTeams.BeginEdit(true);
             }
-        }
-
-        private void dgvTeamPlayers_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            if (e.RowIndex > -1)
-            {
-                ShowPlayersSelector(e.RowIndex);
-            }
-        }
-
-        private void ShowPlayersSelector(int rowIndex)
-        {
-            int selectedTeamId = (int)dgvTeams.Rows[rowIndex].Cells[VTeam.COLUMN_TEAMS_ID].Value;
-            int selectedTeamPlayerId = (int)dgvTeamPlayers.Rows[rowIndex].Cells[DGVTeamPlayer.COLUMN_TEAMPLAYER_ID].Value;
-
-            //using (var playersSelectorForm = new PlayersSelectorForm(_tournamentId, selectedTeamId, ))
-            //{
-            //    if (playersSelectorForm.ShowDialog() == DialogResult.OK)
-            //    {
-            //        if (playersSelectorForm.ReturnValue == 0)
-            //            _controller.UnassignTeamPlayer(_tournamentId, selectedTeamPlayerId);
-            //        else
-            //        {
-            //            _controller.AssignTeamPlayer(_tournamentId, playersSelectorForm.ReturnValue, selectedTeamId);
-            //        }
-            //        //_controller.LoadForm(_tournamentId);
-            //    }
-            //}
         }
 
         private void dgvTeams_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
@@ -99,17 +73,29 @@ namespace MahjongTournamentSuite.TeamsManager
             if (e.RowIndex > -1 && dgvTeams.Columns[e.ColumnIndex].Name.Equals(VTeam.COLUMN_TEAMS_NAME))
             {
                 Cursor = Cursors.WaitCursor;
+                bool shouldRefreshTeamPlayersTitle = false;
                 string previousValue = (string)dgvTeams.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
                 string newValue = ((string)e.FormattedValue).Trim();
                 if (newValue.Length > 0 && !newValue.Equals(previousValue))
                 {
                     int teamId = (int)dgvTeams.Rows[e.RowIndex].Cells[VTeam.COLUMN_TEAMS_ID].Value;
                     _controller.TeamNameChanged(teamId, newValue);
+                    shouldRefreshTeamPlayersTitle = true;
                 }
                 else
                     DGVCancelEdit();
+
+                if (shouldRefreshTeamPlayersTitle)
+                {
+                    shouldRefreshTeamPlayersTitle = false;
+                    lblTitleTeamPlayers.Text = string.Format("{0} Players", newValue);
+                }
                 Cursor = Cursors.Default;
             }
+        }
+        private void setTeamPlayersTitle(int rowIndex)
+        {
+            lblTitleTeamPlayers.Text = string.Format("{0} Players", dgvTeams.Rows[rowIndex].Cells[VTeam.COLUMN_TEAMS_NAME].Value);
         }
 
         #endregion
@@ -149,11 +135,13 @@ namespace MahjongTournamentSuite.TeamsManager
             this.dgvTeamPlayers.DataSource = sortableTeamPlayersNames;
 
             //HeaderText
-            this.dgvTeamPlayers.Columns[DGVTeamPlayer.COLUMN_TEAMPLAYER_ID].HeaderText = "Player Id";
-            this.dgvTeamPlayers.Columns[DGVTeamPlayer.COLUMN_TEAMPLAYER_NAME].HeaderText = "Player Name";
+            this.dgvTeamPlayers.Columns[DGVTeamPlayer.COLUMN_TEAMPLAYER_ID].HeaderText = "Id";
+            this.dgvTeamPlayers.Columns[DGVTeamPlayer.COLUMN_TEAMPLAYER_NAME].HeaderText = "Name";
             //AutoSizeMode
             this.dgvTeamPlayers.Columns[DGVTeamPlayer.COLUMN_TEAMPLAYER_ID].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             this.dgvTeamPlayers.Columns[DGVTeamPlayer.COLUMN_TEAMPLAYER_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            if(sortableTeamPlayersNames.Count > 0) setTeamPlayersTitle((dgvTeams.SelectedRows[0]).Index);
         }
 
         public void ShowMessageTeamNameInUse(string usedName, int ownerTeamId)

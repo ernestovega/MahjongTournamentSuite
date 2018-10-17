@@ -6,15 +6,17 @@ namespace MahjongTournamentSuite._Data.DataModel
     {
         [Key]
         public string CountryName { get; set; }
+        public string CountryShortName { get; set; }
         public string CountryHtmlImageUrl { get; set; }
-        
+
 
 
         public DBCountry() { }
 
-        public DBCountry(string name, string countryHtmlImageUrl)
+        public DBCountry(string name, string shortName, string countryHtmlImageUrl)
         {
             CountryName = name;
+            CountryShortName = shortName;
             CountryHtmlImageUrl = countryHtmlImageUrl;
         }
     }

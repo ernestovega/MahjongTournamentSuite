@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MahjongTournamentSuite.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
@@ -8,44 +9,38 @@ namespace MahjongTournamentSuite.EmaReport
     public partial class EmaReportForm : Form, IEmaReportForm
     {
         private IEmaReportController _controller;
-        private List<DGVEmaPlayer> _dgvEmaPlayers;
+        private List<DGVEmaReportPlayer> _dgvEmaReportEmaPlayers;
 
-        public EmaReportForm(List<DGVEmaPlayer> dgvEmaPlayers)
+        public EmaReportForm(List<DGVEmaReportPlayer> dgvEmaReportEmaPlayers)
         {
             InitializeComponent();
             _controller = Injector.provideEmaReportController(this);
-            _dgvEmaPlayers = dgvEmaPlayers;
+            _dgvEmaReportEmaPlayers = dgvEmaReportEmaPlayers;
         }
 
         private void EmaReportForm_Load(object sender, System.EventArgs e)
         {
-            _controller.LoadForm(_dgvEmaPlayers);
+            _controller.LoadForm(_dgvEmaReportEmaPlayers);
         }
 
-        public void LoadDgv(List<DGVEmaPlayer> dgvEmaPlayers)
+        public void LoadDgv(List<DGVEmaReportPlayer> dgvEmaReportPlayers)
         {
-            dgv.DataSource = dgvEmaPlayers;
+            dgv.DataSource = dgvEmaReportPlayers;
 
-            dgv.Columns[DGVEmaPlayer.COLUMN_EMA_PLAYER_EMA_NUMBER].HeaderText = "EMA number";
-            dgv.Columns[DGVEmaPlayer.COLUMN_EMA_PLAYER_NAME].HeaderText = "Name";
-            dgv.Columns[DGVEmaPlayer.COLUMN_EMA_PLAYER_LAST_NAME].HeaderText = "Last name";
-            dgv.Columns[DGVEmaPlayer.COLUMN_EMA_PLAYER_COUNTRY_NAME].HeaderText = "Country name";
-            dgv.Columns[DGVEmaPlayer.COLUMN_EMA_PLAYER_TABLE_POINTS].HeaderText = "Table points";
-            dgv.Columns[DGVEmaPlayer.COLUMN_EMA_PLAYER_SCORE].HeaderText = "Score";
-
-            dgv.Columns[DGVEmaPlayer.COLUMN_EMA_PLAYER_EMA_NUMBER].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dgv.Columns[DGVEmaPlayer.COLUMN_EMA_PLAYER_NAME].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dgv.Columns[DGVEmaPlayer.COLUMN_EMA_PLAYER_LAST_NAME].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dgv.Columns[DGVEmaPlayer.COLUMN_EMA_PLAYER_COUNTRY_NAME].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dgv.Columns[DGVEmaPlayer.COLUMN_EMA_PLAYER_TABLE_POINTS].SortMode = DataGridViewColumnSortMode.NotSortable;
-            dgv.Columns[DGVEmaPlayer.COLUMN_EMA_PLAYER_SCORE].SortMode = DataGridViewColumnSortMode.NotSortable;
-
-            dgv.Columns[DGVEmaPlayer.COLUMN_EMA_PLAYER_EMA_NUMBER].DefaultCellStyle.BackColor = SystemColors.ControlLight;
-            dgv.Columns[DGVEmaPlayer.COLUMN_EMA_PLAYER_NAME].DefaultCellStyle.BackColor = SystemColors.ControlLight;
-            dgv.Columns[DGVEmaPlayer.COLUMN_EMA_PLAYER_LAST_NAME].DefaultCellStyle.BackColor = SystemColors.ControlLight;
-            dgv.Columns[DGVEmaPlayer.COLUMN_EMA_PLAYER_COUNTRY_NAME].DefaultCellStyle.BackColor = SystemColors.ControlLight;
-            dgv.Columns[DGVEmaPlayer.COLUMN_EMA_PLAYER_TABLE_POINTS].DefaultCellStyle.BackColor = SystemColors.ControlLight;
-            dgv.Columns[DGVEmaPlayer.COLUMN_EMA_PLAYER_SCORE].DefaultCellStyle.BackColor = SystemColors.ControlLight;
+            //Visible
+            dgv.Columns[DGVEmaReportPlayer.COLUMN_EMA_PLAYER_COUNTRY_NAME].Visible = false;
+            //HeaderText
+            dgv.Columns[DGVEmaReportPlayer.COLUMN_EMA_REPORT_PLAYER_PLACE].HeaderText = "Place";
+            dgv.Columns[DGVEmaReportPlayer.COLUMN_EMA_PLAYER_NAME].HeaderText = "First Name";
+            dgv.Columns[DGVEmaReportPlayer.COLUMN_EMA_PLAYER_LAST_NAME].HeaderText = "Last name";
+            dgv.Columns[DGVEmaReportPlayer.COLUMN_EMA_PLAYER_EMA_NUMBER].HeaderText = "EMA number";
+            dgv.Columns[DGVEmaReportPlayer.COLUMN_EMA_REPORT_PLAYER_TABLE_POINTS].HeaderText = "Table points";
+            dgv.Columns[DGVEmaReportPlayer.COLUMN_EMA_REPORT_PLAYER_SCORE].HeaderText = "Score";
+            dgv.Columns[DGVEmaReportPlayer.COLUMN_EMA_REPORT_PLAYER_COUNTRY_EMA_MEMBER].HeaderText = "Ema Member";
+            dgv.Columns[DGVEmaReportPlayer.COLUMN_EMA_REPORT_PLAYER_COUNTRY_SHORT_NAME].HeaderText = "Country";
+            //Visible
+            dgv.Columns[DGVEmaReportPlayer.COLUMN_EMA_PLAYER_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgv.Columns[DGVEmaReportPlayer.COLUMN_EMA_PLAYER_LAST_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
     }
 }

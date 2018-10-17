@@ -45,6 +45,11 @@ namespace MahjongTournamentSuite.CountryManager
             _data.UpdateCountryImageURL(countryName, newValue);
         }
 
+        public void CountryShortNameChanged(string countryName, string newValue)
+        {
+            _data.UpdateCountryShortName(countryName, newValue);
+        }
+
         #endregion
     }
 }
