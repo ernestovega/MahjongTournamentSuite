@@ -1,6 +1,7 @@
 ﻿using MahjongTournamentSuite.EmaReport;
 using MahjongTournamentSuite.ViewModel;
 using System.Collections.Generic;
+using MahjongTournamentSuite._Data.DataModel;
 
 namespace MahjongTournamentSuite.TournamentManager
 {
@@ -44,6 +45,6 @@ namespace MahjongTournamentSuite.TournamentManager
 
         void SetTournamentName(string tournamentName);
 
-        void CenterMainButtons();
+        void ShowEmaPlayerNotAssignedDialog(VPlayer vPlayer);
     }
 }

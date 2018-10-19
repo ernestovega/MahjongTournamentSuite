@@ -68,7 +68,8 @@ namespace MahjongTournamentSuite.TeamSelector
             else
                 Height += heightIncrement;
 
-            lbTeams.SelectedIndex = 0;
+            if (teams.Count > 0)
+                lbTeams.SelectedIndex = 0;
         }
 
         #endregion
@@ -83,5 +84,10 @@ namespace MahjongTournamentSuite.TeamSelector
         }
 
         #endregion
+
+        private void tbFilter_TextChanged(object sender, EventArgs e)
+        {
+            _controller.FilterList(tbFilter.Text);
+        }
     }
 }

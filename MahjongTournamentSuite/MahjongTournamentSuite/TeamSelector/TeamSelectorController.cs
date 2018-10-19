@@ -8,7 +8,9 @@ namespace MahjongTournamentSuite.TeamSelector
 
         private ITeamSelectorForm _form;
         private ITeamSelectorDataManager _data;
-        private List<string> _teamsNames;
+        private List<string> _allTeamsNames;
+        private List<string> _filteredTeamsNames;
+        private string filter;
 
         #endregion
 
@@ -26,8 +28,17 @@ namespace MahjongTournamentSuite.TeamSelector
 
         public void LoadForm(int tournamentId)
         {
-            _teamsNames = _data.GetTeamsNames(tournamentId);
-            _form.FillLbTeams(_teamsNames);
+            _allTeamsNames = _data.GetTeamsNames(tournamentId);
+            _form.FillLbTeams(_allTeamsNames);
+        }
+
+        public void FilterList(string text)
+        {
+            filter = text;
+            _filteredTeamsNames = new List<string>(_allTeamsNames);
+            _filteredTeamsNames = _filteredTeamsNames.FindAll(
+                x => x.ToLower().Contains(filter.ToLower()));
+            _form.FillLbTeams(_filteredTeamsNames);
         }
 
         #endregion

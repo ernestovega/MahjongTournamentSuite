@@ -32,7 +32,8 @@
             this.lbEmaPlayers = new System.Windows.Forms.ListBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.tbFilter = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbEmaPlayers
@@ -44,10 +45,10 @@
             this.lbEmaPlayers.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbEmaPlayers.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lbEmaPlayers.ItemHeight = 16;
-            this.lbEmaPlayers.Location = new System.Drawing.Point(14, 38);
+            this.lbEmaPlayers.Location = new System.Drawing.Point(14, 70);
             this.lbEmaPlayers.Margin = new System.Windows.Forms.Padding(5);
             this.lbEmaPlayers.Name = "lbEmaPlayers";
-            this.lbEmaPlayers.Size = new System.Drawing.Size(318, 370);
+            this.lbEmaPlayers.Size = new System.Drawing.Size(318, 338);
             this.lbEmaPlayers.Sorted = true;
             this.lbEmaPlayers.TabIndex = 0;
             this.lbEmaPlayers.UseTabStops = false;
@@ -103,16 +104,24 @@
             this.btnOk.UseVisualStyleBackColor = false;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
-            // label1
+            // tbFilter
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(11, 12);
-            this.label1.Margin = new System.Windows.Forms.Padding(5);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(101, 16);
-            this.label1.TabIndex = 75;
-            this.label1.Text = "Select a player:";
+            this.tbFilter.Location = new System.Drawing.Point(14, 36);
+            this.tbFilter.Name = "tbFilter";
+            this.tbFilter.Size = new System.Drawing.Size(318, 20);
+            this.tbFilter.TabIndex = 78;
+            this.tbFilter.TextChanged += new System.EventHandler(this.tbFilter_TextChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(13, 11);
+            this.label2.Margin = new System.Windows.Forms.Padding(5);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(132, 16);
+            this.label2.TabIndex = 77;
+            this.label2.Text = "Type to filter players:";
             // 
             // EmaPlayersSelectorForm
             // 
@@ -121,7 +130,8 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(346, 476);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.tbFilter);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lbEmaPlayers);
@@ -144,6 +154,7 @@
         private System.Windows.Forms.ListBox lbEmaPlayers;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOk;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox tbFilter;
+        private System.Windows.Forms.Label label2;
     }
 }

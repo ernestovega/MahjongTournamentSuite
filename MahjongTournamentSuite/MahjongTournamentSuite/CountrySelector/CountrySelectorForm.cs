@@ -66,8 +66,9 @@ namespace MahjongTournamentSuite.CountrySelector
                 Height = 600;
             else
                 Height += heightIncrement;
-
-            lbCountries.SelectedIndex = 0;
+            
+            if (countries.Count > 0)
+                lbCountries.SelectedIndex = 0;
         }
 
         #endregion

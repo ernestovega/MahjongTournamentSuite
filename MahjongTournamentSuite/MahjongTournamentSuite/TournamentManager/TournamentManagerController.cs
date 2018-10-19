@@ -6,6 +6,7 @@ using MahjongTournamentSuite.Resources;
 using MahjongTournamentSuite.Resources.flags;
 using System;
 using MahjongTournamentSuite.EmaReport;
+using System.Windows.Forms;
 
 namespace MahjongTournamentSuite.TournamentManager
 {
@@ -47,7 +48,6 @@ namespace MahjongTournamentSuite.TournamentManager
 
         public void LoadTournament(int tournamentId)
         {
-            _form.CenterMainButtons();
             _tournamentId = tournamentId;
             _tournament = _data.GetTournament(tournamentId);
             _form.SetTournamentName(_tournament.TournamentName);
@@ -71,7 +71,6 @@ namespace MahjongTournamentSuite.TournamentManager
         {
             if (loadCompleted)
             {
-                _form.CenterMainButtons();
                 _form.RemoveRoundsButtons();
                 _form.AddRoundsButtons(_tournament.NumRounds);
                 _form.RemoveTablesButtons();
@@ -151,6 +150,11 @@ namespace MahjongTournamentSuite.TournamentManager
             List<DGVEmaReportPlayer> dgvEmaReportPlayers = new List<DGVEmaReportPlayer>(_players.Count);
             foreach (VPlayer vPlayer in _players)
             {
+                if (vPlayer.PlayerEmaNumber == null || vPlayer.PlayerEmaNumber.Length == 0)
+                {
+                    _form.ShowEmaPlayerNotAssignedDialog(vPlayer);
+                    return;
+                }
                 VEmaPlayer vEmaPlayer = _data.GetEmaPlayer(vPlayer.PlayerEmaNumber);
                 PlayerRanking playerRanking = _playersRankings.Find(x => x.PlayerId == vPlayer.PlayerId);
                 string playerCountryShortName = _data.GetCountryShortName(vEmaPlayer.EmaPlayerCountryName); 

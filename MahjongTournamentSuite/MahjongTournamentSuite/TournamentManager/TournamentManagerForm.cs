@@ -14,6 +14,7 @@ using MahjongTournamentSuite.TeamsManager;
 using MahjongTournamentSuite.EmaReport;
 using System.Media;
 using MahjongTournamentSuite.PlayersTables;
+using MahjongTournamentSuite._Data.DataModel;
 
 namespace MahjongTournamentSuite.TournamentManager
 {
@@ -418,13 +419,12 @@ namespace MahjongTournamentSuite.TournamentManager
 
         public void SetTournamentName(string tournamentName)
         {
-            lblTournamentName.Text = tournamentName;
+            Text = tournamentName;
         }
 
-        public void CenterMainButtons()
+        public void ShowEmaPlayerNotAssignedDialog(VPlayer vPlayer)
         {
-            int newX = (Size.Width - flowLayoutPanelButtons.Size.Width) / 2;
-            flowLayoutPanelButtons.Location = new Point(newX, flowLayoutPanelButtons.Location.Y);
+            MessageBox.Show("There are players without an assigned EMA number.\nPlease assign them.");
         }
 
         #endregion

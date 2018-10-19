@@ -32,8 +32,14 @@ namespace MahjongTournamentSuite.EmaPlayersSelector
             Cursor = Cursors.WaitCursor;
             CancelButton = btnCancel;
             AcceptButton = btnOk;
+            ActiveControl = tbFilter;
             _controller.LoadForm(_tournamentId);
             Cursor = Cursors.Default;
+        }
+
+        private void tbFilter_TextChanged(object sender, EventArgs e)
+        {
+            _controller.FilterList(tbFilter.Text);
         }
 
         private void lbEmaPlayers_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -60,16 +66,26 @@ namespace MahjongTournamentSuite.EmaPlayersSelector
         public void FillLbEmaPlayersNames(List<string> emaPlayersNames)
         {
             lbEmaPlayers.DataSource = emaPlayersNames;
-            lbEmaPlayers.SelectedIndex = 0;
+            if (emaPlayersNames.Count > 0)
+                lbEmaPlayers.SelectedIndex = 0;
         }
 
         #endregion
 
         #region Private
 
-        public void CloseReturningValue()
+        private void CloseReturningValue()
         {
-            ReturnValue = ((string)lbEmaPlayers.SelectedItem);
+            string selectedItem = (string)lbEmaPlayers.SelectedItem;
+            if (selectedItem.Equals(string.Empty))
+            {
+                ReturnValue = string.Empty;
+            }
+            else
+            {
+                ReturnValue = selectedItem.Substring(selectedItem.LastIndexOf(" - "))
+                                          .Replace(" - ", string.Empty);
+            }
             DialogResult = DialogResult.OK;
             Close();
         }

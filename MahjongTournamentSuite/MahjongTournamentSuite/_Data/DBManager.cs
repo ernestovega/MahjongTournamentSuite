@@ -746,7 +746,8 @@ namespace MahjongTournamentSuite._Data
         {
             EnsureThereAreEmaPlayers();
             List<DBEmaPlayer> dbEmaPlayers = _db.EmaPlayers.ToList();
-            List<DBPlayer> dbPlayersInUse = _db.Players.ToList().FindAll(x => x.PlayerTournamentId == tournamentId);
+            List<DBPlayer> dbPlayersInUse = _db.Players.ToList().FindAll( x => x.PlayerTournamentId == tournamentId && 
+                x.PlayerEmaNumber != null && !x.PlayerEmaNumber.Equals(string.Empty));
             List<DBEmaPlayer> dbEmaPlayersInUse = new List<DBEmaPlayer>(dbPlayersInUse.Count);
             foreach (DBEmaPlayer dbEmaPlayer in dbEmaPlayers)
             {
@@ -764,7 +765,8 @@ namespace MahjongTournamentSuite._Data
             List<string> emaPlayersNames = new List<string>();
             foreach(DBEmaPlayer dbEmaPlayer in dbEmaPlayers)
             {
-                emaPlayersNames.Add(string.Format("{0}, {1} - {2}", 
+                emaPlayersNames.Add(string.Format("{0} - {1}, {2} - {3}", 
+                    dbEmaPlayer.EmaPlayerCountryName,
                     dbEmaPlayer.EmaPlayerLastName,
                     dbEmaPlayer.EmaPlayerName, 
                     dbEmaPlayer.EmaPlayerEmaNumber));

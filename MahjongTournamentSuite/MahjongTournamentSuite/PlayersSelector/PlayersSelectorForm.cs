@@ -63,7 +63,8 @@ namespace MahjongTournamentSuite.PlayersSelector
         public void FillLbPlayersNames(List<string> dgvAvailableTeamPlayers)
         {
             lbPlayers.DataSource = dgvAvailableTeamPlayers;
-            lbPlayers.SelectedIndex = 0;
+            if (dgvAvailableTeamPlayers.Count > 0)
+                lbPlayers.SelectedIndex = 0;
         }
 
         #endregion
