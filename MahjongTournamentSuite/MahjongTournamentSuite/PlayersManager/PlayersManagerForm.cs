@@ -128,8 +128,10 @@ namespace MahjongTournamentSuite.ManagePlayers
             dgv.Columns[DGVPlayer.COLUMN_PLAYERS_COUNTRY_FLAG].ReadOnly = true;
             //No editable Columns BackColor
             dgv.Columns[VPlayer.COLUMN_PLAYERS_ID].DefaultCellStyle.BackColor = SystemColors.ControlLight;
+            dgv.Columns[DGVPlayer.COLUMN_PLAYERS_COUNTRY_FLAG].DefaultCellStyle.BackColor = SystemColors.ControlLight;
             //No editable Columns ForeColor
             dgv.Columns[VPlayer.COLUMN_PLAYERS_ID].DefaultCellStyle.ForeColor = SystemColors.GrayText;
+            dgv.Columns[DGVPlayer.COLUMN_PLAYERS_COUNTRY_FLAG].DefaultCellStyle.ForeColor = SystemColors.GrayText;
             //HeaderText
             dgv.Columns[VPlayer.COLUMN_PLAYERS_ID].HeaderText = "Player Id";
             dgv.Columns[VPlayer.COLUMN_PLAYERS_EMA_NUMBER].HeaderText = "EMA Number";
@@ -161,7 +163,8 @@ namespace MahjongTournamentSuite.ManagePlayers
             if(_selectedRowIndex >= 0)
             {
                 dgv.Rows[_selectedRowIndex].Selected = true;
-                _selectedRowIndex = -1;
+                dgv.FirstDisplayedScrollingRowIndex = dgv.SelectedRows[0].Index;
+                //_selectedRowIndex = -1;
             }
         }
 

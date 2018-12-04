@@ -201,7 +201,7 @@
             this.btnExportHTML.Image = global::MahjongTournamentSuite.Properties.Resources.export_html;
             this.btnExportHTML.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnExportHTML.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnExportHTML.Location = new System.Drawing.Point(703, 14);
+            this.btnExportHTML.Location = new System.Drawing.Point(549, 14);
             this.btnExportHTML.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnExportHTML.MinimumSize = new System.Drawing.Size(64, 64);
             this.btnExportHTML.Name = "btnExportHTML";
@@ -212,11 +212,12 @@
             this.btnExportHTML.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnExportHTML.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExportHTML.UseVisualStyleBackColor = false;
+            this.btnExportHTML.Visible = false;
             this.btnExportHTML.Click += new System.EventHandler(this.btnEmaReport_Click);
             // 
             // btnRankings
             // 
-            this.btnRankings.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnRankings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRankings.AutoSize = true;
             this.btnRankings.BackColor = System.Drawing.Color.Transparent;
             this.btnRankings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
@@ -232,7 +233,7 @@
             this.btnRankings.Image = ((System.Drawing.Image)(resources.GetObject("btnRankings.Image")));
             this.btnRankings.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnRankings.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnRankings.Location = new System.Drawing.Point(430, 14);
+            this.btnRankings.Location = new System.Drawing.Point(663, 14);
             this.btnRankings.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnRankings.MinimumSize = new System.Drawing.Size(64, 64);
             this.btnRankings.Name = "btnRankings";
@@ -247,7 +248,7 @@
             // 
             // btnTimer
             // 
-            this.btnTimer.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnTimer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnTimer.AutoSize = true;
             this.btnTimer.BackColor = System.Drawing.Color.Transparent;
             this.btnTimer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
@@ -263,7 +264,7 @@
             this.btnTimer.Image = ((System.Drawing.Image)(resources.GetObject("btnTimer.Image")));
             this.btnTimer.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnTimer.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnTimer.Location = new System.Drawing.Point(510, 14);
+            this.btnTimer.Location = new System.Drawing.Point(743, 14);
             this.btnTimer.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnTimer.MinimumSize = new System.Drawing.Size(64, 64);
             this.btnTimer.Name = "btnTimer";
@@ -372,7 +373,6 @@
             // 
             // btnExportIdCards
             // 
-            this.btnExportIdCards.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExportIdCards.AutoSize = true;
             this.btnExportIdCards.BackColor = System.Drawing.Color.Transparent;
             this.btnExportIdCards.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
@@ -388,7 +388,7 @@
             this.btnExportIdCards.Image = global::MahjongTournamentSuite.Properties.Resources.export_idcards;
             this.btnExportIdCards.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnExportIdCards.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnExportIdCards.Location = new System.Drawing.Point(589, 14);
+            this.btnExportIdCards.Location = new System.Drawing.Point(356, 14);
             this.btnExportIdCards.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.btnExportIdCards.MinimumSize = new System.Drawing.Size(64, 64);
             this.btnExportIdCards.Name = "btnExportIdCards";
@@ -399,6 +399,7 @@
             this.btnExportIdCards.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnExportIdCards.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnExportIdCards.UseVisualStyleBackColor = false;
+            this.btnExportIdCards.Visible = false;
             this.btnExportIdCards.Click += new System.EventHandler(this.btnExportIdCards_Click);
             // 
             // TournamentManagerForm
