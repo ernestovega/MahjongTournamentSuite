@@ -97,6 +97,13 @@ namespace MahjongTournamentSuite.TournamentManager
             ShowDefaultCursor();
         }
 
+        private void btnExportIdCards_Click(object sender, EventArgs e)
+        {
+            ShowWaitCursor();
+            _controller.ExportIdCardsClicked();
+            ShowDefaultCursor();
+        }
+
         private void btnEmaReport_Click(object sender, EventArgs e)
         {
             ShowWaitCursor();

@@ -391,6 +391,8 @@
     <Content Include="Resources\export_ema_white.png" />
     <Content Include="Resources\export_html.png" />
     <Content Include="Resources\export_html_white.png" />
+    <None Include="Resources\export_idcards.png" />
+    <None Include="Resources\export_idcards_white.png" />
     <Content Include="Resources\favicon.ico" />
     <Content Include="Resources\flags\Afghanistan.png" />
     <Content Include="Resources\flags\Albania.png" />

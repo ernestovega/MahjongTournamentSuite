@@ -534,6 +534,15 @@ namespace MahjongTournamentSuite.TournamentManager
 
         #endregion
 
+        #region Id Cards Export
+
+        public void ExportIdCardsClicked()
+        {
+
+        }
+
+        #endregion
+
         #endregion
     }
 }

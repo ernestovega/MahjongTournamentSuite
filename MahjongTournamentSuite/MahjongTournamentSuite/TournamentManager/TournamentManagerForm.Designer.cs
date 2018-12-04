@@ -42,6 +42,7 @@
             this.btnEmaReport = new System.Windows.Forms.Button();
             this.imgLogoEMA = new System.Windows.Forms.PictureBox();
             this.imgLogoMM = new System.Windows.Forms.PictureBox();
+            this.btnExportIdCards = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
@@ -369,12 +370,44 @@
             this.imgLogoMM.TabIndex = 77;
             this.imgLogoMM.TabStop = false;
             // 
+            // btnExportIdCards
+            // 
+            this.btnExportIdCards.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExportIdCards.AutoSize = true;
+            this.btnExportIdCards.BackColor = System.Drawing.Color.Transparent;
+            this.btnExportIdCards.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnExportIdCards.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExportIdCards.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.btnExportIdCards.FlatAppearance.BorderSize = 0;
+            this.btnExportIdCards.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.Control;
+            this.btnExportIdCards.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(147)))), ((int)(((byte)(76)))));
+            this.btnExportIdCards.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(177)))), ((int)(((byte)(106)))));
+            this.btnExportIdCards.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExportIdCards.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.btnExportIdCards.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnExportIdCards.Image = global::MahjongTournamentSuite.Properties.Resources.export_idcards;
+            this.btnExportIdCards.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnExportIdCards.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnExportIdCards.Location = new System.Drawing.Point(589, 14);
+            this.btnExportIdCards.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.btnExportIdCards.MinimumSize = new System.Drawing.Size(64, 64);
+            this.btnExportIdCards.Name = "btnExportIdCards";
+            this.btnExportIdCards.Padding = new System.Windows.Forms.Padding(0, 3, 0, 0);
+            this.btnExportIdCards.Size = new System.Drawing.Size(104, 64);
+            this.btnExportIdCards.TabIndex = 79;
+            this.btnExportIdCards.Text = "Html Id Cards";
+            this.btnExportIdCards.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnExportIdCards.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnExportIdCards.UseVisualStyleBackColor = false;
+            this.btnExportIdCards.Click += new System.EventHandler(this.btnExportIdCards_Click);
+            // 
             // TournamentManagerForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1008, 747);
+            this.Controls.Add(this.btnExportIdCards);
             this.Controls.Add(this.btnPlayers);
             this.Controls.Add(this.btnTeams);
             this.Controls.Add(this.btnPlayersTables);
@@ -388,7 +421,7 @@
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(1024, 786);
+            this.MinimumSize = new System.Drawing.Size(1024, 737);
             this.Name = "TournamentManagerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mahjong Tournament Suite - Tournament Manager";
@@ -420,5 +453,6 @@
         private System.Windows.Forms.Button btnEmaReport;
         private System.Windows.Forms.PictureBox imgLogoEMA;
         private System.Windows.Forms.PictureBox imgLogoMM;
+        private System.Windows.Forms.Button btnExportIdCards;
     }
 }

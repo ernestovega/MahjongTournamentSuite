@@ -33,5 +33,7 @@
         void EmaReportClicked();
 
         int GetNumRounds();
+
+        void ExportIdCardsClicked();
     }
 }
