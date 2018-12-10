@@ -41,6 +41,15 @@ namespace MahjongTournamentSuite.EmaReport
             //Visible
             dgv.Columns[DGVEmaReportPlayer.COLUMN_EMA_PLAYER_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgv.Columns[DGVEmaReportPlayer.COLUMN_EMA_PLAYER_LAST_NAME].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            //DisplayIndex
+            dgv.Columns[DGVEmaReportPlayer.COLUMN_EMA_REPORT_PLAYER_PLACE].DisplayIndex = 0;
+            dgv.Columns[DGVEmaReportPlayer.COLUMN_EMA_PLAYER_NAME].DisplayIndex = 1;
+            dgv.Columns[DGVEmaReportPlayer.COLUMN_EMA_PLAYER_LAST_NAME].DisplayIndex = 2;
+            dgv.Columns[DGVEmaReportPlayer.COLUMN_EMA_PLAYER_EMA_NUMBER].DisplayIndex = 3;
+            dgv.Columns[DGVEmaReportPlayer.COLUMN_EMA_REPORT_PLAYER_TABLE_POINTS].DisplayIndex = 4;
+            dgv.Columns[DGVEmaReportPlayer.COLUMN_EMA_REPORT_PLAYER_SCORE].DisplayIndex = 5;
+            dgv.Columns[DGVEmaReportPlayer.COLUMN_EMA_REPORT_PLAYER_COUNTRY_EMA_MEMBER].DisplayIndex = 6;
+            dgv.Columns[DGVEmaReportPlayer.COLUMN_EMA_REPORT_PLAYER_COUNTRY_SHORT_NAME].DisplayIndex = 7;
         }
     }
 }
