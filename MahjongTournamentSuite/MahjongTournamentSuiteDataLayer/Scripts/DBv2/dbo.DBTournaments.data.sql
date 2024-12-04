@@ -1,0 +1,3 @@
+INSERT INTO [dbo].[DBTournaments] ([TournamentId], [CreationDate], [TournamentName], [NumPlayers], [NumRounds], [IsTeams]) VALUES (1, N'2017-09-17 18:51:54', N'1st Mahjong Madrid Championship 2016', 60, 6, 1)
+INSERT INTO [dbo].[DBTournaments] ([TournamentId], [CreationDate], [TournamentName], [NumPlayers], [NumRounds], [IsTeams]) VALUES (2, N'2017-09-22 00:18:39', N'2nd Mahjong Madrid Championship 2017 (9th SOMC)', 72, 6, 1)
+INSERT INTO [dbo].[DBTournaments] ([TournamentId], [CreationDate], [TournamentName], [NumPlayers], [NumRounds], [IsTeams]) VALUES (3, N'2018-12-06 14:03:06', N'3rd Mahjong Madrid Championship 2018', 48, 7, 1)
