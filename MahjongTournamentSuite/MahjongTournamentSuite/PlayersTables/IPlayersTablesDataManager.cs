@@ -10,5 +10,10 @@ namespace MahjongTournamentSuite.PlayersTables
         List<VPlayer> GetTournamentPlayers(int tournamentId);
 
         List<VTable> GetTournamentTables(int tournamentId);
+
+        List<VTeam> GetTournamentTeams(int tournamentId);
+
+        List<VEmaPlayer> GetEmaPlayers();
+
     }
 }

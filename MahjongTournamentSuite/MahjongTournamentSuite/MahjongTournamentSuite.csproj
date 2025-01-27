@@ -109,7 +109,14 @@
       <DependentUpon>EmaPlayersManagerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ColorConstants.cs" />
+    <Compile Include="PlayersTables\PlayersCardsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PlayersTables\PlayersCardsForm.Designer.cs">
+      <DependentUpon>PlayersCardsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\DataGrivViewModel\DGVEmaReportPlayer.cs" />
+    <Compile Include="ViewModel\DataGrivViewModel\DGVPlayerCard.cs" />
     <Compile Include="ViewModel\DataGrivViewModel\DGVTeamPlayer.cs" />
     <Compile Include="ViewModel\RankingModel\BestHandRanking.cs" />
     <Compile Include="ViewModel\Entities\VCountry.cs" />
@@ -316,6 +323,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EmaPlayersManager\EmaPlayersManagerForm.resx">
       <DependentUpon>EmaPlayersManagerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlayersTables\PlayersCardsForm.resx">
+      <DependentUpon>PlayersCardsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PlayersTables\PlayersTablesForm.resx">
       <DependentUpon>PlayersTablesForm.cs</DependentUpon>

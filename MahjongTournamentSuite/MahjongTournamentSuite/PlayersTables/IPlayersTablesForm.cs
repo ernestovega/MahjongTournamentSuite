@@ -8,6 +8,8 @@ namespace MahjongTournamentSuite.PlayersTables
     {
         void GeneratePlayersButtons(int numPlayers);
 
+        void ShowPlayersCards(List<DGVPlayerCard> dgvPlayerCards);
+
         void ShowPlayerTables(PlayerTables playerTables);
     }
 }

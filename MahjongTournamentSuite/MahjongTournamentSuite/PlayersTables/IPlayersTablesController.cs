@@ -5,6 +5,8 @@ namespace MahjongTournamentSuite.PlayersTables
     {
         void LoadForm(int tournamentId);
 
+        void ButtonPlayersCardsClicked();
+
         void ButtonPlayerClicked(int playerId);
     }
 }

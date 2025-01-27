@@ -32,22 +32,24 @@
             this.lbPlayers = new System.Windows.Forms.ListBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblPlayersTitle = new System.Windows.Forms.Label();
+            this.tbFilter = new System.Windows.Forms.TextBox();
+            this.lblFilterTitle = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lbPlayers
             // 
-            this.lbPlayers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.lbPlayers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lbPlayers.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbPlayers.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbPlayers.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lbPlayers.IntegralHeight = false;
             this.lbPlayers.ItemHeight = 16;
-            this.lbPlayers.Location = new System.Drawing.Point(14, 38);
+            this.lbPlayers.Location = new System.Drawing.Point(14, 70);
             this.lbPlayers.Margin = new System.Windows.Forms.Padding(5);
             this.lbPlayers.Name = "lbPlayers";
-            this.lbPlayers.Size = new System.Drawing.Size(318, 370);
+            this.lbPlayers.Size = new System.Drawing.Size(318, 498);
             this.lbPlayers.Sorted = true;
             this.lbPlayers.TabIndex = 0;
             this.lbPlayers.UseTabStops = false;
@@ -68,7 +70,7 @@
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.White;
             this.btnCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel.Location = new System.Drawing.Point(14, 426);
+            this.btnCancel.Location = new System.Drawing.Point(14, 589);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(5);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(98, 35);
@@ -93,7 +95,7 @@
             this.btnOk.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOk.ForeColor = System.Drawing.Color.White;
             this.btnOk.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnOk.Location = new System.Drawing.Point(122, 426);
+            this.btnOk.Location = new System.Drawing.Point(122, 589);
             this.btnOk.Margin = new System.Windows.Forms.Padding(5);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(210, 35);
@@ -103,16 +105,38 @@
             this.btnOk.UseVisualStyleBackColor = false;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
-            // label1
+            // lblPlayersTitle
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(11, 12);
-            this.label1.Margin = new System.Windows.Forms.Padding(5);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(101, 16);
-            this.label1.TabIndex = 75;
-            this.label1.Text = "Select a player:";
+            this.lblPlayersTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblPlayersTitle.AutoSize = true;
+            this.lblPlayersTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPlayersTitle.Location = new System.Drawing.Point(11, 44);
+            this.lblPlayersTitle.Margin = new System.Windows.Forms.Padding(5);
+            this.lblPlayersTitle.Name = "lblPlayersTitle";
+            this.lblPlayersTitle.Size = new System.Drawing.Size(100, 16);
+            this.lblPlayersTitle.TabIndex = 75;
+            this.lblPlayersTitle.Text = "Select a player:";
+            // 
+            // tbFilter
+            // 
+            this.tbFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbFilter.Location = new System.Drawing.Point(188, 12);
+            this.tbFilter.Name = "tbFilter";
+            this.tbFilter.Size = new System.Drawing.Size(144, 20);
+            this.tbFilter.TabIndex = 76;
+            this.tbFilter.TextChanged += new System.EventHandler(this.tbFilter_TextChanged);
+            // 
+            // lblFilterTitle
+            // 
+            this.lblFilterTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblFilterTitle.AutoSize = true;
+            this.lblFilterTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFilterTitle.Location = new System.Drawing.Point(141, 16);
+            this.lblFilterTitle.Margin = new System.Windows.Forms.Padding(5);
+            this.lblFilterTitle.Name = "lblFilterTitle";
+            this.lblFilterTitle.Size = new System.Drawing.Size(39, 16);
+            this.lblFilterTitle.TabIndex = 77;
+            this.lblFilterTitle.Text = "Filter:";
             // 
             // PlayersSelectorForm
             // 
@@ -120,8 +144,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(346, 476);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(346, 639);
+            this.Controls.Add(this.lblFilterTitle);
+            this.Controls.Add(this.tbFilter);
+            this.Controls.Add(this.lblPlayersTitle);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lbPlayers);
@@ -144,6 +170,8 @@
         private System.Windows.Forms.ListBox lbPlayers;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOk;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblPlayersTitle;
+        private System.Windows.Forms.TextBox tbFilter;
+        private System.Windows.Forms.Label lblFilterTitle;
     }
 }

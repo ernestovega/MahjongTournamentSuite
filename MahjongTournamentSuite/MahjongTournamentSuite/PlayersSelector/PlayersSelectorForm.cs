@@ -1,6 +1,7 @@
 ﻿using MahjongTournamentSuite.TeamsManager;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace MahjongTournamentSuite.PlayersSelector
@@ -13,6 +14,7 @@ namespace MahjongTournamentSuite.PlayersSelector
         private int _tournamentId;
         private int _teamId;
         public int ReturnValue { get; set; }
+        List<string> allTeamPlayersNames = new List<string>();
 
         #endregion
 
@@ -39,6 +41,21 @@ namespace MahjongTournamentSuite.PlayersSelector
             Cursor = Cursors.Default;
         }
 
+        private void tbFilter_TextChanged(object sender, EventArgs e)
+        {
+            var filter = sender.ToString();
+            if (filter.Trim().Count() == 0)
+            {
+                FillLbPlayersNames(allTeamPlayersNames);
+            } else
+            {
+                var filteredPlayers = from player in allTeamPlayersNames
+                                      where player.Contains(filter)
+                                      select player;
+                FillLbPlayersNames(filteredPlayers.ToList());
+            }
+        }
+
         private void lbPlayers_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             CloseReturningValue();
@@ -62,6 +79,10 @@ namespace MahjongTournamentSuite.PlayersSelector
 
         public void FillLbPlayersNames(List<string> dgvAvailableTeamPlayers)
         {
+            if (allTeamPlayersNames.Count == 0)
+            {
+                allTeamPlayersNames = dgvAvailableTeamPlayers;
+            }
             lbPlayers.DataSource = dgvAvailableTeamPlayers;
             lbPlayers.SelectedIndex = 0;
         }

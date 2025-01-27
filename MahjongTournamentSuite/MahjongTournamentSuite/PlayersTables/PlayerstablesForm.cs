@@ -44,6 +44,13 @@ namespace MahjongTournamentSuite.PlayersTables
             ShowDefaultCursor();
         }
 
+        private void btnPlayersCards_Click(object sender, EventArgs e)
+        {
+            ShowWaitCursor();
+            _controller.ButtonPlayersCardsClicked();
+            ShowDefaultCursor();
+        }
+
         #endregion
 
         #region IPlayersTablesForm implementation
@@ -94,6 +101,11 @@ namespace MahjongTournamentSuite.PlayersTables
                 else
                     return;
             }
+        }
+
+        public void ShowPlayersCards(List<DGVPlayerCard> dgvPlayerCards)
+        {
+            new PlayersCardsForm(dgvPlayerCards).ShowDialog();
         }
 
         public void ShowPlayerTables(PlayerTables playerTables)
