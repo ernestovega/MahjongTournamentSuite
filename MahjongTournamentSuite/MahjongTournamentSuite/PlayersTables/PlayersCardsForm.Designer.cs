@@ -30,6 +30,7 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlayersCardsForm));
             this.dgvPlayersCards = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPlayersCards)).BeginInit();
             this.SuspendLayout();
@@ -77,12 +78,15 @@
             this.dgvPlayersCards.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvPlayersCards.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgvPlayersCards.Size = new System.Drawing.Size(1193, 817);
+            this.dgvPlayersCards.TabIndex = 0;
             // 
             // PlayersCardsForm
             // 
             this.ClientSize = new System.Drawing.Size(1221, 845);
             this.Controls.Add(this.dgvPlayersCards);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PlayersCardsForm";
+            this.Text = "Mahjong Tournament Suite - Players Id Cards";
             this.Load += new System.EventHandler(this.PlayersCardsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPlayersCards)).EndInit();
             this.ResumeLayout(false);

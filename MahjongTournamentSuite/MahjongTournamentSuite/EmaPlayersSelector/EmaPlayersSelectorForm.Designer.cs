@@ -32,7 +32,8 @@
             this.lbEmaPlayers = new System.Windows.Forms.ListBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblFilter = new System.Windows.Forms.Label();
+            this.tbFilter = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // lbEmaPlayers
@@ -47,9 +48,9 @@
             this.lbEmaPlayers.Location = new System.Drawing.Point(14, 38);
             this.lbEmaPlayers.Margin = new System.Windows.Forms.Padding(5);
             this.lbEmaPlayers.Name = "lbEmaPlayers";
-            this.lbEmaPlayers.Size = new System.Drawing.Size(318, 370);
+            this.lbEmaPlayers.Size = new System.Drawing.Size(466, 722);
             this.lbEmaPlayers.Sorted = true;
-            this.lbEmaPlayers.TabIndex = 0;
+            this.lbEmaPlayers.TabIndex = 2;
             this.lbEmaPlayers.UseTabStops = false;
             this.lbEmaPlayers.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbEmaPlayers_MouseDoubleClick);
             // 
@@ -68,11 +69,11 @@
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.White;
             this.btnCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel.Location = new System.Drawing.Point(14, 426);
+            this.btnCancel.Location = new System.Drawing.Point(14, 783);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(5);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(98, 35);
-            this.btnCancel.TabIndex = 73;
+            this.btnCancel.TabIndex = 3;
             this.btnCancel.Text = "CANCEL";
             this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCancel.UseVisualStyleBackColor = false;
@@ -93,26 +94,37 @@
             this.btnOk.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOk.ForeColor = System.Drawing.Color.White;
             this.btnOk.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnOk.Location = new System.Drawing.Point(122, 426);
+            this.btnOk.Location = new System.Drawing.Point(270, 783);
             this.btnOk.Margin = new System.Windows.Forms.Padding(5);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(210, 35);
-            this.btnOk.TabIndex = 74;
+            this.btnOk.TabIndex = 4;
             this.btnOk.Text = "OK";
             this.btnOk.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnOk.UseVisualStyleBackColor = false;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
-            // label1
+            // lblFilter
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(11, 12);
-            this.label1.Margin = new System.Windows.Forms.Padding(5);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(101, 16);
-            this.label1.TabIndex = 75;
-            this.label1.Text = "Select a player:";
+            this.lblFilter.AutoSize = true;
+            this.lblFilter.Enabled = false;
+            this.lblFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFilter.Location = new System.Drawing.Point(11, 12);
+            this.lblFilter.Margin = new System.Windows.Forms.Padding(5);
+            this.lblFilter.Name = "lblFilter";
+            this.lblFilter.Size = new System.Drawing.Size(39, 16);
+            this.lblFilter.TabIndex = 0;
+            this.lblFilter.Text = "Filter:";
+            // 
+            // tbFilter
+            // 
+            this.tbFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbFilter.Location = new System.Drawing.Point(58, 8);
+            this.tbFilter.Name = "tbFilter";
+            this.tbFilter.Size = new System.Drawing.Size(422, 20);
+            this.tbFilter.TabIndex = 1;
+            this.tbFilter.TextChanged += new System.EventHandler(this.tbFilter_TextChanged);
             // 
             // EmaPlayersSelectorForm
             // 
@@ -120,8 +132,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(346, 476);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(494, 833);
+            this.Controls.Add(this.tbFilter);
+            this.Controls.Add(this.lblFilter);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lbEmaPlayers);
@@ -144,6 +157,7 @@
         private System.Windows.Forms.ListBox lbEmaPlayers;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOk;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblFilter;
+        private System.Windows.Forms.TextBox tbFilter;
     }
 }

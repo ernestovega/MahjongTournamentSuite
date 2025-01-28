@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MahjongTournamentSuite._Data.DataModel;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace MahjongTournamentSuite.EmaPlayersSelector
@@ -10,6 +12,7 @@ namespace MahjongTournamentSuite.EmaPlayersSelector
 
         private IEmaPlayersSelectorController _controller;
         private int _tournamentId;
+        private List<string> _allEmaPlayersNames = new List<string>();
         public string ReturnValue { get; set; }
 
         #endregion
@@ -36,6 +39,14 @@ namespace MahjongTournamentSuite.EmaPlayersSelector
             Cursor = Cursors.Default;
         }
 
+        private void tbFilter_TextChanged(object sender, EventArgs e)
+        {
+            var filteredPlayers = _allEmaPlayersNames.Where(player => player.ToLower().Contains(tbFilter.Text.Trim())).ToList();
+            var result = new List<string>();
+            result.AddRange(filteredPlayers);
+            FillLbEmaPlayersNames(result);
+        }
+
         private void lbEmaPlayers_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             CloseReturningValue();
@@ -59,8 +70,19 @@ namespace MahjongTournamentSuite.EmaPlayersSelector
 
         public void FillLbEmaPlayersNames(List<string> emaPlayersNames)
         {
+            if (_allEmaPlayersNames.Count == 0)
+            {
+                _allEmaPlayersNames = emaPlayersNames.ToList();
+            }
             lbEmaPlayers.DataSource = emaPlayersNames;
-            lbEmaPlayers.SelectedIndex = 0;
+            if (emaPlayersNames.Count > 0)
+            {
+                lbEmaPlayers.SelectedIndex = 0;
+                btnOk.Enabled = true;
+            } else
+            {
+                btnOk.Enabled = false;
+            }
         }
 
         #endregion
