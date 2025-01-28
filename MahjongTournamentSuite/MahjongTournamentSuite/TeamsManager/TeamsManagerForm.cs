@@ -4,8 +4,6 @@ using MahjongTournamentSuite._Data.DataModel;
 using System.Collections.Generic;
 using MahjongTournamentSuite.ViewModel;
 using System.Drawing;
-using MahjongTournamentSuite.PlayersSelector;
-using System;
 
 namespace MahjongTournamentSuite.TeamsManager
 {
