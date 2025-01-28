@@ -1,7 +1,20 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\ernestovega\\source\\repos\\ernestovega\\MahjongTournamentSuite\\MahjongTournamentSuite\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{EB221EF2-4AC2-4AE7-876D-7E1B44FCA8B6}|MahjongTournamentSuite\\MahjongTournamentSuite.csproj|c:\\users\\ernestovega\\source\\repos\\ernestovega\\mahjongtournamentsuite\\mahjongtournamentsuite\\mahjongtournamentsuite\\playersmanager\\playersmanagerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EB221EF2-4AC2-4AE7-876D-7E1B44FCA8B6}|MahjongTournamentSuite\\MahjongTournamentSuite.csproj|solutionrelative:mahjongtournamentsuite\\playersmanager\\playersmanagerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB221EF2-4AC2-4AE7-876D-7E1B44FCA8B6}|MahjongTournamentSuite\\MahjongTournamentSuite.csproj|c:\\users\\ernestovega\\source\\repos\\ernestovega\\mahjongtournamentsuite\\mahjongtournamentsuite\\mahjongtournamentsuite\\playersmanager\\playersmanagerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{EB221EF2-4AC2-4AE7-876D-7E1B44FCA8B6}|MahjongTournamentSuite\\MahjongTournamentSuite.csproj|solutionrelative:mahjongtournamentsuite\\playersmanager\\playersmanagerform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EB221EF2-4AC2-4AE7-876D-7E1B44FCA8B6}|MahjongTournamentSuite\\MahjongTournamentSuite.csproj|c:\\users\\ernestovega\\source\\repos\\ernestovega\\mahjongtournamentsuite\\mahjongtournamentsuite\\mahjongtournamentsuite\\playersmanager\\playersmanagercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EB221EF2-4AC2-4AE7-876D-7E1B44FCA8B6}|MahjongTournamentSuite\\MahjongTournamentSuite.csproj|solutionrelative:mahjongtournamentsuite\\playersmanager\\playersmanagercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +22,45 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PlayersManagerForm.cs",
+              "DocumentMoniker": "C:\\Users\\ernestovega\\source\\repos\\ernestovega\\MahjongTournamentSuite\\MahjongTournamentSuite\\MahjongTournamentSuite\\PlayersManager\\PlayersManagerForm.cs",
+              "RelativeDocumentMoniker": "MahjongTournamentSuite\\PlayersManager\\PlayersManagerForm.cs",
+              "ToolTip": "C:\\Users\\ernestovega\\source\\repos\\ernestovega\\MahjongTournamentSuite\\MahjongTournamentSuite\\MahjongTournamentSuite\\PlayersManager\\PlayersManagerForm.cs*",
+              "RelativeToolTip": "MahjongTournamentSuite\\PlayersManager\\PlayersManagerForm.cs*",
+              "ViewState": "AgIAAIQAAAAAcWZmZmYRwKUAAABZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-28T16:48:18.664Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PlayersManagerForm.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\ernestovega\\source\\repos\\ernestovega\\MahjongTournamentSuite\\MahjongTournamentSuite\\MahjongTournamentSuite\\PlayersManager\\PlayersManagerForm.cs",
+              "RelativeDocumentMoniker": "MahjongTournamentSuite\\PlayersManager\\PlayersManagerForm.cs",
+              "ToolTip": "C:\\Users\\ernestovega\\source\\repos\\ernestovega\\MahjongTournamentSuite\\MahjongTournamentSuite\\MahjongTournamentSuite\\PlayersManager\\PlayersManagerForm.cs [Design]*",
+              "RelativeToolTip": "MahjongTournamentSuite\\PlayersManager\\PlayersManagerForm.cs [Design]*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-28T16:48:16.567Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PlayersManagerController.cs",
+              "DocumentMoniker": "C:\\Users\\ernestovega\\source\\repos\\ernestovega\\MahjongTournamentSuite\\MahjongTournamentSuite\\MahjongTournamentSuite\\PlayersManager\\PlayersManagerController.cs",
+              "RelativeDocumentMoniker": "MahjongTournamentSuite\\PlayersManager\\PlayersManagerController.cs",
+              "ToolTip": "C:\\Users\\ernestovega\\source\\repos\\ernestovega\\MahjongTournamentSuite\\MahjongTournamentSuite\\MahjongTournamentSuite\\PlayersManager\\PlayersManagerController.cs",
+              "RelativeToolTip": "MahjongTournamentSuite\\PlayersManager\\PlayersManagerController.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAcwCEAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-28T16:49:45.774Z",
+              "EditorCaption": ""
             }
           ]
         }
