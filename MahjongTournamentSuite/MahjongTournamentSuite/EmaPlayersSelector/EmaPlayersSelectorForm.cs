@@ -1,7 +1,8 @@
-﻿using MahjongTournamentSuite._Data.DataModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 
 namespace MahjongTournamentSuite.EmaPlayersSelector
@@ -41,7 +42,7 @@ namespace MahjongTournamentSuite.EmaPlayersSelector
 
         private void tbFilter_TextChanged(object sender, EventArgs e)
         {
-            var filteredPlayers = _allEmaPlayersNames.Where(player => player.ToLower().Contains(tbFilter.Text.Trim())).ToList();
+            var filteredPlayers = _allEmaPlayersNames.Where(player => FormatToCompare(player).Contains(FormatToCompare(tbFilter.Text))).ToList();
             var result = new List<string>();
             result.AddRange(filteredPlayers);
             FillLbEmaPlayersNames(result);
@@ -94,6 +95,26 @@ namespace MahjongTournamentSuite.EmaPlayersSelector
             ReturnValue = ((string)lbEmaPlayers.SelectedItem);
             DialogResult = DialogResult.OK;
             Close();
+        }
+
+        // Trims, lowercases and removes accents.
+        private static string FormatToCompare(string text)
+        {
+            if (string.IsNullOrEmpty(text))
+            {
+                return text;
+            }
+            string normalized = text.Trim().ToLower().Normalize(NormalizationForm.FormD);
+            StringBuilder stringBuilder = new StringBuilder();
+            foreach (char c in normalized)
+            {
+                if (CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
+                {
+                    stringBuilder.Append(c);
+                }
+            }
+
+            return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
         }
 
         #endregion
