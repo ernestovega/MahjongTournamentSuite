@@ -20,6 +20,7 @@ namespace MahjongTournamentSuite.ManagePlayers
         private IPlayersManagerController _controller;
         private int _tournamentId;
         private int _selectedRowIndex = -1;
+        private string _selectedColumnId = ""; 
 
         #endregion
 
@@ -36,10 +37,14 @@ namespace MahjongTournamentSuite.ManagePlayers
 
         #region Events
 
-        private void PlayersManagerForm_Load(object sender, System.EventArgs e)
+        private void PlayersManagerForm_Load(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
             _controller.LoadForm(_tournamentId);
+            if (dgv.Columns.Count > 0)
+            {
+                dgv.Columns[0].ReadOnly = true;
+            }
             Cursor = Cursors.Default;
         }
 
@@ -156,6 +161,11 @@ namespace MahjongTournamentSuite.ManagePlayers
             if(_selectedRowIndex >= 0)
             {
                 dgv.Rows[_selectedRowIndex].Selected = true;
+                if (_selectedColumnId != "")
+                {
+                    dgv.Rows[_selectedRowIndex].Cells[_selectedColumnId].Selected = true;
+                    _selectedColumnId = "";
+                }
                 _selectedRowIndex = -1;
             }
         }
@@ -237,6 +247,8 @@ namespace MahjongTournamentSuite.ManagePlayers
                     {
                         dgv.Rows[rowIndex].Cells[VPlayer.COLUMN_PLAYERS_TEAM].Value = teamId;
                         dgv.Rows[rowIndex].Cells[DGVPlayer.COLUMN_PLAYERS_TEAM_NAME].Value = teamSelectorForm.ReturnValue;
+                        _selectedRowIndex = rowIndex;
+                        _selectedColumnId = DGVPlayer.COLUMN_PLAYERS_TEAM_NAME;
                     }
                 }
             }
@@ -260,6 +272,7 @@ namespace MahjongTournamentSuite.ManagePlayers
                             _controller.AssignNewEmaPlayer(playerId, returnedEmaNumber);
                         }
                         _selectedRowIndex = rowIndex;
+                        _selectedColumnId = VPlayer.COLUMN_PLAYERS_NAME;
                         _controller.LoadForm(_tournamentId);
                     }
                 }

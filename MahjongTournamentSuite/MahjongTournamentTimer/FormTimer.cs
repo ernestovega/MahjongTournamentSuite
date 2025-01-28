@@ -16,7 +16,7 @@ namespace MahjongTournamentTimer
         [DllImportAttribute("user32.dll")]
         private static extern bool ReleaseCapture();
 
-        private const int DEFAULT_MAXTIME = 7200;
+        private const int DEFAULT_MAXTIME = 6900;
         private const int DEFAULT_MINIMIZED_FONTSIZE = 240;
         private const int DEFAULT_MAXIMIZED_FONTSIZE = 360;
 
